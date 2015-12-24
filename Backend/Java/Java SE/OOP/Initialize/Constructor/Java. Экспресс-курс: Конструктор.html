@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Java. Экспресс-курс: Конструктор</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Le styles -->
+<link href="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D0%BE%D1%80_files/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+  body {
+    padding-top: 60px;
+    padding-bottom: 10px;
+  }
+  .sidebar-nav {
+    padding: 9px 0;
+  }
+</style>
+	
+<link href="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D0%BE%D1%80_files/bootstrap-responsive.css" rel="stylesheet">
+	
+   <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    
+<link rel="icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">   
+</head>
+
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        
+        <div class="nav-collapse collapse">
+          <p class="navbar-text pull-right">
+			<a data-toggle="modal" href="#myModal" class="navbar-link">Гость</a>
+          </p>
+          <ul class="nav">
+            
+          </ul>
+        </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+        <p>
+		<a href="http://developer.alexanderklimov.ru/"><img src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D0%BE%D1%80_files/header.png" alt="Сайт разработчика Александр Климова" border="0"></a>
+		</p>
+    
+    </div><!--/span-->
+    
+	<div class="span5">
+        <p style="color:green; font-style: italic; font-size: small;">
+		/* Моя кошка замечательно разбирается в программировании. Стоит мне объяснить проблему ей - и все становится ясно. */<br>John Robbins, Debugging Applications, Microsoft Press, 2000
+		</p>
+    </div><!--/span-->
+    
+	<div class="span2">
+        <p>
+		<a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D0%BE%D1%80_files/kot-2-rss-100.png" border="0"></a>
+		</p>
+    </div><!--/span-->
+</div><!--/row-->	
+<div class="clearfix"></div>
+	
+<noindex><!--Rating@Mail.ru COUNTER--><script async="" src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D0%BE%D1%80_files/cbgapi.loaded_1"></script><script async="" src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D0%BE%D1%80_files/cbgapi.loaded_0"></script><script gapi_processed="true" src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D0%BE%D1%80_files/plusone.js" async="" type="text/javascript"></script><script language="JavaScript" type="text/javascript"><!--
+d=document;var a='';a+=';r='+escape(d.referrer)
+js=10//--></script><script language="JavaScript1.1" type="text/javascript"><!--
+a+=';j='+navigator.javaEnabled()
+js=11//--></script><script language="JavaScript1.2" type="text/javascript"><!--
+s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+js=12//--></script><script language="JavaScript1.3" type="text/javascript"><!--
+js=13//--></script><script language="JavaScript" type="text/javascript"><!--
+d.write('<IMG src="http://db.c7.b3.a0.top.mail.ru/counter'+
+'?id=228158;js='+js+a+';rand='+Math.random()+
+'" height="1" width="1" alt="top.mail.ru" border="0" />')
+if(11<js)d.write('<'+'!-- ')//--></script><img class="pcfykmqlcrtplekulgcu" src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D0%BE%D1%80_files/counter.gif" alt="top.mail.ru" height="1" width="1" border="0"><!-- <noscript><img
+src="http://db.c7.b3.a0.top.mail.ru/counter?js=na;id=228158"
+height="1" width="1" alt="top.mail.ru" border="0" /></noscript><script language="JavaScript" type="text/javascript"><!--
+if(11<js)d.write('--'+'>')//--><!--/COUNTER--></noindex><ul class="nav nav-pills" style="margin-left: 20px">
+<li class="active"><a href="http://developer.alexanderklimov.ru/android">Android</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/dotnet/">C#/Visual Basic</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/windowsphone/wp.php">Windows Phone</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/wpf/wpf.php">WPF</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/php">PHP</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/arduino">Arduino</a></li>
+</ul>
+<div class="container-fluid">
+    
+	<div class="row-fluid">
+        <!--левое меню -->
+		<div class="span2">
+            <div class="well sidebar-nav">
+            <ul class="nav nav-list nav nav-sidebar">
+<li class=""><a href="http://developer.alexanderklimov.ru/android/index.php">Главная</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/theory/">Теория</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/views.php">Palette</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/listview/">ListView</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/catshop/">Котошоп</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/animation/">Анимация</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/sqlite/">SQLite</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opengles/">OpenGL ES</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/library/">Библиотеки</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/games/">Игры</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/wear/">Wear</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/emulator/">Эмулятор</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/tips-android.php">Советы</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/articles-android.php">Статьи</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/books.php">Книги</a></li>
+<li class="active"><a href="http://developer.alexanderklimov.ru/android/java/java.php">Java. Экспресс-курс</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/design/">Дизайн</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/debug/">Отладка</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opensource.php">Open Source</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/links.php">Полезные ресурсы</a></li>
+</ul>            </div><!--/.well -->
+        </div><!--/span-->
+
+
+        <div class="span8">
+
+		<div class="row-fluid">
+            <div class="span12">
+            
+			            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Читайте на здоровье!</h3>
+            </div>
+            <div class="modal-body">
+            
+              <p>Статья проплачена кошками - всемирно известными производителями котят.</p>
+
+            <p>Если статья вам понравилась, то можете <a href="http://developer.alexanderklimov.ru/donate.php">поддержать проект</a>.</p>
+			
+			            
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal">Закрыть</button>
+              
+            </div>
+          </div>
+<h1 class="text-warning">Конструктор</h1>
+
+<p>Конструктор - это специальный метод, который вызывается при создании 
+нового объекта. Не всегда удобно инициализировать все переменные класса 
+при создании его экземпляра. Иногда проще, чтобы какие-то значения были 
+бы созданы по умолчанию при создании объекта. По сути конструктор нужен 
+для автоматической инициализации переменных.</p>
+
+<p>Конструктор инициализирует объект непосредственно во время создания. 
+Имя конструктора совпадает с именем класса, включая регистр, а по 
+синтаксису конструктор похож на метод без возвращаемого значения.</p>
+
+<pre><code class="java">
+private int Cat(); // так выглядит метод по имени Cat
+Cat(); // так выглядит конструктор класса Cat
+</code></pre>
+
+<p>В отличие от метода, конструктор никогда ничего не возвращает.</p>
+
+<p>Конструктор определяет действия, выполняемые при создании объекта 
+класса, и является важной частью класса. Как правило, программисты 
+стараются явно указать конструктор. Если явного конструктора нет, то 
+Java автоматически создаст его для использования по умолчанию. Когда мы 
+реализовывали класс <b>Box</b>, то никакого конструктора не создавали.</p>
+
+<p>Добавим в класс конструктор, который просто установит начальные значения для коробки.</p>
+
+<pre><code class="java">
+class Box {
+    int width; // ширина коробки
+    int height; // высота коробки
+    int depth; // глубина коробки
+	
+    // Конструктор
+    Box() {
+        width = 10;
+        height = 10;
+        depth = 10;
+    }
+
+    // вычисляем объём коробки
+    int getVolume() {
+    	return width * height * depth;
+    }
+}
+</code></pre>
+
+<p>Мы временно удалили метод <b>setDim()</b> и добавили конструктор. Посмотрим, что получится:</p>
+
+<pre><code class="java">
+Box catbox = new Box();
+tvInfo.setText("Объём коробки: " + catbox.getVolume());
+</code></pre>
+
+<p>Программа выведет объём коробки, хотя мы не задавали никаких размеров
+ для неё. Благодаря конструктору любая создаваемая коробка будет иметь 
+какой-то зафиксированный объём.</p>
+
+<p>Естественно, вы можете вернуть обратно метод <b>setDim()</b> (см. статью про классы) и установить свои размеры для коробки:</p>
+
+<pre><code class="java">
+Box catbox = new Box();
+// установим свои размеры для коробки
+catbox.setDim(10, 20, 30);
+tvInfo.setText("Объём коробки: " + catbox.getVolume());
+</code></pre>
+
+<p>Теперь вам должно быть ясно, что когда после ключевого слова <b>new</b> мы пишем имя класса со скобками, то на самом деле мы вызываем конструктор класса.</p>
+
+<p>Возникает вопрос - но ведь сначала при создании класса мы не создавали конструктор, однако код <b>new Box()</b>
+ работал. Дело в том, что если конструктор не определён явно, то Java 
+создаст конструктор, который будет использоваться по умолчанию. В этом 
+случае он просто присвоит всем переменным нулевые значения. Если вы 
+создали сами конструктор, то конструктор по умолчанию использоваться не 
+будет.</p>
+
+<p>Подобно любому методу, у конструктора могут быть аргументы. В 
+аргументах конструктора передаются параметры для инициализации объекта. 
+Например, если у класса <b>Cat</b> имеется конструктор, который получает в качестве аргумента целое число, обозначающее возраст кота, то объекты <b>Cat</b> будут создаваться следующим образом:</p>
+
+<pre><code class="java">
+Cat cat = new Cat(8); // коту 8 лет
+</code></pre>
+
+<p>Если Cat(int) является единственным конструктором класса, то компилятор не позволит создавать объекты <b>Cat</b> каким-либо другим способом.</p>
+
+<p>Однако вернёмся к коробкам для котов. Созданный нами конструктор не 
+особо полезен, так как создаёт одинаковые коробки. Создадим конструктор с
+ параметрами в классе <b>Box</b> и закомментируйте первый конструктор без параметров:</p>
+
+<pre><code class="java">
+// Второй конструктор
+Box(int w, int h, int d) {
+    width = w;
+	height = h;
+	depth = d;
+}
+</code></pre>
+
+<p>Если класс содержит один конструктор с параметрами, то вам придётся обязательно указать значения при объявлении класса:</p>
+
+<pre><code class="java">
+// Это конструктор теперь не допустим
+// Box catbox = new Box(); 
+// В конструкторе нужно указать значения размеров коробки
+Box catbox = new Box(100, 200, 100);
+tvInfo.setText("Объём коробки: " + catbox.getVolume());
+</code></pre>
+
+<p>Кстати, с таким конструктором метод <b>setDim()</b> нам уже не нужен.
+ Мы можем задать размеры коробки сразу в конструкторе. Так как скорее 
+всего коробка постоянна и не меняет своих размеров, то метод, пожалуй, 
+лишний. Но если мы будем менять размеры коробки, то метод придётся 
+оставить.</p>
+
+<p>Класс может иметь несколько конструкторов. Снимите комментарий с 
+первого конструктора и создайте две коробки - коробку по умолчанию и 
+большую коробку.</p>
+
+<pre><code class="java">
+Box defaultbox = new Box();
+tvInfo.setText("Объём стандартной коробки: " + defaultbox.getVolume());
+
+Box bigbox = new Box(100, 200, 200);
+tvInfo.append("\nОбъём большой коробки: " + bigbox.getVolume());
+</code></pre>
+
+<p>То есть, мы видим, что конструкторы поддерживают перегрузку, как и методы.</p>
+
+<p>Например, мы можем создать ещё один конструктор специально для коробки в виде куба, где все стороны равны:</p>
+
+<pre><code class="java">
+// Третий конструктор для куба
+Box(int len) {
+    width = height = depth = len;
+}
+</code></pre>
+
+<p>Вычисляем размер куба:</p>
+
+<pre><code class="java">
+Box cube = new Box(5);
+int vol = cube.getVolume();
+tvInfo.setText("Объём куба: " + vol);
+</code></pre>
+
+<h2 class="text-warning">Используем объект в качестве параметров</h2>
+
+<p>Мы пока использовали в качестве параметров в конструкторах простые 
+типы. Но можно передать и объект самого класса. Добавим ещё один 
+конструктор:</p>
+
+<pre><code class="java">
+// Используем объект типа Box
+Box(Box ob) {
+    width = ob.width;
+	height = ob.height;
+	depth = ob.depth;
+}
+</code></pre>
+
+<p>В коде программы можно воспользоваться конструктором следующим образом:</p>
+
+<pre><code class="java">
+Box box1 = new Box(100, 200, 100);
+Box clonebox = new Box(box1);
+
+int vol = clonebox.getVolume();
+tvInfo.setText("Объём коробки: " + vol);
+</code></pre>
+
+<h2 class="text-warning">Класс Box (исходник)</h2>
+
+<pre><code class="java">
+package ru.alexanderklimov.box;
+
+class Box {
+    int width; // ширина коробки
+    int height; // высота коробки
+    int depth; // глубина коробки
+    
+    // Конструктор
+    Box() {
+        width = 10;
+        height = 10;
+        depth = 10;
+    }
+    
+    // Второй конструктор
+    Box(int w, int h, int d) {
+        width = w;
+        height = h;
+        depth = d;
+    }
+    
+    // Третий конструктор для куба
+    Box(int len) {
+        width = height = depth = len;
+    }
+	
+    // Используем объект типа Box
+    Box(Box ob) {
+        width = ob.width;
+        height = ob.height;
+        depth = ob.depth;
+    }
+    
+    // вычисляем объём коробки
+    int getVolume() {
+        return width * height * depth;
+    }
+    
+    // устанавливаем размеры коробки
+    void setDim(int w, int h, int d) {
+        width = w;
+        height = h;
+        depth = d;
+    }
+}
+</code></pre>
+
+<h2 class="text-warning">Вызов перегруженных конструкторов через this()</h2>
+
+<p>Имея дело с перегруженными конструкторами, удобно один конструктор вызывать из другого через ключевое слово <b>this</b>. При выполнении конструктора <b>this()</b>
+ сначала выполняется перегруженный конструктор, который соответствует 
+списку параметров. Затем выполняются операторы, находящиеся внутри 
+исходного конструктора, если таковые существуют. Вызов конструктора <b>this()</b> должен быть первым оператором в конструкторе.</p>
+
+<p>Для начала создадим класс, который не использует конструктор <b>this()</b>, чтобы понять разницу.</p>
+
+<pre><code class="java">
+class Cat {
+    int age;
+    int birthday;
+    
+    // Инициализируем переменные явно
+    Cat(int i, int j) {
+        age = i;
+        birthday = j;
+    }
+    
+    // Инициализируем переменные одним и тем значением
+    Cat(int i) {
+        age = i;
+        birthday = i;
+    }
+    
+    // Присвоим значения по умолчанию 0
+    Cat() {
+        age = 0;
+        birthday = 0;
+    }
+}
+</code></pre>
+
+<p>Мы создали класс с тремя конструкторами. Перепишем класс, используя конструктор <b>this()</b>.</p>
+
+<pre><code class="java">
+class Cat{
+    int age;
+    int birthday;
+    
+    // Инициализируем переменные явно
+    Cat(int i, int j) {
+        age = i;
+        birthday = j;
+    }
+    
+    // Инициализируем переменные одним и тем значением
+    Cat(int i) {
+        this(i, i); // вызывается Cat(i, i);
+    }
+    
+    // Присвоим значения по умолчанию 0
+    Cat() {
+        this(0); // вызывается Cat(0);
+    }
+}
+</code></pre>
+
+<p>У нас теперь только один конструктор, который присваивает значения 
+полям - Cat(int, int). Что происходит при выполнении оператора:</p>
+
+<pre><code class="java">
+Cat cat = new Cat(8);
+</code></pre>
+
+<p>Вызов конструктора <b>Cat(8)</b> приводит к выполнению конструктора <b>this(8, 8)</b>, что равнозначно вызову конструктора <b>Cat(8, 8)</b>.</p>
+
+<p>Что происходит при выполнении оператора:</p>
+
+<pre><code class="java">
+Cat cat2 = new Cat();
+</code></pre>
+
+<p>В этом случае вызывается конструктор <b>this(0)</b>, что приводит к выполнению конструктора <b>Cat(0)</b>, поскольку именно эта версия конструктора подходит по списку параметров. При этом конструктор <b>Cat(0)</b> по сути вызывает конструктор <b>Cat(0, 0)</b>.</p>
+
+<p>Использование перегруженных конструкторов через конструктор <b>this()</b> позволяет исключить дублирование кода, уменьшая время загрузки классов.</p>
+
+<p>Но следует быть осторожным, так как конструкторы, которые вызывают конструктор <b>this()</b>, выполняются немного медленнее.</p>
+
+<h5 class="text-error">Реклама</h5>
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-4224968932772057";
+/* Полноразмерный баннер 728х90 */
+google_ad_slot = "4077523505";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript" src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D0%BE%D1%80_files/show_ads.js">
+</script>
+
+</div><!--/span-->
+        </div><!--/row-->	
+		  
+        </div><!--/span-->
+		
+		<div class="span2">
+            <div class="well sidebar-nav">
+    <h4><span class="label label-info">Реклама</span></h4>
+    <script type="text/javascript">
+    google_ad_client = "ca-pub-4224968932772057";
+    google_ad_slot = "8217353101";
+    google_ad_width = 160;
+    google_ad_height = 600;
+</script>
+<!-- 160 x 600 -->
+<script type="text/javascript" src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D0%BE%D1%80_files/show_ads.js">
+</script>
+</div><!--/.well -->        </div><!--/span-->
+		
+      </div><!--/row-->
+	  
+	
+      <hr>
+	  
+	  	  <div class="row-fluid">
+	  <div class="span12">
+	  <img src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D0%BE%D1%80_files/cat_bottom.png" align="right">
+</div><!--/span-->
+        </div><!--/row-->
+
+<footer>
+    <noindex>
+    <span style="float:left; margin:3px 1px 1px 2px;">
+	    © 2015 <a href="mailto:rusproject@mail.ru">А.Климов</a>
+		
+		<!-- Place this code where you want the badge to render. -->
+<a href="http://plus.google.com/109061106977829925124?prsrc=3" rel="publisher" style="text-decoration:none;">
+<img src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D0%BE%D1%80_files/gplus-16.png" alt="Google+" style="border:0;width:16px;height:16px;"></a>
+
+    </span>
+	
+		<span style="float: right; margin:3px 5px 1px 1px; font-size:22px;">
+        <!--Rating@Mail.ru LOGO--><a target="_top" href="http://top.mail.ru/jump?from=228158"><img class="pcfykmqlcrtplekulgcu" src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D0%BE%D1%80_files/counter_002.gif" alt="Рейтинг@Mail.ru" height="31" width="88" border="0"></a><!--/LOGO-->
+	</span>
+    
+    <span style="float: right; margin:2px 70px 1px 1px; font-size:22px;">
+        <a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D0%BE%D1%80_files/VJcl.gif" style="border:0" alt="" height="26" width="88"></a>
+	</span>
+	
+<div style="float: right; margin:2px 70px 1px 1px;">
+<!-- Place this tag where you want the +1 button to render. -->
+<div id="___plusone_0" style="position: absolute; width: 450px; left: -10000px;"><iframe data-gapiattached="true" class="pcfykmqlcrtplekulgcu" src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D0%BE%D1%80_files/fastbutton.html" name="I0_1449057660300" id="I0_1449057660300" vspace="0" tabindex="0" style="position:absolute;top:-10000px;width:450px;margin:0px;border-style:none" scrolling="no" marginwidth="0" marginheight="0" hspace="0" frameborder="0" width="100%"></iframe></div><div data-gapistub="true" data-onload="true" data-gapiscan="true" class="g-plusone" data-size="small" data-annotation="inline" data-width="300" data-align="right"></div>
+
+</div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'ru'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+	
+
+    </noindex>
+</footer>
+
+</div><!--/.fluid-container-->
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D0%BE%D1%80_files/jquery.js"></script>
+    <script src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D0%BE%D1%80_files/bootstrap-transition.js"></script><iframe tabindex="-1" style="width: 1px; height: 1px; position: absolute; top: -100px;" src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D0%BE%D1%80_files/postmessageRelay.html" id="oauth2relay701004018" name="oauth2relay701004018"></iframe>
+    <script src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D0%BE%D1%80_files/bootstrap-alert.js"></script>
+    <script src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D0%BE%D1%80_files/bootstrap-modal.js"></script>
+    <script src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D0%BE%D1%80_files/bootstrap-dropdown.js"></script>
+    <script src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D0%BE%D1%80_files/bootstrap-scrollspy.js"></script>
+    <script src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D0%BE%D1%80_files/bootstrap-tab.js"></script>
+    <script src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D0%BE%D1%80_files/bootstrap-tooltip.js"></script>
+    <script src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D0%BE%D1%80_files/bootstrap-popover.js"></script>
+    <script src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D0%BE%D1%80_files/bootstrap-button.js"></script>
+    <script src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D0%BE%D1%80_files/bootstrap-collapse.js"></script>
+    <script src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D0%BE%D1%80_files/bootstrap-carousel.js"></script>
+    <script src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D0%BE%D1%80_files/bootstrap-typeahead.js"></script>
+    <script src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D0%BE%D1%80_files/jquery-1.js"></script>
+
+</body></html>

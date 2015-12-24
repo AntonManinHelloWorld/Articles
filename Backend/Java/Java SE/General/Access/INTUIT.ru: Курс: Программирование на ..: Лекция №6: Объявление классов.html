@@ -1,0 +1,1381 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru"><head><script src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/ga.js" async="" type="text/javascript"></script><script async="true" src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/context.js" type="text/javascript"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+
+
+<script type="text/javascript" src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/osp-popup.js"></script><link href="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/style_002.css" rel="stylesheet" type="text/css"><script type="text/javascript" src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/tooltip-core.js"></script><script type="text/javascript" src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/tooltip-dynamic.js"></script><script type="text/javascript" src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/tooltip-cfg-16.js"></script>
+
+
+
+<title>INTUIT.ru: Курс: Программирование на ..: Лекция №6: Объявление классов</title>
+
+<meta name="description" content="INTUIT.ru: учебный курс: Программирование на Java. Лекция: Объявление классов">
+
+<meta name="keywords" content="учебный курс Программирование на Java Объявление классов
+INTUIT"> 
+
+<script type="text/javascript" src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/menu.js"></script>
+<link rel="shortcut icon" href="http://old.intuit.ru/favicon.ico">
+
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<meta name="Pragma" content="no-cache">
+<meta name="Cache-Control" content="no-cache">
+<link href="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/course.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/course.js"></script>
+
+<link href="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/lecture.css" type="text/css" rel="stylesheet">
+<script type="text/javascript">var lid=208</script>
+<script type="text/javascript" src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/prototype.js"></script>
+<script type="text/javascript" src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/lecture_lib.js"></script><script src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/lecture_show.js" type="text/javascript"></script>
+
+<link href="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/history.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/AC_OETags.js" language="javascript"></script>
+<script type="text/javascript" src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/video2.js" language="javascript"></script>
+<script type="text/javascript" src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/video4x.js" language="javascript"></script>
+<script type="text/javascript" src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/history.js" language="javascript"></script>
+<script type="text/javascript" src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/jquery-1.js" language="javascript"></script>
+
+<script type="text/javascript" src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/last_qa.js"></script>
+<link href="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/style.css" type="text/css" rel="stylesheet">
+</head>
+<body bgcolor="white">
+<!---->
+<!--header-->
+<!---->
+<div id="id_topbanner" class="topbanner">
+<div style="text-align: center;">
+<div id="banner-top" style="display: block;"><!--  AdRiver code START. Type:extension Site: Интуит PZ: 0 BN: 1 -->
+<script type="text/javascript">
+(function(L){if(typeof(ar_cn)=="undefined")ar_cn=1;
+var S='setTimeout(function(e){if(!self.CgiHref){document.close();e=parent.document.getElementById("ar_container_"+ar_bnum);e.parentNode.removeChild(e);}},3000);',
+    j=' type="text/javascript"',t=0,D=document,n=ar_cn;L+=escape(D.referrer||'unknown')+'&rnd='+Math.round(Math.random()*999999999);
+function _(){if(t++<100){var F=D.getElementById('ar_container_'+n);
+    if(F){try{var d=F.contentDocument||(window.ActiveXObject&&window.frames['ar_container_'+n].document);
+    if(d){d.write('<sc'+'ript'+j+'>var ar_bnum='+n+';'+S+'<\/sc'+'ript><sc'+'ript'+j+' src="'+L+'"><\/sc'+'ript>');t=0}
+    else setTimeout(_,100);}catch(e){try{F.src="javascript:{document.write('<sc'+'ript"+j+">var ar_bnum="+n+"; document.domain=\""
+    +D.domain+"\";"+S+"<\/sc'+'ript>');document.write('<sc'+'ript"+j+" src=\""+L+"\"><\/sc'+'ript>');}";return}catch(E){}}}else setTimeout(_,100);}}
+D.write('<div style="visibility:hidden;height:0px;left:-1000px;position:absolute;"><iframe id="ar_container_'+ar_cn
+    +'" width=1 height=1 marginwidth=0 marginheight=0 scrolling=no frameborder=0><\/iframe><\/div><div id="ad_ph_'+ar_cn
+    +'" style="display:none;"><\/div>');_();ar_cn++;
+})('http://ad.adriver.ru/cgi-bin/erle.cgi?sid=176762&bn=1&target=blank&bt=43&pz=0&tail256=');
+</script><div style="visibility:hidden;height:0px;left:-1000px;position:absolute;"></div><div id="ad_ph_1" style="display:none;"></div>
+<!--  AdRiver code END  -->
+</div>
+
+<script type="text/javascript">
+// <!--
+	var body = document.getElementById('body');
+	if(body) {
+		body.topmargin = 0;
+		body.marginheight = 0;
+		body.style.topmargin='0';
+		body.style.marginTop = 0;
+	}
+// -->
+</script>
+
+
+<!---->
+</div></div>
+
+
+<!-- topbox -->
+<table width="100%" bgcolor="white" border="0" cellpadding="0" cellspacing="0" align="center">
+<tbody><tr>
+<td class="border">
+
+<!-- header:logo, menu -->
+<table width="100%" border="0" cellpadding="6" cellspacing="0">
+
+<tbody><tr valign="top">
+<td width="33%" align="left"><a href="http://old.intuit.ru/"><img src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/logo.gif" alt="Интернет Университет информационных технологий" height="52" width="285" border="0"></a></td>
+
+<td width="34%"></td>
+
+<td class="epigraph" valign="top" align="right">Твой путь к знаниям</td>
+</tr>
+
+</tbody></table>
+<!-- //header:logo, menu -->
+<!-- menu -->
+<table width="100%" background="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/bgtopmenu2.gif" bgcolor="#ff9900" border="0" cellpadding="" cellspacing="0">
+<tbody><tr>
+<td class="topmenu" height="24" align="left"><form action="/search" name="ya_search">
+<input name="text" style="margin-left:3px; margin-top:3px;" type="text">&nbsp;&nbsp;<a href="#" onclick="document.ya_search.submit();">Искать!</a></form></td>
+
+<td class="topmenu" height="24" align="right">
+<a class="active" id="menu_courses" onmouseover="return menu_mov('courses');" onmouseout="return menu_mot('courses');" href="http://old.intuit.ru/courses.html">Курсы</a> 
+|
+<a class="" id="menu_education" onmouseover="return menu_mov('education');" onmouseout="return menu_mot('education');" href="http://old.intuit.ru/speciality/">Обучение</a> 
+|
+<a class="" id="menu_school" onmouseover="return menu_mov('school');" onmouseout="return menu_mot('school');" href="http://old.intuit.ru/catalog/school/">Школа</a> 
+|
+<a class="" id="menu_shop" onmouseover="return menu_mov('shop');" onmouseout="return menu_mot('shop');" href="http://old.intuit.ru/shop/">Магазин</a> 
+|
+<a class="" id="menu_communication" onmouseover="return menu_mov('communication');" onmouseout="return menu_mot('communication');" href="http://forum.intuit.ru/">Общение</a> 
+|
+
+
+<a class="" id="menu_news" onmouseover="return menu_mov('news');" onmouseout="return menu_mot('news');" href="http://old.intuit.ru/news/">Новости</a>  
+
+|
+<a class="" id="menu_help" onmouseover="return menu_mov('help');" onmouseout="return menu_mot('help');" href="http://old.intuit.ru/help/">Помощь</a> 
+
+
+</td></tr>
+<tr>
+<td colspan="2" onmouseover="return menu2_mov();" onmouseout="return menu2_mot();" class="menu2" align="right">
+<div class="menu_collections_vis" id="cmenu_courses">
+<div class="menu_polosa">
+<a href="http://old.intuit.ru/courses.html">все</a>
+| 
+<a href="http://old.intuit.ru/video/">видеокурсы</a>
+| 
+<a href="http://old.intuit.ru/rating_courses/?sort=start">новые</a>
+| 
+<a href="http://old.intuit.ru/rating_courses/?sort=mstudents">популярные</a>
+| 
+<a href="http://old.intuit.ru/video/tree/video/speech/">доклады</a>
+<div class="delim">||</div>
+<a href="http://old.intuit.ru/underway_courses.html">курсы в разработке</a>
+| 
+<a href="http://old.intuit.ru/author_list.html">авторы</a>
+</div>
+</div>
+
+<div class="menu_collections" id="cmenu_shop">
+<div class="menu_polosa">
+<a href="http://old.intuit.ru/shop/books/">книги</a>
+| 
+<a href="http://old.intuit.ru/shop/soft/">программы</a>
+| 
+<a href="http://old.intuit.ru/shop/video/">видеокурcы на DVD</a>
+| 
+<a href="http://old.intuit.ru/shop/books/sale/">распродажа</a>
+| 
+<a href="http://old.intuit.ru/shop/books/novelty/">новинки</a>
+<div class="delim">||</div>
+<a href="http://old.intuit.ru/user/cart/">корзина</a>
+| 
+<a href="http://old.intuit.ru/user/account/">личный счет</a> 
+|
+<a href="http://old.intuit.ru/shop/order/history.xhtml">заказы</a>
+| 
+<a href="http://old.intuit.ru/user.html">настройка</a>
+</div>
+</div>
+
+
+<div class="menu_collections" id="cmenu_education">
+<div class="menu_polosa">
+
+<a href="http://old.intuit.ru/groups/catalog/">учебные группы</a>
+| 
+<a href="http://old.intuit.ru/speciality/">учебные программы</a>
+<div class="delim">||</div> 
+<a href="http://hpcu.ru/" target="_blank">HPCU.ru: Суперкомпьютерные технологии</a>
+|
+<a target="_blank" href="http://www.aspiranttest.ru/">АспирантТест</a>
+|
+<a target="_blank" href="http://www.diofant.ru/">Diofant.ru</a>
+</div>
+</div>
+
+<div class="menu_collections" id="cmenu_school">
+<div class="menu_polosa">
+<a href="http://old.intuit.ru/catalog/school/">курсы</a>
+| 
+<a href="http://old.intuit.ru/catalog/school/school/">видеокурсы</a>
+| 
+<a href="http://old.intuit.ru/shop/video/school/">видеокурсы на DVD</a>
+</div>
+</div>
+
+
+<div class="menu_collections" id="cmenu_communication">
+<div class="menu_polosa">
+<a href="http://forum.intuit.ru/">форум</a>
+| 
+<a href="http://ask.intuit.ru/">вопросы и ответы</a>
+| 
+<a href="http://old.intuit.ru/help/askform.xhtml">задать вопрос</a>
+<div class="delim">||</div>
+<a href="http://old.intuit.ru/rating_students/">рейтинг студентов</a>
+</div>
+</div>
+
+
+<div class="menu_collections" id="cmenu_help">
+<div class="menu_polosa">
+<a href="http://old.intuit.ru/help/about.html">о проекте</a>
+| 
+<a href="http://old.intuit.ru/help/free.html">учеба</a>
+| 
+<a href="http://old.intuit.ru/help/he.html">высшее образование</a>
+| 
+<a href="http://old.intuit.ru/help/user.html">настройки</a>
+| 
+<a href="http://old.intuit.ru/help/orders.html">магазин</a>
+| 
+<a href="http://old.intuit.ru/help/groups.html">группы</a>
+</div>
+</div>
+
+<div class="menu_collections" id="cmenu_news">
+<div class="menu_polosa">
+<a href="http://old.intuit.ru/news/">лента новостей</a>
+|
+<a title="RSS" href="http://old.intuit.ru/news.rss" target="_blank"><img class="rss" src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/rss.gif" height="12" width="12" border="0">RSS</a>
+| 
+<a href="http://old.intuit.ru/job/">работа</a>
+| 
+<a href="http://old.intuit.ru/user/subscribe/">подписка</a>
+<div class="delim">||</div>
+<a target="_blank" href="http://www.osp.ru/">OSP.ru</a>
+| 
+<a target="_blank" href="http://tv.osp.ru/">видеоновости</a>
+</div>
+</div>
+
+
+<div class="menu_collections" id="cmenu_default">
+<div class="menu_polosa">
+&nbsp;
+</div>
+</div>
+
+</td>
+</tr>
+</tbody></table>
+<script>
+	menu_reset();
+</script>
+<!-- //menu -->
+</td>
+</tr>
+</tbody></table>
+<!-- //topbox -->
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tbody><tr>
+<td class="menu" align="center">
+<table class="orang_border" width="100%" border="0" cellpadding="1" cellspacing="0"><tbody><tr><td>
+<table width="100%" bgcolor="#ffffcc" border="0" cellpadding="4" cellspacing="0">
+<tbody><tr align="center">
+<td class="rtxt" width="100%">
+<!--
+<a href="http://old.intuit.ru/job/"><b><font color="#000099">Приглашаем студентов на летнюю практику</font></b></a> 
+|| 
+<a href="http://old.intuit.ru/ios.xhtml"><b><font color="#000099">
+Приглашаем на курсы по разработке программ для iPhone и iPad</font></b></a> 
+||
+<a href="http://old.intuit.ru/job/"><b><font color="#000099">Работа в ИНТУИТ: специалисты по Java, Python</font></b></a> 
+|| 
+<a href="http://old.intuit.ru/shop/other/"><font color="#990000">ВСЕ ВИДЕОКУРСЫ</font> на одном диске</a> 
+||
+<a href="http://old.intuit.ru/ms-grants/"><b><font color="#990000">НОВЫЙ КОНКУРС ГРАНТОВ ОТ MICROSOFT</font></b></a> 
+|| 
+<a href="http://old.intuit.ru/konkurs/"><font color="#009900">Приглашаем авторов курсов</font></a> 
+-->
+<a href="http://old.intuit.ru/ms-grants/"><b><font color="#000099">НОВЫЙ КОНКУРС ГРАНТОВ ОТ MICROSOFT</font></b></a> 
+|| 
+<b><font color="#990000">Мобильные приложения ИНТУИТ: <a href="http://old.intuit.ru/shop/product.xhtml?id=2494894">iPhone</a>, <a href="http://old.intuit.ru/shop/product.xhtml?id=2494919">Android</a>, <a href="http://old.intuit.ru/shop/soft/product.xhtml?id=2494925">Windows Phone</a></font></b> 
+|| 
+<a href="http://old.intuit.ru/shop/video/product.xhtml?id=2494908"><font color="#009900">ВСЕ ВИДЕОКУРСЫ</font></a> и <a href="http://old.intuit.ru/shop/ebooks/product.xhtml?id=2494906"><font color="#009900">ВСЕ ЭЛЕКТРОННЫЕ КНИГИ</font></a> 
+</td>
+</tr></tbody></table>
+</td></tr></tbody></table>
+</td>
+</tr>
+</tbody></table>
+
+<br>
+
+<!--/header-->
+<!---->
+<!--/menu-->
+
+
+<table height="73" width="100%" border="0" cellpadding="0" cellspacing="0">
+<tbody><tr valign="top">
+<td width="6"><img src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/empty.gif" height="1" width="6"></td>
+<td>
+<div class="course_content">
+
+
+<span title="Спонсорская поддержка проекта" class="course_title_right">
+<a class="course_title_right" href="http://old.intuit.ru/user/account/sponsor.xhtml"><img src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/rubm.gif" height="17" width="15"></a>
+<a class="course_title_right" href="http://old.intuit.ru/user/account/sponsor.xhtml">поддержка курса</a></span>
+
+
+<a href="http://old.intuit.ru/goto/course/javapl/" class="course_title">Программирование на Java</a>
+
+
+<br>
+
+
+
+
+
+
+
+<span class="course_lecture_info_block" style="cursor: pointer; cursor: hand">
+
+
+
+<span style="display:none;" onclick="course_show_info(false)" title="скрыть информацию о курсе" id="lecture_show_info_off">
+<span class="course_lecture_info">информация</span>
+<span style="font-weight: bold;">
+[<span style="font-weight: 900;" onmouseover="this.style.color='blue'" onmouseout="this.style.color='#000000'">-</span>]</span>
+
+</span>
+
+
+
+<span onclick="course_show_info(true)" title="показать информацию о курсе" id="lecture_show_info_on">
+<span class="course_lecture_info">информация</span>
+<span style="font-weight: bold;">
+[<span style="font-weight: 900;" onmouseover="this.style.color='blue'" onmouseout="this.style.color='#000000'">+</span>]</span>
+
+</span>
+
+
+</span>
+
+
+Автор:
+
+<a class="course_author" title="Вязовик Николай Александрович" href="http://old.intuit.ru/lector/32.html">Н.А. Вязовик</a>
+<span class="ISBN">
+<span>|</span> <b>ISBN</b>: 978-5-9556-0006-2
+<span>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+
+<div id="course_stat" style="display: none">
+<hr class="course_hr">
+<table width="100%" border="0" cellpadding="2" cellspacing="2"><tbody><tr>
+
+<td valign="BOTTOM">
+<a class="course_stat" onclick="window.open(this.href,'', 'toolbars=no,status=no,location=no,resizable=yes,scrollbars=no');return false;" href="http://old.intuit.ru/help/popup/course_info.html">?</a>
+</td>
+<td class="course_stat" valign="top">
+Уровень: <span id="course_level" class="course_stat_data">для специалистов</span>
+||
+Статус: <span id="course_status" class="course_stat_data">бесплатный</span>
+||
+Опубликован: 
+
+<span id="course_pub_time" class="course_stat_data">11.12.2003</span>
+
+
+
+<br>
+<span title="оценка курса выпускниками">Рейтинг: <span id="course_rating" class="course_stat_data">4.33</span></span>
+||
+<span title="количество студентов за последний месяц">Популярность: <span id="course_pop" class="course_stat_data">28</span></span>
+||
+Студентов: <span class="course_stat_data" id="course_stud1" title="всего студентов">44849</span>/<span class="course_stat_data" id="course_stud2" title="всего выпускников">1721</span>
+
+
+</td>
+
+</tr></tbody></table>
+</div>
+
+
+
+<hr class="course_hr">
+
+<div class="course_menu">
+
+Студентам: 
+<span class="cm_offline">
+
+<span class="course_offline">
+<a class="ebook" title="Автономная система для изучения курса без подключения к интернету, включает тексты лекций и все тесты." href="http://old.intuit.ru/shop/courses/?media=download&amp;expand_selected=1&amp;courses=57">электронная книга</a>
+</span>
+
+
+
+
+
+
+</span>
+
+<span class="cm_lit">
+|
+<a href="http://old.intuit.ru/department/pl/javapl/lit.html" class="course_menu_item">литература</a>
+</span>
+
+
+<span class="cm_keywords">
+|
+<a href="http://old.intuit.ru/department/pl/javapl/keywords.html" class="course_menu_item">указатель</a>
+</span>
+
+
+
+<span class="cm_forum">
+|
+<a href="http://old.intuit.ru/department/pl/javapl/forum/" class="course_menu_item">форум</a>
+</span>
+
+<span class="cm_opions">
+|
+<a href="http://old.intuit.ru/department/pl/javapl/class/opinions/" class="course_menu_item">мнения</a>
+</span>
+<span class="cm_mans">
+|
+<a href="http://old.intuit.ru/department/pl/javapl/class/classmates/" class="course_menu_item">однокурсники</a>
+</span>
+<span class="cm_rate">
+|
+<a href="http://old.intuit.ru/department/pl/javapl/class/rating/" class="course_menu_item">рейтинг</a>
+
+</span>
+</div>
+<hr class="course_hr">
+
+
+
+<div class="course_menu_lection">
+
+
+
+<span class="course_title_right">
+
+
+<div class="name">
+<div class="left">&nbsp;</div>
+<div class="text"><a href="http://old.intuit.ru/department/pl/javapl/class/examination/">экзамен</a></div>
+<div class="right">&nbsp;</div>
+</div>
+
+<div class="name">
+<div class="left">&nbsp;</div>
+<div class="text"><a href="http://old.intuit.ru/department/pl/javapl/class/examination_extern/">экстернат</a></div>
+<div class="right">&nbsp;</div>
+</div>
+
+
+<div class="name">
+<div class="left">&nbsp;</div>
+<div class="text"><a title="образец диплома" onclick="return popup_diploma(this)" target="_blank" href="http://old.intuit.ru/department/pl/javapl/diplom/ru/">диплом</a></div>
+<div class="right">&nbsp;</div>
+</div>
+
+</span>
+
+
+
+
+
+
+
+
+
+
+<div class="menu_lections">
+
+<div class="name">
+<div class="left">&nbsp;</div>
+<div class="text">Лекции:</div>
+<div class="right">&nbsp;</div>
+</div>
+
+
+<div class="lections">
+<ul>
+
+<li title="Что такое Java? История создания"><a href="http://old.intuit.ru/department/pl/javapl/1/" class="normal">1</a></li>
+
+<li title="Основы объектно-ориентированного программирования"><a href="http://old.intuit.ru/department/pl/javapl/2/" class="normal">2</a></li>
+
+<li title="Лексика языка"><a href="http://old.intuit.ru/department/pl/javapl/3/" class="normal">3</a></li>
+
+<li title="Типы данных"><a href="http://old.intuit.ru/department/pl/javapl/4/" class="normal">4</a></li>
+
+<li title="Имена. Пакеты"><a href="http://old.intuit.ru/department/pl/javapl/5/" class="normal">5</a></li>
+
+<li class="selected" title="Объявление классов">6</li>
+
+
+
+<li title="Преобразование типов"><a href="http://old.intuit.ru/department/pl/javapl/7/" class="normal">7</a></li>
+
+<li title="Объектная модель в Java"><a href="http://old.intuit.ru/department/pl/javapl/8/" class="normal">8</a></li>
+
+<li title="Массивы"><a href="http://old.intuit.ru/department/pl/javapl/9/" class="normal">9</a></li>
+
+<li title="Операторы и структура кода. Исключения"><a href="http://old.intuit.ru/department/pl/javapl/10/" class="normal">10</a></li>
+
+<li title="Пакет java.awt"><a href="http://old.intuit.ru/department/pl/javapl/11/" class="normal">11</a></li>
+
+<li title="Потоки выполнения. Синхронизация"><a href="http://old.intuit.ru/department/pl/javapl/12/" class="normal">12</a></li>
+
+<li title="Пакет java.lang"><a href="http://old.intuit.ru/department/pl/javapl/13/" class="normal">13</a></li>
+
+<li title="Пакет java.util"><a href="http://old.intuit.ru/department/pl/javapl/14/" class="normal">14</a></li>
+
+<li title="Пакет java.io"><a href="http://old.intuit.ru/department/pl/javapl/15/" class="normal">15</a></li>
+
+<li title="Введение в сетевые протоколы"><a href="http://old.intuit.ru/department/pl/javapl/16/" class="normal">16</a></li>
+
+<li title="Разработка приложений в среде Eclipse"><a href="http://old.intuit.ru/department/pl/javapl/17/" class="normal">17</a></li>
+
+<li title="Разработка web-приложений в среде Eclipse"><a href="http://old.intuit.ru/department/pl/javapl/18/" class="normal">18</a></li>
+
+</ul>
+    <div class="clear">&nbsp;</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+
+</span></span></div>
+
+
+	<!-- content -->
+	<table width="100%" border="0" cellpadding="0" cellspacing="0">
+
+
+
+<tbody><tr><td colspan="2" height="8"><img src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/empty.gif" height="8" width="1"></td></tr>
+
+
+
+
+
+
+<tr>
+<td colspan="2" align="left">
+<div class="lecture_title">6. Лекция:
+ Объявление классов</div>
+</td>
+</tr>
+
+<tr>
+
+<td width="75%" align="left"><font class="rtitle">Страницы:</font>
+
+
+<font class="rtitle">1</font>
+
+<font class="stitle">|</font>
+
+
+<a class="rtitle" href="http://old.intuit.ru/department/pl/javapl/6/2.html">2</a>
+<font class="stitle">|</font>
+
+
+<a class="rtitle" href="http://old.intuit.ru/department/pl/javapl/6/3.html">3</a>
+<font class="stitle">|</font>
+
+
+<a class="rtitle" href="http://old.intuit.ru/department/pl/javapl/6/4.html">4</a>
+<font class="stitle">|</font>
+
+
+<a class="rtitle vl_q" href="http://old.intuit.ru/department/pl/javapl/6/test/">вопросы</a> <font class="stitle vl_q">|</font> 
+<a class="rtitle" href="http://old.intuit.ru/department/pl/javapl/6/2.html"><b>»</b></a>
+</td>
+<td align="right">
+
+<a href="http://old.intuit.ru/department/pl/javapl/6/print/" class="rtitle" target="_blank">для печати и PDA</a>
+
+
+</td>
+
+</tr>
+
+
+
+
+	<tr><td colspan="2" height="2"><img src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/empty.gif" height="2" width="1"></td></tr>
+
+<tr><td class="lecture_pl1" colspan="2" align="left">
+<div class="lecture_write_to_us">Если Вы заметили ошибку - <a class="llecture_red" target="_blank" href="http://old.intuit.ru/help/askform.xhtml?course=57&amp;url=http://old.intuit.ru/department/pl/javapl/6/1.html">сообщите нам</a>
+или выделите ее и нажмите Ctrl+Enter</div>
+</td></tr>
+
+
+<tr><td class="lecture_pl1" colspan="2">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tbody><tr id="menu_lecture">
+<td><div id="la_indicator" style="display:none;"></div></td>
+<td>
+<div id="comments_nav">
+<a id="comments_toggle" style="display:none;" class="comments_nav" href="javascript:toggle_write_to_us();_toggleComments();"> Включить комментарии</a>
+<span id="comments_configure" style="display:none;">||&nbsp;<a class="comments_nav" href="javascript:_configureComments()">Настройки</a></span>
+<span id="comments_moderate" style="display:none;">||&nbsp;<a class="comments_nav" href="javascript:_moderateComments()">Модерация</a></span>
+<span id="comments_help" style="display:none;">||&nbsp;<a class="comments_nav" href="javascript:_helpComments()">Помощь</a></span>
+</div>
+</td>
+</tr>
+</tbody></table>
+
+</td></tr>
+	<tr><td colspan="2" height="8"><img src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/empty.gif" height="8" width="1"></td></tr>
+
+	<tr><td colspan="2">
+
+
+<div id="lecture_annotation" class="lecture_annotation">
+<div id="lecture_annotation_content">Центральная тема лекции – объявление классов, поскольку 
+	любое Java-приложение является набором классов.
+Первый рассматриваемый вопрос – система разграничения доступа в Java. 
+Описывается, зачем вообще нужно управление доступом в ОО-языке программирования
+ и как оно осуществляется в Java. Затем подробно рассматривается структура объявления
+  заголовка класса и его тела, которое состоит из элементов (полей и методов), конструкторов
+   и инициализаторов. Дополнительно описывается сигнатура метода main, с которого 
+   начинается работа Java-приложения, правила передачи параметров различных типов
+    в методы, перегруженные методы.
+</div>
+<hr class="course_hr">
+</div>
+
+
+<div class="_ga1_on_">
+<div id="lecture_container">
+<div id="lecture_body">
+<div class="reclama_block00" id="reclama_block_top_01"></div>
+
+<!---->
+<div class="bannere240x400">
+<div id="banner-240x400" style="display: block;"><!--  AdRiver code START. Type:240x400 Site: Интуит PZ: 0 BN: 1 -->
+<script language="javascript" type="text/javascript"><!--
+var RndNum4NoCash = Math.round(Math.random() * 1000000000);
+var ar_Tail='unknown'; if (document.referrer) ar_Tail = escape(document.referrer);
+document.write(
+'<iframe src="http://ad.adriver.ru/cgi-bin/erle.cgi?'
++ 'sid=176762&bn=1&target=blank&bt=22&pz=0&rnd=' + RndNum4NoCash + '&tail256=' + ar_Tail
++ '" frameborder=0 vspace=0 hspace=0 width=240 height=400 marginwidth=0'
++ ' marginheight=0 scrolling=no></iframe>');
+//--></script><iframe class="pcfykmqlcrtplekulgcu" src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/erle_005.html" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" height="400" width="240"></iframe>
+<noscript>
+<a href="http://ad.adriver.ru/cgi-bin/click.cgi?sid=176762&bn=1&bt=22&pz=0&rnd=2062472038" target=_blank>
+<img src="http://ad.adriver.ru/cgi-bin/rle.cgi?sid=176762&bn=1&bt=22&pz=0&rnd=2062472038" alt="-AdRiver-" border=0 width=240 height=400></a>
+</noscript>
+
+<!--  AdRiver code END  -->
+
+</div>
+
+</div>
+<!---->
+
+
+
+
+<div id="lecture_content"><h1>Содержание</h1><div id="lecture_content_adds"></div><ul><li><a href="#sect1">Введение</a></li><li><a href="#sect2">Модификаторы доступа</a></li><ul><li><a href="#sect3">Предназначение модификаторов доступа</a></li><li><a href="#sect4">Разграничение доступа в Java</a></li></ul><li><a href="http://old.intuit.ru/department/pl/javapl/6/2.html#sect5">Объявление классов</a></li><ul><li><a href="http://old.intuit.ru/department/pl/javapl/6/2.html#sect6">Заголовок класса</a></li><li><a href="http://old.intuit.ru/department/pl/javapl/6/2.html#sect7">Тело класса</a></li><li><a href="http://old.intuit.ru/department/pl/javapl/6/2.html#sect8">Объявление полей</a></li><li><a href="http://old.intuit.ru/department/pl/javapl/6/3.html#sect9">Объявление методов</a></li><li><a href="http://old.intuit.ru/department/pl/javapl/6/3.html#sect10">Объявление конструкторов</a></li><li><a href="http://old.intuit.ru/department/pl/javapl/6/3.html#sect11">Инициализаторы</a></li></ul><li><a href="http://old.intuit.ru/department/pl/javapl/6/4.html#sect12">Дополнительные свойства классов</a></li><ul><li><a href="http://old.intuit.ru/department/pl/javapl/6/4.html#sect13">Метод main</a></li><li><a href="http://old.intuit.ru/department/pl/javapl/6/4.html#sect14">Параметры методов</a></li><li><a href="http://old.intuit.ru/department/pl/javapl/6/4.html#sect15">Перегруженные методы</a></li></ul><li><a href="http://old.intuit.ru/department/pl/javapl/6/4.html#sect16">Заключение</a></li></ul></div><a name="sect1"></a><h3>Введение</h3><p id="id_1">Объявление классов является центральной темой курса, поскольку любая
+программа на Java – это набор классов. Поскольку типы являются ключевой
+конструкцией языка, их структура довольно сложна, имеет много
+тонкостей. Поэтому данная тема разделена на две лекции.</p><div class="lecture_mark" id="mark_1"></div><p id="id_2">Эта лекция начинается с продолжения темы прошлой лекции – имена и
+доступ к именованным элементам языка. Необходимо рассмотреть механизм
+разграничения доступа в Java, как он устроен, для чего применяется.
+Затем будут описаны ключевые правила объявления классов.</p><div class="lecture_mark" id="mark_2"></div><p id="id_3">Лекция 8 подробно рассматривает особенности объектной модели
+Java. Вводится понятие интерфейса. Уточняются правила объявления
+классов и описывается объявление интерфейса.</p><div class="lecture_mark" id="mark_3"></div><a name="sect2"></a><h3>Модификаторы доступа</h3><p id="id_4">Во многих языках существуют права доступа, которые ограничивают
+возможность использования, например, переменной в классе. Например,
+легко представить два крайних вида прав доступа: это <span class="texample">public</span>, 
+когда поле доступно из любой точки программы, и <span class="texample">private</span>, 
+когда поле может использоваться только внутри того класса, в котором оно 
+объявлено.</p><div class="lecture_mark" id="mark_4"></div><p id="id_7">Однако прежде, чем переходить к подробному рассмотрению этих и других
+модификаторов доступа, необходимо внимательно разобраться, зачем они
+вообще нужны.</p><div class="lecture_mark" id="mark_7"></div><a name="sect3"></a><h4>Предназначение модификаторов доступа</h4><p id="id_8">Очень часто права доступа расцениваются как некий элемент безопасности
+кода: мол, необходимо защищать классы от "неправильного" использования.
+Например, если в классе <span class="texample">Human</span> 
+(человек) есть поле age (возраст человека), то какой-нибудь программист
+намеренно или по незнанию может присвоить этому полю отрицательное
+значение, после чего объект станет работать неправильно, могут
+появиться ошибки. Для защиты такого поля age необходимо объявить его
+private.</p><div class="lecture_mark" id="mark_8"></div><p id="id_10">Это довольно распространенная точка зрения, однако нужно признать, что
+она далека от истины. Основным смыслом разграничения прав доступа
+является обеспечение неотъемлемого свойства объектной модели –
+инкапсуляции, то есть сокрытия реализации. Исправим пример таким
+образом, чтобы он корректно отражал предназначение модификаторов
+доступа. Итак, пусть в классе <span class="texample">Human</span>  есть поле <span class="texample">age</span> 
+целочисленного типа, и чтобы все желающие могли пользоваться этим полем, 
+оно объявляется <span class="texample">public</span>.</p><div class="lecture_mark" id="mark_10"></div><div class="example" id="id_14"><pre>public class Human {
+   public int age;
+}</pre></div><div class="lecture_mark" id="mark_14"></div><p id="id_15">Проходит время, и если в группу программистов, работающих над системой,
+входят десятки разработчиков, логично предположить, что все или
+многие из них начнут использовать это поле.</p><div class="lecture_mark" id="mark_15"></div><p id="id_16">Может получиться так, что целочисленного типа данных будет уже
+недостаточно и захочется сменить тип поля на дробный. Однако если
+просто изменить <span class="texample">int</span>  на <span class="texample">double</span>, вскоре все разработчики, 
+которые пользовались классом <span class="texample">Human</span>  и его полем <span class="texample">age</span>, обнаружат, что в их коде появились ошибки, 
+потому что поле вдруг стало дробным, и в строках, подобных этим:</p><div class="lecture_mark" id="mark_16"></div><div class="example" id="id_21"><pre>Human h = getHuman();   // получаем ссылку
+int i=h.age;   // ошибка!!</pre></div><div class="lecture_mark" id="mark_21"></div><p id="id_22">будет возникать ошибка из-за попытки провести неявным образом сужение примитивного типа.</p><div class="lecture_mark" id="mark_22"></div><p id="id_23">Получается, что подобное изменение (в общем, небольшое и локальное)
+потребует модификации многих и многих классов. Поэтому внесение его
+окажется недопустимым, неоправданным с точки зрения количества усилий,
+которые необходимо затратить. То есть, объявив один раз поле 
+или <span class="keyword">метод</span> 
+как <span class="texample">public</span>,
+можно оказаться в ситуации, когда малейшие изменения (имени, типа,
+характеристик, правил использования) в дальнейшем станут невозможны.</p><div class="lecture_mark" id="mark_23"></div><p id="id_25">Напротив, если бы поле было объявлено как <span class="texample">private</span>, а для чтения и изменения его значения были бы 
+введены дополнительные <span class="keyword">методы</span>, ситуация поменялась бы в корне:</p><div class="lecture_mark" id="mark_25"></div><div class="example" id="id_27"><pre>public class Human {
+   private int age;
+   // метод, возвращающий значение age
+   public int getAge() {
+      return age;
+   }
+   // метод, устанавливающий значение age 
+   public void setAge(int a) {
+      age=a;
+   }
+}</pre></div><div class="lecture_mark" id="mark_27"></div><p id="id_28">В этом случае с данным классом могло бы работать множество
+программистов и могло быть создано большое количество классов,
+использующих тип <span class="texample">Human</span>, но модификатор <span class="texample">private</span> 
+дает гарантию, что никто напрямую этим полем не пользуется и изменение
+его типа было бы совсем несложной операцией, связанной с изменением
+только в одном классе.</p><div class="lecture_mark" id="mark_28"></div><p id="id_31">Получение величины возраста выглядело бы следующим образом:</p><div class="lecture_mark" id="mark_31"></div><div class="example" id="id_32"><pre>Human h = getHuman();
+int i=h.getAge();   // обращение через метод</pre></div><div class="lecture_mark" id="mark_32"></div><p id="id_33">Рассмотрим, как выглядит процесс смены типа поля <span class="texample">age</span>:</p><div class="lecture_mark" id="mark_33"></div><div class="example" id="id_35"><pre>public class Human {
+
+   // поле получает новый тип double
+   private /*int*/ double age;
+
+   // старые методы работают с округлением 
+   // значения
+   
+   public int getAge() {
+      return (int)Math.round(age);
+   }
+   public void setAge(int a) {
+      age=a;
+   }
+   // добавляются новые методы для работы 
+   // с типом double
+   
+   public double getExactAge() {
+      return age;
+   }
+   public void setExactAge(double a) {
+   age=a;
+   }
+}</pre></div><div class="lecture_mark" id="mark_35"></div><p id="id_36">Видно, что старые <span class="keyword">методы</span>, которые, возможно, уже применяются во многих
+местах, остались без изменения. Точнее, остался без изменений их
+внешний формат, а внутренняя реализация усложнилась. Но такая перемена
+не потребует никаких модификаций остальных классов системы. Пример
+использования</p><div class="lecture_mark" id="mark_36"></div><div class="example" id="id_37"><pre>Human h = getHuman();
+int i=h.getAge();   // корректно</pre></div><div class="lecture_mark" id="mark_37"></div><p id="id_38">остается верным, переменная <span class="texample">i</span> 
+получает корректное целое значение. Однако изменения вводились для
+того, чтобы можно было работать с дробными величинами. Для этого были
+добавлены новые <span class="keyword">методы</span>  и во всех местах, где требуется точное значение
+возраста, необходимо обращаться к ним:</p><div class="lecture_mark" id="mark_38"></div><div class="example" id="id_40"><pre>Human h = getHuman();
+double d=h.getExactAge();   
+   // точное значение возраста</pre></div><div class="lecture_mark" id="mark_40"></div><p id="id_41">Итак, в класс была добавлена новая возможность, не потребовавшая никаких изменений кода.</p><div class="lecture_mark" id="mark_41"></div><p id="id_42">За счет чего была достигнута такая гибкость? Необходимо выделить
+свойства объекта, которые потребуются будущим пользователям этого
+класса, и сделать их доступными (в данном случае, <span class="texample">public</span> ).
+Те же элементы класса, что содержат детали внутренней реализации логики
+класса, желательно скрывать, чтобы не образовались нежелательные
+зависимости, которые могут сдерживать развитие системы.</p><div class="lecture_mark" id="mark_42"></div><p id="id_44">Этот пример одновременно иллюстрирует и другое теоретическое правило
+написания объектов, а именно: в большинстве случаев доступ к полям
+лучше реализовывать через специальные <span class="keyword">методы</span>  (<span class="keyword">accessors</span>) для чтения
+(<span class="keyword">getters</span>) и записи (setters). То есть само поле рассматривается как
+деталь внутренней реализации. Действительно, если рассматривать внешний
+интерфейс объекта как целиком состоящий из допустимых действий, то
+доступными элементами должны быть только <span class="keyword">методы</span>, реализующие эти
+действия. Один из случаев, в котором такой подход приносит необходимую
+гибкость, уже рассмотрен.</p><div class="lecture_mark" id="mark_44"></div><p id="id_45">Есть и другие соображения. Например, вернемся к вопросу о корректном
+использовании объекта и установке верных значений полей. Как следствие,
+правильное разграничение доступа позволяет ввести механизмы проверки
+входных значений:</p><div class="lecture_mark" id="mark_45"></div><div class="example" id="id_46"><pre>public void setAge(int a) {
+   if (a&gt;=0) {
+      age=a;
+   }
+}</pre></div><div class="lecture_mark" id="mark_46"></div><p id="id_47">В этом примере поле <span class="texample">age</span>  никогда не
+примет некорректное отрицательное значение. (Недостатком приведенного
+примера является то, что в случае неправильных входных данных они
+просто игнорируются, нет никаких сообщений, позволяющих узнать, что
+изменения поля возраста на самом деле не произошло; для полноценной
+реализации <span class="keyword">метода</span>  необходимо освоить работу с ошибками в Java.)</p><div class="lecture_mark" id="mark_47"></div><p id="id_49">Бывают и более существенные изменения логики класса. Например, данные
+можно начать хранить не в полях класса, а в более надежном хранилище,
+например, файловой системе или базе данных. В этом случае <span class="keyword">методы</span> -аксессоры опять изменят свою реализацию и начнут обращаться к
+<span class="keyword">persistent storage</span> (постоянное хранилище, например, БД) для
+чтения/записи значений. Если доступа к полям класса не было, а
+открытыми были только <span class="keyword">методы</span>  для работы с их значениями, то можно
+изменить код этих <span class="keyword">методов</span>, а наружние типы, которые использовали данный
+класс, совершенно не изменятся, логика их работы останется той же.</p><div class="lecture_mark" id="mark_49"></div><p id="id_50">Подведем итоги. Функциональность класса необходимо разделять на
+открытый интерфейс, описывающий действия, которые будут использовать
+внешние типы, и на внутреннюю реализацию, которая применяется только
+внутри самого класса. Внешний интерфейс в дальнейшем модифицировать
+невозможно, или очень сложно, для больших систем, поэтому его требуется
+продумывать особенно тщательно. Детали внутренней реализации могут быть
+изменены на любом этапе, если они не меняют логику работы всего класса.
+Благодаря такому подходу реализуется одна из базовых характеристик
+объектной модели — инкапсуляция, и обеспечивается важное преимущество
+технологии ООП — модульность.</p><div class="lecture_mark" id="mark_50"></div><p id="id_51">Таким образом, модификаторы доступа вводятся не для защиты типа от
+внешнего пользователя, а, напротив, для защиты, или избавления,
+пользователя от излишних зависимостей от деталей внутренней реализации.
+Что же касается неправильного применения класса, то его создателям
+нужно стремиться к тому, чтобы класс был прост в применении, тогда
+таких проблем не возникнет, ведь программист не станет намеренно писать
+код, который порождает ошибки в его программе.</p><div class="lecture_mark" id="mark_51"></div><p id="id_52">Конечно, такое разбиение на внешний интерфейс и внутреннюю реализацию
+не всегда очевидно, часто условно. Для облегчения задачи технических
+дизайнеров классов в Java введено не два ( <span class="texample">public</span>  и <span class="texample">private</span> ), а четыре уровня доступа. Рассмотрим их и весь механизм разграничения доступа в Java более подробно.</p><div class="lecture_mark" id="mark_52"></div><a name="sect4"></a><h4>Разграничение доступа в Java</h4><p id="id_55">Уровень доступа элемента языка является статическим свойством, задается
+на уровне кода и всегда проверяется во время компиляции. Попытка
+обратиться к закрытому элементу напрямую вызовет ошибку.</p><div class="lecture_mark" id="mark_55"></div><p id="id_56">В Java модификаторы доступа указываются для:</p><div class="lecture_mark" id="mark_56"></div><ul id="id_57"><li>типов (классов и интерфейсов) объявления верхнего уровня;</li><li>элементов ссылочных типов (полей, <span class="keyword">методов</span>, внутренних типов);</li><li>конструкторов классов.</li></ul><div class="lecture_mark" id="mark_57"></div><p id="id_61">Как следствие, массив также может быть недоступен в том случае, если недоступен тип, на основе которого он объявлен.</p><div class="lecture_mark" id="mark_61"></div><p id="id_62">Все четыре уровня доступа имеют только элементы типов и конструкторы. Это:</p><div class="lecture_mark" id="mark_62"></div><ul id="id_63"><li>public;</li><li>private;</li><li>protected;</li><li>если не указан ни один из этих трех типов, то уровень доступа определяется по умолчанию (default).</li></ul><div class="lecture_mark" id="mark_63"></div><p id="id_68">Первые два из них уже были рассмотрены. Последний уровень (доступ по
+умолчанию) упоминался в прошлой лекции – он допускает обращения из того
+же пакета, где объявлен и сам этот класс. По этой причине пакеты в Java
+являются не просто набором типов, а более структурированной единицей,
+так как типы внутри одного пакета могут больше взаимодействовать друг с
+другом, чем с типами из других пакетов.</p><div class="lecture_mark" id="mark_68"></div><p id="id_69">Наконец, <span class="texample">protected</span>  дает доступ
+наследникам класса. Понятно, что наследникам может потребоваться доступ
+к некоторым элементам родителя, с которыми не приходится иметь дело
+внешним классам.</p><div class="lecture_mark" id="mark_69"></div><p id="id_71">Однако описанная структура не позволяет упорядочить модификаторы
+доступа так, чтобы каждый следующий строго расширял предыдущий.
+Модификатор <span class="texample">protected</span> 
+может быть указан для наследника из другого пакета, а доступ по
+умолчанию допускает обращения из классов-ненаследников, если они
+находятся в том же пакете. По этой причине возможности <span class="texample">protected</span>  были
+расширены таким образом, что он включает в себя доступ внутри пакета.
+Итак, модификаторы доступа упорядочиваются следующим образом (от менее
+открытых – к более открытым):</p><div class="lecture_mark" id="mark_71"></div><div class="example" id="id_74"><pre>private
+(none) default
+protected
+public</pre></div><div class="lecture_mark" id="mark_74"></div><p id="id_75">Эта последовательность будет использована далее при изучении деталей наследования классов.</p><div class="lecture_mark" id="mark_75"></div><p id="id_76">Теперь рассмотрим, какие модификаторы доступа возможны для различных элементов языка.</p><div class="lecture_mark" id="mark_76"></div><ul id="id_77"><li>Пакеты доступны всегда, поэтому у них нет модификаторов доступа 
+(можно сказать, что все они <span class="texample">public</span>, то есть любой существующий 
+в системе пакет может использоваться из любой точки программы).</li><li>Типы (классы и интерфейсы) верхнего уровня объявления. 
+При их объявлении существует всего две возможности: указать 
+модификатор <span class="texample">public</span>  или не указывать его. Если доступ к 
+типу является <span class="texample">public</span>, то это означает, что он доступен 
+из любой точки кода. Если же он не <span class="texample">public</span>, то уровень 
+доступа назначается по умолчанию: тип доступен только внутри того пакета, 
+где он объявлен.</li><li>Массив имеет тот же уровень доступа, что и тип, на основе
+которого он объявлен (естественно, все примитивные типы являются
+полностью доступными).</li><li>Элементы и <span class="keyword">конструкторы объектных типов</span>. Обладают всеми
+четырьмя возможными значениями уровня доступа. Все элементы интерфейсов
+являются <span class="texample">public</span>.</li></ul><div class="lecture_mark" id="mark_77"></div><p id="id_87">Для типов объявления верхнего уровня нет необходимости во всех четырех уровнях доступа. <span class="texample">Private</span> -типы
+образовывали бы закрытую мини-программу, никто не мог бы их
+использовать. Типы, доступные только для наследников, также не были
+признаны полезными.</p><div class="lecture_mark" id="mark_87"></div><p id="id_89">Разграничения доступа сказываются не только на обращении к элементам
+объектных типов или пакетов (через <span class="keyword">составное имя</span> или прямое обращение),
+но также при вызове конструкторов, наследовании, приведении типов.
+Импортировать недоступные типы запрещается.</p><div class="lecture_mark" id="mark_89"></div><p id="id_90">Проверка уровня доступа проводится компилятором. Обратите внимание на следующие примеры:</p><div class="lecture_mark" id="mark_90"></div><div class="example" id="id_91"><pre>public class Wheel {
+   private double radius;
+   public double getRadius() {
+      return radius;
+   }
+}</pre></div><div class="lecture_mark" id="mark_91"></div><p id="id_92">Значение поля <span class="texample">radius</span>  недоступно снаружи класса, однако открытый <span class="keyword">метод</span>  <span class="texample">getRadius()</span>  корректно возвращает его.</p><div class="lecture_mark" id="mark_92"></div><p id="id_95">Рассмотрим следующие два модуля компиляции:</p><div class="lecture_mark" id="mark_95"></div><div class="example" id="id_96"><pre>package first;
+
+// Некоторый класс Parent
+public class Parent {
+}
+
+package first;
+
+// Класс Child наследуется от класса Parent,
+// но имеет ограничение доступа по умолчанию
+class Child extends Parent {
+}
+
+public class Provider {
+   public Parent getValue() {
+      return new Child();
+   }
+}</pre></div><div class="lecture_mark" id="mark_96"></div><p id="id_97">К <span class="keyword">методу</span>  <span class="texample">getValue()</span>  класса <span class="texample">Provider</span>  можно обратиться и из другого пакета, не только из пакета <span class="texample">first</span>, поскольку <span class="keyword">метод</span>  объявлен как <span class="texample">public</span>. Данный <span class="keyword">метод</span>  возвращает экземпляр класса <span class="texample">Child</span>, который недоступен из других пакетов. Однако следующий вызов является корректным:</p><div class="lecture_mark" id="mark_97"></div><div class="example" id="id_103"><pre>package second;
+
+import first.*;
+
+public class Test {
+  public static void main(String s[]) 
+  {
+   Provider pr = new Provider();
+   Parent p = pr.getValue();
+   System.out.println(p.getClass().getName());
+   // (Child)p - приведет к ошибке компиляции!
+  }
+}</pre></div><div class="lecture_mark" id="mark_103"></div><p id="id_104">Результатом будет:</p><div class="lecture_mark" id="mark_104"></div><div class="example" id="id_105"><pre>first.Child</pre></div><div class="lecture_mark" id="mark_105"></div><p id="id_106">То есть на самом деле в классе <span class="texample">Test</span>  работа идет с экземпляром недоступного класса <span class="texample">Child</span>, что возможно, поскольку обращение к нему делается через открытый класс <span class="texample">Parent</span>.
+Попытка же выполнить явное приведение вызовет ошибку. Да, тип объекта
+"угадан" верно, но доступ к закрытому типу всегда запрещен.</p><div class="lecture_mark" id="mark_106"></div><p id="id_110">Следующий пример:</p><div class="lecture_mark" id="mark_110"></div><div class="example" id="id_111"><pre>public class Point {
+  private int x, y;
+
+  public boolean equals(Object o) {
+    if (o instanceof Point) {
+      Point p = (Point)o;
+      return p.x==x &amp;&amp; p.y==y;
+    }
+    return false;
+  }
+}</pre></div><div class="lecture_mark" id="mark_111"></div><p id="id_112">В этом примере объявляется класс <span class="texample">Point</span>  с двумя полями, описывающими координаты точки. Обратите внимание, что поля полностью закрыты – <span class="texample">private</span>. Далее попытаемся переопределить стандартный <span class="keyword">метод</span>  <span class="texample">equals()</span>  таким образом, чтобы для аргументов, являющихся экземплярами класса <span class="texample">Point</span>, или его наследников (логика работы оператора <span class="texample">instanceof</span> ),
+в случае равенства координат возвращалось истинное значение. Обратите
+внимание на строку, где делается сравнение координат,– для этого
+приходится обращаться к <span class="texample">private</span> -полям другого объекта!</p><div class="lecture_mark" id="mark_112"></div><p id="id_119">Тем не менее, такое действие корректно, поскольку <span class="texample">private</span>  допускает обращения из любой точки класса, независимо от того, к какому именно объекту оно производится.</p><div class="lecture_mark" id="mark_119"></div><p id="id_121">Другие примеры разграничения доступа в Java будут рассматриваться по ходу курса.</p><div class="lecture_mark" id="mark_121"></div>
+
+    
+
+<div class="reclama_block00" id="reclama_block_down_01"></div>
+</div>
+</div>
+</div>
+
+<script type="text/javascript">
+on_load_lecture();
+</script>
+
+	</td>
+	</tr>
+	<tr><td colspan="2" height="8"><img src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/empty.gif" height="8" width="1"></td></tr>
+
+	<tr><td colspan="2" height="8"><img src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/empty.gif" height="8" width="1"></td></tr>
+	<tr><td colspan="2" align="center">
+
+<a href="http://old.intuit.ru/department/pl/javapl/6/2.html" class="attention">Дальше »</a>
+
+	</td></tr>
+	<tr><td colspan="2" height="16"><img src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/empty.gif" height="16" width="1"></td></tr>
+
+	<tr><td colspan="2" height="2"><img src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/empty.gif" height="2" width="1"></td></tr>
+<tr>
+
+<td width="75%" align="left"><font class="rtitle">Страницы:</font>
+
+
+<font class="rtitle">1</font>
+
+<font class="stitle">|</font>
+
+
+<a class="rtitle" href="http://old.intuit.ru/department/pl/javapl/6/2.html">2</a>
+<font class="stitle">|</font>
+
+
+<a class="rtitle" href="http://old.intuit.ru/department/pl/javapl/6/3.html">3</a>
+<font class="stitle">|</font>
+
+
+<a class="rtitle" href="http://old.intuit.ru/department/pl/javapl/6/4.html">4</a>
+<font class="stitle">|</font>
+
+
+<a class="rtitle vl_q" href="http://old.intuit.ru/department/pl/javapl/6/test/">вопросы</a> <font class="stitle vl_q">|</font> 
+<a class="rtitle" href="http://old.intuit.ru/department/pl/javapl/6/2.html"><b>»</b></a>
+</td>
+<td align="right">
+
+<a href="http://old.intuit.ru/department/pl/javapl/6/print/" class="rtitle" target="_blank">для печати и PDA</a>
+
+
+</td>
+
+</tr>
+
+	<tr><td colspan="2" height="8"><img src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/empty.gif" height="8" width="1"></td></tr>
+	<tr><td class="orang" colspan="2" height="1"><img src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/empty.gif" height="1" width="1"></td></tr>
+	</tbody></table>
+	<!-- /content -->
+
+</td>
+
+
+<td width="6"><img src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/empty.gif" width="6"></td>
+<td class="vl_r" width="1"><img src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/empty.gif"></td>
+<td class="vl_r" width="6"><img src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/empty.gif" width="6"></td>
+<td class="vl_r" width="160">
+<table width="100%" background="" border="0" cellpadding="0" cellspacing="0">
+<tbody><tr><td>
+<div id="last_qa" style="display: block;"><div class="last_qa">
+<h1><a onclick="return open_last_qa(this);" href="http://ask.intuit.ru/">Вопросы и Ответы</a></h1>
+
+Помогите ответить на вопрос: <script type="text/javascript">write_lastq()</script><a onclick="return open_last_qa(this);" href="http://ask.intuit.ru/question/3180/">http://www...dpo/pk/ ссылку на прохождение курсов повышения квалификации ко дню рождения проекта не работае</a>
+
+<div>
+<a onclick="return open_last_qa(this);" href="http://ask.intuit.ru/">Задайте свой вопрос »</a>
+</div>
+</div>
+</div>
+<script type="text/javascript">
+	if(lastq_exists) {
+		var t = document.getElementById('last_qa');
+		if(t) t.style.display = 'block';
+	}
+</script>
+<div id="intuit_banner_01" style="display: none"></div>
+</td></tr>
+
+<tr><td align="center">&nbsp;</td></tr>
+<tr>
+<td align="center">
+<div id="banner-160x600" style="display: block;"><div id="AdRiver160x600">
+<!--  AdRiver code START. Type:160x600 Site: Интуит PZ: 0 BN: 1 -->
+<script language="javascript" type="text/javascript"><!--
+var RndNum4NoCash = Math.round(Math.random() * 1000000000);
+var ar_Tail='unknown'; if (document.referrer) ar_Tail = escape(document.referrer);
+document.write(
+'<iframe src="http://ad.adriver.ru/cgi-bin/erle.cgi?'
++ 'sid=176762&bn=1&target=blank&bt=29&pz=0&rnd=' + RndNum4NoCash + '&tail256=' + ar_Tail
++ '" frameborder=0 vspace=0 hspace=0 width=160 height=600 marginwidth=0'
++ ' marginheight=0 scrolling=no></iframe>');
+//--></script><iframe class="pcfykmqlcrtplekulgcu" src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/erle_003.html" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" height="600" width="160"></iframe>
+<noscript>
+<a href="http://ad.adriver.ru/cgi-bin/click.cgi?sid=176762&bn=1&bt=29&pz=0&rnd=1954843772" target=_blank>
+<img src="http://ad.adriver.ru/cgi-bin/rle.cgi?sid=176762&bn=1&bt=29&pz=0&rnd=1954843772" alt="-AdRiver-" border=0 width=160 height=600></a>
+</noscript>
+
+<!--  AdRiver code END  -->
+</div>
+</div>
+
+</td>
+</tr>
+<tr><td>&nbsp;</td></tr>
+
+<tr><td align="center">
+<div id="id_google160x600" class="google160x600">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-3229713645839679";
+/* Intuit_160x600 */
+google_ad_slot = "9981759856";
+google_ad_width = 160;
+google_ad_height = 600;
+//-->
+</script>
+<script type="text/javascript" src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/show_ads.js">
+</script>
+</div>
+
+
+
+</td></tr>
+</tbody></table>
+</td>
+
+
+
+</tr></tbody></table>
+
+
+
+<!-- /bottom -->
+<br>
+<div class="bottom1">
+<table width="100%" bgcolor="white" border="0" cellpadding="0" cellspacing="0" align="center">
+<!---->
+<!---->
+<tbody><tr>
+<td class="border" align="center">
+    <table width="100%" bgcolor="white" border="0" cellpadding="0" cellspacing="8">
+    <tbody><tr>
+    <td width="1"><iframe id="errorHandling" src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/error.html" scrolling="no" frameborder="0" height="1" width="1"></iframe></td>
+    <td class="rtxt" width="100%" align="center">
+    Внимание! Если Вы увидите ошибку на нашем сайте, выделите её и нажмите Ctrl+Enter.
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+</tr>
+<!---->
+
+<tr>
+<td class="border" align="center">
+<!-- Яндекс.Директ -->
+<div id="yandex_ad"></div>
+<script type="text/javascript">
+(function(w, d, n, s, t) {
+w[n] = w[n] || [];
+w[n].push(function() {
+Ya.Direct.insertInto(98260, "yandex_ad", {
+site_charset: "windows-1251",
+ad_format: "direct",
+font_size: 1,
+type: "horizontal",
+border_type: "ad",
+limit: 4,
+title_font_size: 3,
+site_bg_color: "FFFFFF",
+header_bg_color: "FEEAC7",
+bg_color: "FFF9F0",
+border_color: "FF9900",
+title_color: "0000CC",
+url_color: "006600",
+text_color: "000000",
+hover_color: "0066FF",
+favicon: true
+});
+});
+t = d.documentElement.firstChild;
+s = d.createElement("script");
+s.type = "text/javascript";
+s.src = "http://an.yandex.ru/system/context.js";
+s.setAttribute("async", "true");
+t.insertBefore(s, t.firstChild);
+})(window, document, "yandex_context_callbacks");
+</script>
+
+
+
+</td>
+</tr>
+
+
+
+
+<tr>
+<td class="border" align="center">
+    <table width="100%" bgcolor="white" border="0" cellpadding="0" cellspacing="8">
+    <tbody><tr>
+    <td>
+<b>Нужна помощь?</b><br>
+• Забыли пароль? <a href="http://old.intuit.ru/user/remind/">Вам сюда...</a><br>
+• Есть вопрос? <a href="http://old.intuit.ru/help/askform.xhtml">Спрашивайте!</a>
+    </td>
+    <td>
+<b>Вы можете:</b><br>
+• Изменить персональные <a href="http://old.intuit.ru/user/edit/">данные</a><br>
+• Изменить параметры <a href="http://old.intuit.ru/user/subscribe/">подписки</a>
+    </td>
+    <td>
+<b>Интернет-магазин:</b><br>
+• Ваши заказы <a href="http://old.intuit.ru/shop/order/history.xhtml">здесь</a><br>
+• Ваш личный <a href="http://old.intuit.ru/user/account/">счет</a>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+</tr>
+<!---->
+<tr>
+<td class="copy" bgcolor="#ff9900" align="center">
+    <a href="http://old.intuit.ru/courses.html" class="bot">Курсы</a> |
+    <a href="http://old.intuit.ru/speciality/" class="bot">Учебные программы</a> |
+    <a href="http://old.intuit.ru/shop/" class="bot">Учебники</a> | 
+    <a href="http://ask.intuit.ru/" class="bot" target="_new">Вопросы и Ответы</a> | 
+    <a href="http://old.intuit.ru/forum/" class="bot">Форум</a> |
+    <a href="http://old.intuit.ru/news/" class="bot">Новости</a> | 
+    <a href="http://old.intuit.ru/help/" class="bot">Помощь</a>
+    <br><br>
+    Телефон: +7 (499) 253-9312, 253-9313, факс: +7 (499) 253-9310, email: <a href="mailto:info@intuit.ru" class="bot">info@intuit.ru</a><br>
+    © <a href="http://old.intuit.ru/" class="bot">INTUIT.ru::Интернет-Университет Информационных Технологий - дистанционное образование, 2003-2013</a>
+</td>
+</tr>
+</tbody></table>
+</div>
+<!-- /bottom -->
+
+
+
+<div class="counters_down">
+<center>
+<table width="100%" border="0" cellpadding="4">
+<tbody><tr valign="top">
+<td class="topnavi" align="left">
+Проект <b><a href="http://www.osp.ru/" target="_blank">Издательства "Открытые Системы"</a></b>.<br>
+Партнеры: <a href="http://www.rmt.ru/" target="_blank">РМ Телеком</a>, <a href="http://www.kraftway.ru/" target="_blank">KRAFTWAY COMPUTERS</a>.
+</td>
+<td align="right">
+<!--begin of Rambler's Top100 code -->
+<img class="pcfykmqlcrtplekulgcu" src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/top100.gif" alt="" height="1" width="1" border="0"><a href="http://top100.rambler.ru/top100/"><img src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/rambler.gif" alt="Rambler's Top100" height="31" width="88" border="0"></a>
+<!--end of Top100 code-->
+&nbsp;
+
+<!--Rating@Mail.ru COUNTEr--><script language="JavaScript" type="text/javascript"><!--
+d=document;var a='';a+=';r='+escape(d.referrer)
+js=10//--></script><script language="JavaScript1.1" type="text/javascript"><!--
+a+=';j='+navigator.javaEnabled()
+js=11//--></script><script language="JavaScript1.2" type="text/javascript"><!--
+s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+js=12//--></script><script language="JavaScript1.3" type="text/javascript"><!--
+js=13//--></script><script language="JavaScript" type="text/javascript"><!--
+d.write('<a href="http://top.mail.ru/jump?from=496301"'+
+' target=_top><img src="http://d2.c9.b7.a0.top.list.ru/counter'+
+'?id=496301;t=75;js='+js+a+';rand='+Math.random()+
+'" alt="Рейтинг@Mail.ru"'+' border=0 height=31 width=38/><\/a>')
+if(11<js)d.write('<'+'!-- ')//--></script><a href="http://top.mail.ru/jump?from=496301" target="_top"><img class="pcfykmqlcrtplekulgcu" src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/counter.gif" alt="Рейтинг@Mail.ru" height="31" width="38/" border="0"></a><!-- <noscript><a
+target=_top href="http://top.mail.ru/jump?from=496301"><img
+src="http://d2.c9.b7.a0.top.list.ru/counter?js=na;id=496301;t=75"
+border=0 height=31 width=38
+alt="Рейтинг@Mail.ru"/></a></noscript><script language="JavaScript" type="text/javascript"><!--
+if(11<js)d.write('--'+'>')//--><!--/COUNTER-->
+
+&nbsp;
+
+<!-- SpyLOG -->
+<script src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/counter2.js" type="text/javascript" id="spylog_code" counter="459372"></script>
+<noscript>
+<a href="http://u4593.72.spylog.com/cnt?cid=459372&f=3&p=0" target="_blank">
+<img src="http://u4593.72.spylog.com/cnt?cid=459372&p=0&f=4" alt='SpyLOG' border='0' width=88 height=31 ></a> 
+</noscript>
+<!--/ SpyLOG -->
+&nbsp;
+<!--
+<script language="javascript">
+function getCookie(name) {
+var prefix = name + "="
+var cookieStartIndex = document.cookie.indexOf(prefix)
+if (cookieStartIndex == -1)
+        return null
+var cookieEndIndex = document.cookie.indexOf(";", cookieStartIndex + prefix.length)
+if (cookieEndIndex == -1)
+        cookieEndIndex = document.cookie.length
+return unescape(document.cookie.substring(cookieStartIndex + prefix.length, cookieEndIndex))
+}
+if (getCookie('adskip') == null && (getCookie('adcnt') == null || getCookie('adcnt') < 6)) {  window.open('/popup/1/','adpopup','width=300,height=320,location=no,scrollbars=no,resizable=yes,status=no,history=no,toolbar=no'); }
+</script>
+-->
+&nbsp;
+
+<!--LiveInternet counter--><script language="JavaScript"><!--
+document.write('<a href="http://www.liveinternet.ru/click" '+
+'target=_blank><img src="http://counter.yadro.ru/hit?t44.6;r'+
+escape(document.referrer)+((typeof(screen)=='undefined')?'':
+';s'+screen.width+'*'+screen.height+'*'+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+';'+Math.random()+
+'" border=0 width=31 height=31 alt="liveinternet.ru"></a>')//--></script><a href="http://www.liveinternet.ru/click" target="_blank"><img class="pcfykmqlcrtplekulgcu" src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/hit.gif" alt="liveinternet.ru" height="31" width="31" border="0"></a><!--/LiveInternet-->
+
+&nbsp;
+
+<!-- bigmir)net TOP 100 --><a href="http://www.bigmir.net/" target="_blank" onclick='img = new Image();img.src="http://www.bigmir.net/?cl=143122";'><script language="javascript"><!--
+bmQ='<img src=http://c.bigmir.net/?s143122&t8'
+bmD=document
+bmD.cookie="b=b"
+if(bmD.cookie)bmQ+='&c1'
+//--></script><script language="javascript1.2"><!-- 
+bmS=screen;bmQ+='&d'+(bmS.colorDepth?bmS.colorDepth:bmS.pixelDepth)+"&r"+bmS.width;
+//--></script><script language="javascript"><!--
+bmF = bmD.referrer.slice(7);
+((bmI=bmF.indexOf('/'))!=-1)?(bmF=bmF.substring(0,bmI)):(bmI=bmF.length);
+if(bmF!=window.location.href.substring(7,7+bmI))bmQ+='&f'+escape(bmD.referrer);
+bmD.write(bmQ+" border=0 width=88 height=31 alt='bigmir TOP100'>");
+//--></script><img class="pcfykmqlcrtplekulgcu" src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/a.png" alt="bigmir TOP100" height="31" width="88" border="0"></a>
+
+
+</td>
+</tr></tbody></table>
+
+</center>
+
+</div>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17929409-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type =
+'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+<!-- GoodADVERT (SMART VIDEO in text) for http://old.intuit.ru -->
+<script type="text/javascript"><!--
+var _ga1_channel='199';
+// -->
+</script>
+<script type="text/javascript" src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/ga_1.js" charset="utf-8"></script>
+<!-- GoodADVERT -->
+
+<!--BEGIN RichBanner http://old.intuit.ru (Video)-->
+<script language="JavaScript">
+<!--
+var _rbn={};
+_rbn.v={};
+_rbn.v.inline_color = "#009900";
+_rbn.v.inline_count_max=5;
+_rbn.v.is_use_marked=0;
+_rbn.v.autostart_video = 1;
+_rbn.v.ad=[];
+document.write('<scr' + 'ipt language="JavaScript" src="http://drive.richbanner.ru/code?pid=22632&gid=19&oin=1&rid=' + (Math.floor(Math.random() * 1000000000)) +'" charset="utf-8" type="text/JavaScript"></scr' + 'ipt>');
+// -->
+</script><script language="JavaScript" src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/code.html" charset="utf-8" type="text/JavaScript"></script>
+<script language="JavaScript" src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/rbn.html" charset="utf-8" type="text/JavaScript"></script>
+<!--END RichBanner -->
+
+<script type="text/javascript" src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/intuit_is_bottom.js"></script><div style="display: none;"><div id="banner160x600"><div id="AdRiver160x600">
+<!--  AdRiver code START. Type:160x600 Site: Интуит PZ: 0 BN: 1 -->
+<script language="javascript" type="text/javascript"><!--
+var RndNum4NoCash = Math.round(Math.random() * 1000000000);
+var ar_Tail='unknown'; if (document.referrer) ar_Tail = escape(document.referrer);
+document.write(
+'<iframe src="http://ad.adriver.ru/cgi-bin/erle.cgi?'
++ 'sid=176762&bn=1&target=blank&bt=29&pz=0&rnd=' + RndNum4NoCash + '&tail256=' + ar_Tail
++ '" frameborder=0 vspace=0 hspace=0 width=160 height=600 marginwidth=0'
++ ' marginheight=0 scrolling=no></iframe>');
+//--></script><iframe class="pcfykmqlcrtplekulgcu" src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/erle_003.html" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" height="600" width="160"></iframe>
+<noscript>
+<a href="http://ad.adriver.ru/cgi-bin/click.cgi?sid=176762&bn=1&bt=29&pz=0&rnd=1954843772" target=_blank>
+<img src="http://ad.adriver.ru/cgi-bin/rle.cgi?sid=176762&bn=1&bt=29&pz=0&rnd=1954843772" alt="-AdRiver-" border=0 width=160 height=600></a>
+</noscript>
+
+<!--  AdRiver code END  -->
+</div>
+</div><div id="banner240x120"><!--  AdRiver code START. Type:240x120 Site: Интуит PZ: 0 BN: 1 -->
+<script language="javascript" type="text/javascript"><!--
+var RndNum4NoCash = Math.round(Math.random() * 1000000000);
+var ar_Tail='unknown'; if (document.referrer) ar_Tail = escape(document.referrer);
+document.write(
+'<iframe src="http://ad.adriver.ru/cgi-bin/erle.cgi?'
++ 'sid=176762&bn=1&target=blank&bt=8&pz=0&rnd=' + RndNum4NoCash + '&tail256=' + ar_Tail
++ '" frameborder=0 vspace=0 hspace=0 width=240 height=120 marginwidth=0'
++ ' marginheight=0 scrolling=no></iframe>');
+//--></script><iframe class="pcfykmqlcrtplekulgcu" src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/erle_004.html" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" height="120" width="240"></iframe>
+<noscript>
+<a href="http://ad.adriver.ru/cgi-bin/click.cgi?sid=176762&bn=1&bt=8&pz=0&rnd=1977123397" target=_blank>
+<img src="http://ad.adriver.ru/cgi-bin/rle.cgi?sid=176762&bn=1&bt=8&pz=0&rnd=1977123397" alt="-AdRiver-" border=0 width=240 height=120></a>
+</noscript>
+
+<!--  AdRiver code END  -->
+
+</div><div id="banner240x400"><!--  AdRiver code START. Type:240x400 Site: Интуит PZ: 0 BN: 1 -->
+<script language="javascript" type="text/javascript"><!--
+var RndNum4NoCash = Math.round(Math.random() * 1000000000);
+var ar_Tail='unknown'; if (document.referrer) ar_Tail = escape(document.referrer);
+document.write(
+'<iframe src="http://ad.adriver.ru/cgi-bin/erle.cgi?'
++ 'sid=176762&bn=1&target=blank&bt=22&pz=0&rnd=' + RndNum4NoCash + '&tail256=' + ar_Tail
++ '" frameborder=0 vspace=0 hspace=0 width=240 height=400 marginwidth=0'
++ ' marginheight=0 scrolling=no></iframe>');
+//--></script><iframe class="pcfykmqlcrtplekulgcu" src="INTUIT.ru:%20%D0%9A%D1%83%D1%80%D1%81:%20%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20..:%20%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%20%E2%84%966:%20%D0%9E%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/erle_005.html" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" height="400" width="240"></iframe>
+<noscript>
+<a href="http://ad.adriver.ru/cgi-bin/click.cgi?sid=176762&bn=1&bt=22&pz=0&rnd=2062472038" target=_blank>
+<img src="http://ad.adriver.ru/cgi-bin/rle.cgi?sid=176762&bn=1&bt=22&pz=0&rnd=2062472038" alt="-AdRiver-" border=0 width=240 height=400></a>
+</noscript>
+
+<!--  AdRiver code END  -->
+
+</div><div id="bannertop"><!--  AdRiver code START. Type:extension Site: Интуит PZ: 0 BN: 1 -->
+<script type="text/javascript">
+(function(L){if(typeof(ar_cn)=="undefined")ar_cn=1;
+var S='setTimeout(function(e){if(!self.CgiHref){document.close();e=parent.document.getElementById("ar_container_"+ar_bnum);e.parentNode.removeChild(e);}},3000);',
+    j=' type="text/javascript"',t=0,D=document,n=ar_cn;L+=escape(D.referrer||'unknown')+'&rnd='+Math.round(Math.random()*999999999);
+function _(){if(t++<100){var F=D.getElementById('ar_container_'+n);
+    if(F){try{var d=F.contentDocument||(window.ActiveXObject&&window.frames['ar_container_'+n].document);
+    if(d){d.write('<sc'+'ript'+j+'>var ar_bnum='+n+';'+S+'<\/sc'+'ript><sc'+'ript'+j+' src="'+L+'"><\/sc'+'ript>');t=0}
+    else setTimeout(_,100);}catch(e){try{F.src="javascript:{document.write('<sc'+'ript"+j+">var ar_bnum="+n+"; document.domain=\""
+    +D.domain+"\";"+S+"<\/sc'+'ript>');document.write('<sc'+'ript"+j+" src=\""+L+"\"><\/sc'+'ript>');}";return}catch(E){}}}else setTimeout(_,100);}}
+D.write('<div style="visibility:hidden;height:0px;left:-1000px;position:absolute;"><iframe id="ar_container_'+ar_cn
+    +'" width=1 height=1 marginwidth=0 marginheight=0 scrolling=no frameborder=0><\/iframe><\/div><div id="ad_ph_'+ar_cn
+    +'" style="display:none;"><\/div>');_();ar_cn++;
+})('http://ad.adriver.ru/cgi-bin/erle.cgi?sid=176762&bn=1&target=blank&bt=43&pz=0&tail256=');
+</script><div style="visibility:hidden;height:0px;left:-1000px;position:absolute;"><iframe id="ar_container_1" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" height="1" width="1"></iframe></div><div id="ad_ph_1" style="display:none;"></div>
+<!--  AdRiver code END  -->
+</div></div>
+
+
+
+
+
+<div class="tipDiv" id="tipDiv"></div></body></html>

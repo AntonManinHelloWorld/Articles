@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="ru"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="ru"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="ru"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="" lang="ru"><!--<![endif]--><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	
+	
+	
+
+<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	
+	<title>15 вопросов для собеседования разработчиков, относительно Enum в Джаве (с ответами!) / Переводы / InfoJavaRush</title>
+	
+	<meta name="description" content="15 вопросов для собеседования разработчиков, относительно Enum в Джаве (с ответами!). Перечисление (Enum) было введено в Java 5 и с тех пор оно стало весьма популярно среди разработчиков Java. Оно широко">
+	<meta name="keywords" content="15 вопросов для собеседования разработчиков, относительно Enum в Джаве (с ответами!), перевод,Enum,собеседование,вопросы к собеседованию">
+
+	<link rel="stylesheet" type="text/css" href="Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20_%20InfoJavaRush_files/9ebf3ba3f282e78d551829c54746001f.css">
+
+	
+	
+
+	<link href="http://info.javarush.ru/templates/skin/fortune/images/favicon.ico?v1" rel="shortcut icon">
+	<link rel="search" type="application/opensearchdescription+xml" href="http://info.javarush.ru/search/opensearch/" title="InfoJavaRush">
+
+			<link rel="alternate" type="application/rss+xml" href="http://info.javarush.ru/rss/comments/4581/" title="15 вопросов для собеседования разработчиков, относительно Enum в Джаве (с ответами!)">
+	
+			<link rel="canonical" href="http://info.javarush.ru/translation/2015/10/13/15-%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D0%BE%D0%B2-%D0%B4%D0%BB%D1%8F-%D1%81%D0%BE%D0%B1%D0%B5%D1%81%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA%D0%BE%D0%B2-%D0%BE%D1%82%D0%BD%D0%BE%D1%81%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE-Enum-%D0%B2-%D0%94%D0%B6%D0%B0%D0%B2%D0%B5-%D1%81-%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D0%B0%D0%BC%D0%B8-.html">
+	
+		
+	
+	<script src="Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20_%20InfoJavaRush_files/watch.js" async="" type="text/javascript"></script><script src="Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20_%20InfoJavaRush_files/s.asc" async=""></script><script src="Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20_%20InfoJavaRush_files/analytics.js" async=""></script><script type="text/javascript">
+		var DIR_WEB_ROOT 			= 'http://info.javarush.ru';
+		var DIR_STATIC_SKIN 		= 'http://info.javarush.ru/templates/skin/fortune';
+		var DIR_ROOT_ENGINE_LIB 	= 'http://info.javarush.ru/engine/lib';
+		var LIVESTREET_SECURITY_KEY = 'f051b280185062019182bac60d1bf146';
+		var SESSION_ID				= 'r5nv66g1shmfshhjpv3802lo87';
+		var BLOG_USE_TINYMCE		= '';
+		
+		var TINYMCE_LANG = 'en';
+					TINYMCE_LANG = 'ru';
+		
+		var aRouter = new Array();
+					aRouter['error'] = 'http://info.javarush.ru/error/';
+					aRouter['registration'] = 'http://info.javarush.ru/registration/';
+					aRouter['profile'] = 'http://info.javarush.ru/profile/';
+					aRouter['my'] = 'http://info.javarush.ru/my/';
+					aRouter['blog'] = 'http://info.javarush.ru/blog/';
+					aRouter['personal_blog'] = 'http://info.javarush.ru/personal_blog/';
+					aRouter['index'] = 'http://info.javarush.ru/index/';
+					aRouter['topic'] = 'http://info.javarush.ru/topic/';
+					aRouter['login'] = 'http://info.javarush.ru/login/';
+					aRouter['people'] = 'http://info.javarush.ru/people/';
+					aRouter['settings'] = 'http://info.javarush.ru/settings/';
+					aRouter['tag'] = 'http://info.javarush.ru/tag/';
+					aRouter['talk'] = 'http://info.javarush.ru/talk/';
+					aRouter['comments'] = 'http://info.javarush.ru/comments/';
+					aRouter['rss'] = 'http://info.javarush.ru/rss/';
+					aRouter['link'] = 'http://info.javarush.ru/link/';
+					aRouter['question'] = 'http://info.javarush.ru/question/';
+					aRouter['blogs'] = 'http://info.javarush.ru/blogs/';
+					aRouter['search'] = 'http://info.javarush.ru/search/';
+					aRouter['admin'] = 'http://info.javarush.ru/admin/';
+					aRouter['ajax'] = 'http://info.javarush.ru/ajax/';
+					aRouter['feed'] = 'http://info.javarush.ru/feed/';
+					aRouter['stream'] = 'http://info.javarush.ru/stream/';
+					aRouter['photoset'] = 'http://info.javarush.ru/photoset/';
+					aRouter['subscribe'] = 'http://info.javarush.ru/subscribe/';
+					aRouter['language'] = 'http://info.javarush.ru/language/';
+					aRouter['configengine'] = 'http://info.javarush.ru/configengine/';
+					aRouter['ec_ajax'] = 'http://info.javarush.ru/ec_ajax/';
+					aRouter['mainpreview'] = 'http://info.javarush.ru/mainpreview/';
+					aRouter['webcode'] = 'http://info.javarush.ru/webcode/';
+					aRouter['page'] = 'http://info.javarush.ru/page/';
+					aRouter['sessions'] = 'http://info.javarush.ru/sessions/';
+					aRouter['sitemap'] = 'http://info.javarush.ru/sitemap/';
+			</script>
+	
+	
+	<script type="text/javascript" src="Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20_%20InfoJavaRush_files/39ba7922eb98a8cdebc7c0db8506cd83.js"></script>
+<!--[if lt IE 9]><script type='text/javascript' src='http://info.javarush.ru/engine/lib/external/html5shiv.js'></script><![endif]-->
+<script type="text/javascript" src="Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20_%20InfoJavaRush_files/share.js"></script>
+
+
+	
+	<script type="text/javascript">
+		var tinyMCE = false;
+		ls.lang.load({"blog_join":"\u043f\u043e\u0434\u043f\u0438\u0441\u0430\u0442\u044c\u0441\u044f","blog_leave":"\u043e\u0442\u043f\u0438\u0441\u0430\u0442\u044c\u0441\u044f"});
+		ls.registry.set('comment_max_tree',5);
+		ls.registry.set('block_stream_show_tip',true);
+	</script>
+	
+	
+			<style>
+			#container, .container {
+				min-width: 976px;
+				max-width: 1170px;
+			}
+			#header-first-line, #header-second-line, #header-third-line, #header-fourth-line, #footer-first-line, #footer-second-line {
+				min-width: 976px;
+			}
+						
+		</style>
+	
+<!--Google Analytics-->
+<script src="Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20_%20InfoJavaRush_files/statistics.js"></script>
+     
+    <!--    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-41920718-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script> -->
+     
+<!--END Google Analytics-->
+	
+	
+	<script type="text/javascript">
+	var LS_ROUTER_ACTION = 'blog';
+	var LS_ROUTER_EVENT = 'translation';
+</script>
+
+<style id="ya_share_style" type="text/css">.b-share-popup-wrap{z-index:1073741823;position:absolute;width:500px}.b-share-popup{position:absolute;z-index:1073741823;border:1px solid #888;background:#FFF;color:#000}.b-share-popup-wrap .b-share-popup_down{top:0}.b-share-popup-wrap .b-share-popup_up{bottom:0}.b-share-popup-wrap_state_hidden{position:absolute!important;top:-9999px!important;right:auto!important;bottom:auto!important;left:-9999px!important;visibility:hidden!important}.b-share-popup,x:nth-child(1){border:0;padding:1px!important}@media all and (resolution=0){.b-share-popup,x:nth-child(1),x:-o-prefocus{padding:0!important;border:1px solid #888}}.b-share-popup__i{display:-moz-inline-box;display:inline-block;padding:5px 0!important;overflow:hidden;vertical-align:top;white-space:nowrap;visibility:visible;background:#FFF;-webkit-box-shadow:0 2px 9px rgba(0,0,0,.6);-moz-box-shadow:0 2px 9px rgba(0,0,0,.6);box-shadow:0 2px 9px rgba(0,0,0,.6)}.b-share-popup__item{font:1em/1.25em Arial,sans-serif;display:block;padding:5px 15px!important;white-space:nowrap;background:#FFF}.b-share-popup__item,a.b-share-popup__item:link,a.b-share-popup__item:visited{text-decoration:none!important;border:0!important}a.b-share-popup__item{cursor:pointer}a.b-share-popup__item .b-share-popup__item__text{display:inline;text-decoration:underline;color:#1A3DC1}a.b-share-popup__item:hover{word-spacing:0}a.b-share-popup__item:hover .b-share-popup__item__text{color:red;cursor:pointer}.b-share-popup__icon{display:-moz-inline-box;display:inline-block;margin:-3px 0 0;padding:0 5px 0 0!important;vertical-align:middle}.b-share-popup__icon_input{width:21px;height:16px;margin-top:-6px;padding:0!important}.b-share-popup__icon__input{margin-right:0;margin-left:2px;vertical-align:top}.b-share-popup__spacer{display:block;padding-top:10px!important}.b-share-popup__header{font:86%/1em Verdana,sans-serif;display:block;padding:10px 15px 5px!important;color:#999}.b-share-popup__header_first{padding-top:5px!important}.b-share-popup__input{font:86%/1em Verdana,sans-serif;display:block;padding:5px 15px!important;color:#999;text-align:left}.b-share-popup__input__input{font:1em/1em Verdana,sans-serif;display:block;width:10px;margin:5px 0 0;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;resize:none;text-align:left;direction:ltr}.b-share-popup_down .b-share-popup_with-link .b-share-popup__input_link{position:absolute;top:5px;right:0;left:0}.b-share-popup_up .b-share-popup_with-link .b-share-popup__input_link{position:absolute;right:0;bottom:5px;left:0}.b-share-popup_down .b-share-popup_with-link{padding-top:55px!important}.b-share-popup_up .b-share-popup_with-link{padding-bottom:55px!important}.b-share-popup_down .b-share-popup_expandable .b-share-popup__main{padding-bottom:25px!important}.b-share-popup_up .b-share-popup_expandable .b-share-popup__main{padding-top:25px!important}.b-share-popup_down .b-share-popup_yandexed{padding-bottom:10px!important}.b-share-popup_up .b-share-popup_yandexed{padding-top:10px!important}.b-share-popup__yandex{position:absolute;right:4px;bottom:2px;font:78.125%/1em Verdana,sans-serif;padding:3px!important;background:0 0}a.b-share-popup__yandex:link,a.b-share-popup__yandex:visited{color:#C6C5C5;text-decoration:none}a.b-share-popup__yandex:link:hover,a.b-share-popup__yandex:visited:hover{color:red;text-decoration:underline}.b-share-popup_up .b-share-popup__yandex{top:2px;bottom:auto}.b-share-popup_expandable .b-share-popup__yandex{right:auto;left:4px}.b-share-popup_to-right .b-share-popup_expandable .b-share-popup__yandex{right:4px;left:auto}.b-share-popup__expander .b-share-popup__item{position:absolute;bottom:5px;font:86%/1em Verdana,sans-serif;margin:10px 0 0;padding:5px 10px!important;cursor:pointer;color:#999;background:0 0}.b-share-popup_to-right,.b-share-popup_to-right .b-share-popup__expander{direction:rtl}.b-share-popup_to-right .b-share-popup__expander .b-share-popup__icon{padding:0 0 0 5px!important}.b-share-popup_up .b-share-popup__expander .b-share-popup__item{top:-5px;bottom:auto}.b-share-popup__expander .b-share-popup__item:hover .b-share-popup__item__text{text-decoration:underline}.b-share-popup__expander .b-ico_action_rarr,.b-share-popup_to-right .b-share-popup__expander .b-ico_action_larr,.b-share-popup_full .b-share-popup__expander .b-ico_action_larr,.b-share-popup_to-right .b-share-popup_full .b-share-popup__expander .b-ico_action_rarr,.b-share-popup__expander .b-share-popup__item__text_collapse,.b-share-popup_full .b-share-popup__item__text_expand{display:none}.b-share-popup_to-right .b-share-popup__expander .b-ico_action_rarr,.b-share-popup_full .b-share-popup__item__text_collapse,.b-share-popup_full .b-share-popup__expander .b-ico_action_rarr,.b-share-popup_to-right .b-share-popup_full .b-share-popup__expander .b-ico_action_larr{display:inline}.b-ico_action_rarr,.b-ico_action_larr{width:8px;height:7px;border:0}.b-share-popup__main,.b-share-popup__extra{direction:ltr;vertical-align:bottom;text-align:left}.b-share-popup_down .b-share-popup__main,.b-share-popup_down .b-share-popup__extra{vertical-align:top}.b-share-popup__main{display:-moz-inline-stack;display:inline-block}.b-share-popup__extra{display:none;margin:0 -10px 0 0}.b-share-popup_full .b-share-popup__extra{display:-moz-inline-stack;display:inline-block}.b-share-popup_to-right .b-share-popup__extra{margin:0 0 0 -10px}.b-share-popup__tail{position:absolute;width:21px;height:10px;margin:0 0 0 -11px}.b-share-popup_down .b-share-popup__tail{top:-10px;background:url("//yastatic.net/share/static/b-share-popup_down__tail.gif") 0 0 no-repeat}.b-share-popup_up .b-share-popup__tail{bottom:-10px;background:url("//yastatic.net/share/static/b-share-popup_up__tail.gif") 0 0 no-repeat}.b-share-popup_down .b-share-popup__tail,x:nth-child(1){top:-9px;background-image:url("//yastatic.net/share/static/b-share-popup_down__tail.png")}.b-share-popup_up .b-share-popup__tail,x:nth-child(1){bottom:-9px;background-image:url("//yastatic.net/share/static/b-share-popup_up__tail.png")}@media all and (resolution=0){.b-share-popup_down .b-share-popup__tail,x:nth-child(1),x:-o-prefocus{top:-10px;background-image:url("//yastatic.net/share/static/b-share-popup_down__tail.gif")}.b-share-popup_up .b-share-popup__tail,x:nth-child(1),x:-o-prefocus{bottom:-10px;background-image:url("//yastatic.net/share/static/b-share-popup_up__tail.gif")}}.b-share-popup .b-share-popup_show_form_mail,.b-share-popup .b-share-popup_show_form_html{padding:0!important}.b-share-popup .b-share-popup_show_form_mail .b-share-popup__main,.b-share-popup .b-share-popup_show_form_html .b-share-popup__main,.b-share-popup .b-share-popup_show_form .b-share-popup__main,.b-share-popup .b-share-popup_show_form_mail .b-share-popup__extra,.b-share-popup .b-share-popup_show_form_html .b-share-popup__extra,.b-share-popup .b-share-popup_show_form .b-share-popup__extra{height:15px;padding:0!important;overflow:hidden;visibility:hidden}.b-share-popup_show_form_mail .b-share-popup__expander,.b-share-popup_show_form_html .b-share-popup__expander,.b-share-popup_show_form .b-share-popup__expander,.b-share-popup_show_form_mail .b-share-popup__input_link,.b-share-popup_show_form_html .b-share-popup__input_link,.b-share-popup_show_form .b-share-popup__input_link{display:none}.b-share-popup__form{position:relative;display:none;overflow:hidden;padding:5px 0 0!important;margin:0 0 -15px;white-space:normal}.b-share-popup_show_form_mail .b-share-popup__form_mail,.b-share-popup_show_form_html .b-share-popup__form_html,.b-share-popup_show_form .b-share-popup__form{display:block}.b-share-popup__form__link{padding:5px!important;margin:0 0 5px 10px;text-decoration:underline;cursor:pointer;color:#1A3DC1}.b-share-popup__form__link,.b-share-popup__form__button{font:86%/1.4545em Verdana,sans-serif;float:left;display:inline}.b-share-popup__form__button{margin:5px 0 0 15px}.b-share-popup__form__close{font:86%/1.4545em Verdana,sans-serif;float:right;display:inline;padding:5px!important;margin:0 10px 5px 0;cursor:pointer;color:#999}a.b-share-popup__form__link:hover,a.b-share-popup__form__close:hover{text-decoration:underline;color:red}.b-share-popup_font_fixed .b-share-popup__item{font-size:12.8px}.b-share-popup_font_fixed .b-share-popup__header,.b-share-popup_font_fixed .b-share-popup__input,.b-share-popup_font_fixed .b-share-popup__expander .b-share-popup__item,.b-share-popup_font_fixed .b-share-popup__form__link,.b-share-popup_font_fixed .b-share-popup__form__button,.b-share-popup_font_fixed .b-share-popup__form__close{font-size:11px}.b-share-popup_font_fixed .b-share-popup__yandex{font-size:10px}.b-share-form-button{font:86%/17px Verdana,Arial,sans-serif;display:-moz-inline-box;display:inline-block;position:relative;height:19px;margin:0 3px;padding:0 4px;cursor:default;white-space:nowrap;text-decoration:none!important;color:#000!important;border:none;outline:none;background:url("//yastatic.net/share/static/b-share-form-button.png") 0 -20px repeat-x}.b-share-form-button:link:hover,.b-share-form-button:visited:hover{color:#000!important}.b-share-form-button__before,.b-share-form-button__after{position:absolute;width:3px;height:19px;background:url("//yastatic.net/share/static/b-share-form-button.png")}.b-share-form-button__before{margin-left:-7px}.b-share-form-button__after{margin-left:4px;background-position:-3px 0}.b-share-form-button::-moz-focus-inner{border:none}button.b-share-form-button .b-share-form-button__before,button.b-share-form-button .b-share-form-button__after{margin-top:-1px}@-moz-document url-prefix(){button.b-share-form-button .b-share-form-button__after{margin-top:-2px;margin-left:6px}button.b-share-form-button .b-share-form-button__before{margin-top:-2px;margin-left:-9px}}SPAN.b-share-form-button:hover,.b-share-form-button_state_hover{background-position:0 -60px}SPAN.b-share-form-button:hover .b-share-form-button__before,.b-share-form-button_state_hover .b-share-form-button__before{background-position:0 -40px}SPAN.b-share-form-button:hover .b-share-form-button__after,.b-share-form-button_state_hover .b-share-form-button__after{background-position:-3px -40px}.b-share-form-button_state_pressed,.b-share-form-button_state_pressed .b-share-form-button_share{background-position:0 -100px!important}.b-share-form-button_state_pressed .b-share-form-button__before{background-position:0 -80px!important}.b-share-form-button_state_pressed .b-share-form-button__after{background-position:-3px -80px!important}button.b-share-form-button_state_pressed{overflow:visible}.b-share-form-button_icons{position:relative;padding:0;background-position:0 -20px!important}.b-share-form-button_icons .b-share-form-button__before{left:0;margin-left:-3px;background-position:0 0!important}.b-share-form-button_icons .b-share-form-button__after{z-index:-1;margin-left:0;background-position:-3px 0!important}.b-share-form-button_icons .b-share__handle{padding:2px!important}.b-share-form-button_icons .b-share__handle_more{position:relative;padding-right:6px!important;margin-right:-4px}.b-share-form-button_icons .b-share-icon{opacity:.5;background-image:url("//yastatic.net/share/static/b-share-icon_size_14.png")}.b-share-form-button_icons A.b-share__handle:hover .b-share-icon{opacity:1}.b-share{font:86%/1.4545em Arial,sans-serif;display:-moz-inline-box;display:inline-block;padding:1px 3px 1px 4px!important;vertical-align:middle}.b-share .b-share-form-button{font-size:1em}.b-share__text .b-share-icon{margin:0 5px 0 0;border:none}.b-share__text{margin-right:5px}.b-share__handle{float:left;height:16px;padding:5px 3px 5px 2px!important;cursor:pointer;text-align:left;text-decoration:none!important}.b-share__handle_cursor_default{cursor:default}.b-share__handle .b-share-form-button{margin-top:-2px}.b-share__hr{display:none;float:left;width:1px;height:26px;margin:0 3px 0 2px}a.b-share__handle:hover .b-share__text{text-decoration:underline;color:red}.b-share_bordered{padding:0 2px 0 3px!important;border:1px solid #E4E4E4;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px}.b-share_bordered .b-share__hr{display:inline;background:#E4E4E4}.b-share_link{margin:-8px 0}a.b-share_link{margin:0}.b-share_link .b-share__text{text-decoration:underline;color:#1A3DC1}.b-share-form-button_share{padding-left:26px!important;vertical-align:top}.b-share-form-button_share .b-share-form-button__before{margin-left:-29px}.b-share-form-button_share .b-share-form-button__icon{position:absolute;width:20px;height:17px;margin:1px 0 0 -23px;background:url("//yastatic.net/share/static/b-share-form-button_share__icon.png") 0 0 no-repeat}.b-share-pseudo-link{border-bottom:1px dotted;cursor:pointer;text-decoration:none!important}.b-share_font_fixed{font-size:11px}.b-share__handle_more{font-size:9px;margin-top:-1px;color:#7B7B7B}A.b-share__handle_more:hover{color:#000}.b-share__group{float:left}.b-share-icon{float:left;display:inline;overflow:hidden;width:16px;height:16px;padding:0!important;vertical-align:top;border:0;background:url("//yastatic.net/share/static/b-share-icon.png") 0 99px no-repeat}.b-share-icon_vkontakte,.b-share-icon_custom{background-position:0 0}.b-share-icon_yaru,.b-share-icon_yaru_photo,.b-share-icon_yaru_wishlist{background-position:0 -17px}.b-share-icon_lj{background-position:0 -34px}.b-share-icon_twitter{background-position:0 -51px}.b-share-icon_facebook{background-position:0 -68px}.b-share-icon_moimir{background-position:0 -85px}.b-share-icon_friendfeed{background-position:0 -102px}.b-share-icon_mail{background-position:0 -119px}.b-share-icon_html{background-position:0 -136px}.b-share-icon_postcard{background-position:0 -153px}.b-share-icon_odnoklassniki{background-position:0 -170px}.b-share-icon_blogger{background-position:0 -187px}.b-share-icon_delicious{background-position:0 -221px}.b-share-icon_gbuzz{background-position:0 -238px}.b-share-icon_linkedin{background-position:0 -255px}.b-share-icon_myspace{background-position:0 -272px}.b-share-icon_evernote{background-position:0 -289px}.b-share-icon_digg{background-position:0 -306px}.b-share-icon_juick{background-position:0 -324px}.b-share-icon_moikrug{background-position:0 -341px}.b-share-icon_yazakladki{background-position:0 -358px}.b-share-icon_liveinternet{background-position:0 -375px}.b-share-icon_tutby{background-position:0 -392px}.b-share-icon_diary{background-position:0 -409px}.b-share-icon_gplus{background-position:0 -426px}.b-share-icon_pocket{background-position:0 -443px}.b-share-icon_surfingbird{background-position:0 -460px}.b-share-icon_pinterest{background-position:0 -477px}.b-share-icon_renren{background-position:0 0}.b-share-icon_renren,.b-share-icon_sina_weibo{background:url("//yastatic.net/share/static/b-share-icon__china.png") no-repeat}.b-share-icon_sina_weibo{background-position:-18px 0}.b-share-icon_qzone{background-position:-36px 0}.b-share-icon_qzone,.b-share-icon_tencent_weibo{background:url("//yastatic.net/share/static/b-share-icon__china.png") no-repeat}.b-share-icon_tencent_weibo{background-position:-54px 0}.b-share_theme_dark .b-share-icon{background:url("//yastatic.net/share/static/b-share-icons__theme_dark.png") 99px 0 no-repeat}.b-share_theme_dark .b-share-icon_odnoklassniki{background-position:-4px -3px}.b-share_theme_dark .b-share-icon_vkontakte{background-position:-24px -3px}.b-share_theme_dark .b-share-icon_twitter{background-position:-44px -3px}.b-share_theme_dark .b-share-icon_facebook{background-position:-64px -3px}.b-share_theme_dark .b-share-icon_lj{background-position:-85px -3px}.b-share_theme_dark .b-share-icon_yaru{background-position:-105px -3px}.b-share_theme_dark .b-share-popup .b-share-icon_odnoklassniki,.b-share_theme_dark .b-share-icon_odnoklassniki:hover{background-position:-4px -28px}.b-share_theme_dark .b-share-popup .b-share-icon_vkontakte,.b-share_theme_dark .b-share-icon_vkontakte:hover{background-position:-24px -28px}.b-share_theme_dark .b-share-popup .b-share-icon_twitter,.b-share_theme_dark .b-share-icon_twitter:hover{background-position:-44px -28px}.b-share_theme_dark .b-share-popup .b-share-icon_facebook,.b-share_theme_dark .b-share-icon_facebook:hover{background-position:-64px -28px}.b-share_theme_dark .b-share-popup .b-share-icon_lj,.b-share_theme_dark .b-share-icon_lj:hover{background-position:-85px -28px}.b-share_theme_dark .b-share-popup .b-share-icon_yaru,.b-share_theme_dark .b-share-icon_yaru:hover{background-position:-105px -28px}.b-share_theme_dark .b-share-form-button_share .b-share-form-button__icon{background-image:url("//yastatic.net/share/static/b-share-form-button_share__icon_dark.png")}.b-share_theme_dark .b-share-form-button{color:#fff!important;opacity:.8}.b-share_theme_dark .b-share__handle:hover .b-share-form-button,.b-share_theme_dark .b-share-form-button:hover{opacity:1;cursor:pointer}.b-share_theme_dark .b-share-form-button,.b-share_theme_dark .b-share-form-button__before,.b-share_theme_dark .b-share-form-button__after{background:0 0}.b-share_theme_dark .b-share-popup__i{background-color:#333;border-radius:10px;-webkit-box-shadow:0 2px 9px rgba(255,255,255,.6);-moz-box-shadow:0 2px 9px rgba(255,255,255,.6);box-shadow:0 2px 9px rgba(255,255,255,.6)}.b-share_theme_dark .b-share__text{color:#AAA}.b-share_theme_dark .b-share-popup{color:#AAA;border-radius:10px;background-color:#333;background-color:rgba(50,50,50,.3)}.b-share_theme_dark .b-share-popup__item{background:0 0;color:#ccc}.b-share_theme_dark .b-share-popup .b-share-popup__item__text{color:#ccc}.b-share_theme_counter .b-share{display:inline-block;vertical-align:middle;white-space:nowrap}.b-share-counter{font:14px Arial,sans-serif;line-height:18px;display:none;float:left;margin:3px 6px 3px 3px;color:#fff}.b-share_theme_counter .b-share_type_small .b-share-counter{font-size:11px;line-height:14px;margin:2px 6px 2px 1px}.b-share_theme_counter .b-share-btn__counter .b-share-counter{display:block}.b-share-btn__counter{text-decoration:none}.b-share_theme_counter .b-share-btn__wrap{position:relative;float:left;margin-left:5px}.b-share_theme_counter .b-share_type_small .b-share-btn__wrap{margin-left:4px}.b-share_theme_counter .b-share-btn__wrap:first-child{margin-left:0}.b-share_theme_counter .b-share__link{display:inline-block;cursor:pointer;-webkit-border-radius:3px;border-radius:3px}.b-share_theme_counter .b-share_type_small .b-share__link{-webkit-border-radius:2px;border-radius:2px}.b-share_theme_counter .b-share-icon{display:block;float:left;width:24px;height:24px;background-image:url("//yastatic.net/share/static/b-share_counter_large.png");background-position:-20px 0}.b-share_theme_counter .b-share_type_small .b-share-icon{width:18px;height:18px;background-image:url("//yastatic.net/share/static/b-share_counter_small.png")}.b-share_theme_counter .b-share-icon_facebook{background-position:0 0}.b-share_theme_counter .b-share-btn__facebook{background-color:#3c5a98}.b-share_theme_counter .b-share-btn__facebook:hover{background-color:#30487a}.b-share_theme_counter .b-share-btn__facebook:active{border-top:2px solid #24365a;background-color:#334d81}.b-share_theme_counter .b-share-icon_moimir{background-position:0 -29px}.b-share_theme_counter .b-share-btn__moimir{background-color:#226eb7}.b-share_theme_counter .b-share-btn__moimir:hover{background-color:#1b5892}.b-share_theme_counter .b-share-btn__moimir:active{border-top:2px solid #14426d;background-color:#1d5e9c}.b-share_theme_counter .b-share-icon_vkontakte{background-position:0 -58px}.b-share_theme_counter .b-share-btn__vkontakte{background-color:#48729e}.b-share_theme_counter .b-share-btn__vkontakte:hover{background-color:#3a5b7e}.b-share_theme_counter .b-share-btn__vkontakte:active{border-top:2px solid #2b445e;background-color:#3d6186}.b-share_theme_counter .b-share-icon_twitter{background-position:0 -87px}.b-share_theme_counter .b-share-btn__twitter{background-color:#00aced}.b-share_theme_counter .b-share-btn__twitter:hover{background-color:#008abe}.b-share_theme_counter .b-share-btn__twitter:active{border-top:2px solid #00668d;background-color:#0092ca}.b-share_theme_counter .b-share-icon_odnoklassniki{background-position:0 -116px}.b-share_theme_counter .b-share-btn__odnoklassniki{background-color:#ff9f4d}.b-share_theme_counter .b-share-btn__odnoklassniki:hover{background-color:#cc7f3e}.b-share_theme_counter .b-share-btn__odnoklassniki:active{border-top:2px solid #975e2e;background-color:#d98742}.b-share_theme_counter .b-share-icon_gplus{background-position:0 -145px}.b-share_theme_counter .b-share-btn__gplus{background-color:#c25234}.b-share_theme_counter .b-share-btn__gplus:hover{background-color:#9b422a}.b-share_theme_counter .b-share-btn__gplus:active{border-top:2px solid #73311f;background-color:#a5462c}.b-share_theme_counter .b-share-icon_yaru{background-position:0 -174px}.b-share_theme_counter .b-share-btn__yaru{background-color:#d83933}.b-share_theme_counter .b-share-btn__yaru:hover{background-color:#ad2e29}.b-share_theme_counter .b-share-btn__yaru:active{border-top:2px solid #80221e;background-color:#b8312b}.b-share_theme_counter .b-share-icon_pinterest{background-position:0 -203px}.b-share_theme_counter .b-share-btn__pinterest{background-color:#cd1e27}.b-share_theme_counter .b-share-btn__pinterest:hover{background-color:#a4181f}.b-share_theme_counter .b-share-btn__pinterest:active{border-top:2px solid #7b1217;background-color:#ae1921}.b-share_theme_counter .b-share__link:active{height:22px}.b-share_theme_counter .b-share_type_small .b-share__link:active{height:16px}.b-share_theme_counter .b-share__link:active .b-share-icon,.b-share_theme_counter .b-share__link:active .b-share-counter{position:relative;top:-1px}.b-share_theme_counter .b-share__link::after{position:absolute;top:0;right:0;bottom:0;left:0;content:"";background-image:url(data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==)}.b-share_theme_counter .b-share__handle{height:auto;padding:0!important}</style></head>
+
+
+
+	
+	
+
+
+
+<body class="ls-user-role-guest ls-user-role-not-admin width-fluid mozilla mozilla40">
+		
+
+				<div class="modal modal-login jqmID1" id="window_login_form">
+	
+		<a href="#" class="close-login jqmClose"></a>
+		
+		<script type="text/javascript">
+			jQuery(function($){
+				$('#popup-login-form').bind('submit',function(){
+					ls.user.login('popup-login-form');
+					return false;
+				});
+				$('#popup-login-form-submit').attr('disabled',false);
+			});
+		</script>
+		
+		<div class="modal-content">
+			<ul class="nav nav-pills nav-pills-tabs">
+				<li class="active js-block-popup-login-item" data-type="login"><a href="#">Войти</a></li>
+									<li><a href="http://info.javarush.ru/registration/">Регистрация</a></li>
+								<li class="js-block-popup-login-item" data-type="reminder"><a href="#">Восстановление пароля</a></li>
+			</ul>
+			
+			
+			<div class="tab-content js-block-popup-login-content" data-type="login">
+				
+				<form action="http://info.javarush.ru/login/" method="post" id="popup-login-form">
+					
+					
+                    
+                    	<ul>
+                        	
+                            <li><input name="login" id="popup-login" placeholder="Логин или эл. почта" class="input-text input-width-full" type="text"></li>
+                            
+                            <li><input name="password" id="popup-password" placeholder="Пароль" class="input-text input-width-full" type="password"></li>
+                            <li><label class="remember-label"><input name="remember" class="input-checkbox" checked="checked" type="checkbox"> Запомнить меня</label></li>                        
+                        </ul>                    
+                    					
+                    <button type="submit" name="submit_login" class="button button-primary button-large input-width-full" id="popup-login-form-submit">Войти</button>			
+
+					<small class="validate-error-hide validate-error-login"></small>
+					
+
+					<input name="return-path" value="http://info.javarush.ru/translation/2015/10/13/15-вопросов-для-собеседования-разработчиков-относительно-Enum-в-Джаве-с-ответами-.html" type="hidden">
+				</form>
+				
+			</div>
+
+
+						
+			
+			<div data-type="reminder" class="tab-content js-block-popup-login-content" style="display:none;">
+				<script type="text/javascript">
+					jQuery(document).ready(function($){
+						$('#popup-reminder-form').bind('submit',function(){
+							ls.user.reminder('popup-reminder-form');
+							return false;
+						});
+						$('#popup-reminder-form-submit').attr('disabled',false);
+					});
+				</script>
+				<form action="http://info.javarush.ru/login/reminder/" method="POST" id="popup-reminder-form">
+                
+                <ul>
+                	<li><input name="mail" placeholder="Ваш e-mail" id="popup-reminder-mail" class="input-text input-width-full" type="text">
+					<small class="validate-error-hide validate-error-reminder"></small></li>
+                </ul>
+                
+
+					<button type="submit" name="submit_reminder" class="button button-info button-large input-width-full" id="popup-reminder-form-submit">Получить ссылку на изменение пароля</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	
+		<div id="header-first-line">
+	<div class="container">
+		<header id="header" role="banner">
+			
+            
+				<div class="social-links-header clearfix">
+                <!-- ftchn social links - start -->
+        			<ul class="social-links">            	
+                		<li><a href="http://vk.com/javarush" class="vk js-infobox" title="ВКонтакте"><i></i></a></li>                		<li><a href="https://www.facebook.com/pages/Javarush/524321077686033" class="fc js-infobox" title="Facebook"><i></i></a></li>                		<li><a href="https://plus.google.com/u/0/114772402300089087607/about" class="gp js-infobox" title="Google+"><i></i></a></li>                		<li><a href="https://twitter.com/javarush_ru" class="tw js-infobox" title="Twitter"><i></i></a></li>                		<li><a href="http://info.javarush.ru/rss/new/" class="rss js-infobox" title="RSS"><i></i></a></li>
+            		</ul>
+                <!-- ftchn social links - end -->
+            		<ul class="additional-links">      
+      	                        <li><a href="http://javarush.ru/course.html" target="_blank">Начать обучение</a></li>
+                		<li><a href="http://info.javarush.ru/page/learning_plan/">План обучения</a></li>
+                       <!--         <li><a href="http://info.javarush.ru/page/lectures/">Лекции</a></li>-->
+                	 <!-- 	<li><a href="http://info.javarush.ru/page/probation/">Стажировка</a></li>-->
+                                <li><a href="http://info.javarush.ru/page/real_project/">Реальный проект</a></li>
+                                <li><a href="http://info.javarush.ru/page/FAQ/">FAQ</a></li>
+                                <li><a href="http://info.javarush.ru/page/honorcode/">Кодекс Чести</a></li>
+            		</ul>
+        		</div>
+	
+							<ul class="auth">
+					
+            		<li>
+                    	<a href="http://info.javarush.ru/login/" class="js-login-form-show log-in">Войти</a>
+                    </li>
+					<li>
+                    	<a href="http://info.javarush.ru/registration/" class="js-registration-form-show sign-in">Зарегистрироваться</a>
+                    </li>			
+				</ul>
+				
+				
+	
+			
+		</header>
+	</div>
+</div>
+
+<div id="header-second-line">
+	<div class="container">
+	<ul id="nav-main" class="nav nav-main">
+		<li class="active"><a href="http://info.javarush.ru/" class="index">Топики<i></i></a></li>
+		<li><a href="http://info.javarush.ru/blogs/" class="blogs">Блоги<i></i></a></li>
+		<li><a href="http://info.javarush.ru/people/" class="people">Люди<i></i></a></li>
+		<li><a href="http://info.javarush.ru/stream/" class="stream">Активность<i></i></a></li>
+			
+		<li class="nav-main-more"><a href="#" id="dropdown-mainmenu-trigger" onclick="return false">еще</a></li>
+	</ul>
+	
+		
+	
+    </div>
+</div>
+
+<div id="header-third-line" class="header-decor index        ">
+	<div class="container">
+		<div class="header-third-line-content ">
+			<h1><a href="http://info.javarush.ru/" title="Description your site">&nbsp;</a></h1>
+			<nav id="nav">
+			<ul class="nav nav-menu">
+	<li>
+		<a href="http://info.javarush.ru/">Все</a> <span class="all">+2</span>	</li>
+
+	<li class="active">
+		<a href="http://info.javarush.ru/blog/">Коллективные</a> <span class="new">+1</span>	</li>
+
+	<li>
+		<a href="http://info.javarush.ru/personal_blog/">Персональные</a> <span class="new">+1</span>	</li>
+	
+	
+	
+</ul>	</nav>	
+
+		</div>
+	</div>
+</div>
+
+<div id="header-fourth-line">
+	<div class="container">
+    	
+    <div class="header-fourth-line-content clearfix">           
+    	<div class="info-create-panel">
+                            <a href="http://info.javarush.ru/login/" class="button button-write js-login-form-show">Создать: &nbsp; <i class="icon icon-file"></i> <i class="icon icon-align-left"></i> <i class="icon icon-camera"></i> <i class="icon icon-folder-close"></i></a>
+			    	</div>
+        
+        <div class="top-user-panel">
+         	<!-- fhn topuser - start -->
+	<ul>
+		<li class="title">
+        10-ка лучших:
+		</li>
+		        	<li><a href="http://info.javarush.ru/profile/hubert/" class="js-infobox" title="hubert (53.47)"><img src="Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20_%20InfoJavaRush_files/avatar_male_24x24.png" alt="hubert"></a></li>			
+		        	<li><a href="http://info.javarush.ru/profile/Sant9Iga/" class="js-infobox" title="Sant9Iga (34.20)"><img src="Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20_%20InfoJavaRush_files/avatar_24x24_003.jpg" alt="Sant9Iga"></a></li>			
+		        	<li><a href="http://info.javarush.ru/profile/provisota/" class="js-infobox" title="provisota (33.30)"><img src="Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20_%20InfoJavaRush_files/avatar_24x24_002.jpg" alt="provisota"></a></li>			
+		        	<li><a href="http://info.javarush.ru/profile/Diana/" class="js-infobox" title="Diana (22.16)"><img src="Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20_%20InfoJavaRush_files/avatar_24x24_014.jpg" alt="Diana"></a></li>			
+		        	<li><a href="http://info.javarush.ru/profile/theGrass/" class="js-infobox" title="theGrass (18.01)"><img src="Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20_%20InfoJavaRush_files/avatar_24x24_004.jpg" alt="theGrass"></a></li>			
+		        	<li><a href="http://info.javarush.ru/profile/Docktor91/" class="js-infobox" title="Docktor91 (15.66)"><img src="Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20_%20InfoJavaRush_files/avatar_24x24_005.jpg" alt="Docktor91"></a></li>			
+		        	<li><a href="http://info.javarush.ru/profile/Timur/" class="js-infobox" title="Timur (13.53)"><img src="Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20_%20InfoJavaRush_files/avatar_24x24.jpg" alt="Timur"></a></li>			
+		        	<li><a href="http://info.javarush.ru/profile/eGarmin/" class="js-infobox" title="eGarmin (10.03)"><img src="Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20_%20InfoJavaRush_files/avatar_24x24_006.jpg" alt="eGarmin"></a></li>			
+		        	<li><a href="http://info.javarush.ru/profile/terranum/" class="js-infobox" title="terranum (9.44)"><img src="Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20_%20InfoJavaRush_files/avatar_24x24_013.jpg" alt="terranum"></a></li>			
+		        	<li><a href="http://info.javarush.ru/profile/Treefeed/" class="js-infobox" title="Treefeed (9.01)"><img src="Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20_%20InfoJavaRush_files/avatar_24x24.png" alt="Treefeed"></a></li>			
+			</ul>
+<!-- fhn topuser - end -->
+
+        </div>        
+        
+        <div class="main-search-panel">
+  			<form id="search-header-form" class="search-form" action="http://info.javarush.ru/search/topics/">
+    			<input tabindex="1" class="search-form-query" placeholder="Поиск" maxlength="255" name="q" type="text">    
+    			<span class="search-form-submit-wrap">
+    			<button tabindex="2" class="search-form-submit" value="Найти" title="Найти" type="submit"><i class="search-form-icon"></i></button>
+    			</span>
+  			</form>                
+		</div>
+	</div>
+    
+	</div>
+</div>
+		<noscript><div class="system-message-error">Для правильной и полноценной работы сайта необходимо включить в браузере поддержку JavaScript.</div></noscript>
+	<div id="container" class="branding" style=" ">
+		<div id="wrapper" class=" clearfix">           
+          <div id="content-wrapper">
+			<div id="content" role="main">
+				
+					
+
+					
+				
+
+		<!-- fchn topic - start -->
+<article class="topic topic-type-topic js-topic">
+	<header class="topic-header">
+    	
+        	<ul class="topic-main-info">
+                <li>
+                	<a rel="author" href="http://info.javarush.ru/profile/Treefeed/">Treefeed</a>,
+                </li>
+                <li>
+                	<time datetime="2015-10-13T17:39:40+03:00" title="13 октября 2015, 17:39">
+					13 октября 2015, 17:39</time>
+                </li>
+                
+      	               
+                
+                
+            </ul>   
+               
+		<h2 class="topic-title word-wrap">
+							15 вопросов для собеседования разработчиков, относительно Enum в Джаве (с ответами!)
+			            		</h2>        
+        
+        	<ul class="topic-additional-info">
+            	<li class="category">
+                	<i class="icon icon-folder-close"></i> <a href="http://info.javarush.ru/blog/translation/" class="topic-blog">Переводы</a> 
+				</li>   
+                <li>
+                
+            <ul class="topic-tags js-favourite-insert-after-form js-favourite-tags-topic-4581">
+			<li><i class="icon icon-tags"></i></li>
+			
+			<li><a rel="tag" href="http://info.javarush.ru/tag/%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4/">перевод</a></li><li>, <a rel="tag" href="http://info.javarush.ru/tag/Enum/">Enum</a></li><li>, <a rel="tag" href="http://info.javarush.ru/tag/%D1%81%D0%BE%D0%B1%D0%B5%D1%81%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5/">собеседование</a></li><li>, <a rel="tag" href="http://info.javarush.ru/tag/%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D1%8B%20%D0%BA%20%D1%81%D0%BE%D0%B1%D0%B5%D1%81%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8E/">вопросы к собеседованию</a></li>		</ul>
+                
+                </li>         
+            </ul>
+       
+	</header>
+   
+   
+<div class="topic-content text">
+	
+	
+			Перечисление (<strong>Enum</strong>) было введено в <em>Java 5</em> и
+ с тех пор оно стало весьма популярно среди разработчиков Java. Оно 
+широко используется в различных Java-приложениях. Поскольку Enum в Java 
+намного универсальнее, чем в C или C ++, оно также представляет 
+множество интересных вариантов использования, пару из которых, вы видели
+ в статье <a href="http://javarevisited.blogspot.com/2011/08/enum-in-java-example-tutorial.html">10 способов использовать Enum в Java</a>. <br>
+<br>
+Но, несмотря на такую популярность, многие Java-программисты по-прежнему
+ не знают о функциональности, предоставляемой Enum и тонкостей 
+использования Enum в Java коде. <a name="cut"></a> Это стало понятно из вопросов нескольких читателей, спрашивающих, например, о <em>возможности Enum реализовать интерфейс в Java</em> или <em>Почему мы не можем создать экземпляры Enum за пределами Enum</em>, отметив, что об этом их спрашивали на собеседовании. Это подвигло на сбор <strong>списка часто задаваемых вопросов в Java Enum</strong>,
+ которые не только помогают преуспеть в интервью, но и открыть новые 
+пути для обучения. Как говорилось раньше, часто вопросы на собеседовании
+ заставляют вас воспринимать тему более серьёзно, что не так уж плохо, 
+и, учитывая мощь и полезность Enum, пора уже вам стать мастером 
+перечислений.<br>
+<br>
+Ниже список вопросов, основанный на различном функционале и свойствах 
+Enum. Вы можете использовать его как подготовительный материал к 
+собеседованию или просто справочник по перечислениям. Ежели вы новичок в
+ Java, то почерпнёте для себя много нового и полезного о Enum.<cut><br>
+<br>
+<strong>1) Может ли Enum наследовать (implement) интерфейс в Java?</strong><br>
+Да, <u>Enum может наследовать интерфейсы</u>. Поскольку Enum тип схож с <em>классом</em> и <em>интерфейсом</em>,
+ он может наследовать интерфейс. Это даёт поразительную гибкость в 
+использовании Enum в качестве специальной реализации в некоторых 
+случаях. <a href="http://javarevisited.blogspot.com/2011/08/enum-in-java-example-tutorial.html">Вот</a> неплохой пример использования Enum в таком качестве.<br>
+<br>
+<strong>2) Может ли Enum наследовать (extends) класс?</strong><br>
+Нет, не может! Неожиданно, поскольку ранее говорилось что Enum тип похож
+ на класс или интерфейс в Java. Ну, это главная причина, почему такой 
+вопрос задают сразу за предыдущим. Поскольку <u>Enum уже наследуется от абстрактного класса</u> <em>java.lang.Enum</em>,
+ понятно, что другой класс наследовать не удастся, поскольку Java не 
+поддерживает множественное наследование классов. Благодаря наследованию 
+от <em>java.lang.Enum</em>, все перечисления имеют методы <em>ordinal()</em>, <em>values()</em> или <em>valueOf()</em>.<br>
+<br>
+<strong>3) Как создать Enum без экземпляров объектов? Возможно ли это без ошибки компиляции?</strong><br>
+Это один из тех <em>хитрых вопросов</em>, которые так любят интервьюеры. Поскольку Enum видится коллекцией определённого количества объектов, как <em>дни недели</em> или <em>месяцы в году</em> получить <em>Enum без ничего</em> кажется подозрительным. Но да, вы <u>можете создать Enum без экземпляров</u>, например создавая утилитарный класс. Это ещё один инновационный способ использовать Enum:<br>
+<pre class="prettyprint"><code><span class="kwd">public</span><span class="pln"> </span><span class="kwd">enum</span><span class="pln"> </span><span class="typ">MessageUtil</span><span class="pun">{</span><span class="pln"><br></span><span class="pun">;</span><span class="pln"> &nbsp;</span><span class="com">// required to avoid compiler error, also signifies no instance</span><span class="pln"><br><br></span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">boolean</span><span class="pln"> isValid</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="kwd">throw</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">UnsupportedOperationException</span><span class="pun">(</span><span class="str">"Not supported yet."</span><span class="pun">);</span><span class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br></span><span class="pun">}</span><span class="pln"><br></span></code></pre><br>
+<strong>4) Можем ли мы переопределить метод toString() для Enum? Что будет, если не будем переопределять?</strong><br>
+Конечно вы можете переопределить метод <strong>toString()</strong> у Enum, как и любого класса, наследующего <em>java.lang.Object</em> и имеющего метод <em>toString()</em> в доступности, и даже если вы не станете этого делать, ничего не потеряете, поскольку абстрактная основа класса Enum сделает это за вас, и вернёт имя, являющееся именем экземпляра Enum. Вот код метода <em>toString()</em> из класса Enum:<br>
+<pre class="prettyprint"><code><span class="kwd">public</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> </span><span class="kwd">toString</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="kwd">return</span><span class="pln"> name</span><span class="pun">;</span><span class="pln"><br>&nbsp;</span><span class="pun">}</span></code></pre><br>
+<br>
+<em>name</em> задано, когда компилятор выделяет код для создания перечисления в ответ на создание экземпляра в самом классе Enum, наравне с созданием порядкового числительного в конструкторе из класса <em>java.lang.Enum</em>:<br>
+<pre class="prettyprint"><code><span class="kwd">protected</span><span class="pln"> </span><span class="typ">Enum</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> name</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> ordinal</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">name </span><span class="pun">=</span><span class="pln"> name</span><span class="pun">;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">ordinal </span><span class="pun">=</span><span class="pln"> ordinal</span><span class="pun">;</span><span class="pln"><br></span><span class="pun">}</span></code></pre><br>
+Это <u>единственный конструктор для создания перечисления</u>, который вызывается компилятором в ответ на декларирование Enum в программе.<br>
+<br>
+<strong>5) Можем ли мы создать экземпляр Enum вне Enum? Почему нет?</strong><br>
+Вы <u>не можете создавать экземпляры Enum вне границ Enum</u>, поскольку у Enum нет <em>public</em> конструктора, и компилятор не позволит вам внести любой подобный конструктор. Так как компилятор генерирует большинство кода в ответ на декларацию Enum типа, он не допускает <em>public</em> конструкторов внутри Enum, что заставляет объявлять экземпляры Enum внутри себя.<br>
+<br>
+<strong>6) Можем ли мы указать конструктор внутри Enum?</strong><br>
+Этот вопрос часто следует за предыдущим. Да, вы можете, но помните, что подобное возможно лишь с указанием <em>private</em> или <em>package-private</em> конструкторов. Конструкторы с <em>public</em> и <em>protected</em> — не допустимы в Enum. Вот <a href="http://java67.blogspot.com/2012/11/java-enum-example-with-constructor.html">тут</a> можно посмотреть пример.<br>
+<br>
+<strong>7) Какая разница сравнивать Enum при помощи == или метода equals()?</strong><br>
+Это очень обширный и хитрый вопрос, который рассматривается подробно <a href="http://javarevisited.blogspot.com/2013/04/how-to-compare-two-enum-in-java-equals.html">здесь</a>.<br>
+<br>
+<strong>8) Что делает метод ordinal() в Enum?</strong><br>
+Метод <strong>ordinal()</strong> (порядковый) возвращает порядок, в котором экземпляры Enum обозначены внутри Enum. Например, в <em>DayOfWeek</em> Enum, вы можете указать дни по порядку:<br>
+<pre class="prettyprint"><code><span class="kwd">public</span><span class="pln"> </span><span class="kwd">enum</span><span class="pln"> </span><span class="typ">DayOfWeek</span><span class="pun">{</span><span class="pln"><br>&nbsp; MONDAY</span><span class="pun">,</span><span class="pln"> TUESDAY</span><span class="pun">,</span><span class="pln"> WEDNESDAY</span><span class="pun">,</span><span class="pln"> THURSDAY</span><span class="pun">,</span><span class="pln"> FRIDAY</span><span class="pun">,</span><span class="pln"> SATURDAY</span><span class="pun">,</span><span class="pln"> SUNDAY</span><span class="pun">;</span><span class="pln"><br></span><span class="pun">}</span><span class="pln"><br></span></code></pre><br>
+и если мы вызовем метод <em>DayOfWeek.MONDAY.ordinal()</em>, он вернёт 0 — что значит первый экземпляр. Этот метод весьма полезен для предоставления порядка в соответствии с реальным положением вещей: т.&nbsp;е. указывая, что <em>TUESDAY</em> (вторник) идёт после <em>MONDAY</em> (понедельника), и перед <em>WEDNESDAY</em> (средой). Точно так же вы можете использовать перечисление для представления месяцев года, где Февраль идёт после Января, но предшествует Марту. Все пользовательские перечисления наследуют этот метод из абстрактного класса <em>java.lang.Enum</em>, и они устанавливаются компилятором, вызывая <em>protected</em> конструктор из <em>java.lang.Enum</em>, который принимает имя и порядковый номер.<br>
+<br>
+<strong>9) Можно использовать Enum с TreeSet или TreeMap в Java?</strong><br>
+Это действительно интересный вопрос по Enum, и его любят задавать для проверки глубины знаний. Пока вы не загляните в код <em>java.lang.Enum</em>, вы скорей всего не будете знать, что <strong>Enum наследует интерфейс Comparable</strong>, который является главным требованием для использования в упорядоченных коллекциях, как <em>TreeSet</em> и <em>TreeMap</em>. Поскольку Enum по умолчанию наследует интерфейс <em>Comparable</em>, он может использоваться с <em>TreeSet</em> и <em>TreeMap</em>.<br>
+<br>
+<strong>10) Какая разница между ordinal() и compareTo() в Enum?</strong><br>
+Это прямое следование из предыдущего вопроса: на самом деле, <strong>compareTo()</strong> имитирует порядок, предоставляемый методом <strong>ordinal()</strong>, являющийся естественным порядком Enum. Если коротко, Enum ограничивает сравнения в порядке их объявления. Так же, стоит помнить, что данные константы сравнимы только с другими константами того же типа — сравнение разных типов констант может привести к ошибке компилятора.<br>
+<br>
+<strong>11) Можно ли использовать Enum в switch case?</strong><br>
+Да, вы можете. Мало того, это одна из главных полезностей использования Enum. Поскольку экземпляры Enum компилируют временную константу, вы можете без опаски внедрять их внутрь <em>case</em> и <em>switch</em>. Вот например код с днями недели:<br>
+<pre class="prettyprint"><code><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> developerState</span><span class="pun">(</span><span class="typ">DayOfWeek</span><span class="pln"> today</span><span class="pun">){</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="kwd">switch</span><span class="pun">(</span><span class="pln">today</span><span class="pun">){</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="kwd">case</span><span class="pln"> MONDAY</span><span class="pun">:</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Hmmmmmmmm"</span><span class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="kwd">break</span><span class="pun">;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="kwd">case</span><span class="pln"> TUESDAY</span><span class="pun">:</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Hmmmm"</span><span class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="kwd">break</span><span class="pun">;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="kwd">case</span><span class="pln"> FRIDAY </span><span class="pun">:</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Yeahhhhhh"</span><span class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="kwd">break</span><span class="pun">;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="pun">}</span><span class="pln"> &nbsp; &nbsp; <br></span><span class="pun">}</span></code></pre><br>
+<br>
+Enum и Switch отлично дополняют друг друга, в особенности если Enum содержит небольшое количество устойчивых констант, например, семь дней недели, 12 месяцев года и т.&nbsp;д. Посмотрите на другие примеры использования <a href="http://java67.blogspot.com/2012/09/how-to-use-java-enum-in-switch-case-example.html"><em>swith case</em> с Enum</a>.<br>
+<br>
+<strong>12) Как пройтись по всему экземпляру Enum?</strong><br>
+Если вы открывали <em>java.lang.Enum</em>, то знаете, что метод <strong>values()</strong> возвращает массив всех констант Enum. Поскольку каждое перечисление наследует <em>java.lang.Enum</em>, они имеют метод <em>values()</em>. Используя его, вы можете пройтись по всем константам перечисления определённого типа. Посмотрите на <a href="http://java67.blogspot.com/2013/03/how-to-iterate-over-java-enum-using.html">примеры</a> такого проходя с циклом <em>foreach</em> и методом <em>values()</em>.<br>
+<br>
+<strong>13) Какие плюсы и минусы использования Enum в качестве синглтона?</strong><br>
+Enum предоставляет <em>быстрый ярлык</em> для воплощения паттерна синглтона, и поскольку об этом сказано даже в книге «Эффективная Java», такой выбор весьма популярен. На первый взгляд, синглтон Enum многообещающ и весьма удобен, например контролирует создание экземпляра, безопасно сериализуется и прежде всего, легко создать потокобезопасный синглтон с использованием Enum. Вам не нужно больше заботиться о двойной проверке волатильности переменных. Более подробно о плюсах и минусах использования такого подхода <a href="http://javarevisited.blogspot.com/2012/07/why-enum-singleton-are-better-in-java.html">тут</a>.<br>
+<br>
+<strong>14) Какая выгода использовать Enum вместо паттернов перечисления int и перечисления String?</strong><br>
+Если вы программируете более 5 лет, и ещё застали JDK 1.3 или 1.4, вы будете на короткой ноге с <em>паттернами перечисления String и int</em>, где используется <em>public static final</em> префикс констант для представления коллекции общеизвестных фиксированных количеств вещей, как <em>Дни Недели</em>. Тут возникает множество проблем: у вас нет независимости типа Enum, поскольку переменная <em>String</em> отвечающая за день недели может принимать любое произвольное значение. Точно так же перечисляемый <em>int</em> может принимать любое значение, и компилятор спокойно проглотит это. А с использованием <em>Enum</em>, вы получаете безопасность типов, которые компилятор проверяет для вас. На эту тему есть несколько интересных мыслей в «Эффективная Java», которую рекомендуется прочитать всем разработчикам на Java.<br>
+<br>
+<strong>15) Как преобразовать String в Enum?</strong><br>
+Это ежедневный вопрос, встающий из-за популярности применения <em>String</em> и <em>Enum</em> в разработке приложений Java. Лучший способ преобразовать <u>Enum в String</u>, это определить фабричный метод в самом Enum, который будет брать аргументы <em>String</em> и возвращать в качестве <em>Enum</em>. Вы так же можете пожелать игнорировать регистр. Вот несколько <a href="http://java67.blogspot.com/2012/08/how-to-create-enum-from-string-in-java.html">примеров</a> по превращению строк в перечисления.<br>
+<br>
+Вот и подошёл к концу наш список из 15 вопросов (<em>и ответов</em>) о Enum. <strong>Но помните:</strong> <u>чтения не достаточно для обучения, это только первый шаг</u>. Что бы получить выгоду от перечислений, попытайтесь найти, где можно использовать Enum в вашем проекте — это даст вам реальный опыт, и с этим опытом вы выучите больше, чем на примерах, поскольку встретите больше проблем, справляясь с которыми, обработаете более сложные и подробные требования. На эти <em>вопросы о Enum</em> стоит обратить внимание для тестирования ваших знаний, особенно если вы спешите на собеседование, и времени на детальное погружение во вселенную Enum просто нет.
+		
+	
+</cut></div> 
+
+
+				
+	<footer class="topic-footer">	
+		
+   
+        
+        <div id="topic_share_content_4581" class="topic-share">
+        
+        	
+				<div class="yashare-auto-init" data-yasharetitle="15 вопросов для собеседования разработчиков, относительно Enum в Джаве (с ответами!)" data-yasharelink="http://info.javarush.ru/translation/2015/10/13/15-вопросов-для-собеседования-разработчиков-относительно-Enum-в-Джаве-с-ответами-.html" data-yasharel10n="ru" data-yasharetype="button" data-yasharequickservices="yaru,vkontakte,facebook,twitter,odnoklassniki,moimir,lj,gplus"><span class="b-share"><a class="b-share__handle" id="ya-share-0.530148993200652-1449412713090" data-hdirection="" data-vdirection=""><span class="b-share-form-button b-share-form-button_share"><i class="b-share-form-button__before"></i><i class="b-share-form-button__icon"></i>Поделиться…<i class="b-share-form-button__after"></i></span></a><a rel="nofollow" target="_blank" title="ВКонтакте" class="b-share__handle b-share__link b-share-btn__vkontakte" href="https://share.yandex.net/go.xml?service=vkontakte&amp;url=http%3A%2F%2Finfo.javarush.ru%2Ftranslation%2F2015%2F10%2F13%2F15-%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D0%BE%D0%B2-%D0%B4%D0%BB%D1%8F-%D1%81%D0%BE%D0%B1%D0%B5%D1%81%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA%D0%BE%D0%B2-%D0%BE%D1%82%D0%BD%D0%BE%D1%81%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE-Enum-%D0%B2-%D0%94%D0%B6%D0%B0%D0%B2%D0%B5-%D1%81-%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D0%B0%D0%BC%D0%B8-.html&amp;title=15%20%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D0%BE%D0%B2%20%D0%B4%D0%BB%D1%8F%20%D1%81%D0%BE%D0%B1%D0%B5%D1%81%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA%D0%BE%D0%B2%2C%20%D0%BE%D1%82%D0%BD%D0%BE%D1%81%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%20Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20%28%D1%81%20%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D0%B0%D0%BC%D0%B8%21%29" data-service="vkontakte"><span class="b-share-icon b-share-icon_vkontakte"></span></a><a rel="nofollow" target="_blank" title="Facebook" class="b-share__handle b-share__link b-share-btn__facebook" href="https://share.yandex.net/go.xml?service=facebook&amp;url=http%3A%2F%2Finfo.javarush.ru%2Ftranslation%2F2015%2F10%2F13%2F15-%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D0%BE%D0%B2-%D0%B4%D0%BB%D1%8F-%D1%81%D0%BE%D0%B1%D0%B5%D1%81%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA%D0%BE%D0%B2-%D0%BE%D1%82%D0%BD%D0%BE%D1%81%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE-Enum-%D0%B2-%D0%94%D0%B6%D0%B0%D0%B2%D0%B5-%D1%81-%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D0%B0%D0%BC%D0%B8-.html&amp;title=15%20%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D0%BE%D0%B2%20%D0%B4%D0%BB%D1%8F%20%D1%81%D0%BE%D0%B1%D0%B5%D1%81%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA%D0%BE%D0%B2%2C%20%D0%BE%D1%82%D0%BD%D0%BE%D1%81%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%20Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20%28%D1%81%20%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D0%B0%D0%BC%D0%B8%21%29" data-service="facebook"><span class="b-share-icon b-share-icon_facebook"></span></a><a rel="nofollow" target="_blank" title="Twitter" class="b-share__handle b-share__link b-share-btn__twitter" href="https://share.yandex.net/go.xml?service=twitter&amp;url=http%3A%2F%2Finfo.javarush.ru%2Ftranslation%2F2015%2F10%2F13%2F15-%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D0%BE%D0%B2-%D0%B4%D0%BB%D1%8F-%D1%81%D0%BE%D0%B1%D0%B5%D1%81%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA%D0%BE%D0%B2-%D0%BE%D1%82%D0%BD%D0%BE%D1%81%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE-Enum-%D0%B2-%D0%94%D0%B6%D0%B0%D0%B2%D0%B5-%D1%81-%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D0%B0%D0%BC%D0%B8-.html&amp;title=15%20%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D0%BE%D0%B2%20%D0%B4%D0%BB%D1%8F%20%D1%81%D0%BE%D0%B1%D0%B5%D1%81%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA%D0%BE%D0%B2%2C%20%D0%BE%D1%82%D0%BD%D0%BE%D1%81%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%20Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20%28%D1%81%20%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D0%B0%D0%BC%D0%B8%21%29" data-service="twitter"><span class="b-share-icon b-share-icon_twitter"></span></a><a rel="nofollow" target="_blank" title="Одноклассники" class="b-share__handle b-share__link b-share-btn__odnoklassniki" href="https://share.yandex.net/go.xml?service=odnoklassniki&amp;url=http%3A%2F%2Finfo.javarush.ru%2Ftranslation%2F2015%2F10%2F13%2F15-%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D0%BE%D0%B2-%D0%B4%D0%BB%D1%8F-%D1%81%D0%BE%D0%B1%D0%B5%D1%81%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA%D0%BE%D0%B2-%D0%BE%D1%82%D0%BD%D0%BE%D1%81%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE-Enum-%D0%B2-%D0%94%D0%B6%D0%B0%D0%B2%D0%B5-%D1%81-%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D0%B0%D0%BC%D0%B8-.html&amp;title=15%20%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D0%BE%D0%B2%20%D0%B4%D0%BB%D1%8F%20%D1%81%D0%BE%D0%B1%D0%B5%D1%81%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA%D0%BE%D0%B2%2C%20%D0%BE%D1%82%D0%BD%D0%BE%D1%81%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%20Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20%28%D1%81%20%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D0%B0%D0%BC%D0%B8%21%29" data-service="odnoklassniki"><span class="b-share-icon b-share-icon_odnoklassniki"></span></a><a rel="nofollow" target="_blank" title="Мой Мир" class="b-share__handle b-share__link b-share-btn__moimir" href="https://share.yandex.net/go.xml?service=moimir&amp;url=http%3A%2F%2Finfo.javarush.ru%2Ftranslation%2F2015%2F10%2F13%2F15-%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D0%BE%D0%B2-%D0%B4%D0%BB%D1%8F-%D1%81%D0%BE%D0%B1%D0%B5%D1%81%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA%D0%BE%D0%B2-%D0%BE%D1%82%D0%BD%D0%BE%D1%81%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE-Enum-%D0%B2-%D0%94%D0%B6%D0%B0%D0%B2%D0%B5-%D1%81-%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D0%B0%D0%BC%D0%B8-.html&amp;title=15%20%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D0%BE%D0%B2%20%D0%B4%D0%BB%D1%8F%20%D1%81%D0%BE%D0%B1%D0%B5%D1%81%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA%D0%BE%D0%B2%2C%20%D0%BE%D1%82%D0%BD%D0%BE%D1%81%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%20Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20%28%D1%81%20%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D0%B0%D0%BC%D0%B8%21%29" data-service="moimir"><span class="b-share-icon b-share-icon_moimir"></span></a><a rel="nofollow" target="_blank" title="LiveJournal" class="b-share__handle b-share__link b-share-btn__lj" href="https://share.yandex.net/go.xml?service=lj&amp;url=http%3A%2F%2Finfo.javarush.ru%2Ftranslation%2F2015%2F10%2F13%2F15-%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D0%BE%D0%B2-%D0%B4%D0%BB%D1%8F-%D1%81%D0%BE%D0%B1%D0%B5%D1%81%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA%D0%BE%D0%B2-%D0%BE%D1%82%D0%BD%D0%BE%D1%81%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE-Enum-%D0%B2-%D0%94%D0%B6%D0%B0%D0%B2%D0%B5-%D1%81-%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D0%B0%D0%BC%D0%B8-.html&amp;title=15%20%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D0%BE%D0%B2%20%D0%B4%D0%BB%D1%8F%20%D1%81%D0%BE%D0%B1%D0%B5%D1%81%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA%D0%BE%D0%B2%2C%20%D0%BE%D1%82%D0%BD%D0%BE%D1%81%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%20Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20%28%D1%81%20%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D0%B0%D0%BC%D0%B8%21%29" data-service="lj"><span class="b-share-icon b-share-icon_lj"></span></a><a rel="nofollow" target="_blank" title="Google Plus" class="b-share__handle b-share__link b-share-btn__gplus" href="https://share.yandex.net/go.xml?service=gplus&amp;url=http%3A%2F%2Finfo.javarush.ru%2Ftranslation%2F2015%2F10%2F13%2F15-%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D0%BE%D0%B2-%D0%B4%D0%BB%D1%8F-%D1%81%D0%BE%D0%B1%D0%B5%D1%81%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA%D0%BE%D0%B2-%D0%BE%D1%82%D0%BD%D0%BE%D1%81%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE-Enum-%D0%B2-%D0%94%D0%B6%D0%B0%D0%B2%D0%B5-%D1%81-%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D0%B0%D0%BC%D0%B8-.html&amp;title=15%20%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D0%BE%D0%B2%20%D0%B4%D0%BB%D1%8F%20%D1%81%D0%BE%D0%B1%D0%B5%D1%81%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA%D0%BE%D0%B2%2C%20%D0%BE%D1%82%D0%BD%D0%BE%D1%81%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%20Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20%28%D1%81%20%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D0%B0%D0%BC%D0%B8%21%29" data-service="gplus"><span class="b-share-icon b-share-icon_gplus"></span></a></span></div>
+			
+			<a class="close" onclick="return ls.topic_share.toggleInfo(this, 4581); return false;"><i class="icon icon-remove"></i></a>
+        
+        </div>
+        
+        <ul class="topic-info-panel">
+        
+         
+         <li class="topic-share-button"><a id="topic_share_4581" onclick="return ls.topic_share.toggleInfo(this, 4581); return false;" class="button button-mini js-infobox" title="Поделиться"><i class="icon-fortune-share"></i></a></li>
+      
+        
+                        <li id="vote_area_topic_4581" class="topic-info-vote 																	
+																																			vote-not-self
+																																		
+																																			not-voted
+																																		
+																																		
+																																			vote-not-expired
+																	
+																	">
+            
+					<a class="vote-item vote-down infobox-help" onclick="return ls.vote.vote(4581,this,-1,'topic');"><i></i></a>
+					<p class="vote-count" title="всего проголосовало: 4">
+                    
+                    	<i class="icon-fortune-topic-rating"></i>
+						<span id="vote_total_topic_4581">
+															<b onclick="return ls.vote.vote(4581,this,0,'topic');">—</b>
+													</span>
+					</p>
+					<a class="vote-item vote-up" onclick="return ls.vote.vote(4581,this,1,'topic');"><i></i></a>
+                    
+									
+			</li>
+        
+			            <li class="topic-info-favourite">
+				<a href="#" onclick="return ls.favourite.toggle(4581,$('#fav_topic_4581'),'topic');" title=""><i id="fav_topic_4581" class="favourite "></i>
+				<span class="favourite-count" id="fav_count_topic_4581">6</span></a>
+			</li>            
+
+			
+                        
+            
+        </ul>
+
+
+					
+		        
+
+		
+
+	</footer>
+</article> <!-- /.topic -->
+<!-- fchn topic - end -->
+		
+
+
+
+
+
+
+<div class="comments" id="comments">
+	<header class="comments-header">
+		<h3><span id="count-comments">1</span> комментарий <a href="http://info.javarush.ru/rss/comments/4581/" class="rss"><i class="icon-fortune-rss"></i></a></h3>
+		
+			
+		<a name="comments"></a>
+	</header>
+
+						
+				
+		 
+				
+		<div class="comment-wrapper" id="comment_wrapper_id_58130">
+		
+		<!-- fortch comment - start -->
+
+<section id="comment_id_58130" class="comment
+														
+														">
+			<a name="comment58130"></a>
+		
+		<div style="display: none;" class="folding"></div>
+		
+		<a href="http://info.javarush.ru/profile/IvanRychkov/"><img src="Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20_%20InfoJavaRush_files/avatar_male_24x24.png" alt="IvanRychkov" class="comment-avatar"></a>
+
+
+		<ul class="comment-info">
+			<li class="comment-author " title="">
+				<a href="http://info.javarush.ru/profile/IvanRychkov/">IvanRychkov</a>
+			</li>
+			<li class="comment-date">
+				<time datetime="2015-10-15T13:03:40+03:00" title="15 октября 2015, 13:03">
+					15 октября 2015, 13:03
+				</time>
+			</li>
+			
+			
+									
+				<li id="vote_area_comment_58130" class="vote 
+																		    
+																
+																																					vote-expired
+																																				
+																		">
+					<span class="vote-count" id="vote_total_comment_58130">0</span>
+					<div class="vote-down" onclick="return ls.vote.vote(58130,this,-1,'comment');"></div>
+					<div class="vote-up" onclick="return ls.vote.vote(58130,this,1,'comment');"></div>
+				</li>
+						
+			
+						<li class="comment-link">
+				<a href="#comment58130" title="Ссылка на комментарий">
+					<i class="icon-fortune-anchor"></i>
+				</a>
+			</li>
+			
+						<li class="goto goto-comment-child"><a href="#" title="Обратно к ответу">↓</a></li>
+            
+            
+            <li id="info_edit_58130" class="info_edit">        
+                        	            	Комментарий отредактирован <b>2015-10-15 13:04:20</b> пользователем <b>IvanRychkov</b>
+	    	        	</li>
+		</ul>
+		
+		<div id="comment_content_id_58130" class="comment-content">
+			<div class=" text">
+				Спасибо, интересно было почитать, только в 15 не понял: String в Enum или наоборот?
+			</div>
+		</div>
+        
+
+        
+         		
+
+		
+</section><!-- fortch comment - end --> 
+							</div>    
+			</div>				
+	
+	
+
+
+    
+
+
+
+
+
+			Только зарегистрированные и авторизованные пользователи могут оставлять комментарии.
+		
+
+
+
+
+
+            
+        </div> 
+    </div>  
+	<!-- ft1ch sidebar - end -->
+<aside id="sidebar">
+	
+
+											<section class="block block-type-blog">
+		<header class="block-header">
+			<h3><a href="http://info.javarush.ru/blog/translation/">Переводы</a></h3>
+		</header>
+
+		<div class="block-content">            
+        <p class="blog-stats"><span id="blog_user_count_15">7511</span> читателей / 85 топиков</p>
+                       
+		</div>
+
+		<footer>
+			            	<button type="submit" class="button button-mini disabled" id="blog-join" data-only-text="1" onclick="ls.blog.toggleJoin(this,15); return false;">подписаться</button>
+						<a href="http://info.javarush.ru/rss/blog/translation/" class="rss"><i class="icon-fortune-rss"></i></a>
+		</footer>
+	</section>
+	
+								<section class="block block-type-stream">
+	
+
+	<header class="block-header">
+		<h3><i class="icon-fortune-block-stream"></i>Прямой эфир</h3>
+		<div class="block-update js-block-stream-update"></div>
+		
+		<ul class="nav nav-pills js-block-stream-nav">
+			<li class="active js-block-stream-item" data-type="comment"><a href="#">Комментарии</a></li>
+			<li class="js-block-stream-item" data-type="topic"><a href="#">Публикации</a></li>
+			
+		</ul>
+		
+		<ul class="nav nav-pills js-block-stream-dropdown" style="display: none;">
+			<li class="dropdown active js-block-stream-dropdown-trigger"><a href="#">Комментарии</a> <i class="icon-fortune-arrows"></i>
+				<ul style="display: none;" class="dropdown-menu js-block-stream-dropdown-items">
+					<li class="active js-block-stream-item" data-type="comment"><a href="#">Комментарии</a></li>
+					<li class="js-block-stream-item" data-type="topic"><a href="#">Публикации</a></li>
+					
+				</ul>
+			</li>
+		</ul>
+	</header>
+	
+	<div class="block-content">
+		<div class="js-block-stream-content">
+			<!-- f3t1ch stream-comments - start -->
+<ul class="latest-list">
+							      
+		
+		<li class="js-title-comment" title="Не добавлял эту строку и все прошло. Как и у многих, судя по комментариям. Мы сейчас на Java 7, здесь порядок объявления уже не важен, поэтому эта...">        	       
+            <p>
+            	<a href="http://info.javarush.ru/profile/olegshan/" class="author-avatar"><img src="Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20_%20InfoJavaRush_files/avatar_male_24x24.png" alt="olegshan" class="avatar"></a> 
+            	<a href="http://info.javarush.ru/profile/olegshan/" class="author">olegshan</a>
+				<time datetime="2015-12-06T15:03:38+03:00" title="6 декабря 2015, 15:03">
+					 2 часа назад
+				</time>                
+            </p>			
+            	<a href="http://info.javarush.ru/blog/JavaRush_tasks_discussion/" class="blog-name">Обсуждение задач</a> /
+                <a href="http://info.javarush.ru/JavaRush_tasks_discussion/2014/05/13/level20-lesson07-task01.html#comment60656" class="stream-topic">level20.lesson07.task01</a> 
+                <a href="http://info.javarush.ru/JavaRush_tasks_discussion/2014/05/13/level20-lesson07-task01.html#comment60656" class="block-item-comments" title="Ссылка на комментарий"><i class="icon-fortune-comments-no"></i> 14</a>
+		</li>
+							      
+		
+		<li class="js-title-comment" title="Блин, народ, а мне вот хочется сказать огромное Спасибо за то, что вообще есть такое место, как этот info.javarush! Столкнулся с такой же проблемой...">        	       
+            <p>
+            	<a href="http://info.javarush.ru/profile/b_rhyme/" class="author-avatar"><img src="Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20_%20InfoJavaRush_files/avatar_male_24x24.png" alt="b_rhyme" class="avatar"></a> 
+            	<a href="http://info.javarush.ru/profile/b_rhyme/" class="author">b_rhyme</a>
+				<time datetime="2015-12-06T14:56:13+03:00" title="6 декабря 2015, 14:56">
+					 2 часа назад
+				</time>                
+            </p>			
+            	<a href="http://info.javarush.ru/blog/JavaRush_tasks_discussion/" class="blog-name">Обсуждение задач</a> /
+                <a href="http://info.javarush.ru/JavaRush_tasks_discussion/2013/10/08/com-javarush-test-level07-lesson12-home03.html#comment60655" class="stream-topic">com.javarush.test.level07.lesson12.home03</a> 
+                <a href="http://info.javarush.ru/JavaRush_tasks_discussion/2013/10/08/com-javarush-test-level07-lesson12-home03.html#comment60655" class="block-item-comments" title="Ссылка на комментарий"><i class="icon-fortune-comments-no"></i> 64</a>
+		</li>
+							      
+		
+		<li class="js-title-comment" title="Массивы: создание, инициализация(из лекции) 
+В линке в статье ошибка. А именно: 
+for (int i = 0; i &amp;lt; a. length; i++ System.out.println (a[i]);...">        	       
+            <p>
+            	<a href="http://info.javarush.ru/profile/snuk/" class="author-avatar"><img src="Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20_%20InfoJavaRush_files/avatar_male_24x24.png" alt="snuk" class="avatar"></a> 
+            	<a href="http://info.javarush.ru/profile/snuk/" class="author">snuk</a>
+				<time datetime="2015-12-06T14:46:05+03:00" title="6 декабря 2015, 14:46">
+					 2 часа назад
+				</time>                
+            </p>			
+            	<a href="http://info.javarush.ru/blog/JavaRush_lectures_discussion/" class="blog-name">Обсуждение лекций</a> /
+                <a href="http://info.javarush.ru/JavaRush_lectures_discussion/2013/05/20/lecture-7.html#comment60654" class="stream-topic">Лекция 7</a> 
+                <a href="http://info.javarush.ru/JavaRush_lectures_discussion/2013/05/20/lecture-7.html#comment60654" class="block-item-comments" title="Ссылка на комментарий"><i class="icon-fortune-comments-no"></i> 36</a>
+		</li>
+							      
+		
+		<li class="js-title-comment" title="Разбираясь в задаче обнаружил в интерфейсе Runnable абстрактный метод run(). 
+ 
+  public interface Runnable {
+      public abstract void run();...">        	       
+            <p>
+            	<a href="http://info.javarush.ru/profile/Vadelic/" class="author-avatar"><img src="Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20_%20InfoJavaRush_files/avatar_male_24x24.png" alt="Vadelic" class="avatar"></a> 
+            	<a href="http://info.javarush.ru/profile/Vadelic/" class="author">Vadelic</a>
+				<time datetime="2015-12-06T14:34:18+03:00" title="6 декабря 2015, 14:34">
+					 2 часа назад
+				</time>                
+            </p>			
+            	<a href="http://info.javarush.ru/blog/JavaRush_tasks_discussion/" class="blog-name">Обсуждение задач</a> /
+                <a href="http://info.javarush.ru/JavaRush_tasks_discussion/2014/10/14/level25-lesson07-home02.html#comment60653" class="stream-topic">level25.lesson07.home02</a> 
+                <a href="http://info.javarush.ru/JavaRush_tasks_discussion/2014/10/14/level25-lesson07-home02.html#comment60653" class="block-item-comments" title="Ссылка на комментарий"><i class="icon-fortune-comments-no"></i> 12</a>
+		</li>
+							      
+		
+		<li class="js-title-comment" title="level16.lesson13.home08  
+Задача решена с первого раза, но  ТОЛЬКО  потому что в голову пришла мысль «а вдруг действительно задачу делал человек...">        	       
+            <p>
+            	<a href="http://info.javarush.ru/profile/malkolm163/" class="author-avatar"><img src="Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20_%20InfoJavaRush_files/avatar_24x24_008.jpg" alt="malkolm163" class="avatar"></a> 
+            	<a href="http://info.javarush.ru/profile/malkolm163/" class="author">malkolm163</a>
+				<time datetime="2015-12-06T14:22:12+03:00" title="6 декабря 2015, 14:22">
+					 2 часа назад
+				</time>                
+            </p>			
+            	<a href="http://info.javarush.ru/blog/news/" class="blog-name">Новости проекта</a> /
+                <a href="http://info.javarush.ru/news/2015/12/01/%D0%A1%D0%B4%D0%B5%D0%BB%D0%B0%D0%B5%D0%BC-%D0%B7%D0%B0%D0%B4%D0%B0%D1%87%D0%B8-%D0%BB%D1%83%D1%87%D1%88%D0%B5-.html#comment60652" class="stream-topic">Сделаем задачи лучше!</a> 
+                <a href="http://info.javarush.ru/news/2015/12/01/%D0%A1%D0%B4%D0%B5%D0%BB%D0%B0%D0%B5%D0%BC-%D0%B7%D0%B0%D0%B4%D0%B0%D1%87%D0%B8-%D0%BB%D1%83%D1%87%D1%88%D0%B5-.html#comment60652" class="block-item-comments" title="Ссылка на комментарий"><i class="icon-fortune-comments-no"></i> 19</a>
+		</li>
+							      
+		
+		<li class="js-title-comment" title="Поведайте где промашка, господа 
+вроде все работает, считывает пробел, \n, вроде даже верно 
+  BufferedReader reader = new BufferedReader(new...">        	       
+            <p>
+            	<a href="http://info.javarush.ru/profile/LuckyMonK/" class="author-avatar"><img src="Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20_%20InfoJavaRush_files/avatar_24x24_007.jpg" alt="LuckyMonK" class="avatar"></a> 
+            	<a href="http://info.javarush.ru/profile/LuckyMonK/" class="author">LuckyMonK</a>
+				<time datetime="2015-12-06T11:29:43+03:00" title="6 декабря 2015, 11:29">
+					 5 часов назад
+				</time>                
+            </p>			
+            	<a href="http://info.javarush.ru/blog/JavaRush_tasks_discussion/" class="blog-name">Обсуждение задач</a> /
+                <a href="http://info.javarush.ru/JavaRush_tasks_discussion/2013/10/06/level18-lesson10-home06.html#comment60651" class="stream-topic">level18.lesson10.home06</a> 
+                <a href="http://info.javarush.ru/JavaRush_tasks_discussion/2013/10/06/level18-lesson10-home06.html#comment60651" class="block-item-comments" title="Ссылка на комментарий"><i class="icon-fortune-comments-no"></i> 137</a>
+		</li>
+							      
+		
+		<li class="js-title-comment" title="Привет земляк! ) 
+У FileWriter есть метод newLine() он то и сделает тебе запись с новой строки.">        	       
+            <p>
+            	<a href="http://info.javarush.ru/profile/Kolobok/" class="author-avatar"><img src="Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20_%20InfoJavaRush_files/avatar_24x24_010.jpg" alt="Kolobok" class="avatar"></a> 
+            	<a href="http://info.javarush.ru/profile/Kolobok/" class="author">Kolobok</a>
+				<time datetime="2015-12-06T11:05:57+03:00" title="6 декабря 2015, 11:05">
+					 6 часов назад
+				</time>                
+            </p>			
+            	<a href="http://info.javarush.ru/profile/shagi/created/topics/" class="blog-name">Блог им. shagi</a> /
+                <a href="http://info.javarush.ru/shagi/2015/04/30/level18-lesson10-bonus02_7.html#comment60650" class="stream-topic">level18.lesson10.bonus02</a> 
+                <a href="http://info.javarush.ru/shagi/2015/04/30/level18-lesson10-bonus02_7.html#comment60650" class="block-item-comments" title="Ссылка на комментарий"><i class="icon-fortune-comments-no"></i> 7</a>
+		</li>
+							      
+		
+		<li class="js-title-comment" title="Пытаюсь разобраться в теме и не понимаю: 
+а почему ваш метод   public int compare(T o1, T o2)   такой сложный? Уже убился, но не могу понять,...">        	       
+            <p>
+            	<a href="http://info.javarush.ru/profile/mbllllb/" class="author-avatar"><img src="Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20_%20InfoJavaRush_files/avatar_24x24_011.jpg" alt="mbllllb" class="avatar"></a> 
+            	<a href="http://info.javarush.ru/profile/mbllllb/" class="author">mbllllb</a>
+				<time datetime="2015-12-06T01:57:56+03:00" title="6 декабря 2015, 01:57">
+					Сегодня в 01:57
+				</time>                
+            </p>			
+            	<a href="http://info.javarush.ru/blog/JavaRush_tasks_discussion/" class="blog-name">Обсуждение задач</a> /
+                <a href="http://info.javarush.ru/JavaRush_tasks_discussion/2014/05/08/level26-lesson02-task03.html#comment60649" class="stream-topic">level26.lesson02.task03</a> 
+                <a href="http://info.javarush.ru/JavaRush_tasks_discussion/2014/05/08/level26-lesson02-task03.html#comment60649" class="block-item-comments" title="Ссылка на комментарий"><i class="icon-fortune-comments-no"></i> 36</a>
+		</li>
+							      
+		
+		<li class="js-title-comment" title="Я решал через switch, но решение не принимает. 
+ &amp;lt;code&amp;gt;
+public class Solution
+{
+    public static void main(String[] args) throws Exception...">        	       
+            <p>
+            	<a href="http://info.javarush.ru/profile/Bushrut/" class="author-avatar"><img src="Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20_%20InfoJavaRush_files/avatar_male_24x24.png" alt="Bushrut" class="avatar"></a> 
+            	<a href="http://info.javarush.ru/profile/Bushrut/" class="author">Bushrut</a>
+				<time datetime="2015-12-05T23:34:47+03:00" title="5 декабря 2015, 23:34">
+					Вчера в 23:34
+				</time>                
+            </p>			
+            	<a href="http://info.javarush.ru/blog/JavaRush_tasks_discussion/" class="blog-name">Обсуждение задач</a> /
+                <a href="http://info.javarush.ru/JavaRush_tasks_discussion/2015/09/02/level14-lesson08-home03-%D0%BA%D0%B0%D0%BA-%D0%B8%D0%B7%D0%B1%D0%B0%D0%B2%D0%B8%D1%82%D1%8C%D1%81%D1%8F-%D0%BE%D1%82-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%8B%D0%BD%D0%B5%D0%B9-%D0%B8%D1%84-%D0%BE%D0%B2-.html#comment60647" class="stream-topic">level14.lesson08.home03, как избавиться от простыней иф-ов?</a> 
+                <a href="http://info.javarush.ru/JavaRush_tasks_discussion/2015/09/02/level14-lesson08-home03-%D0%BA%D0%B0%D0%BA-%D0%B8%D0%B7%D0%B1%D0%B0%D0%B2%D0%B8%D1%82%D1%8C%D1%81%D1%8F-%D0%BE%D1%82-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%8B%D0%BD%D0%B5%D0%B9-%D0%B8%D1%84-%D0%BE%D0%B2-.html#comment60647" class="block-item-comments" title="Ссылка на комментарий"><i class="icon-fortune-comments-no"></i> 2</a>
+		</li>
+							      
+		
+		<li class="js-title-comment" title="подсказка в лекции; у нас президент пока равен нулю, а если синхронизируемый объект равен нулю, то выкидывается эксепшен. Поэтому и нельзя.">        	       
+            <p>
+            	<a href="http://info.javarush.ru/profile/redchush/" class="author-avatar"><img src="Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20_%20InfoJavaRush_files/avatar_male_24x24.png" alt="redchush" class="avatar"></a> 
+            	<a href="http://info.javarush.ru/profile/redchush/" class="author">redchush</a>
+				<time datetime="2015-12-05T22:40:50+03:00" title="5 декабря 2015, 22:40">
+					Вчера в 22:40
+				</time>                
+            </p>			
+            	<a href="http://info.javarush.ru/blog/JavaRush_tasks_discussion/" class="blog-name">Обсуждение задач</a> /
+                <a href="http://info.javarush.ru/JavaRush_tasks_discussion/2013/08/31/level17-lesson04-task04.html#comment60646" class="stream-topic">level17.lesson04.task04</a> 
+                <a href="http://info.javarush.ru/JavaRush_tasks_discussion/2013/08/31/level17-lesson04-task04.html#comment60646" class="block-item-comments" title="Ссылка на комментарий"><i class="icon-fortune-comments-no"></i> 38</a>
+		</li>
+							      
+		
+		<li class="js-title-comment" title="Хороший ресурс по рефакторингу  Your text to link...">        	       
+            <p>
+            	<a href="http://info.javarush.ru/profile/Kiba-From-North/" class="author-avatar"><img src="Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20_%20InfoJavaRush_files/avatar_24x24_009.jpg" alt="Kiba-From-North" class="avatar"></a> 
+            	<a href="http://info.javarush.ru/profile/Kiba-From-North/" class="author">Kiba-From-North</a>
+				<time datetime="2015-12-05T22:39:12+03:00" title="5 декабря 2015, 22:39">
+					Вчера в 22:39
+				</time>                
+            </p>			
+            	<a href="http://info.javarush.ru/blog/JavaRush_lectures_discussion/" class="blog-name">Обсуждение лекций</a> /
+                <a href="http://info.javarush.ru/JavaRush_lectures_discussion/2013/10/20/%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F-29.html#comment60645" class="stream-topic">Лекция 29</a> 
+                <a href="http://info.javarush.ru/JavaRush_lectures_discussion/2013/10/20/%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D1%8F-29.html#comment60645" class="block-item-comments" title="Ссылка на комментарий"><i class="icon-fortune-comments-no"></i> 8</a>
+		</li>
+							      
+		
+		<li class="js-title-comment" title="Сначала убери все «не цифры» в строке, а потом подсчитай количество символов.">        	       
+            <p>
+            	<a href="http://info.javarush.ru/profile/Minnesota/" class="author-avatar"><img src="Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20_%20InfoJavaRush_files/avatar_male_24x24.png" alt="Minnesota" class="avatar"></a> 
+            	<a href="http://info.javarush.ru/profile/Minnesota/" class="author">Minnesota</a>
+				<time datetime="2015-12-05T21:24:47+03:00" title="5 декабря 2015, 21:24">
+					Вчера в 21:24
+				</time>                
+            </p>			
+            	<a href="http://info.javarush.ru/blog/JavaRush_tasks_discussion/" class="blog-name">Обсуждение задач</a> /
+                <a href="http://info.javarush.ru/JavaRush_tasks_discussion/2014/01/20/level22-lesson13-task03.html#comment60644" class="stream-topic">level22.lesson13.task03</a> 
+                <a href="http://info.javarush.ru/JavaRush_tasks_discussion/2014/01/20/level22-lesson13-task03.html#comment60644" class="block-item-comments" title="Ссылка на комментарий"><i class="icon-fortune-comments-no"></i> 90</a>
+		</li>
+							      
+		
+		<li class="js-title-comment" title="Я не знаю как тут, пока только до третьего задания дошёл 
+Но в задаче с банкоматом я реализовал жадный алгоритм именно рекурсивно.">        	       
+            <p>
+            	<a href="http://info.javarush.ru/profile/Lexw/" class="author-avatar"><img src="Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20_%20InfoJavaRush_files/avatar_24x24_012.jpg" alt="Lexw" class="avatar"></a> 
+            	<a href="http://info.javarush.ru/profile/Lexw/" class="author">Lexw</a>
+				<time datetime="2015-12-05T20:37:56+03:00" title="5 декабря 2015, 20:37">
+					Вчера в 20:37
+				</time>                
+            </p>			
+            	<a href="http://info.javarush.ru/blog/JavaRush_tasks_discussion/" class="blog-name">Обсуждение задач</a> /
+                <a href="http://info.javarush.ru/JavaRush_tasks_discussion/2014/06/19/level27-lesson15-big01.html#comment60643" class="stream-topic">level27.lesson15.big01</a> 
+                <a href="http://info.javarush.ru/JavaRush_tasks_discussion/2014/06/19/level27-lesson15-big01.html#comment60643" class="block-item-comments" title="Ссылка на комментарий"><i class="icon-fortune-comments-no"></i> 698</a>
+		</li>
+							      
+		
+		<li class="js-title-comment" title="Посмотри здесь">        	       
+            <p>
+            	<a href="http://info.javarush.ru/profile/DmitriyL/" class="author-avatar"><img src="Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20_%20InfoJavaRush_files/avatar_male_24x24.png" alt="DmitriyL" class="avatar"></a> 
+            	<a href="http://info.javarush.ru/profile/DmitriyL/" class="author">DmitriyL</a>
+				<time datetime="2015-12-05T18:57:07+03:00" title="5 декабря 2015, 18:57">
+					Вчера в 18:57
+				</time>                
+            </p>			
+            	<a href="http://info.javarush.ru/blog/others/" class="blog-name">Беседка</a> /
+                <a href="http://info.javarush.ru/others/2015/12/05/Google-API-%D0%B4%D0%BB%D1%8F-%D0%B2%D1%8B%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F-%D1%80%D0%B0%D1%81%D1%81%D1%82%D0%BE%D1%8F%D0%BD%D0%B8%D1%8F-%D0%BC%D0%B5%D0%B6%D0%B4%D1%83-2-%D0%B3%D0%BE%D1%80%D0%BE%D0%B4%D0%B0%D0%BC%D0%B8-.html#comment60642" class="stream-topic">Google API для вычисления расстояния между 2 городами.</a> 
+                <a href="http://info.javarush.ru/others/2015/12/05/Google-API-%D0%B4%D0%BB%D1%8F-%D0%B2%D1%8B%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F-%D1%80%D0%B0%D1%81%D1%81%D1%82%D0%BE%D1%8F%D0%BD%D0%B8%D1%8F-%D0%BC%D0%B5%D0%B6%D0%B4%D1%83-2-%D0%B3%D0%BE%D1%80%D0%BE%D0%B4%D0%B0%D0%BC%D0%B8-.html#comment60642" class="block-item-comments" title="Ссылка на комментарий"><i class="icon-fortune-comments-no"></i> 1</a>
+		</li>
+	</ul>
+<footer>
+	<a href="http://info.javarush.ru/comments/">Весь эфир</a> / <a href="http://info.javarush.ru/rss/allcomments/">RSS</a>
+</footer>
+<!-- f3t1ch stream-comments - end -->
+		</div>
+	</div>
+</section>
+
+
+										<div class="block block-type-blogs" id="block_blogs">
+	<header class="block-header">
+		<h3><i class="icon-fortune-block-blogs"></i>Блоги</h3>
+		<div class="block-update js-block-blogs-update"></div>
+		
+		<ul class="nav nav-pills js-block-blogs-nav">
+			<li class="active js-block-blogs-item" data-type="top"><a href="#">Топ</a></li>
+					</ul>
+	</header>
+	
+	
+	<div class="block-content">		
+		<div class="js-block-blogs-content">
+			<ul class="block-blog-list">
+			<li class="odd">
+			<a href="http://info.javarush.ru/blog/JavaRush_tasks_discussion/">Обсуждение задач</a>
+			
+			
+            	<span title="Рейтинг: 160.58 &lt;br /&gt; Топиков: 1379 &lt;br /&gt; Подписчиков: 7469" class="js-infobox">160.58</span>
+            
+		</li>
+			<li class="even">
+			<a href="http://info.javarush.ru/blog/translation/">Переводы</a>
+			
+			
+            	<span title="Рейтинг: 29.50 &lt;br /&gt; Топиков: 85 &lt;br /&gt; Подписчиков: 7511" class="js-infobox">29.50</span>
+            
+		</li>
+			<li class="odd">
+			<a href="http://info.javarush.ru/blog/news/">Новости проекта</a>
+			
+			
+            	<span title="Рейтинг: 23.75 &lt;br /&gt; Топиков: 139 &lt;br /&gt; Подписчиков: 7441" class="js-infobox">23.75</span>
+            
+		</li>
+			<li class="even">
+			<a href="http://info.javarush.ru/blog/JavaRush_lectures_discussion/">Обсуждение лекций</a>
+			
+			
+            	<span title="Рейтинг: 19.23 &lt;br /&gt; Топиков: 41 &lt;br /&gt; Подписчиков: 7488" class="js-infobox">19.23</span>
+            
+		</li>
+			<li class="odd">
+			<a href="http://info.javarush.ru/blog/idea_help/">IntelliJ Idea</a>
+			
+			
+            	<span title="Рейтинг: 17.10 &lt;br /&gt; Топиков: 23 &lt;br /&gt; Подписчиков: 7494" class="js-infobox">17.10</span>
+            
+		</li>
+			<li class="even">
+			<a href="http://info.javarush.ru/blog/javarush_articles/">Статьи</a>
+			
+			
+            	<span title="Рейтинг: 5.66 &lt;br /&gt; Топиков: 27 &lt;br /&gt; Подписчиков: 7494" class="js-infobox">5.66</span>
+            
+		</li>
+			<li class="odd">
+			<a href="http://info.javarush.ru/blog/govnocode/">Говнокод</a>
+			
+			
+            	<span title="Рейтинг: 5.66 &lt;br /&gt; Топиков: 22 &lt;br /&gt; Подписчиков: 54" class="js-infobox">5.66</span>
+            
+		</li>
+			<li class="even">
+			<a href="http://info.javarush.ru/blog/others/">Беседка</a>
+			
+			
+            	<span title="Рейтинг: 3.41 &lt;br /&gt; Топиков: 78 &lt;br /&gt; Подписчиков: 89" class="js-infobox">3.41</span>
+            
+		</li>
+			<li class="odd">
+			<a href="http://info.javarush.ru/blog/polling/">Опросы</a>
+			
+			
+            	<span title="Рейтинг: 2.26 &lt;br /&gt; Топиков: 0 &lt;br /&gt; Подписчиков: 41" class="js-infobox">2.26</span>
+            
+		</li>
+	</ul>				
+
+		</div>
+	</div>		
+    
+    
+    <footer>
+			<a href="http://info.javarush.ru/blogs/">Все блоги</a>
+	</footer>
+</div>
+
+					
+</aside>
+<!-- ft1ch sidebar - end -->
+    
+</div>
+</div>
+
+<div id="footer-first-line">	
+	<div id="container-footer" class="container">
+    	<div class="wrapper-footer">
+
+		<footer id="footer" class="footer-first-line-content">    
+    		<div class="site-info-panel">    		
+    			<ul class="social-button">
+            		<li class="vk"><a href="http://vk.com/javarush" title="ВКонтакте"><i></i></a></li>
+                	<li class="fb"><a href="https://www.facebook.com/pages/Javarush/524321077686033" title="Facebook"><i></i></a></li>
+                	<li class="gp"><a href="https://plus.google.com/u/0/114772402300089087607/about" title="Google+"><i></i></a></li>
+                	<li class="tw"><a href="https://twitter.com/javarush_ru" title="Twitter"><i></i></a></li>
+                	<li class="rss"><a href="http://info.javarush.ru/rss/new/"><i></i></a></li>
+            	</ul>            
+
+            	            	<div class="user-panel-mini clearfix">            	
+        			<ul class="auth">
+						<li><a href="http://info.javarush.ru/login/" class="js-login-form-show log-in">Войти</a></li>
+						<li><a href="http://info.javarush.ru/registration/" class="js-registration-form-show sign-in">Зарегистрироваться</a></li>			
+					</ul>
+            	</div>
+            	    		</div>    
+    
+    		<div class="site-tag-panel"><section class="block-footer block-type-tags">
+	<header class="block-header">
+		
+		
+		<ul class="nav nav-pills">
+			<li class="active js-block-tags-item" data-type="all"><a href="#">Все теги</a></li>
+			
+			
+		</ul>
+	</header>
+	
+	<!--github ls101 devhash BHc688HaDV4w26xKOTF-->
+	<div class="block-content">
+		<form action="" method="GET" class="js-tag-search-form search-form-wrapper">
+			<div class="search-input-wrapper">
+				<input aria-haspopup="true" aria-autocomplete="list" role="textbox" autocomplete="off" name="tag" placeholder="Поиск тегов" class="input-text input-width-full autocomplete-tags js-tag-search ui-autocomplete-input" type="text">				
+			</div>
+		</form>
+
+		<div class="js-block-tags-content" data-type="all">
+							<ul class="tag-cloud word-wrap">
+											<li><a class="tag-size-2" href="http://info.javarush.ru/tag/%3Ccode%3E%3C%2Fcode%3E/">&lt;code&gt;&lt;/code&gt;</a></li>
+											<li><a class="tag-size-2" href="http://info.javarush.ru/tag/ArrayList/">ArrayList</a></li>
+											<li><a class="tag-size-1" href="http://info.javarush.ru/tag/help/">help</a></li>
+											<li><a class="tag-size-2" href="http://info.javarush.ru/tag/Idea/">Idea</a></li>
+											<li><a class="tag-size-6" href="http://info.javarush.ru/tag/Intellij%20IDEA/">Intellij IDEA</a></li>
+											<li><a class="tag-size-10" href="http://info.javarush.ru/tag/Java/">Java</a></li>
+											<li><a class="tag-size-9" href="http://info.javarush.ru/tag/JavaRush/">JavaRush</a></li>
+											<li><a class="tag-size-2" href="http://info.javarush.ru/tag/lesson11/">lesson11</a></li>
+											<li><a class="tag-size-2" href="http://info.javarush.ru/tag/level05.lesson12.bonus03/">level05.lesson12.bonus03</a></li>
+											<li><a class="tag-size-2" href="http://info.javarush.ru/tag/level07/">level07</a></li>
+											<li><a class="tag-size-2" href="http://info.javarush.ru/tag/%D0%B3%D0%BE%D0%B2%D0%BD%D0%BE%D0%BA%D0%BE%D0%B4/">говнокод</a></li>
+											<li><a class="tag-size-7" href="http://info.javarush.ru/tag/%D0%B7%D0%B0%D0%B4%D0%B0%D1%87%D0%B0/">задача</a></li>
+											<li><a class="tag-size-5" href="http://info.javarush.ru/tag/%D0%B7%D0%B0%D0%B4%D0%B0%D1%87%D0%B8/">задачи</a></li>
+											<li><a class="tag-size-7" href="http://info.javarush.ru/tag/%D0%BA%D1%83%D1%85%D0%BD%D1%8F%28%29%3B/">кухня();</a></li>
+											<li><a class="tag-size-4" href="http://info.javarush.ru/tag/%D0%BB%D0%B5%D0%BA%D1%86%D0%B8%D1%8F/">лекция</a></li>
+											<li><a class="tag-size-3" href="http://info.javarush.ru/tag/%D0%BD%D0%B5%20%D0%BF%D1%80%D0%BE%D1%85%D0%BE%D0%B4%D0%B8%D1%82%20%D1%82%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5/">не проходит тестирование</a></li>
+											<li><a class="tag-size-3" href="http://info.javarush.ru/tag/%D0%9E%D0%B1%D1%81%D1%83%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B7%D0%B0%D0%B4%D0%B0%D1%87/">Обсуждение задач</a></li>
+											<li><a class="tag-size-1" href="http://info.javarush.ru/tag/%D0%BE%D1%88%D0%B8%D0%B1%D0%BA%D0%B0/">ошибка</a></li>
+											<li><a class="tag-size-1" href="http://info.javarush.ru/tag/%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4/">перевод</a></li>
+											<li><a class="tag-size-1" href="http://info.javarush.ru/tag/%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4%D1%8B/">переводы</a></li>
+											<li><a class="tag-size-1" href="http://info.javarush.ru/tag/%D0%BF%D0%BB%D0%B0%D0%B3%D0%B8%D0%BD/">плагин</a></li>
+											<li><a class="tag-size-4" href="http://info.javarush.ru/tag/%D0%9F%D0%BE%D0%BC%D0%BE%D1%89%D1%8C/">Помощь</a></li>
+											<li><a class="tag-size-3" href="http://info.javarush.ru/tag/%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0/">работа</a></li>
+											<li><a class="tag-size-2" href="http://info.javarush.ru/tag/%D0%A0%D0%B5%D1%88%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B7%D0%B0%D0%B4%D0%B0%D1%87/">Решение задач</a></li>
+											<li><a class="tag-size-4" href="http://info.javarush.ru/tag/%D1%82%D1%80%D1%83%D0%B4%D0%BE%D1%83%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%BE/">трудоустройство</a></li>
+									</ul>
+					</div>
+
+			</div>
+</section></div>
+    		
+            
+		</footer>
+		</div>
+	</div>
+</div>
+
+
+<div id="footer-second-line" class="footer-decor index        ">	
+	<div class="container">
+
+		<div class="footer-copyright-panel"><a href="http://bo0om.ru/" target="_blank">Спонсор - bo0om.ru</a><br>© Powered by <a href="http://livestreetcms.org/">LiveStreet CMS</a> + <a href="http://helper.docs.ws/">Fortune</a></div>
+			
+        <ul class="footer-links-panel">
+    		<li>© 2006–2012 Fortune.pl</li>
+        	<li class="active"><a href="http://info.javarush.ru/" class="index">Топики<i></i></a></li>
+        	<li><a href="http://info.javarush.ru/blogs/" class="blogs">Блоги<i></i></a></li>
+        	<li><a href="http://info.javarush.ru/people/" class="people">Люди<i></i></a></li>
+        	<li><a href="http://info.javarush.ru/stream/" class="stream">Активность<i></i></a></li>
+            	
+    	</ul>
+
+	</div>
+</div>
+
+
+<aside style="position: fixed; left: 1268px; top: 337px; display: block;" class="toolbar" id="toolbar">
+	
+
+								
+											
+
+										<!-- 
+ 		Comment Filter
+ 		a LiveStreet plugin
+ 		by Anton Maslo (http://amaslo.com)
+ 		originally developed for MMOzgoved (http://www.mmozg.net/) project
+-->
+
+<script>
+	$(function() {
+		ls.lang.load({"plugin.commentfilter.comment_hidden_hint":"\u041a\u043e\u043c\u043c\u0435\u043d\u0442\u0430\u0440\u0438\u0439 \u043d\u0438\u0436\u0435 \u0437\u0430\u0434\u0430\u043d\u043d\u043e\u0433\u043e \u0440\u0435\u0439\u0442\u0438\u043d\u0433\u0430, <a href=\"#\" class=\"show-hidden-comment link-dotted\">\u043f\u043e\u043a\u0430\u0437\u0430\u0442\u044c<\/a>?"});
+		initCommentFilter();
+	});
+</script>
+
+<section id="comment-filter" title="Фильтр комментариев">
+	<input readonly="readonly" class="slider" id="comment_slider" min="-25" max="25" value="-25" style="height: 102px; display: none;" type="number"><div class="jscslider_up slider_btn">+</div><div class="jscslider " style="height:102px;" id="id_jscslider_0"><div class="jscslider_scale"></div><div style="top: 87px;" class="jscslider_tracker">∀</div></div><div class="jscslider_down slider_btn">–</div>
+</section>
+										<!-- fort3ch scroll - end -->
+<section style="display: block;" class="toolbar-scrollup" id="toolbar_scrollup">
+	<a href="#" onclick="return ls.toolbar.up.goUp();" title="Вверх"><i class="icon-white icon-chevron-up"></i></a>
+</section>
+<!-- fort3ch scroll - end -->
+			
+</aside>
+
+
+<!-- frtch templ - end -->
+
+<ul style="z-index: 1; top: 0px; left: 0px; display: none;" aria-activedescendant="ui-active-menuitem" role="listbox" class="ui-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all"></ul><ul style="display: none;" class="dropdown-nav-main dropdown-menu" id="dropdown-mainmenu-menu"></ul><div class="b-share-popup-wrap b-share-popup-wrap_state_hidden" id="ya-share-0.530148993200652-1449412713090-popup"><div class="b-share-popup b-share-popup_down b-share-popup_to-right"><div class="b-share-popup__i"><div class="b-share-popup__main  b-share-popup_yandexed"><div class="b-share-popup__header b-share-popup__header_first">Поделитесь с друзьями</div><a rel="nofollow" target="_blank" href="https://share.yandex.net/go.xml?service=vkontakte&amp;url=http%3A%2F%2Finfo.javarush.ru%2Ftranslation%2F2015%2F10%2F13%2F15-%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D0%BE%D0%B2-%D0%B4%D0%BB%D1%8F-%D1%81%D0%BE%D0%B1%D0%B5%D1%81%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA%D0%BE%D0%B2-%D0%BE%D1%82%D0%BD%D0%BE%D1%81%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE-Enum-%D0%B2-%D0%94%D0%B6%D0%B0%D0%B2%D0%B5-%D1%81-%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D0%B0%D0%BC%D0%B8-.html&amp;title=15%20%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D0%BE%D0%B2%20%D0%B4%D0%BB%D1%8F%20%D1%81%D0%BE%D0%B1%D0%B5%D1%81%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA%D0%BE%D0%B2%2C%20%D0%BE%D1%82%D0%BD%D0%BE%D1%81%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%20Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20%28%D1%81%20%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D0%B0%D0%BC%D0%B8%21%29" class="b-share-popup__item" data-service="vkontakte"><span class="b-share-popup__icon"><span class="b-share-icon b-share-icon_vkontakte"></span></span><span class="b-share-popup__item__text">ВКонтакте</span></a><a rel="nofollow" target="_blank" href="https://share.yandex.net/go.xml?service=odnoklassniki&amp;url=http%3A%2F%2Finfo.javarush.ru%2Ftranslation%2F2015%2F10%2F13%2F15-%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D0%BE%D0%B2-%D0%B4%D0%BB%D1%8F-%D1%81%D0%BE%D0%B1%D0%B5%D1%81%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA%D0%BE%D0%B2-%D0%BE%D1%82%D0%BD%D0%BE%D1%81%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE-Enum-%D0%B2-%D0%94%D0%B6%D0%B0%D0%B2%D0%B5-%D1%81-%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D0%B0%D0%BC%D0%B8-.html&amp;title=15%20%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D0%BE%D0%B2%20%D0%B4%D0%BB%D1%8F%20%D1%81%D0%BE%D0%B1%D0%B5%D1%81%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA%D0%BE%D0%B2%2C%20%D0%BE%D1%82%D0%BD%D0%BE%D1%81%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%20Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20%28%D1%81%20%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D0%B0%D0%BC%D0%B8%21%29" class="b-share-popup__item" data-service="odnoklassniki"><span class="b-share-popup__icon"><span class="b-share-icon b-share-icon_odnoklassniki"></span></span><span class="b-share-popup__item__text">Одноклассники</span></a><a rel="nofollow" target="_blank" href="https://share.yandex.net/go.xml?service=twitter&amp;url=http%3A%2F%2Finfo.javarush.ru%2Ftranslation%2F2015%2F10%2F13%2F15-%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D0%BE%D0%B2-%D0%B4%D0%BB%D1%8F-%D1%81%D0%BE%D0%B1%D0%B5%D1%81%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA%D0%BE%D0%B2-%D0%BE%D1%82%D0%BD%D0%BE%D1%81%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE-Enum-%D0%B2-%D0%94%D0%B6%D0%B0%D0%B2%D0%B5-%D1%81-%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D0%B0%D0%BC%D0%B8-.html&amp;title=15%20%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D0%BE%D0%B2%20%D0%B4%D0%BB%D1%8F%20%D1%81%D0%BE%D0%B1%D0%B5%D1%81%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA%D0%BE%D0%B2%2C%20%D0%BE%D1%82%D0%BD%D0%BE%D1%81%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%20Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20%28%D1%81%20%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D0%B0%D0%BC%D0%B8%21%29" class="b-share-popup__item" data-service="twitter"><span class="b-share-popup__icon"><span class="b-share-icon b-share-icon_twitter"></span></span><span class="b-share-popup__item__text">Twitter</span></a><a rel="nofollow" target="_blank" href="https://share.yandex.net/go.xml?service=facebook&amp;url=http%3A%2F%2Finfo.javarush.ru%2Ftranslation%2F2015%2F10%2F13%2F15-%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D0%BE%D0%B2-%D0%B4%D0%BB%D1%8F-%D1%81%D0%BE%D0%B1%D0%B5%D1%81%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA%D0%BE%D0%B2-%D0%BE%D1%82%D0%BD%D0%BE%D1%81%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE-Enum-%D0%B2-%D0%94%D0%B6%D0%B0%D0%B2%D0%B5-%D1%81-%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D0%B0%D0%BC%D0%B8-.html&amp;title=15%20%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D0%BE%D0%B2%20%D0%B4%D0%BB%D1%8F%20%D1%81%D0%BE%D0%B1%D0%B5%D1%81%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA%D0%BE%D0%B2%2C%20%D0%BE%D1%82%D0%BD%D0%BE%D1%81%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%20Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20%28%D1%81%20%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D0%B0%D0%BC%D0%B8%21%29" class="b-share-popup__item" data-service="facebook"><span class="b-share-popup__icon"><span class="b-share-icon b-share-icon_facebook"></span></span><span class="b-share-popup__item__text">Facebook</span></a><a rel="nofollow" target="_blank" href="https://share.yandex.net/go.xml?service=moimir&amp;url=http%3A%2F%2Finfo.javarush.ru%2Ftranslation%2F2015%2F10%2F13%2F15-%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D0%BE%D0%B2-%D0%B4%D0%BB%D1%8F-%D1%81%D0%BE%D0%B1%D0%B5%D1%81%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA%D0%BE%D0%B2-%D0%BE%D1%82%D0%BD%D0%BE%D1%81%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE-Enum-%D0%B2-%D0%94%D0%B6%D0%B0%D0%B2%D0%B5-%D1%81-%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D0%B0%D0%BC%D0%B8-.html&amp;title=15%20%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D0%BE%D0%B2%20%D0%B4%D0%BB%D1%8F%20%D1%81%D0%BE%D0%B1%D0%B5%D1%81%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA%D0%BE%D0%B2%2C%20%D0%BE%D1%82%D0%BD%D0%BE%D1%81%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%20Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20%28%D1%81%20%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D0%B0%D0%BC%D0%B8%21%29" class="b-share-popup__item" data-service="moimir"><span class="b-share-popup__icon"><span class="b-share-icon b-share-icon_moimir"></span></span><span class="b-share-popup__item__text">Мой Мир</span></a><a rel="nofollow" target="_blank" href="https://share.yandex.net/go.xml?service=lj&amp;url=http%3A%2F%2Finfo.javarush.ru%2Ftranslation%2F2015%2F10%2F13%2F15-%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D0%BE%D0%B2-%D0%B4%D0%BB%D1%8F-%D1%81%D0%BE%D0%B1%D0%B5%D1%81%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA%D0%BE%D0%B2-%D0%BE%D1%82%D0%BD%D0%BE%D1%81%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE-Enum-%D0%B2-%D0%94%D0%B6%D0%B0%D0%B2%D0%B5-%D1%81-%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D0%B0%D0%BC%D0%B8-.html&amp;title=15%20%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D0%BE%D0%B2%20%D0%B4%D0%BB%D1%8F%20%D1%81%D0%BE%D0%B1%D0%B5%D1%81%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA%D0%BE%D0%B2%2C%20%D0%BE%D1%82%D0%BD%D0%BE%D1%81%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%20Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20%28%D1%81%20%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D0%B0%D0%BC%D0%B8%21%29" class="b-share-popup__item" data-service="lj"><span class="b-share-popup__icon"><span class="b-share-icon b-share-icon_lj"></span></span><span class="b-share-popup__item__text">LiveJournal</span></a><a rel="nofollow" target="_blank" href="https://share.yandex.net/go.xml?service=gplus&amp;url=http%3A%2F%2Finfo.javarush.ru%2Ftranslation%2F2015%2F10%2F13%2F15-%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D0%BE%D0%B2-%D0%B4%D0%BB%D1%8F-%D1%81%D0%BE%D0%B1%D0%B5%D1%81%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA%D0%BE%D0%B2-%D0%BE%D1%82%D0%BD%D0%BE%D1%81%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE-Enum-%D0%B2-%D0%94%D0%B6%D0%B0%D0%B2%D0%B5-%D1%81-%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D0%B0%D0%BC%D0%B8-.html&amp;title=15%20%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D0%BE%D0%B2%20%D0%B4%D0%BB%D1%8F%20%D1%81%D0%BE%D0%B1%D0%B5%D1%81%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA%D0%BE%D0%B2%2C%20%D0%BE%D1%82%D0%BD%D0%BE%D1%81%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%20Enum%20%D0%B2%20%D0%94%D0%B6%D0%B0%D0%B2%D0%B5%20%28%D1%81%20%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D0%B0%D0%BC%D0%B8%21%29" class="b-share-popup__item" data-service="gplus"><span class="b-share-popup__icon"><span class="b-share-icon b-share-icon_gplus"></span></span><span class="b-share-popup__item__text">Google Plus</span></a><a href="http://api.yandex.ru/share/" class="b-share-popup__yandex">Яндекс</a></div></div><div class="b-share-popup__tail"></div></div></div></body></html>

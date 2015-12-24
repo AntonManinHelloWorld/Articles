@@ -1,0 +1,32 @@
+﻿A subclass of an abstract class that is not itself abstract may be instantiated,
+resulting in the execution of a constructor for the abstract class and, therefore, the execution of the field initializers for instance variables of that class.
+
+It is a compile-time error if a class is declared both final and abstract, because the implementation of such a class could never be completed.
+
+An abstract class can override an abstract method by providing another
+abstract method declaration.
+An instance method that is not abstract can be overridden by an abstract
+method.
+
+We can declare an abstract class Point that requires its subclasses to implement
+toString if they are to be complete, instantiable classes:
+	abstract class Point {
+		int x, y;
+		public abstract String toString();
+	}
+This abstract declaration of toString overrides the non- abstract toString method of class Object . (Class Object is the implicit direct superclass of class Point .) Adding the code:
+	class ColoredPoint extends Point {
+		int color;
+
+		public String toString() {
+			return super.toString() + ": color " + color;
+		}
+	}
+// error
+results in a compile-time error because the invocation super.toString() refers to method toString in class Point , which is abstract and therefore cannot be invoked.
+
+You can put a non-abstract constructor in an abstract class, but still you would not be able to initialize it.
+
+
+
+

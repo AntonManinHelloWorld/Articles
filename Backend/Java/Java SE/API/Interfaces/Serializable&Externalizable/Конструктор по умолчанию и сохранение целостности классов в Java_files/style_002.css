@@ -1,0 +1,28 @@
+/* toggle
+----------------------------------------------- */
+.azc_tsh_toggle{
+    margin: -20px 0px 20px 0px;
+    font-weight:600;
+    font-size: 14px;
+    padding: 10px 00px 0 30px;
+    background-image: url('images/plus.png');
+    background-repeat: no-repeat;
+    background-position: 0px 12px;
+    height: 2em;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+}
+.azc_tsh_toggle a{
+	color: #000;
+}
+.azc_tsh_toggle_active{
+    background-image: url('images/minus.png') !important;
+    margin-bottom: 0px !important;
+}
+.azc_tsh_toggle_container {
+	margin: auto;
+    margin-bottom: 5px !important;
+	padding: 5px 15px;
+	overflow: auto;
+}

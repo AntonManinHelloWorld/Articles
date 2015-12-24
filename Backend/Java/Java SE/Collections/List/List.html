@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 4.3.3.2 (Linux)"/>
+	<meta name="author" content="AntonManin "/>
+	<meta name="created" content="2015-12-03T11:12:57.295628464"/>
+	<meta name="changedby" content="AntonManin "/>
+	<meta name="changed" content="2015-12-03T11:13:35.212796034"/>
+	<style type="text/css">
+		@page { margin: 0.79in }
+		p { margin-bottom: 0.1in; line-height: 120% }
+		pre.cjk { font-family: "Nimbus Mono L", monospace }
+	</style>
+</head>
+<body lang="en-US" dir="ltr">
+<pre class="western" style="background: #ffffff"><font color="#808080"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><i>//</i></font></font></font>
+<font color="#808080"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><i>// Source code recreated from a .class file by IntelliJ IDEA</i></font></font></font>
+<font color="#808080"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><i>// (powered by Fernflower decompiler)</i></font></font></font>
+<font color="#808080"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><i>//</i></font></font></font>
+<font color="#000000"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><font color="#000080"><b>package </b></font>java.util;</font></font></font>
+<font color="#000000"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><font color="#000080"><b>import </b></font>java.util.Collection;</font></font></font>
+<font color="#000000"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><font color="#000080"><b>import </b></font>java.util.Iterator;</font></font></font>
+<font color="#000000"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><font color="#000080"><b>import </b></font>java.util.ListIterator;</font></font></font>
+<font color="#000000"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><font color="#000080"><b>public interface </b></font><span style="background: #e4e4ff">List</span>&lt;E&gt; <font color="#000080"><b>extends </b></font>Collection&lt;E&gt; {</font></font></font>
+<font color="#000000">    <font color="#000080"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><b>int </b></font></font></font><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">size();</font></font></font>
+<font color="#000000">    <font color="#000080"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><b>boolean </b></font></font></font><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">isEmpty();</font></font></font>
+<font color="#000000">    <font color="#000080"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><b>boolean </b></font></font></font><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">contains(Object var1);</font></font></font>
+<font color="#000000">    <font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">Iterator&lt;E&gt; iterator();</font></font></font>
+<font color="#000000">    <font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">Object[] toArray();</font></font></font>
+<font color="#000000">    <font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">&lt;T&gt; T[] toArray(T[] var1);</font></font></font>
+<font color="#000000">    <font color="#000080"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><b>boolean </b></font></font></font><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">add(E var1);</font></font></font>
+<font color="#000000">    <font color="#000080"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><b>boolean </b></font></font></font><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">remove(Object var1);</font></font></font>
+<font color="#000000">    <font color="#000080"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><b>boolean </b></font></font></font><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">containsAll(Collection&lt;?&gt; var1);</font></font></font>
+<font color="#000000">    <font color="#000080"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><b>boolean </b></font></font></font><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">addAll(Collection&lt;? </font></font><font color="#000080"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><b>extends </b></font></font></font><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">E&gt; var1);</font></font></font>
+<font color="#000000">    <font color="#000080"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><b>boolean </b></font></font></font><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">addAll(</font></font><font color="#000080"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><b>int </b></font></font></font><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">var1, Collection&lt;? </font></font><font color="#000080"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><b>extends </b></font></font></font><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">E&gt; var2);</font></font></font>
+<font color="#000000">    <font color="#000080"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><b>boolean </b></font></font></font><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">removeAll(Collection&lt;?&gt; var1);</font></font></font>
+<font color="#000000">    <font color="#000080"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><b>boolean </b></font></font></font><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">retainAll(Collection&lt;?&gt; var1);</font></font></font>
+<font color="#000000">    <font color="#000080"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><b>void </b></font></font></font><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">clear();</font></font></font>
+<font color="#000000">    <font color="#000080"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><b>boolean </b></font></font></font><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">equals(Object var1);</font></font></font>
+<font color="#000000">    <font color="#000080"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><b>int </b></font></font></font><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">hashCode();</font></font></font>
+<font color="#000000">    <font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">E get(</font></font><font color="#000080"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><b>int </b></font></font></font><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">var1);</font></font></font>
+<font color="#000000">    <font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">E set(</font></font><font color="#000080"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><b>int </b></font></font></font><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">var1, E var2);</font></font></font>
+<font color="#000000">    <font color="#000080"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><b>void </b></font></font></font><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">add(</font></font><font color="#000080"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><b>int </b></font></font></font><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">var1, E var2);</font></font></font>
+<font color="#000000">    <font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">E remove(</font></font><font color="#000080"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><b>int </b></font></font></font><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">var1);</font></font></font>
+<font color="#000000">    <font color="#000080"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><b>int </b></font></font></font><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">indexOf(Object var1);</font></font></font>
+<font color="#000000">    <font color="#000080"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><b>int </b></font></font></font><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">lastIndexOf(Object var1);</font></font></font>
+<font color="#000000">    <font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">ListIterator&lt;E&gt; listIterator();</font></font></font>
+<font color="#000000">    <font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">ListIterator&lt;E&gt; listIterator(</font></font><font color="#000080"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><b>int </b></font></font></font><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">var1);</font></font></font>
+<font color="#000000">    <font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><span style="background: #e4e4ff">List</span></font></font><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">&lt;E&gt; subList(</font></font><font color="#000080"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><b>int </b></font></font></font><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">var1, </font></font><font color="#000080"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><b>int </b></font></font></font><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">var2);</font></font></font>
+<font color="#000000"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">}</font></font></font></pre><p style="margin-bottom: 0in; line-height: 100%">
+<br/>
+
+</p>
+</body>
+</html>

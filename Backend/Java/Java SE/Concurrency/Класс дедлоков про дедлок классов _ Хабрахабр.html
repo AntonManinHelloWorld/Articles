@@ -1,0 +1,1888 @@
+<!DOCTYPE html>
+<html><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta content="width=1024" name="viewport">
+
+    
+
+    <title>Класс дедлоков про дедлок классов / Блог компании Одноклассники / Хабрахабр</title>
+
+      <meta name="description" content="
+
+Знаете ли вы, как избежать дедлоков в своей программе? Да, этому учат, про это спрашивают на собеседованиях… И тем не менее, взаимные блокировки встречаются даже в популярных проектах серьёзных...">
+
+      <meta name="keywords" content="deadlock, class initialization, hotspot, jvm bug, никому нельзя верить">
+
+      <meta property="fb:app_id" content="444736788986613"> 
+<meta property="og:type" content="article"> 
+<meta property="og:url" content="http://habrahabr.ru/company/odnoklassniki/blog/255067/"> 
+<meta property="og:title" content="Класс дедлоков про дедлок классов">
+	<meta property="og:image" content="https://habrastorage.org/files/de8/f18/aa4/de8f18aa45a341b9b654a44aee7e4840.png">
+	<link rel="image_src" href="https://habrastorage.org/files/de8/f18/aa4/de8f18aa45a341b9b654a44aee7e4840.png">
+	
+<meta property="og:description" content="Знаете ли вы, как избежать дедлоков в своей программе? Да, этому учат, про это спрашивают на собеседованиях… И тем не менее, взаимные блокировки встречаются...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@habrahabr">
+  <meta property="al:android:url" content="habrahabr://post/255067">
+<meta property="al:android:app_name" content="Habrahabr">
+<meta property="al:android:package" content="ru.habrahabr">
+<meta property="al:windows_phone:url" content="habrahabr://post/255067">
+<meta property="al:windows_phone:app_name" content="Habrahabr">
+<meta property="al:windows_phone:app_id" content="460a6bd6-8955-470f-935e-9ea1726a6060">
+  <link rel="canonical" href="http://habrahabr.ru/company/odnoklassniki/blog/255067/">
+  <link rel="alternate" media="only screen and (max-width: 640px)" href="http://m.habrahabr.ru/company/odnoklassniki/blog/255067/">
+
+
+
+      <link href="%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%D0%BF%D1%80%D0%BE%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/company_post_show_common.css" rel="stylesheet" media="all">
+
+    <link href="%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%D0%BF%D1%80%D0%BE%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/global_main.css" rel="stylesheet" media="all">
+
+    <script src="%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%D0%BF%D1%80%D0%BE%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/watch.js" async="" type="text/javascript"></script><script src="%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%D0%BF%D1%80%D0%BE%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/analytics.js" async=""></script><script type="text/javascript" src="%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%D0%BF%D1%80%D0%BE%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/global_main.js"></script>
+      <script type="text/javascript" src="%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%D0%BF%D1%80%D0%BE%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/company_post_show_common.js"></script>
+
+
+    
+    
+
+    <meta name="yandex-verification" content="67d46b975fa41645">
+    
+    <meta content="Хабрахабр" name="apple-mobile-web-app-title">
+<link href="http://habrahabr.ru/images/apple-touch-icon_142x142.png" rel="apple-touch-icon" type="image/png">
+
+      
+      <script>
+        var N = 5;
+        var ar_duo1 = Math.floor(Math.random()*N+1);
+      </script>
+      <script type="text/javascript" src="%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%D0%BF%D1%80%D0%BE%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/adriver.js"></script>
+
+    <link title="Хабрахабр / Блог компании Одноклассники / Комментарии к публикации «Класс дедлоков про дедлок классов»" type="application/rss+xml" rel="alternate" href="http://habrahabr.ru/rss/post/255067/">
+
+    <script src="%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%D0%BF%D1%80%D0%BE%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/advertising.js"></script>
+
+<script type="text/javascript">
+
+  if (typeof adriver == 'undefined')
+  {
+    var adb1 = 'yes';
+  }
+
+  var user_type = "guest";
+
+  var page_type = "publish_corp";
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-726094-1',  'auto');
+  ga('create', 'UA-726094-24', 'auto', {'name': 'HGM'});
+
+  ga('require', 'displayfeatures');
+  ga('set', 'dimension1', user_type); // user type - guest/readonly/habrauser
+
+
+  ga('set', 'dimension4', adb1);
+
+  ga('set', 'dimension5', page_type);
+
+
+  if(typeof removeUtms === 'undefined') {
+    removeUtms = function(){};
+  }
+
+  ga('HGM.set', 'dimension1', user_type);
+  ga('HGM.set', 'dimension2', "habrahabr");
+  ga('HGM.send', 'pageview');
+
+  ga('send', 'pageview', { 'hitCallback': removeUtms });
+
+
+</script>
+
+
+  </head>
+
+  <body><style type="text/css">#navbar .nav_panel .tab.tab_print:hover path,#navbar .nav_panel .tab.tab_print:hover text { fill: #00aae7; } </style>
+    <div id="TMpanel">
+  <div class="container">
+    <div class="bmenu">
+      <a href="http://tmfeed.ru/?utm_source=tm_habrahabr&amp;utm_medium=tm_top_panel&amp;utm_campaign=tm_promo">TM Feed</a>
+      <a href="http://habrahabr.ru/?utm_source=tm_habrahabr&amp;utm_medium=tm_top_panel&amp;utm_campaign=tm_promo" class="current">Хабрахабр</a>
+      <a href="http://megamozg.ru/?utm_source=tm_habrahabr&amp;utm_medium=tm_top_panel&amp;utm_campaign=tm_promo">Мегамозг</a>
+      <a href="http://geektimes.ru/?utm_source=tm_habrahabr&amp;utm_medium=tm_top_panel&amp;utm_campaign=tm_promo">Geektimes</a>
+      <a href="https://toster.ru/?utm_source=tm_habrahabr&amp;utm_medium=tm_top_panel&amp;utm_campaign=tm_promo">Тостер</a>
+      <a href="https://moikrug.ru/?utm_source=tm_habrahabr&amp;utm_medium=tm_top_panel&amp;utm_campaign=tm_promo">Мой круг</a>
+      <a href="http://freelansim.ru/?utm_source=habrahabr&amp;utm_medium=referral&amp;utm_campaign=mainpage&amp;utm_content=head_link">Фрилансим</a>
+    </div>
+  </div>
+</div>
+
+    <div id="layout">
+      <div id="navbar_overlay" class="hidden"></div>
+<div class="fixed" style="bottom: 0px;" id="navbar">
+    <div class="nav_panel">
+        <a href="http://habrahabr.ru/" class="logo"></a>
+
+            <a href="http://habrahabr.ru/posts/" class="tab tab_menu" data-tab="menu_tab" title="Меню"><span class="g-icon g-icon-burger"></span></a>
+            <a href="https://habrahabr.ru/auth/login/" class="tab tab_login" id="login" title="Войти"><span class="g-icon g-icon-lock"></span></a>
+
+
+        <a href="#" class="scroll_to_up scroll_to_up_for_guest" id="scroll_to_top" title="Наверх"></a>
+    </div>
+
+    <div class="nav_tabs_content ">
+        <div class="nav_tab hidden" id="menu_tab">
+            <div class="title">Разделы</div>
+            <form action="/search/" method="get" class="global_search_form">
+                <div>
+                    <input name="q" placeholder="Поиск" type="text">
+                </div>
+            </form>
+            <div class="menu">
+                <a href="http://habrahabr.ru/posts/top/">Публикации</a>
+                <a href="http://habrahabr.ru/hubs/">Хабы</a>
+                <a href="http://habrahabr.ru/companies/">Компании</a>
+                <a href="http://habrahabr.ru/users/">Пользователи</a>
+                <a href="http://habrahabr.ru/sandbox/">Песочница</a>
+                <div class="line"></div>
+                <a href="http://toster.ru/" class="new_window">Q&amp;A</a>
+                <a href="https://moikrug.ru/?utm_source=tm_habrahabr&amp;utm_medium=tm_left_menu&amp;utm_campaign=tm_promo" class="new_window">Вакансии</a>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+
+      <div class="inner">
+
+        <script type="text/javascript">
+
+    $(document).on('click', '.adb-close', function(){
+        $('.lain_13_what_are_you_doing').animate({ 'height': 0 });
+
+        createCookie('adb-p', '1', 1);
+    });
+
+    function readCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0;i < ca.length;i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1,c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        }
+        return null;
+    }
+
+    $(document).ready(function(){
+        if (adb1 == 'yes' && !readCookie('adb-p'))
+        {
+            $('.lain_13_what_are_you_doing').show();
+        }
+    });
+</script>
+<div class="lain_13_what_are_you_doing" style="display: block;">
+    <div class="adb-text">
+        Привет, Хабрапользователь. Кажется, ты используешь AdBlock. Хабрахабр <br>
+        развивается и существует за счет доходов от рекламы. Добавь нас в исключения.
+    </div>
+    <a class="adb-btn" href="http://habrahabr.ru/adblock/">открытое письмо</a>
+    <a class="adb-btn" href="http://habrahabr.ru/adblock/?how=1">как отключить</a>
+    <div class="adb-close"></div>
+</div>
+
+
+
+        
+
+            <div class="company_top_banner">
+      <a href="http://www.ok.ru/" target="_blank"><img src="%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%D0%BF%D1%80%D0%BE%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/f0b91c979406f08d62088a8d7de6e97d.jpg" alt=""></a>
+  </div>
+
+  <div class="profile-header">
+
+  <div class=" profile-header__summary author-info author-info_profile " id="company_126">
+      <a href="http://habrahabr.ru/company/odnoklassniki" class="author-info__image">
+          <img src="%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%D0%BF%D1%80%D0%BE%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/367a15296c82d14ffdcd174ea6720928.png" class="author-info__image-pic">
+      </a>
+
+      <div class="author-info__desc">
+        <div class="author-info__username">
+          <a href="http://habrahabr.ru/company/odnoklassniki" class="author-info__name">Одноклассники</a>
+        </div>
+
+        <div class="author-info__specialization">
+            Компания
+        </div>
+      </div>
+
+  </div>
+
+  <div class="profile-header__stats">
+    <div class="user-rating">
+      <div class="user-rating__value">79,70</div>
+      <div class="user-rating__label" title="Хабраиндекс - абстрактный показатель популярности компании на Хабрахабре">рейтинг</div>
+    </div>
+  </div>
+
+</div>
+  <div class="column-wrapper">
+    <div class="content_left">
+        <div class="tabs">
+    <ul class="tabs-menu tabs-menu_habrahabr">
+          <li class="tabs-menu__item tabs-menu__item_company-profile tabs-menu__item_inline">
+            <a href="http://habrahabr.ru/company/odnoklassniki/profile/" class="tab-item tab-item_stacked ">
+              <span class="tab-item__value stats">
+                <span class="stats__counters stats__counters_big">
+                  <strong class="counter"></strong>
+                </span>
+                <span class="stats__value">Профиль</span>
+            </span></a>
+          </li>
+          <li class="tabs-menu__item tabs-menu__item_company-profile tabs-menu__item_inline">
+            <a href="http://habrahabr.ru/company/odnoklassniki/blog/" class="tab-item tab-item_stacked tab-item_current">
+              <span class="tab-item__value stats">
+                <span class="stats__counters stats__counters_big">
+                  <strong class="counter">30</strong>
+                </span>
+                <span class="stats__value">Блог</span>
+            </span></a>
+          </li>
+          <li class="tabs-menu__item tabs-menu__item_company-profile tabs-menu__item_inline">
+            <a href="http://habrahabr.ru/company/odnoklassniki/vacancies/" class="tab-item tab-item_stacked ">
+              <span class="tab-item__value stats">
+                <span class="stats__counters stats__counters_big">
+                  <strong class="counter">0</strong>
+                </span>
+                <span class="stats__value">Вакансии</span>
+            </span></a>
+          </li>
+          <li class="tabs-menu__item tabs-menu__item_company-profile tabs-menu__item_inline">
+            <a href="http://habrahabr.ru/company/odnoklassniki/fans/" class="tab-item tab-item_stacked ">
+              <span class="tab-item__value stats">
+                <span class="stats__counters stats__counters_big">
+                  <strong class="counter">827</strong>
+                </span>
+                <span class="stats__value">Подписчики</span>
+            </span></a>
+          </li>
+    </ul>
+
+  </div>
+
+      <div class="company_post">
+        
+
+  <div class="post shortcuts_item" id="post_255067">
+    <div class="published"> 7 апреля в 10:36</div>
+    <h1 class="title">
+      
+
+        <span class="post_title">Класс дедлоков про дедлок классов</span>
+
+      
+
+      
+
+    </h1>
+
+      <div class="hubs">
+      <a href="http://habrahabr.ru/hub/java/" class="hub " title="Вы не подписаны на этот хаб">JAVA</a><span class="profiled_hub" title="Профильный хаб">*</span>, 
+      <a href="http://habrahabr.ru/company/odnoklassniki/" class="hub " title="Вы не подписаны на этот хаб">Блог компании Одноклассники</a>
+  </div>
+
+
+    <div class="content html_format">
+      <img src="%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%D0%BF%D1%80%D0%BE%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/de8f18aa45a341b9b654a44aee7e4840.png" height="240" width="360" align="left"><br>
+<br>
+Знаете ли вы, как избежать дедлоков в своей программе? Да, этому учат, 
+про это спрашивают на собеседованиях… И тем не менее, взаимные 
+блокировки встречаются даже в популярных проектах серьёзных компаний 
+вроде Google. А в Java есть особый класс дедлоков, связанный с 
+инициализацией классов, простите за каламбур. Такие ошибки легко 
+допустить, но трудно поймать, тем более, что сама виртуальная машина 
+вводит программиста в заблуждение.<br>
+<br clear="left">
+Сегодня пойдёт речь про взаимные блокировки при инициализации классов. Я
+ расскажу, что это такое, проиллюстрирую примерами из реальных проектов,
+ попутно найду багу в JVM, и покажу, как не допустить такие блокировки в
+ своём коде.<br>
+<br>
+<a name="habracut"></a><br>
+<br>
+<h2>Дедлок без локов</h2><br>
+Если я попрошу вас привести пример взаимной блокировки на Java, скорее всего, увижу код с парой <b>synchronized</b> или <b>ReentrantLock</b>. А как насчёт дедлока вообще без <b>synchronized</b> и <b>java.util.concurrent</b>? Поверьте, это возможно, причём очень лаконичным и незамысловатым способом:<br>
+<br>
+<pre><code class="java hljs">    <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> </span>{
+        <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> B b = <span class="hljs-keyword">new</span> B();
+    }
+
+    <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">B</span> </span>{
+        <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> A a = <span class="hljs-keyword">new</span> A();
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+        <span class="hljs-keyword">new</span> Thread(A::<span class="hljs-keyword">new</span>).start();
+        <span class="hljs-keyword">new</span> B();
+    }
+</code></pre><br>
+Дело в том, что согласно <a href="https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-5.html#jvms-5.5">§5.5 спецификации JVM</a> у каждого класса есть уникальный <i>initialization lock</i>,
+ который захватывается на время инициализации. Когда другой поток 
+попытается обратиться к инициализируемому классу, он будет заблокирован 
+на этом локе до завершения инициализации первым потоком. При 
+конкурентной инициализации нескольких ссылающихся друг на друга классов 
+нетрудно наткнуться на взаимную блокировку.<br>
+<br>
+Именно это и случилось, к примеру, в проекте QueryDSL:<br>
+<br>
+<pre><code class="java hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Ops</span> </span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Operator&lt;Boolean&gt; EQ = <span class="hljs-keyword">new</span> OperatorImpl&lt;Boolean&gt;(NS, <span class="hljs-string">"EQ"</span>);
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Operator&lt;Boolean&gt; NE = <span class="hljs-keyword">new</span> OperatorImpl&lt;Boolean&gt;(NS, <span class="hljs-string">"NE"</span>);
+    ...
+</code></pre><br>
+<pre><code class="java hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">OperatorImpl</span>&lt;<span class="hljs-title">T</span>&gt; <span class="hljs-keyword">implements</span> <span class="hljs-title">Operator</span>&lt;<span class="hljs-title">T</span>&gt; </span>{
+
+    <span class="hljs-keyword">static</span> {
+        <span class="hljs-keyword">try</span> {
+            <span class="hljs-comment">// initialize all fields of Ops</span>
+            List&lt;Field&gt; fields = <span class="hljs-keyword">new</span> ArrayList&lt;Field&gt;();
+            fields.addAll(Arrays.asList(Ops.class.getFields()));
+            <span class="hljs-keyword">for</span> (Class&lt;?&gt; cl : Ops.class.getClasses()) {
+                fields.addAll(Arrays.asList(cl.getFields()));
+            }
+            ...
+</code></pre><br>
+В ходе <a href="http://stackoverflow.com/questions/28631656/runnable-thread-state-but-in-object-wait">обсуждения на StackOverflow</a> причина была найдена, о проблеме <a href="https://github.com/querydsl/querydsl/issues/1237">сообщено разработчику</a>, и к настоящему моменту ошибка уже исправлена.<br>
+<br>
+&nbsp;<br>
+<br>
+<h2>Проблема курицы и яйца</h2><br>
+В точности такой же дедлок может возникнуть всякий раз, когда в 
+статическом инициализаторе класса создаётся экземпляр потомка. По сути 
+это частный случай описанной выше проблемы, поскольку инициализация 
+потомка автоматически приводит к инициализации родителя (см. <a href="https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-5.html#jvms-5.5">JVMS&nbsp;§5.5</a>). К сожалению, такой шаблон можно встретить довольно часто, особенно когда класс родителя абстрактный:<br>
+<br>
+<pre><code class="java hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ImmutableList</span>&lt;<span class="hljs-title">E</span>&gt; ... </span>{
+
+  <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> ImmutableList&lt;Object&gt; EMPTY =
+      <span class="hljs-keyword">new</span> RegularImmutableList&lt;Object&gt;(ObjectArrays.EMPTY_ARRAY);
+</code></pre> <br>
+Это реальный фрагмент кода из библиотеки Google Guava. Благодаря нему 
+часть наших серверов после очередного апдейта намертво подвисла при 
+запуске. Как выяснилось, виной тому послужило обновление Guava с версии 
+14.0.1 до 15.0, где и появился злополучный шаблон неправильной 
+статической инициализации.<br>
+<br>
+Конечно же, мы <a href="https://github.com/google/guava/issues/1977">сообщили об ошибке</a>,
+ и спустя некоторое время её исправили в репозитории, однако будьте 
+внимательны: последний на момент написания статьи публичный релиз Guava 
+18.0 всё ещё содержит ошибку!<br>
+<br>
+&nbsp;<br>
+<br>
+<h2>В одну строчку</h2><br>
+Java 8 подарила нам Стримы и Лямбды, а вместе с ними и новую головную 
+боль. Да, теперь можно красиво одной строчкой в функциональном стиле 
+оформить целый алгоритм. Но при этом можно и так же, одной строчкой, 
+выстрелить себе в ногу.<br>
+<br>
+Хотите упражнение для самопроверки? Я составил программку, вычисляющую сумму ряда; что она напечатает?<br>
+<br>
+<pre><code class="java hljs"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StreamSum</span> </span>{
+    <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> SUM = IntStream.range(<span class="hljs-number">0</span>, <span class="hljs-number">100</span>).parallel().reduce((n, m) -&gt; n + m).getAsInt();
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+        System.out.println(SUM);
+    }
+}
+</code></pre><br>
+А теперь уберите <b>.parallel()</b> или, как вариант, замените лямбду на <b>Integer::sum</b> — что-нибудь изменится?<br>
+<br>
+<div class="spoiler"><b class="spoiler_title">Так в чём же дело?</b><div class="spoiler_text">Здесь опять имеет место дедлок. Благодаря директиве <b>parallel()</b> свёртка стрима выполняется в отдельном пуле потоков.<br>
+Из этих потоков теперь вызывается тело лямбды, записанное в байткоде в виде специального <i>private static</i>
+ метода внутри того же класса StreamSum. Но этот метод не может быть 
+вызван, пока не завершится статический инициализатор класса, который в 
+свою очередь ожидает вычисления свёртки.<br>
+</div></div><br>
+<div class="spoiler"><b class="spoiler_title">Больше ада</b><div class="spoiler_text">Совсем
+ взрывает мозг то, что приведённый фрагмент работает по-разному в разных
+ средах. На однопроцессорной машине он отработает корректно, а на 
+многопроцессорной, скорее всего, зависнет. Причина кроется в механике 
+параллелизма стандартного Fork-Join пула.<br>
+<br>
+Проверьте сами, запуская пример с разным значением<br>
+<pre>  -Djava.util.concurrent.ForkJoinPool.common.parallelism=N</pre><br>
+</div></div><br>
+<br>
+<h2>Лукавый Хотспот</h2><br>
+Обычно дедлоки легко обнаружить из Thread Dump: проблемные потоки будут висеть в состоянии <b>BLOCKED</b> или <b>WAITING</b>,
+ и JVM в стектрейсах покажет, какие мониторы тот или иной поток держит, а
+ какие пытается захватить. Так ли обстоит дело с нашими примерами? 
+Возьмём самый первый, с классами A и B. Дождёмся зависания и снимем 
+thread dump (с помощью утилиты <b>jstack</b> либо клавишами <b>Ctrl+\</b> в Linux или <b>Ctrl+Break</b> в Windows):<br>
+<br>
+<pre><code class="hljs stylus"><span class="hljs-string">"Thread-0"</span> #<span class="hljs-number">12</span> prio=<span class="hljs-number">5</span> os_prio=<span class="hljs-number">0</span> tid=<span class="hljs-number">0</span>x000000001a098800 nid=<span class="hljs-number">0</span>x1cf8 <span class="hljs-keyword">in</span> Object.<span class="hljs-function"><span class="hljs-title">wait</span><span class="hljs-params">()</span></span> [<span class="hljs-number">0</span>x000000001a95e000]
+   java<span class="hljs-class">.lang</span><span class="hljs-class">.Thread</span><span class="hljs-class">.State</span>: RUNNABLE
+	at Example1<span class="hljs-variable">$A</span>.&lt;clinit&gt;(Example1<span class="hljs-class">.java</span>:<span class="hljs-number">4</span>)
+	at Example1$<span class="hljs-variable">$Lambda</span>$<span class="hljs-number">1</span>/<span class="hljs-number">1418481495</span>.<span class="hljs-function"><span class="hljs-title">run</span><span class="hljs-params">(Unknown Source)</span></span>
+	at java<span class="hljs-class">.lang</span><span class="hljs-class">.Thread</span><span class="hljs-class">.run</span>(Thread<span class="hljs-class">.java</span>:<span class="hljs-number">745</span>)
+
+<span class="hljs-string">"main"</span> #<span class="hljs-number">1</span> prio=<span class="hljs-number">5</span> os_prio=<span class="hljs-number">0</span> tid=<span class="hljs-number">0</span>x000000000098e800 nid=<span class="hljs-number">0</span>x23b4 <span class="hljs-keyword">in</span> Object.<span class="hljs-function"><span class="hljs-title">wait</span><span class="hljs-params">()</span></span> [<span class="hljs-number">0</span>x000000000228e000]
+   java<span class="hljs-class">.lang</span><span class="hljs-class">.Thread</span><span class="hljs-class">.State</span>: RUNNABLE
+	at Example1<span class="hljs-variable">$B</span>.&lt;clinit&gt;(Example1<span class="hljs-class">.java</span>:<span class="hljs-number">8</span>)
+	at Example1.<span class="hljs-function"><span class="hljs-title">main</span><span class="hljs-params">(Example1.java:<span class="hljs-number">13</span>)</span></span>
+</code></pre><br>
+Вот наши потоки. Оба зависли внутри статического инициализатора <b>&lt;clinit&gt;</b>, но при этом оба <b>RUNNABLE</b>! Как-то не стыкуется со здравым смыслом, не обманывает ли нас JVM?<br>
+<br>
+Особенность <i>initialization lock</i> заключается в том, что из Java 
+программы его не видно, а захват и освобождение происходит внутри 
+виртуальной машины. Строго говоря, по спецификации <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Thread.State.html">Thread.State</a> здесь не может быть ни <b>BLOCKED</b> (потому как нет <i>synchronized</i> блока), ни <b>WAITING</b> (поскольку методы <i>Object.wait</i>, <i>Thread.join</i> и <i>LockSupport.park</i> здесь не вызываются). Более того, <i>initialization lock</i> вообще не обязан быть Java объектом. Таким образом, единственным формально допустимым состоянием остаётся <b>RUNNABLE</b>.<br>
+<br>
+На эту тему есть давний баг <a href="https://bugs.openjdk.java.net/browse/JDK-6501158">JDK-6501158</a>, закрытый как <i>«Not an issue»</i>, и сам Дэвид Холмс мне в переписке признался, что у него нет ни времени, ни желания возвращаться к этому вопросу.<br>
+<br>
+Если неочевидное состояние потока ещё можно считать «фичей», то другую особенность <i>initialization lock</i>
+ иначе как «багом» не назовёшь. Разбираясь с проблемой, я наткнулся в 
+исходниках HotSpot на странность в отправке JVMTI оповещений: событие <a href="http://docs.oracle.com/javase/8/docs/platform/jvmti/jvmti.html#MonitorWait">MonitorWait</a> посылается из функции <a href="http://hg.openjdk.java.net/jdk8u/jdk8u/hotspot/file/e7420fd43e50/src/share/vm/prims/jvm.cpp#l548">JVM_MonitorWait</a>, соответствующей Java-методу <i>Object.wait</i>, в то время как симметричное ему событие <a href="http://docs.oracle.com/javase/8/docs/platform/jvmti/jvmti.html#MonitorWaited">MonitorWaited</a> посылается из низкоуровневой функции <a href="http://hg.openjdk.java.net/jdk8u/jdk8u/hotspot/file/e7420fd43e50/src/share/vm/runtime/objectMonitor.cpp#l1456">ObjectMonitor::wait</a>.<br>
+<br>
+Как мы уже выяснили, для ожидания <i>initialization lock</i> метод <i>Object.wait</i> не вызывается, таким образом, событий <i>MonitorWait</i> для них мы не увидим, зато <i>MonitorWaited</i> будут приходить, как и для обычных Java-мониторов, что, согласитесь, не логично.<br>
+<br>
+Нашёл ошибку — сообщи разработчику. Такого правила придерживаемся и мы: <a href="https://bugs.openjdk.java.net/browse/JDK-8075259">JDK-8075259</a>.<br>
+<br>
+&nbsp;<br>
+<br>
+<h2>Заключение</h2><br>
+Для обеспечения потокобезопасной инициализации классов JVM использует синхронизацию на невидимом программисту <i>initialization lock</i>, имеющемся у каждого класса.<br>
+<br>
+Неаккуратное написание инициализаторов может привести к дедлокам. Чтобы этого избежать<br>
+<ul>
+<li>следите за тем, чтобы статические инициализаторы не обращались к другим неинициализированным классам;</li>
+<li>не создавайте в статических инициализаторах экземпляры дочерних классов;</li>
+<li>не создавайте потоки и избегайте конкурентного исполнения кода в статических инициализаторах;</li>
+<li>никому не доверяйте; изучайте исходный код и сообщайте об ошибках, найденных в сторонних проектах.</li>
+</ul><br>
+По результатам анализа дедлоков инициализации были обнаружены ошибки в <a href="https://github.com/querydsl/querydsl/issues/1237">Querydsl</a>, <a href="https://github.com/google/guava/issues/1977">Guava</a> и <a href="https://bugs.openjdk.java.net/browse/JDK-8075259">HotSpot&nbsp;JVM</a>.
+
+      
+      <div class="clear"></div>
+    </div>
+
+    
+  <ul class="tags icon_tag">
+      <li>
+        <a href="http://habrahabr.ru/search/?q=%5Bdeadlock%5D&amp;target_type=posts" rel="tag">deadlock</a>
+      </li>
+      <li>, 
+        <a href="http://habrahabr.ru/search/?q=%5Bclass%20initialization%5D&amp;target_type=posts" rel="tag">class initialization</a>
+      </li>
+      <li>, 
+        <a href="http://habrahabr.ru/search/?q=%5Bhotspot%5D&amp;target_type=posts" rel="tag">hotspot</a>
+      </li>
+      <li>, 
+        <a href="http://habrahabr.ru/search/?q=%5Bjvm%20bug%5D&amp;target_type=posts" rel="tag">jvm bug</a>
+      </li>
+      <li>, 
+        <a href="http://habrahabr.ru/search/?q=%5B%D0%BD%D0%B8%D0%BA%D0%BE%D0%BC%D1%83%20%D0%BD%D0%B5%D0%BB%D1%8C%D0%B7%D1%8F%20%D0%B2%D0%B5%D1%80%D0%B8%D1%82%D1%8C%5D&amp;target_type=posts" rel="tag">никому нельзя верить</a>
+      </li>
+  </ul>
+
+
+      <div class="infopanel_wrapper">
+    <ul class="postinfo-panel postinfo-panel_post" id="infopanel_post_255067">
+
+          <li class="postinfo-panel__item">
+            <div class="voting-wjt voting-wjt_infopanel js-voting  ">
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи.">
+                  <span>↑</span>
+                </button>
+
+              <div class="voting-wjt__counter voting-wjt__counter_positive  js-mark">
+                  <span class="voting-wjt__counter-score js-score" title="Общий рейтинг 45: ↑45 и ↓0">+45</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи.">
+                  <span>↓</span>
+                </button>
+
+            </div>
+          </li>
+
+      <li class="postinfo-panel__item">
+        <div class="views-count_post" title="Просмотры публикации">21,3k</div>
+      </li>
+
+      <li class="postinfo-panel__item">
+        <div class="favorite-wjt favorite">
+            <button type="button" disabled="disabled" class="favorite-wjt__button favorite-wjt__button_disabled" onclick="return false;" title="Только зарегистрированные пользователи могут добавлять публикации в избранное">
+              <span>Добавить в избранное</span>
+            </button>
+          <span class="favorite-wjt__counter js-favs_count" title="Количество пользователей, добавивших публикацию в избранное">187</span>
+        </div>
+      </li>
+
+
+
+
+      <!-- шеринг в соцсети -->
+        <li class="postinfo-panel__item postinfo-panel__item_socials  postinfo-panel__item_socials_right ">
+          <ul class="post-share">
+            <li class="post-share__item">
+              <a href="http://twitter.com/intent/tweet?text=%D0%9A%D0%BB%D0%B0%D1%81%D1%81+%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2+%D0%BF%D1%80%D0%BE+%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA+%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2+http://habr.ru/p/255067/+via+%40habrahabr+%23habr" class="post-share__item-link twitter" title="Опубликовать ссылку в Twitter" target="_blank"></a>
+            </li>
+            <li class="post-share__item">
+              <a href="https://vk.com/share.php?url=http://habrahabr.ru/company/odnoklassniki/blog/255067/" class="post-share__item-link vkontakte" title="Опубликовать ссылку во ВКонтакте" onclick="window.open(this.href, 'Опубликовать ссылку во Вконтакте', 'width=800,height=300'); return false"></a>
+            </li>
+            <li class="post-share__item">
+              <a href="https://www.facebook.com/sharer/sharer.php?u=http://habrahabr.ru/company/odnoklassniki/blog/255067/" class="post-share__item-link facebook" title="Опубликовать ссылку в Facebook" onclick="window.open(this.href, 'Опубликовать ссылку в Facebook', 'width=640,height=436,toolbar=0,status=0'); return false"></a>
+            </li>
+            <li class="post-share__item">
+              <a href="https://getpocket.com/edit?url=http://habrahabr.ru/company/odnoklassniki/blog/255067/" target="_blank" class="post-share__item-link pocket" title="Добавить ссылку в Pocket"></a>
+            </li>
+          </ul>
+        </li>
+
+      <!-- кнопка пожаловаться -->
+    </ul>
+  </div>
+
+
+          <div class="post-type">
+    <span class="post-type_nowrap">
+      <span class="post-type__label post-type__label_author">Автор:</span>
+      <a href="http://habrahabr.ru/users/apangin" class="post-type__value post-type__value_author" title="Андрей">@apangin</a>
+
+
+
+    </span>
+  </div>
+
+  <div class="author-info " id="company_126">
+      <a href="http://habrahabr.ru/company/odnoklassniki" class="author-info__image">
+          <img src="%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%D0%BF%D1%80%D0%BE%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/367a15296c82d14ffdcd174ea6720928.png" class="author-info__image-pic">
+      </a>
+
+      <div class="author-info__desc">
+        <div class="author-info__username">
+
+          <a href="http://habrahabr.ru/company/odnoklassniki" class="author-info__name">Одноклассники</a>
+
+          <div class="user-rating">
+            <span class="user-rating__label">рейтинг</span>
+            <span class="user-rating__value">79,70</span>
+          </div>
+        </div>
+
+
+      </div>
+
+  </div>
+
+
+  </div>
+
+        
+        <div class="block_after_post">
+
+    <div class="similar-posts">
+      <h2 class="similar-posts__title">Похожие публикации</h2>
+
+      <ul class="content-list content-list_posts">
+          <li class="content-list__item">
+            <div class="post-preview">
+              <div class="post-preview__rating">+51</div>
+              <div class="post-preview__desc">
+                <a class="post-preview__link" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'similar_posts', 'common'); }" href="http://habrahabr.ru/post/195004/">Копаемся в памяти JVM. Манипуляции с флагами</a>
+                <span class="post-preview__attrs inline-list inline-list_attrs">
+                  <span class="inline-list__item views-count">13,8k</span>
+                  <span class="inline-list__item favorites-count">171</span>
+                  <span class="inline-list__item comments-count">15</span>
+                </span>
+              </div>
+            </div>
+          </li>
+      </ul>
+    </div>
+
+</div>
+
+              <div class="comments_list " id="comments">
+
+        <h2 class="title ">Комментарии (<span id="comments_count">16</span>)
+            
+
+        </h2>
+
+        
+
+              <div class="comment_item" id="comment_8364407">
+  
+    <span class="parent_id" data-parent_id="0"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  " rel="8364407">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/gvsmirnov/" class="comment-item__avatar">
+              <img src="%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%D0%BF%D1%80%D0%BE%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/5c4c03b011f3ce4455834f3fda428542_small.png" alt="" class="comment-item__avatar-img">
+          </a>
+          <a href="http://habrahabr.ru/users/gvsmirnov/" class="comment-item__username">gvsmirnov</a>
+          <time class="comment-item__time_published"> 7 апреля 2015 в 12:17</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_8364407" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_8364407" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark  ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 0: ↑0 и ↓0">0</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_8364407">
+        <div class="comment_item" id="comment_8364457">
+  
+    <span class="parent_id" data-parent_id="8364407"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  " rel="8364457">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/gvsmirnov/" class="comment-item__avatar">
+              <img src="%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%D0%BF%D1%80%D0%BE%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/5c4c03b011f3ce4455834f3fda428542_small.png" alt="" class="comment-item__avatar-img">
+          </a>
+          <a href="http://habrahabr.ru/users/gvsmirnov/" class="comment-item__username">gvsmirnov</a>
+          <time class="comment-item__time_published"> 7 апреля 2015 в 12:41</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_8364457" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+              <span class="icon_comment-tree js-comment_tree" data-id="8364457" data-parent_id="8364407" title="Показать ветку комментариев"></span>
+              <a href="#comment_8364407" class="icon_comment-parent js-comment_parent" data-id="8364457" data-parent_id="8364407" title="Показать предыдущий комментарий"></a>
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_8364457" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark voting-wjt__counter_positive ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 4: ↑4 и ↓0">+4</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          Oops. Тут должна была быть надпись «Класс!», подкреплённая 
+unicode-символом с вытянутым вверх большим пальцем. Но что-то пошло не 
+так :)
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_8364457">
+        <div class="comment_item" id="comment_8365079">
+  
+    <span class="parent_id" data-parent_id="8364457"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  " rel="8365079">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/srez/" class="comment-item__avatar">
+              <span class="comment-item__avatar-img_default user-pic_blue"></span>
+          </a>
+          <a href="http://habrahabr.ru/users/srez/" class="comment-item__username">srez</a>
+          <time class="comment-item__time_published"> 7 апреля 2015 в 15:33</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_8365079" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+              <span class="icon_comment-tree js-comment_tree" data-id="8365079" data-parent_id="8364457" title="Показать ветку комментариев"></span>
+              <a href="#comment_8364457" class="icon_comment-parent js-comment_parent" data-id="8365079" data-parent_id="8364457" title="Показать предыдущий комментарий"></a>
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_8365079" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark voting-wjt__counter_positive ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 2: ↑2 и ↓0">+2</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          Как теперь с этим знанием жить, вот в чем вопрос? 
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_8365079">
+      
+    </div>
+  </div>
+
+    </div>
+  </div>
+
+    </div>
+  </div>
+
+              <div class="comment_item" id="comment_8364487">
+  
+    <span class="parent_id" data-parent_id="0"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  " rel="8364487">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/Ivanhoe/" class="comment-item__avatar">
+              <img src="%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%D0%BF%D1%80%D0%BE%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/73577ef852f8021b1085e35f294cf826_small.jpg" alt="" class="comment-item__avatar-img">
+          </a>
+          <a href="http://habrahabr.ru/users/Ivanhoe/" class="comment-item__username">Ivanhoe</a>
+          <time class="comment-item__time_published"> 7 апреля 2015 в 12:48</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_8364487" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_8364487" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark  ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 0: ↑0 и ↓0">0</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          Век живи —&nbsp;век учись :)<br>
+Спасибо.
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_8364487">
+      
+    </div>
+  </div>
+
+              <div class="comment_item" id="comment_8364635">
+  
+    <span class="parent_id" data-parent_id="0"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  " rel="8364635">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/23derevo/" class="comment-item__avatar">
+              <img src="%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%D0%BF%D1%80%D0%BE%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/7d05c178dde74806e9eb67fa70940734_small.jpg" alt="" class="comment-item__avatar-img">
+          </a>
+          <a href="http://habrahabr.ru/users/23derevo/" class="comment-item__username">23derevo</a>
+          <time class="comment-item__time_published"> 7 апреля 2015 в 13:23</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_8364635" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_8364635" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark  ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 2: ↑1 и ↓1">0</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          Вообще, это позор для Гуавы — не прогонять код перед релизом через статические анализаторы. <br>
+<br>
+Наверняка, FindBugs нашел бы эту ошибку влёт. <br>
+<br>
+Или я не прав? Не найдет? Или умрет в False Positives?
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_8364635">
+        <div class="comment_item" id="comment_8364899">
+  
+    <span class="parent_id" data-parent_id="8364635"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  is_topic_starter  " rel="8364899">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/apangin/" class="comment-item__avatar">
+              <img src="%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%D0%BF%D1%80%D0%BE%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/f28ed824dbcce090d9ad8ae4ab31f9b3_small.jpg" alt="" class="comment-item__avatar-img">
+          </a>
+          <a href="http://habrahabr.ru/users/apangin/" class="comment-item__username">apangin</a>
+          <time class="comment-item__time_published"> 7 апреля 2015 в 14:38</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_8364899" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+              <span class="icon_comment-tree js-comment_tree" data-id="8364899" data-parent_id="8364635" title="Показать ветку комментариев"></span>
+              <a href="#comment_8364635" class="icon_comment-parent js-comment_parent" data-id="8364899" data-parent_id="8364635" title="Показать предыдущий комментарий"></a>
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_8364899" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark voting-wjt__counter_positive ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 4: ↑4 и ↓0">+4</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          Проверил — не находит. Вот, вызов Thread.start() из 
+статического инициализатора FindBugs считает ошибкой, а просто создание 
+дочернего объекта — нет.<br>
+<br>
+Все ошибаются, ничего позорного в этом нет. Коллегам из Google, на самом
+ деле, респект, что отнеслись с пониманием и оперативно исправили.
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_8364899">
+        <div class="comment_item" id="comment_8364925">
+  
+    <span class="parent_id" data-parent_id="8364899"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  " rel="8364925">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/23derevo/" class="comment-item__avatar">
+              <img src="%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%D0%BF%D1%80%D0%BE%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/7d05c178dde74806e9eb67fa70940734_small.jpg" alt="" class="comment-item__avatar-img">
+          </a>
+          <a href="http://habrahabr.ru/users/23derevo/" class="comment-item__username">23derevo</a>
+          <time class="comment-item__time_published"> 7 апреля 2015 в 14:45</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_8364925" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+              <span class="icon_comment-tree js-comment_tree" data-id="8364925" data-parent_id="8364899" title="Показать ветку комментариев"></span>
+              <a href="#comment_8364899" class="icon_comment-parent js-comment_parent" data-id="8364925" data-parent_id="8364899" title="Показать предыдущий комментарий"></a>
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_8364925" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark voting-wjt__counter_positive ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 3: ↑2 и ↓1">+1</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          да, наверное жестковато я. <br>
+<br>
+Знаешь, это даже не конкретно к гуглу претензия, а к… к состоянию дел, 
+что ли. Миллионы людей используют гуаву и другие библиотеки — а там 
+такое. Иногда я сижу и не понимаю, как все это вообще не разваливается к
+ чертовой матери…
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_8364925">
+        <div class="comment_item" id="comment_8364975">
+  
+    <span class="parent_id" data-parent_id="8364925"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  is_topic_starter  " rel="8364975">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/apangin/" class="comment-item__avatar">
+              <img src="%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%D0%BF%D1%80%D0%BE%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/f28ed824dbcce090d9ad8ae4ab31f9b3_small.jpg" alt="" class="comment-item__avatar-img">
+          </a>
+          <a href="http://habrahabr.ru/users/apangin/" class="comment-item__username">apangin</a>
+          <time class="comment-item__time_published"> 7 апреля 2015 в 14:58</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_8364975" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+              <span class="icon_comment-tree js-comment_tree" data-id="8364975" data-parent_id="8364925" title="Показать ветку комментариев"></span>
+              <a href="#comment_8364925" class="icon_comment-parent js-comment_parent" data-id="8364975" data-parent_id="8364925" title="Показать предыдущий комментарий"></a>
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_8364975" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark voting-wjt__counter_positive ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 2: ↑2 и ↓0">+2</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          Поймать этот баг в продакшне ещё постараться надо. Опять же, 
+нам «повезло» лишь благодаря высоким нагрузкам: сервер только 
+поднимается, а на него сразу тысяча одновременных запросов прилетает с 
+участием разных классов: RegularImmutableList, SingletonImmutableList и 
+т.д., и все они начинают конкурентно инициализироваться. Много ли где 
+такое встречается?
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_8364975">
+        <div class="comment_item" id="comment_8364995">
+  
+    <span class="parent_id" data-parent_id="8364975"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  " rel="8364995">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/23derevo/" class="comment-item__avatar">
+              <img src="%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%D0%BF%D1%80%D0%BE%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/7d05c178dde74806e9eb67fa70940734_small.jpg" alt="" class="comment-item__avatar-img">
+          </a>
+          <a href="http://habrahabr.ru/users/23derevo/" class="comment-item__username">23derevo</a>
+          <time class="comment-item__time_published"> 7 апреля 2015 в 15:05</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_8364995" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+              <span class="icon_comment-tree js-comment_tree" data-id="8364995" data-parent_id="8364975" title="Показать ветку комментариев"></span>
+              <a href="#comment_8364975" class="icon_comment-parent js-comment_parent" data-id="8364995" data-parent_id="8364975" title="Показать предыдущий комментарий"></a>
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_8364995" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark  ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 0: ↑0 и ↓0">0</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          С одной стороны, да. Больше ворклоады и все такое. С другой 
+стороны, иногда становится реально страшно. Особенно когда думаешь, 
+сколько там еще не пойманных подобных багов.
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_8364995">
+        <div class="comment_item" id="comment_8365963">
+  
+    <span class="parent_id" data-parent_id="8364995"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  " rel="8365963">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/edolganov/" class="comment-item__avatar">
+              <img src="%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%D0%BF%D1%80%D0%BE%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/d659b9346d28b247366a8d825dea9947_small.jpg" alt="" class="comment-item__avatar-img">
+          </a>
+          <a href="http://habrahabr.ru/users/edolganov/" class="comment-item__username">edolganov</a>
+          <time class="comment-item__time_published"> 7 апреля 2015 в 23:34</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_8365963" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+              <span class="icon_comment-tree js-comment_tree" data-id="8365963" data-parent_id="8364995" title="Показать ветку комментариев"></span>
+              <a href="#comment_8364995" class="icon_comment-parent js-comment_parent" data-id="8365963" data-parent_id="8364995" title="Показать предыдущий комментарий"></a>
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_8365963" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark voting-wjt__counter_positive ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 3: ↑3 и ↓0">+3</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          Реально страшно за что?<br>
+Ну да, бывают баги в любом коде, в любых либах. Мы ж на этом не самолеты
+ запускаем с реакторами, а лишь в интернете чатики, да картинки 
+показываем.
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_8365963">
+        <div class="comment_item" id="comment_8376265">
+  
+    <span class="parent_id" data-parent_id="8365963"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  " rel="8376265">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/yetanothercoder/" class="comment-item__avatar">
+              <img src="%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%D0%BF%D1%80%D0%BE%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/6a31031b15809c85106fdc0886963aa2_small.jpg" alt="" class="comment-item__avatar-img">
+          </a>
+          <a href="http://habrahabr.ru/users/yetanothercoder/" class="comment-item__username">yetanothercoder</a>
+          <time class="comment-item__time_published">14 апреля 2015 в 23:11</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_8376265" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+              <span class="icon_comment-tree js-comment_tree" data-id="8376265" data-parent_id="8365963" title="Показать ветку комментариев"></span>
+              <a href="#comment_8365963" class="icon_comment-parent js-comment_parent" data-id="8376265" data-parent_id="8365963" title="Показать предыдущий комментарий"></a>
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_8376265" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark  ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 0: ↑0 и ↓0">0</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          ну много финансового софта написано, вдруг что нибудь подобное
+ вылезет во время тока как кто нибудь все свои сбережения переводит и 
+сколько потом банк будет расследовать сбой этой транзакции и возвращать 
+бабки )
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_8376265">
+        <div class="comment_item" id="comment_8484801">
+  
+    <span class="parent_id" data-parent_id="8376265"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  " rel="8484801">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/gurinderu/" class="comment-item__avatar">
+              <span class="comment-item__avatar-img_default user-pic_blue"></span>
+          </a>
+          <a href="http://habrahabr.ru/users/gurinderu/" class="comment-item__username">gurinderu</a>
+          <time class="comment-item__time_published"> 1 июля 2015 в 23:56<span class="comment-item__time_changed"> (комментарий был изменён)</span></time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_8484801" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+              <span class="icon_comment-tree js-comment_tree" data-id="8484801" data-parent_id="8376265" title="Показать ветку комментариев"></span>
+              <a href="#comment_8376265" class="icon_comment-parent js-comment_parent" data-id="8484801" data-parent_id="8376265" title="Показать предыдущий комментарий"></a>
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_8484801" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark  ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 0: ↑0 и ↓0">0</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          В банках используются transactional rdbms(обычно Oracle)<br>
+И если у вас случился адский deadlock, то и не случится commit для вашей transaction.<br>
+<br>
+
+apangin <br>
+у меня возник вопрос, т.е. при первом обращении к ImmutableList в теории
+ мы должны получить deadlock, но к примеру у нас в приложении ни разу 
+такой ситуации вроде как не было. Андрей, опиши примерно case, который 
+случился у вас в production, потому что пример в guava issue tracker уж 
+больно нереален на мой взгляд.
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_8484801">
+        <div class="comment_item" id="comment_8488313">
+  
+    <span class="parent_id" data-parent_id="8484801"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  is_topic_starter  " rel="8488313">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/apangin/" class="comment-item__avatar">
+              <img src="%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%D0%BF%D1%80%D0%BE%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/f28ed824dbcce090d9ad8ae4ab31f9b3_small.jpg" alt="" class="comment-item__avatar-img">
+          </a>
+          <a href="http://habrahabr.ru/users/apangin/" class="comment-item__username">apangin</a>
+          <time class="comment-item__time_published"> 6 июля 2015 в 15:02</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_8488313" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+              <span class="icon_comment-tree js-comment_tree" data-id="8488313" data-parent_id="8484801" title="Показать ветку комментариев"></span>
+              <a href="#comment_8484801" class="icon_comment-parent js-comment_parent" data-id="8488313" data-parent_id="8484801" title="Показать предыдущий комментарий"></a>
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_8488313" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark  ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 0: ↑0 и ↓0">0</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          Так я <a href="http://habrahabr.ru/company/odnoklassniki/blog/255067/?reply_to=8484801#comment_8364975">писал</a>:
+ сразу после запуска сервера, когда он входит в кластер, на него 
+прилетает несколько тысяч запросов, содержащих разные дочерние классы 
+ImmutableList. Во время десериализации запросов происходит инициализация
+ классов (поскольку до этого они не использовались). Дедлок происходит, 
+когда <b>несколько разных</b> классов из одной иерархии начинают <b>одновременно</b> инициализироваться. Одного обращения к ImmutableList недостаточно.
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_8488313">
+      
+    </div>
+  </div>
+
+    </div>
+  </div>
+
+    </div>
+  </div>
+
+    </div>
+  </div>
+
+    </div>
+  </div>
+
+    </div>
+  </div>
+  <div class="comment_item" id="comment_8365959">
+  
+    <span class="parent_id" data-parent_id="8364925"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  " rel="8365959">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/igor_suhorukov/" class="comment-item__avatar">
+              <img src="%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%D0%BF%D1%80%D0%BE%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/06ca24a221440f4e6cf5887694b8bff1_small.jpg" alt="" class="comment-item__avatar-img">
+          </a>
+          <a href="http://habrahabr.ru/users/igor_suhorukov/" class="comment-item__username">igor_suhorukov</a>
+          <time class="comment-item__time_published"> 7 апреля 2015 в 23:31</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_8365959" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+              <span class="icon_comment-tree js-comment_tree" data-id="8365959" data-parent_id="8364925" title="Показать ветку комментариев"></span>
+              <a href="#comment_8364925" class="icon_comment-parent js-comment_parent" data-id="8365959" data-parent_id="8364925" title="Показать предыдущий комментарий"></a>
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_8365959" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark voting-wjt__counter_positive ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 1: ↑1 и ↓0">+1</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          Загляни в исходники netbeans profiler и jvisualvm. После этого вообще плакать хочется)
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_8365959">
+      
+    </div>
+  </div>
+
+    </div>
+  </div>
+
+    </div>
+  </div>
+
+    </div>
+  </div>
+
+              <div class="comment_item" id="comment_8386409">
+  
+    <span class="parent_id" data-parent_id="0"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  " rel="8386409">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/lany/" class="comment-item__avatar">
+              <span class="comment-item__avatar-img_default user-pic_green"></span>
+          </a>
+          <a href="http://habrahabr.ru/users/lany/" class="comment-item__username">lany</a>
+          <time class="comment-item__time_published">21 апреля 2015 в 15:45</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_8386409" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_8386409" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark  ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 0: ↑0 и ↓0">0</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          Таки я пропустил этот пост. Очень круто, спасибо! Стоит 
+добавить диагностику в FindBugs на вызов parallel из clinit? :-)
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_8386409">
+        <div class="comment_item" id="comment_8386743">
+  
+    <span class="parent_id" data-parent_id="8386409"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  is_topic_starter  " rel="8386743">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/apangin/" class="comment-item__avatar">
+              <img src="%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%D0%BF%D1%80%D0%BE%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/f28ed824dbcce090d9ad8ae4ab31f9b3_small.jpg" alt="" class="comment-item__avatar-img">
+          </a>
+          <a href="http://habrahabr.ru/users/apangin/" class="comment-item__username">apangin</a>
+          <time class="comment-item__time_published">21 апреля 2015 в 17:43</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_8386743" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+              <span class="icon_comment-tree js-comment_tree" data-id="8386743" data-parent_id="8386409" title="Показать ветку комментариев"></span>
+              <a href="#comment_8386409" class="icon_comment-parent js-comment_parent" data-id="8386743" data-parent_id="8386409" title="Показать предыдущий комментарий"></a>
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_8386743" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark voting-wjt__counter_positive ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 1: ↑1 и ↓0">+1</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          Да, возможно. Только там куча вариантов, все запаришься 
+перечислять: Stream.parallel(), Collection.parallelStream(), 
+Arrays.parallelSort(), Arrays.parallelSetAll() и т.д.
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_8386743">
+      
+    </div>
+  </div>
+
+    </div>
+  </div>
+
+    </div>
+
+
+          			<p class="for_users_only_msg">Только зарегистрированные пользователи могут оставлять комментарии. <a href="https://habrahabr.ru/auth/login/">Войдите</a>, пожалуйста.</p>
+
+
+        
+<form action="/json/favorites/" method="post" id="edit_tags_form" class="hidden">
+  <input name="action" value="add" type="hidden">
+  <input name="ti" value="0" type="hidden">
+  <input name="tt" value="0" type="hidden">
+  <label>Пометьте топик понятными вам метками, если хотите</label>
+  <input autocomplete="off" name="tags_string" class="tags_string" type="text">
+  <div class="description">Метки лучше разделять запятой. Например: <i>общение, социальные сети, myspace.com, подростки, мердок</i></div>
+  <input value="Сохранить" class="submit" type="submit"> или <a href="#" class="close" onclick="return close_edit_tags()">закрыть</a>
+</form>
+
+      </div>
+    </div>
+
+    <div class="sidebar_right">
+        
+  
+  
+  <div class=" company_widgets">
+
+        <div class="block company_links">
+    <div class="title">Ссылки</div>
+    <div class="links">
+        <div class="link">
+          <a href="http://official.ok.ru/">Официальная группа социальной сети Одноклассники</a>
+          <div><small>official.ok.ru</small></div>
+        </div>
+        <div class="link">
+          <a href="http://twitter.com/okdevs">OK Developers</a>
+          <div><small>twitter.com</small></div>
+        </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="block mobile_applications no_bg ">
+	<div class="title">Приложения</div>
+		<div class="app_widget ">
+	<div class="thumb"><img src="%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%D0%BF%D1%80%D0%BE%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/1b355aa2668773e394a6c8f233d31d22.png"></div>
+	<div class="app_title">Одноклассники</div>
+	<div class="description">– общение с друзьями<br>
+–&nbsp;фото и видео<br>
+–&nbsp;музыка и игры<br>
+–&nbsp;сериалы и фильмы<br>
+– группы по интересам<br>
+–&nbsp;и многое другое…</div>
+	<div class="app_links">
+			<a href="http://ok.ru/android" class="app_link">
+				<div class="android icon"></div>
+				<div class="name">Android</div>
+			</a>
+			<a href="http://ok.ru/ios" class="app_link">
+				<div class="ios icon"></div>
+				<div class="name">iOS</div>
+			</a>
+			<a href="http://ok.ru/wp" class="app_link">
+				<div class="windowsphone icon"></div>
+				<div class="name">Windows Phone</div>
+			</a>
+	</div>
+	
+	
+</div>
+	
+	
+</div>
+
+
+
+
+
+      
+
+
+
+
+
+
+
+
+
+  </div>
+
+  <div style="width: 260px; opacity: 1;" class="block corporate_blog float_block">
+  <div class="title">Блог на Хабрахабре</div>
+  <div class="posts_list">
+      <div class="post_item">
+        <a href="http://habrahabr.ru/company/odnoklassniki/blog/268413/" class="post_name">Три дня, которые потрясли нас в 2013</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/company/odnoklassniki/blog/268413/#comments" class="count count_icon">36</a>
+      </div>
+      <div class="post_item">
+        <a href="http://habrahabr.ru/company/odnoklassniki/blog/259415/" class="post_name">Без слайдов: интервью с Андреем Паньгиным из Одноклассников</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/company/odnoklassniki/blog/259415/#comments" class="count count_icon">7</a>
+      </div>
+      <div class="post_item">
+        <a href="http://habrahabr.ru/company/odnoklassniki/blog/266005/" class="post_name">Тюним память и сетевой стек в Linux: история перевода высоконагруженных серверов на свежий дистрибутив</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/company/odnoklassniki/blog/266005/#comments" class="count count_icon">71</a>
+      </div>
+      <div class="post_item">
+        <a href="http://habrahabr.ru/company/odnoklassniki/blog/265133/" class="post_name">Загрузка видео «без единого разрыва»</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/company/odnoklassniki/blog/265133/#comments" class="count count_icon">12</a>
+      </div>
+      <div class="post_item">
+        <a href="http://habrahabr.ru/company/odnoklassniki/blog/255067/" class="post_name">Класс дедлоков про дедлок классов</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/company/odnoklassniki/blog/255067/#comments" class="count count_icon">16</a>
+      </div>
+      <div class="post_item">
+        <a href="http://habrahabr.ru/company/odnoklassniki/blog/240213/" class="post_name">Как мы кластеризуем подарки в ОК</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/company/odnoklassniki/blog/240213/#comments" class="count count_icon">20</a>
+      </div>
+      <div class="post_item">
+        <a href="http://habrahabr.ru/company/odnoklassniki/blog/236849/" class="post_name">История «Титанов», часть 2</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/company/odnoklassniki/blog/236849/#comments" class="count count_icon">25</a>
+      </div>
+      <div class="post_item">
+        <a href="http://habrahabr.ru/company/odnoklassniki/blog/233227/" class="post_name">Конкурс дизайна футболок участников RDC</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/company/odnoklassniki/blog/233227/#comments" class="count count_icon">4</a>
+      </div>
+      <div class="post_item">
+        <a href="http://habrahabr.ru/company/odnoklassniki/blog/230105/" class="post_name">История «Титанов»</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/company/odnoklassniki/blog/230105/#comments" class="count count_icon">19</a>
+      </div>
+      <div class="post_item">
+        <a href="http://habrahabr.ru/company/odnoklassniki/blog/225113/" class="post_name">Улучшение почты: решения задачи Russian Design Cup 2013</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/company/odnoklassniki/blog/225113/#comments" class="count count_icon">7</a>
+      </div>
+  </div>
+</div>
+
+  
+
+    </div>
+  </div>
+
+
+        
+  <div class="column-wrapper column-wrapper_bottom column-wrapper_bordered">
+    <div class="content_left">
+      
+
+  <div class="top-materials top-materials_geektimes">
+    <h2 class="top-materials__title">
+      <a href="http://geektimes.ru/" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo" class="top-materials__title-link">Лучшее на Geektimes</a>
+    </h2>
+
+    <div class="top-materials__content">
+      <ol class="content-list content-list_top-materials">
+          <li class="content-list__item">
+            <div class="content-list__item_wrap">
+              <a class="content-list__item-link" href="http://geektimes.ru/post/266790/" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Назначена дата первого запуска Wendelstein 7-X</a>&nbsp;&nbsp;<a href="http://geektimes.ru/post/266790/#comments" class="content-list__item-counter">20</a>
+            </div>
+          </li>
+          <li class="content-list__item">
+            <div class="content-list__item_wrap">
+              <a class="content-list__item-link" href="http://geektimes.ru/post/266772/" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Открытие научно-популярного лектория Set Up 5 декабря</a>&nbsp;&nbsp;<a href="http://geektimes.ru/post/266772/#comments" class="content-list__item-counter">2</a>
+            </div>
+          </li>
+          <li class="content-list__item">
+            <div class="content-list__item_wrap">
+              <a class="content-list__item-link" href="http://geektimes.ru/post/266810/" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Как я строил бюджетный электро-вело чоппер</a>&nbsp;&nbsp;<a href="http://geektimes.ru/post/266810/#comments" class="content-list__item-counter">9</a>
+            </div>
+          </li>
+          <li class="content-list__item">
+            <div class="content-list__item_wrap">
+              <a class="content-list__item-link" href="http://geektimes.ru/post/266832/" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Что будет, если уничтожить комаров</a>&nbsp;&nbsp;<a href="http://geektimes.ru/post/266832/#comments" class="content-list__item-counter">50</a>
+            </div>
+          </li>
+          <li class="content-list__item">
+            <div class="content-list__item_wrap">
+              <a class="content-list__item-link" href="http://geektimes.ru/post/266780/" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Самый старый технический музей Европы</a>&nbsp;&nbsp;<a href="http://geektimes.ru/post/266780/#comments" class="content-list__item-counter">8</a>
+            </div>
+          </li>
+      </ol>
+
+      <ul class="top-materials__menu menu menu_inline">
+        <li class="menu__item">
+          <a href="http://geektimes.ru/" target="blank" class="menu__item-link" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Все публикации</a>
+        </li>
+        <li class="menu__item">
+          <a href="http://geektimes.ru/hubs/" target="blank" class="menu__item-link" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Популярные хабы</a>
+        </li>
+        <li class="menu__item">
+          <a href="http://geektimes.ru/companies/" target="blank" class="menu__item-link" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Компании</a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+
+      
+
+  <div class="top-materials top-materials_megamozg">
+    <h2 class="top-materials__title">
+      <a href="http://megamozg.ru/" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo" class="top-materials__title-link">Лучшее на Мегамозге</a>
+    </h2>
+
+    <div class="top-materials__content">
+      <ol class="content-list content-list_top-materials">
+          <li class="content-list__item">
+            <div class="content-list__item_wrap">
+              <a class="content-list__item-link" href="http://megamozg.ru/post/22328/" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Внедрение банковской карты «Мир» обойдется российским банкам в сотни миллионов долларов – комментарии экспертов</a>&nbsp;&nbsp;<a href="http://megamozg.ru/post/22328/#comments" class="content-list__item-counter">4</a>
+            </div>
+          </li>
+          <li class="content-list__item">
+            <div class="content-list__item_wrap">
+              <a class="content-list__item-link" href="http://megamozg.ru/post/22330/" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Отчет о результатах «Моего круга» за ноябрь 2015</a>&nbsp;&nbsp;
+            </div>
+          </li>
+          <li class="content-list__item">
+            <div class="content-list__item_wrap">
+              <a class="content-list__item-link" href="http://megamozg.ru/post/22322/" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Samsung сменила главу мобильного подразделения впервые за шесть лет</a>&nbsp;&nbsp;<a href="http://megamozg.ru/post/22322/#comments" class="content-list__item-counter">4</a>
+            </div>
+          </li>
+          <li class="content-list__item">
+            <div class="content-list__item_wrap">
+              <a class="content-list__item-link" href="http://megamozg.ru/post/22288/" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Советы эксперта по созданию идеального списка дел</a>&nbsp;&nbsp;<a href="http://megamozg.ru/post/22288/#comments" class="content-list__item-counter">1</a>
+            </div>
+          </li>
+          <li class="content-list__item">
+            <div class="content-list__item_wrap">
+              <a class="content-list__item-link" href="http://megamozg.ru/post/22326/" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo"> Курс «Blitzscaling» Лекция 2.1 Этапы роста стартапа «Стадия семьи» (Джон Лилли и Сэм Альтман)</a>&nbsp;&nbsp;
+            </div>
+          </li>
+      </ol>
+
+      <ul class="top-materials__menu menu menu_inline">
+        <li class="menu__item">
+          <a href="http://megamozg.ru/" target="_blank" class="menu__item-link" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Все публикации</a>
+        </li>
+        <li class="menu__item">
+          <a href="http://megamozg.ru/hubs/" target="_blank" class="menu__item-link" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Популярные хабы</a>
+        </li>
+        <li class="menu__item">
+          <a href="http://megamozg.ru/companies/startups/" target="_blank" class="menu__item-link" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Стартапы</a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+
+
+    </div>
+
+  </div>
+
+
+
+        <div class="clear"></div>
+
+        <div class="footer_panel">
+          <div id="footer">
+  <dl>
+    <dd><a href="https://habrahabr.ru/auth/login/">Войти</a></dd>
+    <dd><a href="https://habrahabr.ru/auth/register/">Регистрация</a></dd>
+  </dl>
+  <dl>
+    <dt>Разделы</dt>
+    <dd><a href="http://habrahabr.ru/posts/top/">Публикации</a></dd>
+    <dd><a href="http://habrahabr.ru/hubs/">Хабы</a></dd>
+    <dd><a href="http://habrahabr.ru/companies/">Компании</a></dd>
+    <dd><a href="http://habrahabr.ru/users/">Пользователи</a></dd>
+    <dd><a href="http://toster.ru/?_aa=press_anykey">Q&amp;A</a></dd>
+    <dd><a href="http://habrahabr.ru/sandbox/">Песочница</a></dd>
+
+  </dl>
+  <dl>
+    <dt>Инфо</dt>
+    <dd><a href="http://habrahabr.ru/info/about/">О сайте</a></dd>
+    <dd><a href="http://habrahabr.ru/info/help/rules/">Правила</a></dd>
+    <dd><a href="http://habrahabr.ru/info/help/">Помощь</a></dd>
+    <dd><a href="http://habrahabr.ru/info/agreement/">Соглашение</a></dd>
+  </dl>
+  <dl>
+    <dt>Услуги</dt>
+    <dd><a href="http://special.habrahabr.ru/advertising/">Реклама</a></dd>
+      <dd><a href="http://special.habrahabr.ru/">Спецпроекты</a></dd>
+      <dd><a href="http://special.habrahabr.ru/corporate/">Тарифы</a></dd>
+      <dd><a href="http://special.habrahabr.ru/content/">Контент</a></dd>
+      <dd><a href="http://special.habrahabr.ru/workshops/">Вебинары</a></dd>
+  </dl>
+
+  <dl>
+    <dt>Разное</dt>
+    <dd><a href="http://habrahabr.ru/apps/">Приложения</a></dd>
+    <dd><a href="http://special.habrahabr.ru/microsoft/mobile/" target="_blank">Тест-драйв</a></dd>
+    <dd><a href="http://special.habrahabr.ru/hello_startup/bizspark/" target="_blank">Помощь стартапам</a></dd>
+      <dd><a href="http://special.habrahabr.ru/#hr">Работа в IT</a></dd>
+  </dl>
+  <div class="copyright">
+
+    <div class="about">
+      <a href="http://tmtm.ru/">© TM</a>
+
+      <br><br>
+      <a href="http://habrahabr.ru/feedback/">Служба поддержки</a><br><br>
+          <a href="http://m.habrahabr.ru/post/255067/?mobile=yes">Мобильная версия</a><br><br>
+
+
+      <div class="social_accounts">
+        <a href="https://twitter.com/habrahabr" class="tw"></a>
+        <a href="https://www.facebook.com/habrahabr.ru" class="fb"></a>
+        <a href="http://vk.com/habr" class="vk"></a>
+        <!-- <a href="" class="gp"></a> //-->
+      </div>
+
+    </div>
+  </div>
+</div>
+        </div>
+      </div>
+    </div>
+
+
+      <script type="text/javascript" src="%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%D0%BF%D1%80%D0%BE%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/jquery.js"></script>
+      <script type="text/javascript">
+        $(document).ready( function(){
+          window.tmidLogin = function(){ return false; };
+          if( $.cookie('tmid_no_check') == undefined ) {
+            var expire = new Date();
+            expire.setMinutes(expire.getMinutes() + 10 );
+            $.cookie('tmid_no_check', 1, { expires: expire } );
+            $.getScript("https://id.tmtm.ru/checklogin/", function(){
+              if( window.tmidLogin() ) {
+
+                  var href = $('#login').attr('href');
+
+                  if( href !== undefined ) {
+                      window.location.href = href;
+                  }
+              }
+            });
+          }
+        });
+      </script>
+
+    <script type="text/javascript">
+  // global vars
+  var g_base_url = 'habrahabr.ru';
+  var g_show_xpanel = false;
+  var g_base_fullurl = 'http://habrahabr.ru/';
+  var g_is_guest = false;
+</script> 
+
+      <script type="text/javascript" src="%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%D0%BF%D1%80%D0%BE%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/shortcuts.js"></script>
+
+    <script type="text/javascript" src="%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%D0%BF%D1%80%D0%BE%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/global_footer_main.js"></script>
+
+    	<script type="text/javascript" src="%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%D0%BF%D1%80%D0%BE%20%D0%B4%D0%B5%D0%B4%D0%BB%D0%BE%D0%BA%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/a"></script>
+
+    
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+(function (d, w, c) {
+    (w[c] = w[c] || []).push(function() {
+        try {
+            if (typeof (_yaparams) != 'undefined') {
+                w.yaCounter24049213 = new Ya.Metrika({id:24049213,
+                    webvisor:true,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    params:_yaparams});
+            } else {
+                w.yaCounter24049213 = new Ya.Metrika({id:24049213,
+                    webvisor:true,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true});
+            }
+
+        } catch(e) { }
+    });
+
+    var n = d.getElementsByTagName("script")[0],
+        s = d.createElement("script"),
+        f = function () { n.parentNode.insertBefore(s, n); };
+    s.type = "text/javascript";
+    s.async = true;
+    s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+    if (w.opera == "[object Opera]") {
+        d.addEventListener("DOMContentLoaded", f, false);
+    } else { f(); }
+})(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="//mc.yandex.ru/watch/24049213" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+    
+
+    
+
+    <!-- Хабр не резиновый! -->
+  
+
+<div id="AutocompleteContainter_f0ea8" style="position: absolute; z-index: 9999; top: 2px; left: 0px;"><div class="autocomplete-w1"><div class="autocomplete" id="Autocomplete_f0ea8" style="display: none; width: 300px; max-height: 400px;"></div></div></div><div id="AutocompleteContainter_a6946" style="position: absolute; z-index: 9999; top: 2px; left: 0px;"><div class="autocomplete-w1"><div class="autocomplete" id="Autocomplete_a6946" style="display: none; width: 300px; max-height: 400px;"></div></div></div></body></html>

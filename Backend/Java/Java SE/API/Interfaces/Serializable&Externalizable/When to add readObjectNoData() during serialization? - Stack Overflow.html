@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<html itemscope="" itemtype="http://schema.org/QAPage"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<title>Java: When to add readObjectNoData() during serialization? - Stack Overflow</title>
+    <link rel="shortcut icon" href="http://cdn.sstatic.net/stackoverflow/img/favicon.ico?v=4f32ecc8f43d">
+    <link rel="apple-touch-icon image_src" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+    <link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="http://stackoverflow.com/opensearch.xml">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="stackoverflow.com">
+    <meta property="og:type" content="website">    
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon@2.png?v=73d79a89bded&amp;a">
+    <meta name="twitter:title" property="og:title" itemprop="title name" content="Java: When to add readObjectNoData() during serialization?">
+    <meta name="twitter:description" property="og:description" itemprop="description" content="I am reading the serialization chapter in &quot;Effective Java&quot;. I am trying to understand the below paragraph in the book.
+
+
+  If you implement a class with instance fields that is serializable 
+      ...">
+    <meta property="og:url" content="http://stackoverflow.com/questions/7445217/java-when-to-add-readobjectnodata-during-serialization">
+    <link rel="canonical" href="http://stackoverflow.com/questions/7445217/java-when-to-add-readobjectnodata-during-serialization">
+
+    
+    
+    <script src="When%20to%20add%20readObjectNoData%28%29%20during%20serialization%3F%20-%20Stack%20Overflow_files/ados.js" async="" type="text/javascript"></script><script src="When%20to%20add%20readObjectNoData%28%29%20during%20serialization%3F%20-%20Stack%20Overflow_files/quant.js" async=""></script><script src="When%20to%20add%20readObjectNoData%28%29%20during%20serialization%3F%20-%20Stack%20Overflow_files/beacon.js" async=""></script><script src="When%20to%20add%20readObjectNoData%28%29%20during%20serialization%3F%20-%20Stack%20Overflow_files/analytics.js" async=""></script><script src="When%20to%20add%20readObjectNoData%28%29%20during%20serialization%3F%20-%20Stack%20Overflow_files/ados_002.js" async="" type="text/javascript"></script><script src="When%20to%20add%20readObjectNoData%28%29%20during%20serialization%3F%20-%20Stack%20Overflow_files/jquery.js"></script>
+    <script src="When%20to%20add%20readObjectNoData%28%29%20during%20serialization%3F%20-%20Stack%20Overflow_files/stub.js"></script>
+    <link rel="stylesheet" type="text/css" href="When%20to%20add%20readObjectNoData%28%29%20during%20serialization%3F%20-%20Stack%20Overflow_files/all.css">
+
+            <link rel="alternate" type="application/atom+xml" title="Feed for question 'Java: When to add readObjectNoData() during serialization?'" href="http://stackoverflow.com/feeds/question/7445217">
+            <meta name="twitter:app:country" content="US">
+            <meta name="twitter:app:name:iphone" content="Stack Exchange iOS">
+            <meta name="twitter:app:id:iphone" content="871299723">
+            <meta name="twitter:app:url:iphone" content="se-zaphod://stackoverflow.com/questions/7445217/java-when-to-add-readobjectnodata-during-serialization">
+            <meta name="twitter:app:name:ipad" content="Stack Exchange iOS">
+            <meta name="twitter:app:id:ipad" content="871299723">
+            <meta name="twitter:app:url:ipad" content="se-zaphod://stackoverflow.com/questions/7445217/java-when-to-add-readobjectnodata-during-serialization">
+            <meta name="twitter:app:name:googleplay" content="Stack Exchange Android">
+            <meta name="twitter:app:url:googleplay" content="http://stackoverflow.com/questions/7445217/java-when-to-add-readobjectnodata-during-serialization">
+            <meta name="twitter:app:id:googleplay" content="com.stackexchange.marvin">
+        <script>
+        
+            StackExchange.ready(function () {
+                    
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.initSnippetRenderer();
+                    });
+                    
+
+                StackExchange.using("postValidation", function () {
+                    StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+                });
+
+                
+                StackExchange.question.init({showAnswerHelp:true,totalCommentCount:2,shownCommentCount:2,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:7445217});
+
+                styleCode();
+
+                    StackExchange.realtime.subscribeToQuestion('1', '7445217');
+                                                                    StackExchange.using("gps", function () { StackExchange.gps.trackOutboundClicks('#content', '.post-text'); });
+
+            });
+        </script>
+
+
+    <script>
+        StackExchange.init({"locale":"en","stackAuthUrl":"https://stackauth.com","serverTime":1449322132,"networkMetaHostname":"meta.stackexchange.com","routeName":"Questions/Show","inReadOnly":true,"styleCode":true,"enableUserHovercards":true,"snippets":{"enabled":true,"domain":"stacksnippets.net"},"site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdchgIAAAAAAJwGpIzRQSOFaO0pU6s44Xt8aTwc","recaptchaAudioLang":"en","enableNewTagCreationWarning":true,"insertSpaceAfterNameTabCompletion":false,"id":1,"nonAsciiTags":true,"enableSocialMediaInSharePopup":true},"user":{"fkey":null,"rep":0,"isAnonymous":true,"isAnonymousNetworkWide":true}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"201117db6a2b","js/moderator.en.js":"383fea8d7f95","js/full-anon.en.js":"2e94668dfdd2","js/full.en.js":"d51f0666beca","js/wmd.en.js":"e41094a787ac","js/third-party/jquery.autocomplete.min.js":"e5f01e97f7c3","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"ae05e7545ef0","js/help.en.js":"20ffd1ace312","js/tageditor.en.js":"9ea765a97e62","js/tageditornew.en.js":"6b3f4e20418a","js/inline-tag-editing.en.js":"c0c258972ba6","js/revisions.en.js":"6aca57a6c709","js/review.en.js":"4c2a1a000e09","js/tagsuggestions.en.js":"d1ff9b84abe5","js/post-validation.en.js":"61dd105afac7","js/explore-qlist.en.js":"e71f14781288","js/events.en.js":"8899ae7ef636","js/keyboard-shortcuts.en.js":"acb49a527a09","js/external-editor.en.js":"cf58cc6630ef","js/external-editor.en.js":"cf58cc6630ef","js/snippet-javascript.en.js":"50888a2c5e75","js/snippet-javascript-codemirror.en.js":"914ce5426a0f"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </script>
+    
+        <script>
+            StackExchange.ready(function () {
+                $('#nav-tour').click(function () {
+                    StackExchange.using("gps", function() {
+                        StackExchange.gps.track("aboutpage.click", { aboutclick_location: "headermain" }, true);
+                    });
+                });
+            });
+        </script>
+    
+    
+<script src="When%20to%20add%20readObjectNoData%28%29%20during%20serialization%3F%20-%20Stack%20Overflow_files/full-anon.js" async=""></script><script src="When%20to%20add%20readObjectNoData%28%29%20during%20serialization%3F%20-%20Stack%20Overflow_files/snippet-javascript.js" async=""></script><script src="When%20to%20add%20readObjectNoData%28%29%20during%20serialization%3F%20-%20Stack%20Overflow_files/post-validation.js" async=""></script><script src="When%20to%20add%20readObjectNoData%28%29%20during%20serialization%3F%20-%20Stack%20Overflow_files/prettify-full.js" async=""></script><script src="When%20to%20add%20readObjectNoData%28%29%20during%20serialization%3F%20-%20Stack%20Overflow_files/adFeedback.js" type="text/javascript"></script><link href="When%20to%20add%20readObjectNoData%28%29%20during%20serialization%3F%20-%20Stack%20Overflow_files/adFeedback.css" rel="stylesheet"><script src="When%20to%20add%20readObjectNoData%28%29%20during%20serialization%3F%20-%20Stack%20Overflow_files/p.js" async=""></script><link href="When%20to%20add%20readObjectNoData%28%29%20during%20serialization%3F%20-%20Stack%20Overflow_files/jobs.css" rel="stylesheet" type="text/css"></head>
+<body class="question-page new-topbar read-only">
+    <noscript><div id="noscript-padding"></div></noscript>
+    <div id="notify-container"></div>
+    <div id="overlay-header"></div>
+    <div id="custom-header"></div>
+
+
+
+
+
+<div class="topbar">
+    <div class="topbar-wrapper">
+
+        <div class="js-topbar-dialog-corral">
+
+
+<div class="topbar-dialog siteSwitcher-dialog dno">
+    <div class="header">
+        <h3><a href="http://stackoverflow.com/">current community</a></h3>
+    </div>
+    <div class="modal-content current-site-container">
+        <ul class="current-site">
+                <li>
+                        <div class="related-links">
+                    <a href="http://chat.stackoverflow.com/" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:6 })">chat</a>
+            </div>
+
+
+
+
+    <a href="http://stackoverflow.com/" class="current-site-link site-link js-gps-track" data-id="1" data-gps-track="
+        site_switcher.click({ item_type:3 })">
+        <div class="site-icon favicon favicon-stackoverflow" title="Stack Overflow"></div>
+        Stack Overflow
+    </a>
+
+                </li>
+                <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    
+
+
+
+    <a href="http://meta.stackoverflow.com/" class="site-link js-gps-track" data-id="552" data-gps-track="
+            site.switch({ target_site:552, item_type:3 }),
+        site_switcher.click({ item_type:4 })">
+        <div class="site-icon favicon favicon-stackoverflowmeta" title="Meta Stack Overflow"></div>
+        Meta Stack Overflow
+    </a>
+
+                </li>
+                            <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    <a class="site-link js-gps-track" href="http://careers.stackoverflow.com/?utm_source=stackoverflow.com&amp;utm_medium=site-ui&amp;utm_campaign=multicollider" data-gps-track="site_switcher.click({ item_type:9 })">
+                        <div class="site-icon favicon favicon-careers" title="Stack Overflow Careers"></div>
+                        Stack Overflow Careers
+                    </a>
+                </li>
+        </ul>
+    </div>
+    
+    <div class="header" id="your-communities-header">
+        <h3>
+your communities        </h3>
+            
+    </div>
+    <div class="modal-content" id="your-communities-section">
+            
+            <div class="call-to-login">
+<a href="https://stackoverflow.com/users/signup?ssrc=site_switcher&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f7445217%2fjava-when-to-add-readobjectnodata-during-serialization%3frq%3d1" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:10 })">Sign up</a> or <a href="https://stackoverflow.com/users/login?ssrc=site_switcher&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f7445217%2fjava-when-to-add-readobjectnodata-during-serialization%3frq%3d1" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:11 })">log in</a> to customize your list.
+            </div>
+    </div>
+    
+    <div class="header">
+        <h3><a href="http://stackexchange.com/sites">more stack exchange communities</a></h3>
+        <a href="http://blog.stackoverflow.com/" class="fr">company blog</a>
+    </div>
+    <div class="modal-content">
+            <div class="child-content"></div>
+    </div>
+</div>
+        </div>
+
+        <div class="network-items">
+
+            <a href="http://stackexchange.com/" class="topbar-icon icon-site-switcher yes-hover js-site-switcher-button js-gps-track" data-gps-track="site_switcher.show" title="A list of all 150 Stack Exchange sites">
+                <span class="hidden-text">Stack Exchange</span>
+            </a>
+
+    <a href="#" class="topbar-icon icon-inbox yes-hover js-inbox-button" title="Recent inbox messages">
+        <span class="hidden-text">Inbox</span>
+        <span class="unread-count" style="display:none"></span>
+    </a>
+    <a href="#" class="topbar-icon icon-achievements yes-hover js-achievements-button" data-unread-class="" title="Recent achievements: reputation, badges, and privileges earned">
+        <span class="hidden-text">Reputation and Badges</span>
+        <span class="unread-count" style="display:none">
+            
+        </span>
+    </a>
+        </div>
+
+        <div class="topbar-links">
+
+                <div class="links-container">
+                <span class="topbar-menu-links">
+                                    <a href="https://stackoverflow.com/users/signup?ssrc=head&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f7445217%2fjava-when-to-add-readobjectnodata-during-serialization%3frq%3d1" class="login-link">sign up</a>
+                                <a href="https://stackoverflow.com/users/login?ssrc=head&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f7445217%2fjava-when-to-add-readobjectnodata-during-serialization%3frq%3d1" class="login-link">log in</a>
+
+                        <a href="http://stackoverflow.com/tour">tour</a>
+                            <a href="#" class="icon-help js-help-button" title="Help Center and other resources">
+        help
+        <span class="triangle"></span>
+    </a>
+    <div class="topbar-dialog help-dialog js-help-dialog dno">
+        <div class="modal-content">
+            <ul>
+                                    <li>
+                        <a href="http://stackoverflow.com/tour" class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })">
+                            Tour
+                            <span class="item-summary">
+                                Start here for a quick overview of the site
+                            </span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="http://stackoverflow.com/help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })">
+                        Help Center
+                        <span class="item-summary">
+                            Detailed answers to any questions you might have
+                        </span>
+                    </a>
+                </li>
+                    <li>
+                        <a href="http://meta.stackoverflow.com/" class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })">
+                            Meta
+                            <span class="item-summary">
+                                Discuss the workings and policies of this site
+                            </span>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+
+                            <a href="http://careers.stackoverflow.com/?utm_source=stackoverflow.com&amp;utm_medium=site-ui&amp;utm_campaign=anon-topbar">stack overflow careers</a>
+                    </span>
+                </div>
+
+            <div class="search-container">
+                <form id="search" action="/search" method="get" autocomplete="off">
+                    <input name="q" placeholder="search" tabindex="1" autocomplete="off" maxlength="240" type="text">
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+    <script>
+        StackExchange.ready(function() { StackExchange.topbar.init(); });
+    </script>
+
+    <div class="container">
+        <div id="header">
+            <br class="cbt">
+            <div id="hlogo">
+                <a href="http://stackoverflow.com/">
+                    Stack Overflow
+                </a>
+            </div>
+            <div id="hmenus">
+                <div class="nav mainnavs">
+                    <ul>
+                        <li class="youarehere"><a id="nav-questions" href="http://stackoverflow.com/questions">Questions</a></li>
+                        <li><a id="nav-tags" href="http://stackoverflow.com/tags">Tags</a></li>
+                        <li><a id="nav-users" href="http://stackoverflow.com/users">Users</a></li>
+                        <li><a id="nav-badges" href="http://stackoverflow.com/help/badges">Badges</a></li>
+                                                                    </ul>
+                </div>
+                <div class="nav askquestion">
+                    <ul>
+                        <li>
+                            <a id="nav-askquestion" href="http://stackoverflow.com/questions/ask">Ask Question</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+
+                <div id="system-message">This site is currently in read-only mode; we’ll return with full functionality soon. Follow <a href="https://twitter.com/StackStatus" target="_blank">@StackStatus</a> or visit <a href="http://stackstatus.net/" target="_blank">our status blog</a> for more info.
+                </div>
+
+
+        <div id="content" class="snippet-hidden">
+            
+
+<div itemscope="" itemtype="http://schema.org/Question">
+    <link itemprop="image" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+			<div id="question-header">
+                <h1 itemprop="name"><a href="http://stackoverflow.com/questions/7445217/java-when-to-add-readobjectnodata-during-serialization" class="question-hyperlink">Java: When to add readObjectNoData() during serialization?</a></h1>
+		</div>
+			<div id="mainbar">
+
+			
+
+<div class="question" data-questionid="7445217" id="question">
+
+    <script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk882556567",4).setZone(43); });
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk882556567"><a href="http://engine.adzerk.net/r?e=eyJhdiI6NDE0LCJhdCI6NCwiYnQiOjAsImNtIjozMjI1MTQsImNoIjoxMTc4LCJjayI6e30sImNyIjoxMTk1NzgwLCJkaSI6IjUzMDkwZTQyNDkyZjQ1NmM5N2NlY2IwM2E5Y2JlNDdjIiwiZG0iOjEsImZjIjoxMjY5MTM5LCJmbCI6ODY0MjI1LCJpcCI6IjEzNC42MC4xMDUuMjEyIiwia3ciOiJqYXZhLHNlcmlhbGl6YXRpb24sZWZmZWN0aXZlLWphdmEiLCJudyI6MjIsInBjIjowLCJlYyI6MCwicHIiOjE2MDQsInJ0IjoxLCJyZiI6Imh0dHA6Ly9zdGFja292ZXJmbG93LmNvbS9xdWVzdGlvbnMvMTE2ODM0OC9qYXZhLXNlcmlhbGl6YXRpb24tcmVhZG9iamVjdC12cy1yZWFkcmVzb2x2ZT9ycT0xIiwic3QiOjgyNzcsInVrIjoidWUxLTE1MzFiMDkyYjQ0MzQzNzRhNDMwNTFlMmU3NGQ3MDc0Iiwiem4iOjQzLCJ0cyI6MTQ0OTMyMjEzMzYzOSwiYmYiOnRydWUsInBuIjoiYWR6ZXJrODgyNTU2NTY3IiwidXIiOiJodHRwOi8vY2FyZWVycy5zdGFja292ZXJmbG93LmNvbS9wcm9kdWN0cz91dG1fc291cmNlPXN0YWNrb3ZlcmZsb3cuY29tJnV0bV9tZWRpdW09YWQmdXRtX2NhbXBhaWduPWVtcGxveWVycy1zdXBlcmhlcm9lcyZ1dG1fY29udGVudD1sYi1zdXBlcmhlcm9lcyJ9&amp;s=qHXG5rgBweuAxyOSkmphwhcl_9M" rel="nofollow" target="_blank" title=""><img class="rzhjfgnzuzwihkkkozlb" src="When%20to%20add%20readObjectNoData%28%29%20during%20serialization%3F%20-%20Stack%20Overflow_files/af217662e49a4cbda030feae88418cdd.png" title="" alt="" height="90" width="728" border="0"></a><img class="rzhjfgnzuzwihkkkozlb" src="When%20to%20add%20readObjectNoData%28%29%20during%20serialization%3F%20-%20Stack%20Overflow_files/i_002.gif" style="position:absolute;" height="0px" width="0px" border="0"></div>    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="7445217" type="hidden">
+        <a class="vote-up-off" title="Voting is disabled while the site is in readonly mode">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">16</span>
+        <a class="vote-down-off" title="Voting is disabled while the site is in readonly mode">down vote</a>
+
+        <a class="star-off" href="#" title="Favoring is disabled while the site is in readonly mode">favorite</a>
+        <div class="favoritecount"><b>6</b></div>
+
+
+</div>
+
+            </td>
+            
+<td class="postcell">
+<div>
+    <div class="post-text" itemprop="text">
+
+<p>I am reading the serialization chapter in "Effective Java". I am trying to understand the below paragraph in the book.</p>
+
+<blockquote>
+  <p>If you implement a class with instance fields that is serializable 
+         and extendable,there is a caution you should be aware of. If
+  the class 
+         has invariants that would be violated if its instance fields
+  were 
+         initialized to their default values (zero for integral types, 
+         false for boolean, and null for object reference types), you
+  must add 
+         this  readObjectNoData method to the class:</p>
+</blockquote>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="pln">    </span><span class="com">// readObjectNoData for stateful extendable serializable classes</span><span class="pln">
+     </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> readObjectNoData</span><span class="pun">()</span><span class="pln"> </span><span class="kwd">throws</span><span class="pln"> </span><span class="typ">InvalidObjectException</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+             </span><span class="kwd">throw</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">InvalidObjectException</span><span class="pun">(</span><span class="str">"Stream data required"</span><span class="pun">);</span><span class="pln">
+     </span><span class="pun">}</span></code></pre>
+
+<p>I am not sure what the above statment means .</p>
+
+<p>To test this, I created a class Person (both serializable and extendable)</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="pln">   </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">Person</span><span class="pln">   </span><span class="kwd">implements</span><span class="pln"> </span><span class="typ">Serializable</span><span class="pun">{</span><span class="pln">
+
+       </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> name</span><span class="pun">;</span><span class="pln">
+
+       </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> age</span><span class="pun">;</span><span class="pln">
+
+      </span><span class="typ">Person</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+         </span><span class="kwd">this</span><span class="pun">(</span><span class="str">"default"</span><span class="pun">,</span><span class="lit">1</span><span class="pun">);</span><span class="pln">
+      </span><span class="pun">}</span><span class="pln">
+
+
+     </span><span class="typ">Person</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> name</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> y</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+       </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">name </span><span class="pun">=</span><span class="pln"> name</span><span class="pun">;</span><span class="pln">
+        </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">age </span><span class="pun">=</span><span class="pln"> y</span><span class="pun">;</span><span class="pln">
+      </span><span class="pun">}</span><span class="pln">
+    </span><span class="pun">}</span></code></pre>
+
+<p>and a class Employee which extends it.</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="pln">     </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">Employee</span><span class="pln"> </span><span class="kwd">extends</span><span class="pln"> </span><span class="typ">Person</span><span class="pln">  </span><span class="pun">{</span><span class="pln">
+
+      </span><span class="typ">String</span><span class="pln"> address </span><span class="pun">;</span><span class="pln">
+
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">Employee</span><span class="pun">()</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">super</span><span class="pun">();</span><span class="pln">
+        address </span><span class="pun">=</span><span class="str">"default_address"</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">Employee</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> name </span><span class="pun">,</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> age</span><span class="pun">,</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> address</span><span class="pun">)</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">super</span><span class="pun">(</span><span class="pln">name</span><span class="pun">,</span><span class="pln">age</span><span class="pun">);</span><span class="pln">
+        </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">address </span><span class="pun">=</span><span class="pln"> address</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+           </span><span class="pun">}</span></code></pre>
+
+<p>Are there any invariants in the Person class I created ? When will 
+they be violated ? I copy pasted the code for readObjectData() method in
+ the Employee class , but it never got called. When will the method 
+readObject() be called ? Am I missing something ?</p>
+    </div>
+    <div class="post-taglist">
+        <a href="http://stackoverflow.com/questions/tagged/java" class="post-tag js-gps-track" title="show questions tagged 'java'" rel="tag">java</a> <a href="http://stackoverflow.com/questions/tagged/serialization" class="post-tag js-gps-track" title="show questions tagged 'serialization'" rel="tag">serialization</a> <a href="http://stackoverflow.com/questions/tagged/effective-java" class="post-tag js-gps-track" title="show questions tagged 'effective-java'" rel="tag">effective-java</a> 
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/q/7445217" title="short permalink to this question" class="short-link" id="link-post-7445217">share</a></div>        
+    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/7445217/revisions" title="show all edits to this post">edited <span title="2013-08-21 12:49:21Z" class="relativetime">Aug 21 '13 at 12:49</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/1527084/geek"><div class="gravatar-wrapper-32"><img src="When%20to%20add%20readObjectNoData%28%29%20during%20serialization%3F%20-%20Stack%20Overflow_files/3c93245c8f90bb4256781ab91e212821.jpeg" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/1527084/geek">Geek</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">5,842</span><span title="13 gold badges"><span class="badge1"></span><span class="badgecount">13</span></span><span title="53 silver badges"><span class="badge2"></span><span class="badgecount">53</span></span><span title="127 bronze badges"><span class="badge3"></span><span class="badgecount">127</span></span>
+    </div>
+</div>    </td>
+    <td class="post-signature owner">
+        <div class="user-info user-hover">
+    <div class="user-action-time">
+        asked <span title="2011-09-16 13:14:41Z" class="relativetime">Sep 16 '11 at 13:14</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/571718/vinoth"><div class="gravatar-wrapper-32"><img src="When%20to%20add%20readObjectNoData%28%29%20during%20serialization%3F%20-%20Stack%20Overflow_files/c290e0645e97ff127c00e648a9732edc.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/571718/vinoth">vinoth</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">3,370</span><span title="16 gold badges"><span class="badge1"></span><span class="badgecount">16</span></span><span title="47 silver badges"><span class="badge2"></span><span class="badgecount">47</span></span><span title="98 bronze badges"><span class="badge3"></span><span class="badgecount">98</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</div>
+</td>
+        </tr>
+                
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-7445217" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-9003596" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Your class <code>Employee</code> shouldn't include the <code>Person</code> (for the purpose of this example), but should be a subclass of person, i.e. <code>extends</code> it.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/49489/barend" title="10856 reputation" class="comment-user">Barend</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment9003596_7445217"><span title="2011-09-16 13:22:01Z" class="relativetime-clean">Sep 16 '11 at 13:22</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-9003718" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Edited the code.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/571718/vinoth" title="3370 reputation" class="comment-user owner">vinoth</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment9003718_7445217"><span title="2011-09-16 13:28:39Z" class="relativetime-clean">Sep 16 '11 at 13:28</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-7445217" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link  dno" title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments."></a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>        </tbody></table>
+</div>
+
+			<div id="answers">
+
+				<a name="tab-top"></a>
+				<div id="answers-header">
+					<div class="subheader answers-subheader">
+						<h2>
+								4 Answers
+                                <span style="display:none;" itemprop="answerCount">4</span>
+						</h2>
+						<div>
+							<div id="tabs">
+        <a href="http://stackoverflow.com/questions/7445217/java-when-to-add-readobjectnodata-during-serialization?answertab=active#tab-top" data-nav-xhref="" title="Answers with the latest activity first" data-value="active">active</a>
+        <a href="http://stackoverflow.com/questions/7445217/java-when-to-add-readobjectnodata-during-serialization?answertab=oldest#tab-top" data-nav-xhref="" title="Answers in the order they were provided" data-value="oldest">oldest</a>
+        <a class="youarehere" href="http://stackoverflow.com/questions/7445217/java-when-to-add-readobjectnodata-during-serialization?answertab=votes#tab-top" data-nav-xhref="" title="Answers with the highest score first" data-value="votes">votes</a>
+</div>
+						</div>
+					</div>    
+				</div>    
+
+
+
+
+  
+<a name="7445415"></a>
+<div id="answer-7445415" class="answer accepted-answer" data-answerid="7445415" itemscope="" itemtype="http://schema.org/Answer" itemprop="acceptedAnswer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="7445415" type="hidden">
+        <a class="vote-up-off" title="Voting is disabled while the site is in readonly mode">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">18</span>
+        <a class="vote-down-off" title="Voting is disabled while the site is in readonly mode">down vote</a>
+
+
+
+        <span class="vote-accepted-on load-accepted-answer-date" title="The question owner accepted this as the best answer Nov 10 '11 at 12:47.">accepted</span>
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>The <a href="http://download.oracle.com/javase/6/docs/platform/serialization/spec/input.html#6053">readObjectNoData section</a> in Java Object Serialization Specification
+seems interesting (see below).</p>
+
+<p>Your edits to the question give a perfect example. If <code>Employee</code> was <code>serialized</code> when it did not extend <code>Person</code> and later <code>deserialized</code> when it did then the <code>Person</code> part would be initialized to empty string and 0 age. Using this method, you can initialize them to "name" and 1 respectively. </p>
+
+<blockquote>
+  <p>For serializable objects, the readObjectNoData method allows a class
+  to control the initialization of its own fields in the event that a
+  subclass instance is deserialized and the serialization stream does
+  not list the class in question as a superclass of the deserialized
+  object. This may occur in cases where the receiving party uses a
+  different version of the deserialized instance's class than the
+  sending party, and the receiver's version extends classes that are not
+  extended by the sender's version. This may also occur if the
+  serialization stream has been tampered; hence, readObjectNoData is
+  useful for initializing deserialized objects properly despite a
+  "hostile" or incomplete source stream.</p>
+  
+  <p><code>private void readObjectNoData() throws ObjectStreamException;</code></p>
+  
+  <p>Each serializable class may define its own readObjectNoData method. If
+  a serializable class does not define a readObjectNoData method, then
+  in the circumstances listed above the fields of the class will be
+  initialized to their default values (as listed in section 4.5.5 of The
+  JavaTM Language Specification, Second Edition); this behavior is
+  consistent with that of ObjectInputStream prior to version 1.4 of the
+  JavaTM 2 SDK, Standard Edition, when support for readObjectNoData
+  methods was introduced. If a serializable class does define a
+  readObjectNoData method and the aforementioned conditions arise, then
+  readObjectNoData will be invoked at the point during deserialization
+  when a class-defined readObject method would otherwise be called had
+  the class in question been listed by the stream as a superclass of the
+  instance being deserialized.</p>
+</blockquote>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/7445415" title="short permalink to this answer" class="short-link" id="link-post-7445415">share</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/7445415/revisions" title="show all edits to this post">edited <span title="2011-09-16 13:37:28Z" class="relativetime">Sep 16 '11 at 13:37</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2011-09-16 13:29:02Z" class="relativetime">Sep 16 '11 at 13:29</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/18573/miserable-variable"><div class="gravatar-wrapper-32"><img src="When%20to%20add%20readObjectNoData%28%29%20during%20serialization%3F%20-%20Stack%20Overflow_files/08b7b48e82ea72294df4a3382ac0da9b.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/18573/miserable-variable">Miserable Variable</a><br>
+        <span class="reputation-score" title="reputation score 19469" dir="ltr">19.5k</span><span title="7 gold badges"><span class="badge1"></span><span class="badgecount">7</span></span><span title="35 silver badges"><span class="badge2"></span><span class="badgecount">35</span></span><span title="78 bronze badges"><span class="badge3"></span><span class="badgecount">78</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-7445415" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-7445415" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link  dno" title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."></a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+<script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk1125898356",4).setZone(44); });
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk1125898356">
+            </div>
+  
+<a name="7445364"></a>
+<div id="answer-7445364" class="answer" data-answerid="7445364" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="7445364" type="hidden">
+        <a class="vote-up-off" title="Voting is disabled while the site is in readonly mode">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">3</span>
+        <a class="vote-down-off" title="Voting is disabled while the site is in readonly mode">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<blockquote>
+  <p>Are there any invariants in the Person class I created? When will they be violated?</p>
+</blockquote>
+
+<p>None explicitly, but imagine that other methods in the class assume that <code>name</code> is never <code>null</code> and would throw <code>NullPointerException</code> if it ever were. In this case, the non-nullity of <code>name</code> is an invariant.</p>
+
+<blockquote>
+  <p>I copied the code for <code>readObjectData()</code> method in the <code>Employee</code> class , but it never got called. When will the method <code>readObject()</code> be called ?</p>
+</blockquote>
+
+<p>There's no method <code>readObjectData()</code> involved with serialization, this must be a typo. The <code>readObject()</code> method is called every time a serialized object is deserialized. </p>
+
+<p>The <code>readObjectNoData()</code> method is hit for some obscure corner case when deserializing a <strong>subclass</strong> of the class that contains the method.</p>
+
+<p>The <a href="http://java.sun.com/developer/technicalArticles/ALT/serialization/" rel="nofollow">advanced serialization</a> article on the <s>Sun</s>Oracle
+ website covers the purpose of these serialization helper methods. I 
+suggest you start there and post any subsequent questions you may run 
+into.</p>
+
+<p>(update)</p>
+
+<blockquote>
+  <p>In case you’re curious, the readObjectNoData method was added in 
+release 1.4 to cover a corner case involving the addition of a 
+serializable superclass to an existing serializable class. Details can 
+be found in the serialization specification <a href="http://download.oracle.com/javase/6/docs/platform/serialization/spec/input.html#6053" rel="nofollow">Serialization, 3.5</a>.</p>
+</blockquote>
+
+<p>The referenced text is:</p>
+
+<blockquote>
+  <p>For serializable objects, the readObjectNoData method allows a 
+class to control the initialization of its own fields in the event that a
+ subclass instance is deserialized and the serialization stream does not
+ list the class in question as a superclass of the deserialized object. 
+This may occur in cases where the receiving party uses a different 
+version of the deserialized instance's class than the sending party, and
+ the receiver's version extends classes that are not extended by the 
+sender's version. This may also occur if the serialization stream has 
+been tampered; hence, readObjectNoData is useful for initializing 
+deserialized objects properly despite a "hostile" or incomplete source 
+stream.</p>
+</blockquote>
+
+<p>So this can happen in two cases: </p>
+
+<ul>
+<li>The JVM that decodes the object stream has a newer version of the subclass being deserialized (<code>Employee</code>), one that extends some parent class (<code>Person</code>). The JVM that originally *en*coded the object stream has a different, older version of these classes, where <code>Person</code> was not yet a superclass of <code>Employee</code>.</li>
+<li>Someone intentionally messed with the object stream in order to break things.</li>
+</ul>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/7445364" title="short permalink to this answer" class="short-link" id="link-post-7445364">share</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/7445364/revisions" title="show all edits to this post">edited <span title="2011-09-16 13:41:25Z" class="relativetime">Sep 16 '11 at 13:41</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2011-09-16 13:25:27Z" class="relativetime">Sep 16 '11 at 13:25</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/49489/barend"><div class="gravatar-wrapper-32"><img src="When%20to%20add%20readObjectNoData%28%29%20during%20serialization%3F%20-%20Stack%20Overflow_files/bbe4f89328185db426deb42bf45faa65.jpeg" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/49489/barend">Barend</a><br>
+        <span class="reputation-score" title="reputation score 10856" dir="ltr">10.9k</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="29 silver badges"><span class="badge2"></span><span class="badgecount">29</span></span><span title="54 bronze badges"><span class="badge3"></span><span class="badgecount">54</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-7445364" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-7445364" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link  dno" title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."></a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="7445459"></a>
+<div id="answer-7445459" class="answer" data-answerid="7445459" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="7445459" type="hidden">
+        <a class="vote-up-off" title="Voting is disabled while the site is in readonly mode">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">2</span>
+        <a class="vote-down-off" title="Voting is disabled while the site is in readonly mode">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>"Extendable" means "can have a subclass".  </p>
+
+<p>readObjectNoData is used in an unusual case where the serializer 
+(writer) is working with a version of a class with no base class, 
+whereas the deserializer (reader) of the class has a version of the 
+class that IS based on a subclass.  The subclass can say "it's ok if my 
+base class isn't in the serialized data - just make an empty one" by 
+implementing readObjectNoData.  See these <a href="http://download.oracle.com/javase/1.4.2/docs/guide/serialization/relnotes14.html" rel="nofollow">release notes</a>.</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/7445459" title="short permalink to this answer" class="short-link" id="link-post-7445459">share</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/7445459/revisions" title="show all edits to this post">edited <span title="2013-11-18 18:08:30Z" class="relativetime">Nov 18 '13 at 18:08</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2011-09-16 13:32:30Z" class="relativetime">Sep 16 '11 at 13:32</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/685923/ed-staub"><div class="gravatar-wrapper-32"><img src="When%20to%20add%20readObjectNoData%28%29%20during%20serialization%3F%20-%20Stack%20Overflow_files/9564310d03cc3b204fef145d7e86509a.jpeg" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/685923/ed-staub">Ed Staub</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">9,261</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="25 silver badges"><span class="badge2"></span><span class="badgecount">25</span></span><span title="57 bronze badges"><span class="badge3"></span><span class="badgecount">57</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-7445459" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-7445459" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link  dno" title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."></a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="7445347"></a>
+<div id="answer-7445347" class="answer" data-answerid="7445347" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="7445347" type="hidden">
+        <a class="vote-up-off" title="Voting is disabled while the site is in readonly mode">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">0</span>
+        <a class="vote-down-off" title="Voting is disabled while the site is in readonly mode">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>An invariant in your Person class could be something like:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="pln">age must be greater than </span><span class="lit">0</span></code></pre>
+
+<p>So, when the Person class is instantiated with the default value, 0 (see here: <a href="http://download.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html" rel="nofollow">http://download.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html</a>) you will have violated that invariant.</p>
+
+<p>However, given the default constructor you will be fine :)</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/7445347" title="short permalink to this answer" class="short-link" id="link-post-7445347">share</a></div>                    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2011-09-16 13:24:32Z" class="relativetime">Sep 16 '11 at 13:24</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/237733/scobal"><div class="gravatar-wrapper-32"><img src="When%20to%20add%20readObjectNoData%28%29%20during%20serialization%3F%20-%20Stack%20Overflow_files/df2385041c2449f404071930e98c9c28.jpeg" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/237733/scobal">Scobal</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">7,167</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="32 silver badges"><span class="badge2"></span><span class="badgecount">32</span></span><span title="54 bronze badges"><span class="badge3"></span><span class="badgecount">54</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-7445347" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-9003697" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Ok I have a default constructor which makes sure that age  &gt; 0. Where does readObjectData() come into play here ?</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/571718/vinoth" title="3370 reputation" class="comment-user owner">vinoth</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment9003697_7445347"><span title="2011-09-16 13:27:16Z" class="relativetime-clean">Sep 16 '11 at 13:27</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-7445347" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link  dno" title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."></a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+							<h2 class="bottom-notice">This site is currently not accepting new answers.</h2>
+				
+
+
+						<h2 class="bottom-notice" data-loc="1">
+Not the answer you're looking for?							Browse other questions tagged <a href="http://stackoverflow.com/questions/tagged/java" class="post-tag" title="show questions tagged 'java'" rel="tag">java</a> <a href="http://stackoverflow.com/questions/tagged/serialization" class="post-tag" title="show questions tagged 'serialization'" rel="tag">serialization</a> <a href="http://stackoverflow.com/questions/tagged/effective-java" class="post-tag" title="show questions tagged 'effective-java'" rel="tag">effective-java</a> .						</h2>
+			</div>
+		</div>
+				<div id="sidebar" class="show-votes">
+						    <div class="module question-stats">
+			        <table id="qinfo">
+			            <tbody><tr>
+			                <td>
+			                    <p class="label-key">asked</p>
+			                </td>
+			                <td style="padding-left: 10px">
+			                    <p class="label-key" title="2011-09-16 13:14:41Z"><b>4 years ago</b></p>
+			                </td>
+			            </tr>
+			            <tr>
+			                <td>
+			                    <p class="label-key">viewed</p>
+			                </td>
+
+			                <td style="padding-left: 10px">
+			                    <p class="label-key">
+			                        <b>2816 times</b>
+			                    </p>
+			                </td>
+			            </tr>
+			                <tr>
+			                    <td>
+			                        <p class="label-key">active</p>
+			                    </td>
+			                    <td style="padding-left: 10px">
+			                        <p class="label-key"><b><a href="http://stackoverflow.com/questions/7445217/java-when-to-add-readobjectnodata-during-serialization?lastactivity" class="lastactivity-link" title="2013-11-18 18:08:30Z">2 years ago</a></b></p>
+			                    </td>
+			                </tr>
+			        </tbody></table>
+			    </div>
+						
+			<script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk673455152",[17,2221]).setZone(45); });
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk673455152"><div id="careersadsdoublehigh" style="display:none;"></div><img class="rzhjfgnzuzwihkkkozlb" src="When%20to%20add%20readObjectNoData%28%29%20during%20serialization%3F%20-%20Stack%20Overflow_files/i_003.gif" style="position:absolute;" height="0px" width="0px" border="0"></div>
+        <div class=" orange looking tagged" id="hireme"><a href="http://careers.stackoverflow.com/jobs" target="_blank" data-tz="1" data-ti="0" class="top"><span>Looking for a job?</span></a><div class="middle"><ul class="jobs"><li><a data-tz="3" data-ti="183227" href="http://careers.stackoverflow.com/jobs/97256/frontend-web-entwickler-f%C3%BCr-onlinel%C3%B6sungen-m-w-wolters-kluwer-software-und" target="_blank" title="Frontend Web Entwickler für Onlinelösungen (m/w) at Wolters Kluwer Software und Service GmbH. Click to learn more.">Frontend Web Entwickler für Onlinelösungen (m/w)<br><div class="company">Wolters Kluwer Software un…</div><div class="location" title="Ludwigsburg, Deutschland">Ludwigsburg, Deutschland</div><span class="post-tag">css</span><span class="post-tag">jquery</span></a></li><li><a data-tz="3" data-ti="176997" href="http://careers.stackoverflow.com/jobs/90979/young-professional-java-developer-entwickler-senacor-technologies-ag" target="_blank" title="Young Professional - Java Developer/ Entwickler at Senacor Technologies AG. Click to learn more.">Young Professional - Java Developer/ Entwickler<br><div class="company">Senacor Technologies AG</div><div class="location" title="Nürnberg, Deutschland">Nürnberg, Deutschland</div><span class="post-tag highlight">java</span><span class="post-tag">spring</span></a></li><li><a data-tz="3" data-ti="183254" href="http://careers.stackoverflow.com/jobs/97283/senior-it-consultant-m-w-internet-of-things-bosch-software-innovations" target="_blank" title="(Senior) IT-Consultant (m/w) - Internet of Things (IoT) at Bosch Software Innovations GmbH. Click to learn more.">(Senior) IT-Consultant (m/w) - Internet of Things (IoT)<br><div class="company">Bosch Software Innovations…</div><div class="location" title="Immenstaad, Deutschland / relocation">Immenstaad, Deutschland / relocation</div><span class="post-tag">html5</span><span class="post-tag">json</span></a></li><li><a data-tz="3" data-ti="168315" href="http://careers.stackoverflow.com/jobs/82011/software-user-interface-developer-m-w-bosch-software-innovations" target="_blank" title="Software &amp; User Interface Developer (m/w) - Connected Mobility/ 360° Parking at Bosch Software Innovations GmbH. Click to learn more.">Software &amp; User Interface Developer (m/w) - Connected Mobility/ 360° Parking<br><div class="company">Bosch Software Innovations…</div><div class="location" title="Waiblingen, Deutschland / relocation">Waiblingen, Deutschland / relocation</div><span class="post-tag highlight">java</span><span class="post-tag">javascript</span></a></li></ul></div><img class="impression" src="When%20to%20add%20readObjectNoData%28%29%20during%20serialization%3F%20-%20Stack%20Overflow_files/i.gif" style="display:none;"></div>
+			<div style="margin-bottom: 10px;">
+        
+
+<style type="text/css">
+#newsletter-ad {
+    width: 190px;
+    height: 250px;
+    overflow: hidden;
+    background: url('//cdn.sstatic.net/stackoverflow/img/newsletter-ad.png?v=2');
+    padding: 0 15px 0 15px;
+}
+#newsletter-ad-header {
+    margin-top: 60px;
+}
+#newsletter-ad ul {
+    margin: 1em 0 1em 1.5em;
+}
+#newsletter-ad ul li {
+    margin-bottom: 5px;
+}
+#newsletter-signup-container {
+    text-align: center;
+}
+#newsletter-preview-container {
+    margin-top: 10px;
+    text-align: center;
+}
+#newsletter-email-input {
+    width: 200px;
+}
+</style>
+
+<script>
+    StackExchange.ready(function () {
+        StackExchange.newsletterAd.init();
+    });
+</script>
+
+<div id="newsletter-ad">
+    <p id="newsletter-ad-header">Get the <b>weekly newsletter!</b></p>
+    <ul>
+        <li>Top questions and answers</li>
+        <li>Important announcements</li>
+        <li>Unanswered questions</li>
+    </ul>
+    <div id="newsletter-signup-container"><input id="newsletter-signup" value="Sign up for the newsletter" type="button"></div>
+    <p id="newsletter-preview-container">see an <a href="http://stackexchange.com/newsletters/newsletter?site=stackoverflow.com" id="newsletter-preview">example newsletter</a></p>
+    <div class="dno">
+        
+<p class="privacy-policy-agreement">
+By subscribing, you agree to the <a href="http://stackexchange.com/legal/privacy-policy" target="_blank">privacy policy</a> and <a href="http://stackexchange.com/legal/terms-of-service" target="_blank">terms of service</a>.</p>
+<input name="legalLinksShown" value="1" type="hidden">
+    </div>
+</div>
+
+    </div>  
+    
+            <div class="module sidebar-linked">
+	<h4 id="h-linked">Linked</h4>
+	<div class="linked" data-tracker="lq=1">
+<div class="spacer">
+	<a href="http://stackoverflow.com/q/32200126?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">-1</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/32200126/deep-clone-by-collecting-the-fields?lq=1" class="question-hyperlink">Deep clone by collecting the fields</a>
+</div>			</div>
+</div>
+
+				<div class="module sidebar-related">
+					<h4 id="h-related">Related</h4>
+                    <div class="related js-gps-related-questions" data-tracker="rq=1">
+                        <div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/4166942?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">4
+    </div>
+</a><a href="http://stackoverflow.com/questions/4166942/java-serialization?rq=1" class="question-hyperlink">Java Serialization</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/6129026?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">15
+    </div>
+</a><a href="http://stackoverflow.com/questions/6129026/effective-java-by-joshua-bloch-item1-static-factory-method?rq=1" class="question-hyperlink">Effective Java By Joshua Bloch: Item1 - Static Factory Method</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/7993275?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">3
+    </div>
+</a><a href="http://stackoverflow.com/questions/7993275/java-function-objects-as-strategies?rq=1" class="question-hyperlink">java : Function objects as strategies</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/8335813?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">18
+    </div>
+</a><a href="http://stackoverflow.com/questions/8335813/java-serialization-java-io-invalidclassexception-local-class-incompatible?rq=1" class="question-hyperlink">Java serialization - java.io.InvalidClassException local class incompatible</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/15557783?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">5
+    </div>
+</a><a href="http://stackoverflow.com/questions/15557783/effective-java-item-no-74on-serialization-implement-serializable-judiciously?rq=1" class="question-hyperlink">Effective java Item no 74(on serialization): Implement Serializable judiciously</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/18686636?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/18686636/what-is-meant-by-proper-declaration-of-read-resolve-method-in-the-effective-java?rq=1" class="question-hyperlink">What is meant by proper declaration of read resolve method in the Effective Java book?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/22484215?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/22484215/java-serialization-de-serialization-giving-null-object-references?rq=1" class="question-hyperlink">Java Serialization/De-serialization giving null object references</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/23169795?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">1
+    </div>
+</a><a href="http://stackoverflow.com/questions/23169795/javabean-disadvantage-inconsistent-during-construction?rq=1" class="question-hyperlink">JavaBean disadvantage - inconsistent during construction</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/26929400?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">2
+    </div>
+</a><a href="http://stackoverflow.com/questions/26929400/what-does-the-programming-term-identity-function-have-to-do-with-identity-ja?rq=1" class="question-hyperlink">What does the programming term “identity function” have to do with identity? (Java-oriented)</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/29528850?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">3
+    </div>
+</a><a href="http://stackoverflow.com/questions/29528850/java-why-shouldnt-clone-be-used-for-defensive-copying?rq=1" class="question-hyperlink">Java: Why shouldn't clone() be used for defensive copying?</a>
+</div>
+
+                    </div>
+				</div>
+            
+<div id="hot-network-questions" class="module">
+    <h4>
+        <a href="http://stackexchange.com/questions?tab=hot" class="js-gps-track" data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">
+            Hot Network Questions
+        </a>
+    </h4>
+    <ul>
+            <li>
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="http://codegolf.stackexchange.com/questions/65770/cover-up-zeroes-in-a-list" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Cover up zeroes in a list
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="http://academia.stackexchange.com/questions/59399/can-refusing-to-attend-mandatory-title-ix-training-be-grounds-for-suspending-a-t" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Can refusing to attend mandatory Title IX training be grounds for suspending a tenured faculty member?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="http://english.stackexchange.com/questions/291720/correct-phrase-for-this-kind-of-parking-lot-sign" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Correct phrase for this kind of parking lot sign
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-philosophy" title="Philosophy Stack Exchange"></div><a href="http://philosophy.stackexchange.com/questions/30217/are-methodological-assumptions-of-stackexchange-fundamentally-flawed" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:265 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Are Methodological Assumptions of StackExchange Fundamentally Flawed?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="http://scifi.stackexchange.com/questions/109527/is-it-disrespectful-or-wrong-to-leave-before-being-dismissed" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is it disrespectful or wrong to leave before being dismissed?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-stats" title="Cross Validated"></div><a href="http://stats.stackexchange.com/questions/185140/ols-vs-maximum-likelihood-under-normal-distribution-in-linear-regression" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:65 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    OLS vs. maximum likelihood under Normal distribution in linear regression
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-music" title="Music: Practice &amp; Theory Stack Exchange"></div><a href="http://music.stackexchange.com/questions/39992/why-does-it-take-700-cents-to-get-to-a-perfect-5th-which-is-3-2-one-and-a-half" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:240 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why does it take 700 cents to get to a perfect 5th, which is 3/2 (one and a half) from the root?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-ell" title="English Language Learners Stack Exchange"></div><a href="http://ell.stackexchange.com/questions/74956/is-i-be-quiet-correct" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:481 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is "I be quiet" correct?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="http://scifi.stackexchange.com/questions/109430/why-didnt-gandalf-and-elrond-equip-the-fellowship-especially-hobbits-better" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why didn't Gandalf and Elrond equip the Fellowship (especially hobbits) better?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="http://scifi.stackexchange.com/questions/109584/what-changed-william-shatners-mind-on-star-trek" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What changed William Shatner's mind on Star Trek?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-ell" title="English Language Learners Stack Exchange"></div><a href="http://ell.stackexchange.com/questions/74907/how-do-you-pronounce-betelgeuse-im-afraid-i-dont-get-the-joke" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:481 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How do you pronounce Betelgeuse? (I'm afraid I don't get the joke)
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-gamedev" title="Game Development Stack Exchange"></div><a href="http://gamedev.stackexchange.com/questions/112400/how-to-not-use-a-singleton-in-c-game-engine-programming" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:53 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to not use a singleton in C++ game engine programming?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="http://academia.stackexchange.com/questions/59237/short-email-replies" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Short email replies
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="http://scifi.stackexchange.com/questions/109665/why-is-jabbas-stand-in-on-the-cover-of-the-star-wars-radio-drama" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why is Jabba's stand-in on the cover of the Star Wars Radio Drama?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-christianity" title="Christianity Stack Exchange"></div><a href="http://christianity.stackexchange.com/questions/45571/where-is-the-verse-about-people-sinning-because-they-know-god-will-forgive-them" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:304 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Where is the verse about people sinning because they know God will forgive them?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="http://english.stackexchange.com/questions/291830/a-formal-reply-without-any-useful-information" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    A formal reply without any useful information
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-diy" title="Home Improvement Stack Exchange"></div><a href="http://diy.stackexchange.com/questions/79367/what-does-split-label-mean-on-circuit-breaker-panel" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:73 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What does "Split" label mean on circuit breaker panel?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-aviation" title="Aviation Stack Exchange"></div><a href="http://aviation.stackexchange.com/questions/23398/what-do-you-do-when-your-engine-quits-right-when-the-airplane-starts-off-the-gro" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:528 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What do you do when your engine quits right when the airplane starts off the ground?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-electronics" title="Electrical Engineering Stack Exchange"></div><a href="http://electronics.stackexchange.com/questions/204436/bjt-power-dissipation-which-value-to-use-ta-vs-tc" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:135 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    BJT power dissipation - Which value to use? (Ta vs Tc)
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-codereview" title="Code Review Stack Exchange"></div><a href="http://codereview.stackexchange.com/questions/112828/to-this-or-not-to-this" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:196 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    To 'this' or not to 'this'?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-ell" title="English Language Learners Stack Exchange"></div><a href="http://ell.stackexchange.com/questions/74949/past-progressive-for-a-finished-event" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:481 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Past progressive for a finished event
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-rpg" title="Role-playing Games Stack Exchange"></div><a href="http://rpg.stackexchange.com/questions/71829/does-rolling-a-1-with-advantage-cancel-out-the-higher-roll" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:122 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Does rolling a 1 with Advantage cancel out the higher roll?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-rpg" title="Role-playing Games Stack Exchange"></div><a href="http://rpg.stackexchange.com/questions/71843/what-language-is-reasonable-for-a-roper-to-speak-or-understand" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:122 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What language is reasonable for a Roper to speak or understand?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="http://worldbuilding.stackexchange.com/questions/30758/what-single-change-would-have-given-the-most-chance-for-the-axis-to-win-world-wa" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What single change would have given the most chance for the Axis to win World War 2?
+                </a>
+
+            </li>
+    </ul>
+
+        
+</div>
+		</div>
+	
+<div id="feed-link">
+    <div id="feed-link-text">
+        <a href="http://stackoverflow.com/feeds/question/7445217" title="feed of this question and its answers">
+            <span class="feed-icon"></span>question feed
+        </a>
+    </div>
+</div>	<script>
+StackExchange.ready(function(){$.get('/posts/7445217/ivc/2ba7');});
+</script>
+<noscript>
+    <div><img src="/posts/7445217/ivc/2ba7" class="dno" alt="" width="0" height="0"></div>
+</noscript><div style="display:none" id="prettify-lang">lang-java</div></div>
+
+
+        </div>
+    </div>
+    <div id="footer" class="categories">
+        <div class="footerwrap">
+            <div id="footer-menu">
+                <div class="top-footer-links">
+                        <a href="http://stackoverflow.com/tour">tour</a>
+                    <a href="http://stackoverflow.com/help">help</a>
+                    <a href="http://blog.stackoverflow.com/?blb=1">blog</a>
+                        <a href="http://chat.stackoverflow.com/">chat</a>
+                    <a href="http://data.stackexchange.com/">data</a>
+                    <a href="http://stackexchange.com/legal">legal</a>
+                    <a href="http://stackexchange.com/legal/privacy-policy">privacy policy</a>
+                    <a href="http://stackexchange.com/work-here">work here</a>
+                    <a href="http://stackexchange.com/mediakit">advertising info</a>
+
+                    <a onclick='StackExchange.switchMobile("on")'>mobile</a>
+                    <b><a href="http://stackoverflow.com/contact">contact us</a></b>
+                        <b><a href="http://meta.stackoverflow.com/">feedback</a></b>
+                    
+                </div>
+                <div id="footer-sites">
+                    <table>
+    <tbody><tr>
+            <th colspan="3">
+                Technology
+            </th>
+            <th>
+                Life / Arts
+            </th>
+            <th>
+                Culture / Recreation
+            </th>
+            <th>
+                Science
+            </th>
+            <th>
+                Other
+            </th>
+    </tr>
+    <tr>
+            <td>
+                <ol>
+                        <li><a href="http://stackoverflow.com/" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                        <li><a href="http://serverfault.com/" title="system and network administrators">Server Fault</a></li>
+                        <li><a href="http://superuser.com/" title="computer enthusiasts and power users">Super User</a></li>
+                        <li><a href="http://webapps.stackexchange.com/" title="power users of web applications">Web Applications</a></li>
+                        <li><a href="http://askubuntu.com/" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                        <li><a href="http://webmasters.stackexchange.com/" title="pro webmasters">Webmasters</a></li>
+                        <li><a href="http://gamedev.stackexchange.com/" title="professional and independent game developers">Game Development</a></li>
+                        <li><a href="http://tex.stackexchange.com/" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://programmers.stackexchange.com/" title="professional programmers interested in conceptual questions about software development">Programmers</a></li>
+                        <li><a href="http://unix.stackexchange.com/" title="users of Linux, FreeBSD and other Un*x-like operating systems">Unix &amp; Linux</a></li>
+                        <li><a href="http://apple.stackexchange.com/" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+                        <li><a href="http://wordpress.stackexchange.com/" title="WordPress developers and administrators">WordPress Development</a></li>
+                        <li><a href="http://gis.stackexchange.com/" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+                        <li><a href="http://electronics.stackexchange.com/" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+                        <li><a href="http://android.stackexchange.com/" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+                        <li><a href="http://security.stackexchange.com/" title="information security professionals">Information Security</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://dba.stackexchange.com/" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+                        <li><a href="http://drupal.stackexchange.com/" title="Drupal developers and administrators">Drupal Answers</a></li>
+                        <li><a href="http://sharepoint.stackexchange.com/" title="SharePoint enthusiasts">SharePoint</a></li>
+                        <li><a href="http://ux.stackexchange.com/" title="user experience researchers and experts">User Experience</a></li>
+                        <li><a href="http://mathematica.stackexchange.com/" title="users of Mathematica">Mathematica</a></li>
+                        <li><a href="http://salesforce.stackexchange.com/" title="Salesforce administrators, implementation experts, developers and anybody in-between">Salesforce</a></li>
+                        <li><a href="http://expressionengine.stackexchange.com/" title="administrators, end users, developers and designers for ExpressionEngine® CMS">ExpressionEngine® Answers</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#technology" class="more">
+                                more (13)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://photo.stackexchange.com/" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                        <li><a href="http://scifi.stackexchange.com/" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                        <li><a href="http://graphicdesign.stackexchange.com/" title="Graphic Design professionals, students, and enthusiasts">Graphic Design</a></li>
+                        <li><a href="http://movies.stackexchange.com/" title="movie and tv enthusiasts">Movies &amp; TV</a></li>
+                        <li><a href="http://cooking.stackexchange.com/" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                        <li><a href="http://diy.stackexchange.com/" title="contractors and serious DIYers">Home Improvement</a></li>
+                        <li><a href="http://money.stackexchange.com/" title="people who want to be financially literate">Personal Finance &amp; Money</a></li>
+                        <li><a href="http://academia.stackexchange.com/" title="academics and those enrolled in higher education">Academia</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#lifearts" class="more">
+                                more (9)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://english.stackexchange.com/" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                        <li><a href="http://skeptics.stackexchange.com/" title="scientific skepticism">Skeptics</a></li>
+                        <li><a href="http://judaism.stackexchange.com/" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                        <li><a href="http://travel.stackexchange.com/" title="road warriors and seasoned travelers">Travel</a></li>
+                        <li><a href="http://christianity.stackexchange.com/" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                        <li><a href="http://gaming.stackexchange.com/" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+                        <li><a href="http://bicycles.stackexchange.com/" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+                        <li><a href="http://rpg.stackexchange.com/" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#culturerecreation" class="more">
+                                more (21)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://math.stackexchange.com/" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                        <li><a href="http://stats.stackexchange.com/" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                        <li><a href="http://cstheory.stackexchange.com/" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                        <li><a href="http://physics.stackexchange.com/" title="active researchers, academics and students of physics">Physics</a></li>
+                        <li><a href="http://mathoverflow.net/" title="professional mathematicians">MathOverflow</a></li>
+                        <li><a href="http://chemistry.stackexchange.com/" title="scientists, academics, teachers and students">Chemistry</a></li>
+                        <li><a href="http://biology.stackexchange.com/" title="biology researchers, academics, and students">Biology</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#science" class="more">
+                                more (5)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://stackapps.com/" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                        <li><a href="http://meta.stackexchange.com/" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Exchange</a></li>
+                        <li><a href="http://area51.stackexchange.com/" title="proposing new sites in the Stack Exchange network">Area 51</a></li>
+                        <li><a href="http://careers.stackoverflow.com/">Stack Overflow Careers</a></li>
+                    
+                </ol>
+            </td>
+    </tr>
+</tbody></table>
+                </div>
+            </div>
+
+            <div id="copyright">
+                site design / logo © 2015 Stack Exchange Inc; user contributions licensed under <a href="http://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc by-sa 3.0</a> 
+                with <a href="http://blog.stackoverflow.com/2009/06/attribution-required/" rel="license">attribution required</a>
+            </div>
+            <div id="svnrev">
+                rev 2015.12.3.3047
+            </div>
+            
+        </div>
+    </div>
+    <noscript>
+        <div id="noscript-warning">Stack Overflow works best with JavaScript enabled<img src="http://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"></div>
+    </noscript>
+<script>var p = "http", d = "static"; if (document.location.protocol == "https:") { p += "s"; d = "engine"; } var z = document.createElement("script"); z.type = "text/javascript"; z.async = true; z.src = p + "://" + d + ".adzerk.net/ados.js"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(z, s);</script>
+<script>
+    var ados = ados || {};
+    ados.run = ados.run || [];
+    ados.run.push(function () { ados_setKeywords('java,serialization,effective-java');; ados_load(); });         
+</script>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-5620270-1');
+                        ga('set', 'dimension2', '|java|serialization|effective-java|');         ga('send', 'pageview');
+        var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+        (function () {
+            var ssl='https:'==document.location.protocol,
+                s=document.getElementsByTagName('script')[0],
+                qc=document.createElement('script');
+            qc.async=true;
+            qc.src=(ssl?'https://secure':'http://edge')+'.quantserve.com/quant.js';
+            s.parentNode.insertBefore(qc, s);
+            var sc=document.createElement('script');
+            sc.async=true;
+            sc.src=(ssl?'https://sb':'http://b') + '.scorecardresearch.com/beacon.js';
+            s.parentNode.insertBefore(sc, s);
+        })();
+        _comscore.push({ c1: "2", c2: "17440561" });
+        _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+    </script>
+            
+    
+</body></html>

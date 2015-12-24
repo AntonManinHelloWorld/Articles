@@ -1,0 +1,2324 @@
+<!DOCTYPE html>
+<html itemscope="" itemtype="http://schema.org/QAPage"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<title>inheritance - Overriding vs Hiding Java - Confused - Stack Overflow</title>
+    <link rel="shortcut icon" href="http://cdn.sstatic.net/stackoverflow/img/favicon.ico?v=4f32ecc8f43d">
+    <link rel="apple-touch-icon image_src" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+    <link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="http://stackoverflow.com/opensearch.xml">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="stackoverflow.com">
+    <meta property="og:type" content="website">    
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon@2.png?v=73d79a89bded&amp;a">
+    <meta name="twitter:title" property="og:title" itemprop="title name" content="Overriding vs Hiding Java - Confused">
+    <meta name="twitter:description" property="og:description" itemprop="description" content="I'm confused on how Overriding differs from Hiding in Java. Can anyone provide more details on how these differ?  I read the Java Tutorial but the sample code still left me confused.
+
+To be more cl...">
+    <meta property="og:url" content="http://stackoverflow.com/questions/10594052/overriding-vs-hiding-java-confused">
+    <link rel="canonical" href="http://stackoverflow.com/questions/10594052/overriding-vs-hiding-java-confused">
+
+    
+    
+    <script src="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/quant.js" async=""></script><script src="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/beacon.js" async=""></script><script src="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/analytics.js" async=""></script><script src="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/ados.js" async="" type="text/javascript"></script><script src="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/ados_002.js" async="" type="text/javascript"></script><script src="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/jquery.js"></script>
+    <script src="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/stub.js"></script>
+    <link rel="stylesheet" type="text/css" href="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/all.css">
+
+            <link rel="alternate" type="application/atom+xml" title="Feed for question 'Overriding vs Hiding Java - Confused'" href="http://stackoverflow.com/feeds/question/10594052">
+            <meta name="twitter:app:country" content="US">
+            <meta name="twitter:app:name:iphone" content="Stack Exchange iOS">
+            <meta name="twitter:app:id:iphone" content="871299723">
+            <meta name="twitter:app:url:iphone" content="se-zaphod://stackoverflow.com/questions/10594052/overriding-vs-hiding-java-confused">
+            <meta name="twitter:app:name:ipad" content="Stack Exchange iOS">
+            <meta name="twitter:app:id:ipad" content="871299723">
+            <meta name="twitter:app:url:ipad" content="se-zaphod://stackoverflow.com/questions/10594052/overriding-vs-hiding-java-confused">
+            <meta name="twitter:app:name:googleplay" content="Stack Exchange Android">
+            <meta name="twitter:app:url:googleplay" content="http://stackoverflow.com/questions/10594052/overriding-vs-hiding-java-confused">
+            <meta name="twitter:app:id:googleplay" content="com.stackexchange.marvin">
+        <script>
+        
+            StackExchange.ready(function () {
+                    
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.initSnippetRenderer();
+                    });
+                    
+
+                StackExchange.using("postValidation", function () {
+                    StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+                });
+
+                
+                StackExchange.question.init({showAnswerHelp:true,totalCommentCount:0,shownCommentCount:0,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:10594052});
+
+                styleCode();
+
+                    StackExchange.realtime.subscribeToQuestion('1', '10594052');
+                                                                    StackExchange.using("gps", function () { StackExchange.gps.trackOutboundClicks('#content', '.post-text'); });
+
+            });
+        </script>
+
+
+    <script>
+        StackExchange.init({"locale":"en","stackAuthUrl":"https://stackauth.com","serverTime":1449604881,"networkMetaHostname":"meta.stackexchange.com","routeName":"Questions/Show","styleCode":true,"enableUserHovercards":true,"snippets":{"enabled":true,"domain":"stacksnippets.net"},"site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdchgIAAAAAAJwGpIzRQSOFaO0pU6s44Xt8aTwc","recaptchaAudioLang":"en","enableNewTagCreationWarning":true,"insertSpaceAfterNameTabCompletion":false,"id":1,"nonAsciiTags":true,"enableSocialMediaInSharePopup":true},"user":{"fkey":"ee32c7e2136057303b9c940f12827d04","rep":0,"isAnonymous":true,"isAnonymousNetworkWide":true}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"d5c6a0bb79c6","js/moderator.en.js":"24ee4d052056","js/full-anon.en.js":"e9366516e961","js/full.en.js":"e484b925cee8","js/wmd.en.js":"0da5a46c5e41","js/third-party/jquery.autocomplete.min.js":"e5f01e97f7c3","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"ae05e7545ef0","js/help.en.js":"1b032ba0392d","js/tageditor.en.js":"a8c51d8a43ee","js/tageditornew.en.js":"722c2ad150a6","js/inline-tag-editing.en.js":"de80429b1816","js/revisions.en.js":"9e897f24d78d","js/review.en.js":"fc07ed2a84ce","js/tagsuggestions.en.js":"7dfec0d2a2d7","js/post-validation.en.js":"fa211147c44d","js/explore-qlist.en.js":"415c9ef1f829","js/events.en.js":"71743c52b020","js/keyboard-shortcuts.en.js":"6cd5a5799890","js/external-editor.en.js":"cf58cc6630ef","js/external-editor.en.js":"cf58cc6630ef","js/snippet-javascript.en.js":"f590e314ee2d","js/snippet-javascript-codemirror.en.js":"8feeafd30366"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </script>
+    
+        <script>
+            StackExchange.ready(function () {
+                $('#nav-tour').click(function () {
+                    StackExchange.using("gps", function() {
+                        StackExchange.gps.track("aboutpage.click", { aboutclick_location: "headermain" }, true);
+                    });
+                });
+            });
+        </script>
+    
+    
+<script src="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/full-anon.js" async=""></script><script src="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/adFeedback.js" type="text/javascript"></script><link href="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/adFeedback.css" rel="stylesheet"><script src="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/snippet-javascript.js" async=""></script><script src="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/post-validation.js" async=""></script><script src="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/prettify-full.js" async=""></script><script src="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/external-editor.js" async=""></script><script src="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/p.js" async=""></script><link href="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/jobs.css" rel="stylesheet" type="text/css"></head>
+<body class="question-page new-topbar">
+    <noscript><div id="noscript-padding"></div></noscript>
+    <div id="notify-container"></div>
+    <div id="overlay-header"></div>
+    <div id="custom-header"></div>
+
+
+
+
+
+<div class="topbar">
+    <div class="topbar-wrapper">
+
+        <div class="js-topbar-dialog-corral">
+
+
+<div class="topbar-dialog siteSwitcher-dialog dno">
+    <div class="header">
+        <h3><a href="http://stackoverflow.com/">current community</a></h3>
+    </div>
+    <div class="modal-content current-site-container">
+        <ul class="current-site">
+                <li>
+                        <div class="related-links">
+                    <a href="http://chat.stackoverflow.com/" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:6 })">chat</a>
+            </div>
+
+
+
+
+    <a href="http://stackoverflow.com/" class="current-site-link site-link js-gps-track" data-id="1" data-gps-track="
+        site_switcher.click({ item_type:3 })">
+        <div class="site-icon favicon favicon-stackoverflow" title="Stack Overflow"></div>
+        Stack Overflow
+    </a>
+
+                </li>
+                <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    
+
+
+
+    <a href="http://meta.stackoverflow.com/" class="site-link js-gps-track" data-id="552" data-gps-track="
+            site.switch({ target_site:552, item_type:3 }),
+        site_switcher.click({ item_type:4 })">
+        <div class="site-icon favicon favicon-stackoverflowmeta" title="Meta Stack Overflow"></div>
+        Meta Stack Overflow
+    </a>
+
+                </li>
+                            <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    <a class="site-link js-gps-track" href="http://careers.stackoverflow.com/?utm_source=stackoverflow.com&amp;utm_medium=site-ui&amp;utm_campaign=multicollider" data-gps-track="site_switcher.click({ item_type:9 })">
+                        <div class="site-icon favicon favicon-careers" title="Stack Overflow Careers"></div>
+                        Stack Overflow Careers
+                    </a>
+                </li>
+        </ul>
+    </div>
+    
+    <div class="header" id="your-communities-header">
+        <h3>
+your communities        </h3>
+            
+    </div>
+    <div class="modal-content" id="your-communities-section">
+            
+            <div class="call-to-login">
+<a href="https://stackoverflow.com/users/signup?ssrc=site_switcher&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f10594052%2foverriding-vs-hiding-java-confused" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:10 })">Sign up</a> or <a href="https://stackoverflow.com/users/login?ssrc=site_switcher&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f10594052%2foverriding-vs-hiding-java-confused" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:11 })">log in</a> to customize your list.
+            </div>
+    </div>
+    
+    <div class="header">
+        <h3><a href="http://stackexchange.com/sites">more stack exchange communities</a></h3>
+        <a href="http://blog.stackoverflow.com/" class="fr">company blog</a>
+    </div>
+    <div class="modal-content">
+            <div class="child-content"></div>
+    </div>
+</div>
+        </div>
+
+        <div class="network-items">
+
+            <a href="http://stackexchange.com/" class="topbar-icon icon-site-switcher yes-hover js-site-switcher-button js-gps-track" data-gps-track="site_switcher.show" title="A list of all 150 Stack Exchange sites">
+                <span class="hidden-text">Stack Exchange</span>
+            </a>
+
+    <a href="#" class="topbar-icon icon-inbox yes-hover js-inbox-button" title="Recent inbox messages">
+        <span class="hidden-text">Inbox</span>
+        <span class="unread-count" style="display:none"></span>
+    </a>
+    <a href="#" class="topbar-icon icon-achievements yes-hover js-achievements-button" data-unread-class="" title="Recent achievements: reputation, badges, and privileges earned">
+        <span class="hidden-text">Reputation and Badges</span>
+        <span class="unread-count" style="display:none">
+            
+        </span>
+    </a>
+        </div>
+
+        <div class="topbar-links">
+
+                <div class="links-container">
+                <span class="topbar-menu-links">
+                                    <a href="https://stackoverflow.com/users/signup?ssrc=head&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f10594052%2foverriding-vs-hiding-java-confused" class="login-link">sign up</a>
+                                <a href="https://stackoverflow.com/users/login?ssrc=head&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f10594052%2foverriding-vs-hiding-java-confused" class="login-link">log in</a>
+
+                        <a href="http://stackoverflow.com/tour">tour</a>
+                            <a href="#" class="icon-help js-help-button" title="Help Center and other resources">
+        help
+        <span class="triangle"></span>
+    </a>
+    <div class="topbar-dialog help-dialog js-help-dialog dno">
+        <div class="modal-content">
+            <ul>
+                                    <li>
+                        <a href="http://stackoverflow.com/tour" class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })">
+                            Tour
+                            <span class="item-summary">
+                                Start here for a quick overview of the site
+                            </span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="http://stackoverflow.com/help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })">
+                        Help Center
+                        <span class="item-summary">
+                            Detailed answers to any questions you might have
+                        </span>
+                    </a>
+                </li>
+                    <li>
+                        <a href="http://meta.stackoverflow.com/" class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })">
+                            Meta
+                            <span class="item-summary">
+                                Discuss the workings and policies of this site
+                            </span>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+
+                            <a href="http://careers.stackoverflow.com/?utm_source=stackoverflow.com&amp;utm_medium=site-ui&amp;utm_campaign=anon-topbar">stack overflow careers</a>
+                    </span>
+                </div>
+
+            <div class="search-container">
+                <form id="search" action="/search" method="get" autocomplete="off">
+                    <input name="q" placeholder="search" tabindex="1" autocomplete="off" maxlength="240" type="text">
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+    <script>
+        StackExchange.ready(function() { StackExchange.topbar.init(); });
+    </script>
+
+    <div class="container">
+        <div id="header">
+            <br class="cbt">
+            <div id="hlogo">
+                <a href="http://stackoverflow.com/">
+                    Stack Overflow
+                </a>
+            </div>
+            <div id="hmenus">
+                <div class="nav mainnavs">
+                    <ul>
+                        <li class="youarehere"><a id="nav-questions" href="http://stackoverflow.com/questions">Questions</a></li>
+                        <li><a id="nav-tags" href="http://stackoverflow.com/tags">Tags</a></li>
+                        <li><a id="nav-users" href="http://stackoverflow.com/users">Users</a></li>
+                        <li><a id="nav-badges" href="http://stackoverflow.com/help/badges">Badges</a></li>
+                                                                    </ul>
+                </div>
+                <div class="nav askquestion">
+                    <ul>
+                        <li>
+                            <a id="nav-askquestion" href="http://stackoverflow.com/questions/ask">Ask Question</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+
+
+
+        <div id="content" class="snippet-hidden">
+            
+
+<div itemscope="" itemtype="http://schema.org/Question">
+    <link itemprop="image" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+			<div id="question-header">
+                <h1 itemprop="name"><a href="http://stackoverflow.com/questions/10594052/overriding-vs-hiding-java-confused" class="question-hyperlink">Overriding vs Hiding Java - Confused</a></h1>
+		</div>
+			<div id="mainbar">
+
+			
+
+<div class="question" data-questionid="10594052" id="question">
+
+    <script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk1200239098",4).setZone(43); });
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk1200239098"><a href="http://engine.adzerk.net/r?e=eyJhdiI6NDE0LCJhdCI6NCwiYnQiOjAsImNtIjozMjI1MTQsImNoIjoxMTc4LCJjayI6e30sImNyIjoxMTk2MDU1LCJkaSI6IjY0NTU0NGY1MzJmYjRmOTFiODViY2E3Mjk1NGMxZGVmIiwiZG0iOjEsImZjIjoxMjY5NDMxLCJmbCI6ODY0MjI1LCJpcCI6IjEzNC42MC4xMDUuMjEyIiwia3ciOiJqYXZhLGluaGVyaXRhbmNlLG1ldGhvZHMsb3ZlcnJpZGUsaGlkaW5nIiwibnciOjIyLCJwYyI6MCwiZWMiOjAsInByIjoxNjA0LCJydCI6MSwicmYiOiJodHRwOi8vc3RhY2tvdmVyZmxvdy5jb20vcXVlc3Rpb25zLzExNjE1MjAyL21ldGhvZC1oaWRpbmctaW4tamF2YSIsInN0Ijo4Mjc3LCJ1ayI6InVlMS0xNTMxYjA5MmI0NDM0Mzc0YTQzMDUxZTJlNzRkNzA3NCIsInpuIjo0MywidHMiOjE0NDk2MDQ4ODI1MDYsImJmIjp0cnVlLCJwbiI6ImFkemVyazEyMDAyMzkwOTgiLCJ1ciI6Imh0dHA6Ly9jYXJlZXJzLnN0YWNrb3ZlcmZsb3cuY29tL2pvYnMvcmVtb3RlP3V0bV9zb3VyY2U9c3RhY2tvdmVyZmxvdy5jb20mdXRtX21lZGl1bT1hZCZ1dG1fY2FtcGFpZ249Y2FuZGlkYXRlcy13ZmgmdXRtX2NvbnRlbnQ9bGItd2ZoLWtleWJvYXJkIn0&amp;s=eU51DAYHxCHXt7-YTZ8z02cz06w" rel="nofollow" target="_blank" title=""><img class="iewotgknvvdkumbmuggb" src="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/29f60576ed3144249580c0fcb67771e2.png" title="" alt="" height="90" width="728" border="0"></a><img class="iewotgknvvdkumbmuggb" src="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/i_002.gif" style="position:absolute;" height="0px" width="0px" border="0"></div>    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="10594052" type="hidden">
+        <a class="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">36</span>
+        <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a>
+
+        <a class="star-off" href="#" title="This is a favorite question (click again to undo)">favorite</a>
+        <div class="favoritecount"><b>23</b></div>
+
+
+</div>
+
+            </td>
+            
+<td class="postcell">
+<div>
+    <div class="post-text" itemprop="text">
+
+<p>I'm confused on how Overriding differs from Hiding in Java. Can anyone provide more details on how these differ?  I read the <a href="http://docs.oracle.com/javase/tutorial/java/IandI/override.html">Java Tutorial</a> but the sample code still left me confused.</p>
+
+<p>To be more clear, I understand Overriding well. My issue is that I 
+don't see that hiding is any different except for the fact that one is 
+at the instance level while the other is at the class level.</p>
+
+<p>Looking at the Java tutorial code:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">Animal</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> testClassMethod</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Class"</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="str">" method in Animal."</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> testInstanceMethod</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Instance "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="str">" method in Animal."</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>Then we have a subclass cat:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">Cat</span><span class="pln"> </span><span class="kwd">extends</span><span class="pln"> </span><span class="typ">Animal</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> testClassMethod</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"The class method"</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="str">" in Cat."</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> testInstanceMethod</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"The instance method"</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="str">" in Cat."</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">String</span><span class="pun">[]</span><span class="pln"> args</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="typ">Cat</span><span class="pln"> myCat </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Cat</span><span class="pun">();</span><span class="pln">
+        </span><span class="typ">Animal</span><span class="pln"> myAnimal </span><span class="pun">=</span><span class="pln"> myCat</span><span class="pun">;</span><span class="pln">
+        </span><span class="typ">Animal</span><span class="pun">.</span><span class="pln">testClassMethod</span><span class="pun">();</span><span class="pln">
+        myAnimal</span><span class="pun">.</span><span class="pln">testInstanceMethod</span><span class="pun">();</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>Then they say:</p>
+
+<blockquote>
+  <p>The output from this program is as follows:</p>
+  
+  <p>The class method in Animal.</p>
+  
+  <p>The instance method in Cat.</p>
+</blockquote>
+
+<p>To me, the fact that calling a class method testClassMethod() 
+directly from the Animal class, executes the method in Animal class is 
+pretty obvious, nothing special there. Then they call the 
+testInstanceMethod() from a reference to myCat, so again pretty obvious 
+that the method executed then is the one in the instance of Cat.</p>
+
+<p>From what I see what the call hiding behaves just like overriding, so
+ why make that distinction. If I run this code using the classes above:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="typ">Cat</span><span class="pun">.</span><span class="pln">testClassMethod</span><span class="pun">();</span></code></pre>
+
+<p>I'll  get:
+<em>The class method in Cat.</em>
+But if I remove the testClassMethod() from Cat, then I'll get:
+<em>The class method in Animal.</em></p>
+
+<p>Which shows me that writing a static method, with the same name as in the parent, in a subclass pretty much does an override.</p>
+
+<p>Hopefully I'm making clear my where I'm confused and someone can shed some light.  Thanks very much in advance!</p>
+    </div>
+    <div class="post-taglist">
+        <a href="http://stackoverflow.com/questions/tagged/java" class="post-tag js-gps-track" title="show questions tagged 'java'" rel="tag">java</a> <a href="http://stackoverflow.com/questions/tagged/inheritance" class="post-tag js-gps-track" title="show questions tagged 'inheritance'" rel="tag">inheritance</a> <a href="http://stackoverflow.com/questions/tagged/methods" class="post-tag js-gps-track" title="show questions tagged 'methods'" rel="tag">methods</a> <a href="http://stackoverflow.com/questions/tagged/override" class="post-tag js-gps-track" title="show questions tagged 'override'" rel="tag">override</a> <a href="http://stackoverflow.com/questions/tagged/hiding" class="post-tag js-gps-track" title="show questions tagged 'hiding'" rel="tag">hiding</a> 
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/q/10594052" title="short permalink to this question" class="short-link" id="link-post-10594052">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/10594052/edit" class="suggest-edit-post" title="">improve this question</a></div>        
+    </td>
+    <td class="post-signature owner">
+        <div class="user-info ">
+    <div class="user-action-time">
+        asked <span title="2012-05-15 04:12:53Z" class="relativetime">May 15 '12 at 4:12</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/578810/lostlinkpr"><div class="gravatar-wrapper-32"><img src="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/8188895512c93093187005bfb3621267.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/578810/lostlinkpr">Lostlinkpr</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">525</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="6 silver badges"><span class="badge2"></span><span class="badgecount">6</span></span><span title="11 bronze badges"><span class="badge3"></span><span class="badgecount">11</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</div>
+</td>
+        </tr>
+                
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-10594052" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-10594052" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>        </tbody></table>
+</div>
+
+			<div id="answers">
+
+				<a name="tab-top"></a>
+				<div id="answers-header">
+					<div class="subheader answers-subheader">
+						<h2>
+								9 Answers
+                                <span style="display:none;" itemprop="answerCount">9</span>
+						</h2>
+						<div>
+							<div id="tabs">
+        <a href="http://stackoverflow.com/questions/10594052/overriding-vs-hiding-java-confused?answertab=active#tab-top" data-nav-xhref="" title="Answers with the latest activity first" data-value="active">active</a>
+        <a href="http://stackoverflow.com/questions/10594052/overriding-vs-hiding-java-confused?answertab=oldest#tab-top" data-nav-xhref="" title="Answers in the order they were provided" data-value="oldest">oldest</a>
+        <a class="youarehere" href="http://stackoverflow.com/questions/10594052/overriding-vs-hiding-java-confused?answertab=votes#tab-top" data-nav-xhref="" title="Answers with the highest score first" data-value="votes">votes</a>
+</div>
+						</div>
+					</div>    
+				</div>    
+
+
+
+
+  
+<a name="10594108"></a>
+<div id="answer-10594108" class="answer accepted-answer" data-answerid="10594108" itemscope="" itemtype="http://schema.org/Answer" itemprop="acceptedAnswer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="10594108" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">47</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+        <span class="vote-accepted-on load-accepted-answer-date" title="loading when this answer was accepted...">accepted</span>
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Over-riding basically supports late binding . Therefore, which method
+ will be called is decided at run time.It is for non-static methods.
+Hiding is for all other members (static methods , instance members, 
+static members). It is based on the early binding . More clearly , the 
+method or member to be called or used is decided during compile time.</p>
+
+<p>In your example, the first call , <code>Animal.testClassMethod()</code> is a call to a <code>static</code> method,hence, it is pretty sure as to which method is going to be called.</p>
+
+<p>In the second call,<code>myAnimal.testInstanceMethod()</code>, it 
+calls a non-static method. It is what you call run-time polymorphism. It
+ is not decided until run time which method is to be called.</p>
+
+<p>For further clarification, read <a href="http://www.coderanch.com/how-to/java/OverridingVsHiding">this</a>.</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/10594108" title="short permalink to this answer" class="short-link" id="link-post-10594108">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/10594108/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2012-05-15 04:21:58Z" class="relativetime">May 15 '12 at 4:21</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/828625/kazekage-gaara"><div class="gravatar-wrapper-32"><img src="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/8b9e27f3305f6d47529da5243bcb1d33.jpeg" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/828625/kazekage-gaara">Kazekage Gaara</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">9,102</span><span title="6 gold badges"><span class="badge1"></span><span class="badgecount">6</span></span><span title="34 silver badges"><span class="badge2"></span><span class="badgecount">34</span></span><span title="79 bronze badges"><span class="badge3"></span><span class="badgecount">79</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-10594108" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-13722683" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Thank you for the quick 
+answer, this clarifies it! I noticed that in the JavaRanch example, they
+ used the variable to call the class method instead of using the class 
+directly which makes it easier to understand. I guess in the Java 
+tutorial they used the class directly because using an instance to call a
+ static method is probably not good practice, but they should have used <i>myAnimal.testClassMethod()</i> instead of <i>Animal.testClassMethod()</i>.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/578810/lostlinkpr" title="525 reputation" class="comment-user owner">Lostlinkpr</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment13722683_10594108"><span title="2012-05-15 04:38:50Z" class="relativetime-clean">May 15 '12 at 4:38</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-13734352" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">+1 for being able to put it down in words properly, rather than by example! :)</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/107510/hugo" title="4005 reputation" class="comment-user">Hugo</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment13734352_10594108"><span title="2012-05-15 13:57:42Z" class="relativetime-clean">May 15 '12 at 13:57</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-36197525" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@Kazekage Gaara Is there difference between overloading and hiding ?</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/2674303/gstackoverflow" title="4386 reputation" class="comment-user">gstackoverflow</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment36197525_10594108"><span title="2014-05-10 18:37:34Z" class="relativetime-clean">May 10 '14 at 18:37</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-38423759" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I agree of course with the answer, but how about <code>private methods</code>? They can't be <code>overridden</code> since the subclass does not know about their existence.. Therefore they might be <code>hidden</code> instead.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/776345/paschalis" title="3093 reputation" class="comment-user">Paschalis</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment38423759_10594108"><span title="2014-07-15 16:35:59Z" class="relativetime-clean">Jul 15 '14 at 16:35</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-10594108" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+<script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk1824187698",4).setZone(44); });
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk1824187698">
+            </div>
+  
+<a name="10594145"></a>
+<div id="answer-10594145" class="answer" data-answerid="10594145" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="10594145" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">8</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Static methods are hidden, non-static methods are overriden.
+The difference is notable when calls are not qualified "something()" vs "this.something()".</p>
+
+<p>I can't really seem to put it down on words, so here goes an example:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">Animal</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> something</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"animal.something"</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> eat</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"animal.eat"</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">Animal</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="com">// This will always call Animal.something(), since it can't be overriden, because it is static.</span><span class="pln">
+        something</span><span class="pun">();</span><span class="pln">
+        </span><span class="com">// This will call the eat() defined in overriding classes.</span><span class="pln">
+        eat</span><span class="pun">();</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+</span><span class="pun">}</span><span class="pln">
+
+
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">Dog</span><span class="pln"> </span><span class="kwd">extends</span><span class="pln"> </span><span class="typ">Animal</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> something</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="com">// This method merely hides Animal.something(), making it uncallable, but does not override it, or alter calls to it in any way.</span><span class="pln">
+        </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"dog.something"</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> eat</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="com">// This method overrides eat(), and will affect calls to eat()</span><span class="pln">
+        </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"dog.eat"</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">Dog</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">super</span><span class="pun">();</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">String</span><span class="pun">[]</span><span class="pln"> args</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Dog</span><span class="pun">();</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+</span><span class="pun">}</span></code></pre>
+
+<p>OUTPUT:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="pln">animal</span><span class="pun">.</span><span class="pln">something
+dog</span><span class="pun">.</span><span class="pln">eat</span></code></pre>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/10594145" title="short permalink to this answer" class="short-link" id="link-post-10594145">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/10594145/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2012-05-15 04:28:22Z" class="relativetime">May 15 '12 at 4:28</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/107510/hugo"><div class="gravatar-wrapper-32"><img src="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/c7826f5b297baebddbd568f4b69a2d98.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/107510/hugo">Hugo</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">4,005</span><span title="4 gold badges"><span class="badge1"></span><span class="badgecount">4</span></span><span title="27 silver badges"><span class="badge2"></span><span class="badgecount">27</span></span><span title="49 bronze badges"><span class="badge3"></span><span class="badgecount">49</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-10594145" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-10594145" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="10594079"></a>
+<div id="answer-10594079" class="answer" data-answerid="10594079" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="10594079" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">2</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>If I understand your question properly then the answer is "you already are overriding".</p>
+
+<p>"Which shows me that writing a static method, with the same name as in the parent, in a subclass pretty much does an override."</p>
+
+<p>If you write a method in a subclass with exactly the same name as a 
+method in a superclass it will override the superclass's method. The 
+@Override annotation is not required to override a method. It does 
+however make your code more readable and forces the compiler to check 
+that you are actually overriding a method (and didn't misspell the 
+subclass method for example).</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/10594079" title="short permalink to this answer" class="short-link" id="link-post-10594079">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/10594079/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2012-05-15 04:17:51Z" class="relativetime">May 15 '12 at 4:17</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/1118394/thagorn"><div class="gravatar-wrapper-32"><img src="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/de2d6306505d3ce75fc7268161a95ccc.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/1118394/thagorn">thagorn</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">607</span><span title="5 silver badges"><span class="badge2"></span><span class="badgecount">5</span></span><span title="14 bronze badges"><span class="badge3"></span><span class="badgecount">14</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-10594079" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-13722614" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">This answer fails to address instance vs static methods with regard to overriding/hiding.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/697449/paul-bellora" title="33091 reputation" class="comment-user">Paul Bellora</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment13722614_10594079"><span title="2012-05-15 04:31:12Z" class="relativetime-clean">May 15 '12 at 4:31</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-10594079" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="10594131"></a>
+<div id="answer-10594131" class="answer" data-answerid="10594131" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="10594131" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">2</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>This is the difference between overrides and hiding, </p>
+
+<ol>
+<li>If both method in parent class and child class are an instance method, it called overrides.</li>
+<li>If both method in parent class and child class are static method, it called hiding.</li>
+<li>One method cant be static in parent and as an instance in the child. and visa versa.</li>
+</ol>
+
+<p><img src="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/80k7L.jpg" alt="enter image description here"></p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/10594131" title="short permalink to this answer" class="short-link" id="link-post-10594131">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/10594131/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2012-05-15 04:25:32Z" class="relativetime">May 15 '12 at 4:25</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/641170/rudy"><div class="gravatar-wrapper-32"><img src="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/mc98F.jpg" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/641170/rudy">Rudy</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">2,811</span><span title="6 gold badges"><span class="badge1"></span><span class="badgecount">6</span></span><span title="21 silver badges"><span class="badge2"></span><span class="badgecount">21</span></span><span title="49 bronze badges"><span class="badge3"></span><span class="badgecount">49</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-10594131" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-13722591" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">You cut and pasted that table directly from the tutorial the OP said didn't help him understand.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/212589/wolfcastle" title="3273 reputation" class="comment-user">wolfcastle</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment13722591_10594131"><span title="2012-05-15 04:28:55Z" class="relativetime-clean">May 15 '12 at 4:28</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-26052080" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">The table makes it very clear, in the examples not all cases were considered.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/847917/tutak" title="657 reputation" class="comment-user">tutak</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment26052080_10594131"><span title="2013-07-24 23:07:56Z" class="relativetime-clean">Jul 24 '13 at 23:07</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-10594131" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="10594149"></a>
+<div id="answer-10594149" class="answer" data-answerid="10594149" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="10594149" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">2</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Overriding happens only with instance methods.
+When the type of the reference variable is Animal and the object is Cat 
+then the instance method is called from Cat (this is overriding). For 
+the same acat object the class method of Animal is used. </p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">String</span><span class="pun">[]</span><span class="pln"> args</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="typ">Animal</span><span class="pln"> acat </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Cat</span><span class="pun">();</span><span class="pln">
+    acat</span><span class="pun">.</span><span class="pln">testInstanceMethod</span><span class="pun">();</span><span class="pln">
+    acat</span><span class="pun">.</span><span class="pln">testClassMethod</span><span class="pun">();</span><span class="pln">
+
+</span><span class="pun">}</span></code></pre>
+
+<p>Output is:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="typ">The</span><span class="pln"> instance method in </span><span class="typ">Cat</span><span class="pun">.</span><span class="pln">
+</span><span class="typ">Class</span><span class="pln"> method in </span><span class="typ">Animal</span><span class="pun">.</span></code></pre>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/10594149" title="short permalink to this answer" class="short-link" id="link-post-10594149">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/10594149/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/10594149/revisions" title="show all edits to this post">edited <span title="2012-05-15 04:34:55Z" class="relativetime">May 15 '12 at 4:34</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        
+        <div class="-flair">
+            
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2012-05-15 04:28:53Z" class="relativetime">May 15 '12 at 4:28</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/1324233/yiannis"><div class="gravatar-wrapper-32"><img src="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/WSgBK.jpg" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/1324233/yiannis">yiannis</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">918</span><span title="7 silver badges"><span class="badge2"></span><span class="badgecount">7</span></span><span title="16 bronze badges"><span class="badge3"></span><span class="badgecount">16</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-10594149" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-10594149" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="16471152"></a>
+<div id="answer-16471152" class="answer" data-answerid="16471152" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="16471152" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">2</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">First</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> </span><span class="typ">Overriding</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> i</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">  </span><span class="com">// will be overrided in class Second }</span><span class="pln">
+
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> </span><span class="typ">Hiding</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> i</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">  </span><span class="com">// will be hidden in class Second</span><span class="pln">
+                                    </span><span class="com">// because it's static }</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">Second</span><span class="pln"> </span><span class="kwd">extends</span><span class="pln"> </span><span class="typ">First</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> </span><span class="typ">Overriding</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> i</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">  </span><span class="com">// overrided here  }</span><span class="pln">
+
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> </span><span class="typ">Hiding</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> i</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">  </span><span class="com">// hidden</span><span class="pln">
+                                    </span><span class="com">// because it's static } </span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>The rule for memorizing is simple: a method in extending class 
+can't change static to void and 
+can't change void to static. 
+It will cause of compile-error.</p>
+
+<p>But if <em>void Name</em> changed to <em>void Name</em> it's Overriding. </p>
+
+<p>And if <em>static Name</em> changed to <em>static Name</em> it's Hiding. (When compiler sees <em>static</em> method in object of superclass then it don't check method in subclass.)</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/16471152" title="short permalink to this answer" class="short-link" id="link-post-16471152">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/16471152/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/16471152/revisions" title="show all edits to this post">edited <span title="2013-05-09 21:14:00Z" class="relativetime">May 9 '13 at 21:14</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        
+        <div class="-flair">
+            
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2013-05-09 21:08:35Z" class="relativetime">May 9 '13 at 21:08</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/2340914/p-karnaukhov"><div class="gravatar-wrapper-32"><img src="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/96661e932e1e34c37d3f1f84f67ccaa9.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/2340914/p-karnaukhov">p.karnaukhov</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">21</span><span title="2 bronze badges"><span class="badge3"></span><span class="badgecount">2</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-16471152" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-16471152" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="31307884"></a>
+<div id="answer-31307884" class="answer" data-answerid="31307884" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="31307884" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">0</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>How is static method hiding happening in java?
+Cat class is extending Animal class. So in Cat class will have both 
+static methods (i mean Child class's static method and Parent class's 
+static method)
+But how JVM hiding Parent static method? How it's dealing in Heap and 
+Stack?</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/31307884" title="short permalink to this answer" class="short-link" id="link-post-31307884">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/31307884/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2015-07-09 04:00:22Z" class="relativetime">Jul 9 at 4:00</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/3924979/user3924979"><div class="gravatar-wrapper-32"><img src="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/38a1f2626729cb299393c6b94ec80415.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/3924979/user3924979">user3924979</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">45</span><span title="4 bronze badges"><span class="badge3"></span><span class="badgecount">4</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-31307884" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-31307884" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="32497787"></a>
+<div id="answer-32497787" class="answer" data-answerid="32497787" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="32497787" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">0</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Based on my recent Java studies </p>
+
+<ul>
+<li>method <strong>overriding</strong>, when the subclass have the same method with the same signature in the subclass.</li>
+<li>Method <strong>hiding</strong>, when the subclass have the same 
+method name, but different parameter. In this case, you're not 
+overriding the parent method, but hiding it.</li>
+</ul>
+
+<p>Example from OCP Java 7 book, page 70-71:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">Point</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> xPos</span><span class="pun">,</span><span class="pln"> yPos</span><span class="pun">;</span><span class="pln">
+  </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">Point</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> x</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> y</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        xPos </span><span class="pun">=</span><span class="pln"> x</span><span class="pun">;</span><span class="pln">
+        yPos </span><span class="pun">=</span><span class="pln"> y</span><span class="pun">;</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+
+  </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">boolean</span><span class="pln"> equals</span><span class="pun">(</span><span class="typ">Point</span><span class="pln"> other</span><span class="pun">){</span><span class="pln">
+  </span><span class="pun">....</span><span class="pln"> sexy code here </span><span class="pun">......</span><span class="pln"> 
+  </span><span class="pun">}</span><span class="pln">
+
+  </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> </span><span class="pun">[]</span><span class="pln">args</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+   </span><span class="typ">Point</span><span class="pln"> p1 </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Point</span><span class="pun">(</span><span class="lit">10</span><span class="pun">,</span><span class="pln"> </span><span class="lit">20</span><span class="pun">);</span><span class="pln">
+   </span><span class="typ">Point</span><span class="pln"> p2 </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Point</span><span class="pun">(</span><span class="lit">50</span><span class="pun">,</span><span class="pln"> </span><span class="lit">100</span><span class="pun">);</span><span class="pln">
+   </span><span class="typ">Point</span><span class="pln"> p3 </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Point</span><span class="pun">(</span><span class="lit">10</span><span class="pun">,</span><span class="pln"> </span><span class="lit">20</span><span class="pun">);</span><span class="pln">
+   </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"p1 equals p2 is "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> p1</span><span class="pun">.</span><span class="pln">equals</span><span class="pun">(</span><span class="pln">p2</span><span class="pun">));</span><span class="pln">
+   </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"p1 equals p3 is "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> p1</span><span class="pun">.</span><span class="pln">equals</span><span class="pun">(</span><span class="pln">p3</span><span class="pun">));</span><span class="pln">
+   </span><span class="com">//point's class equals method get invoked</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>but if we write the following main:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="pln">  </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> </span><span class="pun">[]</span><span class="pln">args</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+   </span><span class="typ">Object</span><span class="pln"> p1 </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Point</span><span class="pun">(</span><span class="lit">10</span><span class="pun">,</span><span class="pln"> </span><span class="lit">20</span><span class="pun">);</span><span class="pln">
+   </span><span class="typ">Object</span><span class="pln"> p2 </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Point</span><span class="pun">(</span><span class="lit">50</span><span class="pun">,</span><span class="pln"> </span><span class="lit">100</span><span class="pun">);</span><span class="pln">
+   </span><span class="typ">Object</span><span class="pln"> p3 </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Point</span><span class="pun">(</span><span class="lit">10</span><span class="pun">,</span><span class="pln"> </span><span class="lit">20</span><span class="pun">);</span><span class="pln">
+   </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"p1 equals p2 is "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> p1</span><span class="pun">.</span><span class="pln">equals</span><span class="pun">(</span><span class="pln">p2</span><span class="pun">));</span><span class="pln">
+   </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"p1 equals p3 is "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> p1</span><span class="pun">.</span><span class="pln">equals</span><span class="pun">(</span><span class="pln">p3</span><span class="pun">));</span><span class="pln">
+   </span><span class="com">//Object's class equals method get invoked</span><span class="pln">
+  </span><span class="pun">}</span></code></pre>
+
+<p>In the second main, we using the Object class as static type, so when
+ we calling the equal method in Point object, it's waiting a Point class
+ to arrive as a parameter,but Object coming. So the Object class equals 
+method getting run, because we have an equals(Object o) there. In this 
+case, the Point's class equals <strong>dosen't overrides, but hides the Object class equals method</strong>.</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/32497787" title="short permalink to this answer" class="short-link" id="link-post-32497787">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/32497787/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2015-09-10 09:16:59Z" class="relativetime">Sep 10 at 9:16</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/393809/karoly"><div class="gravatar-wrapper-32"><img src="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/a5f76ea52931b394b41f10bd0273fca5.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/393809/karoly">Karoly</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">1,516</span><span title="2 gold badges"><span class="badge1"></span><span class="badgecount">2</span></span><span title="12 silver badges"><span class="badge2"></span><span class="badgecount">12</span></span><span title="24 bronze badges"><span class="badge3"></span><span class="badgecount">24</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-32497787" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-32497787" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="33737523"></a>
+<div id="answer-33737523" class="answer" data-answerid="33737523" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="33737523" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">0</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>In this code snippet I use 'private' access modifier instead of 
+'static' to show you difference between hiding methods and overriding 
+methods.</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">class</span><span class="pln"> </span><span class="typ">Animal</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+</span><span class="com">// Use 'static' or 'private' access modifiers to see how method hiding work.</span><span class="pln">
+</span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> testInstancePrivateMethod</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> source</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"\tAnimal: instance Private method calling from "</span><span class="pun">+</span><span class="pln">source</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> testInstanceMethodUsingPrivateMethodInside</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"\tAnimal: instance Public method with using of Private method."</span><span class="pun">);</span><span class="pln">
+    testInstancePrivateMethod</span><span class="pun">(</span><span class="pln"> </span><span class="typ">Animal</span><span class="pun">.</span><span class="kwd">class</span><span class="pun">.</span><span class="pln">getSimpleName</span><span class="pun">()</span><span class="pln"> </span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="com">// Use default, 'protected' or 'public' access modifiers to see  how method overriding work.</span><span class="pln">
+</span><span class="kwd">protected</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> testInstanceProtectedMethod</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> source</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"\tAnimal: instance Protected method calling from "</span><span class="pun">+</span><span class="pln">source</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> testInstanceMethodUsingProtectedMethodInside</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"\tAnimal: instance Public method with using of Protected method."</span><span class="pun">);</span><span class="pln">
+    testInstanceProtectedMethod</span><span class="pun">(</span><span class="pln"> </span><span class="typ">Animal</span><span class="pun">.</span><span class="kwd">class</span><span class="pun">.</span><span class="pln">getSimpleName</span><span class="pun">()</span><span class="pln"> </span><span class="pun">);</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln"> 
+</span><span class="pun">}</span><span class="pln">  
+
+
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">Cat</span><span class="pln"> </span><span class="kwd">extends</span><span class="pln"> </span><span class="typ">Animal</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+</span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> testInstancePrivateMethod</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> source</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Cat: instance Private method calling from "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> source </span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> testInstanceMethodUsingPrivateMethodInside</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Cat: instance Public method with using of Private method."</span><span class="pun">);</span><span class="pln">
+    testInstancePrivateMethod</span><span class="pun">(</span><span class="pln"> </span><span class="typ">Cat</span><span class="pun">.</span><span class="kwd">class</span><span class="pun">.</span><span class="pln">getSimpleName</span><span class="pun">());</span><span class="pln">
+    </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Cat: and calling parent after:"</span><span class="pun">);</span><span class="pln">
+    </span><span class="kwd">super</span><span class="pun">.</span><span class="pln">testInstanceMethodUsingPrivateMethodInside</span><span class="pun">();</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="kwd">protected</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> testInstanceProtectedMethod</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> source</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Cat: instance Protected method calling from "</span><span class="pun">+</span><span class="pln"> source </span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> testInstanceMethodUsingProtectedMethodInside</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Cat: instance Public method with using of Protected method."</span><span class="pun">);</span><span class="pln">
+    testInstanceProtectedMethod</span><span class="pun">(</span><span class="typ">Cat</span><span class="pun">.</span><span class="kwd">class</span><span class="pun">.</span><span class="pln">getSimpleName</span><span class="pun">());</span><span class="pln">
+    </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Cat: and calling parent after:"</span><span class="pun">);</span><span class="pln">
+    </span><span class="kwd">super</span><span class="pun">.</span><span class="pln">testInstanceMethodUsingProtectedMethodInside</span><span class="pun">();</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">String</span><span class="pun">[]</span><span class="pln"> args</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="typ">Cat</span><span class="pln"> myCat </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Cat</span><span class="pun">();</span><span class="pln">
+    </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"----- Method hiding -------"</span><span class="pun">);</span><span class="pln">
+    myCat</span><span class="pun">.</span><span class="pln">testInstanceMethodUsingPrivateMethodInside</span><span class="pun">();</span><span class="pln">
+    </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"\n----- Method overriding -------"</span><span class="pun">);</span><span class="pln">
+    myCat</span><span class="pun">.</span><span class="pln">testInstanceMethodUsingProtectedMethodInside</span><span class="pun">();</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>Output:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="pun">-----</span><span class="pln"> </span><span class="typ">Method</span><span class="pln"> hiding </span><span class="pun">-------</span><span class="pln">
+</span><span class="typ">Cat</span><span class="pun">:</span><span class="pln"> instance </span><span class="typ">Public</span><span class="pln"> method with using of </span><span class="typ">Private</span><span class="pln"> method</span><span class="pun">.</span><span class="pln">
+</span><span class="typ">Cat</span><span class="pun">:</span><span class="pln"> instance </span><span class="typ">Private</span><span class="pln"> method calling from </span><span class="typ">Cat</span><span class="pln">
+</span><span class="typ">Cat</span><span class="pun">:</span><span class="pln"> and calling parent after</span><span class="pun">:</span><span class="pln">
+   </span><span class="typ">Animal</span><span class="pun">:</span><span class="pln"> instance </span><span class="typ">Public</span><span class="pln"> method with using of </span><span class="typ">Private</span><span class="pln"> method</span><span class="pun">.</span><span class="pln">
+   </span><span class="typ">Animal</span><span class="pun">:</span><span class="pln"> instance </span><span class="typ">Private</span><span class="pln"> method calling from </span><span class="typ">Animal</span><span class="pln">
+
+</span><span class="pun">-----</span><span class="pln"> </span><span class="typ">Method</span><span class="pln"> overriding </span><span class="pun">-------</span><span class="pln">
+</span><span class="typ">Cat</span><span class="pun">:</span><span class="pln"> instance </span><span class="typ">Public</span><span class="pln"> method with using of </span><span class="typ">Protected</span><span class="pln"> method</span><span class="pun">.</span><span class="pln">
+</span><span class="typ">Cat</span><span class="pun">:</span><span class="pln"> instance </span><span class="typ">Protected</span><span class="pln"> method calling from </span><span class="typ">Cat</span><span class="pln">
+</span><span class="typ">Cat</span><span class="pun">:</span><span class="pln"> and calling parent after</span><span class="pun">:</span><span class="pln">
+   </span><span class="typ">Animal</span><span class="pun">:</span><span class="pln"> instance </span><span class="typ">Public</span><span class="pln"> method with using of </span><span class="typ">Protected</span><span class="pln"> method</span><span class="pun">.</span><span class="pln">
+</span><span class="typ">Cat</span><span class="pun">:</span><span class="pln"> instance </span><span class="typ">Protected</span><span class="pln"> method calling from </span><span class="typ">Animal</span></code></pre>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/33737523" title="short permalink to this answer" class="short-link" id="link-post-33737523">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/33737523/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2015-11-16 14:17:18Z" class="relativetime">Nov 16 at 14:17</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/4578157/rustem-zhunusov"><div class="gravatar-wrapper-32"><img src="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/photo.jpg" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/4578157/rustem-zhunusov">Rustem Zhunusov</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">1</span><span title="1 bronze badge"><span class="badge3"></span><span class="badgecount">1</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-33737523" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-33737523" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+									<a name="new-answer"></a>
+						<form id="post-form" action="/questions/10594052/answer/submit" method="post" class="post-form">
+						    <input id="post-id" value="10594052" type="hidden">
+                            <input id="qualityBanWarningShown" name="qualityBanWarningShown" value="false" type="hidden">
+                            <input name="referrer" value="http://stackoverflow.com/questions/11615202/method-hiding-in-java" type="hidden">
+							<h2 class="space">Your Answer</h2>
+
+
+            <script>
+            StackExchange.ifUsing("editor", function () {
+                StackExchange.using("externalEditor", function () {
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.init();
+                    });
+                });
+            }, "code-snippets");
+        </script>
+    
+
+<script>
+    StackExchange.ready(function() {
+        initTagRenderer("".split(" "), "".split(" "));
+       
+        StackExchange.using("externalEditor", function() {
+                // Have to fire editor after snippets, if snippets enabled
+                if (StackExchange.options.snippets.enabled) {
+                    StackExchange.using("snippets", function() {
+                        createEditor();
+                    });
+                }
+                else {
+                    createEditor();
+                }
+            });
+
+            function createEditor() {
+                prepareEditor({
+                    heartbeatType: 'answer',
+                convertImagesToLinks: true,
+                reputationToPostImages: 10,
+                bindNavPrevention: true,
+                postfix: "",
+                    onDemand: true,
+                    discardSelector: ".discard-answer"
+                    ,immediatelyShowMarkdownHelp:true
+                    });
+                
+
+        }
+    });  
+</script>
+
+
+<div id="post-editor" class="post-editor js-post-editor">
+
+    <div style="position: relative;">     
+        <div class="wmd-container">
+            <div id="wmd-button-bar" class="wmd-button-bar"><ul id="wmd-button-row" class="wmd-button-row"><li style="left: 0px;" class="wmd-button" id="wmd-bold-button"><span style="background-position: 0px -20px;"></span></li><li style="left: 25px;" class="wmd-button" id="wmd-italic-button"><span style="background-position: -20px -20px;"></span></li><li style="left: 50px;" class="wmd-spacer" id="wmd-spacer1"><span style="background-position: -40px -20px;"></span></li><li style="left: 75px;" class="wmd-button" id="wmd-link-button"><span style="background-position: -40px -20px;"></span></li><li style="left: 100px;" class="wmd-button" id="wmd-quote-button"><span style="background-position: -60px -20px;"></span></li><li style="left: 125px;" class="wmd-button" id="wmd-code-button"><span style="background-position: -80px -20px;"></span></li><li style="left: 150px;" class="wmd-button" id="wmd-image-button"><span style="background-position: -100px -20px;"></span></li><li style="left: 175px;" class="wmd-spacer" id="wmd-spacer2"><span style="background-position: -120px -20px;"></span></li><li style="left: 200px;" class="wmd-button" id="wmd-olist-button"><span style="background-position: -120px -20px;"></span></li><li style="left: 225px;" class="wmd-button" id="wmd-ulist-button"><span style="background-position: -140px -20px;"></span></li><li style="left: 250px;" class="wmd-button" id="wmd-heading-button"><span style="background-position: -160px -20px;"></span></li><li style="left: 275px;" class="wmd-button" id="wmd-hr-button"><span style="background-position: -180px -20px;"></span></li><li style="left: 300px;" class="wmd-spacer" id="wmd-spacer3"><span style="background-position: -200px -20px;"></span></li><li style="left: 325px;" class="wmd-button" id="wmd-undo-button"><span style="background-position: -200px -20px;"></span></li><li style="left: 350px;" class="wmd-button" id="wmd-redo-button"><span style="background-position: -220px -20px;"></span></li></ul></div>
+            <textarea id="wmd-input" class="wmd-input" name="post-text" cols="92" rows="15" tabindex="101" data-min-length=""></textarea>
+        </div>
+    </div>
+
+    <div class="fl" style="margin-top: 8px; height:24px;">&nbsp;</div>
+    <div id="draft-saved" class="draft-saved community-option fl" style="margin-top: 8px; height:24px; display:none;">draft saved</div>
+
+    <div id="draft-discarded" class="draft-discarded community-option fl" style="margin-top: 8px; height:24px; display:none;">draft discarded</div>
+
+
+
+    <div id="wmd-preview" class="wmd-preview"></div>
+    <div></div>
+    <div class="edit-block">
+        <input id="fkey" name="fkey" value="ee32c7e2136057303b9c940f12827d04" type="hidden">
+        <input id="author" name="author" type="text">
+    </div>
+
+
+
+</div>
+							<div style="position: relative;">
+								
+								            <div class="form-item new-post-login">
+        
+                <div class="new-login-form">
+                    <div class="new-login-left">
+                        <h3>Sign up or <a id="login-link" href="http://stackoverflow.com/users/login?ssrc=question_page&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f10594052%2foverriding-vs-hiding-java-confused%23new-answer">log in</a></h3>
+                        <script>
+                            StackExchange.ready(function () {
+                                StackExchange.helpers.onClickDraftSave('#login-link');
+                            });
+                        </script>
+                        <div class="preferred-login google-login">
+                            <p><span class="icon"></span><span>Sign up using Google</span></p>
+                        </div>
+                        <div class="preferred-login facebook-login">
+                            <p><span class="icon"></span><span>Sign up using Facebook</span></p>
+                        </div>
+                        <div class="preferred-login stackexchange-login">
+                            <p><span class="icon"></span><span>Sign up using Email and Password</span></p>
+                        </div>
+                    </div>
+                    <input name="manual-openid" class="manual-openid" type="hidden">
+                    <input name="use-facebook" class="use-facebook" value="false" type="hidden">
+                    <input name="use-google" class="use-google" value="false" type="hidden">
+                    <input class="submit-openid" value="Submit" style="display:none" type="button">
+                    <div class="new-login-right">
+                                <h3>Post as a guest</h3>
+    <div class="form-item">
+        <table>
+        <tbody><tr>
+                    <td class="vm">
+                <div>
+                    <label for="display-name">Name</label>
+                    <input id="display-name" name="display-name" size="30" maxlength="30" tabindex="105" type="text">
+                </div>
+                <div>
+                    <label for="m-address">Email</label>
+                    <input id="m-address" name="m-address" size="30" maxlength="100" tabindex="106" placeholder="required, but never shown" type="email">
+                </div>
+            </td>
+        </tr>
+        </tbody></table>
+    </div>
+
+                    </div>
+                </div>
+            </div>
+            <script>
+                StackExchange.ready(
+                    function () {
+                        StackExchange.openid.initPostLogin('.new-post-login', 'http%3a%2f%2fstackoverflow.com%2fquestions%2f10594052%2foverriding-vs-hiding-java-confused%23new-answer', 'question_page');
+                    }
+                );
+            </script>
+            <noscript>
+                        <h3>Post as a guest</h3>
+    <div class="form-item">
+        <table>
+        <tr>
+                    <td class="vm">
+                <div>
+                    <label for="display-name">Name</label>
+                    <input id="display-name" name="display-name" type="text" size="30" maxlength="30" value="" tabindex="105">
+                </div>
+                <div>
+                    <label for="m-address">Email</label>
+                    <input id="m-address" name="m-address" type="email" size="30" maxlength="100" value="" tabindex="106" placeholder="required, but never shown" />
+                </div>
+            </td>
+        </tr>
+        </table>
+    </div>
+
+            </noscript>
+
+							</div>
+           
+															<div class="form-submit cbt">
+									<input id="submit-button" value="Post Your Answer" tabindex="110" type="submit">
+									<a href="#" class="discard-answer dno">discard</a>
+
+<p class="privacy-policy-agreement">
+By posting your answer, you agree to the <a href="http://stackexchange.com/legal/privacy-policy" target="_blank">privacy policy</a> and <a href="http://stackexchange.com/legal/terms-of-service" target="_blank">terms of service</a>.</p>
+<input name="legalLinksShown" value="1" type="hidden">								</div>
+						</form>
+
+
+
+						<h2 class="bottom-notice" data-loc="1">
+Not the answer you're looking for?							Browse other questions tagged <a href="http://stackoverflow.com/questions/tagged/java" class="post-tag" title="show questions tagged 'java'" rel="tag">java</a> <a href="http://stackoverflow.com/questions/tagged/inheritance" class="post-tag" title="show questions tagged 'inheritance'" rel="tag">inheritance</a> <a href="http://stackoverflow.com/questions/tagged/methods" class="post-tag" title="show questions tagged 'methods'" rel="tag">methods</a> <a href="http://stackoverflow.com/questions/tagged/override" class="post-tag" title="show questions tagged 'override'" rel="tag">override</a> <a href="http://stackoverflow.com/questions/tagged/hiding" class="post-tag" title="show questions tagged 'hiding'" rel="tag">hiding</a>  or <a href="http://stackoverflow.com/questions/ask">ask your own question</a>.						</h2>
+			</div>
+		</div>
+				<div id="sidebar" class="show-votes">
+						    <div class="module question-stats">
+			        <table id="qinfo">
+			            <tbody><tr>
+			                <td>
+			                    <p class="label-key">asked</p>
+			                </td>
+			                <td style="padding-left: 10px">
+			                    <p class="label-key" title="2012-05-15 04:12:53Z"><b>3 years ago</b></p>
+			                </td>
+			            </tr>
+			            <tr>
+			                <td>
+			                    <p class="label-key">viewed</p>
+			                </td>
+
+			                <td style="padding-left: 10px">
+			                    <p class="label-key">
+			                        <b>13239 times</b>
+			                    </p>
+			                </td>
+			            </tr>
+			                <tr>
+			                    <td>
+			                        <p class="label-key">active</p>
+			                    </td>
+			                    <td style="padding-left: 10px">
+			                        <p class="label-key"><b><a href="http://stackoverflow.com/questions/10594052/overriding-vs-hiding-java-confused?lastactivity" class="lastactivity-link" title="2015-11-16 14:17:18Z">22 days ago</a></b></p>
+			                    </td>
+			                </tr>
+			        </tbody></table>
+			    </div>
+						
+			<script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk275164475",[17,2221]).setZone(45); });
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk275164475"><div id="careersadsdoublehigh" style="display:none;"></div><img class="iewotgknvvdkumbmuggb" src="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/i_003.gif" style="position:absolute;" height="0px" width="0px" border="0"></div>
+        <div class=" blue looking tagged" id="hireme"><a href="http://careers.stackoverflow.com/jobs" target="_blank" data-tz="1" data-ti="0" class="top"><span>Looking for a job?</span></a><div class="middle"><ul class="jobs"><li><a data-tz="3" data-ti="182430" href="http://careers.stackoverflow.com/jobs/96451/devops-f%C3%BCr-connected-car-services-m-w-daimler-tss" target="_blank" title="DevOps für Connected Car Services (m/w) at Daimler TSS. Click to learn more.">DevOps für Connected Car Services (m/w)<br><div class="company">Daimler TSS</div><div class="location" title="Ulm, Deutschland">Ulm, Deutschland</div><span class="post-tag highlight">java</span><span class="post-tag">javascript</span></a></li><li><a data-tz="3" data-ti="176997" href="http://careers.stackoverflow.com/jobs/90979/young-professional-java-developer-entwickler-senacor-technologies-ag" target="_blank" title="Young Professional - Java Developer/ Entwickler at Senacor Technologies AG. Click to learn more.">Young Professional - Java Developer/ Entwickler<br><div class="company">Senacor Technologies AG</div><div class="location" title="Nürnberg, Deutschland">Nürnberg, Deutschland</div><span class="post-tag highlight">java</span><span class="post-tag">spring</span></a></li><li><a data-tz="3" data-ti="190185" href="http://careers.stackoverflow.com/jobs/104256/softwareentwickler-m-w-java-msg-life-ag" target="_blank" title="Softwareentwickler (m/w) Java at msg life ag. Click to learn more.">Softwareentwickler (m/w) Java<br><div class="company">msg life ag</div><div class="location" title="Leinfelden-Echterdingen, Deutschland">Leinfelden-Echterdingen, D…</div><span class="post-tag highlight">java</span><span class="post-tag">java-ee</span></a></li><li><a data-tz="3" data-ti="189721" href="http://careers.stackoverflow.com/jobs/103787/software-engineers-c-sharp-c-plus-plus-f-m-hexagon-technology-center" target="_blank" title="Software Engineers C# / C++ (f/m) at Hexagon Technology Center GmbH (Leica Geosystems AG). Click to learn more.">Software Engineers C# / C++ (f/m)<br><div class="company">Hexagon Technology Center…</div><div class="location" title="Heerbrugg, Schweiz / relocation">Heerbrugg, Schweiz / relocation</div></a></li></ul></div><img class="impression" src="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/i.gif" style="display:none;"></div>
+			<div class="module" id="chat-feature">
+    
+
+    
+<h4><a title="139 users active in 38 rooms the last 60 minutes" href="http://chat.stackoverflow.com/" id="h-chat-link">139 People Chatting</a></h4>
+
+<div class="related" id="ad502-rooms"><div class="ad502-room"><h3 class="ad502-room-h3"><span class="ad502-room-title" title="JavaScript"><a href="http://chat.stackoverflow.com/rooms/17">JavaScript</a></span></h3><span title="2015-12-08 18:41:30Z" class="ad502-last-message">2 hours ago - <a href="http://chat.stackoverflow.com/users/1596138">Jhawins</a></span><br><div class="ad502-users"><a href="http://chat.stackoverflow.com/users/1596138"><img src="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/IMX6n.png" title="Jhawins: 2 hours ago" height="23" width="23"></a><a href="http://chat.stackoverflow.com/users/3459110"><img src="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/595ae5c7ef8e8c620bd4d3506be53172.png" title="Awal Garg: 2 hours ago" height="23" width="23"></a><a href="http://chat.stackoverflow.com/users/829835"><img src="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/N6iem.png" title="rlemon: 2 hours ago" height="23" width="23"></a><a href="http://chat.stackoverflow.com/users/2615209"><img src="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/c455958b4e9f556e6c26923e1e6ca8c3.png" title="Ben Fortune: 2 hours ago" height="23" width="23"></a><a href="http://chat.stackoverflow.com/users/851498"><img src="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/138a5bfc83f7df06b2701ccd722531c3.jpeg" title="Florian Margaine: 2 hours ago" height="23" width="23"></a><a href="http://chat.stackoverflow.com/users/5635964"><img src="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/photo_002.jpg" title="Robin Laurenssen: 2 hours ago" height="23" width="23"></a><a href="http://chat.stackoverflow.com/users/3499931"><img src="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/Yw37v.png" title="Trasiva: 2 hours ago" height="23" width="23"></a></div></div><div class="ad502-room"><h3 class="ad502-room-h3"><span class="ad502-room-title" title="PHP"><a href="http://chat.stackoverflow.com/rooms/11">PHP</a></span></h3><span title="2015-12-08 18:41:45Z" class="ad502-last-message">2 hours ago - <a href="http://chat.stackoverflow.com/users/895378">rdlowrey</a></span><br><div class="ad502-users"><a href="http://chat.stackoverflow.com/users/895378"><img src="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/9528c56f504c757154aea93a457ff74c.jpeg" title="rdlowrey: 2 hours ago" height="23" width="23"></a><a href="http://chat.stackoverflow.com/users/1658631"><img src="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/5bc924c90b254d2dba75ba29b3b9fd11.jpeg" title="Joe Watkins: 2 hours ago" height="23" width="23"></a><a href="http://chat.stackoverflow.com/users/438563"><img src="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/jZiqs.jpg" title="marcio: 2 hours ago" height="23" width="23"></a><a href="http://chat.stackoverflow.com/users/576767"><img src="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/7b30843578e5daecaa12b25536801c96.jpeg" title="Félix Gagnon-Grenier: 2 hours ago" height="23" width="23"></a><a href="http://chat.stackoverflow.com/users/1864539"><img src="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/zTiFw.png" title="happy: 2 hours ago" height="23" width="23"></a><a href="http://chat.stackoverflow.com/users/736162"><img src="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/eb6854f56cb2aa14ce798b53ea667639.jpeg" title="Andrea: 2 hours ago" height="23" width="23"></a><a href="http://chat.stackoverflow.com/users/2224584"><img src="inheritance%20-%20Overriding%20vs%20Hiding%20Java%20_Stack%20Overflow_files/gbVrH.png" title="Scott Arciszewski: 2 hours ago" height="23" width="23"></a></div></div></div>
+<script>
+// <!--
+    StackExchange.ready(
+    function () {
+        var options = {
+            chatUrl: 'http://chat.stackoverflow.com',
+            reloadUrl: '/api/recent-chat',
+            preloadData: {"activeUsers":139,"activeRooms":38,"rooms":[{"name":"JavaScript","id":17,"lastPost":1449600090,"posts":3055857,"users":[{"name":"Jhawins","id":1596138,"emailhash":"!https://i.stack.imgur.com/IMX6n.png?s=128\u0026g=1","lastPost":1449600090},{"name":"Awal Garg","id":3459110,"emailhash":"595ae5c7ef8e8c620bd4d3506be53172","lastPost":1449599646},{"name":"rlemon","id":829835,"emailhash":"!https://i.stack.imgur.com/N6iem.png?s=128\u0026g=1","lastPost":1449599619},{"name":"Ben Fortune","id":2615209,"emailhash":"c455958b4e9f556e6c26923e1e6ca8c3","lastPost":1449599615},{"name":"Florian Margaine","id":851498,"emailhash":"138a5bfc83f7df06b2701ccd722531c3","lastPost":1449599591},{"name":"Robin Laurenssen","id":5635964,"emailhash":"!https://lh3.googleusercontent.com/-RwCyKvB3Rbc/AAAAAAAAAAI/AAAAAAAAAEg/SeNSBbUMUGE/photo.jpg?sz=128","lastPost":1449599587},{"name":"Trasiva","id":3499931,"emailhash":"!https://i.stack.imgur.com/Yw37v.png?s=128\u0026g=1","lastPost":1449599519}],"messages":[{"date":1449600090,"user":"Jhawins","userid":1596138}],"singleImage":false,"tags":["ecmascript","es6","javascript","nodejs","promises"]},{"name":"PHP","id":11,"lastPost":1449600105,"posts":2161122,"users":[{"name":"rdlowrey","id":895378,"emailhash":"9528c56f504c757154aea93a457ff74c","lastPost":1449600105},{"name":"Joe Watkins","id":1658631,"emailhash":"5bc924c90b254d2dba75ba29b3b9fd11","lastPost":1449599491},{"name":"marcio","id":438563,"emailhash":"!https://i.stack.imgur.com/jZiqs.jpg?s=128\u0026g=1","lastPost":1449599448},{"name":"Félix Gagnon-Grenier","id":576767,"emailhash":"7b30843578e5daecaa12b25536801c96","lastPost":1449599242},{"name":"happy","id":1864539,"emailhash":"!https://i.stack.imgur.com/zTiFw.png?s=128\u0026g=1","lastPost":1449599184},{"name":"Andrea","id":736162,"emailhash":"eb6854f56cb2aa14ce798b53ea667639","lastPost":1449598992},{"name":"Scott Arciszewski","id":2224584,"emailhash":"!https://i.stack.imgur.com/gbVrH.png?s=128\u0026g=1","lastPost":1449598691}],"messages":[{"date":1449600105,"user":"rdlowrey","userid":895378}],"singleImage":false,"tags":["php"]}]} 
+        };
+
+        StackExchange.chatAd.init(options);
+    });
+// -->
+</script>
+
+</div>  
+    
+            <div class="module sidebar-linked">
+	<h4 id="h-linked">Linked</h4>
+	<div class="linked" data-tracker="lq=1">
+<div class="spacer">
+	<a href="http://stackoverflow.com/q/17153539?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">2</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/17153539/override-vs-shadowing-in-java?lq=1" class="question-hyperlink">Override vs Shadowing in Java</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/11615202?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/11615202/method-hiding-in-java?lq=1" class="question-hyperlink">Method hiding in Java</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/30439729?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">-1</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/30439729/error-annotating-a-static-method-with-override?lq=1" class="question-hyperlink">error annotating a static method with @Override</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/11720216?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">2</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/11720216/java-inheritance-overwritten-or-hidden-methods?lq=1" class="question-hyperlink">Java Inheritance: Overwritten or hidden methods</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/29471955?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">8</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/29471955/why-exception-or-error-not-generated-when-no-main-method-found?lq=1" class="question-hyperlink">why Exception or Error not generated when no main method found?</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/29091822?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">0</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/29091822/nullpointerexception-when-using-inheritence?lq=1" class="question-hyperlink">NullPointerException when using inheritence</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/30555744?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">-1</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/30555744/can-i-use-the-final-access-modifier-with-public-static-void-mainstring-args?lq=1" class="question-hyperlink">Can I use the final access modifier with public static void main(String args[]){ } method in Java?</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/16503602?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/16503602/java-relation-b-w-parent-and-child-function-calling-mechanism?lq=1" class="question-hyperlink">Java relation b/w parent and child function calling mechanism</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/33462190?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">0</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/33462190/inheritance-in-java-does-not-work-the-way-i-expected?lq=1" class="question-hyperlink">inheritance in java does not work the way I expected</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/19629472?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/19629472/inheriting-static-methods?lq=1" class="question-hyperlink">Inheriting static methods</a>
+</div>					<div class="spacer more">
+				<a href="http://stackoverflow.com/questions/linked/10594052?lq=1">see more linked questions…</a>
+			</div>
+	</div>
+</div>
+
+				<div class="module sidebar-related">
+					<h4 id="h-related">Related</h4>
+                    <div class="related js-gps-related-questions" data-tracker="rq=1">
+                        <div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/27581?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted large">617
+    </div>
+</a><a href="http://stackoverflow.com/questions/27581/what-issues-should-be-considered-when-overriding-equals-and-hashcode-in-java?rq=1" class="question-hyperlink">What issues should be considered when overriding equals and hashCode in Java?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/1678122?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted large">820
+    </div>
+</a><a href="http://stackoverflow.com/questions/1678122/must-override-a-superclass-method-errors-after-importing-a-project-into-eclips?rq=1" class="question-hyperlink">'Must Override a Superclass Method' Errors after importing a project into Eclipse</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/1902195?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">5
+    </div>
+</a><a href="http://stackoverflow.com/questions/1902195/is-it-possible-to-hide-or-lower-access-to-inherited-methods-in-java?rq=1" class="question-hyperlink">Is it possible to hide or lower access to Inherited Methods in Java?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/11720216?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">2
+    </div>
+</a><a href="http://stackoverflow.com/questions/11720216/java-inheritance-overwritten-or-hidden-methods?rq=1" class="question-hyperlink">Java Inheritance: Overwritten or hidden methods</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/13448056?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/13448056/java-method-hiding-overriding-static-to-non-static-or-the-other-way-round?rq=1" class="question-hyperlink">java method hiding/overriding static to non-static or the other way round</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/14602220?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">9
+    </div>
+</a><a href="http://stackoverflow.com/questions/14602220/why-doesnt-java-allow-hiding-static-methods-by-instance-methods?rq=1" class="question-hyperlink">Why doesn't Java allow hiding static methods by instance methods?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/16570663?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">3
+    </div>
+</a><a href="http://stackoverflow.com/questions/16570663/java-inheritance-method-overriding-and-overloading?rq=1" class="question-hyperlink">Java inheritance (method overriding and overloading)</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/23590536?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/23590536/overloading-and-hiding-differences?rq=1" class="question-hyperlink">overloading and hiding - differences</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/26236683?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">1
+    </div>
+</a><a href="http://stackoverflow.com/questions/26236683/hiding-methods-in-subclass?rq=1" class="question-hyperlink">Hiding methods in subclass</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/32676039?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">1
+    </div>
+</a><a href="http://stackoverflow.com/questions/32676039/java-inheritance-and-overriding-methods-questions?rq=1" class="question-hyperlink">Java: inheritance and overriding methods questions</a>
+</div>
+
+                    </div>
+				</div>
+            
+<div id="hot-network-questions" class="module">
+    <h4>
+        <a href="http://stackexchange.com/questions?tab=hot" class="js-gps-track" data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">
+            Hot Network Questions
+        </a>
+    </h4>
+    <ul>
+            <li>
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="http://math.stackexchange.com/questions/1565701/how-to-show-this-trig-series-is-absolutely-convergent" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to show this trig series is absolutely convergent?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-chemistry" title="Chemistry Stack Exchange"></div><a href="http://chemistry.stackexchange.com/questions/41862/what-is-the-real-meaning-of-%e2%88%86g" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:431 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What is the real meaning of ∆G°
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="http://codegolf.stackexchange.com/questions/66042/basic-latin-character-name-to-character" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Basic Latin character name to character
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-programmers" title="Programmers Stack Exchange"></div><a href="http://programmers.stackexchange.com/questions/304574/does-immutability-hurt-performance-in-javascript" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:131 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Does immutability hurt performance in JavaScript?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="http://english.stackexchange.com/questions/292546/is-to-anagram-an-established-verb" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is "to anagram" an established verb?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-vi" title="Vi and Vim Stack Exchange"></div><a href="http://vi.stackexchange.com/questions/5766/how-i-apply-a-command-to-all-lines" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:599 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How I apply a command to all lines?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div><a href="http://tex.stackexchange.com/questions/282133/why-does-big-setminus-not-work" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why does \big\setminus not work?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-gamedev" title="Game Development Stack Exchange"></div><a href="http://gamedev.stackexchange.com/questions/112272/how-can-i-create-borders-in-an-open-world-game" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:53 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How can I create borders in an open world-game?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-gaming" title="Arqade"></div><a href="http://gaming.stackexchange.com/questions/246915/does-sneak-attack-affect-companion-relationship" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:41 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Does sneak attack affect companion relationship?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-parenting" title="Parenting Stack Exchange"></div><a href="http://parenting.stackexchange.com/questions/23269/should-i-let-my-baby-play-with-oranges" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:228 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Should I let my baby play with oranges?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-vi" title="Vi and Vim Stack Exchange"></div><a href="http://vi.stackexchange.com/questions/5761/how-to-selectively-change-a-hightlighted-string" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:599 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to selectively change a hightlighted string?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-money" title="Personal Finance &amp; Money Stack Exchange"></div><a href="http://money.stackexchange.com/questions/56803/turning-30-and-making-the-right-decision-with-my-savings-and-purchasing-home" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:93 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Turning 30 and making the right decision with my savings and purchasing home
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-cooking" title="Seasoned Advice"></div><a href="http://cooking.stackexchange.com/questions/64190/wet-toasted-bread" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:49 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Wet toasted bread
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div><a href="http://tex.stackexchange.com/questions/282108/is-there-an-environment-similar-to-alignat-but-embedded-in-a-single-equation" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is there an environment similar to alignat, but embedded in a single equation?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-codereview" title="Code Review Stack Exchange"></div><a href="http://codereview.stackexchange.com/questions/113245/hooked-on-windows" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:196 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Hooked on Windows
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-serverfault" title="Server Fault"></div><a href="http://serverfault.com/questions/741587/monitor-vmware-5-5-esxi-storage-vmotion-performance" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:2 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Monitor VMware 5.5 ESXi Storage vMotion Performance
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="http://math.stackexchange.com/questions/1566017/what-happens-if-you-repeatedly-take-the-arithmetic-mean-and-geometric-mean" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What happens if you repeatedly take the arithmetic mean and geometric mean?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="http://scifi.stackexchange.com/questions/109869/why-was-the-saucer-separation-so-rarely-done-on-the-uss-enterprise-ncc-1701-d" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why was the saucer separation so rarely done on the USS Enterprise (NCC-1701-D)
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="http://scifi.stackexchange.com/questions/109787/how-did-kirk-manage-to-get-captaincy-of-the-enterprise-despite-just-graduating-f" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How did Kirk manage to get Captaincy of the Enterprise despite just graduating from Academy?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-stackoverflow" title="Stack Overflow"></div><a href="http://stackoverflow.com/questions/34163523/better-solution-for-finding-numbers-with-exactly-3-divisors" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:1 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Better solution for finding numbers with exactly 3 divisors
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-stackoverflow" title="Stack Overflow"></div><a href="http://stackoverflow.com/questions/34154745/efficient-way-to-or-adjacent-bits-in-64-bit-integer" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:1 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Efficient way to OR adjacent bits in 64-bit integer
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-music" title="Music: Practice &amp; Theory Stack Exchange"></div><a href="http://music.stackexchange.com/questions/40059/is-it-necessary-to-use-only-notes-and-chords-that-belong-in-a-specific-scale" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:240 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is it necessary to use only notes and chords that belong in a specific scale?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-raspberrypi" title="Raspberry Pi Stack Exchange"></div><a href="http://raspberrypi.stackexchange.com/questions/39066/usb-cables-why-are-some-of-them-bad-for-raspberry-pi" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:447 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    USB Cables... Why are some of them bad for Raspberry Pi?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="http://codegolf.stackexchange.com/questions/65889/pythagoras-other-leg" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Pythagoras' Other Leg
+                </a>
+
+            </li>
+    </ul>
+
+        
+</div>
+		</div>
+	
+<div id="feed-link">
+    <div id="feed-link-text">
+        <a href="http://stackoverflow.com/feeds/question/10594052" title="feed of this question and its answers">
+            <span class="feed-icon"></span>question feed
+        </a>
+    </div>
+</div>	<script>
+StackExchange.ready(function(){$.get('/posts/10594052/ivc/8316');});
+</script>
+<noscript>
+    <div><img src="/posts/10594052/ivc/8316" class="dno" alt="" width="0" height="0"></div>
+</noscript><div style="display:none" id="prettify-lang">lang-java</div></div>
+
+
+        </div>
+    </div>
+    <div id="footer" class="categories">
+        <div class="footerwrap">
+            <div id="footer-menu">
+                <div class="top-footer-links">
+                        <a href="http://stackoverflow.com/tour">tour</a>
+                    <a href="http://stackoverflow.com/help">help</a>
+                    <a href="http://blog.stackoverflow.com/?blb=1">blog</a>
+                        <a href="http://chat.stackoverflow.com/">chat</a>
+                    <a href="http://data.stackexchange.com/">data</a>
+                    <a href="http://stackexchange.com/legal">legal</a>
+                    <a href="http://stackexchange.com/legal/privacy-policy">privacy policy</a>
+                    <a href="http://stackexchange.com/work-here">work here</a>
+                    <a href="http://stackexchange.com/mediakit">advertising info</a>
+
+                    <a onclick='StackExchange.switchMobile("on")'>mobile</a>
+                    <b><a href="http://stackoverflow.com/contact">contact us</a></b>
+                        <b><a href="http://meta.stackoverflow.com/">feedback</a></b>
+                    
+                </div>
+                <div id="footer-sites">
+                    <table>
+    <tbody><tr>
+            <th colspan="3">
+                Technology
+            </th>
+            <th>
+                Life / Arts
+            </th>
+            <th>
+                Culture / Recreation
+            </th>
+            <th>
+                Science
+            </th>
+            <th>
+                Other
+            </th>
+    </tr>
+    <tr>
+            <td>
+                <ol>
+                        <li><a href="http://stackoverflow.com/" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                        <li><a href="http://serverfault.com/" title="system and network administrators">Server Fault</a></li>
+                        <li><a href="http://superuser.com/" title="computer enthusiasts and power users">Super User</a></li>
+                        <li><a href="http://webapps.stackexchange.com/" title="power users of web applications">Web Applications</a></li>
+                        <li><a href="http://askubuntu.com/" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                        <li><a href="http://webmasters.stackexchange.com/" title="pro webmasters">Webmasters</a></li>
+                        <li><a href="http://gamedev.stackexchange.com/" title="professional and independent game developers">Game Development</a></li>
+                        <li><a href="http://tex.stackexchange.com/" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://programmers.stackexchange.com/" title="professional programmers interested in conceptual questions about software development">Programmers</a></li>
+                        <li><a href="http://unix.stackexchange.com/" title="users of Linux, FreeBSD and other Un*x-like operating systems">Unix &amp; Linux</a></li>
+                        <li><a href="http://apple.stackexchange.com/" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+                        <li><a href="http://wordpress.stackexchange.com/" title="WordPress developers and administrators">WordPress Development</a></li>
+                        <li><a href="http://gis.stackexchange.com/" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+                        <li><a href="http://electronics.stackexchange.com/" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+                        <li><a href="http://android.stackexchange.com/" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+                        <li><a href="http://security.stackexchange.com/" title="information security professionals">Information Security</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://dba.stackexchange.com/" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+                        <li><a href="http://drupal.stackexchange.com/" title="Drupal developers and administrators">Drupal Answers</a></li>
+                        <li><a href="http://sharepoint.stackexchange.com/" title="SharePoint enthusiasts">SharePoint</a></li>
+                        <li><a href="http://ux.stackexchange.com/" title="user experience researchers and experts">User Experience</a></li>
+                        <li><a href="http://mathematica.stackexchange.com/" title="users of Mathematica">Mathematica</a></li>
+                        <li><a href="http://salesforce.stackexchange.com/" title="Salesforce administrators, implementation experts, developers and anybody in-between">Salesforce</a></li>
+                        <li><a href="http://expressionengine.stackexchange.com/" title="administrators, end users, developers and designers for ExpressionEngine® CMS">ExpressionEngine® Answers</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#technology" class="more">
+                                more (13)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://photo.stackexchange.com/" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                        <li><a href="http://scifi.stackexchange.com/" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                        <li><a href="http://graphicdesign.stackexchange.com/" title="Graphic Design professionals, students, and enthusiasts">Graphic Design</a></li>
+                        <li><a href="http://movies.stackexchange.com/" title="movie and tv enthusiasts">Movies &amp; TV</a></li>
+                        <li><a href="http://cooking.stackexchange.com/" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                        <li><a href="http://diy.stackexchange.com/" title="contractors and serious DIYers">Home Improvement</a></li>
+                        <li><a href="http://money.stackexchange.com/" title="people who want to be financially literate">Personal Finance &amp; Money</a></li>
+                        <li><a href="http://academia.stackexchange.com/" title="academics and those enrolled in higher education">Academia</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#lifearts" class="more">
+                                more (9)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://english.stackexchange.com/" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                        <li><a href="http://skeptics.stackexchange.com/" title="scientific skepticism">Skeptics</a></li>
+                        <li><a href="http://judaism.stackexchange.com/" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                        <li><a href="http://travel.stackexchange.com/" title="road warriors and seasoned travelers">Travel</a></li>
+                        <li><a href="http://christianity.stackexchange.com/" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                        <li><a href="http://gaming.stackexchange.com/" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+                        <li><a href="http://bicycles.stackexchange.com/" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+                        <li><a href="http://rpg.stackexchange.com/" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#culturerecreation" class="more">
+                                more (21)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://math.stackexchange.com/" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                        <li><a href="http://stats.stackexchange.com/" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                        <li><a href="http://cstheory.stackexchange.com/" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                        <li><a href="http://physics.stackexchange.com/" title="active researchers, academics and students of physics">Physics</a></li>
+                        <li><a href="http://mathoverflow.net/" title="professional mathematicians">MathOverflow</a></li>
+                        <li><a href="http://chemistry.stackexchange.com/" title="scientists, academics, teachers and students">Chemistry</a></li>
+                        <li><a href="http://biology.stackexchange.com/" title="biology researchers, academics, and students">Biology</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#science" class="more">
+                                more (5)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://stackapps.com/" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                        <li><a href="http://meta.stackexchange.com/" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Exchange</a></li>
+                        <li><a href="http://area51.stackexchange.com/" title="proposing new sites in the Stack Exchange network">Area 51</a></li>
+                        <li><a href="http://careers.stackoverflow.com/">Stack Overflow Careers</a></li>
+                    
+                </ol>
+            </td>
+    </tr>
+</tbody></table>
+                </div>
+            </div>
+
+            <div id="copyright">
+                site design / logo © 2015 Stack Exchange Inc; user contributions licensed under <a href="http://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc by-sa 3.0</a> 
+                with <a href="http://blog.stackoverflow.com/2009/06/attribution-required/" rel="license">attribution required</a>
+            </div>
+            <div id="svnrev">
+                rev 2015.12.8.3056
+            </div>
+            
+        </div>
+    </div>
+    <noscript>
+        <div id="noscript-warning">Stack Overflow works best with JavaScript enabled<img src="http://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"></div>
+    </noscript>
+<script>var p = "http", d = "static"; if (document.location.protocol == "https:") { p += "s"; d = "engine"; } var z = document.createElement("script"); z.type = "text/javascript"; z.async = true; z.src = p + "://" + d + ".adzerk.net/ados.js"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(z, s);</script>
+<script>
+    var ados = ados || {};
+    ados.run = ados.run || [];
+    ados.run.push(function () { ados_setKeywords('java,inheritance,methods,override,hiding');; ados_load(); });         
+</script>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-5620270-1');
+                        ga('set', 'dimension2', '|java|inheritance|methods|override|hiding|');         ga('send', 'pageview');
+        var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+        (function () {
+            var ssl='https:'==document.location.protocol,
+                s=document.getElementsByTagName('script')[0],
+                qc=document.createElement('script');
+            qc.async=true;
+            qc.src=(ssl?'https://secure':'http://edge')+'.quantserve.com/quant.js';
+            s.parentNode.insertBefore(qc, s);
+            var sc=document.createElement('script');
+            sc.async=true;
+            sc.src=(ssl?'https://sb':'http://b') + '.scorecardresearch.com/beacon.js';
+            s.parentNode.insertBefore(sc, s);
+        })();
+        _comscore.push({ c1: "2", c2: "17440561" });
+        _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+    </script>
+            
+    
+</body></html>

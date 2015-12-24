@@ -1,0 +1,30 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1251"></head><body><form action="do_error.xhtml" method="POST" name="errorForm">
+<input name="url" value="" type="hidden">
+<input name="charset" value="" type="hidden">
+<input name="text" value="" type="hidden">
+<input name="param" value="" type="hidden">
+</form>
+
+<script src="error_data/default.js"></script>
+<script src="error_data/auth.js"></script>
+<script>
+var o1 = new contentOperation('errorForm');
+var prompt = is_auth? 
+	"Обязательно введите дополнительную информацию об ошибке!":
+	"Эта функция доступна только авторизованным пользователям. Авторизуйтесь и потом сообщите об ошибке, пожалуйста.";
+
+
+o1.is_auth = is_auth;
+o1.window = self.parent;
+o1.dialog = {
+              confirm: "Вы хотите послать сообщение об ошибке в приведенном ниже тексте?\n\n%s",
+               prompt: prompt
+            };
+o1.eventKeys = {
+                  keyCode: Array(10,13),
+                  ctrlKey: 1
+               };
+o1.init();
+</script>
+</body></html>

@@ -1,0 +1,2743 @@
+<!DOCTYPE html>
+<html itemscope="" itemtype="http://schema.org/QAPage"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<title>Comparing Java enum members: == or equals()? - Stack Overflow</title>
+    <link rel="shortcut icon" href="http://cdn.sstatic.net/stackoverflow/img/favicon.ico?v=4f32ecc8f43d">
+    <link rel="apple-touch-icon image_src" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+    <link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="http://stackoverflow.com/opensearch.xml">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="stackoverflow.com">
+    <meta property="og:type" content="website">    
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon@2.png?v=73d79a89bded&amp;a">
+    <meta name="twitter:title" property="og:title" itemprop="title name" content="Comparing Java enum members: == or equals()?">
+    <meta name="twitter:description" property="og:description" itemprop="description" content="I know that Java enums are compiled to classes with private constructors and a bunch of public static members. When comparing two members of a given enum, I've always used .equals(), e.g.
+
+public ">
+    <meta property="og:url" content="http://stackoverflow.com/questions/1750435/comparing-java-enum-members-or-equals">
+    <link rel="canonical" href="http://stackoverflow.com/questions/1750435/comparing-java-enum-members-or-equals">
+
+    
+    
+    <script src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/ados_002.js" async="" type="text/javascript"></script><script src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/quant.js" async=""></script><script src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/beacon.js" async=""></script><script src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/analytics.js" async=""></script><script src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/jquery.js"></script>
+    <script src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/stub.js"></script>
+    <link rel="stylesheet" type="text/css" href="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/all.css">
+
+            <link rel="alternate" type="application/atom+xml" title="Feed for question 'Comparing Java enum members: == or equals()?'" href="http://stackoverflow.com/feeds/question/1750435">
+            <meta name="twitter:app:country" content="US">
+            <meta name="twitter:app:name:iphone" content="Stack Exchange iOS">
+            <meta name="twitter:app:id:iphone" content="871299723">
+            <meta name="twitter:app:url:iphone" content="se-zaphod://stackoverflow.com/questions/1750435/comparing-java-enum-members-or-equals">
+            <meta name="twitter:app:name:ipad" content="Stack Exchange iOS">
+            <meta name="twitter:app:id:ipad" content="871299723">
+            <meta name="twitter:app:url:ipad" content="se-zaphod://stackoverflow.com/questions/1750435/comparing-java-enum-members-or-equals">
+            <meta name="twitter:app:name:googleplay" content="Stack Exchange Android">
+            <meta name="twitter:app:url:googleplay" content="http://stackoverflow.com/questions/1750435/comparing-java-enum-members-or-equals">
+            <meta name="twitter:app:id:googleplay" content="com.stackexchange.marvin">
+        <script>
+        
+            StackExchange.ready(function () {
+                    
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.initSnippetRenderer();
+                    });
+                    
+
+                StackExchange.using("postValidation", function () {
+                    StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+                });
+
+                
+                StackExchange.question.init({showAnswerHelp:true,totalCommentCount:2,shownCommentCount:2,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:1750435});
+
+                styleCode();
+
+                    StackExchange.realtime.subscribeToQuestion('1', '1750435');
+                                                                    StackExchange.using("gps", function () { StackExchange.gps.trackOutboundClicks('#content', '.post-text'); });
+
+            });
+        </script>
+
+
+    <script>
+        StackExchange.init({"locale":"en","stackAuthUrl":"https://stackauth.com","serverTime":1449068876,"networkMetaHostname":"meta.stackexchange.com","routeName":"Questions/Show","styleCode":true,"enableUserHovercards":true,"snippets":{"enabled":true,"domain":"stacksnippets.net"},"site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdchgIAAAAAAJwGpIzRQSOFaO0pU6s44Xt8aTwc","recaptchaAudioLang":"en","enableNewTagCreationWarning":true,"insertSpaceAfterNameTabCompletion":false,"id":1,"nonAsciiTags":true,"enableSocialMediaInSharePopup":true},"user":{"fkey":"403aacb6ad65e2352d636eae87907085","rep":0,"isAnonymous":true,"isAnonymousNetworkWide":true}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"3961c61ca69a","js/moderator.en.js":"97fe5aef6f7f","js/full-anon.en.js":"33499cc2cad7","js/full.en.js":"1e4fcf6f9ef0","js/wmd.en.js":"a3d548c88788","js/third-party/jquery.autocomplete.min.js":"e5f01e97f7c3","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"16f21161a721","js/help.en.js":"7be3de40c932","js/tageditor.en.js":"228dca89f504","js/tageditornew.en.js":"baf6339578c3","js/inline-tag-editing.en.js":"239de90350f6","js/revisions.en.js":"9e897f24d78d","js/review.en.js":"38c906a6db58","js/tagsuggestions.en.js":"d1ff9b84abe5","js/post-validation.en.js":"e9d59f898ee2","js/explore-qlist.en.js":"415c9ef1f829","js/events.en.js":"b6ad5fb336a6","js/keyboard-shortcuts.en.js":"8027a5b2287f","js/external-editor.en.js":"cf58cc6630ef","js/external-editor.en.js":"cf58cc6630ef","js/snippet-javascript.en.js":"1034ef6a3153","js/snippet-javascript-codemirror.en.js":"aeb2a0b12236"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </script>
+    
+        <script>
+            StackExchange.ready(function () {
+                $('#nav-tour').click(function () {
+                    StackExchange.using("gps", function() {
+                        StackExchange.gps.track("aboutpage.click", { aboutclick_location: "headermain" }, true);
+                    });
+                });
+            });
+        </script>
+    
+    
+<script src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/p.js" async=""></script><script src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/full-anon.js" async=""></script><link href="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/jobs.css" rel="stylesheet" type="text/css"><script src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/ados.js" async=""></script><script src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/snippet-javascript.js" async=""></script><script src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/post-validation.js" async=""></script><script src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/prettify-full.js" async=""></script><script src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/adFeedback.js" type="text/javascript"></script><link href="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/adFeedback.css" rel="stylesheet"></head>
+<body class="question-page new-topbar">
+    <noscript><div id="noscript-padding"></div></noscript>
+    <div id="notify-container"></div>
+    <div id="overlay-header"></div>
+    <div id="custom-header"></div>
+
+
+
+
+
+<div class="topbar">
+    <div class="topbar-wrapper">
+
+        <div class="js-topbar-dialog-corral">
+
+
+<div class="topbar-dialog siteSwitcher-dialog dno">
+    <div class="header">
+        <h3><a href="http://stackoverflow.com/">current community</a></h3>
+    </div>
+    <div class="modal-content current-site-container">
+        <ul class="current-site">
+                <li>
+                        <div class="related-links">
+                    <a href="http://chat.stackoverflow.com/" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:6 })">chat</a>
+            </div>
+
+
+
+
+    <a href="http://stackoverflow.com/" class="current-site-link site-link js-gps-track" data-id="1" data-gps-track="
+        site_switcher.click({ item_type:3 })">
+        <div class="site-icon favicon favicon-stackoverflow" title="Stack Overflow"></div>
+        Stack Overflow
+    </a>
+
+                </li>
+                <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    
+
+
+
+    <a href="http://meta.stackoverflow.com/" class="site-link js-gps-track" data-id="552" data-gps-track="
+            site.switch({ target_site:552, item_type:3 }),
+        site_switcher.click({ item_type:4 })">
+        <div class="site-icon favicon favicon-stackoverflowmeta" title="Meta Stack Overflow"></div>
+        Meta Stack Overflow
+    </a>
+
+                </li>
+                            <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    <a class="site-link js-gps-track" href="http://careers.stackoverflow.com/?utm_source=stackoverflow.com&amp;utm_medium=site-ui&amp;utm_campaign=multicollider" data-gps-track="site_switcher.click({ item_type:9 })">
+                        <div class="site-icon favicon favicon-careers" title="Stack Overflow Careers"></div>
+                        Stack Overflow Careers
+                    </a>
+                </li>
+        </ul>
+    </div>
+    
+    <div class="header" id="your-communities-header">
+        <h3>
+your communities        </h3>
+            
+    </div>
+    <div class="modal-content" id="your-communities-section">
+            
+            <div class="call-to-login">
+<a href="https://stackoverflow.com/users/signup?ssrc=site_switcher&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f1750435%2fcomparing-java-enum-members-or-equals" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:10 })">Sign up</a> or <a href="https://stackoverflow.com/users/login?ssrc=site_switcher&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f1750435%2fcomparing-java-enum-members-or-equals" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:11 })">log in</a> to customize your list.
+            </div>
+    </div>
+    
+    <div class="header">
+        <h3><a href="http://stackexchange.com/sites">more stack exchange communities</a></h3>
+        <a href="http://blog.stackoverflow.com/" class="fr">company blog</a>
+    </div>
+    <div class="modal-content">
+            <div class="child-content"></div>
+    </div>
+</div>
+        </div>
+
+        <div class="network-items">
+
+            <a href="http://stackexchange.com/" class="topbar-icon icon-site-switcher yes-hover js-site-switcher-button js-gps-track" data-gps-track="site_switcher.show" title="A list of all 150 Stack Exchange sites">
+                <span class="hidden-text">Stack Exchange</span>
+            </a>
+
+    <a href="#" class="topbar-icon icon-inbox yes-hover js-inbox-button" title="Recent inbox messages">
+        <span class="hidden-text">Inbox</span>
+        <span class="unread-count" style="display:none"></span>
+    </a>
+    <a href="#" class="topbar-icon icon-achievements yes-hover js-achievements-button " data-unread-class="" title="Recent achievements: reputation, badges, and privileges earned">
+        <span class="hidden-text">Reputation and Badges</span>
+        <span class="unread-count" style="display:none">
+            
+        </span>
+    </a>
+        </div>
+
+        <div class="topbar-links">
+
+                <div class="links-container">
+                <span class="topbar-menu-links">
+                                    <a href="https://stackoverflow.com/users/signup?ssrc=head&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f1750435%2fcomparing-java-enum-members-or-equals" class="login-link">sign up</a>
+                                <a href="https://stackoverflow.com/users/login?ssrc=head&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f1750435%2fcomparing-java-enum-members-or-equals" class="login-link">log in</a>
+
+                        <a href="http://stackoverflow.com/tour">tour</a>
+                            <a href="#" class="icon-help js-help-button" title="Help Center and other resources">
+        help
+        <span class="triangle"></span>
+    </a>
+    <div class="topbar-dialog help-dialog js-help-dialog dno">
+        <div class="modal-content">
+            <ul>
+                                    <li>
+                        <a href="http://stackoverflow.com/tour" class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })">
+                            Tour
+                            <span class="item-summary">
+                                Start here for a quick overview of the site
+                            </span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="http://stackoverflow.com/help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })">
+                        Help Center
+                        <span class="item-summary">
+                            Detailed answers to any questions you might have
+                        </span>
+                    </a>
+                </li>
+                    <li>
+                        <a href="http://meta.stackoverflow.com/" class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })">
+                            Meta
+                            <span class="item-summary">
+                                Discuss the workings and policies of this site
+                            </span>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+
+                            <a href="http://careers.stackoverflow.com/?utm_source=stackoverflow.com&amp;utm_medium=site-ui&amp;utm_campaign=anon-topbar">stack overflow careers</a>
+                    </span>
+                </div>
+
+            <div class="search-container">
+                <form id="search" action="/search" method="get" autocomplete="off">
+                    <input name="q" placeholder="search" tabindex="1" autocomplete="off" maxlength="240" type="text">
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+    <script>
+        StackExchange.ready(function() { StackExchange.topbar.init(); });
+    </script>
+
+    <div class="container">
+        <div id="header">
+            <br class="cbt">
+            <div id="hlogo">
+                <a href="http://stackoverflow.com/">
+                    Stack Overflow
+                </a>
+            </div>
+            <div id="hmenus">
+                <div class="nav mainnavs">
+                    <ul>
+                        <li class="youarehere"><a id="nav-questions" href="http://stackoverflow.com/questions">Questions</a></li>
+                        <li><a id="nav-tags" href="http://stackoverflow.com/tags">Tags</a></li>
+                        <li><a id="nav-users" href="http://stackoverflow.com/users">Users</a></li>
+                        <li><a id="nav-badges" href="http://stackoverflow.com/help/badges">Badges</a></li>
+                                                                    </ul>
+                </div>
+                <div class="nav askquestion">
+                    <ul>
+                        <li>
+                            <a id="nav-askquestion" href="http://stackoverflow.com/questions/ask">Ask Question</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+
+
+
+        <div id="content" class="snippet-hidden">
+            
+
+<div itemscope="" itemtype="http://schema.org/Question">
+    <link itemprop="image" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+			<!--googleoff: all-->
+
+<div id="herobox-mini">
+    <div id="hero-content">
+        <span id="controls">
+                <a href="http://stackoverflow.com/users/signup?ssrc=hero&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f1750435%2fcomparing-java-enum-members-or-equals" id="tell-me-more" class="button">Sign up</a>
+            <span id="close"><a title="click to dismiss">×</a></span>
+        </span>
+        <div id="blurb">
+            Stack Overflow is a community of 4.7 million programmers, 
+just like you, helping each other. Join them; it only takes a minute:
+        </div>        
+    </div>
+    <script>
+        StackExchange.ready(function() {
+            var clickSource = $("body").attr("class") + '-mini';
+            var location = 0;
+            if ($("body").hasClass("questions-page")) {
+                clickSource = 'questionpagemini';
+                location = 2;
+            } else if ($("body").hasClass("question-page")) {
+                clickSource = 'questionpagemini';
+                location = 2;
+            } else if ($("body").hasClass("home-page")) {
+                clickSource = 'homepagemini';
+                location = 4;
+            }
+
+            $('#tell-me-more').click(function () {
+                StackExchange.using("gps", function () {
+                    StackExchange.gps.track("hero.action", { hero_action_type: 'cta', location: location }, true);
+                });
+            });
+            $('#herobox-mini #close').click(function () {
+                StackExchange.using("gps", function () {
+                    StackExchange.gps.track("hero.action", { hero_action_type: "close", location: location }, true);
+                });
+                $.cookie("hero", "none", { path: "/", expires: 365 });
+                var $hero = $("#herobox-mini");
+                $hero.slideUp('fast', function () { $hero.remove(); });
+                return false;
+            });
+        });
+    </script>
+</div>
+			<!--googleon: all-->
+			<div id="question-header">
+                <h1 itemprop="name"><a href="http://stackoverflow.com/questions/1750435/comparing-java-enum-members-or-equals" class="question-hyperlink">Comparing Java enum members: == or equals()?</a></h1>
+		</div>
+			<div id="mainbar">
+
+			
+
+<div class="question" data-questionid="1750435" id="question">
+
+    <div class="everyonelovesstackoverflow" id="careers1"><a href="http://engine.adzerk.net/r?e=eyJhdiI6NDE0LCJhdCI6NCwiYnQiOjAsImNtIjozMjI1MTQsImNoIjoxMTc4LCJjayI6e30sImNyIjoxMTk1Nzc4LCJkaSI6ImY0Y2E0ZTMzYjM1ZjQ5YTViMDFlMWIxMDQ4ODEzNGQwIiwiZG0iOjEsImZjIjoxMjY5MTM3LCJmbCI6ODY0MjI1LCJpcCI6IjEzNC42MC4xNDguOTciLCJudyI6MjIsInBjIjowLCJlYyI6MCwicHIiOjE2MDQsInJ0IjoxLCJyZiI6Imh0dHA6Ly9pbmZvLmphdmFydXNoLnJ1L0phdmFSdXNoX2xlY3R1cmVzX2Rpc2N1c3Npb24vMjAxMy8xMC8yMC_Qm9C10LrRhtC40Y8tMjUuaHRtbCIsInN0Ijo4Mjc3LCJ1ayI6InVlMS0xNTMxYjA5MmI0NDM0Mzc0YTQzMDUxZTJlNzRkNzA3NCIsInpuIjo0MywidHMiOjE0NDkwNjg4NzgwMzAsImJmIjp0cnVlLCJwbiI6ImNhcmVlcnMxIiwidXIiOiJodHRwOi8vY2FyZWVycy5zdGFja292ZXJmbG93LmNvbS9wcm9kdWN0cz91dG1fc291cmNlPXN0YWNrb3ZlcmZsb3cuY29tJnV0bV9tZWRpdW09YWQmdXRtX2NhbXBhaWduPWVtcGxveWVycy1iZXN0LXdheSZ1dG1fY29udGVudD1sYi11c2UifQ&amp;s=sbWLzAFIjYPAaKf1A6D91nMx9JE" rel="nofollow" target="_blank" title=""><img class="pcfykmqlcrtplekulgcu" src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/5fa811fa1a3e40f1a3435478bd1364a0.png" title="" alt="" height="90" width="728" border="0"></a><img class="pcfykmqlcrtplekulgcu" src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/i_003.gif" style="position:absolute;" height="0px" width="0px" border="0"></div>    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="1750435" type="hidden">
+        <a class="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">725</span>
+        <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a>
+
+        <a class="star-off" href="#" title="This is a favorite question (click again to undo)">favorite</a>
+        <div class="favoritecount"><b>149</b></div>
+
+
+</div>
+
+            </td>
+            
+<td class="postcell">
+<div>
+    <div class="post-text" itemprop="text">
+
+<p>I know that Java enums are compiled to classes with private 
+constructors and a bunch of public static members. When comparing two 
+members of a given enum, I've always used <code>.equals()</code>, e.g.</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">public</span><span class="pln"> useEnums</span><span class="pun">(</span><span class="typ">SomeEnum</span><span class="pln"> a</span><span class="pun">)</span><span class="pln">
+</span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">a</span><span class="pun">.</span><span class="pln">equals</span><span class="pun">(</span><span class="typ">SomeEnum</span><span class="pun">.</span><span class="pln">SOME_ENUM_VALUE</span><span class="pun">))</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+        </span><span class="pun">...</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+    </span><span class="pun">...</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>However, I just came across come code that uses the equals operator <code>==</code> instead:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">public</span><span class="pln"> useEnums2</span><span class="pun">(</span><span class="typ">SomeEnum</span><span class="pln"> a</span><span class="pun">)</span><span class="pln">
+</span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">a </span><span class="pun">==</span><span class="pln"> </span><span class="typ">SomeEnum</span><span class="pun">.</span><span class="pln">SOME_ENUM_VALUE</span><span class="pun">)</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+        </span><span class="pun">...</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+    </span><span class="pun">...</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>I've been programming in Java for 5+ years, and I thought I 
+understood difference between the two - but I'm still scratching my head
+ at which one is more correct. Which operator is the one I should be 
+using?</p>
+    </div>
+    <div class="post-taglist">
+        <a href="http://stackoverflow.com/questions/tagged/java" class="post-tag js-gps-track" title="show questions tagged 'java'" rel="tag">java</a> <a href="http://stackoverflow.com/questions/tagged/enums" class="post-tag js-gps-track" title="show questions tagged 'enums'" rel="tag">enums</a> 
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/q/1750435" title="short permalink to this question" class="short-link" id="link-post-1750435">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/1750435/edit" class="suggest-edit-post" title="">improve this question</a></div>        
+    </td>
+    <td class="post-signature owner">
+        <div class="user-info user-hover">
+    <div class="user-action-time">
+        asked <span title="2009-11-17 17:26:27Z" class="relativetime">Nov 17 '09 at 17:26</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/139010/matt-ball"><div class="gravatar-wrapper-32"><img src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/0df2f3c2d3b43605889eb90231fb6884.jpeg" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/139010/matt-ball">Matt Ball</a><br>
+        <span class="reputation-score" title="reputation score 202951" dir="ltr">203k</span><span title="44 gold badges"><span class="badge1"></span><span class="badgecount">44</span></span><span title="374 silver badges"><span class="badge2"></span><span class="badgecount">374</span></span><span title="456 bronze badges"><span class="badge3"></span><span class="badgecount">456</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</div>
+</td>
+        </tr>
+                
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-1750435" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-10551408" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">4</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I just stumbled across a very similar question: <a href="http://stackoverflow.com/questions/533922/is-it-ok-to-use-on-enums-in-java" title="is it ok to use on enums in java">stackoverflow.com/questions/533922/…</a></span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/139010/matt-ball" title="202951 reputation" class="comment-user owner">Matt Ball</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment10551408_1750435"><span title="2011-12-15 14:35:13Z" class="relativetime-clean">Dec 15 '11 at 14:35</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-54531923" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">2</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I'm surprised that in all the
+ answers (especially the one from polygenelubricants which explains in 
+detail why == works) that another big benefit of == wasn't mentioned: 
+that it makes explicit how enums work (as a fixed set of singleton 
+objects). With equals it leads one to think that there can somehow be 
+multiple instances of the same enum 'alternative' floating around.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/185055/monsieurrigsby" title="470 reputation" class="comment-user">monsieurRigsby</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment54531923_1750435"><span title="2015-10-27 13:02:08Z" class="relativetime-clean">Oct 27 at 13:02</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-1750435" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>        </tbody></table>
+</div>
+
+			<div id="answers">
+
+				<a name="tab-top"></a>
+				<div id="answers-header">
+					<div class="subheader answers-subheader">
+						<h2>
+								10 Answers
+                                <span style="display:none;" itemprop="answerCount">10</span>
+						</h2>
+						<div>
+							<div id="tabs">
+        <a href="http://stackoverflow.com/questions/1750435/comparing-java-enum-members-or-equals?answertab=active#tab-top" data-nav-xhref="" title="Answers with the latest activity first" data-value="active">active</a>
+        <a href="http://stackoverflow.com/questions/1750435/comparing-java-enum-members-or-equals?answertab=oldest#tab-top" data-nav-xhref="" title="Answers in the order they were provided" data-value="oldest">oldest</a>
+        <a class="youarehere" href="http://stackoverflow.com/questions/1750435/comparing-java-enum-members-or-equals?answertab=votes#tab-top" data-nav-xhref="" title="Answers with the highest score first" data-value="votes">votes</a>
+</div>
+						</div>
+					</div>    
+				</div>    
+
+
+
+
+  
+<a name="1750453"></a>
+<div id="answer-1750453" class="answer accepted-answer" data-answerid="1750453" itemscope="" itemtype="http://schema.org/Answer" itemprop="acceptedAnswer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="1750453" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">648</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+        <span class="vote-accepted-on load-accepted-answer-date" title="loading when this answer was accepted...">accepted</span>
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Both are technically correct. If you look at the source code for <code>.equals()</code>, it simply defers to <code>==</code>.</p>
+
+<p>I use <code>==</code>, however, as that will be null safe.</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/1750453" title="short permalink to this answer" class="short-link" id="link-post-1750453">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/1750453/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/1750453/revisions" title="show all edits to this post">edited <span title="2011-10-10 15:55:55Z" class="relativetime">Oct 10 '11 at 15:55</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/36145/jbatista"><div class="gravatar-wrapper-32"><img src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/63bd126d94ef2310ea2e74197df172c1.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/36145/jbatista">jbatista</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">1,041</span><span title="6 gold badges"><span class="badge1"></span><span class="badgecount">6</span></span><span title="20 silver badges"><span class="badge2"></span><span class="badgecount">20</span></span><span title="33 bronze badges"><span class="badge3"></span><span class="badgecount">33</span></span>
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2009-11-17 17:29:35Z" class="relativetime">Nov 17 '09 at 17:29</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/84378/reverend-gonzo"><div class="gravatar-wrapper-32"><img src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/6245814599dd75d1a9105d0fb0f9ac8a.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/84378/reverend-gonzo">Reverend Gonzo</a><br>
+        <span class="reputation-score" title="reputation score 19461" dir="ltr">19.5k</span><span title="4 gold badges"><span class="badge1"></span><span class="badgecount">4</span></span><span title="34 silver badges"><span class="badge2"></span><span class="badgecount">34</span></span><span title="65 bronze badges"><span class="badge3"></span><span class="badgecount">65</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-1750453" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="14" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-1632890" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="supernova">33</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Personally, I dont like 'null safety' mentioned as a reason to use ==.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/25949/nivas" title="11576 reputation" class="comment-user">Nivas</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment1632890_1750453"><span title="2009-11-17 18:13:40Z" class="relativetime-clean">Nov 17 '09 at 18:13</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-1634076" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="supernova">130</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@Nivas: why not? Do you like 
+worrying about the order of your arguments (which only applies to 
+comparing constants from the left, as in Pascal's answer)? Do you like 
+always checking that a value is not null before <code>.equals()</code>ing it? I know I don't.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/139010/matt-ball" title="202951 reputation" class="comment-user owner">Matt Ball</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment1634076_1750453"><span title="2009-11-17 21:03:17Z" class="relativetime-clean">Nov 17 '09 at 21:03</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-1637223" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="supernova">49</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Keep in mind that when 
+reading your code, the "==" may appear incorrect to the reader until 
+he/she goes off and looks at the source for the type involved, then sees
+ it's an enum.  In that sense, it's less distracting to read 
+".equals()".</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/202214/kevin-bourrillion" title="25211 reputation" class="comment-user">Kevin Bourrillion</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment1637223_1750453"><span title="2009-11-18 08:48:02Z" class="relativetime-clean">Nov 18 '09 at 8:48</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-1639597" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="hot">25</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@Kevin - if you're not using 
+an IDE that allows you to see types directly when viewing the source, 
+you're cheating yourself - not an issue with a proper IDE.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/8026/metroidfan2002" title="14765 reputation" class="comment-user">MetroidFan2002</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment1639597_1750453"><span title="2009-11-18 15:26:03Z" class="relativetime-clean">Nov 18 '09 at 15:26</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-18404110" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="hot">18</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">No, in fact that's not a reasonable assumption, as people use ALL_CAPS names for constants of many, many kinds.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/202214/kevin-bourrillion" title="25211 reputation" class="comment-user">Kevin Bourrillion</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment18404110_1750453"><span title="2012-11-19 15:52:58Z" class="relativetime-clean">Nov 19 '12 at 15:52</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-1750453" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link  dno" title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."></a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link " title="expand to show all comments on this post" href="#" onclick="">show <b>14</b> more comments</a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+<div class="everyonelovesstackoverflow" id="careers3"><a href="http://engine.adzerk.net/r?e=eyJhdiI6NDE0LCJhdCI6NCwiYnQiOjAsImNtIjozMjI1MTQsImNoIjoxMTc4LCJjayI6e30sImNyIjoxMTk1OTY0LCJkaSI6ImVlYmQ0MzBiYzdkYzQ1NDliNzBiNmFiZWU0NmE2NDBmIiwiZG0iOjEsImZjIjoxMjY5MzIyLCJmbCI6ODY0MjI2LCJpcCI6IjEzNC42MC4xNDguOTciLCJudyI6MjIsInBjIjowLCJlYyI6MCwicHIiOjE1NjgsInJ0IjoxLCJyZiI6Imh0dHA6Ly9pbmZvLmphdmFydXNoLnJ1L0phdmFSdXNoX2xlY3R1cmVzX2Rpc2N1c3Npb24vMjAxMy8xMC8yMC_Qm9C10LrRhtC40Y8tMjUuaHRtbCIsInN0Ijo4Mjc3LCJ1ayI6InVlMS0xNTMxYjA5MmI0NDM0Mzc0YTQzMDUxZTJlNzRkNzA3NCIsInpuIjo0NCwidHMiOjE0NDkwNjg4NzgwMzEsImJmIjp0cnVlLCJwbiI6ImNhcmVlcnMzIiwidXIiOiJodHRwOi8vY2FyZWVycy5zdGFja292ZXJmbG93LmNvbS93aHktc3RhY2s_dXRtX3NvdXJjZT1zdGFja292ZXJmbG93LmNvbSZ1dG1fbWVkaXVtPWFkJnV0bV9jYW1wYWlnbj1jYW5kaWRhdGVzLWFkZC1jdiZ1dG1fY29udGVudD1sYi1iaXJkcyJ9&amp;s=Qw2JoXhd5WtzHzqD4-s3Sr_tfks" rel="nofollow" target="_blank" title=""><img class="pcfykmqlcrtplekulgcu" src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/82dad5859089475ba9131caf8f71c2cc.png" title="" alt="" height="90" width="728" border="0"></a><img class="pcfykmqlcrtplekulgcu" src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/i_002.gif" style="position:absolute;" height="0px" width="0px" border="0"></div>
+  
+<a name="2937561"></a>
+<div id="answer-2937561" class="answer" data-answerid="2937561" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="2937561" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">588</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<h2>Can <code>==</code> be used on <code>enum</code>?</h2>
+
+<p>Yes: enums have tight instance controls that allows you to use <code>==</code> to compare instances. Here's the guarantee provided by the language specification:</p>
+
+<blockquote>
+  <h3><a href="http://docs.oracle.com/javase/specs/jls/se5.0/html/classes.html#8.9">JLS 8.9 Enums</a></h3>
+  
+  <p>An enum type has no instances other than those defined by its enum constants. </p>
+  
+  <p>It is a compile-time error to attempt to explicitly instantiate an enum type. The <code>final clone</code> method in <code>Enum</code> ensures that <code>enum</code>
+ constants can never be cloned, and the special treatment by the 
+serialization mechanism ensures that duplicate instances are never 
+created as a result of deserialization. Reflective instantiation of enum
+ types is prohibited. Together, these four things ensure that no 
+instances of an <code>enum</code> type exist beyond those defined by the <code>enum</code> constants.</p>
+  
+  <p>Because there is only one instance of each <code>enum</code> constant, <strong>it is permissible to use the <code>==</code> operator in place of the <code>equals</code> method when comparing two object references if it is known that at least one of them refers to an <code>enum</code> constant</strong>. (The <code>equals</code> method in <code>Enum</code> is a <code>final</code> method that merely invokes <code>super.equals</code> on its argument and returns the result, thus performing an identity comparison.)</p>
+</blockquote>
+
+<p>This guarantee is strong enough that Josh Bloch recommends, that if 
+you insist on using the singleton pattern, the best way to implement it 
+is to use a single-element <code>enum</code> (see: <em>Effective Java 2nd Edition, Item 3: Enforce the singleton property with a private constructor or an enum type</em>; also <a href="http://stackoverflow.com/questions/2912281/thread-safety-in-singleton/">Thread safety in Singleton</a>)</p>
+
+<hr>
+
+<h2>What are the differences between <code>==</code> and <code>equals</code>?</h2>
+
+<p>As a reminder, it needs to be said that generally, <code>==</code> is NOT a viable alternative to <code>equals</code>. When it is, however (such as with <code>enum</code>), there are two important differences to consider:</p>
+
+<h3><code>==</code> never throws <code>NullPointerException</code></h3>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">enum</span><span class="pln"> </span><span class="typ">Color</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> BLACK</span><span class="pun">,</span><span class="pln"> WHITE </span><span class="pun">};</span><span class="pln">
+
+</span><span class="typ">Color</span><span class="pln"> nothing </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">nothing </span><span class="pun">==</span><span class="pln"> </span><span class="typ">Color</span><span class="pun">.</span><span class="pln">BLACK</span><span class="pun">);</span><span class="pln">      </span><span class="com">// runs fine</span><span class="pln">
+</span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">nothing</span><span class="pun">.</span><span class="pln">equals</span><span class="pun">(</span><span class="typ">Color</span><span class="pun">.</span><span class="pln">BLACK</span><span class="pun">));</span><span class="pln"> </span><span class="com">// throws NullPointerException</span></code></pre>
+
+<h3><code>==</code> is subject to type compatibility check at compile time</h3>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">enum</span><span class="pln"> </span><span class="typ">Color</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> BLACK</span><span class="pun">,</span><span class="pln"> WHITE </span><span class="pun">};</span><span class="pln">
+</span><span class="kwd">enum</span><span class="pln"> </span><span class="typ">Chiral</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> LEFT</span><span class="pun">,</span><span class="pln"> RIGHT </span><span class="pun">};</span><span class="pln">
+
+</span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Color</span><span class="pun">.</span><span class="pln">BLACK</span><span class="pun">.</span><span class="pln">equals</span><span class="pun">(</span><span class="typ">Chiral</span><span class="pun">.</span><span class="pln">LEFT</span><span class="pun">));</span><span class="pln"> </span><span class="com">// compiles fine</span><span class="pln">
+</span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Color</span><span class="pun">.</span><span class="pln">BLACK </span><span class="pun">==</span><span class="pln"> </span><span class="typ">Chiral</span><span class="pun">.</span><span class="pln">LEFT</span><span class="pun">);</span><span class="pln">      </span><span class="com">// DOESN'T COMPILE!!! Incompatible types!</span></code></pre>
+
+<hr>
+
+<h2>Should <code>==</code> be used when applicable?</h2>
+
+<p>Bloch specifically mentions that immutable classes that have proper 
+control over their instances can guarantee to their clients that <code>==</code> is usable. <code>enum</code> is specifically mentioned to exemplify.</p>
+
+<blockquote>
+  <p><em>Item 1: Consider static factory methods instead of constructors</em></p>
+  
+  <p>[...] it allows an immutable class to make the guarantee that no two equal instances exist: <code>a.equals(b)</code> if and only if <code>a==b</code>. If a class makes this guarantee, then its clients can use the <code>==</code> operator instead of the <code>equals(Object)</code> method, which may result in improved performance. Enum types provide this guarantee.</p>
+</blockquote>
+
+<p>To summarize, the arguments for using <code>==</code> on <code>enum</code> are:</p>
+
+<ul>
+<li>It works.</li>
+<li>It's faster.</li>
+<li>It's safer at run-time.</li>
+<li>It's safer at compile-time.</li>
+</ul>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/2937561" title="short permalink to this answer" class="short-link" id="link-post-2937561">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/2937561/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/2937561/revisions" title="show all edits to this post">edited <span title="2012-06-14 22:05:26Z" class="relativetime">Jun 14 '12 at 22:05</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/587642/reevesy"><div class="gravatar-wrapper-32"><img src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/ade1c64e4575e07eea436705e9c5d039.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/587642/reevesy">reevesy</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">2,706</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="15 silver badges"><span class="badge2"></span><span class="badgecount">15</span></span><span title="19 bronze badges"><span class="badge3"></span><span class="badgecount">19</span></span>
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2010-05-30 04:38:13Z" class="relativetime">May 30 '10 at 4:38</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/276101/polygenelubricants"><div class="gravatar-wrapper-32"><img src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/30fe97e726af0ea4ff8b756fbf2e6d15.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/276101/polygenelubricants">polygenelubricants</a><br>
+        <span class="reputation-score" title="reputation score 182202" dir="ltr">182k</span><span title="64 gold badges"><span class="badge1"></span><span class="badgecount">64</span></span><span title="399 silver badges"><span class="badge2"></span><span class="badgecount">399</span></span><span title="533 bronze badges"><span class="badge3"></span><span class="badgecount">533</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-2937561" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="10" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-2992280" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="hot">17</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Nice answer but... 1. <i>It works</i> : agreed 2. <i>it's faster</i> : prove it for enums :) 3. <i>It's safer at run-time</i> : <code>Color nothing = null;</code> is IMHO a bug and should be fixed, your enum has two values, not three (see  Tom Hawtin's comment) 4. <i>It's safer at compile-time</i> : OK, but <code>equals</code> would still return <code>false</code>. At the end, <i>I</i> don't buy it, I prefer <code>equals()</code> for the readability (see Kevin's comment).</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/70604/pascal-thivent" title="356894 reputation" class="comment-user">Pascal Thivent</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment2992280_2937561"><span title="2010-05-30 05:02:49Z" class="relativetime-clean">May 30 '10 at 5:02</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-2992294" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">2</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@Pascal: I agree that the <code>null</code> argument is weak, because <code>null</code> is controversial to begin with (C.A.R. Hoare "billion dollar mistake" etc). See also my question: <a href="http://stackoverflow.com/questions/2887761/is-it-a-bad-idea-if-equalsnull-throws-nullpointerexception-instead" title="is it a bad idea if equalsnull throws nullpointerexception instead">stackoverflow.com/questions/2887761/…</a>
+ // I do think the compile-time type compatibility check is significant 
+and is much better than "silently failing" at run-time by returning <code>false</code>. I'm actually not concerned with speed advantage since it's not likely to be significant; I'm merely repeating what Bloch said.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/276101/polygenelubricants" title="182202 reputation" class="comment-user">polygenelubricants</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment2992294_2937561"><span title="2010-05-30 05:07:16Z" class="relativetime-clean">May 30 '10 at 5:07</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 2 times"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-15249970" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="supernova">83</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">It's a black mark against Java that some people think that <code>foo.equals(bar)</code> is more readable than <code>foo == bar</code></span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/61754/bennett-mcelwee" title="9015 reputation" class="comment-user">Bennett McElwee</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment15249970_2937561"><span title="2012-07-18 05:20:20Z" class="relativetime-clean">Jul 18 '12 at 5:20</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-28455341" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="warm">6</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">It works:  Until you need to 
+replace an enum with a class as part of a refactoring. Good luck finding
+ all the code using == that breaks.  It's faster:  Even if true 
+(questionable), there's that Knuth quote about premature optimization.  
+Safer at run-time:  "Safe" is not the first word that springs to mind if
+ the use of == is the only thing separating you from a 
+NullPointerException.  Safer at compile time:  Not really. It can guard 
+you from the rather elementary mistake of comparing the wrong types, but
+ again, if that's how dumb your programmers are, "safe" is the one thing
+ you're not.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/1147783/laszlok" title="760 reputation" class="comment-user">laszlok</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment28455341_2937561"><span title="2013-10-07 13:52:18Z" class="relativetime-clean">Oct 7 '13 at 13:52</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-32663815" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">3</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">If you re-order your <code>.equals</code> such that the constant is compared against a potentially null value, it will never throw a <code>NullPointerException</code>.  So I'm not sure I buy into your argument that <code>==</code> will never throw an NPE, since there are ways to write <code>.equals</code> that won't allow it to throw one either.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/1079354/makoto" title="44696 reputation" class="comment-user">Makoto</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment32663815_2937561"><span title="2014-02-07 00:41:16Z" class="relativetime-clean">Feb 7 '14 at 0:41</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-2937561" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link  dno" title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."></a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link " title="expand to show all comments on this post" href="#" onclick="">show <b>10</b> more comments</a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="1750462"></a>
+<div id="answer-1750462" class="answer" data-answerid="1750462" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="1750462" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">43</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Using <code>==</code> to compare two enum values works because there is only one object for each enum constant.</p>
+
+<p>On a side note, there is actually no need to use <code>==</code> to write null safe code if you write your <code>equals()</code> like this:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">public</span><span class="pln"> useEnums</span><span class="pun">(</span><span class="typ">SomeEnum</span><span class="pln"> a</span><span class="pun">)</span><span class="pln">
+</span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pun">(</span><span class="typ">SomeEnum</span><span class="pun">.</span><span class="pln">SOME_ENUM_VALUE</span><span class="pun">.</span><span class="pln">equals</span><span class="pun">(</span><span class="pln">a</span><span class="pun">))</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+        </span><span class="pun">...</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+    </span><span class="pun">...</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>This is a best practice known as <a href="http://c2.com/cgi/wiki?CompareConstantsFromTheLeft">Compare Constants From The Left</a> that you definitely should follow.</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/1750462" title="short permalink to this answer" class="short-link" id="link-post-1750462">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/1750462/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/1750462/revisions" title="show all edits to this post">edited <span title="2009-11-17 17:53:22Z" class="relativetime">Nov 17 '09 at 17:53</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2009-11-17 17:30:43Z" class="relativetime">Nov 17 '09 at 17:30</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/70604/pascal-thivent"><div class="gravatar-wrapper-32"><img src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/dc1a5b5fdba36ae9cdcf6e267f1a86ca.jpeg" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/70604/pascal-thivent">Pascal Thivent</a><br>
+        <span class="reputation-score" title="reputation score 356894" dir="ltr">357k</span><span title="60 gold badges"><span class="badge1"></span><span class="badgecount">60</span></span><span title="728 silver badges"><span class="badge2"></span><span class="badgecount">728</span></span><span title="935 bronze badges"><span class="badge3"></span><span class="badgecount">935</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-1750462" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-1633976" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">3</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I do this when <code>.equals()</code>ing
+ string values, but I still think that it's a crappy way to write 
+null-safe code. I'd much rather have an operator (or a method, but I 
+know that [null object].equals won't ever be null-safe in Java because 
+of how the dot operator works) that's always null-safe, regardless of 
+the order it's used in. Semantically, the "equals" operator should <i>always</i> commute.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/139010/matt-ball" title="202951 reputation" class="comment-user owner">Matt Ball</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment1633976_1750462"><span title="2009-11-17 20:48:28Z" class="relativetime-clean">Nov 17 '09 at 20:48</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-1634305" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">2</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Well, as Java doesn't have the Safe Navigation operator of Groovy (<code>?.</code>), I'll continue to use this practice when comparing to constants and, TBH, I don't find it crappy, maybe just less "natural".</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/70604/pascal-thivent" title="356894 reputation" class="comment-user">Pascal Thivent</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment1634305_1750462"><span title="2009-11-17 21:34:43Z" class="relativetime-clean">Nov 17 '09 at 21:34</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-1666258" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="hot">23</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">A <code>null</code> enum is typically an error. You've got this enumeration of all possible values, and here's another one!</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/4725/tom-hawtin-tackline" title="98224 reputation" class="comment-user">Tom Hawtin - tackline</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment1666258_1750462"><span title="2009-11-22 21:00:13Z" class="relativetime-clean">Nov 22 '09 at 21:00</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-36603614" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">3</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Except for values that are explicitly annotated as <code>@Nullable</code>, I consider <i>Compare Constants From The Left</i> an antipattern because it spreads ambiguity about which values can or cannot be null. Enum types should almost never be <code>@Nullable</code>,
+ so a null value would be a programming error; in such a case, the 
+sooner you throw NPE, the more likely that you'll find your programming 
+mistake where you allowed it to be null. So "best practice ... that you 
+should definitely follow" is plain wrong when it comes to enum types.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/2066665/tobias" title="675 reputation" class="comment-user">Tobias</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment36603614_1750462"><span title="2014-05-22 03:49:45Z" class="relativetime-clean">May 22 '14 at 3:49</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-40214425" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">3</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Compare Constants From The Left a best practice like Yoda style best English is.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/581205/maaartinus" title="18706 reputation" class="comment-user">maaartinus</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment40214425_1750462"><span title="2014-09-08 11:51:35Z" class="relativetime-clean">Sep 8 '14 at 11:51</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-1750462" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="14874376"></a>
+<div id="answer-14874376" class="answer" data-answerid="14874376" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="14874376" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">30</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>As others have said, both <code>==</code> and <code>.equals()</code> 
+work in most cases. The compile time certainty that you're not comparing
+ completely different types of Objects that others have pointed out is 
+valid and beneficial, however the particular kind of bug of comparing 
+objects of two different compile time types would also be found by 
+FindBugs (and probably by Eclipse/IntelliJ compile time inspections), so
+ the Java compiler finding it doesn't add that much extra safety.</p>
+
+<p>However:</p>
+
+<ol>
+<li>The fact that <code>==</code> never throws NPE in my mind is a <strong>disadvantage</strong> of <code>==</code>. There should hardly ever be a need for <code>enum</code> types to be <code>null</code>, since any extra state that you may want to express via <code>null</code> can just be added to the <code>enum</code> as an additional instance. If it is unexpectedly <code>null</code>, I'd rather have a NPE than <code>==</code> silently evaluating to false. Therefore I disagree with the <em>it's safer at run-time</em> opinion; it's better to get into the habit never to let <code>enum</code> values be <code>@Nullable</code>.</li>
+<li>The argument that <code>==</code> is <em>faster</em> is also bogus. In most cases you'll call <code>.equals()</code> on a variable whose compile time type is the enum class, and in those cases the compiler can know that this is the same as <code>==</code> (because an <code>enum</code>'s <code>equals()</code>
+ method can not be overridden) and can optimize the function call away. 
+I'm not sure if the compiler currently does this, but if it doesn't, and
+ turns out to be a performance problem in Java overall, then I'd rather 
+fix the compiler than have 100,000 Java programmers change their 
+programming style to suit a particular compiler version's performance 
+characteristics.</li>
+<li><code>enums</code> are Objects. For all other Object types the standard comparison is <code>.equals()</code>, not <code>==</code>. I think it's dangerous to make an exception for <code>enums</code> because you might end up accidentally comparing Objects with <code>==</code> instead of <code>equals()</code>, especially if you refactor an <code>enum</code> into a non-enum class. In case of such a refactoring, the <em>It works</em> point from above is wrong. To convince yourself that a use of <code>==</code> is correct, you need to check whether value in question is either an <code>enum</code> or a primitive; if it was a non-<code>enum</code> class, it'd be wrong but easy to miss because the code would still compile. The only case when a use of <code>.equals()</code>
+ would be wrong is if the values in question were primitives; in that 
+case, the code wouldn't compile so it's much harder to miss. Hence, <code>.equals()</code> is much easier to identify as correct, and is safer against future refactorings.</li>
+</ol>
+
+<p>I actually think that the Java language should have defined == on 
+Objects to call .equals() on the left hand value, and introduce a 
+separate operator for object identity, but that's not how Java was 
+defined.</p>
+
+<p>In summary, I still think the arguments are in favor of using <code>.equals()</code> for <code>enum</code> types. </p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/14874376" title="short permalink to this answer" class="short-link" id="link-post-14874376">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/14874376/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/14874376/revisions" title="show all edits to this post">edited <span title="2015-06-04 03:43:54Z" class="relativetime">Jun 4 at 3:43</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2013-02-14 11:59:50Z" class="relativetime">Feb 14 '13 at 11:59</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/2066665/tobias"><div class="gravatar-wrapper-32"><img src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/7da1a23feadbeeac9c2aa620fbf58680.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/2066665/tobias">Tobias</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">675</span><span title="4 silver badges"><span class="badge2"></span><span class="badgecount">4</span></span><span title="7 bronze badges"><span class="badge3"></span><span class="badgecount">7</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-14874376" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-30654274" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">4</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">+1 Very good argument at point 3.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/410946/alfredo-osorio" title="5118 reputation" class="comment-user">Alfredo Osorio</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment30654274_14874376"><span title="2013-12-10 22:15:26Z" class="relativetime-clean">Dec 10 '13 at 22:15</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-40464119" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Well, about point 3, I can use <code>enum</code> as a <code>switch</code> target so they're a bit special. <code>String</code>s are a bit special too.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/87206/curtaindog" title="2741 reputation" class="comment-user">CurtainDog</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment40464119_14874376"><span title="2014-09-16 01:56:21Z" class="relativetime-clean">Sep 16 '14 at 1:56</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-40768802" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">The syntax for switch 
+statements contains neither == nor .equals() so I don't see what your 
+point is. My point 3.) is about how easy code is to verify for a reader.
+ Switch statements' equality semantics are correct as long as the switch
+ statement compiles.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/2066665/tobias" title="675 reputation" class="comment-user">Tobias</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment40768802_14874376"><span title="2014-09-24 22:46:22Z" class="relativetime-clean">Sep 24 '14 at 22:46</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-14874376" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="7773685"></a>
+<div id="answer-7773685" class="answer" data-answerid="7773685" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="7773685" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">9</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Here is a crude timing test to compare the two:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">util</span><span class="pun">.</span><span class="typ">Date</span><span class="pun">;</span><span class="pln">
+
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">EnumCompareSpeedTest</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+    </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">enum</span><span class="pln"> </span><span class="typ">TestEnum</span><span class="pln"> </span><span class="pun">{</span><span class="pln">ONE</span><span class="pun">,</span><span class="pln"> TWO</span><span class="pun">,</span><span class="pln"> THREE </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> </span><span class="pun">[]</span><span class="pln"> args</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+        </span><span class="typ">Date</span><span class="pln"> before </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Date</span><span class="pun">();</span><span class="pln">
+        </span><span class="kwd">int</span><span class="pln"> c </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln">
+
+        </span><span class="kwd">for</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> y</span><span class="pun">=</span><span class="lit">0</span><span class="pun">;</span><span class="pln">y</span><span class="pun">&lt;</span><span class="lit">5</span><span class="pun">;++</span><span class="pln">y</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            </span><span class="kwd">for</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> x</span><span class="pun">=</span><span class="lit">0</span><span class="pun">;</span><span class="pln">x</span><span class="pun">&lt;</span><span class="typ">Integer</span><span class="pun">.</span><span class="pln">MAX_VALUE</span><span class="pun">;++</span><span class="pln">x</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+                </span><span class="kwd">if</span><span class="pun">(</span><span class="typ">TestEnum</span><span class="pun">.</span><span class="pln">ONE</span><span class="pun">.</span><span class="pln">equals</span><span class="pun">(</span><span class="typ">TestEnum</span><span class="pun">.</span><span class="pln">TWO</span><span class="pun">))</span><span class="pln"> </span><span class="pun">{++</span><span class="pln">c</span><span class="pun">;}</span><span class="pln">
+                </span><span class="kwd">if</span><span class="pun">(</span><span class="typ">TestEnum</span><span class="pun">.</span><span class="pln">ONE </span><span class="pun">==</span><span class="pln"> </span><span class="typ">TestEnum</span><span class="pun">.</span><span class="pln">TWO</span><span class="pun">){++</span><span class="pln">c</span><span class="pun">;}</span><span class="pln">              
+            </span><span class="pun">}</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln">
+
+        </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Date</span><span class="pun">().</span><span class="pln">getTime</span><span class="pun">()</span><span class="pln"> </span><span class="pun">-</span><span class="pln"> before</span><span class="pun">.</span><span class="pln">getTime</span><span class="pun">());</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">   
+
+</span><span class="pun">}</span></code></pre>
+
+<p>Comment out the IFs one at a time. Here are the two compares from above in disassembled byte-code:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="pln"> </span><span class="lit">21</span><span class="pln">  getstatic </span><span class="typ">EnumCompareSpeedTest$TestEnum</span><span class="pun">.</span><span class="pln">ONE </span><span class="pun">:</span><span class="pln"> </span><span class="typ">EnumCompareSpeedTest</span><span class="pun">.</span><span class="typ">TestEnum</span><span class="pln"> </span><span class="pun">[</span><span class="lit">19</span><span class="pun">]</span><span class="pln">
+ </span><span class="lit">24</span><span class="pln">  getstatic </span><span class="typ">EnumCompareSpeedTest$TestEnum</span><span class="pun">.</span><span class="pln">TWO </span><span class="pun">:</span><span class="pln"> </span><span class="typ">EnumCompareSpeedTest</span><span class="pun">.</span><span class="typ">TestEnum</span><span class="pln"> </span><span class="pun">[</span><span class="lit">25</span><span class="pun">]</span><span class="pln">
+ </span><span class="lit">27</span><span class="pln">  invokevirtual </span><span class="typ">EnumCompareSpeedTest$TestEnum</span><span class="pun">.</span><span class="pln">equals</span><span class="pun">(</span><span class="pln">java</span><span class="pun">.</span><span class="pln">lang</span><span class="pun">.</span><span class="typ">Object</span><span class="pun">)</span><span class="pln"> </span><span class="pun">:</span><span class="pln"> </span><span class="kwd">boolean</span><span class="pln"> </span><span class="pun">[</span><span class="lit">28</span><span class="pun">]</span><span class="pln">
+ </span><span class="lit">30</span><span class="pln">  ifeq </span><span class="lit">36</span><span class="pln">
+
+ </span><span class="lit">36</span><span class="pln">  getstatic </span><span class="typ">EnumCompareSpeedTest$TestEnum</span><span class="pun">.</span><span class="pln">ONE </span><span class="pun">:</span><span class="pln"> </span><span class="typ">EnumCompareSpeedTest</span><span class="pun">.</span><span class="typ">TestEnum</span><span class="pln"> </span><span class="pun">[</span><span class="lit">19</span><span class="pun">]</span><span class="pln">
+ </span><span class="lit">39</span><span class="pln">  getstatic </span><span class="typ">EnumCompareSpeedTest$TestEnum</span><span class="pun">.</span><span class="pln">TWO </span><span class="pun">:</span><span class="pln"> </span><span class="typ">EnumCompareSpeedTest</span><span class="pun">.</span><span class="typ">TestEnum</span><span class="pln"> </span><span class="pun">[</span><span class="lit">25</span><span class="pun">]</span><span class="pln">
+ </span><span class="lit">42</span><span class="pln">  if_acmpne </span><span class="lit">48</span></code></pre>
+
+<p>The first (equals) performs a virtual call and tests the return 
+boolean from the stack. The second (==) compares the object addresses 
+directly from the stack. In the first case there is more activity.</p>
+
+<p>I ran this test several times with both IFs one at a time. The "==" is ever so slightly faster.</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/7773685" title="short permalink to this answer" class="short-link" id="link-post-7773685">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/7773685/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2011-10-14 21:19:26Z" class="relativetime">Oct 14 '11 at 21:19</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/875449/chriscantrell"><div class="gravatar-wrapper-32"><img src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/kHnuo.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/875449/chriscantrell">ChrisCantrell</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">1,605</span><span title="9 silver badges"><span class="badge2"></span><span class="badgecount">9</span></span><span title="10 bronze badges"><span class="badge3"></span><span class="badgecount">10</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-7773685" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-49998692" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I suspect that compiler 
+branch-prediction might make this test invalid.  A smart compiler would 
+recognize that both those if statements will always evaluate to false 
+and thus avoid doing multiple compares.  A really smart compiler might 
+even recognize that the values in the y and x loops will have no effect 
+on the outcome and optimize out the entire thing...</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/1234693/darrel-hoffman" title="813 reputation" class="comment-user">Darrel Hoffman</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment49998692_7773685"><span title="2015-06-22 15:46:23Z" class="relativetime-clean">Jun 22 at 15:46</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-50442931" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">It could, but it definitely doesn't. I show the actual compiler-generated bytecode in my answer.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/875449/chriscantrell" title="1605 reputation" class="comment-user">ChrisCantrell</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment50442931_7773685"><span title="2015-07-04 14:07:21Z" class="relativetime-clean">Jul 4 at 14:07</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-51617484" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">you are both confused. :-) 
+Branch prediction works at run-time so the different byte code is not 
+super relevant. However, in this case branch prediction would help <i>both</i> cases equally.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/363437/vidstige" title="5899 reputation" class="comment-user">vidstige</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment51617484_7773685"><span title="2015-08-06 06:33:47Z" class="relativetime-clean">Aug 6 at 6:33</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-7773685" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="1750444"></a>
+<div id="answer-1750444" class="answer" data-answerid="1750444" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="1750444" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">5</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>In case of enum both are correct and right!!</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/1750444" title="short permalink to this answer" class="short-link" id="link-post-1750444">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/1750444/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/1750444/revisions" title="show all edits to this post">edited <span title="2011-11-23 13:03:10Z" class="relativetime">Nov 23 '11 at 13:03</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/505893/bluish"><div class="gravatar-wrapper-32"><img src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/71828e3594c57e13f477c0db81b36e25.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/505893/bluish">bluish</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">7,747</span><span title="11 gold badges"><span class="badge1"></span><span class="badgecount">11</span></span><span title="60 silver badges"><span class="badge2"></span><span class="badgecount">60</span></span><span title="108 bronze badges"><span class="badge3"></span><span class="badgecount">108</span></span>
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2009-11-17 17:28:22Z" class="relativetime">Nov 17 '09 at 17:28</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/119772/suraj-chandran"><div class="gravatar-wrapper-32"><img src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/ef8bd3e0c603a5fc8fa9600885b32bb4.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/119772/suraj-chandran">Suraj Chandran</a><br>
+        <span class="reputation-score" title="reputation score 14944" dir="ltr">14.9k</span><span title="6 gold badges"><span class="badge1"></span><span class="badgecount">6</span></span><span title="38 silver badges"><span class="badge2"></span><span class="badgecount">38</span></span><span title="72 bronze badges"><span class="badge3"></span><span class="badgecount">72</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-1750444" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-1750444" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="26421198"></a>
+<div id="answer-26421198" class="answer" data-answerid="26421198" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="26421198" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">0</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>I want to complement polygenelubricants answer:</p>
+
+<p>I personally prefer equals(). But it lake the type compatibility check. Which I think is an important limitation.</p>
+
+<p>To have type compatibility check at compilation time, declare and use a custom function in your enum.</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">public</span><span class="pln"> </span><span class="kwd">boolean</span><span class="pln"> isEquals</span><span class="pun">(</span><span class="pln">enumVariable</span><span class="pun">)</span><span class="pln"> </span><span class="com">// compare constant from left</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">boolean</span><span class="pln"> areEqual</span><span class="pun">(</span><span class="pln">enumVariable</span><span class="pun">,</span><span class="pln"> enumVariable2</span><span class="pun">)</span><span class="pln"> </span><span class="com">// compare two variable</span></code></pre>
+
+<p>With this, you got all the advantage of both solution: NPE 
+protection, easy to read code and type compatibility check at 
+compilation time.</p>
+
+<p>I also recommend to add an UNDEFINED value for enum.</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/26421198" title="short permalink to this answer" class="short-link" id="link-post-26421198">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/26421198/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2014-10-17 08:43:54Z" class="relativetime">Oct 17 '14 at 8:43</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/752174/christ"><div class="gravatar-wrapper-32"><img src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/SKF04.jpg" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/752174/christ">Christ</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">154</span><span title="2 silver badges"><span class="badge2"></span><span class="badgecount">2</span></span><span title="9 bronze badges"><span class="badge3"></span><span class="badgecount">9</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-26421198" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-41500279" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">2</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Why is this solution any better than <code>==</code>? With <code>==</code> you get NPE protection, easy-to-read code, and compile time type compatibility checking, and you get all of those <i>without writing any custom equals-like methods.</i></span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/139010/matt-ball" title="202951 reputation" class="comment-user owner">Matt Ball</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment41500279_26421198"><span title="2014-10-17 14:51:10Z" class="relativetime-clean">Oct 17 '14 at 14:51</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-54506207" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">An <code>UNDEFINED</code> value is probably a good idea. Of course, in Java 8 you would use an <code>Optional</code> instead.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/2100584/tomas" title="874 reputation" class="comment-user">Tomas</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment54506207_26421198"><span title="2015-10-26 20:41:02Z" class="relativetime-clean">Oct 26 at 20:41</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-26421198" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="11512395"></a>
+<div id="answer-11512395" class="answer" data-answerid="11512395" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="11512395" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">0</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>I would like to explicitly highlight this specific difference between the <code>==</code> operator and <code>equals()</code> method:</p>
+
+<p>The <code>equals()</code> method is meant to check whether <em>the contents</em> of the object(s) the reference variable(s) involved refer(s) to are the same.</p>
+
+<p>The <code>==</code> operator checks whether the reference variable(s) involved refer(s) <em>to the same object</em>.</p>
+
+<p>It's up to the implementing class to provide this differentiation as needed by the application. </p>
+
+<p>Otherwise the default behavior will be as provided by the <code>Object</code> class (in Java) where as explained in <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.html#equals%28java.lang.Object%29" rel="nofollow">http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.html#equals(java.lang.Object)</a>:</p>
+
+<blockquote>
+  <p>The <code>equals</code> method for class <code>Object</code> implements the most discriminating possible equivalence relation on objects; that is, for any non-null reference values <code>x</code> and <code>y</code>, this method returns <code>true</code> if and only if <code>x</code> and <code>y</code> refer to the same object (<code>x == y</code> has the value <code>true</code>). </p>
+</blockquote>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/11512395" title="short permalink to this answer" class="short-link" id="link-post-11512395">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/11512395/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/11512395/revisions" title="show all edits to this post">edited <span title="2015-10-19 22:51:21Z" class="relativetime">Oct 19 at 22:51</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/1744774/gerold-broser"><div class="gravatar-wrapper-32"><img src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/UcUoe.jpg" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/1744774/gerold-broser">Gerold Broser</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">2,590</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="9 silver badges"><span class="badge2"></span><span class="badgecount">9</span></span><span title="27 bronze badges"><span class="badge3"></span><span class="badgecount">27</span></span>
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2012-07-16 20:54:09Z" class="relativetime">Jul 16 '12 at 20:54</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/1504913/sangv"><div class="gravatar-wrapper-32"><img src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/5d97af24a6df3cdd80af76f66015a0af.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/1504913/sangv">sangv</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">40</span><span title="1 silver badge"><span class="badge2"></span><span class="badgecount">1</span></span><span title="4 bronze badges"><span class="badge3"></span><span class="badgecount">4</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-11512395" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-15214115" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="warm">5</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy"><i>"equals() method is to always compare the contents of the two objects"</i> no, that's just not true. <code>Object#equals()</code> calls <code>==</code>.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/139010/matt-ball" title="202951 reputation" class="comment-user owner">Matt Ball</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment15214115_11512395"><span title="2012-07-16 21:38:50Z" class="relativetime-clean">Jul 16 '12 at 21:38</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-28867864" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">The question is not if == and equals are equal - please delete</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/281545/mr-and-mrs-d" title="7301 reputation" class="comment-user">Mr_and_Mrs_D</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment28867864_11512395"><span title="2013-10-19 13:34:47Z" class="relativetime-clean">Oct 19 '13 at 13:34</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-48228333" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@MattBall This answer is 
+rather theoretical and in first place isn't about how Java does it. 
+After you've read it you might realize it makes no sense to check if two
+ enum variables are exactly the same because you simply don't care if 
+they are. You care about equality.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/708036/qben" title="504 reputation" class="comment-user">qben</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment48228333_11512395"><span title="2015-05-05 15:12:09Z" class="relativetime-clean">May 5 at 15:12</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-11512395" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="33355187"></a>
+<div id="answer-33355187" class="answer" data-answerid="33355187" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="33355187" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">0</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Using anything other than <code>==</code> to compare enum constants is nonsense. It's like <a href="http://tomas.codes/2015/04/a-case-for-identity-on-class-objects/" rel="nofollow">comparing <code>class</code> objects with <code>equals</code></a> – don't do it!</p>
+
+<p>However, there was a nasty bug (BugId <a href="http://bugs.java.com/view_bug.do?bug_id=6277781" rel="nofollow">6277781</a>) in Sun JDK 6u10 and earlier that might be interesting for historical reasons. This bug prevented proper use of <code>==</code> on deserialized enums, although this is arguably somewhat of a corner case.</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/33355187" title="short permalink to this answer" class="short-link" id="link-post-33355187">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/33355187/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2015-10-26 20:40:01Z" class="relativetime">Oct 26 at 20:40</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/2100584/tomas"><div class="gravatar-wrapper-32"><img src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/236ecbd2033b1620c2ae79a0877e1bba.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/2100584/tomas">Tomas</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">874</span><span title="3 silver badges"><span class="badge2"></span><span class="badgecount">3</span></span><span title="15 bronze badges"><span class="badge3"></span><span class="badgecount">15</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-33355187" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-33355187" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="33584344"></a>
+<div id="answer-33584344" class="answer" data-answerid="33584344" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="33584344" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">0</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Enums are classes that return one instance (like singletons) for each enumeration constant declared by <code>public static final field</code> (immutable) so that <code>==</code> operator could be used to check their equality rather than using <code>equals()</code> method</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/33584344" title="short permalink to this answer" class="short-link" id="link-post-33584344">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/33584344/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2015-11-07 15:21:13Z" class="relativetime">Nov 7 at 15:21</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/982161/jipr311"><div class="gravatar-wrapper-32"><img src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/TP4Rx.jpg" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/982161/jipr311">jipr311</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">858</span><span title="6 silver badges"><span class="badge2"></span><span class="badgecount">6</span></span><span title="19 bronze badges"><span class="badge3"></span><span class="badgecount">19</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-33584344" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-33584344" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+				    <div class="question-status">
+        <h2>                    <b>protected</b> by <a href="http://stackoverflow.com/users/343955/adarshr">adarshr</a> <span dir="ltr"><span title="2012-09-03 13:44:51Z" class="relativetime">Sep 3 '12 at 13:44</span></span>
+</h2>
+        <p>
+Thank you for your interest in this question. 
+Because it has attracted low-quality or spam answers that had to be removed, posting an answer now requires 10 <a href="http://stackoverflow.com/help/whats-reputation">reputation</a> on this site.
+<br><br>
+Would you like to answer one of these <a href="http://stackoverflow.com/unanswered?fromProtectedNotice=true">unanswered questions</a> instead?
+</p>
+    </div>
+
+
+
+
+
+						<h2 class="bottom-notice" data-loc="1">
+Not the answer you're looking for?							Browse other questions tagged <a href="http://stackoverflow.com/questions/tagged/java" class="post-tag" title="show questions tagged 'java'" rel="tag">java</a> <a href="http://stackoverflow.com/questions/tagged/enums" class="post-tag" title="show questions tagged 'enums'" rel="tag">enums</a>  or <a href="http://stackoverflow.com/questions/ask">ask your own question</a>.						</h2>
+			</div>
+		</div>
+				<div id="sidebar" class="show-votes">
+						    <div class="module question-stats">
+			        <table id="qinfo">
+			            <tbody><tr>
+			                <td>
+			                    <p class="label-key">asked</p>
+			                </td>
+			                <td style="padding-left: 10px">
+			                    <p class="label-key" title="2009-11-17 17:26:27Z"><b>6 years ago</b></p>
+			                </td>
+			            </tr>
+			            <tr>
+			                <td>
+			                    <p class="label-key">viewed</p>
+			                </td>
+
+			                <td style="padding-left: 10px">
+			                    <p class="label-key">
+			                        <b>249900 times</b>
+			                    </p>
+			                </td>
+			            </tr>
+			                <tr>
+			                    <td>
+			                        <p class="label-key">active</p>
+			                    </td>
+			                    <td style="padding-left: 10px">
+			                        <p class="label-key"><b><a href="http://stackoverflow.com/questions/1750435/comparing-java-enum-members-or-equals?lastactivity" class="lastactivity-link" title="2015-11-07 15:21:13Z">24 days ago</a></b></p>
+			                    </td>
+			                </tr>
+			        </tbody></table>
+			    </div>
+						
+			<div class="everyonelovesstackoverflow" id="careers2">
+        </div>
+        <div class=" tagthemedjava tag-themed java tagged" id="hireme"><a href="http://careers.stackoverflow.com/jobs/tag/java" target="_blank" data-tz="1" data-ti="3" class="top"><span>Want a <span class="header-tag">java</span> job?</span></a><div class="middle"><ul class="jobs"><li><a data-tz="3" data-ti="186255" href="http://careers.stackoverflow.com/jobs/100308/softwareentwickler-java-eclipse-m-w-eplan-software-service-gmbh" target="_blank" title="Softwareentwickler Java/Eclipse (m/w) at EPLAN Software &amp; Service GmbH &amp; Co. KG. Click to learn more.">Softwareentwickler Java/Eclipse (m/w)<br><div class="company">EPLAN Software &amp; Service G…</div><div class="location" title="Stuttgart, Deutschland">Stuttgart, Deutschland</div><span class="post-tag highlight js-gps-track">java</span><span class="post-tag js-gps-track">eclipse</span></a></li><li><a data-tz="3" data-ti="177004" href="http://careers.stackoverflow.com/jobs/90986/praktikum-softwareentwicklung-java-senacor-technologies-ag" target="_blank" title="Praktikum Softwareentwicklung (Java) at Senacor Technologies AG. Click to learn more.">Praktikum Softwareentwicklung (Java)<br><div class="company">Senacor Technologies AG</div><div class="location" title="Nürnberg, Deutschland">Nürnberg, Deutschland</div><span class="post-tag highlight js-gps-track">java</span><span class="post-tag js-gps-track">spring</span></a></li></ul></div><img class="impression" src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/i.gif" style="display:none;"></div>
+			<div class="module" id="chat-feature">
+    
+
+    
+<h4><a title="119 users active in 57 rooms the last 60 minutes" href="http://chat.stackoverflow.com/" id="h-chat-link">119 People Chatting</a></h4>
+
+<div class="related" id="ad502-rooms"><div class="ad502-room"><h3 class="ad502-room-h3"><span class="ad502-room-title" title="JavaScript "><a href="http://chat.stackoverflow.com/rooms/17">JavaScript </a></span></h3><span title="2015-12-02 07:16:14Z" class="ad502-last-message">8 hours ago - <a href="http://chat.stackoverflow.com/users/4464215">nickB</a></span><br><div class="ad502-users"><a href="http://chat.stackoverflow.com/users/4464215"><img src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/dDKur.png" title="nickB: 8 hours ago" height="23" width="23"></a><a href="http://chat.stackoverflow.com/users/3459110"><img src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/595ae5c7ef8e8c620bd4d3506be53172.png" title="Awal Garg: 8 hours ago" height="23" width="23"></a><a href="http://chat.stackoverflow.com/users/871050"><img src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/a7a50a9492be737b0c012a839338272a.png" title="Madara Uchiha: 8 hours ago" height="23" width="23"></a><a href="http://chat.stackoverflow.com/users/2731750"><img src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/7P842.jpg" title="Piyush Dholariya: 8 hours ago" height="23" width="23"></a><a href="http://chat.stackoverflow.com/users/1348195"><img src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/f6dca2295546af21e1cde8e68f2d49bd.jpeg" title="Benjamin Gruenbaum: 8 hours ago" height="23" width="23"></a><a href="http://chat.stackoverflow.com/users/1839506"><img src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/Sej2t.jpg" title="Caprica Six: 9 hours ago" height="23" width="23"></a><a href="http://chat.stackoverflow.com/users/5305938"><img src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/d6fdc0b4b20d8ad24d07aa1e2b6341b1.png" title="Jacques Marais: 9 hours ago" height="23" width="23"></a></div></div><div class="ad502-room"><h3 class="ad502-room-h3"><span class="ad502-room-title" title="PHP"><a href="http://chat.stackoverflow.com/rooms/11">PHP</a></span></h3><span title="2015-12-02 07:18:00Z" class="ad502-last-message">8 hours ago - <a href="http://chat.stackoverflow.com/users/5448449">Gopal</a></span><br><div class="ad502-users"><a href="http://chat.stackoverflow.com/users/5448449"><img src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/dfc6eb97171de0872aa0debde69137e7.png" title="Gopal: 8 hours ago" height="23" width="23"></a><a href="http://chat.stackoverflow.com/users/424004"><img src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/2nje9.jpg" title="Dejan Marjanovic: 8 hours ago" height="23" width="23"></a><a href="http://chat.stackoverflow.com/users/4251625"><img src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/XUshi.jpg" title="Abe: 8 hours ago" height="23" width="23"></a><a href="http://chat.stackoverflow.com/users/576767"><img src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/7b30843578e5daecaa12b25536801c96.jpeg" title="Félix Gagnon-Grenier: 9 hours ago" height="23" width="23"></a><a href="http://chat.stackoverflow.com/users/1658631"><img src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/5bc924c90b254d2dba75ba29b3b9fd11.jpeg" title="Joe Watkins: 9 hours ago" height="23" width="23"></a><a href="http://chat.stackoverflow.com/users/3605516"><img src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/NNkqg.jpg" title="Anmol Raghuvanshi Version 1.0: 10 hours ago" height="23" width="23"></a><a href="http://chat.stackoverflow.com/users/2153758"><img src="Comparing%20Java%20enum%20members:%20==%20or%20equals%28%29%3F%20-%20Stack%20Overflow_files/3659fff22e890aaa5d7b03e799f9047f.png" title="bwoebi: 13 hours ago" height="23" width="23"></a></div></div></div>
+<script>
+// <!--
+    StackExchange.ready(
+    function () {
+        var options = {
+            chatUrl: 'http://chat.stackoverflow.com',
+            reloadUrl: '/api/recent-chat',
+            preloadData: {"activeUsers":119,"activeRooms":57,"rooms":[{"name":"JavaScript ","id":17,"lastPost":1449040574,"posts":3037404,"users":[{"name":"nickB","id":4464215,"emailhash":"!https://i.stack.imgur.com/dDKur.png?s=128\u0026g=1","lastPost":1449040574},{"name":"Awal Garg","id":3459110,"emailhash":"595ae5c7ef8e8c620bd4d3506be53172","lastPost":1449040493},{"name":"Madara Uchiha","id":871050,"emailhash":"a7a50a9492be737b0c012a839338272a","lastPost":1449040430},{"name":"Piyush Dholariya","id":2731750,"emailhash":"!https://i.stack.imgur.com/7P842.jpg?s=128\u0026g=1","lastPost":1449040378},{"name":"Benjamin Gruenbaum","id":1348195,"emailhash":"f6dca2295546af21e1cde8e68f2d49bd","lastPost":1449040163},{"name":"Caprica Six","id":1839506,"emailhash":"!https://i.stack.imgur.com/Sej2t.jpg?s=128\u0026g=1","lastPost":1449038856},{"name":"Jacques Marais","id":5305938,"emailhash":"d6fdc0b4b20d8ad24d07aa1e2b6341b1","lastPost":1449038766}],"messages":[{"date":1449040574,"user":"nickB","userid":4464215}],"singleImage":false,"tags":["ecmascript","es6","javascript","kendalls-mom","nodejs","promises","rtfm","sometimes-coldfusion","youre-a-wizard-zirak"]},{"name":"PHP","id":11,"lastPost":1449040680,"posts":2154240,"users":[{"name":"Gopal","id":5448449,"emailhash":"dfc6eb97171de0872aa0debde69137e7","lastPost":1449040680},{"name":"Dejan Marjanovic","id":424004,"emailhash":"!https://i.stack.imgur.com/2nje9.jpg?s=128\u0026g=1","lastPost":1449040297},{"name":"Abe","id":4251625,"emailhash":"!https://i.stack.imgur.com/XUshi.jpg?s=128\u0026g=1","lastPost":1449040085},{"name":"Félix Gagnon-Grenier","id":576767,"emailhash":"7b30843578e5daecaa12b25536801c96","lastPost":1449038632},{"name":"Joe Watkins","id":1658631,"emailhash":"5bc924c90b254d2dba75ba29b3b9fd11","lastPost":1449038157},{"name":"Anmol Raghuvanshi Version 1.0","id":3605516,"emailhash":"!https://i.stack.imgur.com/NNkqg.jpg?s=128\u0026g=1","lastPost":1449036459},{"name":"bwoebi","id":2153758,"emailhash":"3659fff22e890aaa5d7b03e799f9047f","lastPost":1449023599}],"messages":[{"date":1449040680,"user":"Gopal","userid":5448449}],"singleImage":false,"tags":["php"]}]} 
+        };
+
+        StackExchange.chatAd.init(options);
+    });
+// -->
+</script>
+
+</div>  
+    
+            <div class="module sidebar-linked">
+	<h4 id="h-linked">Linked</h4>
+	<div class="linked" data-tracker="lq=1">
+<div class="spacer">
+	<a href="http://stackoverflow.com/q/24521928?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">5</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/24521928/enum-equals-and?lq=1" class="question-hyperlink">Enum equals() and ==</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/533922?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">59</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/533922/is-it-ok-to-use-on-enums-in-java?lq=1" class="question-hyperlink">Is it OK to use == on enums in Java?</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/2887761?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">58</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/2887761/is-it-a-bad-idea-if-equalsnull-throws-nullpointerexception-instead?lq=1" class="question-hyperlink">Is it a bad idea if equals(null) throws NullPointerException instead?</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/2912281?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">13</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/2912281/thread-safety-in-singleton?lq=1" class="question-hyperlink">Thread safety in Singleton</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/22491853?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">7</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/22491853/how-to-compare-boolean?lq=1" class="question-hyperlink">How to compare Boolean?</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/3272788?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">5</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/3272788/singleton-in-java?lq=1" class="question-hyperlink">Singleton in java</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/19586234?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">0</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/19586234/how-to-check-equals-on-enum-value?lq=1" class="question-hyperlink">How to check equals on enum value?</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/4168285?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">2</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/4168285/refactor-if-statement-to-use-appropriate-pattern?lq=1" class="question-hyperlink">Refactor if statement to use appropriate pattern</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/31583594?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">6</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/31583594/android-studio-reports-unreachable-code-with-enum-comparison?lq=1" class="question-hyperlink">Android Studio reports “Unreachable Code” with enum comparison</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/27565240?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">1</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/27565240/equals-method-in-enum-type?lq=1" class="question-hyperlink">Equals Method in Enum Type</a>
+</div>					<div class="spacer more">
+				<a href="http://stackoverflow.com/questions/linked/1750435?lq=1">see more linked questions…</a>
+			</div>
+	</div>
+</div>
+
+				<div class="module sidebar-related">
+					<h4 id="h-related">Related</h4>
+                    <div class="related js-gps-related-questions" data-tracker="rq=1">
+                        <div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/29482?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted extra-large">1417
+    </div>
+</a><a href="http://stackoverflow.com/questions/29482/cast-int-to-enum-in-c-sharp?rq=1" class="question-hyperlink">Cast int to enum in C#</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/36932?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted extra-large">1148
+    </div>
+</a><a href="http://stackoverflow.com/questions/36932/how-can-i-represent-an-enum-in-python?rq=1" class="question-hyperlink">How can I represent an 'Enum' in Python?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/105372?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted extra-large">1845
+    </div>
+</a><a href="http://stackoverflow.com/questions/105372/how-do-i-enumerate-an-enum?rq=1" class="question-hyperlink">How do I enumerate an enum?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/287903?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted large">896
+    </div>
+</a><a href="http://stackoverflow.com/questions/287903/enums-in-javascript?rq=1" class="question-hyperlink">Enums in JavaScript?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/604424?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted large">922
+    </div>
+</a><a href="http://stackoverflow.com/questions/604424/convert-a-string-to-an-enum-in-java?rq=1" class="question-hyperlink">Convert a String to an enum in Java</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/1104975?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted large">406
+    </div>
+</a><a href="http://stackoverflow.com/questions/1104975/for-loop-to-iterate-over-enum-in-java?rq=1" class="question-hyperlink">for loop to iterate over enum in Java?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/7418214?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">16
+    </div>
+</a><a href="http://stackoverflow.com/questions/7418214/make-this-private-enum-static-or-not?rq=1" class="question-hyperlink">Make this private enum static or not?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/7980553?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">2
+    </div>
+</a><a href="http://stackoverflow.com/questions/7980553/defining-an-enum-in-java?rq=1" class="question-hyperlink">Defining an enum in Java</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/9969690?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">46
+    </div>
+</a><a href="http://stackoverflow.com/questions/9969690/whats-the-advantage-of-a-java-enum-versus-a-class-with-public-static-final-fiel?rq=1" class="question-hyperlink">What's the advantage of a Java enum versus a class with public static final fields?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/21091656?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">3
+    </div>
+</a><a href="http://stackoverflow.com/questions/21091656/how-to-compare-xml-enum-with-java-enum?rq=1" class="question-hyperlink">How to compare XML enum with Java enum?</a>
+</div>
+
+                    </div>
+				</div>
+            
+<div id="hot-network-questions" class="module">
+    <h4>
+        <a href="http://stackexchange.com/questions?tab=hot" class="js-gps-track" data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">
+            Hot Network Questions
+        </a>
+    </h4>
+    <ul>
+            <li>
+                <div class="favicon favicon-security" title="Information Security Stack Exchange"></div><a href="http://security.stackexchange.com/questions/106896/why-is-steam-so-insistent-on-security" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:162 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why is Steam so insistent on security?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-workplace" title="The Workplace Stack Exchange"></div><a href="http://workplace.stackexchange.com/questions/58633/should-an-intern-expect-quality-from-the-workplace" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:423 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Should an intern expect quality from the workplace?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="http://math.stackexchange.com/questions/1556307/what-are-the-applications-of-functional-analysis" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What are the applications of functional analysis?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="http://math.stackexchange.com/questions/1554756/how-do-i-explain-k%c3%b6nigsberg-bridge-problem-to-a-child" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How do I explain Königsberg Bridge problem to a child?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="http://english.stackexchange.com/questions/290735/single-word-term-for-number-of-employees" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Single-word term for "Number of employees"
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-music" title="Music: Practice &amp; Theory Stack Exchange"></div><a href="http://music.stackexchange.com/questions/39888/efficient-strategies-when-recording-alone" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:240 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Efficient strategies when recording alone
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="http://codegolf.stackexchange.com/questions/65329/is-q-a-quadratic-residue-of-n" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is q a quadratic residue of n?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="http://codegolf.stackexchange.com/questions/65442/number-of-pieces-on-a-checkers-board" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Number of pieces on a checkers board
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-workplace" title="The Workplace Stack Exchange"></div><a href="http://workplace.stackexchange.com/questions/58526/doing-inefficient-work-vs-eliminating-own-position" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:423 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Doing Inefficient Work vs Eliminating Own Position
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-superuser" title="Super User"></div><a href="http://superuser.com/questions/1008036/why-cant-we-use-set-function-keys-as-password-keys" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:3 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why can't we use/set function keys as password keys?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-tridion" title="Tridion Stack Exchange"></div><a href="http://tridion.stackexchange.com/questions/13374/dxa-1-2-switch-to-rest-provider" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:485 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    DXA 1.2: Switch to REST provider
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-politics" title="Politics Stack Exchange"></div><a href="http://politics.stackexchange.com/questions/9444/what-are-the-aims-of-the-proposed-uk-military-action-in-syria" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:475 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What are the aims of the (proposed) UK military action in Syria?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="http://worldbuilding.stackexchange.com/questions/30662/an-underwater-creature-that-could-take-down-a-boat" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    An underwater creature that could take down a boat
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-politics" title="Politics Stack Exchange"></div><a href="http://politics.stackexchange.com/questions/9421/why-not-have-a-wealth-dependent-income-tax" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:475 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why not have a wealth dependent income tax?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-physics" title="Physics Stack Exchange"></div><a href="http://physics.stackexchange.com/questions/221432/turbulent-spacetime-from-einstein-equation" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:151 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Turbulent spacetime from Einstein equation?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="http://academia.stackexchange.com/questions/59237/short-email-replies" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Short email replies
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-codereview" title="Code Review Stack Exchange"></div><a href="http://codereview.stackexchange.com/questions/112461/pythonish-integer-range-in-java" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:196 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Pythonish integer range in Java
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-ux" title="User Experience Stack Exchange"></div><a href="http://ux.stackexchange.com/questions/87578/text-sticker-color-on-transparent-glass-door" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:102 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Text sticker color on transparent glass door
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="http://codegolf.stackexchange.com/questions/65382/bernoulli-numbers" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Bernoulli Numbers
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-workplace" title="The Workplace Stack Exchange"></div><a href="http://workplace.stackexchange.com/questions/58481/how-to-resign-due-to-incompetence" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:423 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to resign due to incompetence?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-security" title="Information Security Stack Exchange"></div><a href="http://security.stackexchange.com/questions/106855/how-should-i-set-up-emergency-access-to-business-critical-secrets-in-case-i-am" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:162 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How should I set up emergency access to business-critical secrets in case I am "hit by a bus"?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-security" title="Information Security Stack Exchange"></div><a href="http://security.stackexchange.com/questions/106921/is-it-safer-to-ssh-as-a-privileged-user-than-to-ssh-and-sudo" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:162 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is it safer to ssh as a privileged user than to ssh and sudo?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-rpg" title="Role-playing Games Stack Exchange"></div><a href="http://rpg.stackexchange.com/questions/71685/how-can-a-gm-interrupt-a-pc-archers-full-attack-barrage-or-otherwise-make-it-l" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:122 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How can a GM interrupt a PC archer's full attack barrage, or otherwise make it less reliable?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-askubuntu" title="Ask Ubuntu"></div><a href="http://askubuntu.com/questions/704600/why-does-c-v-etc-appear-in-the-terminal-when-i-use-the-ctrlcharacter-keyboa" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:89 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why does ^C, ^V etc. appear in the terminal when I use the Ctrl+character keyboard shortcut?
+                </a>
+
+            </li>
+    </ul>
+
+        
+</div>
+		</div>
+	
+<div id="feed-link">
+    <div id="feed-link-text">
+        <a href="http://stackoverflow.com/feeds/question/1750435" title="feed of this question and its answers">
+            <span class="feed-icon"></span>question feed
+        </a>
+    </div>
+</div>	<script>
+StackExchange.ready(function(){$.get('/posts/1750435/ivc/dd54');});
+</script>
+<noscript>
+    <div><img src="/posts/1750435/ivc/dd54" class="dno" alt="" width="0" height="0"></div>
+</noscript><div style="display:none" id="prettify-lang">lang-java</div></div>
+
+
+        </div>
+    </div>
+    <div id="footer" class="categories">
+        <div class="footerwrap">
+            <div id="footer-menu">
+                <div class="top-footer-links">
+                        <a href="http://stackoverflow.com/tour">tour</a>
+                    <a href="http://stackoverflow.com/help">help</a>
+                    <a href="http://blog.stackoverflow.com/?blb=1">blog</a>
+                        <a href="http://chat.stackoverflow.com/">chat</a>
+                    <a href="http://data.stackexchange.com/">data</a>
+                    <a href="http://stackexchange.com/legal">legal</a>
+                    <a href="http://stackexchange.com/legal/privacy-policy">privacy policy</a>
+                    <a href="http://stackexchange.com/work-here">work here</a>
+                    <a href="http://stackexchange.com/mediakit">advertising info</a>
+
+                    <a onclick='StackExchange.switchMobile("on")'>mobile</a>
+                    <b><a href="http://stackoverflow.com/contact">contact us</a></b>
+                        <b><a href="http://meta.stackoverflow.com/">feedback</a></b>
+                    
+                </div>
+                <div id="footer-sites">
+                    <table>
+    <tbody><tr>
+            <th colspan="3">
+                Technology
+            </th>
+            <th>
+                Life / Arts
+            </th>
+            <th>
+                Culture / Recreation
+            </th>
+            <th>
+                Science
+            </th>
+            <th>
+                Other
+            </th>
+    </tr>
+    <tr>
+            <td>
+                <ol>
+                        <li><a href="http://stackoverflow.com/" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                        <li><a href="http://serverfault.com/" title="system and network administrators">Server Fault</a></li>
+                        <li><a href="http://superuser.com/" title="computer enthusiasts and power users">Super User</a></li>
+                        <li><a href="http://webapps.stackexchange.com/" title="power users of web applications">Web Applications</a></li>
+                        <li><a href="http://askubuntu.com/" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                        <li><a href="http://webmasters.stackexchange.com/" title="pro webmasters">Webmasters</a></li>
+                        <li><a href="http://gamedev.stackexchange.com/" title="professional and independent game developers">Game Development</a></li>
+                        <li><a href="http://tex.stackexchange.com/" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://programmers.stackexchange.com/" title="professional programmers interested in conceptual questions about software development">Programmers</a></li>
+                        <li><a href="http://unix.stackexchange.com/" title="users of Linux, FreeBSD and other Un*x-like operating systems">Unix &amp; Linux</a></li>
+                        <li><a href="http://apple.stackexchange.com/" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+                        <li><a href="http://wordpress.stackexchange.com/" title="WordPress developers and administrators">WordPress Development</a></li>
+                        <li><a href="http://gis.stackexchange.com/" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+                        <li><a href="http://electronics.stackexchange.com/" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+                        <li><a href="http://android.stackexchange.com/" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+                        <li><a href="http://security.stackexchange.com/" title="information security professionals">Information Security</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://dba.stackexchange.com/" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+                        <li><a href="http://drupal.stackexchange.com/" title="Drupal developers and administrators">Drupal Answers</a></li>
+                        <li><a href="http://sharepoint.stackexchange.com/" title="SharePoint enthusiasts">SharePoint</a></li>
+                        <li><a href="http://ux.stackexchange.com/" title="user experience researchers and experts">User Experience</a></li>
+                        <li><a href="http://mathematica.stackexchange.com/" title="users of Mathematica">Mathematica</a></li>
+                        <li><a href="http://salesforce.stackexchange.com/" title="Salesforce administrators, implementation experts, developers and anybody in-between">Salesforce</a></li>
+                        <li><a href="http://expressionengine.stackexchange.com/" title="administrators, end users, developers and designers for ExpressionEngine® CMS">ExpressionEngine® Answers</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#technology" class="more">
+                                more (13)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://photo.stackexchange.com/" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                        <li><a href="http://scifi.stackexchange.com/" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                        <li><a href="http://graphicdesign.stackexchange.com/" title="Graphic Design professionals, students, and enthusiasts">Graphic Design</a></li>
+                        <li><a href="http://movies.stackexchange.com/" title="movie and tv enthusiasts">Movies &amp; TV</a></li>
+                        <li><a href="http://cooking.stackexchange.com/" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                        <li><a href="http://diy.stackexchange.com/" title="contractors and serious DIYers">Home Improvement</a></li>
+                        <li><a href="http://money.stackexchange.com/" title="people who want to be financially literate">Personal Finance &amp; Money</a></li>
+                        <li><a href="http://academia.stackexchange.com/" title="academics and those enrolled in higher education">Academia</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#lifearts" class="more">
+                                more (9)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://english.stackexchange.com/" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                        <li><a href="http://skeptics.stackexchange.com/" title="scientific skepticism">Skeptics</a></li>
+                        <li><a href="http://judaism.stackexchange.com/" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                        <li><a href="http://travel.stackexchange.com/" title="road warriors and seasoned travelers">Travel</a></li>
+                        <li><a href="http://christianity.stackexchange.com/" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                        <li><a href="http://gaming.stackexchange.com/" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+                        <li><a href="http://bicycles.stackexchange.com/" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+                        <li><a href="http://rpg.stackexchange.com/" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#culturerecreation" class="more">
+                                more (21)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://math.stackexchange.com/" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                        <li><a href="http://stats.stackexchange.com/" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                        <li><a href="http://cstheory.stackexchange.com/" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                        <li><a href="http://physics.stackexchange.com/" title="active researchers, academics and students of physics">Physics</a></li>
+                        <li><a href="http://mathoverflow.net/" title="professional mathematicians">MathOverflow</a></li>
+                        <li><a href="http://chemistry.stackexchange.com/" title="scientists, academics, teachers and students">Chemistry</a></li>
+                        <li><a href="http://biology.stackexchange.com/" title="biology researchers, academics, and students">Biology</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#science" class="more">
+                                more (5)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://stackapps.com/" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                        <li><a href="http://meta.stackexchange.com/" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Exchange</a></li>
+                        <li><a href="http://area51.stackexchange.com/" title="proposing new sites in the Stack Exchange network">Area 51</a></li>
+                        <li><a href="http://careers.stackoverflow.com/">Stack Overflow Careers</a></li>
+                    
+                </ol>
+            </td>
+    </tr>
+</tbody></table>
+                </div>
+            </div>
+
+            <div id="copyright">
+                site design / logo © 2015 Stack Exchange Inc; user contributions licensed under <a href="http://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc by-sa 3.0</a> 
+                with <a href="http://blog.stackoverflow.com/2009/06/attribution-required/" rel="license">attribution required</a>
+            </div>
+            <div id="svnrev">
+                rev 2015.12.1.3044
+            </div>
+            
+        </div>
+    </div>
+    <noscript>
+        <div id="noscript-warning">Stack Overflow works best with JavaScript enabled<img src="http://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"></div>
+    </noscript>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-5620270-1');
+                        ga('set', 'dimension2', '|java|enums|');         ga('send', 'pageview');
+        var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+        (function () {
+            var ssl='https:'==document.location.protocol,
+                s=document.getElementsByTagName('script')[0],
+                qc=document.createElement('script');
+            qc.async=true;
+            qc.src=(ssl?'https://secure':'http://edge')+'.quantserve.com/quant.js';
+            s.parentNode.insertBefore(qc, s);
+            var sc=document.createElement('script');
+            sc.async=true;
+            sc.src=(ssl?'https://sb':'http://b') + '.scorecardresearch.com/beacon.js';
+            s.parentNode.insertBefore(sc, s);
+        })();
+        _comscore.push({ c1: "2", c2: "17440561" });
+        _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+    </script>
+            
+    
+</body></html>

@@ -1,0 +1,2072 @@
+<!DOCTYPE html>
+<html dir="ltr" class="client-nojs" lang="ru"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8"><title>Глава 10 Thinking in Java 4th edition — WikiJava: Wiki of Java: викифицированные книги и статьи по Java</title>
+<meta name="generator" content="MediaWiki 1.22.2">
+<link rel="shortcut icon" href="http://wikijava.it-cache.net/favicon.ico">
+<link rel="search" type="application/opensearchdescription+xml" href="http://wikijava.it-cache.net/opensearch_desc.php" title="WikiJava: Wiki of Java: викифицированные книги и статьи по Java (ru)">
+<link rel="EditURI" type="application/rsd+xml" href="http://wikijava.it-cache.net/api.php@action=rsd">
+<link rel="copyright" href="http://www.gnu.org/copyleft/fdl.html">
+<link rel="alternate" type="application/atom+xml" title="WikiJava: Wiki of Java: викифицированные книги и статьи по Java&nbsp;— Atom-лента" href="http://wikijava.it-cache.net/index.php@title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F%253A%D0%A1%D0%B2%D0%B5%D0%B6%D0%B8%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8&amp;feed=atom">
+<link rel="stylesheet" href="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%2010_files/style3.css">
+<meta name="ResourceLoaderDynamicStyles" content="">
+<style>a:lang(ar),a:lang(ckb),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}
+/* cache key: wjava2-wj_:resourceloader:filter:minify-css:7:32e7e505403c81fe0a24e297ef166436 */</style>
+
+<script src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%2010_files/style1.css"></script><script src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%2010_files/load.html"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Глава_10_Thinking_in_Java_4th_edition","wgTitle":"Глава 10 Thinking in Java 4th edition","wgCurRevisionId":247,"wgRevisionId":247,"wgArticleId":24,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Книги","Java"],"wgBreakFrames":false,"wgPageContentLanguage":"ru","wgPageContentModel":"wikitext","wgSeparatorTransformTable":[",\t."," \t,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"],"wgMonthNamesShort":["","янв","фев","мар","апр","май","июн","июл","авг","сен","окт","ноя","дек"],"wgRelevantPageName":"Глава_10_Thinking_in_Java_4th_edition","wgIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgVectorEnabledModules":{"collapsiblenav":true,"collapsibletabs":true,"editwarning":true,"expandablesearch":false,"footercleanup":false,"sectioneditlinks":false,"simplesearch":true,"experiments":true}});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function(){mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"vector-simplesearch":1,"watchcreations":0,"watchdefault":0,"watchdeletion":0,"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,
+"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"useeditwarning":1,"prefershttps":1,"language":"ru","variant-gan":"gan","variant-iu":"iu","variant-kk":"kk","variant-ku":"ku","variant-shi":"shi","variant-sr":"sr","variant-tg":"tg","variant-uz":"uz","variant-zh":"zh","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false,"variant":"ru"});},{},{});mw.loader.implement("user.tokens",function(){mw.user.tokens.set({"editToken":"+\\","patrolToken":false,"watchToken":false});},{},{});
+/* cache key: wjava2-wj_:resourceloader:filter:minify-js:7:07bb1f4d2452379e70abca47c4cde6d9 */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax","skins.vector.js"]);
+}</script>
+<style type="text/css">/*<![CDATA[*/
+.source-java5 {line-height: normal;}
+.source-java5 li, .source-java5 pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for java5
+ * CSS class: source-java5, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.java5.source-java5 .de1, .java5.source-java5 .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;font-family: monospace, monospace;}
+.java5.source-java5  {font-family:monospace;}
+.java5.source-java5 .imp {font-weight: bold; color: red;}
+.java5.source-java5 li, .java5.source-java5 .li1 {font-weight: normal; vertical-align:top;}
+.java5.source-java5 .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.java5.source-java5 .li2 {font-weight: bold; vertical-align:top;}
+.java5.source-java5 .kw1 {color: #000000;  font-weight: bold;}
+.java5.source-java5 .kw2 {color: #000000; font-weight: bold;}
+.java5.source-java5 .kw3 {color: #006600; font-weight: bold;}
+.java5.source-java5 .kw4 {color: #006600; font-weight: bold;}
+.java5.source-java5 .kw5 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw6 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw7 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw8 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw9 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw10 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw11 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw12 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw13 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw14 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw15 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw16 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw17 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw18 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw19 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw20 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw21 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw22 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw23 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw24 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw25 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw26 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw27 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw28 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw29 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw30 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw31 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw32 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw33 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw34 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw35 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw36 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw37 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw38 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw39 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw40 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw41 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw42 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw43 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw44 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw45 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw46 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw47 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw48 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw49 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw50 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw51 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw52 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw53 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw54 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw55 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw56 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw57 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw58 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw59 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw60 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw61 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw62 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw63 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw64 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw65 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw66 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw67 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw68 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw69 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw70 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw71 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw72 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw73 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw74 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw75 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw76 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw77 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw78 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw79 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw80 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw81 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw82 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw83 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw84 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw85 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw86 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw87 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw88 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw89 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw90 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw91 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw92 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw93 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw94 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw95 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw96 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw97 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw98 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw99 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw100 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw101 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw102 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw103 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw104 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw105 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw106 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw107 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw108 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw109 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw110 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw111 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw112 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw113 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw114 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw115 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw116 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw117 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw118 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw119 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw120 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw121 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw122 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw123 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw124 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw125 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw126 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw127 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw128 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw129 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw130 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw131 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw132 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw133 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw134 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw135 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw136 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw137 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw138 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw139 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw140 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw141 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw142 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw143 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw144 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw145 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw146 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw147 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw148 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw149 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw150 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw151 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw152 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw153 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw154 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw155 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw156 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw157 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw158 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw159 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw160 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw161 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw162 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw163 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw164 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw165 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw166 {color: #003399; font-weight: bold;}
+.java5.source-java5 .co1 {color: #666666; font-style: italic;}
+.java5.source-java5 .co2 {color: #006699;}
+.java5.source-java5 .co3 {color: #008000; font-style: italic; font-weight: bold;}
+.java5.source-java5 .coMULTI {color: #666666; font-style: italic;}
+.java5.source-java5 .es0 {color: #000099; font-weight: bold;}
+.java5.source-java5 .br0 {color: #009900;}
+.java5.source-java5 .sy0 {color: #339933;}
+.java5.source-java5 .st0 {color: #0000ff;}
+.java5.source-java5 .nu0 {color: #cc66cc;}
+.java5.source-java5 .me1 {color: #006633;}
+.java5.source-java5 .me2 {color: #006633;}
+.java5.source-java5 .ln-xtra, .java5.source-java5 li.ln-xtra, .java5.source-java5 div.ln-xtra {background-color: #ffc;}
+.java5.source-java5 span.xtra { display:block; }
+
+/*]]>*/
+</style><!--[if lt IE 7]><style type="text/css">body{behavior:url("/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Глава_10_Thinking_in_Java_4th_edition skin-vector action-view vector-animateLayout">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<div id="content" class="mw-body" role="main">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<h1 id="firstHeading" class="firstHeading" lang="ru"><span dir="auto">Глава 10 Thinking in Java 4th edition</span></h1>
+			<div id="bodyContent">
+								<div id="siteSub">Материал из WikiJava: Wiki of Java: викифицированные книги и статьи по Java</div>
+								<div id="contentSub"></div>
+												<div id="jump-to-nav" class="mw-jump">
+					Перейти к:					<a href="http://wikijava.it-cache.net/index.php@title=Glava_10_Thinking_in_Java_4th_edition.html#mw-navigation">навигация</a>, 					<a href="http://wikijava.it-cache.net/index.php@title=Glava_10_Thinking_in_Java_4th_edition.html#p-search">поиск</a>
+				</div>
+				<div id="mw-content-text" dir="ltr" class="mw-content-ltr" lang="ru"><table style="clear: right; margin-bottom: .5em; float: right; padding: .5em 0 .8em 1.4em; background: none; width: auto;" cellpadding="0" cellspacing="0">
+<tbody><tr>
+<td> <div id="toc" class="toc"><div id="toctitle"><h2>Содержание</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="http://wikijava.it-cache.net/index.php@title=Glava_10_Thinking_in_Java_4th_edition.html#.D0.92.D0.9D.D0.A3.D0.A2.D0.A0.D0.95.D0.9D.D0.9D.D0.98.D0.95_.D0.9A.D0.9B.D0.90.D0.A1.D0.A1.D0.AB"><span class="tocnumber">1</span> <span class="toctext"><b>ВНУТРЕННИЕ КЛАССЫ</b></span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="http://wikijava.it-cache.net/index.php@title=Glava_10_Thinking_in_Java_4th_edition.html#.D0.A1.D0.BE.D0.B7.D0.B4.D0.B0.D0.BD.D0.B8.D0.B5_.D0.B2.D0.BD.D1.83.D1.82.D1.80.D0.B5.D0.BD.D0.BD.D0.B8.D1.85_.D0.BA.D0.BB.D0.B0.D1.81.D1.81.D0.BE.D0.B2"><span class="tocnumber">1.1</span> <span class="toctext"><b>Создание внутренних классов</b></span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="http://wikijava.it-cache.net/index.php@title=Glava_10_Thinking_in_Java_4th_edition.html#.D0.A1.D0.B2.D1.8F.D0.B7.D1.8C_.D1.81_.D0.B2.D0.BD.D0.B5.D1.88.D0.BD.D0.B8.D0.BC_.D0.BA.D0.BB.D0.B0.D1.81.D1.81.D0.BE.D0.BC"><span class="tocnumber">1.2</span> <span class="toctext"><b>Связь с внешним классом</b></span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="http://wikijava.it-cache.net/index.php@title=Glava_10_Thinking_in_Java_4th_edition.html#.D0.9A.D0.BE.D0.BD.D1.81.D1.82.D1.80.D1.83.D0.BA.D1.86.D0.B8.D0.B8_.this_.D0.B8_.new"><span class="tocnumber">1.3</span> <span class="toctext"><b>Конструкции .this и .new</b></span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="http://wikijava.it-cache.net/index.php@title=Glava_10_Thinking_in_Java_4th_edition.html#.D0.92.D0.BD.D1.83.D1.82.D1.80.D0.B5.D0.BD.D0.BD.D0.B8.D0.B5_.D0.BA.D0.BB.D0.B0.D1.81.D1.81.D1.8B_.D0.B8_.D0.B2.D0.BE.D1.81.D1.85.D0.BE.D0.B4.D1.8F.D1.89.D0.B5.D0.B5_.D0.BF.D1.80.D0.B5.D0.BE.D0.B1.D1.80.D0.B0.D0.B7.D0.BE.D0.B2.D0.B0.D0.BD.D0.B8.D0.B5"><span class="tocnumber">1.4</span> <span class="toctext"><b>Внутренние классы и восходящее преобразование</b></span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="http://wikijava.it-cache.net/index.php@title=Glava_10_Thinking_in_Java_4th_edition.html#.D0.92.D0.BD.D1.83.D1.82.D1.80.D0.B5.D0.BD.D0.BD.D0.B8.D0.B5_.D0.BA.D0.BB.D0.B0.D1.81.D1.81.D1.8B_.D0.B2_.D0.BC.D0.B5.D1.82.D0.BE.D0.B4.D0.B0.D1.85_.D0.B8_.D0.BE.D0.B1.D0.BB.D0.B0.D1.81.D1.82.D1.8F.D1.85_.D0.B4.D0.B5.D0.B9.D1.81.D1.82.D0.B2.D0.B8.D1.8F"><span class="tocnumber">1.5</span> <span class="toctext"><b>Внутренние классы в методах и областях действия</b></span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="http://wikijava.it-cache.net/index.php@title=Glava_10_Thinking_in_Java_4th_edition.html#.D0.91.D0.B5.D0.B7.D1.8B.D0.BC.D1.8F.D0.BD.D0.BD.D1.8B.D0.B5_.D0.B2.D0.BD.D1.83.D1.82.D1.80.D0.B5.D0.BD.D0.BD.D0.B8.D0.B5_.D0.BA.D0.BB.D0.B0.D1.81.D1.81.D1.8B"><span class="tocnumber">1.6</span> <span class="toctext"><b>Безымянные внутренние классы</b></span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="http://wikijava.it-cache.net/index.php@title=Glava_10_Thinking_in_Java_4th_edition.html#.D0.A1.D0.BD.D0.BE.D0.B2.D0.B0_.D0.BE_.D0.BC.D0.B5.D1.82.D0.BE.D0.B4.D0.B5-.D1.84.D0.B0.D0.B1.D1.80.D0.B8.D0.BA.D0.B5"><span class="tocnumber">1.7</span> <span class="toctext"><b>Снова о методе-фабрике</b></span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="http://wikijava.it-cache.net/index.php@title=Glava_10_Thinking_in_Java_4th_edition.html#.D0.92.D0.BB.D0.BE.D0.B6.D0.B5.D0.BD.D0.BD.D1.8B.D0.B5_.D0.BA.D0.BB.D0.B0.D1.81.D1.81.D1.8B"><span class="tocnumber">1.8</span> <span class="toctext"><b>Вложенные классы</b></span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="http://wikijava.it-cache.net/index.php@title=Glava_10_Thinking_in_Java_4th_edition.html#.D0.9A.D0.BB.D0.B0.D1.81.D1.81.D1.8B_.D0.B2.D0.BD.D1.83.D1.82.D1.80.D0.B8_.D0.B8.D0.BD.D1.82.D0.B5.D1.80.D1.84.D0.B5.D0.B9.D1.81.D0.BE.D0.B2"><span class="tocnumber">1.9</span> <span class="toctext"><b>Классы внутри интерфейсов</b></span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="http://wikijava.it-cache.net/index.php@title=Glava_10_Thinking_in_Java_4th_edition.html#.D0.94.D0.BE.D1.81.D1.82.D1.83.D0.BF_.D0.B2.D0.BE.D0.B2.D0.BD.D0.B5_.D0.B8.D0.B7_.D0.BC.D0.BD.D0.BE.D0.B3.D0.BE.D0.BA.D1.80.D0.B0.D1.82.D0.BD.D0.BE_.D0.B2.D0.BB.D0.BE.D0.B6.D0.B5.D0.BD.D0.BD.D1.8B.D1.85_.D0.BA.D0.BB.D0.B0.D1.81.D1.81.D0.BE.D0.B2"><span class="tocnumber">1.10</span> <span class="toctext"><b>Доступ вовне из многократно вложенных классов</b></span></a></li>
+<li class="toclevel-2 tocsection-12"><a href="http://wikijava.it-cache.net/index.php@title=Glava_10_Thinking_in_Java_4th_edition.html#.D0.92.D0.BD.D1.83.D1.82.D1.80.D0.B5.D0.BD.D0.BD.D0.B8.D0.B5_.D0.BA.D0.BB.D0.B0.D1.81.D1.81.D1.8B:_.D0.B7.D0.B0.D1.87.D0.B5.D0.BC.3F"><span class="tocnumber">1.11</span> <span class="toctext"><b>Внутренние классы: зачем?</b></span></a></li>
+<li class="toclevel-2 tocsection-13"><a href="http://wikijava.it-cache.net/index.php@title=Glava_10_Thinking_in_Java_4th_edition.html#.D0.97.D0.B0.D0.BC.D1.8B.D0.BA.D0.B0.D0.BD.D0.B8.D1.8F_.D0.B8_.D0.BE.D0.B1.D1.80.D0.B0.D1.82.D0.BD.D1.8B.D0.B5_.D0.B2.D1.8B.D0.B7.D0.BE.D0.B2.D1.8B"><span class="tocnumber">1.12</span> <span class="toctext"><b>Замыкания и обратные вызовы</b></span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="http://wikijava.it-cache.net/index.php@title=Glava_10_Thinking_in_Java_4th_edition.html#.D0.92.D0.BD.D1.83.D1.82.D1.80.D0.B5.D0.BD.D0.BD.D0.B8.D0.B5_.D0.BA.D0.BB.D0.B0.D1.81.D1.81.D1.8B_.D0.B8_.D1.81.D0.B8.D1.81.D1.82.D0.B5.D0.BC.D0.B0_.D1.83.D0.BF.D1.80.D0.B0.D0.B2.D0.BB.D0.B5.D0.BD.D0.B8.D1.8F"><span class="tocnumber">1.13</span> <span class="toctext">Внутренние классы и система управления</span></a></li>
+<li class="toclevel-2 tocsection-15"><a href="http://wikijava.it-cache.net/index.php@title=Glava_10_Thinking_in_Java_4th_edition.html#.D0.9D.D0.B0.D1.81.D0.BB.D0.B5.D0.B4.D0.BE.D0.B2.D0.B0.D0.BD.D0.B8.D0.B5_.D0.BE.D1.82_.D0.B2.D0.BD.D1.83.D1.82.D1.80.D0.B5.D0.BD.D0.BD.D0.B8.D1.85_.D0.BA.D0.BB.D0.B0.D1.81.D1.81.D0.BE.D0.B2"><span class="tocnumber">1.14</span> <span class="toctext"><b>Наследование от внутренних классов</b></span></a></li>
+<li class="toclevel-2 tocsection-16"><a href="http://wikijava.it-cache.net/index.php@title=Glava_10_Thinking_in_Java_4th_edition.html#.D0.9C.D0.BE.D0.B6.D0.BD.D0.BE_.D0.BB.D0.B8_.D0.BF.D0.B5.D1.80.D0.B5.D0.BE.D0.BF.D1.80.D0.B5.D0.B4.D0.B5.D0.BB.D0.B8.D1.82.D1.8C_.D0.B2.D0.BD.D1.83.D1.82.D1.80.D0.B5.D0.BD.D0.BD.D0.B8.D0.B9_.D0.BA.D0.BB.D0.B0.D1.81.D1.81.3F"><span class="tocnumber">1.15</span> <span class="toctext"><b>Можно ли переопределить внутренний класс?</b></span></a></li>
+<li class="toclevel-2 tocsection-17"><a href="http://wikijava.it-cache.net/index.php@title=Glava_10_Thinking_in_Java_4th_edition.html#.D0.9B.D0.BE.D0.BA.D0.B0.D0.BB.D1.8C.D0.BD.D1.8B.D0.B5_.D0.B2.D0.BD.D1.83.D1.82.D1.80.D0.B5.D0.BD.D0.BD.D0.B8.D0.B5_.D0.BA.D0.BB.D0.B0.D1.81.D1.81.D1.8B"><span class="tocnumber">1.16</span> <span class="toctext"><b>Локальные внутренние классы</b></span></a></li>
+<li class="toclevel-2 tocsection-18"><a href="http://wikijava.it-cache.net/index.php@title=Glava_10_Thinking_in_Java_4th_edition.html#.D0.98.D0.B4.D0.B5.D0.BD.D1.82.D0.B8.D1.84.D0.B8.D0.BA.D0.B0.D1.82.D0.BE.D1.80.D1.8B_.D0.B2.D0.BD.D1.83.D1.82.D1.80.D0.B5.D0.BD.D0.BD.D0.B8.D1.85_.D0.BA.D0.BB.D0.B0.D1.81.D1.81.D0.BE.D0.B2"><span class="tocnumber">1.17</span> <span class="toctext"><b>Идентификаторы внутренних классов</b></span></a></li>
+<li class="toclevel-2 tocsection-19"><a href="http://wikijava.it-cache.net/index.php@title=Glava_10_Thinking_in_Java_4th_edition.html#.D0.A0.D0.B5.D0.B7.D1.8E.D0.BC.D0.B5"><span class="tocnumber">1.18</span> <span class="toctext"><b>Резюме</b></span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+</td></tr></tbody></table>
+<h1><span class="mw-headline" id=".D0.92.D0.9D.D0.A3.D0.A2.D0.A0.D0.95.D0.9D.D0.9D.D0.98.D0.95_.D0.9A.D0.9B.D0.90.D0.A1.D0.A1.D0.AB"><b>ВНУТРЕННИЕ КЛАССЫ</b></span></h1>
+<p>Определение класса может размещаться внутри определения другого класса. Такие классы называются внутренними (<i>inner class</i>).
+Внутренние
+ классы весьма полезны, так как они позволяют группировать классы, 
+логически принадлежащие друг другу, и управлять доступом к ним. Однако 
+следует понимать, что внутренние классы заметно отличаются от 
+композиции.
+На первый взгляд создается впечатление, что внутренние классы 
+представляют собой простой механизм сокрытия кода. Однако вскоре вы 
+узнаете, что возможности внутренних классов гораздо шире (они знают о 
+существовании внешних классов и могут работать с ними), а программный 
+код с внутренними классами часто бывает более элегантным и понятным 
+(хотя конечно, этого никто не гарантирует).
+В этой главе подробно исследуется синтаксис внутренних классов. Эти 
+возможности представлены для полноты материала, хотя, скорее всего, на 
+первых порах они вам не понадобятся. Возможно, начальные разделы этой 
+главы содержат все, что вам действительно необходимо знать на этой 
+стадии, а к более подробным объяснениям можно относиться как к 
+справочному, дополнительному материалу.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id=".D0.A1.D0.BE.D0.B7.D0.B4.D0.B0.D0.BD.D0.B8.D0.B5_.D0.B2.D0.BD.D1.83.D1.82.D1.80.D0.B5.D0.BD.D0.BD.D0.B8.D1.85_.D0.BA.D0.BB.D0.B0.D1.81.D1.81.D0.BE.D0.B2"><b>Создание внутренних классов</b></span></h2>
+<p>Внутренние классы создаются в точности так, как и следовало ожидать, — определение класса размещается внутри окружающего класса:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: innerclasses/Parcel1.java</span>
+<span class="co1">// Creating inner classes.</span>
+<span class="kw2">public</span> <span class="kw2">class</span> Parcel1 <span class="br0">{</span>
+  <span class="kw2">class</span> Contents <span class="br0">{</span>
+    <span class="kw2">private</span> <span class="kw3">int</span> i = <span class="nu0">11</span><span class="sy0">;</span>
+    <span class="kw2">public</span> <span class="kw3">int</span> value<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> i<span class="sy0">;</span> <span class="br0">}</span>
+  <span class="br0">}</span>
+  <span class="kw2">class</span> <span class="kw85">Destination</span> <span class="br0">{</span>
+    <span class="kw2">private</span> <span class="kw21">String</span> label<span class="sy0">;</span>
+    <span class="kw85">Destination</span><span class="br0">(</span><span class="kw21">String</span> whereTo<span class="br0">)</span> <span class="br0">{</span>
+      label = whereTo<span class="sy0">;</span>
+    <span class="br0">}</span>
+    <span class="kw21">String</span> readLabel<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> label<span class="sy0">;</span> <span class="br0">}</span>
+  <span class="br0">}</span>	
+  <span class="co1">// Использование внутренних классов имеет много общего</span>
+  <span class="co1">// с использованием любых других классов в пределах Parcel1</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> ship<span class="br0">(</span><span class="kw21">String</span> dest<span class="br0">)</span> <span class="br0">{</span>
+    Contents c = <span class="kw2">new</span> Contents<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw85">Destination</span> d = <span class="kw2">new</span> <span class="kw85">Destination</span><span class="br0">(</span>dest<span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">(</span>d.<span class="me1">readLabel</span><span class="br0">(</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    Parcel1 p = <span class="kw2">new</span> Parcel1<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    p.<span class="me1">ship</span><span class="br0">(</span><span class="st0">"Tasmania"</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>Tasmania
+</pre>
+<p>&lt;/spoiler&gt;
+</p><p>The inner classes used inside <i><b>ship( )</b></i> look just like ordinary classes. Here, the only practical 
+difference is that the names are nested within <i><b>Parceli</b></i>. You’ll see in a while that this isn’t the 
+only difference. More typically, an outer class will have a method that returns a reference to 
+an inner class, as you can see in the <i><b>to( )</b></i> and <i><b>contents( )</b></i> methods:  
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: innerclasses/Parcel2.java </span>
+<span class="co1">// Returning a reference to an inner class. </span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> Parcel2 <span class="br0">{</span> 
+  <span class="kw2">class</span> Contents <span class="br0">{</span> 
+    <span class="kw2">private</span> <span class="kw3">int</span> i = <span class="nu0">11</span><span class="sy0">;</span> 
+    <span class="kw2">public</span> <span class="kw3">int</span> value<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> i<span class="sy0">;</span> <span class="br0">}</span> 
+  <span class="br0">}</span> 
+  <span class="kw2">class</span> <span class="kw85">Destination</span> <span class="br0">{</span> 
+    <span class="kw2">private</span> <span class="kw21">String</span> label<span class="sy0">;</span> 
+    <span class="kw85">Destination</span><span class="br0">(</span><span class="kw21">String</span> whereTo<span class="br0">)</span> <span class="br0">{</span> 
+      label = whereTo<span class="sy0">;</span> 
+    <span class="br0">}</span> 
+    <span class="kw21">String</span> readLabel<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> label<span class="sy0">;</span> <span class="br0">}</span> 
+  <span class="br0">}</span> 
+  <span class="kw2">public</span> <span class="kw85">Destination</span> to<span class="br0">(</span><span class="kw21">String</span> s<span class="br0">)</span> <span class="br0">{</span> 
+    <span class="kw2">return</span> <span class="kw2">new</span> <span class="kw85">Destination</span><span class="br0">(</span>s<span class="br0">)</span><span class="sy0">;</span> 
+  <span class="br0">}</span> 
+  <span class="kw2">public</span> Contents contents<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> 
+    <span class="kw2">return</span> <span class="kw2">new</span> Contents<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span> 
+  <span class="br0">}</span> 
+  <span class="kw2">public</span> <span class="kw3">void</span> ship<span class="br0">(</span><span class="kw21">String</span> dest<span class="br0">)</span> <span class="br0">{</span> 
+    Contents c = contents<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span> 
+    <span class="kw85">Destination</span> d = to<span class="br0">(</span>dest<span class="br0">)</span><span class="sy0">;</span> 
+    <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">(</span>d.<span class="me1">readLabel</span><span class="br0">(</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span> 
+  <span class="br0">}</span> 
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span> 
+    Parcel2 p = <span class="kw2">new</span> Parcel2<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span> 
+    p.<span class="me1">ship</span><span class="br0">(</span><span class="st0">"Tasmania"</span><span class="br0">)</span><span class="sy0">;</span> 
+    Parcel2 q = <span class="kw2">new</span> Parcel2<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span> 
+    <span class="co1">// Defining references to inner classes: </span>
+    Parcel2.<span class="me1">Contents</span> c = q.<span class="me1">contents</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span> 
+    Parcel2.<span class="kw85">Destination</span> d = q.<span class="me1">to</span><span class="br0">(</span><span class="st0">"Borneo"</span><span class="br0">)</span><span class="sy0">;</span> 
+  <span class="br0">}</span> 
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>Tasmania
+</pre>
+<p>&lt;/spoiler&gt;
+</p><p>Если вам понадобится создать объект внутреннего класса где-либо, 
+кроме как в не-статическом методе внешнего класса, тип этого объекта 
+должен задаваться в формате 
+</p>
+<pre>ИмяВнешнегоКласса.ИмяВнутреннегоКласса
+</pre>
+<p>что и делается в методе <i><b>main()</b></i>.
+</p>
+<h2><span class="mw-headline" id=".D0.A1.D0.B2.D1.8F.D0.B7.D1.8C_.D1.81_.D0.B2.D0.BD.D0.B5.D1.88.D0.BD.D0.B8.D0.BC_.D0.BA.D0.BB.D0.B0.D1.81.D1.81.D0.BE.D0.BC"><b>Связь с внешним классом</b></span></h2>
+<p>Пока что внутренние классы выглядят как некоторая схема для сокрытия 
+имен и организации кода — полезная, но не особенно впечатляющая. Однако 
+есть еще один нюанс. Объект внутреннего класса связан с внешним 
+объектом-создателем и может обращаться к его членам без каких-либо 
+дополнительных описаний. Вдобавок для внутренних классов доступны все 
+без исключения элементы внешнего класса. Следующий пример иллюстрирует 
+сказанное:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: innerclasses/Sequence.java</span>
+<span class="co1">// Хранение последовательности объектов</span>
+<span class="kw2">interface</span> <span class="kw30">Selector</span> <span class="br0">{</span>
+  <span class="kw3">boolean</span> end<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="kw166">Object</span> current<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="kw3">void</span> next<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span>	
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> <span class="kw97">Sequence</span> <span class="br0">{</span>
+  <span class="kw2">private</span> <span class="kw166">Object</span><span class="br0">[</span><span class="br0">]</span> items<span class="sy0">;</span>
+  <span class="kw2">private</span> <span class="kw3">int</span> next = <span class="nu0">0</span><span class="sy0">;</span>
+  <span class="kw2">public</span> <span class="kw97">Sequence</span><span class="br0">(</span><span class="kw3">int</span> size<span class="br0">)</span> <span class="br0">{</span> items = <span class="kw2">new</span> <span class="kw166">Object</span><span class="br0">[</span>size<span class="br0">]</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> add<span class="br0">(</span><span class="kw166">Object</span> x<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw1">if</span><span class="br0">(</span>next <span class="sy0">&lt;</span> items.<span class="me1">length</span><span class="br0">)</span>
+      items<span class="br0">[</span>next++<span class="br0">]</span> = x<span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">private</span> <span class="kw2">class</span> SequenceSelector <span class="kw2">implements</span> <span class="kw30">Selector</span> <span class="br0">{</span>
+    <span class="kw2">private</span> <span class="kw3">int</span> i = <span class="nu0">0</span><span class="sy0">;</span>
+    <span class="kw2">public</span> <span class="kw3">boolean</span> end<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> i == items.<span class="me1">length</span><span class="sy0">;</span> <span class="br0">}</span>
+    <span class="kw2">public</span> <span class="kw166">Object</span> current<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> items<span class="br0">[</span>i<span class="br0">]</span><span class="sy0">;</span> <span class="br0">}</span>
+    <span class="kw2">public</span> <span class="kw3">void</span> next<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw1">if</span><span class="br0">(</span>i <span class="sy0">&lt;</span> items.<span class="me1">length</span><span class="br0">)</span> i++<span class="sy0">;</span> <span class="br0">}</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw30">Selector</span> selector<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw2">return</span> <span class="kw2">new</span> SequenceSelector<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>	
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw97">Sequence</span> sequence = <span class="kw2">new</span> <span class="kw97">Sequence</span><span class="br0">(</span><span class="nu0">10</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw1">for</span><span class="br0">(</span><span class="kw3">int</span> i = <span class="nu0">0</span><span class="sy0">;</span> i <span class="sy0">&lt;</span> <span class="nu0">10</span><span class="sy0">;</span> i++<span class="br0">)</span>
+      sequence.<span class="me1">add</span><span class="br0">(</span><span class="kw21">Integer</span>.<span class="me1">toString</span><span class="br0">(</span>i<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw30">Selector</span> selector = sequence.<span class="me1">selector</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw1">while</span><span class="br0">(</span><span class="sy0">!</span>selector.<span class="me1">end</span><span class="br0">(</span><span class="br0">)</span><span class="br0">)</span> <span class="br0">{</span>
+      <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">print</span><span class="br0">(</span>selector.<span class="me1">current</span><span class="br0">(</span><span class="br0">)</span> + <span class="st0">" "</span><span class="br0">)</span><span class="sy0">;</span>
+      selector.<span class="me1">next</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>0 1 2 3 4 5 6 7 8 9
+</pre>
+<p>&lt;/spoiler&gt;
+</p><p>Класс <i><b>Sequence</b></i> — не более чем «оболочка» для массива с элементами <i><b>Object</b></i>,
+ имеющего фиксированный размер. Для добавления новых объектов в конец 
+последовательности (при наличии свободного места) используется метод <i><b>add()</b></i>. Для выборки каждого объекта в последовательности <i><b>Sequence</b></i> предусмотрен интерфейс с именем <i><b>Selector</b></i>. Он позволяет узнать, достигнут ли конец последовательности (метод <i><b>end()</b></i>), обратиться к текущему объекту (метод <i><b>current()</b></i>) и перейти к следующему объекту последовательности (метод <i><b>next()</b></i>). Так как <i><b>Selector</b></i>
+ является интерфейсом, другие классы вправе реализовать его по-своему, а
+ также другие методы могут использовать интерфейс как аргумент - всё это
+ повышает универсальность кода.
+</p><p>Здесь <i><b>SequenceSelector</b></i> является закрытым (<i><b>private</b></i>) классом, предоставляющим функциональность интерфейса <i><b>Selector</b></i>. В методе <i><b>main()</b></i> вы можете наблюдать за процессом создания последовательности <i><b>Sequence</b></i> с последующим заполнением ее объектами <i><b>String</b></i>. Затем вызывается метод <i><b>selector()</b></i> для получения интерфейса <i><b>Selector</b></i>, который используется для перемещения по последовательности и выбора ее элементов.
+</p><p>На первый взгляд создание <i><b>SequenceSelector</b></i> напоминает создание обычного внутреннего класса. Но присмотритесь к нему повнимательнее. Заметьте, что в каждом из методов <i><b>end(), current()</b></i> и <i><b>next()</b></i> присутствует ссылка на <i><b>items</b></i>, а это не одно из полей класса <i><b>SequenceSelector</b></i>, а закрытое (<i><b>private</b></i>)
+ поле объемлющего класса. Внутренний класс может обращаться ко всем 
+полям и методам внешнего класса-оболочки, как будто они описаны в нем 
+самом. Это весьма удобно, и вы могли в этом убедиться, изучая 
+рассмотренный пример.
+</p><p>Итак, внутренний класс автоматически получает доступ к членам 
+объемлющего класса. Как же это происходит? Внутренний класс содержит 
+скрытую ссылку на определенный объект окружающего класса, ответственный 
+за его создание. При обращении к члену окружающего класса используется 
+эта (скрытая) ссылка. 
+</p><p>К счастью, все технические детали обеспечиваются компилятором, но
+ теперь вы знаете, что объект внутреннего класса можно создать только в 
+сочетании с объектом внешнего класса (как будет показано позже, если 
+внутренний класс не является статическим). Конструирование объекта 
+внутреннего класса требует наличия ссылки на объект внешнего класса; 
+если ссылка недоступна, компилятор выдаст сообщение об ошибке. Большую 
+часть времени весь процесс происходит без всякого участия со стороны 
+программиста.
+</p>
+<h2><span class="mw-headline" id=".D0.9A.D0.BE.D0.BD.D1.81.D1.82.D1.80.D1.83.D0.BA.D1.86.D0.B8.D0.B8_.this_.D0.B8_.new"><b>Конструкции .this и .new</b></span></h2>
+<p>Если вам понадобится получить ссылку на объект внешнего класса, 
+запишите имя внешнего класса, за которым следует точка, а затем ключевое
+ слово <i><b>this</b></i>. Полученная ссылка автоматически относится к 
+правильному типу, известному и проверяемому на стадии компиляции, 
+поэтому дополнительные издержки на стадии выполнения не требуются. 
+Следующий пример показывает, как использовать конструкцию <i><b>.this</b></i>:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: innerclasses/DotThis.java</span>
+<span class="co1">// Обращение к объекту внешнего класса.</span>
+<span class="kw2">public</span> <span class="kw2">class</span> DotThis <span class="br0">{</span>
+  <span class="kw3">void</span> f<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">(</span><span class="st0">"DotThis.f()"</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">class</span> Inner <span class="br0">{</span>
+    <span class="kw2">public</span> DotThis outer<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+      <span class="kw2">return</span> DotThis.<span class="kw2">this</span><span class="sy0">;</span>
+      <span class="co1">// A plain "this" would be Inner's "this"</span>
+    <span class="br0">}</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> Inner inner<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> <span class="kw2">new</span> Inner<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    DotThis dt = <span class="kw2">new</span> DotThis<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    DotThis.<span class="me1">Inner</span> dti = dt.<span class="me1">inner</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    dti.<span class="me1">outer</span><span class="br0">(</span><span class="br0">)</span>.<span class="me1">f</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>DotThis.f()
+</pre>
+<p>&lt;/spoiler&gt;
+</p><p>Иногда бывает нужно приказать другому объекту создать объект одного из его внутренних классов. Для этого перед <i><b>.new</b></i> указывается ссылка на другой объект внешнего класса:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: innerclasses/DotNew.java</span>
+<span class="co1">// Непосредственное создание внутреннего класса в синтаксисе .new</span>
+<span class="kw2">public</span> <span class="kw2">class</span> DotNew <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">class</span> Inner <span class="br0">{</span><span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    DotNew dn = <span class="kw2">new</span> DotNew<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    DotNew.<span class="me1">Inner</span> dni = dn.<span class="kw2">new</span> Inner<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>При создании объекта внутреннего класса указывается не имя внешнего класса <i><b>DotNew</b></i>,
+ как можно было бы ожидать, а имя объекта внешнего класса. Это также 
+решает проблему видимости имен для внутреннего класса, поэтому мы не 
+используем (а вернее, не можем использовать) запись вида <i><b>dn.new DotNew.Inner()</b></i>.
+Невозможно создать объект внутреннего класса, не имея ссылки на внешний 
+класс. Но если создать вложенный класс (статический внутренний класс), 
+ссылка на объект внешнего класса не нужна.
+Рассмотрим пример использования <i><b>.new</b></i> в примере <i><b>Parcel</b></i>:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: innerclasses/Parcel3.java</span>
+<span class="co1">// Использование new для создания экземпляров внутренних классов</span>
+<span class="kw2">public</span> <span class="kw2">class</span> Parcel3 <span class="br0">{</span>
+  <span class="kw2">class</span> Contents <span class="br0">{</span>
+    <span class="kw2">private</span> <span class="kw3">int</span> i = <span class="nu0">11</span><span class="sy0">;</span>
+    <span class="kw2">public</span> <span class="kw3">int</span> value<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> i<span class="sy0">;</span> <span class="br0">}</span>
+  <span class="br0">}</span>
+  <span class="kw2">class</span> <span class="kw85">Destination</span> <span class="br0">{</span>
+    <span class="kw2">private</span> <span class="kw21">String</span> label<span class="sy0">;</span>
+    <span class="kw85">Destination</span><span class="br0">(</span><span class="kw21">String</span> whereTo<span class="br0">)</span> <span class="br0">{</span> label = whereTo<span class="sy0">;</span> <span class="br0">}</span>
+    <span class="kw21">String</span> readLabel<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> label<span class="sy0">;</span> <span class="br0">}</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    Parcel3 p = <span class="kw2">new</span> Parcel3<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="co1">// Для создания экземпляра внутреннего класса </span>
+    <span class="co1">// необходимо использовать экземпляр внешнего класса</span>
+    Parcel3.<span class="me1">Contents</span> c = p.<span class="kw2">new</span> Contents<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    Parcel3.<span class="kw85">Destination</span> d = p.<span class="kw2">new</span> <span class="kw85">Destination</span><span class="br0">(</span><span class="st0">"Tasmania"</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<h2><span class="mw-headline" id=".D0.92.D0.BD.D1.83.D1.82.D1.80.D0.B5.D0.BD.D0.BD.D0.B8.D0.B5_.D0.BA.D0.BB.D0.B0.D1.81.D1.81.D1.8B_.D0.B8_.D0.B2.D0.BE.D1.81.D1.85.D0.BE.D0.B4.D1.8F.D1.89.D0.B5.D0.B5_.D0.BF.D1.80.D0.B5.D0.BE.D0.B1.D1.80.D0.B0.D0.B7.D0.BE.D0.B2.D0.B0.D0.BD.D0.B8.D0.B5"><b>Внутренние классы и восходящее преобразование</b></span></h2>
+<p>Мощь внутренних классов по-настоящему проявляется при выполнении 
+восходящего преобразования к базовому классу, и в особенности к 
+интерфейсу. (Получение ссылки на интерфейс по ссылке на реализующий его 
+объект ничем принципиально не отличается от восходящего преобразования к
+ базовому классу.) Причина в том, что внутренний класс — реализация 
+интерфейса — может быть абсолютно невидимым и недоступным окружающему 
+миру, а это очень удобно для сокрытия реализации. Все, что вы при этом 
+получаете, — ссылку на базовый класс или интерфейс.
+Для начала определим интерфейсы для предыдущих примеров:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: innerclasses/Destination.java</span>
+<span class="kw2">public</span> <span class="kw2">interface</span> <span class="kw85">Destination</span> <span class="br0">{</span>
+  <span class="kw21">String</span> readLabel<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="co1">//: innerclasses/Contents.java </span>
+<span class="kw2">public</span> <span class="kw2">interface</span> Contents <span class="br0">{</span>
+  <span class="kw3">int</span> value<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span> 
+<span class="br0">}</span></pre></div></div>
+<p>Теперь интерфейсы <i><b>Contents</b></i> и <i><b>Destination</b></i> доступны программисту-клиенту. (Помните, что в объявлении <i><b>interface</b></i> все члены класса автоматически являются открытыми (<i><b>public</b></i>).)
+При
+ получении из метода ссылки на базовый класс или интерфейс возможны 
+ситуации, в которых вам не удастся определить ее точный тип, как здесь:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: innerclasses/TestParcel.java</span>
+&nbsp;
+<span class="kw2">class</span> Parcel4 <span class="br0">{</span>
+  <span class="kw2">private</span> <span class="kw2">class</span> PContents <span class="kw2">implements</span> Contents <span class="br0">{</span>
+    <span class="kw2">private</span> <span class="kw3">int</span> i = <span class="nu0">11</span><span class="sy0">;</span>
+    <span class="kw2">public</span> <span class="kw3">int</span> value<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> i<span class="sy0">;</span> <span class="br0">}</span>
+  <span class="br0">}</span>
+  <span class="kw2">protected</span> <span class="kw2">class</span> PDestination <span class="kw2">implements</span> <span class="kw85">Destination</span> <span class="br0">{</span>
+    <span class="kw2">private</span> <span class="kw21">String</span> label<span class="sy0">;</span>
+    <span class="kw2">private</span> PDestination<span class="br0">(</span><span class="kw21">String</span> whereTo<span class="br0">)</span> <span class="br0">{</span>
+      label = whereTo<span class="sy0">;</span>
+    <span class="br0">}</span>
+    <span class="kw2">public</span> <span class="kw21">String</span> readLabel<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> label<span class="sy0">;</span> <span class="br0">}</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw85">Destination</span> destination<span class="br0">(</span><span class="kw21">String</span> s<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw2">return</span> <span class="kw2">new</span> PDestination<span class="br0">(</span>s<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> Contents contents<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw2">return</span> <span class="kw2">new</span> PContents<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> TestParcel <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    Parcel4 p = <span class="kw2">new</span> Parcel4<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    Contents c = p.<span class="me1">contents</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw85">Destination</span> d = p.<span class="me1">destination</span><span class="br0">(</span><span class="st0">"Tasmania"</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="co1">// Запрещено - нет доступа к private-классу:</span>
+    <span class="co1">//! Parcel4.PContents pc = p.new PContents();</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>В класс <i><b>Parcel4</b></i> было добавлено кое-что новое: внутренний класс <i><b>PContents</b></i> является закрытым (<i><b>private</b></i>), поэтому он недоступен для всех, кроме внешнего класса <i><b>Раrсе14</b></i>.
+</p><p>Класс <i><b>PDestination</b></i> объявлен как <i><b>protected</b></i>, следовательно, доступ к нему имеют только класс <i><b>Parcel4</b></i>, классы из одного пакета с <i><b>Раrсеl4</b></i> (так как спецификатор <i><b>protected </b></i>также дает доступ в пределах пакета) и наследники класса <i><b>Раrсеl4</b></i>. 
+</p><p>Таким образом, программист-клиент обладает ограниченной 
+информацией и доступом к этим членам класса. Более того, нельзя даже 
+выполнить нисходящее преобразование к закрытому (<i><b>private</b></i>) внутреннему классу (или <i><b>protected</b></i>, кроме наследников), поскольку его имя недоступно, как показано в классе <i><b>Test</b></i>. 
+</p><p>Таким образом, закрытый внутренний класс позволяет разработчику 
+класса полностью запретить использование определенных типов и скрыть все
+ детали реализации класса. Вдобавок, расширение интерфейса с точки 
+зрения программиста-клиента не будет иметь смысла, поскольку он не 
+сможет получить доступ к дополнительным методам, не принадлежащим к 
+открытой части класса. Наконец, у компилятора <i>Java</i> появится возможность оптимизировать код.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id=".D0.92.D0.BD.D1.83.D1.82.D1.80.D0.B5.D0.BD.D0.BD.D0.B8.D0.B5_.D0.BA.D0.BB.D0.B0.D1.81.D1.81.D1.8B_.D0.B2_.D0.BC.D0.B5.D1.82.D0.BE.D0.B4.D0.B0.D1.85_.D0.B8_.D0.BE.D0.B1.D0.BB.D0.B0.D1.81.D1.82.D1.8F.D1.85_.D0.B4.D0.B5.D0.B9.D1.81.D1.82.D0.B2.D0.B8.D1.8F"><b>Внутренние классы в методах и областях действия</b></span></h2>
+<p>Ранее мы рассмотрели ряд типичных применений внутренних классов. В 
+основном ваш код будет содержать «простые» внутренние классы, смысл 
+которых понять нетрудно. Однако синтаксис внутренних классов скрывает 
+множество других, не столь тривиальных способов их использования: 
+внутренние классы можно создавать внутри метода или даже в пределах 
+произвольного блока. На то есть две причины:
+</p>
+<hr>
+<ul>
+<li><span style="color:#800000">как было показано ранее, вы реализуете некоторый интерфейс, чтобы затем создавать и возвращать ссылку его типа;</span>
+</li>
+</ul>
+<ul>
+<li><span style="color:#800000">вы создаете вспомогательный класс для 
+решения сложной задачи, но при этом не хотите, чтобы этот класс был 
+открыт для посторонних.</span>
+</li>
+</ul>
+<hr>
+<p>В следующих примерах рассмотренная недавно программа будет изменена, благодаря чему у нас появятся:
+</p>
+<hr>
+<ul>
+<li><span style="color:#800000">класс, определенный внутри метода;</span>
+</li>
+</ul>
+<ul>
+<li><span style="color:#800000">класс, определенный внутри области действия (блока), которая находится внутри метода;
+</span></li>
+</ul>
+<ul>
+<li><span style="color:#800000">безымянный класс, реализующий интерфейс;</span>
+</li>
+</ul>
+<ul>
+<li><span style="color:#800000">безымянный класс, расширяющий класс, у которого отсутствует конструктор по умолчанию;</span>
+</li>
+</ul>
+<ul>
+<li><span style="color:#800000">безымянный класс, выполняющий инициализацию полей;</span>
+</li>
+</ul>
+<ul>
+<li><span style="color:#800000">безымянный класс, осуществляющий 
+конструирование посредством инициализации экземпляра (безымянные 
+внутренние классы не могут иметь конструкторы).</span>
+</li>
+</ul>
+<hr>
+<p>Первый пример демонстрирует создание целого класса в контексте метода
+ (вместо создания в контексте другого класса). Такие внутренние классы 
+называются локальными:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: innerclasses/Parcel5.java</span>
+<span class="co1">// Вложение класса в тело метода.</span>
+<span class="kw2">public</span> <span class="kw2">class</span> Parcel5 <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw85">Destination</span> destination<span class="br0">(</span><span class="kw21">String</span> s<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw2">class</span> PDestination <span class="kw2">implements</span> <span class="kw85">Destination</span> <span class="br0">{</span>
+      <span class="kw2">private</span> <span class="kw21">String</span> label<span class="sy0">;</span>
+      <span class="kw2">private</span> PDestination<span class="br0">(</span><span class="kw21">String</span> whereTo<span class="br0">)</span> <span class="br0">{</span>
+        label = whereTo<span class="sy0">;</span>
+      <span class="br0">}</span>
+      <span class="kw2">public</span> <span class="kw21">String</span> readLabel<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> label<span class="sy0">;</span> <span class="br0">}</span>
+    <span class="br0">}</span>
+    <span class="kw2">return</span> <span class="kw2">new</span> PDestination<span class="br0">(</span>s<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    Parcel5 p = <span class="kw2">new</span> Parcel5<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw85">Destination</span> d = p.<span class="me1">destination</span><span class="br0">(</span><span class="st0">"Tasmania"</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>Теперь класс <i><b>PDestination</b></i> является частью метода <i><b>destination()</b></i>, а не частью класса <i><b>Раrсеl5</b></i>. Поэтому доступ к классу <i><b>PDestination</b></i> возможен только из метода <i><b>destination()</b></i>. 
+</p><p>Обратите внимание на восходящее преобразование, производимое в команде <i><b>return</b></i>, — из метода возвращается лишь ссылка на базовый класс <i><b>Destination</b></i>, и ничего больше. Конечно, тот факт, что имя класса <i><b>PDestination</b></i> находится внутри метода <i><b>destination()</b></i>, не означает, что объект <i><b>PDestination</b></i> после выхода из этого метода станет недоступным.
+</p><p>Идентификатор <i><b>PDestination</b></i> может использоваться для внутренних классов каждого отдельного класса в одном подкаталоге, без порождения конфликта имен.
+Следующий пример демонстрирует, как можно вложить внутренний класс в произвольную область действия:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: innerclasses/Parcel6.java</span>
+<span class="co1">// Вложение класса в область действия</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> Parcel6 <span class="br0">{</span>
+  <span class="kw2">private</span> <span class="kw3">void</span> internalTracking<span class="br0">(</span><span class="kw3">boolean</span> b<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw1">if</span><span class="br0">(</span>b<span class="br0">)</span> <span class="br0">{</span>
+      <span class="kw2">class</span> TrackingSlip <span class="br0">{</span>
+        <span class="kw2">private</span> <span class="kw21">String</span> id<span class="sy0">;</span>
+        TrackingSlip<span class="br0">(</span><span class="kw21">String</span> s<span class="br0">)</span> <span class="br0">{</span>
+          id = s<span class="sy0">;</span>
+        <span class="br0">}</span>
+        <span class="kw21">String</span> getSlip<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> id<span class="sy0">;</span> <span class="br0">}</span>
+      <span class="br0">}</span>
+      TrackingSlip ts = <span class="kw2">new</span> TrackingSlip<span class="br0">(</span><span class="st0">"ожидание"</span><span class="br0">)</span><span class="sy0">;</span>
+      <span class="kw21">String</span> s = ts.<span class="me1">getSlip</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+    <span class="co1">// Здесь использовать класс нельзя!</span>
+    <span class="co1">// Вне области видимости</span>
+    <span class="co1">//! TrackingSlip ts = new TrackingSlip("x");</span>
+  <span class="br0">}</span>	
+  <span class="kw2">public</span> <span class="kw3">void</span> track<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> internalTracking<span class="br0">(</span><span class="kw4">true</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    Parcel6 p = <span class="kw2">new</span> Parcel6<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    p.<span class="me1">track</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>Класс <i><b>TrackingSlip</b></i> вложен в область действия команды <i><b>if</b></i>.
+ Это не значит, что класс создается в зависимости от условия — он 
+компилируется вместе со всем остальным кодом. Однако при этом он 
+недоступен вне контекста, в котором был определен. В остальном он 
+выглядит точно так же, как и обычный класс.
+</p>
+<h2><span class="mw-headline" id=".D0.91.D0.B5.D0.B7.D1.8B.D0.BC.D1.8F.D0.BD.D0.BD.D1.8B.D0.B5_.D0.B2.D0.BD.D1.83.D1.82.D1.80.D0.B5.D0.BD.D0.BD.D0.B8.D0.B5_.D0.BA.D0.BB.D0.B0.D1.81.D1.81.D1.8B"><b>Безымянные внутренние классы</b></span></h2>
+<p>Следующий пример выглядит немного странно:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: innerclasses/Parcel7.java</span>
+<span class="co1">// Метод возвращает экземпляр безымянного внутреннего класса</span>
+<span class="kw2">public</span> <span class="kw2">class</span> Parcel7 <span class="br0">{</span>
+  <span class="kw2">public</span> Contents contents<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw2">return</span> <span class="kw2">new</span> Contents<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="co1">// Вставить определение класса</span>
+      <span class="kw2">private</span> <span class="kw3">int</span> i = <span class="nu0">11</span><span class="sy0">;</span>
+      <span class="kw2">public</span> <span class="kw3">int</span> value<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> i<span class="sy0">;</span> <span class="br0">}</span>
+    <span class="br0">}</span><span class="sy0">;</span>  <span class="co1">// В данной ситуации точка с запятой необходима</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    Parcel7 p = <span class="kw2">new</span> Parcel7<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    Contents c = p.<span class="me1">contents</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>Метод <i><b>contents()</b></i> совмещает создание возвращаемого 
+значения с определением класса, который это возвращаемое значение и 
+представляет! Вдобавок, этот класс является безымянным — у него 
+отсутствует имя. Ситуация запутывается еще тем, что поначалу мы будто бы
+ приступаем к созданию объекта <i><b>Contents</b></i>, а потом, остановившись перед точкой с запятой, говорим: «Стоп, а сюда я подкину определение класса».
+</p><p>Такая необычная форма записи значит буквально следующее: «Создать объект безымянного класса, который унаследован от <i><b>Contents</b></i>». Ссылка, которая возвращается при этом из выражения <i><b>new</b></i>, автоматически повышается до базового типа <i><b>Contents</b></i>. Синтаксис записи безымянного внутреннего класса является укороченной формой записи такой конструкции:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: innerclasses/Parcel7b.java</span>
+<span class="co1">// Расширенная версия Parcel7.java</span>
+<span class="kw2">public</span> <span class="kw2">class</span> Parcel7b <span class="br0">{</span>
+  <span class="kw2">class</span> MyContents <span class="kw2">implements</span> Contents <span class="br0">{</span>
+    <span class="kw2">private</span> <span class="kw3">int</span> i = <span class="nu0">11</span><span class="sy0">;</span>
+    <span class="kw2">public</span> <span class="kw3">int</span> value<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> i<span class="sy0">;</span> <span class="br0">}</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> Contents contents<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> <span class="kw2">new</span> MyContents<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    Parcel7b p = <span class="kw2">new</span> Parcel7b<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    Contents c = p.<span class="me1">contents</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>В безымянном внутреннем классе базовый класс <i><b>Contents</b></i> 
+создается с использованием конструктора по умолчанию. Следующая 
+программа показывает, как следует поступать, если базовый класс требует 
+вызова конструктора с аргументами:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: innerclasses/Parcel8.java</span>
+<span class="co1">// Вызов конструктора базового класса.</span>
+<span class="kw2">public</span> <span class="kw2">class</span> Parcel8 <span class="br0">{</span>
+  <span class="kw2">public</span> Wrapping wrapping<span class="br0">(</span><span class="kw3">int</span> x<span class="br0">)</span> <span class="br0">{</span>
+    <span class="co1">// Вызов конструктора базового класса:</span>
+    <span class="kw2">return</span> <span class="kw2">new</span> Wrapping<span class="br0">(</span>x<span class="br0">)</span> <span class="br0">{</span> <span class="co1">// // аргумент конструктора.</span>
+      <span class="kw2">public</span> <span class="kw3">int</span> value<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+        <span class="kw2">return</span> <span class="kw2">super</span>.<span class="me1">value</span><span class="br0">(</span><span class="br0">)</span> <span class="sy0">*</span> <span class="nu0">47</span><span class="sy0">;</span>
+      <span class="br0">}</span>
+    <span class="br0">}</span><span class="sy0">;</span> <span class="co1">// // Требуется точка с запятой</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    Parcel8 p = <span class="kw2">new</span> Parcel8<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    Wrapping w = p.<span class="me1">wrapping</span><span class="br0">(</span><span class="nu0">10</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>Требуемый аргумент просто передается в конструктор базового класса, как в рассмотренном примере <i><b>х</b></i> в выражении <i><b>new Wrapping(x)</b></i>. Хотя это обычный класс с реализацией, <i><b>Wrapping</b></i> также используется в качестве общего «интерфейса» для своих производных классов:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: innerclasses/Wrapping.java</span>
+<span class="kw2">public</span> <span class="kw2">class</span> Wrapping <span class="br0">{</span>
+  <span class="kw2">private</span> <span class="kw3">int</span> i<span class="sy0">;</span>
+  <span class="kw2">public</span> Wrapping<span class="br0">(</span><span class="kw3">int</span> x<span class="br0">)</span> <span class="br0">{</span> i = x<span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw3">int</span> value<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> i<span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>Класс <i><b>Wrapping</b></i> имеет конструктор с аргументом — просто 
+для того, чтобы ситуация стала чуть более интересной.
+Точка с запятой в конце безымянного внутреннего класса поставлена вовсе 
+не для того, чтобы обозначить конец тела класса (как делается в <i>C++</i>).
+ Вместо этого она указывает на конец выражения, в котором содержится 
+внутренний класс. Таким образом, в данном случае ее использование ничем 
+не отличается от обычного.
+Инициализацию также можно провести в точке определения полей безымянного
+ класса:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: innerclasses/Parcel9.java</span>
+<span class="co1">// Безымянный внутренний класс, выполняющий инициализацию.</span>
+<span class="co1">// Более короткая версия программы Parcel5.java</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> Parcel9 <span class="br0">{</span>
+  <span class="co1">// Для использования в безымянном внутреннем классе</span>
+  <span class="co1">// аргументы должны быть неизменны (final)</span>
+  <span class="kw2">public</span> <span class="kw85">Destination</span> destination<span class="br0">(</span><span class="kw2">final</span> <span class="kw21">String</span> dest<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw2">return</span> <span class="kw2">new</span> <span class="kw85">Destination</span><span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+      <span class="kw2">private</span> <span class="kw21">String</span> label = dest<span class="sy0">;</span>
+      <span class="kw2">public</span> <span class="kw21">String</span> readLabel<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> label<span class="sy0">;</span> <span class="br0">}</span>
+    <span class="br0">}</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    Parcel9 p = <span class="kw2">new</span> Parcel9<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw85">Destination</span> d = p.<span class="me1">destination</span><span class="br0">(</span><span class="st0">"Tasmania"</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>Если вы определяете безымянный внутренний класс и хотите при этом 
+использовать объекты, определенные вне этого внутреннего класса, 
+компилятор требует, чтобы переданные на них ссылки объявлялись 
+неизменными (<i><b>final</b></i>), как это сделано аргументе <i><b>destination()</b></i>. Без такого объявления вы получите сообщение об ошибке при компиляции программы.
+</p><p>Пока мы ограничиваемся простым присваиванием значений полям, 
+указанный подход работает. А если понадобится выполнить некоторые 
+действия, свойственные конструкторам? В безымянном классе именованный 
+конструктор определить нельзя (раз у самого класса нет имени!), но 
+инициализация экземпляра (<i>instance initialization</i>) фактически позволяет добиться желаемого эффекта:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: innerclasses/AnonymousConstructor.java</span>
+<span class="co1">// Создание конструктора для безымянного внутреннего класса.</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">abstract</span> <span class="kw2">class</span> Base <span class="br0">{</span>
+  <span class="kw2">public</span> Base<span class="br0">(</span><span class="kw3">int</span> i<span class="br0">)</span> <span class="br0">{</span>
+    print<span class="br0">(</span><span class="st0">"Base constructor, i = "</span> + i<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">abstract</span> <span class="kw3">void</span> f<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span>	
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> AnonymousConstructor <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> Base getBase<span class="br0">(</span><span class="kw3">int</span> i<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw2">return</span> <span class="kw2">new</span> Base<span class="br0">(</span>i<span class="br0">)</span> <span class="br0">{</span>
+      <span class="br0">{</span> print<span class="br0">(</span><span class="st0">"Inside instance initializer"</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+      <span class="kw2">public</span> <span class="kw3">void</span> f<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+        print<span class="br0">(</span><span class="st0">"In anonymous f()"</span><span class="br0">)</span><span class="sy0">;</span>
+      <span class="br0">}</span>
+    <span class="br0">}</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    Base base = getBase<span class="br0">(</span><span class="nu0">47</span><span class="br0">)</span><span class="sy0">;</span>
+    base.<span class="me1">f</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>Base constructor, i = 47
+Inside instance initializer
+In anonymous f()
+</pre>
+<p>&lt;/spoiler&gt;
+В таком случае переменная <i><b>і</b></i> не обязана быть неизменной (<i><b>final</b></i>). И хотя <i><b>і</b></i> передается базовому конструктору безымянного класса, она никогда не используется напрямую внутри безымянного класса.
+Вернемся к нашим объектам <i><b>Parcel</b></i>, на этот раз выполнив для них инициализацию экземпляра. Отметьте, что параметры метода <i><b>destination()</b></i> должны быть объявлены неизменными, так как они используются внутри безымянного класса:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: innerclasses/Parcel10.java</span>
+<span class="co1">// Демонстрация "инициализации экземпляра" для</span>
+<span class="co1">// конструирования безымянного внутреннего класса</span>
+<span class="kw2">public</span> <span class="kw2">class</span> Parcel10 <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw85">Destination</span>
+  destination<span class="br0">(</span><span class="kw2">final</span> <span class="kw21">String</span> dest, <span class="kw2">final</span> <span class="kw3">float</span> price<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw2">return</span> <span class="kw2">new</span> <span class="kw85">Destination</span><span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+      <span class="kw2">private</span> <span class="kw3">int</span> cost<span class="sy0">;</span>
+      <span class="co1">// Инициализация экземпляра для каждого объекта:</span>
+      <span class="br0">{</span>
+        cost = <span class="kw21">Math</span>.<span class="me1">round</span><span class="br0">(</span>price<span class="br0">)</span><span class="sy0">;</span>
+        <span class="kw1">if</span><span class="br0">(</span>cost <span class="sy0">&gt;</span> <span class="nu0">100</span><span class="br0">)</span>
+          <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">(</span><span class="st0">"Over budget!"</span><span class="br0">)</span><span class="sy0">;</span>
+      <span class="br0">}</span>
+      <span class="kw2">private</span> <span class="kw21">String</span> label = dest<span class="sy0">;</span>
+      <span class="kw2">public</span> <span class="kw21">String</span> readLabel<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> label<span class="sy0">;</span> <span class="br0">}</span>
+    <span class="br0">}</span><span class="sy0">;</span>
+  <span class="br0">}</span>	
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    Parcel10 p = <span class="kw2">new</span> Parcel10<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw85">Destination</span> d = p.<span class="me1">destination</span><span class="br0">(</span><span class="st0">"Tasmania"</span>, 101.395F<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>Over budget!
+</pre>
+<p>&lt;/spoiler&gt;
+Внутри инициализатора экземпляра виден код, недоступный при инициализации полей (то есть команда <i><b>if</b></i>).
+ Поэтому инициализатор экземпляра фактически является конструктором 
+безымянного внутреннего класса. Конечно, возможности его ограничены; 
+перегружать такой инициализатор нельзя, и поэтому он будет 
+присутствовать в классе только в единственном числе.
+</p><p>Возможности безымянных внутренних классов несколько ограничены по
+ сравнению с обычным наследованием — они могут либо расширять класс, 
+либо реализовывать интерфейс, но не то и другое одновременно. А если вы 
+выберете второй вариант, реализовать можно только один интерфейс.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id=".D0.A1.D0.BD.D0.BE.D0.B2.D0.B0_.D0.BE_.D0.BC.D0.B5.D1.82.D0.BE.D0.B4.D0.B5-.D1.84.D0.B0.D0.B1.D1.80.D0.B8.D0.BA.D0.B5"><b>Снова о методе-фабрике</b></span></h2>
+<p>Посмотрите, насколько приятнее выглядит пример <i><b>interfaces/Factories.java</b></i> при использовании безымянных внутренних классов:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: innerclasses/Factories.java</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">interface</span> Service <span class="br0">{</span>
+  <span class="kw3">void</span> method1<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="kw3">void</span> method2<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">interface</span> ServiceFactory <span class="br0">{</span>
+  Service getService<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span>	
+&nbsp;
+<span class="kw2">class</span> Implementation1 <span class="kw2">implements</span> Service <span class="br0">{</span>
+  <span class="kw2">private</span> Implementation1<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> method1<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>print<span class="br0">(</span><span class="st0">"Implementation1 method1"</span><span class="br0">)</span><span class="sy0">;</span><span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> method2<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>print<span class="br0">(</span><span class="st0">"Implementation1 method2"</span><span class="br0">)</span><span class="sy0">;</span><span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> ServiceFactory factory =
+    <span class="kw2">new</span> ServiceFactory<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+      <span class="kw2">public</span> Service getService<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+        <span class="kw2">return</span> <span class="kw2">new</span> Implementation1<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+      <span class="br0">}</span>
+    <span class="br0">}</span><span class="sy0">;</span>
+<span class="br0">}</span>	
+&nbsp;
+<span class="kw2">class</span> Implementation2 <span class="kw2">implements</span> Service <span class="br0">{</span>
+  <span class="kw2">private</span> Implementation2<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> method1<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>print<span class="br0">(</span><span class="st0">"Implementation2 method1"</span><span class="br0">)</span><span class="sy0">;</span><span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> method2<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>print<span class="br0">(</span><span class="st0">"Implementation2 method2"</span><span class="br0">)</span><span class="sy0">;</span><span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> ServiceFactory factory =
+    <span class="kw2">new</span> ServiceFactory<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+      <span class="kw2">public</span> Service getService<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+        <span class="kw2">return</span> <span class="kw2">new</span> Implementation2<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+      <span class="br0">}</span>
+    <span class="br0">}</span><span class="sy0">;</span>
+<span class="br0">}</span>	
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> Factories <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> serviceConsumer<span class="br0">(</span>ServiceFactory fact<span class="br0">)</span> <span class="br0">{</span>
+    Service s = fact.<span class="me1">getService</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    s.<span class="me1">method1</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    s.<span class="me1">method2</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    serviceConsumer<span class="br0">(</span>Implementation1.<span class="me1">factory</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="co1">// Реализации полностью взаимозаменяемы;</span>
+    serviceConsumer<span class="br0">(</span>Implementation2.<span class="me1">factory</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>Implementation1 method1
+Implementation1 method2
+Implementation2 method1
+Implementation2 method2
+</pre>
+<p>&lt;/spoiler&gt;
+Теперь конструкторы <i><b>Implementation1</b></i> и <i><b>Implementation2</b></i>
+ могут быть закрытыми, и фабрику необязательно оформлять в виде 
+именованного класса. Кроме того, часто бывает достаточно одного 
+фабричного объекта, поэтому в данном случае он создается как статическое
+ поле в реализации <i><b>Service</b></i>. Наконец, итоговый синтаксис выглядит более осмысленно.
+Пример <i><b>interfaces/Games.java</b></i> тоже можно усовершенствовать с помощью безымянных внутренних классов:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: innerclasses/Games.java</span>
+<span class="co1">// Использование анонимных внутренних классов в библиотеке Game</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">interface</span> Game <span class="br0">{</span> <span class="kw3">boolean</span> move<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+<span class="kw2">interface</span> GameFactory <span class="br0">{</span> Game getGame<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> Checkers <span class="kw2">implements</span> Game <span class="br0">{</span>
+  <span class="kw2">private</span> Checkers<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+  <span class="kw2">private</span> <span class="kw3">int</span> moves = <span class="nu0">0</span><span class="sy0">;</span>
+  <span class="kw2">private</span> <span class="kw2">static</span> <span class="kw2">final</span> <span class="kw3">int</span> MOVES = <span class="nu0">3</span><span class="sy0">;</span>
+  <span class="kw2">public</span> <span class="kw3">boolean</span> move<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    print<span class="br0">(</span><span class="st0">"Checkers move "</span> + moves<span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw2">return</span> ++moves <span class="sy0">!</span>= MOVES<span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> GameFactory factory = <span class="kw2">new</span> GameFactory<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw2">public</span> Game getGame<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> <span class="kw2">new</span> Checkers<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="br0">}</span><span class="sy0">;</span>
+<span class="br0">}</span>	
+&nbsp;
+<span class="kw2">class</span> Chess <span class="kw2">implements</span> Game <span class="br0">{</span>
+  <span class="kw2">private</span> Chess<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+  <span class="kw2">private</span> <span class="kw3">int</span> moves = <span class="nu0">0</span><span class="sy0">;</span>
+  <span class="kw2">private</span> <span class="kw2">static</span> <span class="kw2">final</span> <span class="kw3">int</span> MOVES = <span class="nu0">4</span><span class="sy0">;</span>
+  <span class="kw2">public</span> <span class="kw3">boolean</span> move<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    print<span class="br0">(</span><span class="st0">"Chess move "</span> + moves<span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw2">return</span> ++moves <span class="sy0">!</span>= MOVES<span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> GameFactory factory = <span class="kw2">new</span> GameFactory<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw2">public</span> Game getGame<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> <span class="kw2">new</span> Chess<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="br0">}</span><span class="sy0">;</span>
+<span class="br0">}</span>	
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> Games <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> playGame<span class="br0">(</span>GameFactory factory<span class="br0">)</span> <span class="br0">{</span>
+    Game s = factory.<span class="me1">getGame</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw1">while</span><span class="br0">(</span>s.<span class="me1">move</span><span class="br0">(</span><span class="br0">)</span><span class="br0">)</span>
+      <span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    playGame<span class="br0">(</span>Checkers.<span class="me1">factory</span><span class="br0">)</span><span class="sy0">;</span>
+    playGame<span class="br0">(</span>Chess.<span class="me1">factory</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>Checkers move 0
+Checkers move 1
+Checkers move 2
+Chess move 0
+Chess move 1
+Chess move 2
+</pre>
+<p>&lt;/spoiler&gt;
+Вспомните совет, данный в конце предыдущей главы: отдавать предпочтение 
+классам перед интерфейсами. Если архитектура системы требует применения 
+интерфейса, вы это поймете. В остальных случаях не применяйте интерфейсы
+ без крайней необходимости.
+</p>
+<h2><span class="mw-headline" id=".D0.92.D0.BB.D0.BE.D0.B6.D0.B5.D0.BD.D0.BD.D1.8B.D0.B5_.D0.BA.D0.BB.D0.B0.D1.81.D1.81.D1.8B"><b>Вложенные классы</b></span></h2>
+<p>Если связь между объектом внутреннего класса и объектом внешнего 
+класса не нужна, можно сделать внутренний класс статическим (объявить 
+его как <i><b>static</b></i>). Часто такой класс называют вложенным (<i>nested</i>). 
+</p><p>Чтобы понять смысл ключевого слова <i><b>static</b></i> в 
+отношении внутренних классов, следует вспомнить, что в объекте обычного 
+внутреннего класса тайно хранится ссылка на объект создавшего его 
+объемлющего внешнего класса. При использовании статического внутреннего 
+класса такой ссылки не существует. Применение статического внутреннего 
+класса означает следующее:
+</p>
+<hr>
+<ul>
+<li><span style="color:#800000">для создания объекта статического внутреннего класса не нужен объект внешнего класса;</span>
+</li>
+</ul>
+<ul>
+<li><span style="color:#800000">из объекта вложенного класса нельзя обращаться к нестатическим членам внешнего класса.</span>
+</li>
+</ul>
+<hr>
+<p>Есть и еще одно различие между вложенными и обычными внутренними 
+классами. Поля и методы обычного внутреннего класса определяются только 
+на уровне внешнего класса, поэтому обычные внутренние классы не могут 
+содержать статические данные, поля и классы. Но вложенные классы не 
+имеют таких ограничений:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: innerclasses/Parcel11.java</span>
+<span class="co1">// Вложенные (статические внутренние) классы</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> Parcel11 <span class="br0">{</span>
+  <span class="kw2">private</span> <span class="kw2">static</span> <span class="kw2">class</span> ParcelContents <span class="kw2">implements</span> Contents <span class="br0">{</span>
+    <span class="kw2">private</span> <span class="kw3">int</span> i = <span class="nu0">11</span><span class="sy0">;</span>
+    <span class="kw2">public</span> <span class="kw3">int</span> value<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> i<span class="sy0">;</span> <span class="br0">}</span>
+  <span class="br0">}</span>
+  <span class="kw2">protected</span> <span class="kw2">static</span> <span class="kw2">class</span> ParcelDestination
+  <span class="kw2">implements</span> <span class="kw85">Destination</span> <span class="br0">{</span>
+    <span class="kw2">private</span> <span class="kw21">String</span> label<span class="sy0">;</span>
+    <span class="kw2">private</span> ParcelDestination<span class="br0">(</span><span class="kw21">String</span> whereTo<span class="br0">)</span> <span class="br0">{</span>
+      label = whereTo<span class="sy0">;</span>
+    <span class="br0">}</span>
+    <span class="kw2">public</span> <span class="kw21">String</span> readLabel<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> label<span class="sy0">;</span> <span class="br0">}</span>	
+    <span class="co1">// Вложенные классы могут содержать другие статические элементы;</span>
+    <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> f<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+    <span class="kw2">static</span> <span class="kw3">int</span> x = <span class="nu0">10</span><span class="sy0">;</span>
+    <span class="kw2">static</span> <span class="kw2">class</span> AnotherLevel <span class="br0">{</span>
+      <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> f<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+      <span class="kw2">static</span> <span class="kw3">int</span> x = <span class="nu0">10</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw85">Destination</span> destination<span class="br0">(</span><span class="kw21">String</span> s<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw2">return</span> <span class="kw2">new</span> ParcelDestination<span class="br0">(</span>s<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> Contents contents<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw2">return</span> <span class="kw2">new</span> ParcelContents<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    Contents c = contents<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw85">Destination</span> d = destination<span class="br0">(</span><span class="st0">"Tasmania"</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>В методе <i><b>main()</b></i> не требуется объекта класса <i><b>Parcel11</b></i>; вместо этого для вызова методов, возвращающих ссылки на <i><b>Contents</b></i> и <i><b>Destination</b></i>,
+ используется обычный синтаксис обращения к статическим членам класса.
+Как было сказано ранее, в обычном (не-статическом) внутреннем классе для
+ обращения к объекту внешнего класса используется специальная ссылка <i><b>this</b></i>. Во вложенном классе такая ссылка недействительна (по аналогии со статическими методами).
+</p>
+<h2><span class="mw-headline" id=".D0.9A.D0.BB.D0.B0.D1.81.D1.81.D1.8B_.D0.B2.D0.BD.D1.83.D1.82.D1.80.D0.B8_.D0.B8.D0.BD.D1.82.D0.B5.D1.80.D1.84.D0.B5.D0.B9.D1.81.D0.BE.D0.B2"><b>Классы внутри интерфейсов</b></span></h2>
+<p>Обычно интерфейс не может содержать программный код, но вложенный 
+класс может стать его частью. Любой класс, размещенный внутри 
+интерфейса, автоматически является <i><b>public</b></i> и <i><b>static</b></i>.
+ Так как класс является статическим, он не нарушает правил обращения с 
+интерфейсом — этот вложенный класс просто использует пространство имен 
+интерфейса. Во внутреннем классе даже можно реализовать окружающий 
+интерфейс:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: innerclasses/ClassInInterface.java</span>
+<span class="co1">// {main: ClassInInterface$Test}</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">interface</span> ClassInInterface <span class="br0">{</span>
+  <span class="kw3">void</span> howdy<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="kw2">class</span> Test <span class="kw2">implements</span> ClassInInterface <span class="br0">{</span>
+    <span class="kw2">public</span> <span class="kw3">void</span> howdy<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+      <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">(</span><span class="st0">"Howdy!"</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+    <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+      <span class="kw2">new</span> Test<span class="br0">(</span><span class="br0">)</span>.<span class="me1">howdy</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>Howdy!
+</pre>
+<p>&lt;/spoiler&gt;
+Вложение классов в интерфейсы может пригодиться для создания обобщенного
+ кода, используемого с разными реализациями этого интерфейса.
+Ранее в книге я предлагал помещать в каждый класс метод <i><b>main()</b></i>,
+ позволяющий при необходимости протестировать данный класс. Недостатком 
+такого подхода является дополнительный скомпилированный код, 
+увеличивающий размеры программы. Если для вас это нежелательно, 
+используйте статический внутренний класс для хранения тестового кода:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: innerclasses/TestBed.java</span>
+<span class="co1">// Помещение тестового кода во вложенный класс.</span>
+<span class="co1">// {main: TestBed$Tester}</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> TestBed <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> f<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">(</span><span class="st0">"f()"</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw2">class</span> Tester <span class="br0">{</span>
+    <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+      TestBed t = <span class="kw2">new</span> TestBed<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+      t.<span class="me1">f</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>f()
+</pre>
+<p>&lt;/spoiler&gt;
+При компиляции этого файла создается отдельный класс с именем <i><b>TestBed$Tester</b></i> (для запуска тестового кода наберите команду <i><b>java TestBed$Tester</b></i>). Вы можете использовать этот класс для тестирования, но включать его в окончательную версию программы необязательно; файл<i><b> TestBed$Tester.class</b></i> можно просто удалить перед окончательной сборкой программы.
+</p>
+<h2><span class="mw-headline" id=".D0.94.D0.BE.D1.81.D1.82.D1.83.D0.BF_.D0.B2.D0.BE.D0.B2.D0.BD.D0.B5_.D0.B8.D0.B7_.D0.BC.D0.BD.D0.BE.D0.B3.D0.BE.D0.BA.D1.80.D0.B0.D1.82.D0.BD.D0.BE_.D0.B2.D0.BB.D0.BE.D0.B6.D0.B5.D0.BD.D0.BD.D1.8B.D1.85_.D0.BA.D0.BB.D0.B0.D1.81.D1.81.D0.BE.D0.B2"><b>Доступ вовне из многократно вложенных классов</b></span></h2>
+<p>Независимо от глубины вложенности, внутренний класс всегда может 
+напрямую обращаться ко всем членам всех классов, в которые он встроен. 
+Следующая программа демонстрирует этот факт:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: innerclasses/MultiNestingAccess.java</span>
+<span class="co1">// Вложенные классы могут обращаться ко всем членам всех </span>
+<span class="co1">// классов, в которых они находятся.</span>
+<span class="kw2">class</span> MNA <span class="br0">{</span>
+  <span class="kw2">private</span> <span class="kw3">void</span> f<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+  <span class="kw2">class</span> A <span class="br0">{</span>
+    <span class="kw2">private</span> <span class="kw3">void</span> g<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+    <span class="kw2">public</span> <span class="kw2">class</span> B <span class="br0">{</span>
+      <span class="kw3">void</span> h<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+        g<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+        f<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+      <span class="br0">}</span>
+    <span class="br0">}</span>
+  <span class="br0">}</span>
+<span class="br0">}</span>	
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> MultiNestingAccess <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    MNA mna = <span class="kw2">new</span> MNA<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    MNA.<span class="me1">A</span> mnaa = mna.<span class="kw2">new</span> A<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    MNA.<span class="me1">A</span>.<span class="me1">B</span> mnaab = mnaa.<span class="kw2">new</span> B<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    mnaab.<span class="me1">h</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>Как видно из примера, в классе <i><b>MNA.A.B</b></i> методы <i><b>f()</b></i> и <i><b>g()</b></i> вызываются без дополнительных описаний (несмотря на то, что они объявлены как <i><b>private</b></i>).
+ Этот пример также демонстрирует синтаксис, который следует использовать
+ при создании объектов внутренних классов произвольного уровня 
+вложенности из другого класса. Синтаксис <i><b>.new</b></i> обеспечивает правильную область действия, и вам не приходится уточнять имя класса при вызове конструктора.
+</p>
+<h2><span class="mw-headline" id=".D0.92.D0.BD.D1.83.D1.82.D1.80.D0.B5.D0.BD.D0.BD.D0.B8.D0.B5_.D0.BA.D0.BB.D0.B0.D1.81.D1.81.D1.8B:_.D0.B7.D0.B0.D1.87.D0.B5.D0.BC.3F"><b>Внутренние классы: зачем?</b></span></h2>
+<p>К настоящему моменту мы подробно рассмотрели синтаксис и семантику 
+работы внутренних классов, но это не дало ответа на вопрос, зачем они 
+вообще нужны.
+Что же заставило создателей <i>Java</i> добавить в язык настолько 
+фундаментальное свойство?
+Обычно внутренний класс наследует от класса или реализует интерфейс, а 
+код внутреннего класса манипулирует объектом внешнего класса, в котором 
+он был создан. Значит, можно сказать, что внутренний класс — это нечто 
+вроде «окна» во внешний класс.
+</p><p>Возникает резонный вопрос: «Если мне понадобится ссылка на 
+интерфейс, почему бы внешнему классу не реализовать этот интерфейс?» 
+Ответ: «Если это все, что вам нужно, — значит, так и следует поступить».
+ Но что же отличает внутренний класс, реализующий интерфейс, от внешнего
+ класса, реализующего тот же интерфейс? Далеко не всегда удается 
+использовать удобство интерфейсов — иногда приходится работать и с 
+реализацией. Поэтому наиболее веская причина для использования 
+внутренних классов такова:
+Каждый внутренний класс способен независимо наследовать определенную 
+реализацию. Таким образом, внутренний класс не ограничен при 
+наследовании в ситуациях, где внешний класс уже наследует реализацию.
+</p><p>Без возможности внутренних классов наследовать реализацию более 
+чем одного реального или абстрактного класса некоторые задачи 
+планирования и программирования становятся практически неразрешимыми. 
+Поэтому внутренний класс выступает как «довесок» решения проблемы 
+множественного наследования. Интерфейсы берут на себя часть этой задачи,
+ тогда как внутренние классы фактически обеспечивают «множественное 
+наследование реализации». Другими словами, внутренние классы позволяют 
+наследовать от нескольких не-интерфейсов.
+</p><p>Чтобы понять все сказанное до конца, рассмотрим ситуацию, где два
+ интерфейса тем или иным способом должны быть реализованы в классе. 
+Вследствие гибкости интерфейсов возможен один из двух способов решения: 
+отдельный одиночный класс или внутренний класс:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: innerclasses/MultiInterfaces.java</span>
+<span class="co1">// Два способа реализации нескольких интерфейсов.</span>
+<span class="kw2">package</span> <span class="co2">innerclasses</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">interface</span> A <span class="br0">{</span><span class="br0">}</span>
+<span class="kw2">interface</span> B <span class="br0">{</span><span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> X <span class="kw2">implements</span> A, B <span class="br0">{</span><span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> Y <span class="kw2">implements</span> A <span class="br0">{</span>
+  B makeB<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    <span class="co1">// Безымянный внутренний класс:</span>
+    <span class="kw2">return</span> <span class="kw2">new</span> B<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> MultiInterfaces <span class="br0">{</span>
+  <span class="kw2">static</span> <span class="kw3">void</span> takesA<span class="br0">(</span>A a<span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+  <span class="kw2">static</span> <span class="kw3">void</span> takesB<span class="br0">(</span>B b<span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    X x = <span class="kw2">new</span> X<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    Y y = <span class="kw2">new</span> Y<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    takesA<span class="br0">(</span>x<span class="br0">)</span><span class="sy0">;</span>
+    takesA<span class="br0">(</span>y<span class="br0">)</span><span class="sy0">;</span>
+    takesB<span class="br0">(</span>x<span class="br0">)</span><span class="sy0">;</span>
+    takesB<span class="br0">(</span>y.<span class="me1">makeB</span><span class="br0">(</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>Конечно, выбор того или иного способа организации кода зависит от 
+конкретной ситуации. Впрочем, сама решаемая вами задача должна 
+подсказать, что для нее предпочтительно: один отдельный класс или 
+внутренний класс. 
+Но при отсутствии других ограничений оба подхода, использованные в 
+рассмотренном примере, ничем не отличаются с точки зрения реализации. 
+Оба они работают.
+Но если вместо интерфейсов имеются реальные или абстрактные классы и 
+новый класс должен как-то реализовать функциональность двух других, 
+придется прибегнуть к внутренним классам:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: innerclasses/MultiImplementation.java</span>
+<span class="co1">// При использовании реальных или абстрактных классов </span>
+<span class="co1">// "множественное наследование реализации" возможно </span>
+<span class="co1">// только с применением внутренних классов </span>
+<span class="kw2">package</span> <span class="co2">innerclasses</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">class</span> D <span class="br0">{</span><span class="br0">}</span>
+<span class="kw2">abstract</span> <span class="kw2">class</span> E <span class="br0">{</span><span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> Z <span class="kw2">extends</span> D <span class="br0">{</span>
+  E makeE<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> <span class="kw2">new</span> E<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span><span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> MultiImplementation <span class="br0">{</span>
+  <span class="kw2">static</span> <span class="kw3">void</span> takesD<span class="br0">(</span>D d<span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+  <span class="kw2">static</span> <span class="kw3">void</span> takesE<span class="br0">(</span>E e<span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    Z z = <span class="kw2">new</span> Z<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    takesD<span class="br0">(</span>z<span class="br0">)</span><span class="sy0">;</span>
+    takesE<span class="br0">(</span>z.<span class="me1">makeE</span><span class="br0">(</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>Если нет необходимости решать задачу «множественного наследования 
+реализации», скорее всего, вы без особого труда напишите программу, не 
+прибегая к особенностям внутренних классов. Однако внутренние классы 
+открывают перед вами ряд дополнительных возможностей:
+</p>
+<hr>
+<ul>
+<li><span style="color:#800000">У внутреннего класса может существовать 
+произвольное количество экземпляров, каждый из которых обладает 
+собственной информацией состояния, не зависящей от состояния объекта 
+внешнего класса.</span>
+</li>
+</ul>
+<ul>
+<li><span style="color:#800000">Один внешний класс может содержать 
+несколько внутренних классов, по-разному реализующих один и тот же 
+интерфейс или наследующих от единого базового класса. Вскоре мы 
+рассмотрим пример такой конструкции.</span>
+</li>
+</ul>
+<ul>
+<li><span style="color:#800000">Место создания объекта внутреннего класса не привязано к месту и времени создания объекта внешнего класса.</span>
+</li>
+</ul>
+<ul>
+<li><span style="color:#800000">Внутренний класс не использует тип 
+отношений классов «является тем-то», способных вызвать недоразумения; он
+ представляет собой отдельную сущность.</span>
+</li>
+</ul>
+<hr>
+<p>Например, если бы в программе <i><b>Sequence.java</b></i> отсутствовали внутренние классы, пришлось бы заявить, что «класс <i><b>Sequence</b></i> есть класс <i><b>Selector</b></i>», и при этом ограничиться только одним объектом <i><b>Selector</b></i> для конкретного объекта <i><b>Sequence</b></i>. А вы можете с легкостью определить второй метод, <i><b>reverseSelector()</b></i>, создающий объект <i><b>Selector</b></i> для перебора элементов <i><b>Sequence</b></i> в обратном порядке. Такую гибкость обеспечивают только внутренние классы.
+</p>
+<h2><span class="mw-headline" id=".D0.97.D0.B0.D0.BC.D1.8B.D0.BA.D0.B0.D0.BD.D0.B8.D1.8F_.D0.B8_.D0.BE.D0.B1.D1.80.D0.B0.D1.82.D0.BD.D1.8B.D0.B5_.D0.B2.D1.8B.D0.B7.D0.BE.D0.B2.D1.8B"><b>Замыкания и обратные вызовы</b></span></h2>
+<p>Замыканием (<i>closure</i>) называется вызываемый объект, который 
+сохраняет информацию о контексте, он был создан. Из этого определения 
+видно, что внутренний класс является объектно-ориентированным 
+замыканием, поскольку он не только содержит информацию об объекте 
+внешнего класса («место создания»), но к тому же располагает ссылкой на 
+весь объект внешнего класса, с помощью которой он может манипулировать 
+всеми членами этого объекта, в том числе и закрытыми (<i><b>private</b></i>).
+</p><p>При обсуждении того, стоит ли включать в <i>Java</i> некое подобие указателей, самым веским аргументом «за» была возможность обратных вызовов (<i>callback</i>).
+ В механизме обратного вызова некоторому стороннему объекту передается 
+ин­формация, позволяющая ему затем обратиться с вызовом к объекту, 
+который произвел изначальный вызов. 
+</p><p>Это очень мощная концепция программирования, к которой мы еще 
+вернемся. С другой стороны, при реализации обратного вызова на основе 
+указателей вся ответственность за его правильное использование 
+возлагается на программиста. Как было показано ранее, язык <i>Java</i> 
+ориентирован на безопасное программирование, поэтому указатели в него 
+включены не были.
+Замыкание, предоставляемое внутренним классом, — хорошее решение, 
+гораздо более гибкое и безопасное, чем указатель. Рассмотрим пример:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: innerclasses/Callbacks.java</span>
+<span class="co1">// Использование внутренних классов</span>
+<span class="co1">// для реализации обратных вызовов</span>
+<span class="kw2">package</span> <span class="co2">innerclasses</span><span class="sy0">;</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">interface</span> Incrementable <span class="br0">{</span>
+  <span class="kw3">void</span> increment<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="co1">// Простая реализация интерфейса:</span>
+<span class="kw2">class</span> Callee1 <span class="kw2">implements</span> Incrementable <span class="br0">{</span>
+  <span class="kw2">private</span> <span class="kw3">int</span> i = <span class="nu0">0</span><span class="sy0">;</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> increment<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    i++<span class="sy0">;</span>
+    print<span class="br0">(</span>i<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span>	
+&nbsp;
+<span class="kw2">class</span> MyIncrement <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> increment<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> print<span class="br0">(</span><span class="st0">"Other operation"</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw2">static</span> <span class="kw3">void</span> f<span class="br0">(</span>MyIncrement mi<span class="br0">)</span> <span class="br0">{</span> mi.<span class="me1">increment</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span>	
+&nbsp;
+<span class="co1">// Если класс должен вызывать метод increment() </span>
+<span class="co1">// по-другому, необходимо использовать внутренний класс:</span>
+<span class="kw2">class</span> Callee2 <span class="kw2">extends</span> MyIncrement <span class="br0">{</span>
+  <span class="kw2">private</span> <span class="kw3">int</span> i = <span class="nu0">0</span><span class="sy0">;</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> increment<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw2">super</span>.<span class="me1">increment</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    i++<span class="sy0">;</span>
+    print<span class="br0">(</span>i<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">private</span> <span class="kw2">class</span> Closure <span class="kw2">implements</span> Incrementable <span class="br0">{</span>
+    <span class="kw2">public</span> <span class="kw3">void</span> increment<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+      <span class="co1">// Указывается метод внешнего класса;</span>
+      <span class="co1">// в противном случае возникает бесконечная рекурсия.</span>
+      Callee2.<span class="kw2">this</span>.<span class="me1">increment</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+  <span class="br0">}</span>
+  Incrementable getCallbackReference<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw2">return</span> <span class="kw2">new</span> Closure<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span>	
+&nbsp;
+<span class="kw2">class</span> Caller <span class="br0">{</span>
+  <span class="kw2">private</span> Incrementable callbackReference<span class="sy0">;</span>
+  Caller<span class="br0">(</span>Incrementable cbh<span class="br0">)</span> <span class="br0">{</span> callbackReference = cbh<span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw3">void</span> go<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> callbackReference.<span class="me1">increment</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> Callbacks <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    Callee1 c1 = <span class="kw2">new</span> Callee1<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    Callee2 c2 = <span class="kw2">new</span> Callee2<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    MyIncrement.<span class="me1">f</span><span class="br0">(</span>c2<span class="br0">)</span><span class="sy0">;</span>
+    Caller caller1 = <span class="kw2">new</span> Caller<span class="br0">(</span>c1<span class="br0">)</span><span class="sy0">;</span>
+    Caller caller2 = <span class="kw2">new</span> Caller<span class="br0">(</span>c2.<span class="me1">getCallbackReference</span><span class="br0">(</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    caller1.<span class="me1">go</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    caller1.<span class="me1">go</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    caller2.<span class="me1">go</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    caller2.<span class="me1">go</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>	
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>Other operation
+1
+1
+2
+Other operation
+2
+Other operation
+3
+</pre>
+<p>&lt;/spoiler&gt;
+Этот пример также демонстрирует различия между реализацией интерфейса внешним или внутренним классом. Класс <i><b>Callee1</b></i> — наиболее очевидное решение задачи с точки зрения программирования. 
+</p><p>Класс <i><b>Callee2</b></i> наследует от класса <i><b>MyIncrement</b></i>, в котором уже есть метод <i><b>increment</b></i>), выполняющий действие, никак не связанное с тем, что ожидает от него интерфейс <i><b>Incrementable</b></i>. Когда класс <i><b>MyIncrement</b></i> наследуется в <i><b>Callee2</b></i>, метод <i><b>increment()</b></i> нельзя переопределить для использования в качестве метода интерфейса <i><b>Incrementable</b></i>,
+ поэтому нам приходится предоставлять отдельную реализацию во внутреннем
+ классе. Также отметьте, что создание внутреннего класса не затрагивает и
+ не изменяет существующий интерфейс внешнего класса.
+</p><p>Все элементы, за исключением метода <i><b>getCallbackReference()</b></i>, в классе <i><b>Callee2</b></i> являются закрытыми. Для любой связи с окружающим миром необходим интерфейс <i><b>Incrementable</b></i>. Здесь мы видим, как интерфейсы позволяют полностью отделить интерфейс от реализации.
+</p><p>Внутренний класс <i><b>Closure</b></i> просто реализует интерфейс <i><b>Incrementable</b></i>, предоставляя при этом связь с объектом <i><b>Callee2</b></i> — но связь эта безопасна. Кто бы ни получил ссылку на <i><b>Incrementable</b></i>, он в состоянии вызвать только метод <i><b>increment()</b></i>, и других возможностей у него нет (в отличие от указателя, с которым программист может вытворять все, что угодно).
+</p><p>Класс <i><b>Caller</b></i> получает ссылку на <i><b>Incrementable</b></i>
+ в своем конструкторе (хотя передача ссылки для обратного вызова может 
+происходить в любое время), а после этого использует ссылку для 
+«обратного вызова» объекта <i><b>Callee</b></i>.
+Главным достоинством обратного вызова является его гибкость — вы можете 
+динамически выбирать функции, выполняемые во время работы программы.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id=".D0.92.D0.BD.D1.83.D1.82.D1.80.D0.B5.D0.BD.D0.BD.D0.B8.D0.B5_.D0.BA.D0.BB.D0.B0.D1.81.D1.81.D1.8B_.D0.B8_.D1.81.D0.B8.D1.81.D1.82.D0.B5.D0.BC.D0.B0_.D1.83.D0.BF.D1.80.D0.B0.D0.B2.D0.BB.D0.B5.D0.BD.D0.B8.D1.8F">Внутренние классы и система управления</span></h2>
+<p>В качестве более реального пример использования внутренних классов мы
+ рассмотрим то, что я буду называть здесь системой управления (<i>control framework</i>).
+</p><p>Каркас приложения (<i>application framework</i>) — это класс или 
+набор классов, разработанных для решения определенного круга задач. При 
+работе с каркасами приложений обычно используется наследование от одного
+ или нескольких классов, с переопределением некоторых методов. Код 
+переопределенных методов адаптирует типовое решение, предоставляемое 
+каркасом приложения, к вашим конкретным потребностям. 
+</p><p>Система управления представляет собой определенный тип каркаса 
+приложения, основным движущим механизмом которого является обработка 
+событий. Такие системы называются системами, управляемыми по событиям (<i>event-driven system</i>). Одной из самых типичных задач в прикладном программировании является создание графического интерфейса пользователя (<i>GUI</i>), всецело и полностью ориентированного на обработку событий.
+</p><p>Чтобы на наглядном примере увидеть, как с применением внутренних 
+классов достигается простота создания и использования библиотек, мы 
+рассмотрим систему, ориентированную на обработку событий по их 
+«готовности». Хотя в практическом смысле под «готовностью» может 
+пониматься все, что угодно, в нашем случае она будет определяться по 
+показаниям счетчика времени. Далее приводится общее описание управляющей
+ системы, никак не зависящей от того, чем именно она управляет. Нужная 
+информация предоставляется посредством наследования, при реализации 
+метода <i><b>action()</b></i>.
+</p><p>Начнем с определения интерфейса, описывающего любое событие 
+системы. Вместо интерфейса здесь используется абстрактный класс, 
+поскольку по умолчанию управление координируется по времени, а 
+следовательно, присутствует частичная реализация:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: innerclasses/controller/Event.java</span>
+<span class="co1">// Общие для всякого управляющего события методы.</span>
+<span class="kw2">package</span> <span class="co2">innerclasses.controller</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">abstract</span> <span class="kw2">class</span> <span class="kw166">Event</span> <span class="br0">{</span>
+  <span class="kw2">private</span> <span class="kw3">long</span> eventTime<span class="sy0">;</span>
+  <span class="kw2">protected</span> <span class="kw2">final</span> <span class="kw3">long</span> delayTime<span class="sy0">;</span>
+  <span class="kw2">public</span> <span class="kw166">Event</span><span class="br0">(</span><span class="kw3">long</span> delayTime<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw2">this</span>.<span class="me1">delayTime</span> = delayTime<span class="sy0">;</span>
+    start<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> start<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="co1">// Позволяет перезапуск</span>
+    eventTime = <span class="kw21">System</span>.<span class="me1">nanoTime</span><span class="br0">(</span><span class="br0">)</span> + delayTime<span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw3">boolean</span> ready<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw2">return</span> <span class="kw21">System</span>.<span class="me1">nanoTime</span><span class="br0">(</span><span class="br0">)</span> <span class="sy0">&gt;</span>= eventTime<span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">abstract</span> <span class="kw3">void</span> action<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span></pre></div></div>
+<p>Конструктор просто запоминает время (от момента создания объекта), через которое должно выполняться событие <i><b>Event</b></i>, и после этого вызывает метод <i><b>start()</b></i>, который прибавляет к текущему времени интервал задержки, чтобы вычислить время возникновения события. Метод <i><b>start()</b></i>
+ отделен от конструктора, благодаря чему становится возможным 
+«перезапуск» события после того, как его время уже истекло; таким 
+образом, объект <i><b>Event</b></i> можно использовать многократно. Скажем, если вам понадобится повторяющееся событие, достаточно добавить вызов <i><b>start()</b></i> в метод <i><b>action()</b></i>.
+</p><p>Метод <i><b>ready()</b></i> сообщает, что пора действовать — вызывать метод <i><b>action()</b></i>. Конечно, метод <i><b>ready()</b></i> может быть переопределен любым производным классом, если событие <i><b>Event</b></i> активизируется не по времени, а по иному условию.
+</p><p>Следующий файл описывает саму систему управления, которая 
+распоряжается событиями и инициирует их. Объекты Event содержатся в 
+контейнере <i><b>List&lt;Event&gt;</b></i>. На данный момент достаточно знать, что метод <i><b>add()</b></i> присоединяет объект <i><b>Event</b></i> к концу контейнера с типом <i><b>List</b></i>, метод <i><b>size()</b></i> возвращает количество элементов в контейнере, синтаксис <i><b>foreach()</b></i> осуществляет последовательную выборку элементов <i><b>List</b></i>, а метод <i><b>remove()</b></i> удаляет заданный элемент из контейнера:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: innerclasses/controller/Controller.java</span>
+<span class="co1">// Обобщенная система управления </span>
+<span class="kw2">package</span> <span class="co2">innerclasses.controller</span><span class="sy0">;</span>
+<span class="kw2">import</span> <span class="co2">java.util.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> Controller <span class="br0">{</span>
+  <span class="co1">// Класс из пакета java.util для хранения событий Event::</span>
+  <span class="kw2">private</span> <span class="kw166">List</span><span class="sy0">&lt;</span><span class="kw166">Event</span><span class="sy0">&gt;</span> eventList = <span class="kw2">new</span> <span class="kw46">ArrayList</span><span class="sy0">&lt;</span><span class="kw166">Event</span><span class="sy0">&gt;</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> addEvent<span class="br0">(</span><span class="kw166">Event</span> c<span class="br0">)</span> <span class="br0">{</span> eventList.<span class="me1">add</span><span class="br0">(</span>c<span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> run<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw1">while</span><span class="br0">(</span>eventList.<span class="me1">size</span><span class="br0">(</span><span class="br0">)</span> <span class="sy0">&gt;</span> <span class="nu0">0</span><span class="br0">)</span>
+      <span class="co1">// Make a copy so you're not modifying the list</span>
+      <span class="co1">// while you're selecting the elements in it:</span>
+      <span class="kw1">for</span><span class="br0">(</span><span class="kw166">Event</span> e&nbsp;: <span class="kw2">new</span> <span class="kw46">ArrayList</span><span class="sy0">&lt;</span><span class="kw166">Event</span><span class="sy0">&gt;</span><span class="br0">(</span>eventList<span class="br0">)</span><span class="br0">)</span>
+        <span class="kw1">if</span><span class="br0">(</span>e.<span class="me1">ready</span><span class="br0">(</span><span class="br0">)</span><span class="br0">)</span> <span class="br0">{</span>
+          <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">(</span>e<span class="br0">)</span><span class="sy0">;</span>
+          e.<span class="me1">action</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+          eventList.<span class="me1">remove</span><span class="br0">(</span>e<span class="br0">)</span><span class="sy0">;</span>
+        <span class="br0">}</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>Метод <i><b>run()</b></i> в цикле перебирает копию <i><b>eventList</b></i> в поисках событий <i><b>Event</b></i>, готовых для выполнения. Для каждого найденного элемента он выводит информацию об объекте методом <i><b>toString()</b></i>, вызывает метод <i><b>action()</b></i>, а после этого удаляет событие из списка.
+Заметьте, что в этой архитектуре совершенно неважно, что конкретно выполняет некое событие <i><b>Event</b></i>.
+ В этом и состоит «изюминка» разработанной системы; она отделяет 
+постоянную составляющую от изменяющейся. «Вектором изменения» являются 
+различные действия разнообразных событий <i><b>Event</b></i>, выражаемые посредством создания разных субклассов <i><b>Event</b></i>.
+На этом этапе в дело вступают внутренние классы. Они позволяют добиться двух целей:
+</p>
+<hr>
+<ul>
+<li><span style="color:#800000">Вся реализация системы управления 
+создается в одном классе, с полной инкапсуляцией всей специфики данной 
+реализации. Внутренние классы используются для представления различных  
+разновидностей <i><b>action()</b></i>, необходимых для решения задачи.</span>
+</li>
+</ul>
+<ul>
+<li><span style="color:#800000">Внутренние классы помогают избежать 
+громоздкой, неудобной реализации, так как у них есть доступ к внешнему 
+классу. Без этой возможности программный код очень быстро станет 
+настолько неприятным, что вам захочется поискать другие альтернативы.</span>
+</li>
+</ul>
+<hr>
+<p>Рассмотрим конкретную реализацию системы управления, разработанную 
+для управления функциями оранжереи. Все события — включение света, воды и
+ нагревателей, звонок и перезапуск системы — абсолютно разнородны. 
+Однако система управления разработана так, что различия в коде легко 
+изолируются. Внутренние классы помогают унаследовать несколько 
+производных версий одного базового класса <i><b>Event</b></i> в пределах одного класса. Для каждого типа события от <i><b>Event</b></i> наследуется новый внутренний класс, и в его реализации <i><b>action()</b></i> записывается управляющий код.
+Как это обычно бывает при использовании каркасов приложений, класс <i><b>GreenhouseControls</b></i> наследует от класса <i><b>Controller</b></i>:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: innerclasses/GreenhouseControls.java</span>
+<span class="co1">// Пример конкретного приложения на основе системы </span>
+<span class="co1">// управления, все находится в одном классе. Внутренние </span>
+<span class="co1">// классы дают возможность инкапсулировать различную </span>
+<span class="co1">// функциональность для каждого отдельного события</span>
+<span class="kw2">import</span> <span class="co2">innerclasses.controller.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> GreenhouseControls <span class="kw2">extends</span> Controller <span class="br0">{</span>
+  <span class="kw2">private</span> <span class="kw3">boolean</span> light = <span class="kw4">false</span><span class="sy0">;</span>
+  <span class="kw2">public</span> <span class="kw2">class</span> LightOn <span class="kw2">extends</span> <span class="kw166">Event</span> <span class="br0">{</span>
+    <span class="kw2">public</span> LightOn<span class="br0">(</span><span class="kw3">long</span> delayTime<span class="br0">)</span> <span class="br0">{</span> <span class="kw2">super</span><span class="br0">(</span>delayTime<span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+    <span class="kw2">public</span> <span class="kw3">void</span> action<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+      <span class="co1">// Сюда помещается аппаратный вызов</span>
+      <span class="co1">// физическое включение света</span>
+      light = <span class="kw4">true</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+    <span class="kw2">public</span> <span class="kw21">String</span> toString<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> <span class="st0">"Light is on"</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="br0">}</span>	
+  <span class="kw2">public</span> <span class="kw2">class</span> LightOff <span class="kw2">extends</span> <span class="kw166">Event</span> <span class="br0">{</span>
+    <span class="kw2">public</span> LightOff<span class="br0">(</span><span class="kw3">long</span> delayTime<span class="br0">)</span> <span class="br0">{</span> <span class="kw2">super</span><span class="br0">(</span>delayTime<span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+    <span class="kw2">public</span> <span class="kw3">void</span> action<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+      <span class="co1">// Сюда помещается аппаратный вызов</span>
+      <span class="co1">// физическое выключение света</span>
+      light = <span class="kw4">false</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+    <span class="kw2">public</span> <span class="kw21">String</span> toString<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> <span class="st0">"Light is off"</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="br0">}</span>
+  <span class="kw2">private</span> <span class="kw3">boolean</span> water = <span class="kw4">false</span><span class="sy0">;</span>
+  <span class="kw2">public</span> <span class="kw2">class</span> WaterOn <span class="kw2">extends</span> <span class="kw166">Event</span> <span class="br0">{</span>
+    <span class="kw2">public</span> WaterOn<span class="br0">(</span><span class="kw3">long</span> delayTime<span class="br0">)</span> <span class="br0">{</span> <span class="kw2">super</span><span class="br0">(</span>delayTime<span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+    <span class="kw2">public</span> <span class="kw3">void</span> action<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+      <span class="co1">// Сюда помещается аппаратный вызов.</span>
+      <span class="co1">// выключения системы полива</span>
+      water = <span class="kw4">true</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+    <span class="kw2">public</span> <span class="kw21">String</span> toString<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+      <span class="kw2">return</span> <span class="st0">"Greenhouse water is on"</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+  <span class="br0">}</span>	
+  <span class="kw2">public</span> <span class="kw2">class</span> WaterOff <span class="kw2">extends</span> <span class="kw166">Event</span> <span class="br0">{</span>
+    <span class="kw2">public</span> WaterOff<span class="br0">(</span><span class="kw3">long</span> delayTime<span class="br0">)</span> <span class="br0">{</span> <span class="kw2">super</span><span class="br0">(</span>delayTime<span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+    <span class="kw2">public</span> <span class="kw3">void</span> action<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+      <span class="co1">// Сюда помещается аппаратный вызов.</span>
+      <span class="co1">// выключения системы полива</span>
+      water = <span class="kw4">false</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+    <span class="kw2">public</span> <span class="kw21">String</span> toString<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+      <span class="kw2">return</span> <span class="st0">"Greenhouse water is off"</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+  <span class="br0">}</span>
+  <span class="kw2">private</span> <span class="kw21">String</span> thermostat = <span class="st0">"Day"</span><span class="sy0">;</span>	
+  <span class="kw2">public</span> <span class="kw2">class</span> ThermostatNight <span class="kw2">extends</span> <span class="kw166">Event</span> <span class="br0">{</span>
+    <span class="kw2">public</span> ThermostatNight<span class="br0">(</span><span class="kw3">long</span> delayTime<span class="br0">)</span> <span class="br0">{</span>
+      <span class="kw2">super</span><span class="br0">(</span>delayTime<span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+    <span class="kw2">public</span> <span class="kw3">void</span> action<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+      <span class="co1">// Сюда помещается аппаратный вызов.</span>
+      <span class="co1">// thermostat = "Ночь";</span>
+      thermostat = <span class="st0">"Night"</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+    <span class="kw2">public</span> <span class="kw21">String</span> toString<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+      <span class="kw2">return</span> <span class="st0">"Thermostat on night setting"</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+  <span class="br0">}</span>	
+  <span class="kw2">public</span> <span class="kw2">class</span> ThermostatDay <span class="kw2">extends</span> <span class="kw166">Event</span> <span class="br0">{</span>
+    <span class="kw2">public</span> ThermostatDay<span class="br0">(</span><span class="kw3">long</span> delayTime<span class="br0">)</span> <span class="br0">{</span>
+      <span class="kw2">super</span><span class="br0">(</span>delayTime<span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+    <span class="kw2">public</span> <span class="kw3">void</span> action<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+      <span class="co1">// Сюда помещается аппаратный вызов.</span>
+      <span class="co1">// thermostat = "День"</span>
+      thermostat = <span class="st0">"Day"</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+    <span class="kw2">public</span> <span class="kw21">String</span> toString<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+      <span class="kw2">return</span> <span class="st0">"Thermostat on day setting"</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+  <span class="br0">}</span>
+  <span class="co1">// Пример метода action(), вставляющего</span>
+  <span class="co1">// самого себя в список событий.</span>
+  <span class="kw2">public</span> <span class="kw2">class</span> Bell <span class="kw2">extends</span> <span class="kw166">Event</span> <span class="br0">{</span>
+    <span class="kw2">public</span> Bell<span class="br0">(</span><span class="kw3">long</span> delayTime<span class="br0">)</span> <span class="br0">{</span> <span class="kw2">super</span><span class="br0">(</span>delayTime<span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+    <span class="kw2">public</span> <span class="kw3">void</span> action<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+      addEvent<span class="br0">(</span><span class="kw2">new</span> Bell<span class="br0">(</span>delayTime<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+    <span class="kw2">public</span> <span class="kw21">String</span> toString<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> <span class="st0">"Bing!"</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="br0">}</span>	
+  <span class="kw2">public</span> <span class="kw2">class</span> Restart <span class="kw2">extends</span> <span class="kw166">Event</span> <span class="br0">{</span>
+    <span class="kw2">private</span> <span class="kw166">Event</span><span class="br0">[</span><span class="br0">]</span> eventList<span class="sy0">;</span>
+    <span class="kw2">public</span> Restart<span class="br0">(</span><span class="kw3">long</span> delayTime, <span class="kw166">Event</span><span class="br0">[</span><span class="br0">]</span> eventList<span class="br0">)</span> <span class="br0">{</span>
+      <span class="kw2">super</span><span class="br0">(</span>delayTime<span class="br0">)</span><span class="sy0">;</span>
+      <span class="kw2">this</span>.<span class="me1">eventList</span> = eventList<span class="sy0">;</span>
+      <span class="kw1">for</span><span class="br0">(</span><span class="kw166">Event</span> e&nbsp;: eventList<span class="br0">)</span>
+        addEvent<span class="br0">(</span>e<span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+    <span class="kw2">public</span> <span class="kw3">void</span> action<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+      <span class="kw1">for</span><span class="br0">(</span><span class="kw166">Event</span> e&nbsp;: eventList<span class="br0">)</span> <span class="br0">{</span>
+        e.<span class="me1">start</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span> <span class="co1">// Перезапуск каждый раз</span>
+        addEvent<span class="br0">(</span>e<span class="br0">)</span><span class="sy0">;</span>
+      <span class="br0">}</span>
+      start<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span> <span class="co1">// Возвращаем это событие Event</span>
+      addEvent<span class="br0">(</span><span class="kw2">this</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+    <span class="kw2">public</span> <span class="kw21">String</span> toString<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+      <span class="kw2">return</span> <span class="st0">"Restarting system"</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+  <span class="br0">}</span>	
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw2">class</span> Terminate <span class="kw2">extends</span> <span class="kw166">Event</span> <span class="br0">{</span>
+    <span class="kw2">public</span> Terminate<span class="br0">(</span><span class="kw3">long</span> delayTime<span class="br0">)</span> <span class="br0">{</span> <span class="kw2">super</span><span class="br0">(</span>delayTime<span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+    <span class="kw2">public</span> <span class="kw3">void</span> action<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw21">System</span>.<span class="me1">exit</span><span class="br0">(</span><span class="nu0">0</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+    <span class="kw2">public</span> <span class="kw21">String</span> toString<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> <span class="st0">"Terminating"</span><span class="sy0">;</span>  <span class="br0">}</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>Заметьте, что поля <i><b>light, thermostat</b></i> и <i><b>ring</b></i> принадлежат внешнему классу <i><b>GreenhouseControls</b></i>,
+ и все же внутренние классы имеют возможность обращаться к ним, не 
+используя особой записи и не запрашивая особых разрешений. Большинство 
+методов <i><b>action()</b></i> требует управления оборудованием оранжереи, что, скорее всего, привлечет в программу сторонние низкоуровневые вызовы.
+</p><p>В основном классы <i><b>Event</b></i> похожи друг на друга, однако классы <i><b>Bell</b></i> и <i><b>Restart</b></i> представляют собой особые случаи. <i><b>Bell</b></i>
+ выдает звуковой сигнал и добавляет себя в список событий, чтобы звонок 
+позднее сработал снова. Заметьте, что внутренние классы действуют почти 
+как множественное наследование: классы <i><b>Bell</b></i> и <i><b>Restart</b></i> имеют доступ ко всем методам класса <i><b>Event</b></i>, а также ко всем методам внешнего класса <i><b>GreenhouseControls</b></i>.
+</p><p>Классу <i><b>Restart</b></i> передается массив объектов <i><b>Event</b></i>, которые он добавляет в контроллер. Так как <i><b>Restart</b></i> также является объектом <i><b>Event</b></i>, вы можете добавить этот объект в список событий в методе <i><b>Restart.action()</b></i>, чтобы система регулярно перезапускалась.
+</p><p>Следующий класс настраивает систему, создавая объект <i><b>GreenhouseControls</b></i> и добавляя в него разнообразные типы объектов <i><b>Event</b></i>. Это пример шаблона проектирования «команда» — каждый объект в <i><b>EventList</b></i> представляет собой запрос, инкапсулированный в объекте:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: innerclasses/GreenhouseController.java</span>
+<span class="co1">// Configure and execute the greenhouse system.</span>
+<span class="co1">// {Args: 5000}</span>
+<span class="kw2">import</span> <span class="co2">innerclasses.controller.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> GreenhouseController <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    GreenhouseControls gc = <span class="kw2">new</span> GreenhouseControls<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="co1">// Вместо жесткого кодирования фиксированных данных </span>
+    <span class="co1">// можно было бы считать информацию для настройки </span>
+    <span class="co1">// из текстового файла: </span>
+    gc.<span class="me1">addEvent</span><span class="br0">(</span>gc.<span class="kw2">new</span> Bell<span class="br0">(</span><span class="nu0">900</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw166">Event</span><span class="br0">[</span><span class="br0">]</span> eventList = <span class="br0">{</span>
+      gc.<span class="kw2">new</span> ThermostatNight<span class="br0">(</span><span class="nu0">0</span><span class="br0">)</span>,
+      gc.<span class="kw2">new</span> LightOn<span class="br0">(</span><span class="nu0">200</span><span class="br0">)</span>,
+      gc.<span class="kw2">new</span> LightOff<span class="br0">(</span><span class="nu0">400</span><span class="br0">)</span>,
+      gc.<span class="kw2">new</span> WaterOn<span class="br0">(</span><span class="nu0">600</span><span class="br0">)</span>,
+      gc.<span class="kw2">new</span> WaterOff<span class="br0">(</span><span class="nu0">800</span><span class="br0">)</span>,
+      gc.<span class="kw2">new</span> ThermostatDay<span class="br0">(</span><span class="nu0">1400</span><span class="br0">)</span>
+    <span class="br0">}</span><span class="sy0">;</span>	
+    gc.<span class="me1">addEvent</span><span class="br0">(</span>gc.<span class="kw2">new</span> Restart<span class="br0">(</span><span class="nu0">2000</span>, eventList<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw1">if</span><span class="br0">(</span>args.<span class="me1">length</span> == <span class="nu0">1</span><span class="br0">)</span>
+      gc.<span class="me1">addEvent</span><span class="br0">(</span>
+        <span class="kw2">new</span> GreenhouseControls.<span class="me1">Terminate</span><span class="br0">(</span>
+          <span class="kw2">new</span> <span class="kw21">Integer</span><span class="br0">(</span>args<span class="br0">[</span><span class="nu0">0</span><span class="br0">]</span><span class="br0">)</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    gc.<span class="me1">run</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>Bing!
+Thermostat on night setting
+Light is on
+Light is off
+Greenhouse water is on
+Greenhouse water is off
+Thermostat on day setting
+Restarting system
+Terminating
+</pre>
+<p>&lt;/spoiler&gt;
+Класс инициализирует систему, включая в нее нужные события. Если 
+передать программе параметр командной строки, она завершается по 
+истечении заданного количества миллисекунд (используется при 
+тестировании). Конечно, чтобы программа стала более гибкой, описания 
+событий следовало бы не включать в программный код, а загружать из 
+файла.
+Этот пример поможет понять всю ценность механизма внутренних классов, 
+особенно в случае с системами управления.
+</p>
+<h2><span class="mw-headline" id=".D0.9D.D0.B0.D1.81.D0.BB.D0.B5.D0.B4.D0.BE.D0.B2.D0.B0.D0.BD.D0.B8.D0.B5_.D0.BE.D1.82_.D0.B2.D0.BD.D1.83.D1.82.D1.80.D0.B5.D0.BD.D0.BD.D0.B8.D1.85_.D0.BA.D0.BB.D0.B0.D1.81.D1.81.D0.BE.D0.B2"><b>Наследование от внутренних классов</b></span></h2>
+<p>Так как конструктор внутреннего класса связывается со ссылкой на 
+окружающий внешний объект, наследование от внутреннего класса получается
+ чуть сложнее, чем обычное. Проблема состоит в том, что «скрытая» ссылка
+ на объект объемлющего внешнего класса должна быть инициализирована, а в
+ производном классе больше не существует объемлющего объекта по 
+умолчанию. Для явного указания объемлющего внешнего объекта применяется 
+специальный синтаксис:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: innerclasses/InheritInner.java</span>
+<span class="co1">// Наследование от внутреннего класса.</span>
+&nbsp;
+<span class="kw2">class</span> WithInner <span class="br0">{</span>
+  <span class="kw2">class</span> Inner <span class="br0">{</span><span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> InheritInner <span class="kw2">extends</span> WithInner.<span class="me1">Inner</span> <span class="br0">{</span>
+  <span class="co1">//! InheritInner() {} // He компилируется </span>
+  InheritInner<span class="br0">(</span>WithInner wi<span class="br0">)</span> <span class="br0">{</span>
+    wi.<span class="kw2">super</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    WithInner wi = <span class="kw2">new</span> WithInner<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    InheritInner ii = <span class="kw2">new</span> InheritInner<span class="br0">(</span>wi<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>Здесь класс <i><b>InheritInner</b></i> расширяет только внутренний 
+класс, а не внешний. Но когда дело доходит до создания конструктора, 
+предлагаемый по умолчанию конструктор не подходит, и вы не можете просто
+ передать ссылку на внешний объект. Необходимо включить в тело 
+конструктора выражение
+</p>
+<pre>ссылкаНаОбъемлющийКласс.super();
+</pre>
+<p>в теле конструктора. Оно обеспечит недостающую ссылку, и программа откомпилируется.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id=".D0.9C.D0.BE.D0.B6.D0.BD.D0.BE_.D0.BB.D0.B8_.D0.BF.D0.B5.D1.80.D0.B5.D0.BE.D0.BF.D1.80.D0.B5.D0.B4.D0.B5.D0.BB.D0.B8.D1.82.D1.8C_.D0.B2.D0.BD.D1.83.D1.82.D1.80.D0.B5.D0.BD.D0.BD.D0.B8.D0.B9_.D0.BA.D0.BB.D0.B0.D1.81.D1.81.3F"><b>Можно ли переопределить внутренний класс?</b></span></h2>
+<p>Что происходит, если вы создаете внутренний класс, затем наследуете 
+от его внешнего класса, а после этого заново описываете внутренний класс
+ в производном классе? Другими словами, можно ли переопределить 
+внутренний класс? Это было бы довольно интересно, но «переопределение» 
+внутреннего класса, как если бы он был еще одним методом внешнего 
+класса, фактически не имеет никакого эффекта:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: innerclasses/BigEgg.java</span>
+<span class="co1">// Внутренний класс нельзя переопределить </span>
+<span class="co1">// подобно обычному методу,</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">class</span> Egg <span class="br0">{</span>
+  <span class="kw2">private</span> Yolk y<span class="sy0">;</span>
+  <span class="kw2">protected</span> <span class="kw2">class</span> Yolk <span class="br0">{</span>
+    <span class="kw2">public</span> Yolk<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> print<span class="br0">(</span><span class="st0">"Egg.Yolk()"</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> Egg<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    print<span class="br0">(</span><span class="st0">"New Egg()"</span><span class="br0">)</span><span class="sy0">;</span>
+    y = <span class="kw2">new</span> Yolk<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span>	
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> BigEgg <span class="kw2">extends</span> Egg <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">class</span> Yolk <span class="br0">{</span>
+    <span class="kw2">public</span> Yolk<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> print<span class="br0">(</span><span class="st0">"BigEgg.Yolk()"</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw2">new</span> BigEgg<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>New Egg()
+Egg.Yolk()
+</pre>
+<p>&lt;/spoiler&gt;
+Конструктор по умолчанию автоматически синтезируется компилятором, а в 
+нем вызывается конструктор по умолчанию из базового класса. Можно 
+подумать, что при создании объекта <i><b>BigEgg</b></i> должен использоваться «переопределенный» класс <i><b>Yolk</b></i>, но это отнюдь не так, как видно из результата работы программы.
+</p><p>Этот пример просто показывает, что при наследовании от внешнего 
+класса ничего особенного с внутренними классами не происходит. Два 
+внутренних класса — совершенно отдельные составляющие, с независимыми 
+пространствами имен. Впрочем, возможность явного наследования от 
+внутреннего класса сохранилась:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: innerclasses/BigEgg2.java</span>
+<span class="co1">// Правильное наследование внутреннего класса,</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">class</span> Egg2 <span class="br0">{</span>
+  <span class="kw2">protected</span> <span class="kw2">class</span> Yolk <span class="br0">{</span>
+    <span class="kw2">public</span> Yolk<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> print<span class="br0">(</span><span class="st0">"Egg2.Yolk()"</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+    <span class="kw2">public</span> <span class="kw3">void</span> f<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> print<span class="br0">(</span><span class="st0">"Egg2.Yolk.f()"</span><span class="br0">)</span><span class="sy0">;</span><span class="br0">}</span>
+  <span class="br0">}</span>
+  <span class="kw2">private</span> Yolk y = <span class="kw2">new</span> Yolk<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="kw2">public</span> Egg2<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> print<span class="br0">(</span><span class="st0">"New Egg2()"</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> insertYolk<span class="br0">(</span>Yolk yy<span class="br0">)</span> <span class="br0">{</span> y = yy<span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> g<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> y.<span class="me1">f</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span>	
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> BigEgg2 <span class="kw2">extends</span> Egg2 <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">class</span> Yolk <span class="kw2">extends</span> Egg2.<span class="me1">Yolk</span> <span class="br0">{</span>
+    <span class="kw2">public</span> Yolk<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> print<span class="br0">(</span><span class="st0">"BigEgg2.Yolk()"</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+    <span class="kw2">public</span> <span class="kw3">void</span> f<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> print<span class="br0">(</span><span class="st0">"BigEgg2.Yolk.f()"</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> BigEgg2<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> insertYolk<span class="br0">(</span><span class="kw2">new</span> Yolk<span class="br0">(</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    Egg2 e2 = <span class="kw2">new</span> BigEgg2<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    e2.<span class="me1">g</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>Egg2.Yolk()
+New Egg2()
+Egg2.Yolk()
+BigEgg2.Yolk()
+BigEgg2.Yolk.f()
+</pre>
+<p>&lt;/spoiler&gt;
+Теперь класс <i><b>BigEgg2.Yolk</b></i> явно расширяет класс <i><b>Egg2.Yolk</b></i> и переопределяет его методы. Метод <i><b>insertYolk()</b></i> позволяет классу <i><b>BigEgg2</b></i> повысить один из своих объектов <i><b>Yolk</b></i> до ссылки у в классе <i><b>Egg2</b></i>, поэтому при вызове <i><b>y.f()</b></i> в методе <i><b>g()</b></i> используется переопределенная версия <i><b>f()</b></i>. Второй вызов <i><b>Egg2.Yolk()</b></i> — это вызов конструктора базового класса из конструктора класса <i><b>BigEgg2.Yolk</b></i>. Мы также видим, что при вызове метода <i><b>g()</b></i> используется «обновленная» версия метода.
+</p>
+<h2><span class="mw-headline" id=".D0.9B.D0.BE.D0.BA.D0.B0.D0.BB.D1.8C.D0.BD.D1.8B.D0.B5_.D0.B2.D0.BD.D1.83.D1.82.D1.80.D0.B5.D0.BD.D0.BD.D0.B8.D0.B5_.D0.BA.D0.BB.D0.B0.D1.81.D1.81.D1.8B"><b>Локальные внутренние классы</b></span></h2>
+<p>Как было замечено ранее, внутренние классы также могут создаваться в 
+блоках кода — чаще всего в теле метода. Локальный внутренний класс не 
+может иметь спецификатора доступа, так как он не является частью 
+внешнего класса, но для него доступны все неизменные (<i><b>final</b></i>)
+ переменные текущего блока и все члены внешнего класса. Следующий пример
+ сравнивает процессы создания локального внутреннего класса и 
+безымянного внутреннего класса:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: innerclasses/LocalInnerClass.java</span>
+<span class="co1">// Хранит последовательность объектов</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">interface</span> Counter <span class="br0">{</span>
+  <span class="kw3">int</span> next<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span>	
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> LocalInnerClass <span class="br0">{</span>
+  <span class="kw2">private</span> <span class="kw3">int</span> count = <span class="nu0">0</span><span class="sy0">;</span>
+  Counter getCounter<span class="br0">(</span><span class="kw2">final</span> <span class="kw21">String</span> name<span class="br0">)</span> <span class="br0">{</span>
+    <span class="co1">// Локальный внутренний класс:</span>
+    <span class="kw2">class</span> LocalCounter <span class="kw2">implements</span> Counter <span class="br0">{</span>
+      <span class="kw2">public</span> LocalCounter<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+        <span class="co1">// У локального внутреннего класса </span>
+        <span class="co1">// может быть собственный конструктор:</span>
+        print<span class="br0">(</span><span class="st0">"LocalCounter()"</span><span class="br0">)</span><span class="sy0">;</span>
+      <span class="br0">}</span>
+      <span class="kw2">public</span> <span class="kw3">int</span> next<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+        printnb<span class="br0">(</span>name<span class="br0">)</span><span class="sy0">;</span> <span class="co1">// Access local final</span>
+        <span class="kw2">return</span> count++<span class="sy0">;</span>
+      <span class="br0">}</span>
+    <span class="br0">}</span>
+    <span class="kw2">return</span> <span class="kw2">new</span> LocalCounter<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>	
+  <span class="co1">// To же самое с безымянным внутренним классом:</span>
+  Counter getCounter2<span class="br0">(</span><span class="kw2">final</span> <span class="kw21">String</span> name<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw2">return</span> <span class="kw2">new</span> Counter<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+      <span class="co1">// У безымянного внутреннего класса не может быть</span>
+      <span class="co1">// именованного конструктора, «легальна» только</span>
+      <span class="co1">// инициализация экземпляром:</span>
+      <span class="br0">{</span>
+        print<span class="br0">(</span><span class="st0">"Counter()"</span><span class="br0">)</span><span class="sy0">;</span>
+      <span class="br0">}</span>
+      <span class="kw2">public</span> <span class="kw3">int</span> next<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+        printnb<span class="br0">(</span>name<span class="br0">)</span><span class="sy0">;</span> <span class="co1">// final аргумент</span>
+        <span class="kw2">return</span> count++<span class="sy0">;</span>
+      <span class="br0">}</span>
+    <span class="br0">}</span><span class="sy0">;</span>
+  <span class="br0">}</span>	
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    LocalInnerClass lic = <span class="kw2">new</span> LocalInnerClass<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    Counter
+      c1 = lic.<span class="me1">getCounter</span><span class="br0">(</span><span class="st0">"Local inner "</span><span class="br0">)</span>,
+      c2 = lic.<span class="me1">getCounter2</span><span class="br0">(</span><span class="st0">"Anonymous inner "</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw1">for</span><span class="br0">(</span><span class="kw3">int</span> i = <span class="nu0">0</span><span class="sy0">;</span> i <span class="sy0">&lt;</span> <span class="nu0">5</span><span class="sy0">;</span> i++<span class="br0">)</span>
+      print<span class="br0">(</span>c1.<span class="me1">next</span><span class="br0">(</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw1">for</span><span class="br0">(</span><span class="kw3">int</span> i = <span class="nu0">0</span><span class="sy0">;</span> i <span class="sy0">&lt;</span> <span class="nu0">5</span><span class="sy0">;</span> i++<span class="br0">)</span>
+      print<span class="br0">(</span>c2.<span class="me1">next</span><span class="br0">(</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>LocalCounter()
+Counter()
+Local inner 0
+Local inner 1
+Local inner 2
+Local inner 3
+Local inner 4
+Anonymous inner 5
+Anonymous inner 6
+Anonymous inner 7
+Anonymous inner 8
+Anonymous inner 9
+</pre>
+<p>&lt;/spoiler&gt;
+Объект <i><b>Counter</b></i> возвращает следующее по порядку значение. 
+Он реализован и как локальный класс, и как безымянный внутренний класс, с
+ одинаковым поведением и характеристиками. Поскольку имя локального 
+внутреннего класса недоступно за пределами метода, доводом для 
+применения локального класса вместо безымянного внутреннего может быть 
+необходимость в именованном
+конструкторе и (или) перегруженных конструкторах; безымянные внутренние 
+классы допускают только инициализацию экземпляром.
+Другая причина для использования локального внутреннего класса вместо 
+безымянного внутреннего — необходимость создания более чем одного 
+объекта такого класса.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id=".D0.98.D0.B4.D0.B5.D0.BD.D1.82.D0.B8.D1.84.D0.B8.D0.BA.D0.B0.D1.82.D0.BE.D1.80.D1.8B_.D0.B2.D0.BD.D1.83.D1.82.D1.80.D0.B5.D0.BD.D0.BD.D0.B8.D1.85_.D0.BA.D0.BB.D0.B0.D1.81.D1.81.D0.BE.D0.B2"><b>Идентификаторы внутренних классов</b></span></h2>
+<p>Так как каждый класс компилируется в файл с расширением <i><b>.class</b></i>, содержащий полную информацию о создании его экземпляров (эта информация помещается в «мета-класс», называемый объектом <i><b>Class</b></i>), напрашивается предположение, что внутренние классы также создают файлы <i><b>.class</b></i> для хранения информации о своих объектах <i><b>Class</b></i>. Имена этих файлов-классов строятся по жестко заданной схеме: имя объемлющего внешнего класса, затем символ <i><b>$</b></i> и имя внутреннего класса. Например, для программы <i><b>LocallnnerClass.java</b></i> создаются следующие файлы с расширением <i><b>.class</b></i>:
+</p>
+<pre>Counter.class
+LocalInnerClass$2.class
+LocalInnerClass$lLocalCounter.class
+LocalInnerClass.class
+</pre>
+<p>Если внутренние классы являются безымянными, компилятор использует в 
+качестве их идентификаторов номера. Если внутренние классы вложены в 
+другие внутренние классы, их имена просто присоединяются после символа <i><b>$</b></i>
+ и идентификаторов всех внешних классов.
+Хотя такая схема построения внутренних имен проста и прямолинейна, она 
+вполне надежна и работает практически в любых ситуациях. Так как она 
+является стандартной для языка <i>Java</i>, все получаемые файлы автоматически становятся платформно-независимыми.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id=".D0.A0.D0.B5.D0.B7.D1.8E.D0.BC.D0.B5"><b>Резюме</b></span></h2>
+<p>Интерфейсы и внутренние классы — весьма нетривиальные концепции, и во
+ многих других объектно-ориентированных языках вы их не найдете. 
+Например, в <i>C++</i> нет ничего похожего. Вместе они решают те задачи, которые <i>C++</i> пытается решить с применением множественного наследования. Однако множественное наследование <i>C++</i> создает массу проблем; по сравнению с ним интерфейсы и внутренние классы <i>Java</i> гораздо более доступны.
+</p><p>Хотя сами по себе эти механизмы не так уж сложны, решение об их 
+использовании принимается на уровне проектирования (как и в случае с 
+полиморфизмом). Со временем вы научитесь сразу оценивать, где большую 
+выгоду даст ин­терфейс, где внутренний класс, а где нужны обе 
+возможности сразу. А пока достаточно хотя бы в общих чертах ознакомиться
+ с их синтаксисом и семантикой.
+
+</p>
+                <p><br>
+                </p>
+                <hr>
+                <p><a href="http://wikijava.it-cache.net/index.php" title="Thinking in Java 4th edition">назад в Оглавление</a>
+                </p><p><br>
+                </p>
+<!-- 
+NewPP limit report
+CPU time usage: 3.291 seconds
+Real time usage: 3.297 seconds
+Preprocessor visited node count: 412/1000000
+Preprocessor generated node count: 874/1000000
+Post‐expand include size: 243/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 3/40
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key wjava2-wj_:pcache:idhash:24-0!*!*!!ru!*!* and timestamp 20140812161654
+ -->
+</div>								<div class="printfooter">
+				Источник — «<a href="http://wikijava.org.ua/index.php?title=Glava_10_Thinking_in_Java_4th_edition&amp;oldid=247">http://wikijava.org.ua/index.php?title=Глава_10_Thinking_in_Java_4th_edition&amp;oldid=247</a>»				</div>
+                                <div id="catlinks" class="catlinks"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%9A%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D0%B8" title="Служебная:Категории">Категории</a>: <ul><li><a href="http://wikijava.org.ua/index.php?title=%D0%9A%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D1%8F:%D0%9A%D0%BD%D0%B8%D0%B3%D0%B8" title="Категория:Книги">Книги</a></li><li><a href="http://wikijava.org.ua/index.php?title=%D0%9A%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D1%8F:Java" title="Категория:Java">Java</a></li></ul></div></div>												<div class="visualClear"></div>
+            </div>
+		</div>
+		<div id="mw-navigation">
+			<h2>Навигация</h2>
+			<div id="mw-head">
+				<div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
+	<h3 id="p-personal-label">Персональные инструменты</h3>
+	<ul>
+<li id="pt-login"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%92%D1%85%D0%BE%D0%B4&amp;returnto=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0+10+Thinking+in+Java+4th+edition" title="Здесь можно зарегистрироваться в системе, но это необязательно. [o]" accesskey="o">Представиться системе</a></li>	</ul>
+</div>
+				<div id="left-navigation">
+					<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
+	<h3 id="p-namespaces-label">Пространства имён</h3>
+	<ul>
+					<!--<li  id="ca-nstab-main" class="selected"><span><a href="index.php@title=Glava_10_Thinking_in_Java_4th_edition.html"  title="Просмотр основной страницы [c]" accesskey="c">Статья</a></span></li>-->
+					<!--<li  id="ca-talk" class="new"><span><a href="http://wikijava.org.ua/index.php?title=%D0%9E%D0%B1%D1%81%D1%83%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5:%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_10_Thinking_in_Java_4th_edition&amp;action=edit&amp;redlink=1"  title="Обсуждение основной страницы [t]" accesskey="t">Обсуждение</a></span></li>-->
+			</ul>
+</div>
+<div id="p-variants" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-variants-label">
+	<h3 id="mw-vector-current-variant">
+		</h3>
+	<h3 id="p-variants-label"><span>Варианты</span><a href="http://wikijava.it-cache.net/index.php@title=Glava_10_Thinking_in_Java_4th_edition.html#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+				</div>
+				<div id="right-navigation">
+					<div id="p-views" role="navigation" class="vectorTabs" aria-labelledby="p-views-label">
+	<h3 id="p-views-label">Просмотры</h3>
+	<ul>
+					<!--<li id="ca-view" class="selected"><span><a href="index.php@title=Glava_10_Thinking_in_Java_4th_edition.html" >Читать</a></span></li>-->
+					<!--<li id="ca-viewsource"><span><a href="http://wikijava.org.ua/index.php?title=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_10_Thinking_in_Java_4th_edition&amp;action=edit"  title="Эта страница защищена от изменений, но вы можете посмотреть и скопировать её исходный текст [e]" accesskey="e">Просмотр</a></span></li>-->
+					<!--<li id="ca-history" class="collapsible"><span><a href="http://wikijava.org.ua/index.php?title=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_10_Thinking_in_Java_4th_edition&amp;action=history"  title="Журнал изменений страницы [h]" accesskey="h">История</a></span></li>-->
+			</ul>
+</div>
+<div id="p-cactions" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-cactions-label">
+	<h3 id="p-cactions-label"><span>Действия</span><a href="http://wikijava.it-cache.net/index.php@title=Glava_10_Thinking_in_Java_4th_edition.html#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+<div id="p-search" role="search">
+	<h3><label for="searchInput">Поиск</label></h3>
+	<form action="http://wikijava.org.ua/index.php" id="searchform">
+				<div id="simpleSearch">
+						<input name="search" placeholder="Поиск" title="Искать в WikiJava: Wiki of Java: викифицированные книги и статьи по Java [f]" accesskey="f" id="searchInput">						<button type="submit" name="button" title="Найти страницы, содержащие указанный текст" id="searchButton"><img src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%2010_files/search-ltr.asc" alt="Найти" height="13" width="12"></button>								<input name="title" value="Служебная:Поиск" type="hidden">
+		</div>
+	</form>
+</div>
+				</div>
+			</div>
+			<div id="mw-panel">
+					<!--<div id="p-logo" role="banner"><a style="background-image: url(/skins/common/images/wikijava.png);" href="index.php@title=Заглавная_страница.html"  title="Перейти на заглавную страницу"></a></div>-->
+				<div class="portal" role="navigation" id="p-navigation" aria-labelledby="p-navigation-label">
+	<h3 id="p-navigation-label">Навигация</h3>
+	<div class="body">
+        <ul>
+            <li id="n-mainpage-description"><a href="http://wikijava.org.ua/index.php?title=%D0%97%D0%B0%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F_%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0" title="Перейти на заглавную страницу [z]" accesskey="z">Заглавная страница</a></li>
+            <li id="n-recentchanges"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%B2%D0%B5%D0%B6%D0%B8%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8" title="Список последних изменений [r]" accesskey="r">Свежие правки</a></li>
+            <li id="n-.D0.9A.D0.BD.D0.B8.D0.B3.D0.B8-Java"><a href="http://wikijava.org.ua/index.php?title=%D0%9A%D0%BD%D0%B8%D0%B3%D0%B8_Java">Книги Java</a></li>
+            <li id="n-.D0.A1.D1.82.D0.B0.D1.82.D1.8C.D0.B8-Java"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D1%82%D0%B0%D1%82%D1%8C%D0%B8_Java">Статьи Java</a></li>
+            <li id="n-Java-.D0.BF.D0.BE.D1.80.D1.82.D0.B0.D0.BB"><a href="http://wikijava.org.ua/index.php?title=Java-portal">Java портал</a></li>
+            <li id="n-help"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B0:%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5" title="Место, где можно получить справку">Справка</a></li>
+            <li id="n-.D0.A1.D1.82.D0.B0.D1.82.D0.B8.D1.81.D1.82.D0.B8.D0.BA.D0.B0"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%81%D1%82%D0%B8%D0%BA%D0%B0">Статистика</a></li>
+        </ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id="p-tb" aria-labelledby="p-tb-label">
+	<h3 id="p-tb-label">Инструменты</h3>
+	<div class="body">
+		<ul>
+			<li id="t-whatlinkshere"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D1%81%D1%8B%D0%BB%D0%BA%D0%B8_%D1%81%D1%8E%D0%B4%D0%B0/%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_10_Thinking_in_Java_4th_edition" title="Список всех страниц, ссылающихся на данную [j]" accesskey="j">Ссылки сюда</a></li>
+			<li id="t-recentchangeslinked"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%B2%D1%8F%D0%B7%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8/%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_10_Thinking_in_Java_4th_edition" title="Последние изменения в страницах, на которые ссылается эта страница [k]" accesskey="k">Связанные правки</a></li>
+			<li id="t-specialpages"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%BF%D0%B5%D1%86%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D1%8B" title="Список служебных страниц [q]" accesskey="q">Спецстраницы</a></li>
+			<li id="t-print"><a href="http://wikijava.org.ua/index.php?title=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_10_Thinking_in_Java_4th_edition&amp;printable=yes" rel="alternate" title="Версия этой страницы для печати [p]" accesskey="p">Версия для печати</a></li>
+			<li id="t-permalink"><a href="http://wikijava.org.ua/index.php?title=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_10_Thinking_in_Java_4th_edition&amp;oldid=247" title="Постоянная ссылка на эту версию страницы">Постоянная ссылка</a></li>
+			<li id="t-info"><a href="http://wikijava.org.ua/index.php?title=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_10_Thinking_in_Java_4th_edition&amp;action=info">Сведения о странице</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id="p-.D0.94.D1.80.D1.83.D0.B3.D0.B8.D0.B5_.D0.BF.D1.80.D0.BE.D0.B5.D0.BA.D1.82.D1.8B" aria-labelledby="p-.D0.94.D1.80.D1.83.D0.B3.D0.B8.D0.B5_.D0.BF.D1.80.D0.BE.D0.B5.D0.BA.D1.82.D1.8B-label">
+	<h3 id="p-.D0.94.D1.80.D1.83.D0.B3.D0.B8.D0.B5_.D0.BF.D1.80.D0.BE.D0.B5.D0.BA.D1.82.D1.8B-label">Другие проекты</h3>
+	<div class="body">
+		<ul>
+			<li id="n-rastafara.com.ua"><a href="http://rastafara.com.ua/" rel="nofollow">rastafara.com.ua</a></li>
+			<li id="n-rastafara-blog"><a href="http://sergey-rastafara.blogspot.com/" rel="nofollow">rastafara blog</a></li>
+			<li id="n-rastaban"><a href="http://rastaban.com.ua/" rel="nofollow">rastaban</a></li>
+		</ul>
+	</div>
+</div>
+			</div>
+		</div>
+		<div id="footer" role="contentinfo">
+							<ul id="footer-info">
+											<li id="footer-info-lastmod"> Последнее изменение этой страницы: 10:16, 6 мая 2014.</li>
+											<li id="footer-info-viewcount">К этой странице обращались 2849 раза.</li>
+											<li id="footer-info-copyright">Содержимое доступно по лицензии <a class="external" rel="nofollow" href="http://www.gnu.org/copyleft/fdl.html">GNU Free Documentation License 1.3 или более поздняя</a> (если не указано иное).</li>
+									</ul>
+							<ul id="footer-places">
+											<li id="footer-places-privacy"><a href="http://wikijava.org.ua/index.php?title=WikiJava:_Wiki_of_Java:_%D0%B2%D0%B8%D0%BA%D0%B8%D1%84%D0%B8%D1%86%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5_%D0%BA%D0%BD%D0%B8%D0%B3%D0%B8_%D0%B8_%D1%81%D1%82%D0%B0%D1%82%D1%8C%D0%B8_%D0%BF%D0%BE_Java:%D0%9F%D0%BE%D0%BB%D0%B8%D1%82%D0%B8%D0%BA%D0%B0_%D0%BA%D0%BE%D0%BD%D1%84%D0%B8%D0%B4%D0%B5%D0%BD%D1%86%D0%B8%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D0%B8" title="WikiJava: Wiki of Java: викифицированные книги и статьи по Java:Политика конфиденциальности">Политика конфиденциальности</a></li>
+											<li id="footer-places-about"><a href="http://wikijava.org.ua/index.php?title=WikiJava:_Wiki_of_Java:_%D0%B2%D0%B8%D0%BA%D0%B8%D1%84%D0%B8%D1%86%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5_%D0%BA%D0%BD%D0%B8%D0%B3%D0%B8_%D0%B8_%D1%81%D1%82%D0%B0%D1%82%D1%8C%D0%B8_%D0%BF%D0%BE_Java:%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5" title="WikiJava: Wiki of Java: викифицированные книги и статьи по Java:Описание">Описание WikiJava: Wiki of Java: викифицированные книги и статьи по Java</a></li>
+											<li id="footer-places-disclaimer"><a href="http://wikijava.org.ua/index.php?title=WikiJava:_Wiki_of_Java:_%D0%B2%D0%B8%D0%BA%D0%B8%D1%84%D0%B8%D1%86%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5_%D0%BA%D0%BD%D0%B8%D0%B3%D0%B8_%D0%B8_%D1%81%D1%82%D0%B0%D1%82%D1%8C%D0%B8_%D0%BF%D0%BE_Java:%D0%9E%D1%82%D0%BA%D0%B0%D0%B7_%D0%BE%D1%82_%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D0%BE%D1%81%D1%82%D0%B8" title="WikiJava: Wiki of Java: викифицированные книги и статьи по Java:Отказ от ответственности">Отказ от ответственности</a></li>
+									</ul>
+										<ul id="footer-icons" class="noprint">
+					<li id="footer-copyrightico">
+						<a href="http://www.gnu.org/copyleft/fdl.html"><img src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%2010_files/gnu-fdl.png" alt="GNU Free Documentation License 1.3 или более поздняя" height="31" width="88"></a>
+					</li>
+					<li id="footer-poweredbyico">
+						<a href="http://www.mediawiki.org/"><img src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%2010_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" height="31" width="88"></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<script>/*<![CDATA[*/window.jQuery && jQuery.ready();/*]]>*/</script><script>if(window.mw){
+mw.loader.state({"site":"loading","user":"ready","user.groups":"ready"});
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.action.view.postEdit","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest","ext.vector.collapsibleNav","ext.vector.collapsibleTabs","ext.vector.editWarning","ext.vector.simpleSearch","skins.vector.collapsibleNav"],null,true);
+}</script>
+<script>if(window.mw){
+mw.loader.state({"site":"ready"});
+}</script>
+<!-- Served in 0.230 secs. -->
+	
+
+</body></html>

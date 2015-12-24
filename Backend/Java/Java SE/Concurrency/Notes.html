@@ -1,0 +1,34 @@
+﻿Acquiring the lock associated with an object does not in itself prevent other threads from accessing fields of the object or invoking un-synchronized methods on the object.
+
+Each object in Java is associated with a monitor, which a thread can lock or unlock. Only one thread at a time may hold a lock on a monitor. Any other threads attempting to lock that monitor are blocked until they can obtain a lock on that monitor. A thread t may lock a particular monitor multiple times; each unlock reverses the effect of one lock operation.
+
+Invocations of Thread.isInterrupted can determine a thread's interruption
+status. The static method Thread.interrupted may be invoked by a thread to
+observe and clear its own interruption status.
+
+Interactions of Waits, Notification, and Interruption
+The above specifications allow us to determine several properties having to do with the interaction of waits, notification, and interruption.
+If a thread is both notified and interrupted while waiting, it may either:
+• return normally from wait , while still having a pending interrupt (in other words, a call to Thread.interrupted would return true)
+• return from wait by throwing an InterruptedException
+The thread may not reset its interrupt status and return normally from the call to wait.
+Similarly, notifications cannot be lost due to interrupts. Assume that a set s of threads is in the wait set of an object m, and another thread performs a notify on m. Then either:
+• at least one thread in s must return normally from wait, or
+• all of the threads in s must exit wait by throwing InterruptedException
+Note that if a thread is both interrupted and woken via notify , and that thread
+returns from wait by throwing an InterruptedException, then some other thread
+in the wait set must be notified.
+
+For example, in the following (broken) code fragment, assume that this.done is a non-volatile boolean field:
+	while (!this.done)
+		Thread.sleep(1000);
+The compiler is free to read the field this.done just once, and reuse the cached value in each execution of the loop. This would mean that the loop would never terminate, even if another thread changed the value of this.done.
+
+Memory that can be shared between threads is called shared memory or heap
+memory. All instance fields, static fields, and array elements are stored in heap memory. In this chapter, we use the term variable to refer to both fields and array elements. Local variables, formal method parameters, and exception handler parameters are never shared between threads and are unaffected by the
+memory model. Two accesses to (reads of or writes to) the same variable are said to be conflicting if at least one of the accesses is a write.
+
+For the purposes of the Java programming language memory model, a single write
+to a non-volatile long or double value is treated as two separate writes: one to each 32-bit half. This can result in a situation where a thread sees the first 32 bits of a 64-bit value from one write, and the second 32 bits from another write. Writes and reads of volatile long and double values are always atomic.
+Writes to and reads of references are always atomic, regardless of whether they are implemented as 32-bit or 64-bit values.
+

@@ -1,0 +1,320 @@
+<!--?xml version="1.0" encoding="UTF-8"?-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-type" content="text/html; charset=UTF-8"><link rel="stylesheet" type="text/css" href="skipy.ru:%20%D0%90%D1%85,%20%D1%8D%D1%82%D0%B8%20%D1%81%D1%82%D1%80%D0%BE%D0%BA%D0%B8..._files/main.css"><link rel="stylesheet" type="text/css" href="skipy.ru:%20%D0%90%D1%85,%20%D1%8D%D1%82%D0%B8%20%D1%81%D1%82%D1%80%D0%BE%D0%BA%D0%B8..._files/header.css"><link rel="stylesheet" type="text/css" href="skipy.ru:%20%D0%90%D1%85,%20%D1%8D%D1%82%D0%B8%20%D1%81%D1%82%D1%80%D0%BE%D0%BA%D0%B8..._files/print.css" media="print"><link rel="icon" href="http://www.skipy.ru/favicon.ico" type="image/vnd.microsoft.icon"><link rel="shortcut icon" href="http://www.skipy.ru/favicon.ico" type="image/vnd.microsoft.icon"><link rel="alternate" type="application/rss+xml" title="Новости сайта skipy.ru" href="http://www.skipy.ru/rss2.xml"><title>skipy.ru: Записки трезвого практика -&gt;
+                Техника -&gt;
+                Ах, эти строки...</title></head><body><script type="text/javascript">
+            new Image().src = "//counter.yadro.ru/hit?r"+
+            escape(document.referrer)+((typeof(screen)=="undefined")?"":
+            ";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+            screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+            ";"+Math.random();</script><div id="counter"><a href="http://www.liveinternet.ru/click" target="_blank"><img class="pcfykmqlcrtplekulgcu" src="skipy.ru:%20%D0%90%D1%85,%20%D1%8D%D1%82%D0%B8%20%D1%81%D1%82%D1%80%D0%BE%D0%BA%D0%B8..._files/logo.gif" title="LiveInternet" alt="" height="31" width="31" border="0"></a></div><table class="formatting" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td><div id="header"><table class="head" cellpadding="0" cellspacing="0"><tbody><tr><td><img src="skipy.ru:%20%D0%90%D1%85,%20%D1%8D%D1%82%D0%B8%20%D1%81%D1%82%D1%80%D0%BE%D0%BA%D0%B8..._files/head_left.jpg" alt="Заголовок страницы"></td><td align="right"><img src="skipy.ru:%20%D0%90%D1%85,%20%D1%8D%D1%82%D0%B8%20%D1%81%D1%82%D1%80%D0%BE%D0%BA%D0%B8..._files/head_right.jpg" alt="Заголовок страницы"></td></tr></tbody></table><div id="headDelim"><span></span></div><div id="rootlink"><a href="http://www.skipy.ru/index.html" style="border: none;"><img src="skipy.ru:%20%D0%90%D1%85,%20%D1%8D%D1%82%D0%B8%20%D1%81%D1%82%D1%80%D0%BE%D0%BA%D0%B8..._files/dot.gif" alt="" height="130" width="120"></a></div><div id="menu"><table bgcolor="#264A84"><tbody><tr><td><a href="http://www.skipy.ru/index.html">Главная</a></td><td><a href="http://www.skipy.ru/philosophy.html">Философия</a></td><td class="current"><a href="http://www.skipy.ru/technics.html">Техника</a></td><td><a href="http://www.skipy.ru/architecture.html">Архитектура</a></td><td><a href="http://www.skipy.ru/useful.html">Полезное</a></td></tr></tbody></table></div><div id="submenu"><table bgcolor="#F49B2E"><tbody><tr><td><a href="http://www.skipy.ru/technics.html#general">Общее</a></td><td><a href="http://www.skipy.ru/technics.html#gui">GUI</a></td><td class="current"><a href="http://www.skipy.ru/technics.html#lang">java.lang</a></td><td><a href="http://www.skipy.ru/technics.html#io">java.io</a></td><td><a href="http://www.skipy.ru/technics.html#dyk">Знаете ли вы?..</a></td></tr></tbody></table></div></div></td></tr><tr><td><div id="content"><br>
+        <p class="lastChange">Последнее изменение: 7 мая 2008г.</p>
+
+<h2 id="top">Ах, эти строки...</h2>
+
+<p>Класс <code>java.lang.String</code>, пожалуй, является одним из самых используемых в Java. И очень часто его используют
+неграмотно, что порождает множество проблем, прежде всего с производительностью. В этой статье я хочу рассказать о строках,
+о тонкостях при их использовании, об источниках проблем и т.п.</p>
+
+<p>Вот о чем мы поговорим:</p>
+
+<ul>
+    <li> <a href="#internal">Устройство строки</a></li>
+    <li> <a href="#literals">Строковые литералы</a></li>
+    <li> <a href="#comparison">Сравнение строк</a></li>
+    <li> <a href="#concat">Сложение строк</a></li>
+    <li> <a href="#substr">Выборка подстроки и копирующий конструктор</a></li>
+    <li> <a href="#mutation">Изменение строки</a></li>
+</ul>
+
+<p>Начнем с основ.</p>
+
+<h3 id="internal">Устройство строки</h3>
+
+<p>Класс <code>java.lang.String</code> содержит в себе три поля:</p>
+
+<pre>/**
+ * NOTE: This is just a partial API
+ */
+<b>public final class</b> String{
+
+    <b>private final char</b> value[];
+    <b>private final int</b> offset;
+    <b>private final int</b> count;
+
+}
+</pre>
+
+<p>На самом деле там содержатся и другие поля, например, hash-код, но сейчас это неважно. Основные – эти.</p>
+
+<p>Итак, в основе строки лежит массив символов (<code>char</code>). При хранении символов в памяти используется кодировка
+Unicode <em>UTF-16BE</em>. Подробнее о ней можно почитать <a href="http://www.skipy.ru/technics/encodings.html#UTF">тут</a>. Начиная с версии Java 5.0
+введена поддержка Unicode версии выше 2 и, соответственно, символов с кодами больше <code>0xFFFF</code>. Для этих символов
+используются уже не один <code>char</code>, а два, подробнее о кодировке этих символов в <a href="http://www.skipy.ru/technics/encodings.html#UTF">той же
+статье</a>.</p>
+
+<p>Хоть поддержка этих символов и введена, да вот незадача – отобразить их не получится. Я нашел набор музыкальных символов
+(<a href="http://www.unicode.org/charts/PDF/U1D100.pdf">U1D100</a>) и попробовал вывести хоть куда-нибудь скрипичный ключ
+(символ с кодом <code>1D120</code>). Перевел код в два <code>char</code>, как и положено – '\uD834' и '\uDD20'. Декодер на
+них не ругается, честно распознает как один символ. Вот только шрифта нет, в котором этот символ существует. А потому –
+квадратик. И судя по всему – это надолго. Так что введение поддержки Unicode 4 можно рассматривать исключительно через
+призму задела на будущее.</p>
+
+<p>Пойдем дальше. Я прошу обратить пристальное внимание на второе и третье поля – <em>offset</em> и <em>count</em>. Казалось
+бы, массив полностью определяет строку, если используются ВСЕ символы. Если же существуют такие поля – символы в массиве
+могут использоваться не все. Так оно и есть, об этом мы поговорим в части <a href="#substr">выборка подстроки и копирующий
+конструктор</a>.</p>
+
+<p>Следующая тема –</p>
+
+<h3 id="literals">Строковые литералы</h3>
+
+<p>Что такое строковый литерал? Это строка, записаная в двойных кавычках, например, такая: <code>"abc"</code>. Такие
+выражения используются в коде сплошь и рядом. Строка эта может содержать escape-последовательности unicode, например,
+<code>\u0410</code>, что будет соответствовать русской букве 'А'. Однако, эта строка НЕ МОЖЕТ содержать последовательностей
+<code>\u000A</code> и <code>\u000D</code>, соответствующие символам LF и CR соответственно. Дело в том, что
+последовательности обрабатываются на самой ранней стадии компиляции, и символы эти будут заменены на реальные LF и CR (как
+если бы в редакторе просто нажали "Enter"). Для вставки в строку этих символов следует использовать последовательности
+<code>\n</code> и <code>\r</code>, соответственно.</p>
+
+<p>Строковые литералы сохраняются в пуле строк. Я упоминал о пуле в статье о сравнении на практике, но повторюсь. Виртуальная
+машина Java поддерживает пул строк. В него кладутся все строковые литералы, объявленные в коде. При совпадении литералов
+(с точки зрения <code>equals</code>, см. <a href="http://www.skipy.ru/technics/objCompPr.html#str_equals_vs_eqeq">тут</a>) используется один и тот же
+объект, находящийся в пуле. Это позволяет сильно экономить память, а в некоторых случаях и повышать производительность.
+Дело в том, что строку в пул можно поместить принудительно, с помощью метода <code>String.intern()</code>. Этот метод
+возвращает из пула строку, равную той, у которой был вызван этот метод. Если же такой строки нет – в пул кладется та, у
+которой вызван метод, после чего возвращается ссылка на нее же. Таким образом, при грамотном использовании пула появляется
+возможность сравнивать строки не по значению, через <code>equals</code>, а по ссылке, что значительно, на порядки, быстрее.
+Так реализован, например, класс <code>java.util.Locale</code>, который имеет дело с кучей маленьких, в основном
+двухсимвольных, строк – кодами стран, языков и т.п. См. также тут: <a href="http://www.skipy.ru/technics/objCompPr.html#str_intern">Сравнение объектов:
+практика – метод <code>String.intern</code></a>.</p>
+
+<p>Очень часто я вижу в различной литературе конструкции следующего вида:</p>
+
+<pre><b>public static final</b> String SOME_STRING = <b>new</b> String("abc");</pre>
+
+<p>Если говорить еще точнее, нарекания у меня вызывает <code><b>new</b> String("abc")</code>. Дело в том, что конструкция
+эта – безграмотна. В Java строковый литерал – <code>"abc"</code> – УЖЕ является объектом класса String. А потому,
+использование еще и конструктора приводит к КОПИРОВАНИЮ строки. Поскольку строковый литерал уже хранится в пуле, и никуда
+из него не денется, то созданный НОВЫЙ объект – ничто иное как пустая трата памяти. Эту конструкцию с чистой совестью можно
+переписать вот так:</p>
+
+<pre><b>public static final</b> String SOME_STRING = "abc";</pre>
+
+<p>С точки зрения кода это будет абсолютно то же самое, но несколько эффективнее.</p>
+
+<p>Переходим к следующему вопросу – </p>
+
+<h3 id="comparison">Сравнение строк</h3>
+
+<p>Собственно, все об этом вопросе я уже писал в статье <a href="http://www.skipy.ru/technics/objCompPr.html">Сравнение объектов: практика</a>.
+И добавить больше нечего. Резюмируя сказаное там – строки надо сравнивать по значению, с использованием метода
+<code>equals</code>. По ссылке их можно сравнивать, но аккуратно, только если точно знаешь, что делаешь. В этом помогает
+метод <code>String.intern</code>.</p>
+
+<p>Единственный момент, который хотелось бы упомянуть – сравнение с литералами. Я часто вижу конструкции типа <code>
+str.equals("abc")</code>. И тут есть небольшие грабли – перед этим сравнением правильно бы было сравнить <code>str
+</code> с <code>null</code>, чтобы не получить <code>NullPointerException</code>. Т.е. правильной будет конструкция
+<code>str != null &amp;&amp; str.equals("abc")</code>. Между тем – ее можно упростить. Достаточно написать всего лишь
+<code>"abc".equals(str)</code>. Проверка на <code>null</code> в этом случае не нужна.</p>
+
+<p>На очереди у нас...</p>
+
+<h3 id="concat">Сложение строк</h3>
+
+<p>Строки – единственный объект, для которого определена операция сложения ссылок. Во всяком случае, так было до версии Java
+5.0, в которой появился autoboxing/unboxing, но речь сейчас не об этом. Общее описание принципа работы оператора конкатенации
+можно найти в статье о ссылках, а именно – <a href="http://www.skipy.ru/technics/references.html#concat">тут</a>. Я же хочу затронуть более глубокий
+уровень.</p>
+
+<p>Представьте себе, представьте себе... Прямо как в песенке про кузнечика. :) Так вот, представьте себе, что нам надо
+сложить две строки, вернее, к одной прибавить другую:</p>
+
+<pre>String str1 = "abc";
+str1 += "def";</pre>
+
+<p>Как происходит сложение? Поскольку объект класса строки неизменяем, то результатом сложения будет новый объект. Итак.
+Сначала выделяется память, достаточная для того, чтобы вместить туда содержимое обеих строк. В эту память копируется
+содержимое сначала первой строки, потом второй. Далее переменной <code>str1</code> присваивается ссылка на новую строку,
+а старая строка отбрасывается.</p>
+
+<p>Усложним задачу. Пусть у нас есть файл из четырех строк:</p>
+
+<pre>abc
+def
+ghi
+jkl</pre>
+
+<p>Нам надо прочитать эти строки и собрать их в одну. Поступаем по той же схеме.</p>
+
+<pre>BufferedReader br = <b>new</b> BufferedReader(<b>new</b> FileReader("... filename ..."));
+String result = "";
+while(<b>true</b>){
+    String line = br.readLine();
+    if (line == <b>null</b>) <b>break</b>;
+    result += line;
+}</pre>
+
+<p>Вроде пока все хорошо и логично. Давайте разберем, что происходит на нижнем уровне.</p>
+
+<p>Первый проход цикла. <code>result</code>=<em>""</em>, <code>line</code>=<em>"abc"</em>. Выделяется память на 3 символа,
+туда копируется содержимое <code>line</code> – <em>"abc"</em>. Переменной <code>result</code> присваивается ссылка на новую
+строку, старая отбрасывается.</p>
+
+<p>Второй проход цикла. <code>result</code>=<em>"abc"</em>, <code>line</code>=<em>"def"</em>. Выделяется память на 6
+символов, туда копируется содержимое <code>result</code> – <em>"abc"</em>, затем <code>line</code> – <em>"def"</em>.
+Переменной <code>result</code> присваивается ссылка на новую строку, старая отбрасывается.</p>
+
+<p>Третий проход цикла. <code>result</code>=<em>"abcdef"</em>, <code>line</code>=<em>"ghi"</em>. Выделяется память на 9
+символов, туда копируется содержимое <code>result</code> – <em>"abcdef"</em>, затем <code>line</code> – <em>"ghi"</em>.
+Переменной <code>result</code> присваивается ссылка на новую строку, старая отбрасывается.</p>
+
+<p>Четвертый проход цикла. <code>result</code>=<em>"abcdefghi"</em>, <code>line</code>=<em>"jkl"</em>. Выделяется память на
+12 символов, туда копируется содержимое <code>result</code> – <em>"abcdefghi"</em>, затем <code>line</code> – <em>"jkl"</em>.
+Переменной <code>result</code> присваивается ссылка на новую строку, старая отбрасывается.</p>
+
+<p>Пятый проход цикла. <code>result</code>=<em>"abcdefghijkl"</em>, <code>line</code>=<em>null</em>. Цикл закончен.</p>
+
+<p>Итак. Три символа "abc" копировались в памяти 4 раза, "def" – 3 раза, "ghi" – 2 раза, "jkl" – один раз. Страшно? Не особо?
+А вот теперь представьте себе файл с длиной строки 80 символов, в котором где-то 1000 строк. Всего-навсего 80кб. Представили?
+Что будет в этом случае? первая строка, как нетрудно подсчитать, будет скопирована в памяти 1000 раз, вторая – 999 и т.д. И
+при средней длине 80 символов через память пройдет ((1000 + 1) * 1000 / 2) * 80 = ... барабанная дробь... 40 040 000
+символов, что составляет около 80 Мб (!!!) памяти.</p>
+
+<p>Каков же итог ТАКОГО цикла? Чтение 80-килобайтного файла вызвало выделение 80 Мб памяти. Ни много ни мало – в 1000 раз
+больше, чем полезный объем.</p>
+
+<p>Какой из этого следует сделать вывод? Очень простой. Никогда, запомните – <font size="+2"><b>НИКОГДА</b></font> не
+используйте прямую конкатенацию строк, особенно в циклах. Даже в каком-нибудь методе <code>toString</code>, если он
+вызывается достаточно часто, имеет смысл использовать <code>StringBuffer</code> вместо конкатенации. Собственно, компилятор
+при оптимизации чаще всего так и делает – прямые сложения он выполняет через <code>StringBuffer</code>. Однако в случаях,
+подобных тому, что привел я, оптимизацию компилятор сделать не в состоянии. Что и приводит к весьма печальным последствиям,
+описаным <a href="#own_exp">чуть ниже</a>.</p>
+
+<p>К сожалению, подобные конструкции встречаются слишком часто. Потому я и счел необходитмым заострить на этом внимание.</p>
+
+<div class="example">
+<h5 id="own_exp">Собственный опыт</h5>
+
+<p class="ex">Не могу не вспомнить один эпизод из собственной практики. Один из программистов,
+работавших со мной, как-то пожаловался, что у него очень медленно работает его код. Он читал достаточно большой файл в HTML
+формате, после чего производил какие-то манипуляции. И действительно, работало все с черепашьей скоростью. Я взял
+посмотреть исходник, и обнаружил, что он... использует конкатенацию строк. У него было по 200-250 строк в каждом файле,
+и при чтении файла около 200Кб через память проходило более 40Мб! В итоге я переписал немного код,
+заменив операции со строками на операции со StringBuffer-ом. Честно сказать, когда я запустил переписаный код, я подумал,
+что он просто где-то "упал". Обработка занимала доли секунды. Скорость выросла в 300-800 раз. После этого я коренным
+образом пересмотрел свое отношение к строковым операциям.</p>
+</div>
+
+<p>Следующий акт марлезонского балета – </p>
+
+<h3 id="substr">Выборка подстроки и копирующий конструктор</h3>
+
+<p>Представим, что у нас есть строка, из которой надо вырезать подстроку. Вопроса "как это сделать" не стоит – и так понятно.
+Вопрос в другом – что при этом происходит?
+</p>
+
+<pre>String str = "abcdefghijklmnopqrstuvwxyz";
+str = str.substring(5,10);</pre>
+
+<p>Вроде тривиальный код. И первая мысль такая – выбирается подстрока <em>"efghi"</em>, переменной <code>str</code>
+присваивается ссылка на новую строку, а старый объект отбрасывается. Так? Почти.</p>
+
+<p>Дело в том, что для увеличения скорости при выборке подстроки используется ТОТ ЖЕ МАССИВ, что и в исходной строке. Иначе
+говоря, мы получим не объект, в котором массив <code>value</code> (cм. <a href="#internal">устройство строки</a>) имеет
+длину 5 и содержит в себе символы 'e', 'f', 'g', 'h' и 'i', <code>count=5</code> и <code>offset=0</code>. Нет, длина массива
+будет по-прежнему 26, <code>count=5</code> и <code>offset=5</code>. И при отбрасывании старой строки массив НЕ ОТБРОСИТСЯ,
+а по-прежнему будет находиться в памяти, ибо на него есть ссылка из новой строки. И существовать в памяти он будет до того
+момента, как будет отброшена уже новая строка. Это совсем неочевидный момент, который может привести к проблемам с памятью.</p>
+
+<p>Возникает вопрос – как этого избежать? Ответ – с помощью копирующего конструктора <code>String(String)</code>. Дело в том,
+что в этом конструкторе в явном виде выделяется память под новую строку, и в эту память копируется содержимое исходной.
+Таким образом, если мы перепишем код так:</p>
+
+<pre>String str = "abcdefghijklmnopqrstuvwxyz";
+str = <b>new</b> String(str.substring(5,10));</pre>
+
+<p>..., то длина массива <code>value</code> у объекта <code>str</code> будет действительно 5, <code>count=5</code> и <code>
+offset=0</code>. И это – единственный случай, где оправдано применение копирующего конструктора для строки.</p>
+
+<p>И как финальный аккорд –</p>
+
+<h3 id="mutation">Изменение строки</h3>
+
+<p>Это к строке как таковой относится слабо. Я лишь хочу показать тот факт, что строка является неизменяемой только до
+известной степени. Итак, код.</p>
+
+<pre><b>package</b> tests;
+
+<b>import</b> java.lang.reflect.Field;
+<b>import</b> java.lang.reflect.Modifier;
+
+/**
+ * This application demonstrates how to modify java.lang.String object
+ * through reflection API.
+ *
+ * @version 1.0
+ * @author Eugene Matyushkin
+ */
+<b>public class</b> StringReverseTest {
+
+    /**
+     * final static string that should be modified.
+     */
+    <b>public static final</b> String testString = "abcde";
+
+    <b>public static void</b> main(String[] args) {
+        <b>try</b>{
+            System.out.println("Initial static final string:  "+testString);
+            Field[] fields = testString.getClass().getDeclaredFields();
+            Field value = <b>null</b>;
+            <b>for</b>(<b>int</b> i=0; i&lt;fields.length; i++){
+                Field field = fields[i];
+                <b>if</b> (field.getType().equals(<b>char</b>[].<b>class</b>)){
+                    value = field;
+                    <b>break</b>;
+                }
+            }
+            if (value == <b>null</b>){
+                System.err.println("value wasn't found!");
+                return;
+            }
+            value.setAccessible(<b>true</b>);  // 1.
+            <b>char</b>[] charValue = (<b>char</b>[])value.get(testString);
+            <b>for</b>(<b>int</b> i=0; i&lt;charValue.length/2; i++ ){
+                <b>char</b> tmp=charValue[i];
+                charValue[i] = charValue[charValue.length-1-i];
+                charValue[charValue.length-1-i] = tmp;
+            }
+            value.set(testString, charValue);
+            System.out.print("Reversed static final string: ");
+            System.out.println(testString);
+        }<b>catch</b> (Throwable th){
+            System.err.println("Exception: "+th);
+            th.printStackTrace();
+        }
+    }
+}</pre>
+
+<p>Что тут происходит? Сначала я ищу поле типа <code>char[]</code>. Я мог бы искать и по имени. Однако имя может измениться,
+а вот тип – сильно сомневаюсь. Далее, я у найденого поля вызываю метод <code>setAccessible(<b>true</b>)</code>. Это ключевой
+момент – я отключаю проверку уровня доступа к полю (иначе я просто не смогу изменить значение, ибо поле <code>
+private</code>). В этом месте я могу получить по голове от менеджера безопасности, который проверяет, разрешено ли такое
+действие (через вызов <code>checkPermission(new ReflectPermission("suppressAccessChecks"))</code>). Если разрешено (а по
+умолчанию для обычных приложений так и есть) – я могу получить доступ к <code>private</code>-полю. Остальное, как говорится,
+дело техники. В результате я получаю вывод:</p>
+
+<pre>Initial static final string:  abcde
+Reversed static final string: edcba</pre>
+
+<p>Что и требовалось доказать. А потому – в реальных приложениях я советую более тщательно подходить к настройке политики
+безопасности. Иначе может оказаться, что объекты, которые вы считаете гарантированно неизменяемыми, таковыми не являются.</p>
+
+<p class="delim">* * *</p>
+
+<p>Наверное, это все, что я хочу рассказать о строках на данный момент. Спасибо за внимание!</p>
+    <br><p class="top_link"><a href="#top">В начало</a></p></div></td></tr><tr><td><div id="copyright">
+                    Copyright © 2004-2013 Евгений Матюшкин aka Skipy
+                    (e-mail: skiрy<img src="skipy.ru:%20%D0%90%D1%85,%20%D1%8D%D1%82%D0%B8%20%D1%81%D1%82%D1%80%D0%BE%D0%BA%D0%B8..._files/at_sm.gif" alt="@">skipy.ru)<br><a href="http://www.skipy.ru/about_copying.html">Копирование и воспроизведение материалов</a> этого сайта возможно
+                    только с согласия автора!
+                </div></td></tr></tbody></table></body></html>

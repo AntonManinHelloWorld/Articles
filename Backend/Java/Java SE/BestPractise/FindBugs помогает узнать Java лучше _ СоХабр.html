@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#a0c2ce">
+<script src="FindBugs%20%D0%BF%D0%BE%D0%BC%D0%BE%D0%B3%D0%B0%D0%B5%D1%82%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20Java%20%D0%BB%D1%83%D1%87%D1%88%D0%B5%20_%20%D0%A1%D0%BE%D0%A5%D0%B0%D0%B1%D1%80_files/analytics.js" async=""></script><script src="FindBugs%20%D0%BF%D0%BE%D0%BC%D0%BE%D0%B3%D0%B0%D0%B5%D1%82%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20Java%20%D0%BB%D1%83%D1%87%D1%88%D0%B5%20_%20%D0%A1%D0%BE%D0%A5%D0%B0%D0%B1%D1%80_files/watch.js" async="" type="text/javascript"></script><script pagespeed_no_defer="">(function(){var d=function(b){var a=window;if(a.addEventListener)a.addEventListener("load",b,!1);else if(a.attachEvent)a.attachEvent("onload",b);else{var c=a.onload;a.onload=function(){b.call(this);c&&c.call(this)}}};window.pagespeed=window.pagespeed||{};var p=window.pagespeed,q=function(){this.a=!0};q.prototype.c=function(b){b=parseInt(b.substring(0,b.indexOf(" ")),10);return!isNaN(b)&&b<=Date.now()};q.prototype.hasExpired=q.prototype.c;q.prototype.b=function(b){return b.substring(b.indexOf(" ",b.indexOf(" ")+1)+1)};q.prototype.getData=q.prototype.b;q.prototype.d=function(b){var a=document.getElementsByTagName("script"),a=a[a.length-1];a.parentNode.replaceChild(b,a)};q.prototype.replaceLastScript=q.prototype.d;
+q.prototype.e=function(b){var a=window.localStorage.getItem("pagespeed_lsc_url:"+b),c=document.createElement(a?"style":"link");a&&!this.c(a)?(c.type="text/css",c.appendChild(document.createTextNode(this.b(a)))):(c.rel="stylesheet",c.href=b,this.a=!0);this.d(c)};q.prototype.inlineCss=q.prototype.e;
+q.prototype.f=function(b,a){var c=window.localStorage.getItem("pagespeed_lsc_url:"+b+" pagespeed_lsc_hash:"+a),f=document.createElement("img");c&&!this.c(c)?f.src=this.b(c):(f.src=b,this.a=!0);for(var c=2,k=arguments.length;c<k;++c){var g=arguments[c].indexOf("=");f.setAttribute(arguments[c].substring(0,g),arguments[c].substring(g+1))}this.d(f)};q.prototype.inlineImg=q.prototype.f;
+var r=function(b,a,c,f){a=document.getElementsByTagName(a);for(var k=0,g=a.length;k<g;++k){var e=a[k],m=e.getAttribute("pagespeed_lsc_hash"),h=e.getAttribute("pagespeed_lsc_url");if(m&&h){h="pagespeed_lsc_url:"+h;c&&(h+=" pagespeed_lsc_hash:"+m);var l=e.getAttribute("pagespeed_lsc_expiry"),l=l?(new Date(l)).getTime():"",e=f(e);if(!e){var n=window.localStorage.getItem(h);n&&(e=b.b(n))}e&&(window.localStorage.setItem(h,l+" "+m+" "+e),b.a=!0)}}},s=function(b){r(b,"img",!0,function(a){return a.src});
+r(b,"style",!1,function(a){return a.firstChild?a.firstChild.nodeValue:null})};
+p.g=function(){if(window.localStorage){var b=new q;p.localStorageCache=b;d(function(){s(b)});d(function(){if(b.a){for(var a=[],c=[],f=0,k=Date.now(),g=0,e=window.localStorage.length;g<e;++g){var m=window.localStorage.key(g);if(!m.indexOf("pagespeed_lsc_url:")){var h=window.localStorage.getItem(m),l=h.indexOf(" "),n=parseInt(h.substring(0,l),10);if(!isNaN(n))if(n<=k){a.push(m);continue}else if(n<f||0==f)f=n;c.push(h.substring(l+1,h.indexOf(" ",l+1)))}}k="";f&&(k="; expires="+(new Date(f)).toUTCString());
+document.cookie="_GPSLSC="+c.join("!")+k;g=0;for(e=a.length;g<e;++g)window.localStorage.removeItem(a[g]);b.a=!1}})}};p.localStorageCacheInit=p.g;})();
+pagespeed.localStorageCacheInit();</script><link rel="stylesheet" href="FindBugs%20%D0%BF%D0%BE%D0%BC%D0%BE%D0%B3%D0%B0%D0%B5%D1%82%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20Java%20%D0%BB%D1%83%D1%87%D1%88%D0%B5%20_%20%D0%A1%D0%BE%D0%A5%D0%B0%D0%B1%D1%80_files/A.css">
+<link rel="icon" type="image/png" href="https://sohabr.net/static/images/sources/xhabr_mini.png.pagespeed.ic.iLAt3Usw_L.png">
+<script src="FindBugs%20%D0%BF%D0%BE%D0%BC%D0%BE%D0%B3%D0%B0%D0%B5%D1%82%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20Java%20%D0%BB%D1%83%D1%87%D1%88%D0%B5%20_%20%D0%A1%D0%BE%D0%A5%D0%B0%D0%B1%D1%80_files/jquery.js"></script>
+<script src="FindBugs%20%D0%BF%D0%BE%D0%BC%D0%BE%D0%B3%D0%B0%D0%B5%D1%82%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20Java%20%D0%BB%D1%83%D1%87%D1%88%D0%B5%20_%20%D0%A1%D0%BE%D0%A5%D0%B0%D0%B1%D1%80_files/bootstrap.js"></script>
+<script src="FindBugs%20%D0%BF%D0%BE%D0%BC%D0%BE%D0%B3%D0%B0%D0%B5%D1%82%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20Java%20%D0%BB%D1%83%D1%87%D1%88%D0%B5%20_%20%D0%A1%D0%BE%D0%A5%D0%B0%D0%B1%D1%80_files/highlight.js"></script>
+<script src="FindBugs%20%D0%BF%D0%BE%D0%BC%D0%BE%D0%B3%D0%B0%D0%B5%D1%82%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20Java%20%D0%BB%D1%83%D1%87%D1%88%D0%B5%20_%20%D0%A1%D0%BE%D0%A5%D0%B0%D0%B1%D1%80_files/habrahabr.js"></script><script>eval(mod_pagespeed_vnML$LdGQO);</script>
+<script>eval(mod_pagespeed_b9jV4ydhUZ);</script>
+<script>eval(mod_pagespeed_pyE8btGTA3);</script>
+<meta name="description" content="Статические анализаторы кода любят за то, что они помогают найти ошибки, сделанные по невнимательности. Но гораздо интереснее то, что они помогают исправить ошибки, сделанные по незнанию. Даже если в...">
+<meta name="keywords" content="findbugs, java, статический анализ кода, тернарный оператор, дата, BigDecimal, перевод строки, printf">
+<meta property="og:type" content="article">
+<meta property="og:url" content="/post/201334/">
+<meta property="og:title" content="FindBugs помогает узнать Java лучше">
+<meta property="og:description" content="Статические анализаторы кода любят за то, что они помогают найти ошибки, сделанные по невнимательности. Но гораздо интереснее то, что они помогают исправить ошибки, сделанные по незнанию. Даже если в...">
+<title>FindBugs помогает узнать Java лучше / СоХабр</title>
+</head>
+<body>
+<div id="wrap">
+<header class="navbar navbar-default navbar-habrahabr navbar-static-top">
+<div class="container">
+<div class="navbar-header">
+<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+<a href="https://sohabr.net/posts/all" class="navbar-brand sohabr-logo">СоХабр</a>
+</div>
+<div class="collapse navbar-collapse">
+<ul class="nav navbar-nav">
+<li><a href="https://sohabr.net/posts/all">Все посты</a></li>
+<li class="active source"><a href="https://sohabr.net/habr/posts/all" class="habrahabr" title="Посты с Хабрахабра"><span class="logo"></span><span class="visible-xs-inline-block text">Посты с Хабрахабра</span></a></li>
+<li class="source"><a href="https://sohabr.net/gt/posts/all" class="geektimes" title="Посты с Гиктаймса"><span class="logo"></span><span class="visible-xs-inline-block text">Посты с Гиктаймса</span></a></li>
+<li class="source"><a href="https://sohabr.net/mm/posts/all" class="megamozg" title="Посты с Мегамозга"><span class="logo"></span><span class="visible-xs-inline-block text">Посты с Мегамозга</span></a></li>
+<li><a href="https://sohabr.net/about">О проекте</a></li>
+<li><a href="https://sohabr.net/about/faq">FAQ</a></li>
+<li><a href="https://sohabr.net/status">Статус</a></li>
+</ul>
+</div>
+</div>
+</header>
+<div class="container">
+<div class="post from-habrahabr">
+<div class="guide"></div>
+<div class="published">
+<span class="published">
+<time class="localdate" data-date="09.11.2013 12:35:16 +0400" data-humanly="true">9 ноября 2013 в 8:35</time>
+</span>
+</div>
+<h1 class="title">
+<a href="http://habrahabr.ru/post/201334/" class="label label-primary from-habrahabr" title="с Хабрахабра">H</a>
+<span class="post_title">FindBugs помогает узнать Java лучше</span>
+</h1>
+<div class="hubs"><span class="fa fa-briefcase"></span>
+<a href="http://habrahabr.ru/hub/java/">JAVA</a>, <a href="http://habrahabr.ru/hub/programming/">Программирование</a>	</div>
+<div class="content html_format">
+<img src="FindBugs%20%D0%BF%D0%BE%D0%BC%D0%BE%D0%B3%D0%B0%D0%B5%D1%82%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20Java%20%D0%BB%D1%83%D1%87%D1%88%D0%B5%20_%20%D0%A1%D0%BE%D0%A5%D0%B0%D0%B1%D1%80_files/825895c9203cf34e9017a5576651ae2b.png" align="right">Статические
+ анализаторы кода любят за то, что они помогают найти ошибки, сделанные 
+по невнимательности. Но гораздо интереснее то, что они помогают 
+исправить ошибки, сделанные по незнанию. Даже если в официальной 
+документации к языку всё написано, не факт, что все программисты это 
+внимательно прочитали. И программистов можно понять: всю документацию 
+читать замучаешься.<br>
+<br>
+В этом плане статический анализатор похож на опытного товарища, который 
+сидит рядом и смотрит, как вы пишете код. Он не только подсказывает вам:
+ «вот здесь ты ошибся, когда копипастил», но и говорит: «нет, так писать
+ нельзя, вон сам в документацию глянь». Такой товарищ полезней самой 
+документации, потому что он подсказывает только те вещи, с которыми вы 
+реально сталкиваетесь в работе, и молчит о тех, которые вам никогда не 
+пригодятся.<br>
+<br>
+В этом посте я расскажу о некоторых тонкостях Java, о которых я узнал в 
+результате использования статического анализатора FindBugs. Возможно, 
+какие-то вещи окажутся неожиданными и для вас. Важно, что все примеры не
+ умозрительны, а основаны на реальном коде.<br>
+<br>
+<h4 id="section_1">Тернарный оператор ?:</h4><br>
+Казалось бы, нет ничего проще тернарного оператора, но у него есть свои 
+подводные камни. Я считал, что нет принципиальной разницы между 
+конструкциями<br>
+<pre><code class="java">Type var = condition ? valTrue : valFalse;</code></pre>и<pre><code class="java">Type var;
+<span class="keyword">if</span>(condition)
+  var = valTrue;
+<span class="keyword">else</span>
+  var = valFalse;</code></pre><br>
+<a name="habracut"></a>
+Оказалось, что тут есть тонкость. Так как тернарный оператор может быть 
+частью сложного выражения, его результатом должен быть конкретный тип, 
+определённый на этапе компиляции. Поэтому, скажем, при истинном условии в
+ if-форме компилятор приводит valTrue сразу к типу Type, а в форме 
+тернарного оператора сперва приводит к общему типу valTrue и valFalse 
+(несмотря на то, что valFalse не вычисляется), а затем уже результат 
+приводит к типу Type. Правила приведения оказываются не совсем 
+тривиальными, если в выражении участвуют примитивные типы и обёртки над 
+ними (Integer, Double и т. д.) Все правила подробно описаны в <a href="http://docs.oracle.com/javase/specs/jls/se7/html/jls-15.html#jls-15.25">JLS 15.25</a>. Посмотрим на некоторые примеры.<br>
+<br>
+<pre><code class="java">Number n = flag ? <span class="keyword">new</span> Integer(<span class="number">1</span>) : <span class="keyword">new</span> Double(<span class="number">2.0</span>);</code></pre><br>
+Что будет в n, если flag установлен? Объект Double со значением 1.0. 
+Компилятору смешны наши неуклюжие попытки создать объект. Так как второй
+ и третий аргумент — обёртки над разными примитивными типами, компилятор
+ разворачивает их и приводит к более точному типу (в данном случае 
+double). А уже после выполнения тернарного оператора для присваивания 
+снова выполняется боксинг. По сути код эквивалентен такому:<br>
+<pre><code class="java">Number n;
+<span class="keyword">if</span>( flag )
+    n = Double.valueOf((<span class="keyword">double</span>) ( <span class="keyword">new</span> Integer(<span class="number">1</span>).intValue() ));
+<span class="keyword">else</span>
+    n = Double.valueOf(<span class="keyword">new</span> Double(<span class="number">2.0</span>).doubleValue());</code></pre><br>
+С точки зрения компилятора код не содержит проблем и прекрасно компилируется. Но FindBugs выдаёт предупреждение:<br>
+<blockquote>BX_UNBOXED_AND_COERCED_FOR_TERNARY_OPERATOR: Primitive value
+ is unboxed and coerced for ternary operator in 
+TestTernary.main(String[])<br>
+<br>
+A wrapped primitive value is unboxed and converted to another primitive 
+type as part of the evaluation of a conditional ternary operator (the b?
+ e1: e2 operator). The semantics of Java mandate that if e1 and e2 are 
+wrapped numeric values, the values are unboxed and converted/coerced to 
+their common type (e.g, if e1 is of type Integer and e2 is of type 
+Float, then e1 is unboxed, converted to a floating point value, and 
+boxed. See JLS Section 15.25.</blockquote>Разумеется, FindBugs предупреждает и о том, что Integer.valueOf(1) эффективнее, чем new Integer(1), но это уж все и так знают.<br>
+<br>
+Или такой пример:<br>
+<pre><code class="java">Integer n = flag ? <span class="number">1</span> : <span class="keyword">null</span>;</code></pre><br>
+Автор хочет поместить null в n, если флаг не установлен. Думаете, сработает? Да. Но давайте усложним:<br>
+<pre><code class="java">Integer n = flag1 ? <span class="number">1</span> : flag2 ? <span class="number">2</span> : <span class="keyword">null</span>;</code></pre><br>
+Казалось бы, особой разницы нет. Однако теперь, если оба флага сброшены,
+ данная строчка генерирует NullPointerException. Варианты для правого 
+тернарного оператора — int и null, поэтому результирующий тип Integer. 
+Варианты для левого — int и Integer, поэтому по правилам Java результат —
+ int. Для этого надо совершить unboxing, вызвав intValue, что и выдаёт 
+исключение. Код эквивалентен такому:<br>
+<pre><code class="java">Integer n;
+<span class="keyword">if</span>( flag1 )
+    n = Integer.valueOf(<span class="number">1</span>);
+<span class="keyword">else</span> {
+    <span class="keyword">if</span>( flag2 )
+        n = Integer.valueOf(Integer.valueOf(<span class="number">2</span>).intValue());
+    <span class="keyword">else</span>
+        n = Integer.valueOf(((Integer)<span class="keyword">null</span>).intValue());
+}</code></pre><br>
+Здесь FindBugs выдаёт два сообщения, которых достаточно, чтобы заподозрить ошибку:<br>
+<blockquote>BX_UNBOXING_IMMEDIATELY_REBOXED: Boxed value is unboxed and then immediately reboxed in TestTernary.main(String[])<br>
+NP_NULL_ON_SOME_PATH: Possible null pointer dereference of null in TestTernary.main(String[])<br>
+There is a branch of statement that, if executed, guarantees that a null
+ value will be dereferenced, which would generate a NullPointerException
+ when the code is executed.</blockquote><br>
+Ну и последний пример на эту тему:<br>
+<pre><code class="java"><span class="keyword">double</span>[] vals = <span class="keyword">new</span> <span class="keyword">double</span>[] {<span class="number">1.0</span>, <span class="number">2.0</span>, <span class="number">3.0</span>};
+<span class="keyword">double</span> getVal(<span class="keyword">int</span> idx) {
+    <span class="keyword">return</span> (idx &lt; <span class="number">0</span> || idx &gt;= vals.length) ? <span class="keyword">null</span> : vals[idx];
+}</code></pre><br>
+Неудивительно, что этот код не работает: как функция, возвращающая 
+примитивный тип, может вернуть null? Удивительно, что он без проблем 
+компилируется. Ну почему компилируется — вы уже поняли.<br>
+<br>
+<h4 id="section_2">DateFormat</h4><br>
+Для форматирования даты и времени в Java рекомендуется пользоваться 
+классами, реализующими интерфейс DateFormat. Например, это выглядит так:<br>
+<pre><code class="java"><span class="keyword">public</span> String getDate() {
+    <span class="keyword">return</span> <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>).format(<span class="keyword">new</span> Date());
+}</code></pre><br>
+Зачастую класс многократно использует один и тот же формат. Многим 
+придёт в голову идея оптимизации: зачем каждый раз создавать объект 
+формата, когда можно пользоваться общим экземпляром?<br>
+<pre><code class="java"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> DateFormat format = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>);
+
+<span class="keyword">public</span> String getDate() {
+    <span class="keyword">return</span> format.format(<span class="keyword">new</span> Date());
+}</code></pre><br>
+Вот так красиво и здорово, только, к сожалению, не работает. Точнее 
+работает, но изредка ломается. Дело в том, что в документации к 
+DateFormat <a href="http://docs.oracle.com/javase/7/docs/api/java/text/DateFormat.html">написано</a>:<br>
+<blockquote>Date formats are not synchronized. It is recommended to 
+create separate format instances for each thread. If multiple threads 
+access a format concurrently, it must be synchronized externally.</blockquote><br>
+И это действительно так, если посмотреть внутреннюю реализацию 
+SimpleDateFormat. В процессе выполнения метода format() объект пишет в 
+поля класса, поэтому одновременное использование SimpleDateFormat из 
+двух потоков приведёт с некоторой вероятностью к неправильному 
+результату. Вот что пишет FindBugs по этому поводу:<br>
+<blockquote>STCAL_INVOKE_ON_STATIC_DATE_FORMAT_INSTANCE: Call to method of static java.text.DateFormat in TestDate.getDate()<br>
+As the JavaDoc states, DateFormats are inherently unsafe for 
+multithreaded use. The detector has found a call to an instance of 
+DateFormat that has been obtained via a static field. This looks 
+suspicous.<br>
+<br>
+For more information on this see <a href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6231579">Sun Bug #6231579</a> and <a href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6178997">Sun Bug #6178997</a>.</blockquote><br>
+<h4 id="section_3">Подводные камни BigDecimal</h4><br>
+Узнав, что класс BigDecimal позволяет хранить дробные числа произвольной
+ точности, и увидев, что у него есть конструктор от double, некоторые 
+решат, что всё ясно и можно делать так:<br>
+<pre><code class="java">System.out.println(<span class="keyword">new</span> BigDecimal(<span class="number">1.1</span>));</code></pre><br>
+Делать так действительно никто не запрещает, вот только результат может 
+показаться неожиданным: 
+1.100000000000000088817841970012523233890533447265625. Так происходит, 
+потому что примитивный double хранится в формате IEEE754, в котором 
+невозможно представить 1.1 идеально точно (в двоичной системе счисления 
+получается бесконечная периодическая дробь). Поэтому там хранится 
+максимально близкое значение к 1.1. А конструктор BigDecimal(double) 
+напротив работает точно: он идеально преобразует заданное число в 
+IEEE754 к десятичному виду (конечная двоичная дробь всегда представима в
+ виде конечной десятичной). Если же хочется представить в виде 
+BigDecimal именно 1.1, то можно написать либо <code>new BigDecimal("1.1")</code>, либо <code>BigDecimal.valueOf(1.1)</code>.
+ Если число не выводить сразу, а поделать с ним какие-то операции, можно
+ и не понять, откуда берётся ошибка. FindBugs выдаёт предупреждение 
+DMI_BIGDECIMAL_CONSTRUCTED_FROM_DOUBLE, в котором даются те же советы.<br>
+<br>
+А вот ещё одна штука:<br>
+<pre><code class="java">BigDecimal d1 = <span class="keyword">new</span> BigDecimal(<span class="string">"1.1"</span>);
+BigDecimal d2 = <span class="keyword">new</span> BigDecimal(<span class="string">"1.10"</span>);
+System.out.println(d1.equals(d2));</code></pre><br>
+Фактически d1 и d2 представляют собой одно и то же число, но equals 
+выдаёт false, потому что он сравнивает не только значение чисел, но и 
+текущий порядок (число знаков после запятой). Это написано в 
+документации, но мало кто будет читать документацию к такому знакомому 
+методу как equals. Такая проблема может всплыть далеко не сразу. Сам 
+FindBugs об этом, к сожалению, не предупреждает, но есть популярное 
+расширение к нему — <a href="http://fb-contrib.sourceforge.net/">fb-contrib</a>, в котором данный баг учтён:<br>
+<blockquote>MDM_BIGDECIMAL_EQUALS<br>
+<br>
+equals() being called to compare two java.math.BigDecimal numbers. This 
+is normally a mistake, as two BigDecimal objects are only equal if they 
+are equal in both value and scale, so that 2.0 is not equal to 2.00. To 
+compare BigDecimal objects for mathematical equality, use compareTo() 
+instead.<br>
+</blockquote><br>
+<h4 id="section_4">Переводы строк и printf</h4><br>
+Нередко программисты, перешедшие на Java после Си, с радостью открывают для себя <a href="http://docs.oracle.com/javase/7/docs/api/java/io/PrintStream.html#printf%28java.lang.String,%20java.lang.Object...%29">PrintStream.printf</a> (а также <a href="http://docs.oracle.com/javase/7/docs/api/java/io/PrintWriter.html#printf%28java.lang.String,%20java.lang.Object...%29">PrintWriter.printf</a>
+ и т. д.). Мол, отлично, это я знаю, прямо как в Си, ничего нового учить
+ не надо. На самом деле есть отличия. Одно из них кроется в переводах 
+строк.<br>
+<br>
+В языке Си есть разделение на текстовые и бинарные потоки. Вывод символа
+ '\n' в текстовый поток любым способом автоматически будет преобразован в
+ системно-зависимый перевод строки ("\r\n" на Windows). В Java такого 
+разделения нет: надо передавать в выходной поток правильную 
+последовательность символов. Это автоматически делают, например, методы 
+семейства PrintStream.println. Но при использовании printf передача '\n'
+ в строке формата — это просто '\n', а не системно-зависимый перевод 
+строки. К примеру, напишем такой код:<br>
+<pre><code class="java">System.out.printf(<span class="string">"%s\n"</span>, <span class="string">"str#1"</span>);
+System.out.println(<span class="string">"str#2"</span>);</code></pre><br>
+Перенаправив результат в файл, увидим:<br>
+<img src="FindBugs%20%D0%BF%D0%BE%D0%BC%D0%BE%D0%B3%D0%B0%D0%B5%D1%82%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20Java%20%D0%BB%D1%83%D1%87%D1%88%D0%B5%20_%20%D0%A1%D0%BE%D0%A5%D0%B0%D0%B1%D1%80_files/85f6b4e2ab95807597bed3e209e8a66a.png"><br>
+Таким образом можно получить странную комбинацию переводов строки в 
+одном потоке, что выглядит неаккуратно и может снести крышу 
+какому-нибудь парсеру. Ошибку можно долго не замечать, особенно если вы 
+преимущественно работаете на Unix-системах. Для того, чтобы вставить 
+правильный перевод строки с помощью printf, используется специальный 
+символ форматирования "%n". Вот что пишет FindBugs по этому поводу:<br>
+<blockquote>VA_FORMAT_STRING_USES_NEWLINE: Format string should use %n rather than \n in TestNewline.main(String[])<br>
+<br>
+This format string include a newline character (\n). In format strings, 
+it is generally preferable better to use %n, which will produce the 
+platform-specific line separator. </blockquote><br>
+<br>
+Возможно, для некоторых читателей всё перечисленное было давно известно.
+ Но я практически уверен, что и для них найдётся интересное 
+предупреждение статического анализатора, которое откроет им новые 
+особенности используемого языка программирования.
+<div class="clear"></div>
+</div>
+<div class="tags"><span class="fa fa-tags"></span>
+<a href="http://habrahabr.ru/search/?q=%5Bfindbugs%5D">findbugs</a>, <a href="http://habrahabr.ru/search/?q=%5Bjava%5D">java</a>, <a href="http://habrahabr.ru/search/?q=%5B%D1%81%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B9+%D0%B0%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7+%D0%BA%D0%BE%D0%B4%D0%B0%5D">статический анализ кода</a>, <a href="http://habrahabr.ru/search/?q=%5B%D1%82%D0%B5%D1%80%D0%BD%D0%B0%D1%80%D0%BD%D1%8B%D0%B9+%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%82%D0%BE%D1%80%5D">тернарный оператор</a>, <a href="http://habrahabr.ru/search/?q=%5B%D0%B4%D0%B0%D1%82%D0%B0%5D">дата</a>, <a href="http://habrahabr.ru/search/?q=%5BBigDecimal%5D">BigDecimal</a>, <a href="http://habrahabr.ru/search/?q=%5B%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4+%D1%81%D1%82%D1%80%D0%BE%D0%BA%D0%B8%5D">перевод строки</a>, <a href="http://habrahabr.ru/search/?q=%5Bprintf%5D">printf</a>	</div>
+<div class="infopanel">
+<div class="author">
+<a title="Автор текста" href="http://habrahabr.ru/users/lany/"><span class="fa fa-user"></span> lany</a>
+</div>
+<div class="share">
+<a href="http://twitter.com/intent/tweet?text=FindBugs%20%D0%BF%D0%BE%D0%BC%D0%BE%D0%B3%D0%B0%D0%B5%D1%82%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20Java%20%D0%BB%D1%83%D1%87%D1%88%D0%B5%20%23habr%20https%3A//sohabr.net/habr/post/201334/" title="Опубликовать ссылку в Twitter" target="_blank" class="fa fa-twitter"></a>
+<a href="http://vk.com/share.php?url=https%3A//sohabr.net/habr/post/201334/" title="Опубликовать ссылку в ВК" onclick="window.open(this.href, 'Опубликовать ссылку во Вконтакте', 'width=800,height=300'); return false" class="fa fa-vk"></a>
+<a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//sohabr.net/habr/post/201334/" title="Опубликовать ссылку в Facebook" onclick="window.open(this.href, 'Опубликовать ссылку в Facebook', 'width=640,height=436,toolbar=0,status=0'); return false" class="fa fa-facebook"></a>
+<a href="https://plus.google.com/share?url=https%3A//sohabr.net/habr/post/201334/" title="Опубликовать ссылку в Google Plus" onclick="window.open(this.href, 'Опубликовать ссылку в Google Plus', 'width=800,height=300'); return false" class="fa fa-google-plus"></a>
+</div>
+</div>
+<div class="comments_list" id="comments">
+<h2 class="title"><span class="fa fa-comments-o"></span> комментарии (<span id="comments_count">31</span>) <sup><a href="https://sohabr.net/rss/post/habr:201334/" class="fa fa-rss" title="RSS-канал комментариев к этому посту"></a></sup></h2>
+<div class="comment_item" id="comment_6959124">
+<div class="comment_body">
+<div class="info">
+<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+<div id="voting_6959124" class="voting">
+<div class="mark positive">
+<span class="score" title="Всего 15: ↑14 и ↓1">+13</span>
+</div>
+</div>
+<a href="http://habrahabr.ru/users/vsb/" class="avatar fa fa-user"></a>
+<a href="http://habrahabr.ru/users/vsb/" class="username">vsb</a><span class="comma">,</span>
+<time class="localdate" data-date="09.11.2013 13:16:00 +0400" data-humanly="false">9 ноября 2013 в 9:16</time>	<a href="#comment_6959124" class="link_to_comment">#</a>
+<span class="to_children"></span>
+<div class="clear"></div>
+</div>
+<div class="message html_format">
+<p>Ничего себе. Был уверен, что джаву знаю достаточно хорошо, но таких 
+выкрутасов с приведением типов, как в первых примерах, никогда не 
+встречал. Укрепился во мнении, что автобоксинг зло, достаточно было 
+сделать синтаксический сахар, но явный, чем за спиной программиста 
+создавать объекты.<br>
+<br>
+Про BigDecimal.equals тоже не знал, хотя как-то интуитивно использовал compareTo.<br>
+<br>
+FindBugs — замечательный инструмент.<br></p>
+</div>
+</div>
+<div class="reply_comments" id="reply_comments_6959124">
+<div class="comment_item" id="comment_6959254">
+<div class="comment_body">
+<div class="info">
+<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+<div id="voting_6959254" class="voting">
+<div class="mark positive">
+<span class="score" title="Всего 5: ↑4 и ↓1">+3</span>
+</div>
+</div>
+<a href="http://habrahabr.ru/users/jakobz/" class="avatar fa fa-user"></a>
+<a href="http://habrahabr.ru/users/jakobz/" class="username">jakobz</a><span class="comma">,</span>
+<time class="localdate" data-date="09.11.2013 14:27:00 +0400" data-humanly="false">9 ноября 2013 в 10:27</time>	<a href="#comment_6959254" class="link_to_comment">#</a>
+<div class="show_tree" data-id="6959254" data-parent_id="6959124" title="Показать ветку комментариев">↵</div>
+<a href="#comment_6959124" data-id="6959254" data-parent_id="6959124" class="to_parent">↑</a>
+<span class="to_children"></span>
+<div class="clear"></div>
+</div>
+<div class="message html_format">
+<p>Достаточно было сделать compile-time generics :)</p>
+</div>
+</div>
+<div class="reply_comments" id="reply_comments_6959254">	</div>
+</div>
+<div class="comment_item" id="comment_6959780">
+<div class="comment_body">
+<div class="info is_topic_starter">
+<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+<div id="voting_6959780" class="voting">
+<div class="mark">
+<span class="score" title="Всего 0: ↑0 и ↓0">0</span>
+</div>
+</div>
+<a href="http://habrahabr.ru/users/lany/" class="avatar fa fa-user"></a>
+<a href="http://habrahabr.ru/users/lany/" class="username">lany</a><span class="comma">,</span>
+<time class="localdate" data-date="09.11.2013 17:50:00 +0400" data-humanly="false">9 ноября 2013 в 13:50</time>	<a href="#comment_6959780" class="link_to_comment">#</a>
+<div class="show_tree" data-id="6959780" data-parent_id="6959124" title="Показать ветку комментариев">↵</div>
+<a href="#comment_6959124" data-id="6959780" data-parent_id="6959124" class="to_parent">↑</a>
+<span class="to_children"></span>
+<div class="clear"></div>
+</div>
+<div class="message html_format">
+<p>Проблема в том, что я этих выкрутасов тоже не видел, пока FindBugs не
+ заюзал, но при этом они были (один из них даже я сам и породил). Они 
+жили в коде пару лет, и их никто не замечал :-)</p>
+</div>
+</div>
+<div class="reply_comments" id="reply_comments_6959780">	</div>
+</div>
+<div class="comment_item" id="comment_6959976">
+<div class="comment_body">
+<div class="info">
+<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+<div id="voting_6959976" class="voting">
+<div class="mark">
+<span class="score" title="Всего 0: ↑0 и ↓0">0</span>
+</div>
+</div>
+<a href="http://habrahabr.ru/users/deilux/" class="avatar fa fa-user"></a>
+<a href="http://habrahabr.ru/users/deilux/" class="username">deilux</a><span class="comma">,</span>
+<time class="localdate" data-date="09.11.2013 19:12:00 +0400" data-humanly="false">9 ноября 2013 в 15:12</time>	<a href="#comment_6959976" class="link_to_comment">#</a>
+<div class="show_tree" data-id="6959976" data-parent_id="6959124" title="Показать ветку комментариев">↵</div>
+<a href="#comment_6959124" data-id="6959976" data-parent_id="6959124" class="to_parent">↑</a>
+<span class="to_children"></span>
+<div class="clear"></div>
+</div>
+<div class="message html_format">
+<p>Вы используете compareTo для проверки совпадения значений? В общем случае, не с числами, он может вам неприятно удивить.</p>
+</div>
+</div>
+<div class="reply_comments" id="reply_comments_6959976">
+<div class="comment_item" id="comment_6961396">
+<div class="comment_body">
+<div class="info">
+<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+<div id="voting_6961396" class="voting">
+<div class="mark">
+<span class="score" title="Всего 0: ↑0 и ↓0">0</span>
+</div>
+</div>
+<a href="http://habrahabr.ru/users/FaNtAsY/" class="avatar fa fa-user"></a>
+<a href="http://habrahabr.ru/users/FaNtAsY/" class="username">FaNtAsY</a><span class="comma">,</span>
+<time class="localdate" data-date="10.11.2013 09:46:00 +0400" data-humanly="false">10 ноября 2013 в 5:46</time>	<a href="#comment_6961396" class="link_to_comment">#</a>
+<div class="show_tree" data-id="6961396" data-parent_id="6959976" title="Показать ветку комментариев">↵</div>
+<a href="#comment_6959976" data-id="6961396" data-parent_id="6959976" class="to_parent">↑</a>
+<span class="to_children"></span>
+<div class="clear"></div>
+</div>
+<div class="message html_format">
+<p>Предлагаю Вам развить эту тему.<br>
+Как говорят, «сказал А, говори Б» :)</p>
+</div>
+</div>
+<div class="reply_comments" id="reply_comments_6961396">
+<div class="comment_item" id="comment_6961550">
+<div class="comment_body">
+<div class="info">
+<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+<div id="voting_6961550" class="voting">
+<div class="mark">
+<span class="score" title="Всего 0: ↑0 и ↓0">0</span>
+</div>
+</div>
+<a href="http://habrahabr.ru/users/leventov/" class="avatar fa fa-user"></a>
+<a href="http://habrahabr.ru/users/leventov/" class="username">leventov</a><span class="comma">,</span>
+<time class="localdate" data-date="10.11.2013 11:30:00 +0400" data-humanly="false">10 ноября 2013 в 7:30</time>	<a href="#comment_6961550" class="link_to_comment">#</a>
+<div class="show_tree" data-id="6961550" data-parent_id="6961396" title="Показать ветку комментариев">↵</div>
+<a href="#comment_6961396" data-id="6961550" data-parent_id="6961396" class="to_parent">↑</a>
+<span class="to_children"></span>
+<div class="clear"></div>
+</div>
+<div class="message html_format">
+<p>Видимо, имеется ввиду, что compareTo может быть не согласован с 
+equals, хотя в документации настоятельно рекомендуется делать его 
+согласованным.</p>
+</div>
+</div>
+<div class="reply_comments" id="reply_comments_6961550">
+<div class="comment_item" id="comment_6962526">
+<div class="comment_body">
+<div class="info">
+<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+<div id="voting_6962526" class="voting">
+<div class="mark">
+<span class="score" title="Всего 0: ↑0 и ↓0">0</span>
+</div>
+</div>
+<a href="http://habrahabr.ru/users/FaNtAsY/" class="avatar fa fa-user"></a>
+<a href="http://habrahabr.ru/users/FaNtAsY/" class="username">FaNtAsY</a><span class="comma">,</span>
+<time class="localdate" data-date="10.11.2013 19:22:00 +0400" data-humanly="false">10 ноября 2013 в 15:22</time>	<a href="#comment_6962526" class="link_to_comment">#</a>
+<div class="show_tree" data-id="6962526" data-parent_id="6961550" title="Показать ветку комментариев">↵</div>
+<a href="#comment_6961550" data-id="6962526" data-parent_id="6961550" class="to_parent">↑</a>
+<span class="to_children"></span>
+<div class="clear"></div>
+</div>
+<div class="message html_format">
+<p>Безусловно, ведь это же разные методы.<br>
+Но, может быть, deilux имел ввиду ещё что-нибудь…</p>
+</div>
+</div>
+<div class="reply_comments" id="reply_comments_6962526">
+<div class="comment_item" id="comment_6963884">
+<div class="comment_body">
+<div class="info">
+<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+<div id="voting_6963884" class="voting">
+<div class="mark">
+<span class="score" title="Всего 0: ↑0 и ↓0">0</span>
+</div>
+</div>
+<a href="http://habrahabr.ru/users/deilux/" class="avatar fa fa-user"></a>
+<a href="http://habrahabr.ru/users/deilux/" class="username">deilux</a><span class="comma">,</span>
+<time class="localdate" data-date="11.11.2013 02:07:00 +0400" data-humanly="false">10 ноября 2013 в 22:07</time>	<a href="#comment_6963884" class="link_to_comment">#</a>
+<div class="show_tree" data-id="6963884" data-parent_id="6962526" title="Показать ветку комментариев">↵</div>
+<a href="#comment_6962526" data-id="6963884" data-parent_id="6962526" class="to_parent">↑</a>
+<span class="to_children"></span>
+<div class="clear"></div>
+</div>
+<div class="message html_format">
+<p>Я и имел ввиду эту банальность: compareTo определяет порядок 
+следования двух элементов, а equals — их равенство. Для тех же строк, в 
+которых встречаются хитрые символы алфавита, мы получим compareTo = 0, 
+equals = false.</p>
+</div>
+</div>
+<div class="reply_comments" id="reply_comments_6963884">
+<div class="comment_item" id="comment_6964324">
+<div class="comment_body">
+<div class="info">
+<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+<div id="voting_6964324" class="voting">
+<div class="mark">
+<span class="score" title="Всего 0: ↑0 и ↓0">0</span>
+</div>
+</div>
+<a href="http://habrahabr.ru/users/FaNtAsY/" class="avatar fa fa-user"></a>
+<a href="http://habrahabr.ru/users/FaNtAsY/" class="username">FaNtAsY</a><span class="comma">,</span>
+<time class="localdate" data-date="11.11.2013 08:55:00 +0400" data-humanly="false">11 ноября 2013 в 4:55</time>	<a href="#comment_6964324" class="link_to_comment">#</a>
+<div class="show_tree" data-id="6964324" data-parent_id="6963884" title="Показать ветку комментариев">↵</div>
+<a href="#comment_6963884" data-id="6964324" data-parent_id="6963884" class="to_parent">↑</a>
+<span class="to_children"></span>
+<div class="clear"></div>
+</div>
+<div class="message html_format">
+<p>Да, Вы совершенно правы.</p>
+</div>
+</div>
+<div class="reply_comments" id="reply_comments_6964324">	</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comment_item" id="comment_6959238">
+<div class="comment_body">
+<div class="info">
+<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+<div id="voting_6959238" class="voting">
+<div class="mark positive">
+<span class="score" title="Всего 2: ↑2 и ↓0">+2</span>
+</div>
+</div>
+<a href="http://habrahabr.ru/users/dim_s/" class="avatar fa fa-user"></a>
+<a href="http://habrahabr.ru/users/dim_s/" class="username">dim_s</a><span class="comma">,</span>
+<time class="localdate" data-date="09.11.2013 14:20:00 +0400" data-humanly="false">9 ноября 2013 в 10:20</time>	<a href="#comment_6959238" class="link_to_comment">#</a>
+<span class="to_children"></span>
+<div class="clear"></div>
+</div>
+<div class="message html_format">
+<p>На счет double я всегда знал что этот тип сравнивать обычным способом
+ нельзя, всегда нужно учитывать погрешность, не только в Java, но и во 
+многих других языках.</p>
+</div>
+</div>
+<div class="reply_comments" id="reply_comments_6959238">
+<div class="comment_item" id="comment_6959786">
+<div class="comment_body">
+<div class="info is_topic_starter">
+<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+<div id="voting_6959786" class="voting">
+<div class="mark">
+<span class="score" title="Всего 2: ↑1 и ↓1">0</span>
+</div>
+</div>
+<a href="http://habrahabr.ru/users/lany/" class="avatar fa fa-user"></a>
+<a href="http://habrahabr.ru/users/lany/" class="username">lany</a><span class="comma">,</span>
+<time class="localdate" data-date="09.11.2013 17:54:00 +0400" data-humanly="false">9 ноября 2013 в 13:54</time>	<a href="#comment_6959786" class="link_to_comment">#</a>
+<div class="show_tree" data-id="6959786" data-parent_id="6959238" title="Показать ветку комментариев">↵</div>
+<a href="#comment_6959238" data-id="6959786" data-parent_id="6959238" class="to_parent">↑</a>
+<span class="to_children"></span>
+<div class="clear"></div>
+</div>
+<div class="message html_format">
+<p>Зависит от задачи и от ситуации. Может оказаться, например, что 
+значение в переменную double попадает прямиком из пользовательского 
+ввода (а не в результате какого-либо математического действия) и, скажем
+ значение 1.0 надо по алгоритму обработать специально. Тогда сравнивать 
+по == совершенно уместно. Либо сравнение с нулём перед возможным 
+делением на это число. В непараметрической статистике для обработки 
+спаренных значений, возможно, адекватнее будет сравнивать по ==, чем 
+вводить какую-то дельту…</p>
+</div>
+</div>
+<div class="reply_comments" id="reply_comments_6959786">	</div>
+</div>
+</div>
+</div>
+<div class="comment_item" id="comment_6959386">
+<div class="comment_body">
+<div class="info">
+<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+<div id="voting_6959386" class="voting">
+<div class="mark positive">
+<span class="score" title="Всего 1: ↑1 и ↓0">+1</span>
+</div>
+</div>
+<a href="http://habrahabr.ru/users/KeFA/" class="avatar fa fa-user"></a>
+<a href="http://habrahabr.ru/users/KeFA/" class="username">KeFA</a><span class="comma">,</span>
+<time class="localdate" data-date="09.11.2013 15:19:00 +0400" data-humanly="false">9 ноября 2013 в 11:19</time>	<a href="#comment_6959386" class="link_to_comment">#</a>
+<span class="to_children"></span>
+<div class="clear"></div>
+</div>
+<div class="message html_format">
+<p>Idea, кстати, про возможный NPE в тернарном операторе тоже предупреждает)</p>
+</div>
+</div>
+<div class="reply_comments" id="reply_comments_6959386">	</div>
+</div>
+<div class="comment_item" id="comment_6959438">
+<div class="comment_body">
+<div class="info">
+<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+<div id="voting_6959438" class="voting">
+<div class="mark positive">
+<span class="score" title="Всего 4: ↑4 и ↓0">+4</span>
+</div>
+</div>
+<a href="http://habrahabr.ru/users/lanseg/" class="avatar fa fa-user"></a>
+<a href="http://habrahabr.ru/users/lanseg/" class="username">lanseg</a><span class="comma">,</span>
+<time class="localdate" data-date="09.11.2013 15:39:00 +0400" data-humanly="false">9 ноября 2013 в 11:39</time> <span class="changed">(комментарий был изменён)</span>	<a href="#comment_6959438" class="link_to_comment">#</a>
+<span class="to_children"></span>
+<div class="clear"></div>
+</div>
+<div class="message html_format">
+<p>Напоминает задачки из java puzzlers. Ещё вот сравнение двух URL вспоминается, когда (new URL(«<a href="http://url1.org/">url1.org</a>»)).equals(new URL(«<a href="http://url2.whatever/">url2.whatever</a>»)) выдавало true, если у этих url совпадали ip.</p>
+</div>
+</div>
+<div class="reply_comments" id="reply_comments_6959438">	</div>
+</div>
+<div class="comment_item" id="comment_6959672">
+<div class="comment_body">
+<div class="info">
+<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+<div id="voting_6959672" class="voting">
+<div class="mark positive">
+<span class="score" title="Всего 4: ↑3 и ↓1">+2</span>
+</div>
+</div>
+<a href="http://habrahabr.ru/users/Athari/" class="avatar fa fa-user"></a>
+<a href="http://habrahabr.ru/users/Athari/" class="username">Athari</a><span class="comma">,</span>
+<time class="localdate" data-date="09.11.2013 17:13:00 +0400" data-humanly="false">9 ноября 2013 в 13:13</time>	<a href="#comment_6959672" class="link_to_comment">#</a>
+<span class="to_children"></span>
+<div class="clear"></div>
+</div>
+<div class="message html_format">
+<p>Стало интересно, как C# ведёт себя в аналогичных ситуациях.<br>
+<br>
+1. </p><pre><code class="java">Number n = flag ? <span class="keyword">new</span> Integer(<span class="number">1</span>) : <span class="keyword">new</span> Double(<span class="number">2.0</span>);</code></pre><br>
+Ручного боксинга примитивных типов в зоопарк типов нет — проблем нет. (Вообще, странно это. Непонятно, зачем приводить типы.)<br>
+<br>
+2.<br>
+<pre><code class="java">Integer n = flag1 ? <span class="number">1</span> : flag2 ? <span class="number">2</span> : <span class="keyword">null</span>;</code></pre><br>
+Приведения <code>int</code> к <code>null</code> нет — проблем нет. (В шарпе нужно писать <code>(int?)null</code>, чтобы аналог скомпилировался.)<br>
+<br>
+3.<br>
+<pre><code class="java"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> DateFormat format = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>);</code></pre><br>
+Какой ProblemFactory замечательный. :) В шарпе формат — это строка. 
+Поглядел документацию — не вкурил, зачем было огород городить, тем более
+ непотокобезопасный. Джависты, можете пояснить, какие это даёт 
+преимущества? А то я в джаве нуб. :)<br>
+<br>
+4.<br>
+<pre><code class="java">System.out.println(<span class="keyword">new</span> BigDecimal(<span class="number">1.1</span>));</code></pre><br>
+Здесь шарп в пролёте, потому что <code>BigDecimal</code> нет, есть только <code>BigInteger</code>. Попробовал с обычным <code>decimal</code> — шарп не позволил скомпилировать аналогичный код, потому что неявного приведения от <code>double</code> к <code>decimal</code> не существует. И даже если явно привести, то эта шибко умная зараза каким-то образом умудряется правильно округлить.<br>
+<br>
+5.<br>
+<pre><code class="java">System.out.printf(<span class="string">"%s\n"</span>, <span class="string">"str#1"</span>);</code></pre><br>
+В шарпе такая же хрень с переносами строк, только ни <code>printf</code>, ни <code>%n</code> нет. Пишите <code>Environment.NewLine</code>, чтоб ему пусто было (ну или <code>WriteLine</code> вместо <code>Write</code>).
+</div>
+</div>
+<div class="reply_comments" id="reply_comments_6959672">
+<div class="comment_item" id="comment_6959764">
+<div class="comment_body">
+<div class="info">
+<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+<div id="voting_6959764" class="voting">
+<div class="mark">
+<span class="score" title="Всего 0: ↑0 и ↓0">0</span>
+</div>
+</div>
+<a href="http://habrahabr.ru/users/dim_s/" class="avatar fa fa-user"></a>
+<a href="http://habrahabr.ru/users/dim_s/" class="username">dim_s</a><span class="comma">,</span>
+<time class="localdate" data-date="09.11.2013 17:44:00 +0400" data-humanly="false">9 ноября 2013 в 13:44</time> <span class="changed">(комментарий был изменён)</span>	<a href="#comment_6959764" class="link_to_comment">#</a>
+<div class="show_tree" data-id="6959764" data-parent_id="6959672" title="Показать ветку комментариев">↵</div>
+<a href="#comment_6959672" data-id="6959764" data-parent_id="6959672" class="to_parent">↑</a>
+<span class="to_children"></span>
+<div class="clear"></div>
+</div>
+<div class="message html_format">
+<p>Ручной боксинг в жаве нужен также из-за отсутствия возможности 
+использовать примитивные типы в generics, и поэтому, например, когда 
+создается объект HashMap<integer string="">, можно использовать обычные цифры в качестве ключей, не создавая объекты. Да и для удобства.</integer></p>
+</div>
+</div>
+<div class="reply_comments" id="reply_comments_6959764">
+<div class="comment_item" id="comment_6959794">
+<div class="comment_body">
+<div class="info is_topic_starter">
+<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+<div id="voting_6959794" class="voting">
+<div class="mark positive">
+<span class="score" title="Всего 2: ↑2 и ↓0">+2</span>
+</div>
+</div>
+<a href="http://habrahabr.ru/users/lany/" class="avatar fa fa-user"></a>
+<a href="http://habrahabr.ru/users/lany/" class="username">lany</a><span class="comma">,</span>
+<time class="localdate" data-date="09.11.2013 17:56:00 +0400" data-humanly="false">9 ноября 2013 в 13:56</time>	<a href="#comment_6959794" class="link_to_comment">#</a>
+<div class="show_tree" data-id="6959794" data-parent_id="6959764" title="Показать ветку комментариев">↵</div>
+<a href="#comment_6959764" data-id="6959794" data-parent_id="6959764" class="to_parent">↑</a>
+<span class="to_children"></span>
+<div class="clear"></div>
+</div>
+<div class="message html_format">
+<p>На всякий случай, вдруг кто-нибудь ещё не в курсе: <a href="http://trove4j.sourceforge.net/javadocs/gnu/trove/map/hash/TIntObjectHashMap.html">TIntObjectHashMap</a>.</p>
+</div>
+</div>
+<div class="reply_comments" id="reply_comments_6959794">	</div>
+</div>
+</div>
+</div>
+<div class="comment_item" id="comment_6959814">
+<div class="comment_body">
+<div class="info is_topic_starter">
+<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+<div id="voting_6959814" class="voting">
+<div class="mark positive">
+<span class="score" title="Всего 1: ↑1 и ↓0">+1</span>
+</div>
+</div>
+<a href="http://habrahabr.ru/users/lany/" class="avatar fa fa-user"></a>
+<a href="http://habrahabr.ru/users/lany/" class="username">lany</a><span class="comma">,</span>
+<time class="localdate" data-date="09.11.2013 18:06:00 +0400" data-humanly="false">9 ноября 2013 в 14:06</time>	<a href="#comment_6959814" class="link_to_comment">#</a>
+<div class="show_tree" data-id="6959814" data-parent_id="6959672" title="Показать ветку комментариев">↵</div>
+<a href="#comment_6959672" data-id="6959814" data-parent_id="6959672" class="to_parent">↑</a>
+<span class="to_children"></span>
+<div class="clear"></div>
+</div>
+<div class="message html_format">
+<p>Я так же <a data-post-atid="198060@habrahabr" data-post-source_url="http://habrahabr.ru/company/pvs-studio/blog/198060/#comment_6871396" href="https://sohabr.net/habr/post/198060/#comment_6871396">сравнивал</a>
+ C++ и Java в очередном посте про PVS-Studio и получалось, что 
+большинство C++ проблем для Java неактуальны. Потом понял, что в Java не
+ меньше своих проблем, которые в плюсах не возникают. Наверняка и в 
+Шарпе есть специфические проблемы :-)<br>
+<br>
+Про DateFormat подозреваю, что так было сделано с целью улучшить 
+производительность, если один формат используется многократно в рамках 
+одного потока. Тогда строка формата парсится один раз. Конечно то, что 
+сам форматтер не потокобезопасный, это какая-то ужасная кривость. 
+Pattern (прекомпилированное регулярное выражение), например, не менее 
+сложная сущность, но он потокобезопасен. Если затраты производительности
+ вас не смущают, вы всегда можете написать утилитный метод типа<br>
+</p><pre><code class="java"><span class="keyword">public</span> <span class="keyword">static</span> String formatDate(String format, Date date) {
+  <span class="keyword">return</span> <span class="keyword">new</span> SimpleDateFormat(format).format(date);
+}</code></pre>
+</div>
+</div>
+<div class="reply_comments" id="reply_comments_6959814">
+<div class="comment_item" id="comment_6960970">
+<div class="comment_body">
+<div class="info">
+<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+<div id="voting_6960970" class="voting">
+<div class="mark">
+<span class="score" title="Всего 4: ↑2 и ↓2">0</span>
+</div>
+</div>
+<a href="http://habrahabr.ru/users/Athari/" class="avatar fa fa-user"></a>
+<a href="http://habrahabr.ru/users/Athari/" class="username">Athari</a><span class="comma">,</span>
+<time class="localdate" data-date="10.11.2013 01:39:00 +0400" data-humanly="false">9 ноября 2013 в 21:39</time>	<a href="#comment_6960970" class="link_to_comment">#</a>
+<div class="show_tree" data-id="6960970" data-parent_id="6959814" title="Показать ветку комментариев">↵</div>
+<a href="#comment_6959814" data-id="6960970" data-parent_id="6959814" class="to_parent">↑</a>
+<span class="to_children"></span>
+<div class="clear"></div>
+</div>
+<div class="message html_format">
+<p>В целом да, в шарпе есть неочевидные вещи, про которые мало кто (а 
+иногда практически никто) не знает. Чего стоит одно создание делегатов: 
+сколько объектов создастся по лямбдам и method group'ам, при каких 
+условиях — это мозговыносяще (нагромождение обратной совместимости и 
+оптимизаций). Существующие засады ещё и выпиливают (вон, даже создание 
+переменных в цикле for поменяли).<br>
+<br>
+Что меня ужасно радует — в шарпе нет маразмов, которые преследуют тебя 
+на каждом шагу. В джаве есть == у строк и прочие вещи, которые не имеют 
+никакого оправдания кроме перфекционизма. BigDecimal.equals из статьи — 
+из той же серии. В шарпе из таких глобальных обломов могу вспомнить 
+разве что события, принимающие значение null.<br>
+<br>
+Впрочем, в большинстве случаев ReSharper и IDEA помножают такие проблемы
+ на ноль для обоих языков. Причём сразу по мере ввода кода.</p>
+</div>
+</div>
+<div class="reply_comments" id="reply_comments_6960970">	</div>
+</div>
+</div>
+</div>
+<div class="comment_item" id="comment_6961678">
+<div class="comment_body">
+<div class="info">
+<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+<div id="voting_6961678" class="voting">
+<div class="mark">
+<span class="score" title="Всего 0: ↑0 и ↓0">0</span>
+</div>
+</div>
+<a href="http://habrahabr.ru/users/SVlad/" class="avatar fa fa-user"></a>
+<a href="http://habrahabr.ru/users/SVlad/" class="username">SVlad</a><span class="comma">,</span>
+<time class="localdate" data-date="10.11.2013 13:16:00 +0400" data-humanly="false">10 ноября 2013 в 9:16</time>	<a href="#comment_6961678" class="link_to_comment">#</a>
+<div class="show_tree" data-id="6961678" data-parent_id="6959672" title="Показать ветку комментариев">↵</div>
+<a href="#comment_6959672" data-id="6961678" data-parent_id="6959672" class="to_parent">↑</a>
+<span class="to_children"></span>
+<div class="clear"></div>
+</div>
+<div class="message html_format">
+<p>Работа с датами в Java вообще не лучшим образом сделана. Видимо, 
+тяжелое наследие Java 1.0. Гораздо лучше использовать стороннюю 
+библиотеку типа JodaTime.</p>
+</div>
+</div>
+<div class="reply_comments" id="reply_comments_6961678">
+<div class="comment_item" id="comment_6962602">
+<div class="comment_body">
+<div class="info">
+<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+<div id="voting_6962602" class="voting">
+<div class="mark positive">
+<span class="score" title="Всего 1: ↑1 и ↓0">+1</span>
+</div>
+</div>
+<a href="http://habrahabr.ru/users/dim_s/" class="avatar fa fa-user"></a>
+<a href="http://habrahabr.ru/users/dim_s/" class="username">dim_s</a><span class="comma">,</span>
+<time class="localdate" data-date="10.11.2013 19:47:00 +0400" data-humanly="false">10 ноября 2013 в 15:47</time>	<a href="#comment_6962602" class="link_to_comment">#</a>
+<div class="show_tree" data-id="6962602" data-parent_id="6961678" title="Показать ветку комментариев">↵</div>
+<a href="#comment_6961678" data-id="6962602" data-parent_id="6961678" class="to_parent">↑</a>
+<span class="to_children"></span>
+<div class="clear"></div>
+</div>
+<div class="message html_format">
+<p>В Java 8 обещают все это безобразие исправить.</p>
+</div>
+</div>
+<div class="reply_comments" id="reply_comments_6962602">	</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comment_item" id="comment_6959762">
+<div class="comment_body">
+<div class="info">
+<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+<div id="voting_6959762" class="voting">
+<div class="mark">
+<span class="score" title="Всего 0: ↑0 и ↓0">0</span>
+</div>
+</div>
+<a href="http://habrahabr.ru/users/dim_s/" class="avatar fa fa-user"></a>
+<a href="http://habrahabr.ru/users/dim_s/" class="username">dim_s</a><span class="comma">,</span>
+<time class="localdate" data-date="09.11.2013 17:44:00 +0400" data-humanly="false">9 ноября 2013 в 13:44</time> <span class="changed">(комментарий был изменён)</span>	<a href="#comment_6959762" class="link_to_comment">#</a>
+<span class="to_children"></span>
+<div class="clear"></div>
+</div>
+<div class="message html_format">
+<p>{del}</p>
+</div>
+</div>
+<div class="reply_comments" id="reply_comments_6959762">	</div>
+</div>
+<div class="comment_item" id="comment_6959944">
+<div class="comment_body">
+<div class="info">
+<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+<div id="voting_6959944" class="voting">
+<div class="mark positive">
+<span class="score" title="Всего 1: ↑1 и ↓0">+1</span>
+</div>
+</div>
+<a href="http://habrahabr.ru/users/ZyL/" class="avatar fa fa-user"></a>
+<a href="http://habrahabr.ru/users/ZyL/" class="username">ZyL</a><span class="comma">,</span>
+<time class="localdate" data-date="09.11.2013 18:54:00 +0400" data-humanly="false">9 ноября 2013 в 14:54</time>	<a href="#comment_6959944" class="link_to_comment">#</a>
+<span class="to_children"></span>
+<div class="clear"></div>
+</div>
+<div class="message html_format">
+<p>Я как-то несколько лет назад работал в одной <a href="http://www.elasticpath.com/">конторе</a>,
+ мы занимались переписыванием серверной части сайта symantec.com. И у 
+нас в Эклипсе по их требованию стояли семантековские настройки (правда, 
+мне кажется, это был PMD). <br>
+<br>
+Так вот, там тернарные операторы помечались как ошибка. Т.е. совсем 
+ошибка, код не компилировался, т.е. их нельзя было использовать вообще. <br>
+<br>
+У меня нет мнения, насколько это правильно, просто вспомнил.<br>
+<br></p>
+</div>
+</div>
+<div class="reply_comments" id="reply_comments_6959944">	</div>
+</div>
+<div class="comment_item" id="comment_6960424">
+<div class="comment_body">
+<div class="info">
+<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+<div id="voting_6960424" class="voting">
+<div class="mark positive">
+<span class="score" title="Всего 1: ↑1 и ↓0">+1</span>
+</div>
+</div>
+<a href="http://habrahabr.ru/users/ttools/" class="avatar fa fa-user"></a>
+<a href="http://habrahabr.ru/users/ttools/" class="username">ttools</a><span class="comma">,</span>
+<time class="localdate" data-date="09.11.2013 22:08:00 +0400" data-humanly="false">9 ноября 2013 в 18:08</time>	<a href="#comment_6960424" class="link_to_comment">#</a>
+<span class="to_children"></span>
+<div class="clear"></div>
+</div>
+<div class="message html_format">
+<p>Отличный инструмент! Спасибо за то, что познакомили с ним!</p>
+</div>
+</div>
+<div class="reply_comments" id="reply_comments_6960424">	</div>
+</div>
+<div class="comment_item" id="comment_6961528">
+<div class="comment_body">
+<div class="info">
+<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+<div id="voting_6961528" class="voting">
+<div class="mark">
+<span class="score" title="Всего 2: ↑1 и ↓1">0</span>
+</div>
+</div>
+<a href="http://habrahabr.ru/users/sompylasar/" class="avatar fa fa-user"></a>
+<a href="http://habrahabr.ru/users/sompylasar/" class="username">sompylasar</a><span class="comma">,</span>
+<time class="localdate" data-date="10.11.2013 11:19:00 +0400" data-humanly="false">10 ноября 2013 в 7:19</time>	<a href="#comment_6961528" class="link_to_comment">#</a>
+<span class="to_children"></span>
+<div class="clear"></div>
+</div>
+<div class="message html_format">
+<p>Маленький вопрос от не-джависта:<br>
+</p><blockquote>можно написать либо <code>new BigDecimal("1.1")</code>, либо <code>BigDecimal.valueOf(1.1)</code>.</blockquote><br>
+Здесь опечатка или <code>valueOf(1.1)</code> как-то специальным образом компилируется, что <code>1.1</code> оказывается не IEEE754?
+</div>
+</div>
+<div class="reply_comments" id="reply_comments_6961528">
+<div class="comment_item" id="comment_6961536">
+<div class="comment_body">
+<div class="info">
+<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+<div id="voting_6961536" class="voting">
+<div class="mark">
+<span class="score" title="Всего 0: ↑0 и ↓0">0</span>
+</div>
+</div>
+<a href="http://habrahabr.ru/users/leventov/" class="avatar fa fa-user"></a>
+<a href="http://habrahabr.ru/users/leventov/" class="username">leventov</a><span class="comma">,</span>
+<time class="localdate" data-date="10.11.2013 11:26:00 +0400" data-humanly="false">10 ноября 2013 в 7:26</time>	<a href="#comment_6961536" class="link_to_comment">#</a>
+<div class="show_tree" data-id="6961536" data-parent_id="6961528" title="Показать ветку комментариев">↵</div>
+<a href="#comment_6961528" data-id="6961536" data-parent_id="6961528" class="to_parent">↑</a>
+<span class="to_children"></span>
+<div class="clear"></div>
+</div>
+<div class="message html_format">
+<p>Вопрос не ясен. 1.1 не может быть выражено в стандарте IEEE 754 никак. Специально ничего не компилируется.</p>
+</div>
+</div>
+<div class="reply_comments" id="reply_comments_6961536">
+<div class="comment_item" id="comment_6961542">
+<div class="comment_body">
+<div class="info">
+<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+<div id="voting_6961542" class="voting">
+<div class="mark">
+<span class="score" title="Всего 2: ↑1 и ↓1">0</span>
+</div>
+</div>
+<a href="http://habrahabr.ru/users/sompylasar/" class="avatar fa fa-user"></a>
+<a href="http://habrahabr.ru/users/sompylasar/" class="username">sompylasar</a><span class="comma">,</span>
+<time class="localdate" data-date="10.11.2013 11:28:00 +0400" data-humanly="false">10 ноября 2013 в 7:28</time>	<a href="#comment_6961542" class="link_to_comment">#</a>
+<div class="show_tree" data-id="6961542" data-parent_id="6961536" title="Показать ветку комментариев">↵</div>
+<a href="#comment_6961536" data-id="6961542" data-parent_id="6961536" class="to_parent">↑</a>
+<span class="to_children"></span>
+<div class="clear"></div>
+</div>
+<div class="message html_format">
+<p>Тогда в тексте должно быть <code>BigDecimal.valueOf("1.1")</code>, а не <code>BigDecimal.valueOf(1.1)</code>, если я правильно Вас понял.</p>
+</div>
+</div>
+<div class="reply_comments" id="reply_comments_6961542">
+<div class="comment_item" id="comment_6961552">
+<div class="comment_body">
+<div class="info">
+<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+<div id="voting_6961552" class="voting">
+<div class="mark">
+<span class="score" title="Всего 0: ↑0 и ↓0">0</span>
+</div>
+</div>
+<a href="http://habrahabr.ru/users/leventov/" class="avatar fa fa-user"></a>
+<a href="http://habrahabr.ru/users/leventov/" class="username">leventov</a><span class="comma">,</span>
+<time class="localdate" data-date="10.11.2013 11:32:00 +0400" data-humanly="false">10 ноября 2013 в 7:32</time>	<a href="#comment_6961552" class="link_to_comment">#</a>
+<div class="show_tree" data-id="6961552" data-parent_id="6961542" title="Показать ветку комментариев">↵</div>
+<a href="#comment_6961542" data-id="6961552" data-parent_id="6961542" class="to_parent">↑</a>
+<span class="to_children"></span>
+<div class="clear"></div>
+</div>
+<div class="message html_format">
+<p>А, ну да. Опечатка в посте.</p>
+</div>
+</div>
+<div class="reply_comments" id="reply_comments_6961552">	</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comment_item" id="comment_6961760">
+<div class="comment_body">
+<div class="info is_topic_starter">
+<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+<div id="voting_6961760" class="voting">
+<div class="mark positive">
+<span class="score" title="Всего 2: ↑2 и ↓0">+2</span>
+</div>
+</div>
+<a href="http://habrahabr.ru/users/lany/" class="avatar fa fa-user"></a>
+<a href="http://habrahabr.ru/users/lany/" class="username">lany</a><span class="comma">,</span>
+<time class="localdate" data-date="10.11.2013 13:58:00 +0400" data-humanly="false">10 ноября 2013 в 9:58</time>	<a href="#comment_6961760" class="link_to_comment">#</a>
+<div class="show_tree" data-id="6961760" data-parent_id="6961528" title="Показать ветку комментариев">↵</div>
+<a href="#comment_6961528" data-id="6961760" data-parent_id="6961528" class="to_parent">↑</a>
+<span class="to_children"></span>
+<div class="clear"></div>
+</div>
+<div class="message html_format">
+<p>В посте нет ошибки. Данный метод реализован так:<br>
+</p><pre><code class="java"><span class="keyword">public</span> <span class="keyword">static</span> BigDecimal valueOf(<span class="keyword">double</span> val) {
+    <span class="keyword">return</span> <span class="keyword">new</span> BigDecimal(Double.toString(val));
+}</code></pre>То есть double сперва преобразуется в строку, используя 
+обычный алгоритм, который работает с точностью double, а не с идеальной 
+точностью. А потом уже вызывается конструктор от строки. Поэтому valueOf
+ сработает не так как конструктор от double.
+</div>
+</div>
+<div class="reply_comments" id="reply_comments_6961760">
+<div class="comment_item" id="comment_6965636">
+<div class="comment_body">
+<div class="info">
+<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+<div id="voting_6965636" class="voting">
+<div class="mark">
+<span class="score" title="Всего 0: ↑0 и ↓0">0</span>
+</div>
+</div>
+<a href="http://habrahabr.ru/users/sompylasar/" class="avatar fa fa-user"></a>
+<a href="http://habrahabr.ru/users/sompylasar/" class="username">sompylasar</a><span class="comma">,</span>
+<time class="localdate" data-date="11.11.2013 13:43:00 +0400" data-humanly="false">11 ноября 2013 в 9:43</time>	<a href="#comment_6965636" class="link_to_comment">#</a>
+<div class="show_tree" data-id="6965636" data-parent_id="6961760" title="Показать ветку комментариев">↵</div>
+<a href="#comment_6961760" data-id="6965636" data-parent_id="6961760" class="to_parent">↑</a>
+<span class="to_children"></span>
+<div class="clear"></div>
+</div>
+<div class="message html_format">
+<p>То есть ошибка в точности представления числа <code>1.1</code> в <code>double</code> при использовании <code>valueOf(double)</code> сохранится, поскольку double представляется в IEEE754?<br>
+<br>
+Кстати, в посте еще одна опечатка:<br>
+</p><blockquote>А конструктор <code>BigDecimal(double)</code> напротив работает точно</blockquote><br>
+— должно быть от string:<br>
+<blockquote>А конструктор <code>BigDecimal(string)</code>, напротив, работает точно</blockquote><br>
+</div>
+</div>
+<div class="reply_comments" id="reply_comments_6965636">
+<div class="comment_item" id="comment_6965696">
+<div class="comment_body">
+<div class="info is_topic_starter">
+<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+<div id="voting_6965696" class="voting">
+<div class="mark positive">
+<span class="score" title="Всего 1: ↑1 и ↓0">+1</span>
+</div>
+</div>
+<a href="http://habrahabr.ru/users/lany/" class="avatar fa fa-user"></a>
+<a href="http://habrahabr.ru/users/lany/" class="username">lany</a><span class="comma">,</span>
+<time class="localdate" data-date="11.11.2013 13:52:00 +0400" data-humanly="false">11 ноября 2013 в 9:52</time>	<a href="#comment_6965696" class="link_to_comment">#</a>
+<div class="show_tree" data-id="6965696" data-parent_id="6965636" title="Показать ветку комментариев">↵</div>
+<a href="#comment_6965636" data-id="6965696" data-parent_id="6965636" class="to_parent">↑</a>
+<span class="to_children"></span>
+<div class="clear"></div>
+</div>
+<div class="message html_format">
+<blockquote>То есть ошибка в точности представления числа 1.1 в double 
+при использовании valueOf(double) сохранится, поскольку double 
+представляется в IEEE754?</blockquote>Не понял, что вы имели в виду. Произойдёт следующее:<br>
+1. Во время компиляции компилятор заменит 1.1 на ближайшее допустимое 
+число, представимое в IEEE754, а именно на 
+1.100000000000000088817841970012523233890533447265625.<br>
+2. Во время выполнения это число будет преобразовано в строку с 
+использованием метода Double.toString. Этот метод преобразует в строку, 
+имея в виду точность типа double. Когда он поймёт, что получается что-то
+ типа 1.100000000000000, а более точно в типе double всё равно не 
+выразишь, он просто обрежет нули и вернёт результат «1.1».<br>
+3. Отработает конструктор BigDecimal от строки «1.1», который создаст объект BigDecimal, представляющий собой число 1.1<br>
+<br>
+<blockquote>А конструктор BigDecimal(double) напротив работает точно</blockquote><br>
+Нет здесь никакой опечатки. Это истинное утверждение и именно то, что я хотел сказать.
+</div>
+</div>
+<div class="reply_comments" id="reply_comments_6965696">
+<div class="comment_item" id="comment_6965726">
+<div class="comment_body">
+<div class="info">
+<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+<div id="voting_6965726" class="voting">
+<div class="mark">
+<span class="score" title="Всего 0: ↑0 и ↓0">0</span>
+</div>
+</div>
+<a href="http://habrahabr.ru/users/sompylasar/" class="avatar fa fa-user"></a>
+<a href="http://habrahabr.ru/users/sompylasar/" class="username">sompylasar</a><span class="comma">,</span>
+<time class="localdate" data-date="11.11.2013 13:59:00 +0400" data-humanly="false">11 ноября 2013 в 9:59</time> <span class="changed">(комментарий был изменён)</span>	<a href="#comment_6965726" class="link_to_comment">#</a>
+<div class="show_tree" data-id="6965726" data-parent_id="6965696" title="Показать ветку комментариев">↵</div>
+<a href="#comment_6965696" data-id="6965726" data-parent_id="6965696" class="to_parent">↑</a>
+<span class="to_children"></span>
+<div class="clear"></div>
+</div>
+<div class="message html_format">
+<p>Спасибо. Теперь понятно, этого алгоритма в тексте поста и не хватало,
+ чтобы понять, что происходит на самом деле и почему конструктор 
+BigDecimal(double), напротив, работает точно.</p>
+</div>
+</div>
+<div class="reply_comments" id="reply_comments_6965726">	</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<footer>
+<p style="font-weight:bold;">Источники статей: <a href="http://habrahabr.ru/">Хабрахабр</a>, <a href="http://geektimes.ru/">Гиктаймс</a> и <a href="http://megamozg.ru/">Мегамозг</a>.</p>
+<p>Время указано в том часовом поясе, который установлен на Вашем устройстве.</p>
+<p>
+Версия сайта: 0.8.<br>
+Об ошибках, предложениях, пожалуйста, сообщайте через Telegram пользователю <a href="https://telegram.me/leenr" target="_blank">@leenr</a>, по e-mail <a href="mailto:i@leenr.ru">i@leenr.ru</a> или с помощью <a href="https://sohabr.net/about/contacts">других способов связаться</a>.<br>
+Если Вы нашли проект полезным, пожалуйста, <a href="https://sohabr.net/about/donate">пожертвуйте</a> немного на его развитие, на оплату сервера и доменов.
+</p>
+<p>
+<span class="fa fa-plus-square-o"></span> <a href="https://sohabr.net/vsegdabr" target="_blank">Всегдабр (расширение для Google Chrome)</a><br>
+<span class="fa fa-bar-chart"></span> <a href="https://metrika.yandex.ru/stat/?id=22505092" target="_blank">Статистика посещений</a><br>
+<span class="fa fa-vk"></span> <a href="https://vk.com/sohabr" target="_blank">СоХабр в ВК (новости проекта)</a>
+</p>
+</footer>
+</div>
+</div>
+<script type="text/javascript">(function(d,w,c){(w[c]=w[c]||[]).push(function(){try{w.yaCounter22505092=new Ya.Metrika({id:22505092,webvisor:true,clickmap:true,trackLinks:true,accurateTrackBounce:true});}catch(e){}});var n=d.getElementsByTagName("script")[0],s=d.createElement("script"),f=function(){n.parentNode.insertBefore(s,n);};s.type="text/javascript";s.async=true;s.src=(d.location.protocol=="https:"?"https:":"http:")+"//mc.yandex.ru/metrika/watch.js";if(w.opera=="[object Opera]"){d.addEventListener("DOMContentLoaded",f,false);}else{f();}})(document,window,"yandex_metrika_callbacks");</script>
+<noscript><div><img src="//mc.yandex.ru/watch/22505092" style="position:absolute; left:-9999px;" alt=""/></div></noscript>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-48829253-1','sohabr.net');ga('send','pageview');</script>
+
+</body></html>

@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html dir="ltr" class="client-nojs" lang="ru"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8"><title>Глава 2 Thinking in Java 4th edition — WikiJava: Wiki of Java: викифицированные книги и статьи по Java</title>
+<meta name="generator" content="MediaWiki 1.22.2">
+<link rel="shortcut icon" href="http://wikijava.it-cache.net/favicon.ico">
+<link rel="search" type="application/opensearchdescription+xml" href="http://wikijava.it-cache.net/opensearch_desc.php" title="WikiJava: Wiki of Java: викифицированные книги и статьи по Java (ru)">
+<link rel="EditURI" type="application/rsd+xml" href="http://wikijava.it-cache.net/api.php@action=rsd">
+<link rel="copyright" href="http://www.gnu.org/copyleft/fdl.html">
+<link rel="alternate" type="application/atom+xml" title="WikiJava: Wiki of Java: викифицированные книги и статьи по Java&nbsp;— Atom-лента" href="http://wikijava.it-cache.net/index.php@title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F%253A%D0%A1%D0%B2%D0%B5%D0%B6%D0%B8%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8&amp;feed=atom">
+<link rel="stylesheet" href="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%202_files/style3.css">
+<meta name="ResourceLoaderDynamicStyles" content="">
+<style>a:lang(ar),a:lang(ckb),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}
+/* cache key: wjava2-wj_:resourceloader:filter:minify-css:7:32e7e505403c81fe0a24e297ef166436 */</style>
+
+<script src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%202_files/style1.css"></script><script src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%202_files/load.html"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Глава_2_Thinking_in_Java_4th_edition","wgTitle":"Глава 2 Thinking in Java 4th edition","wgCurRevisionId":249,"wgRevisionId":249,"wgArticleId":15,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Книги","Java"],"wgBreakFrames":false,"wgPageContentLanguage":"ru","wgPageContentModel":"wikitext","wgSeparatorTransformTable":[",\t."," \t,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"],"wgMonthNamesShort":["","янв","фев","мар","апр","май","июн","июл","авг","сен","окт","ноя","дек"],"wgRelevantPageName":"Глава_2_Thinking_in_Java_4th_edition","wgIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgVectorEnabledModules":{"collapsiblenav":true,"collapsibletabs":true,"editwarning":true,"expandablesearch":false,"footercleanup":false,"sectioneditlinks":false,"simplesearch":true,"experiments":true}});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function(){mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"vector-simplesearch":1,"watchcreations":0,"watchdefault":0,"watchdeletion":0,"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,
+"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"useeditwarning":1,"prefershttps":1,"language":"ru","variant-gan":"gan","variant-iu":"iu","variant-kk":"kk","variant-ku":"ku","variant-shi":"shi","variant-sr":"sr","variant-tg":"tg","variant-uz":"uz","variant-zh":"zh","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false,"variant":"ru"});},{},{});mw.loader.implement("user.tokens",function(){mw.user.tokens.set({"editToken":"+\\","patrolToken":false,"watchToken":false});},{},{});
+/* cache key: wjava2-wj_:resourceloader:filter:minify-js:7:07bb1f4d2452379e70abca47c4cde6d9 */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax","skins.vector.js"]);
+}</script>
+<style type="text/css">/*<![CDATA[*/
+.source-java5 {line-height: normal;}
+.source-java5 li, .source-java5 pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for java5
+ * CSS class: source-java5, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.java5.source-java5 .de1, .java5.source-java5 .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;font-family: monospace, monospace;}
+.java5.source-java5  {font-family:monospace;}
+.java5.source-java5 .imp {font-weight: bold; color: red;}
+.java5.source-java5 li, .java5.source-java5 .li1 {font-weight: normal; vertical-align:top;}
+.java5.source-java5 .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.java5.source-java5 .li2 {font-weight: bold; vertical-align:top;}
+.java5.source-java5 .kw1 {color: #000000;  font-weight: bold;}
+.java5.source-java5 .kw2 {color: #000000; font-weight: bold;}
+.java5.source-java5 .kw3 {color: #006600; font-weight: bold;}
+.java5.source-java5 .kw4 {color: #006600; font-weight: bold;}
+.java5.source-java5 .kw5 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw6 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw7 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw8 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw9 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw10 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw11 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw12 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw13 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw14 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw15 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw16 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw17 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw18 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw19 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw20 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw21 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw22 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw23 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw24 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw25 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw26 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw27 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw28 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw29 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw30 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw31 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw32 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw33 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw34 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw35 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw36 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw37 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw38 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw39 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw40 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw41 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw42 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw43 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw44 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw45 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw46 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw47 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw48 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw49 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw50 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw51 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw52 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw53 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw54 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw55 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw56 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw57 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw58 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw59 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw60 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw61 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw62 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw63 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw64 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw65 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw66 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw67 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw68 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw69 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw70 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw71 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw72 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw73 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw74 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw75 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw76 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw77 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw78 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw79 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw80 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw81 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw82 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw83 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw84 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw85 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw86 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw87 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw88 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw89 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw90 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw91 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw92 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw93 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw94 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw95 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw96 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw97 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw98 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw99 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw100 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw101 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw102 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw103 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw104 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw105 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw106 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw107 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw108 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw109 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw110 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw111 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw112 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw113 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw114 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw115 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw116 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw117 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw118 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw119 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw120 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw121 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw122 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw123 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw124 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw125 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw126 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw127 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw128 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw129 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw130 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw131 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw132 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw133 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw134 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw135 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw136 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw137 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw138 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw139 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw140 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw141 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw142 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw143 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw144 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw145 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw146 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw147 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw148 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw149 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw150 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw151 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw152 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw153 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw154 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw155 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw156 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw157 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw158 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw159 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw160 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw161 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw162 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw163 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw164 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw165 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw166 {color: #003399; font-weight: bold;}
+.java5.source-java5 .co1 {color: #666666; font-style: italic;}
+.java5.source-java5 .co2 {color: #006699;}
+.java5.source-java5 .co3 {color: #008000; font-style: italic; font-weight: bold;}
+.java5.source-java5 .coMULTI {color: #666666; font-style: italic;}
+.java5.source-java5 .es0 {color: #000099; font-weight: bold;}
+.java5.source-java5 .br0 {color: #009900;}
+.java5.source-java5 .sy0 {color: #339933;}
+.java5.source-java5 .st0 {color: #0000ff;}
+.java5.source-java5 .nu0 {color: #cc66cc;}
+.java5.source-java5 .me1 {color: #006633;}
+.java5.source-java5 .me2 {color: #006633;}
+.java5.source-java5 .ln-xtra, .java5.source-java5 li.ln-xtra, .java5.source-java5 div.ln-xtra {background-color: #ffc;}
+.java5.source-java5 span.xtra { display:block; }
+
+/*]]>*/
+</style><!--[if lt IE 7]><style type="text/css">body{behavior:url("/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Глава_2_Thinking_in_Java_4th_edition skin-vector action-view vector-animateLayout">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<div id="content" class="mw-body" role="main">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<h1 id="firstHeading" class="firstHeading" lang="ru"><span dir="auto">Глава 2 Thinking in Java 4th edition</span></h1>
+			<div id="bodyContent">
+								<div id="siteSub">Материал из WikiJava: Wiki of Java: викифицированные книги и статьи по Java</div>
+								<div id="contentSub"></div>
+												<div id="jump-to-nav" class="mw-jump">
+					Перейти к:					<a href="http://wikijava.it-cache.net/index.php@title=Glava_2_Thinking_in_Java_4th_edition.html#mw-navigation">навигация</a>, 					<a href="http://wikijava.it-cache.net/index.php@title=Glava_2_Thinking_in_Java_4th_edition.html#p-search">поиск</a>
+				</div>
+				<div id="mw-content-text" dir="ltr" class="mw-content-ltr" lang="ru"><p><br>
+</p>
+<table style="clear: right; margin-bottom: .5em; float: right; padding: .5em 0 .8em 1.4em; background: none; width: auto;" cellpadding="0" cellspacing="0">
+<tbody><tr>
+<td> <div id="toc" class="toc"><div id="toctitle"><h2>Содержание</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="http://wikijava.it-cache.net/index.php@title=Glava_2_Thinking_in_Java_4th_edition.html#.D0.92.D0.A1.D0.81_.D0.AF.D0.92.D0.9B.D0.AF.D0.95.D0.A2.D0.A1.D0.AF_.D0.9E.D0.91.D0.AA.D0.95.D0.9A.D0.A2.D0.9E.D0.9C"><span class="tocnumber">1</span> <span class="toctext">ВСЁ  ЯВЛЯЕТСЯ  ОБЪЕКТОМ</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="http://wikijava.it-cache.net/index.php@title=Glava_2_Thinking_in_Java_4th_edition.html#.D0.94.D0.BB.D1.8F_.D1.80.D0.B0.D0.B1.D0.BE.D1.82.D1.8B_.D1.81_.D0.BE.D0.B1.D1.8A.D0.B5.D0.BA.D1.82.D0.B0.D0.BC.D0.B8_.D0.B8.D1.81.D0.BF.D0.BE.D0.BB.D1.8C.D0.B7.D1.83.D1.8E.D1.82.D1.81.D1.8F_.D1.81.D1.81.D1.8B.D0.BB.D0.BA.D0.B8"><span class="tocnumber">2</span> <span class="toctext">Для работы с объектами используются ссылки</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="http://wikijava.it-cache.net/index.php@title=Glava_2_Thinking_in_Java_4th_edition.html#.D0.92.D1.81.D0.B5_.D0.BE.D0.B1.D1.8A.D0.B5.D0.BA.D1.82.D1.8B_.D0.B4.D0.BE.D0.BB.D0.B6.D0.BD.D1.8B_.D1.81.D0.BE.D0.B7.D0.B4.D0.B0.D0.B2.D0.B0.D1.82.D1.8C.D1.81.D1.8F_.D1.8F.D0.B2.D0.BD.D0.BE"><span class="tocnumber">3</span> <span class="toctext">Все объекты должны создаваться явно</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="http://wikijava.it-cache.net/index.php@title=Glava_2_Thinking_in_Java_4th_edition.html#.D0.93.D0.B4.D0.B5_.D1.85.D1.80.D0.B0.D0.BD.D1.8F.D1.82.D1.81.D1.8F_.D0.B4.D0.B0.D0.BD.D0.BD.D1.8B.D0.B5"><span class="tocnumber">4</span> <span class="toctext">Где хранятся данные</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="http://wikijava.it-cache.net/index.php@title=Glava_2_Thinking_in_Java_4th_edition.html#.D0.9E.D1.81.D0.BE.D0.B1.D1.8B.D0.B9_.D1.81.D0.BB.D1.83.D1.87.D0.B0.D0.B9:_.D0.BF.D1.80.D0.B8.D0.BC.D0.B8.D1.82.D0.B8.D0.B2.D0.BD.D1.8B.D0.B5_.D1.82.D0.B8.D0.BF.D1.8B"><span class="tocnumber">5</span> <span class="toctext">Особый случай: примитивные типы</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="http://wikijava.it-cache.net/index.php@title=Glava_2_Thinking_in_Java_4th_edition.html#.D0.A7.D0.B8.D1.81.D0.BB.D0.B0_.D0.BF.D0.BE.D0.B2.D1.8B.D1.88.D0.B5.D0.BD.D0.BD.D0.BE.D0.B9_.D1.82.D0.BE.D1.87.D0.BD.D0.BE.D1.81.D1.82.D0.B8"><span class="tocnumber">6</span> <span class="toctext">Числа повышенной точности</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="http://wikijava.it-cache.net/index.php@title=Glava_2_Thinking_in_Java_4th_edition.html#.D0.9C.D0.B0.D1.81.D1.81.D0.B8.D0.B2.D1.8B_.D0.B2_Java"><span class="tocnumber">7</span> <span class="toctext">Массивы в <i>Java</i></span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="http://wikijava.it-cache.net/index.php@title=Glava_2_Thinking_in_Java_4th_edition.html#.D0.9E.D0.B3.D1.80.D0.B0.D0.BD.D0.B8.D1.87.D0.B5.D0.BD.D0.B8.D0.B5_.D0.BE.D0.B1.D0.BB.D0.B0.D1.81.D1.82.D0.B8_.D0.B4.D0.B5.D0.B9.D1.81.D1.82.D0.B2.D0.B8.D1.8F"><span class="tocnumber">8</span> <span class="toctext">Ограничение области действия</span></a></li>
+<li class="toclevel-1 tocsection-9"><a href="http://wikijava.it-cache.net/index.php@title=Glava_2_Thinking_in_Java_4th_edition.html#.D0.9E.D0.B1.D0.BB.D0.B0.D1.81.D1.82.D1.8C_.D0.B4.D0.B5.D0.B9.D1.81.D1.82.D0.B2.D0.B8.D1.8F_.D0.BE.D0.B1.D1.8A.D0.B5.D0.BA.D1.82.D0.BE.D0.B2"><span class="tocnumber">9</span> <span class="toctext">Область действия объектов</span></a></li>
+<li class="toclevel-1 tocsection-10"><a href="http://wikijava.it-cache.net/index.php@title=Glava_2_Thinking_in_Java_4th_edition.html#.D0.A1.D0.BE.D0.B7.D0.B4.D0.B0.D0.BD.D0.B8.D0.B5_.D0.BD.D0.BE.D0.B2.D1.8B.D1.85_.D1.82.D0.B8.D0.BF.D0.BE.D0.B2_.D0.B4.D0.B0.D0.BD.D0.BD.D1.8B.D1.85"><span class="tocnumber">10</span> <span class="toctext">Создание новых типов данных</span></a></li>
+<li class="toclevel-1 tocsection-11"><a href="http://wikijava.it-cache.net/index.php@title=Glava_2_Thinking_in_Java_4th_edition.html#.D0.9F.D0.BE.D0.BB.D1.8F_.D0.B8_.D0.BC.D0.B5.D1.82.D0.BE.D0.B4.D1.8B"><span class="tocnumber">11</span> <span class="toctext">Поля и методы</span></a></li>
+<li class="toclevel-1 tocsection-12"><a href="http://wikijava.it-cache.net/index.php@title=Glava_2_Thinking_in_Java_4th_edition.html#.D0.97.D0.BD.D0.B0.D1.87.D0.B5.D0.BD.D0.B8.D1.8F_.D0.BF.D0.BE_.D1.83.D0.BC.D0.BE.D0.BB.D1.87.D0.B0.D0.BD.D0.B8.D1.8E_.D0.B4.D0.BB.D1.8F_.D0.BF.D0.BE.D0.BB.D0.B5.D0.B9_.D0.BF.D1.80.D0.B8.D0.BC.D0.B8.D1.82.D0.B8.D0.B2.D0.BD.D1.8B.D1.85_.D1.82.D0.B8.D0.BF.D0.BE.D0.B2"><span class="tocnumber">12</span> <span class="toctext">Значения по умолчанию для полей примитивных типов</span></a></li>
+<li class="toclevel-1 tocsection-13"><a href="http://wikijava.it-cache.net/index.php@title=Glava_2_Thinking_in_Java_4th_edition.html#.D0.9C.D0.B5.D1.82.D0.BE.D0.B4.D1.8B.2C_.D0.B0.D1.80.D0.B3.D1.83.D0.BC.D0.B5.D0.BD.D1.82.D1.8B_.D0.B8_.D0.B2.D0.BE.D0.B7.D0.B2.D1.80.D0.B0.D1.89.D0.B0.D0.B5.D0.BC.D1.8B.D0.B5_.D0.B7.D0.BD.D0.B0.D1.87.D0.B5.D0.BD.D0.B8.D1.8F"><span class="tocnumber">13</span> <span class="toctext">Методы, аргументы и возвращаемые значения</span></a>
+<ul>
+<li class="toclevel-2 tocsection-14"><a href="http://wikijava.it-cache.net/index.php@title=Glava_2_Thinking_in_Java_4th_edition.html#.D0.A7.D1.82.D0.BE_.D1.82.D0.B0.D0.BA.D0.BE.D0.B5_-_.D0.BC.D0.B5.D1.82.D0.BE.D0.B4.3F"><span class="tocnumber">13.1</span> <span class="toctext">Что такое - метод?</span></a></li>
+<li class="toclevel-2 tocsection-15"><a href="http://wikijava.it-cache.net/index.php@title=Glava_2_Thinking_in_Java_4th_edition.html#.D0.A1.D0.BF.D0.B8.D1.81.D0.BE.D0.BA_.D0.B0.D1.80.D0.B3.D1.83.D0.BC.D0.B5.D0.BD.D1.82.D0.BE.D0.B2"><span class="tocnumber">13.2</span> <span class="toctext">Список аргументов</span></a></li>
+<li class="toclevel-2 tocsection-16"><a href="http://wikijava.it-cache.net/index.php@title=Glava_2_Thinking_in_Java_4th_edition.html#.D0.92.D0.BE.D0.B7.D0.B2.D1.80.D0.B0.D1.89.D0.B0.D0.B5.D0.BC.D0.BE.D0.B5_.D0.B7.D0.BD.D0.B0.D1.87.D0.B5.D0.BD.D0.B8.D0.B5"><span class="tocnumber">13.3</span> <span class="toctext">Возвращаемое значение</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-17"><a href="http://wikijava.it-cache.net/index.php@title=Glava_2_Thinking_in_Java_4th_edition.html#.D0.A1.D0.BE.D0.B7.D0.B4.D0.B0.D0.BD.D0.B8.D0.B5_.D0.BF.D1.80.D0.BE.D0.B3.D1.80.D0.B0.D0.BC.D0.BC.D1.8B_.D0.BD.D0.B0_Java"><span class="tocnumber">14</span> <span class="toctext">Создание программы на <i>Java</i></span></a>
+<ul>
+<li class="toclevel-2 tocsection-18"><a href="http://wikijava.it-cache.net/index.php@title=Glava_2_Thinking_in_Java_4th_edition.html#.D0.92.D0.B8.D0.B4.D0.B8.D0.BC.D0.BE.D1.81.D1.82.D1.8C_.D0.B8.D0.BC.D0.B5.D0.BD"><span class="tocnumber">14.1</span> <span class="toctext">Видимость имен</span></a></li>
+<li class="toclevel-2 tocsection-19"><a href="http://wikijava.it-cache.net/index.php@title=Glava_2_Thinking_in_Java_4th_edition.html#.D0.98.D1.81.D0.BF.D0.BE.D0.BB.D1.8C.D0.B7.D0.BE.D0.B2.D0.B0.D0.BD.D0.B8.D0.B5_.D0.B2.D0.BD.D0.B5.D1.88.D0.BD.D0.B8.D1.85_.D0.BA.D0.BE.D0.BC.D0.BF.D0.BE.D0.BD.D0.B5.D0.BD.D1.82.D0.BE.D0.B2"><span class="tocnumber">14.2</span> <span class="toctext">Использование внешних компонентов</span></a></li>
+<li class="toclevel-2 tocsection-20"><a href="http://wikijava.it-cache.net/index.php@title=Glava_2_Thinking_in_Java_4th_edition.html#.D0.9A.D0.BB.D1.8E.D1.87.D0.B5.D0.B2.D0.BE.D0.B5_.D1.81.D0.BB.D0.BE.D0.B2.D0.BE_static"><span class="tocnumber">14.3</span> <span class="toctext">Ключевое слово static</span></a></li>
+<li class="toclevel-2 tocsection-21"><a href="http://wikijava.it-cache.net/index.php@title=Glava_2_Thinking_in_Java_4th_edition.html#.D0.9D.D0.B0.D1.88.D0.B0_.D0.BF.D0.B5.D1.80.D0.B2.D0.B0.D1.8F_.D0.BF.D1.80.D0.BE.D0.B3.D1.80.D0.B0.D0.BC.D0.BC.D0.B0_.D0.BD.D0.B0_Java"><span class="tocnumber">14.4</span> <span class="toctext">Наша первая программа на <i>Java</i></span></a></li>
+<li class="toclevel-2 tocsection-22"><a href="http://wikijava.it-cache.net/index.php@title=Glava_2_Thinking_in_Java_4th_edition.html#.D0.9A.D0.BE.D0.BC.D0.BF.D0.B8.D0.BB.D1.8F.D1.86.D0.B8.D1.8F_.D0.B8_.D0.B2.D1.8B.D0.BF.D0.BE.D0.BB.D0.BD.D0.B5.D0.BD.D0.B8.D0.B5"><span class="tocnumber">14.5</span> <span class="toctext">Компиляция и выполнение</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-23"><a href="http://wikijava.it-cache.net/index.php@title=Glava_2_Thinking_in_Java_4th_edition.html#.D0.9A.D0.BE.D0.BC.D0.BC.D0.B5.D0.BD.D1.82.D0.B0.D1.80.D0.B8.D0.B8_.D0.B8_.D0.B2.D1.81.D1.82.D1.80.D0.BE.D0.B5.D0.BD.D0.BD.D0.B0.D1.8F_.D0.B4.D0.BE.D0.BA.D1.83.D0.BC.D0.B5.D0.BD.D1.82.D0.B0.D1.86.D0.B8.D1.8F"><span class="tocnumber">15</span> <span class="toctext">Комментарии и встроенная документация</span></a>
+<ul>
+<li class="toclevel-2 tocsection-24"><a href="http://wikijava.it-cache.net/index.php@title=Glava_2_Thinking_in_Java_4th_edition.html#.D0.94.D0.BE.D0.BA.D1.83.D0.BC.D0.B5.D0.BD.D1.82.D0.B0.D1.86.D0.B8.D1.8F_.D0.B2_.D0.BA.D0.BE.D0.BC.D0.BC.D0.B5.D0.BD.D1.82.D0.B0.D1.80.D0.B8.D1.8F.D1.85"><span class="tocnumber">15.1</span> <span class="toctext">Документация в комментариях</span></a></li>
+<li class="toclevel-2 tocsection-25"><a href="http://wikijava.it-cache.net/index.php@title=Glava_2_Thinking_in_Java_4th_edition.html#.D0.A1.D0.B8.D0.BD.D1.82.D0.B0.D0.BA.D1.81.D0.B8.D1.81"><span class="tocnumber">15.2</span> <span class="toctext">Синтаксис</span></a></li>
+<li class="toclevel-2 tocsection-26"><a href="http://wikijava.it-cache.net/index.php@title=Glava_2_Thinking_in_Java_4th_edition.html#.D0.92.D1.81.D1.82.D1.80.D0.BE.D0.B5.D0.BD.D0.BD.D1.8B.D0.B9_HTML"><span class="tocnumber">15.3</span> <span class="toctext">Встроенный <i>HTML</i></span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-27"><a href="http://wikijava.it-cache.net/index.php@title=Glava_2_Thinking_in_Java_4th_edition.html#.D0.9F.D1.80.D0.B8.D0.BC.D0.B5.D1.80.D1.8B_.D1.82.D0.B5.D0.B3.D0.BE.D0.B2"><span class="tocnumber">16</span> <span class="toctext">Примеры тегов</span></a>
+<ul>
+<li class="toclevel-2 tocsection-28"><a href="http://wikijava.it-cache.net/index.php@title=Glava_2_Thinking_in_Java_4th_edition.html#.D0.9F.D1.80.D0.B8.D0.BC.D0.B5.D1.80_.D0.B4.D0.BE.D0.BA.D1.83.D0.BC.D0.B5.D0.BD.D1.82.D0.B0.D1.86.D0.B8.D0.B8"><span class="tocnumber">16.1</span> <span class="toctext">Пример документации</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-29"><a href="http://wikijava.it-cache.net/index.php@title=Glava_2_Thinking_in_Java_4th_edition.html#.D0.A1.D1.82.D0.B8.D0.BB.D1.8C_.D0.BE.D1.84.D0.BE.D1.80.D0.BC.D0.BB.D0.B5.D0.BD.D0.B8.D1.8F_.D0.BF.D1.80.D0.BE.D0.B3.D1.80.D0.B0.D0.BC.D0.BC"><span class="tocnumber">17</span> <span class="toctext">Стиль оформления программ</span></a></li>
+<li class="toclevel-1 tocsection-30"><a href="http://wikijava.it-cache.net/index.php@title=Glava_2_Thinking_in_Java_4th_edition.html#.D0.A0.D0.B5.D0.B7.D1.8E.D0.BC.D0.B5"><span class="tocnumber">18</span> <span class="toctext">Резюме</span></a></li>
+</ul>
+</div>
+
+</td></tr></tbody></table>
+<h2><span class="mw-headline" id=".D0.92.D0.A1.D0.81_.D0.AF.D0.92.D0.9B.D0.AF.D0.95.D0.A2.D0.A1.D0.AF_.D0.9E.D0.91.D0.AA.D0.95.D0.9A.D0.A2.D0.9E.D0.9C">ВСЁ  ЯВЛЯЕТСЯ  ОБЪЕКТОМ</span></h2>
+<p>Хотя язык <i>Java</i> основан на <i>C++</i>, он является более «чистокровным» объектно-ориентированным языком. Как <i>C++</i>, так и <i>Java</i> относятся к семейству смешанных языков, но для создателей <i>Java</i> эта неоднородность была не так важна, если сравнивать с <i>C++</i>. Смешанный язык позволяет использовать несколько стилей программирования; причиной смешанной природы <i>C++</i> стало желание сохранить совместимость с языком <i>C</i>. Так как язык <i>C++</i> является надстройкой языка <i>C</i>,
+ он включает в себя много нежелательных характеристик своего 
+предшественника, что приводит к излишнему усложнению некоторых аспектов 
+этого языка. Язык программирования <i>Java</i> подразумевает, что вы 
+занимаетесь только объектно-ориентированным программированием. А это 
+значит, что прежде, чем начать с ним работать, нужно «переключиться» на 
+понятия объектно-ориентированного мира (если вы уже этого не сделали). 
+Выгода от этого начального усилия — возможность программировать на 
+языке, который по простоте изучения и использования превосходит все 
+остальные языки ООП. В этой главе мы рассмотрим основные компоненты <i>Java</i>-программы и узнаем, что в <i>Java</i> (почти) все является объектом.
+</p>
+<h2><span class="mw-headline" id=".D0.94.D0.BB.D1.8F_.D1.80.D0.B0.D0.B1.D0.BE.D1.82.D1.8B_.D1.81_.D0.BE.D0.B1.D1.8A.D0.B5.D0.BA.D1.82.D0.B0.D0.BC.D0.B8_.D0.B8.D1.81.D0.BF.D0.BE.D0.BB.D1.8C.D0.B7.D1.83.D1.8E.D1.82.D1.81.D1.8F_.D1.81.D1.81.D1.8B.D0.BB.D0.BA.D0.B8">Для работы с объектами используются ссылки</span></h2>
+<p>Каждый язык программирования имеет свои средства манипуляции данными.
+ Иногда программисту приходится быть постоянно в курсе, какая именно 
+манипуляция производится в программе. Вы работаете с самим объектом или 
+же с каким-то видом его косвенного представления (указатель в <i>C</i> или в <i>C++</i>), требующим особого синтаксиса? Все эти различия упрощены в <i>Java</i>.
+ Вы обращаетесь со всем как с объектом, и поэтому повсюду используется 
+единый последовательный синтаксис. Хотя вы обращаетесь со всем как с 
+объектом, идентификатор, которым вы манипулируете, на самом деле 
+представляет собой ссылку на объект. Представьте себе телевизор (объект)
+ с пультом дистанционного управления (ссылка). Во время владения этой 
+ссылкой у вас имеется связь с телевизором, но при переключении канала 
+или уменьшении громкости вы распоряжаетесь ссылкой, которая, в свою 
+очередь, манипулирует объектом. А если вам захочется перейти в другое 
+место комнаты, все еще управляя телевизором, вы берете с собой «ссылку»,
+ а не сам телевизор. Также пульт может существовать сам по себе, без 
+телевизора. Таким образом, сам факт наличия ссылки еще не означает 
+наличия присоединенного к ней объекта. Например, для хранения слова или 
+предложения создается ссылка <i><b>String</b></i>:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> <span class="kw21">String</span> s<span class="sy0">;</span></pre></div></div>
+<p>Однако здесь определяется только ссылка, но не объект. Если вы решите послать сообщение <i><b>s</b></i>, произойдет ошибка, потому что ссылка <i><b>s</b></i> на самом деле ни к чему не присоединена (телевизора нет). Значит, безопаснее всегда инициализировать ссылку при ее создании:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> <span class="kw21">String</span> s = <span class="st0">"asdf"</span><span class="sy0">;</span></pre></div></div>
+<p>В данном примере используется специальная возможность <i>Java</i>: инициализация строк текстом в кавычках. Обычно вы будете использовать более общий способ инициализации объектов.
+</p>
+<h2><span class="mw-headline" id=".D0.92.D1.81.D0.B5_.D0.BE.D0.B1.D1.8A.D0.B5.D0.BA.D1.82.D1.8B_.D0.B4.D0.BE.D0.BB.D0.B6.D0.BD.D1.8B_.D1.81.D0.BE.D0.B7.D0.B4.D0.B0.D0.B2.D0.B0.D1.82.D1.8C.D1.81.D1.8F_.D1.8F.D0.B2.D0.BD.D0.BE">Все объекты должны создаваться явно</span></h2>
+<p>Когда вы определяете ссылку, желательно присоединить ее к новому объекту. В основном это делается при помощи ключевого слова <i><b>new</b></i>. Фактически оно означает: «Создайте мне новый объект». В предыдущем примере можно написать:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> <span class="kw21">String</span> s = <span class="kw2">new</span> <span class="kw21">String</span><span class="br0">(</span><span class="st0">"asdf"</span><span class="br0">)</span>:</pre></div></div>
+<p>Это не только значит «предоставьте мне новый объект <i><b>String</b></i>», но также указывает, как создать строку посредством передачи начального набора символов. Конечно, кроме <i><b>String</b></i>, в <i>Java</i>
+ имеется множество готовых типов. Важнее то, что вы можете создавать 
+свои собственные типы. Вообще говоря, именно создание новых типов станет
+ вашим основным занятием при программировании на <i>Java</i>, и именно его мы будем рассматривать в книге.
+</p>
+<h2><span class="mw-headline" id=".D0.93.D0.B4.D0.B5_.D1.85.D1.80.D0.B0.D0.BD.D1.8F.D1.82.D1.81.D1.8F_.D0.B4.D0.B0.D0.BD.D0.BD.D1.8B.D0.B5">Где хранятся данные</span></h2>
+<p>Полезно отчетливо представлять, что происходит во время работы 
+программы — и в частности, как данные размещаются в памяти. Существует 
+пять разных мест для хранения данных:
+</p>
+<hr>
+<ul>
+<li><span style="color:#800000"><b>Регистры.</b> Это самое быстрое 
+хранилище, потому что данные хранятся прямо внутри процессора. Однако 
+количество регистров жестко ограничено, поэтому регистры используются 
+компилятором по мере необходимости. У вас нет прямого доступа к 
+регистрам, вы не сможете найти и малейших следов их поддержки в языке. 
+(С другой стороны, языки <i>C</i> и <i>C++</i> позволяют порекомендовать компилятору хранить данные в регистрах.)</span>
+</li>
+<li><span style="color:#800000"><b>Стек.</b> Эта область хранения данных
+ находится в общей оперативной памяти (RAM), но процессор предоставляет 
+прямой доступ к ней с использованием указателя стека. Указатель стека 
+перемещается вниз для выделения памяти или вверх для ее освобождения. 
+Это чрезвычайно  быстрый и эффективный способ размещения данных, по 
+скорости уступающий только регистрам. Во время обработки программы 
+компилятор <i>Java</i> должен знать жизненный цикл данных, размещаемых в
+ стеке. Это ограничение уменьшает гибкость ваших программ, поэтому, хотя
+ некоторые данные <i>Java</i> хранятся в стеке (особенно ссылки на объекты), сами объекты <i>Java</i> не помещаются в стек.
+</span></li>
+</ul>
+<p>
+</p>
+<ul>
+<li><span style="color:#800000"><b>Куча.</b> Пул памяти общего назначения (находится также в RAM), в котором размещаются все объекты <i>Java</i>.
+ Преимущество кучи состоит в том, что компилятору не обязательно знать, 
+как долго просуществуют находящиеся там объекты. Таким образом, работа с
+ кучей дает значительное преимущество в гибкости. Когда вам нужно 
+создать объект, вы пишете код с использованием <i><b>new</b></i>, и 
+память выделяется из кучи во время выполнения программы. Конечно, за 
+гибкость приходится расплачиваться: выделение памяти из кучи занимает 
+больше времени, чем в стеке (даже если бы вы могли явно создавать 
+объекты в стеке, как в <i>C++</i>).
+</span></li>
+</ul>
+<p>
+</p>
+<ul>
+<li><span style="color:#800000"><b>Постоянная память.</b> Значения 
+констант часто встраиваются прямо в код программы, так как они 
+неизменны. Иногда такие данные могут размещаться в постоянной памяти 
+(ROM), если речь идет о «встроенных» системах.</span>
+</li>
+</ul>
+<ul>
+<li><span style="color:#800000"><b>Не-оперативная память.</b> Если 
+данные располагаются вне программы, они могут существовать и тогда, 
+когда она не выполняется. Два основных примера: потоковые объекты (<i>streamed objects</i>), в которых объекты представлены в виде потока байтов, обычно используются  для посылки на другие машины, и долгоживущие (<i>persistent</i>)
+ объекты, которые запоминаются на диске и сохраняют свое состояние даже 
+после окончания работы программы. Особенностью этих видов хранения 
+данных является возможность перевода объектов в нечто, что может  быть 
+сохранено на другом носителе информации, а потом восстановлено в виде 
+обычного объекта, хранящегося в оперативной памяти. В  <i>Java</i> организована поддержка легковесного (<i>lightweight</i>)
+ сохранения состояния, а такие механизмы, как JDBC и Hibernate, 
+предоставляют более совершенную поддержку сохранения и выборки 
+информации об объектах из баз данных.</span>
+</li>
+</ul>
+<hr>
+<p><br>
+</p>
+<h2><span class="mw-headline" id=".D0.9E.D1.81.D0.BE.D0.B1.D1.8B.D0.B9_.D1.81.D0.BB.D1.83.D1.87.D0.B0.D0.B9:_.D0.BF.D1.80.D0.B8.D0.BC.D0.B8.D1.82.D0.B8.D0.B2.D0.BD.D1.8B.D0.B5_.D1.82.D0.B8.D0.BF.D1.8B">Особый случай: примитивные типы</span></h2>
+<p>Одна из групп типов, часто применяемых при программировании, требует 
+особого обращения. Их можно назвать «примитивными» типами (табл. 2.1). 
+Причина для особого обращения состоит в том, что создание объекта с 
+помощью <i><b>new</b></i> — особенно маленькой простой переменной — недостаточно эффективно, так как <i><b>new</b></i> помещает объекты в кучу. В таких случаях <i>Java</i> следует примеру языков <i>C</i> и <i>C++</i>. То есть вместо создания переменной с помощью <i><b>new</b></i> создается «автоматическая» переменная, <i>не являющаяся ссылкой</i>. Переменная напрямую хранит значение и располагается в стеке, так что операции с ней гораздо производительнее.
+</p><p>В <i>Java</i> размеры всех примитивных типов жестко фиксированы. 
+Они не меняются с переходом на иную машинную архитектуру, как это 
+происходит во многих других языках. Незыблемость размера — одна из 
+причин улучшенной переносимости <i>Java</i>-npoгpaмм.
+</p><p><b>Таблица 2.1. Примитивные типы</b>
+</p>
+<table class="wikitable">
+
+<tbody><tr>
+<th> Примитивный тип </th>
+<th> Размер, бит </th>
+<th> Минимум </th>
+<th> Максимум </th>
+<th> Тип упаковки
+</th></tr>
+<tr>
+<td> boolean (логические значения)         </td>
+<td> —  </td>
+<td> —       </td>
+<td> —       </td>
+<td>Boolean
+</td></tr>
+<tr>
+<td> char (символьные значения) 	        </td>
+<td> 16 </td>
+<td> Unicode 0 </td>
+<td> Unicode 2^16-1 </td>
+<td> Character
+</td></tr>
+<tr>
+<td> byte (байт) 	                        </td>
+<td> 8  </td>
+<td> -128    </td>
+<td> +127    </td>
+<td> Byte
+</td></tr>
+<tr>
+<td> short (короткое целое)  	        </td>
+<td> 16 </td>
+<td> -2^15   </td>
+<td> +2^15-1 </td>
+<td> Short
+</td></tr>
+<tr>
+<td> int (целое)  	                        </td>
+<td> 32 </td>
+<td> -2^31   </td>
+<td> +2^31-1 </td>
+<td> Integer
+</td></tr>
+<tr>
+<td> long (длинное целое) 	                </td>
+<td> 64 </td>
+<td> -2^63   </td>
+<td> +2^63-1 </td>
+<td> Long
+</td></tr>
+<tr>
+<td> float (число с плавающей запятой)     </td>
+<td> 32 </td>
+<td> IEEE754 </td>
+<td> IEEE754 </td>
+<td> Float
+</td></tr>
+<tr>
+<td> double (число с повышенной точностью) </td>
+<td> 64 </td>
+<td> IEEE754 </td>
+<td> IEEE754 </td>
+<td> Double
+</td></tr>
+<tr>
+<td> void (пустое значение) 	        </td>
+<td> —  </td>
+<td> — 	 </td>
+<td> — 	    </td>
+<td> Void
+</td></tr></tbody></table>
+<p>Все числовые значения являются знаковыми, так что не ищите слова <i>unsigned</i>.
+</p><p>Размер типа <i><b>boolean</b></i> явно не определяется; указывается лишь то, что этот тип может принимать значения <i><b>true</b></i> и <i><b>false</b></i>.
+</p><p>«Классы-обертки» позволяют создать в куче не-примитивный объект для представления примитивного типа. Например:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> <span class="kw3">char</span> с = <span class="st0">'х'</span><span class="sy0">;</span>
+ <span class="kw21">Character</span> ch = <span class="kw2">new</span> <span class="kw21">Character</span><span class="br0">(</span>c<span class="br0">)</span>,</pre></div></div>
+<p>Также можно использовать такой синтаксис:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> <span class="kw21">Character</span> ch = <span class="kw2">new</span> <span class="kw21">Character</span><span class="br0">(</span><span class="st0">'x'</span><span class="br0">)</span><span class="sy0">;</span></pre></div></div>
+<p>Механизм <i>автоматической упаковки</i> Java SE5 автоматически преобразует примитивный тип в объектную «обертку»:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> <span class="kw21">Character</span> ch = <span class="st0">'х'</span><span class="sy0">;</span></pre></div></div>
+<p>и обратно:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> <span class="kw3">char</span> с = ch<span class="sy0">;</span></pre></div></div>
+<p>Причины создания подобных конструкций будут объяснены в последующих главах.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id=".D0.A7.D0.B8.D1.81.D0.BB.D0.B0_.D0.BF.D0.BE.D0.B2.D1.8B.D1.88.D0.B5.D0.BD.D0.BD.D0.BE.D0.B9_.D1.82.D0.BE.D1.87.D0.BD.D0.BE.D1.81.D1.82.D0.B8">Числа повышенной точности</span></h2>
+<p>В <i>Java</i> существует два класса для проведения арифметических операций повышенной точности: <i><b>BigInteger</b></i> и <i><b>BigDecimal</b></i>.
+ Хотя эти классы примерно подходят под определение «классов-оберток», ни
+ один из них не имеет аналога среди примитивных типов.
+Оба класса содержат методы, производящие операции, аналогичные тем, что 
+проводятся над примитивными типами. Иначе говоря, с классами <i><b>Biglnteger</b></i> и <i><b>BigDecimal</b></i> можно делать то же, что с <i><b>int</b></i> или <i><b>float</b></i>,
+ просто для этого используются вызовы методов, а не встроенные операции.
+ Также из-за использования увеличенного объема данных операции занимают 
+больше времени. Приходится жертвовать скоростью ради точности.
+</p><p>Класс <i><b>BigInteger</b></i> поддерживает целые числа 
+произвольной точности. Это значит, что вы можете использовать 
+целочисленные значения любой величины без потери данных во время 
+операций.
+</p><p>Класс <i><b>BigDecimal</b></i> представляет числа с фиксированной
+ запятой произвольной точности; например, они могут применяться для 
+финансовых вычислений. За подробностями о конструкторах и методах этих 
+классов обращайтесь к документации <i>JDK</i>.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id=".D0.9C.D0.B0.D1.81.D1.81.D0.B8.D0.B2.D1.8B_.D0.B2_Java">Массивы в <i>Java</i></span></h2>
+<p>Фактически все языки программирования поддерживают массивы. Использование массивов в <i>C</i> и <i>C++</i>
+ небезопасно, потому что массивы в этих языках представляют собой 
+обычные блоки памяти. Если программа попытается получить доступ к 
+массиву за пределами его блока памяти или использовать память без 
+предварительной инициализации (типичные ошибки при программировании), 
+последствия могут быть непредсказуемы.
+</p><p>Одной из основных целей <i>Java</i> является безопасность, поэтому многие проблемы, досаждавшие программистам на <i>C</i> и <i>C++</i>, не существуют в <i>Java</i>. Массив в <i>Java</i>
+ гарантированно инициализируется, к нему невозможен доступ за пределами 
+его границ. Проверка границ массива обходится относительно дорого, как и
+ проверка индекса во время выполнения, но предполагается, что повышение 
+безопасности и подъем производительности стоят того (к тому же <i>Java</i>
+ иногда может оптимизировать эти операции). При объявлении массива 
+объектов на самом деле создается массив ссылок, и каждая из этих ссылок 
+автоматически инициализируется специальным значением, представленным 
+ключевым словом <i><b>null</b></i>. Оно означает, что ссылка на самом 
+деле не указывает на объект. Вам необходимо присоединять объект к каждой
+ ссылке перед тем, как ее использовать, или при попытке обращения по 
+ссылке <i><b>null</b></i> во время исполнения программы произойдет ошибка. Таким образом, типичные ошибки при работе с массивами в <i>Java</i> предотвращаются заблаговременно.
+</p><p>Также можно создавать массивы простейших типов. И снова 
+компилятор гарантирует инициализацию — выделенная для нового массива 
+память заполняется нулями. Массивы будут подробнее описаны в последующих
+ главах.
+В большинстве языков программирования концепция жизненного цикла 
+переменной требует относительно заметных усилий со стороны программиста.
+ Сколько «живет» переменная? Если ее необходимо удалить, когда это 
+следует делать? Путаница со сроками существования переменных может 
+привести ко многим ошибкам, и этот раздел показывает, насколько <i>Java</i> упрощает решение затронутого вопроса, выполняя всю работу по удалению за вас.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id=".D0.9E.D0.B3.D1.80.D0.B0.D0.BD.D0.B8.D1.87.D0.B5.D0.BD.D0.B8.D0.B5_.D0.BE.D0.B1.D0.BB.D0.B0.D1.81.D1.82.D0.B8_.D0.B4.D0.B5.D0.B9.D1.81.D1.82.D0.B2.D0.B8.D1.8F">Ограничение области действия</span></h2>
+<p>В большинстве процедурных языков существует понятие области действия (<i>scope</i>). Область действия определяет как видимость, так и срок жизни имен, определенных внутри нее. В '<b>C<i>, </i>C++'</b> и <i>Java</i> область действия устанавливается положением фигурных скобок <i><b>{ }</b></i>. Например:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> <span class="br0">{</span>
+   <span class="kw3">int</span> х = <span class="nu0">12</span><span class="sy0">;</span>
+   <span class="co1">// доступно только х </span>
+        <span class="br0">{</span>
+          <span class="kw3">int</span> q = <span class="nu0">96</span><span class="sy0">;</span>
+          <span class="co1">// доступны как х, так и q</span>
+        <span class="br0">}</span>
+   <span class="co1">// доступно ТОЛЬКО x</span>
+   <span class="co1">// q находится "за пределами видимости"</span>
+ <span class="br0">}</span></pre></div></div>
+<p>Переменная, определенная внутри области действия, доступна только в пределах этой области.
+Весь текст после символов <i><b>//</b></i> и до конца строки является комментарием. Отступы упрощают чтение программы на <i>Java</i>. Так как <i>Java</i>
+ относится к языкам со свободным форматом, дополнительные пробелы, 
+табуляция и переводы строк не влияют на результирующую программу.
+</p><p>Учтите, что следующая конструкция не разрешена, хотя в <i>C</i> и <i>C++</i> она возможна:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> <span class="br0">{</span> <span class="kw3">int</span> х = <span class="nu0">12</span><span class="sy0">;</span> 
+   <span class="br0">{</span>
+     <span class="kw3">int</span> х = <span class="nu0">96</span><span class="sy0">;</span> <span class="co1">// неверно</span>
+   <span class="br0">}</span>
+ <span class="br0">}</span></pre></div></div>
+<p>Компилятор объявит, что переменная <i><b>х</b></i> уже была определена. Таким образом, возможность языков <i>C</i> и <i>C++</i> «прятать» переменные во внешней области действия не поддерживается. Создатели <i>Java</i> посчитали, что она приводит к излишнему усложнению программ.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id=".D0.9E.D0.B1.D0.BB.D0.B0.D1.81.D1.82.D1.8C_.D0.B4.D0.B5.D0.B9.D1.81.D1.82.D0.B2.D0.B8.D1.8F_.D0.BE.D0.B1.D1.8A.D0.B5.D0.BA.D1.82.D0.BE.D0.B2">Область действия объектов</span></h2>
+<p>Объекты <i>Java</i> имеют другое время жизни в сравнении с примитивами. Объект, созданный оператором <i>Java</i> <i><b>new</b></i>, будет доступен вплоть до конца области действия. Если вы напишете:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> <span class="br0">{</span><span class="kw21">String</span> s = <span class="kw2">new</span> <span class="kw21">String</span><span class="br0">(</span><span class="st0">"строка"</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span> <span class="co1">// конец области действия</span></pre></div></div>
+<p>то ссылка <i><b>s</b></i> исчезнет в конце области действия. Однако объект типа <i><b>String</b></i>, на который указывала <i><b>s</b></i>,
+ все еще будет занимать память. В показанном фрагменте кода невозможно 
+получить доступ к объекту, потому что единственная ссылка вышла за 
+пределы видимости. В следующих главах вы узнаете, как передаются ссылки 
+на объекты и как их можно копировать во время работы программы.
+</p><p>Благодаря тому, что объекты, созданные <i><b>new</b></i>, существуют ровно столько, сколько вам нужно, в <i>Java</i> исчезает целый пласт проблем, присущих <i>C++</i>. В <i>C++</i>
+ приходится не только следить за тем, чтобы объекты продолжали 
+существовать на протяжении своего жизненного цикла, но и удалять объекты
+ после завершения работы с ними.
+</p><p>Возникает интересный вопрос. Если в <i>Java</i> объекты остаются в
+ памяти, что же мешает им постепенно занять всю память и остановить 
+выполнение программы? Именно это произошло бы в данном случае в <i>C++</i>. Однако в <i>Java</i> существует сборщик мусора (<i>garbage collector</i>), который наблюдает за объектами, созданными оператором <i><b>new</b></i>,
+ и определяет, на какие из них больше нет ссылок. Тогда он освобождает 
+память от этих объектов, которая становится доступной для дальнейшего 
+использования. Таким образом, вам никогда не придется «очищать» память 
+вручную. Вы просто создаете объекты, и как только надобность в них 
+отпадет, эти объекты исчезают сами по себе. При таком подходе исчезает 
+целый класс проблем программирования: так называемые «утечки памяти», 
+когда программист забывает освобождать занятую память.
+</p>
+<h2><span class="mw-headline" id=".D0.A1.D0.BE.D0.B7.D0.B4.D0.B0.D0.BD.D0.B8.D0.B5_.D0.BD.D0.BE.D0.B2.D1.8B.D1.85_.D1.82.D0.B8.D0.BF.D0.BE.D0.B2_.D0.B4.D0.B0.D0.BD.D0.BD.D1.8B.D1.85">Создание новых типов данных</span></h2>
+<p>Если все является объектом, что определяет строение и поведение 
+класса объектов? Другими словами, как устанавливается тип объекта? 
+Наверное, для этой цели можно было бы использовать ключевое слово <i>type</i>
+ («тип»); это было бы вполне разумно. Впрочем, с давних времен повелось,
+ что большинство объектно-ориентированных языков использовали ключевое 
+слово <i><b>class</b></i> в смысле «Я собираюсь описать новый тип объектов». За ключевым словом <i><b>class</b></i> следует имя нового типа. Например:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> <span class="kw2">class</span> ATypeName <span class="br0">{</span> <span class="coMULTI">/* Тело класса */</span> <span class="br0">}</span></pre></div></div>
+<p>Эта конструкция вводит новый тип, и поэтому вы можете теперь создавать объект этого типа ключевым словом <i><b>new</b></i>:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> ATypeName а = <span class="kw2">new</span> ATypeName<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span></pre></div></div>
+<p>Впрочем, объекту нельзя «приказать» что-то сделать (то есть послать 
+ему необходимые сообщения) до тех пор, пока для него не будут определены
+ методы.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id=".D0.9F.D0.BE.D0.BB.D1.8F_.D0.B8_.D0.BC.D0.B5.D1.82.D0.BE.D0.B4.D1.8B">Поля и методы</span></h2>
+<p>При определении класса (строго говоря, вся ваша работа на <i>Java</i>
+ сводится к определению классов, созданию объектов этих классов и 
+посылке сообщений этим объектам) в него можно включить две разновидности
+ элементов: поля (<i>fields</i>) (иногда называемые переменными класса) и методы (<i>methods</i>)
+ (еще называемые функциями класса). Поле представляет собой объект 
+любого типа, с которым можно работать по ссылке, или объект примитивного
+ типа. Если используется ссылка, ее необходимо инициализировать, чтобы 
+связать с реальным объектом (ключевым словом <i><b>new</b></i>, как было показано ранее).
+</p><p>Каждый объект использует собственный блок памяти для своих полей 
+данных; совместное использование обычных полей разными объектами класса 
+невозможно. Пример класса с полями:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1">  <span class="kw2">class</span> DataOnly <span class="br0">{</span> <span class="kw3">int</span> і<span class="sy0">;</span> <span class="kw3">double</span> d<span class="sy0">;</span> <span class="kw3">boolean</span> b<span class="sy0">;</span><span class="br0">}</span></pre></div></div>
+<p>Такой класс ничего не делает, кроме хранения данных, но вы можете создать объект этого класса:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1">  DataOnly data = <span class="kw2">new</span> DataOnly<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span></pre></div></div>
+<p>Полям класса можно присваивать значения, но для начала необходимо 
+узнать, как обращаться к членам объекта. Для этого сначала указывается 
+имя ссылки на объект, затем следует точка, а далее — имя члена, 
+принадлежащего объекту:
+</p>
+<pre>ссылка.член 
+</pre>
+<p>Например:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1">  data.і = <span class="nu0">47</span><span class="sy0">;</span>
+  data.<span class="me1">d</span> = <span class="nu0">1.1</span><span class="sy0">;</span>
+  data.<span class="me1">b</span> = <span class="kw4">false</span><span class="sy0">;</span></pre></div></div>
+<p>Также ваш объект может содержать другие объекты, данные которых вы 
+хотели бы изменить. Для этого просто продолжите «цепочку из точек». 
+Например:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1">  myPlane.<span class="me1">leftTank</span>.<span class="me1">capacity</span> = <span class="nu0">100</span><span class="sy0">;</span></pre></div></div>
+<p>Класс <i><b>DataOnly</b></i> не способен ни на что, кроме хранения 
+данных, так как в нем отсутствуют методы. Чтобы понять, как они 
+работают, необходимо разобраться, что такое аргументы и возвращаемые 
+значения. Вскоре мы вернемся к этой теме.
+</p>
+<h2><span class="mw-headline" id=".D0.97.D0.BD.D0.B0.D1.87.D0.B5.D0.BD.D0.B8.D1.8F_.D0.BF.D0.BE_.D1.83.D0.BC.D0.BE.D0.BB.D1.87.D0.B0.D0.BD.D0.B8.D1.8E_.D0.B4.D0.BB.D1.8F_.D0.BF.D0.BE.D0.BB.D0.B5.D0.B9_.D0.BF.D1.80.D0.B8.D0.BC.D0.B8.D1.82.D0.B8.D0.B2.D0.BD.D1.8B.D1.85_.D1.82.D0.B8.D0.BF.D0.BE.D0.B2">Значения по умолчанию для полей примитивных типов</span></h2>
+<p>Если поле данных относится к примитивному типу, ему гарантированно 
+присваивается значение по умолчанию, даже если оно не было 
+инициализировано явно (табл. 2.2).
+</p><p><b>Таблица 2.2. Значения по умолчанию для полей примитивных типов</b>
+</p>
+<pre><b>Примитивный тип</b>   <b>Значение по умолчанию</b>
+    boolean           false
+    char              '\u0000'(null)
+    byte              (byte)0
+    short             (short)0
+    int               0
+    long              0L
+    float             0.0f
+    double            0.0d
+</pre>
+<p>Значения по умолчанию гарантируются <i>Java</i> только в том случае, 
+если переменная используется как член класса. Тем самым обеспечивается 
+обязательная инициализация элементарных типов (что не делается в <i>C++</i>),
+ которая уменьшает вероятность ошибок. Однако значение по умолчанию 
+может быть неверным или даже недопустимым для вашей программы. 
+Переменные всегда лучше инициализировать явно.
+</p><p>Такая гарантия не относится к локальным переменным, которые не 
+являются полями класса. Допустим, в определении метода встречается 
+объявление переменной
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1">  <span class="kw3">int</span> х<span class="sy0">;</span></pre></div></div>
+<p>Переменной <i><b>х</b></i> будет присвоено случайное значение (как в <i>C</i> и <i>C++</i>); она не будет автоматически инициализирована нулем. Вы отвечаете за присвоение правильного значения перед использованием <i><b>х</b></i>. Если же вы забудете это сделать, в <i>Java</i> существует очевидное преимущество в сравнении с <i>C++</i>: компилятор выдает ошибку, в которой указано, что переменная не была инициализирована. (Многие компиляторы <i>C++</i> предупреждают о таких переменных, но в <i>Java</i> это считается ошибкой.)
+</p>
+<h2><span class="mw-headline" id=".D0.9C.D0.B5.D1.82.D0.BE.D0.B4.D1.8B.2C_.D0.B0.D1.80.D0.B3.D1.83.D0.BC.D0.B5.D0.BD.D1.82.D1.8B_.D0.B8_.D0.B2.D0.BE.D0.B7.D0.B2.D1.80.D0.B0.D1.89.D0.B0.D0.B5.D0.BC.D1.8B.D0.B5_.D0.B7.D0.BD.D0.B0.D1.87.D0.B5.D0.BD.D0.B8.D1.8F">Методы, аргументы и возвращаемые значения</span></h2>
+<h3><span class="mw-headline" id=".D0.A7.D1.82.D0.BE_.D1.82.D0.B0.D0.BA.D0.BE.D0.B5_-_.D0.BC.D0.B5.D1.82.D0.BE.D0.B4.3F">Что такое - метод?</span></h3>
+<p>Во многих языках (таких как <i>C</i> и <i>C++</i>) для обозначения именованной подпрограммы употребляется термин функция. В <i>Java</i>
+ чаще предпочитают термин метод, как бы подразумевающий «способ что-то 
+сделать». Если вам хочется, вы можете продолжать пользоваться термином 
+«функция». Разница только в написании, но в дальнейшем в книге будет 
+употребляться преимущественно термин «метод».
+Методы в <i>Java</i> определяют сообщения, принимаемые объектом. 
+Основные части метода — имя, аргументы, возвращаемый тип и тело. Вот 
+примерная форма:
+</p>
+<pre>возвращаемыйТип ИмяМетода( /* список аргументов */ ) { /* тело метода */}
+</pre>
+<p>Возвращаемый тип — это тип объекта, «выдаваемого» методом после его 
+вызова. Список аргументов определяет типы и имена для информации, 
+которую вы хотите передать в метод. Имя метода и его список аргументов 
+(объединяемые термином сигнатура) обеспечивают однозначную идентификацию
+ метода.
+</p><p>Методы в <i>Java</i> создаются только как части класса. Метод 
+может вызываться только для объекта, и этот объект должен обладать 
+возможностью произвести такой вызов. Если вы попытаетесь вызвать для 
+объекта несуществующий метод, то получите ошибку компиляции. Вызов 
+метода осуществляется следующим образом: сначала записывается имя 
+объекта, за ним точка, за ней следуют имя метода и его список 
+аргументов:
+</p>
+<pre>имяОбъекта.имяМетода(арг1, арг2, арг3)
+</pre>
+<p>Например, представьте, что у вас есть метод <i><b>f()</b></i>, вызываемый без аргументов, который возвращает значение типа <i><b>int</b></i>. Если у вас имеется в наличии объект <i><b>а</b></i>, для которого может быть вызван метод <i><b>f()</b></i>, в вашей власти использовать следующую конструкцию:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> <span class="kw3">int</span> х = a.<span class="me1">f</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span></pre></div></div>
+<p>Тип возвращаемого значения должен быть совместим с типом <i><b>х</b></i>.
+</p><p>Такое действие вызова метода часто называется посылкой сообщения объекту. В примере выше сообщением является вызов <i><b>f()</b></i>, а объектом — <i><b>а</b></i>. Объектно-ориентированное программирование нередко характеризуется обобщающей формулой «посылка сообщений объектам».
+</p><p><br>
+</p>
+<h3><span class="mw-headline" id=".D0.A1.D0.BF.D0.B8.D1.81.D0.BE.D0.BA_.D0.B0.D1.80.D0.B3.D1.83.D0.BC.D0.B5.D0.BD.D1.82.D0.BE.D0.B2">Список аргументов</span></h3>
+<p>Список аргументов определяет, какая информация передается методу. Как легко догадаться, эта информация — как и все в <i>Java</i>
+ — воплощается в форме объектов, поэтому в списке должны быть указаны 
+как типы передаваемых объектов, так и их имена. Как и в любой другой 
+ситуации в <i>Java</i>, где мы вроде бы работаем с объектами, на самом 
+деле используются ссылки. Впрочем, тип ссылки должен соответствовать 
+типу передаваемых данных. Если предполагается, что аргумент является 
+строкой (то есть объектом <i><b>String</b></i>), вы должны передать именно строку, или ожидайте сообщения об ошибке.
+</p><p>Рассмотрим метод, получающий в качестве аргумента строку (<i><b>String</b></i>). Следующее определение должно размещаться внутри определения класса, для которого создается метод:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> <span class="kw3">int</span> storage<span class="br0">(</span><span class="kw21">String</span> s<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw2">return</span> s.<span class="me1">length</span><span class="br0">(</span><span class="br0">)</span> <span class="sy0">*</span> <span class="nu0">2</span><span class="sy0">;</span>
+    <span class="br0">}</span></pre></div></div>
+<p>Метод указывает, сколько байтов потребуется для хранения данных определенной строки. (Строки состоят из символов <i><b>char</b></i>, размер которых — 16 бит, или 2 байта; это сделано для поддержки набора символов <i>Unicode</i>.) Аргумент имеет тип <i><b>String</b></i> и называется <i><b>s</b></i>. Получив объект <i><b>s</b></i>,
+ метод может работать с ним точно так же, как и с любым другим объектом 
+(то есть посылать ему сообщения). В данном случае вызывается метод <i><b>length()</b></i>, один из методов класса <i><b>String</b></i>, он возвращает количество символов в строке.
+</p><p>Также обратите внимание на ключевое слово <i><b>return</b></i>, 
+выполняющее два действия. Во-первых, оно означает: «выйти из метода, все
+ сделано». Во-вторых, если метод возвращает значение, это значение 
+указывается сразу же за командой <i><b>return</b></i>. В нашем случае возвращаемое значение — это результат вычисления<i><b> s.length() * 2</b></i>.
+</p><p><br>
+</p>
+<h3><span class="mw-headline" id=".D0.92.D0.BE.D0.B7.D0.B2.D1.80.D0.B0.D1.89.D0.B0.D0.B5.D0.BC.D0.BE.D0.B5_.D0.B7.D0.BD.D0.B0.D1.87.D0.B5.D0.BD.D0.B8.D0.B5">Возвращаемое значение</span></h3>
+<p>Метод может возвращать любой тип, но, если вы не хотите пользоваться этой возможностью, следует указать, что метод возвращает <i><b>void</b></i>. Ниже приведено несколько примеров:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> <span class="kw3">boolean</span> flag<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> <span class="kw4">true</span><span class="sy0">;</span> <span class="br0">}</span>
+ <span class="kw3">float</span> naturalLogBaseO <span class="br0">{</span> <span class="kw2">return</span> <span class="nu0">2.718</span><span class="sy0">;</span> <span class="br0">}</span>
+ <span class="kw3">void</span> nothing<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span><span class="sy0">;</span> <span class="br0">}</span>
+ <span class="kw3">void</span> nothing2<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span></pre></div></div>
+<p>Когда выходным типом является <i><b>void</b></i>, ключевое слово <i><b>return</b></i>
+ нужно лишь для завершения метода, поэтому при достижении конца метода 
+его присутствие необязательно. Вы можете покинуть метод в любой момент, 
+но если при этом указывается возвращаемый тип, отличный от <i><b>void</b></i>,
+ то компилятор заставит вас (сообщениями об ошибках) вернуть подходящий 
+тип независимо от того, в каком месте метода было прервано выполнение.
+</p><p>К этому моменту может сложиться впечатление, что программа — это 
+просто «свалка» объектов со своими методами, которые принимают другие 
+объекты в качестве аргументов и посылают им сообщения. По большому счету
+ так оно и есть, но в следующей главе вы узнаете, как производить 
+кропотливую низкоуровневую работу с принятием решений внутри метода. В 
+этой главе достаточно рассмотрения на уровне посылки сообщений.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id=".D0.A1.D0.BE.D0.B7.D0.B4.D0.B0.D0.BD.D0.B8.D0.B5_.D0.BF.D1.80.D0.BE.D0.B3.D1.80.D0.B0.D0.BC.D0.BC.D1.8B_.D0.BD.D0.B0_Java">Создание программы на <i>Java</i></span></h2>
+<p>Есть еще несколько вопросов, которые необходимо понять перед созданием первой программы на <i>Java</i>.
+</p>
+<h3><span class="mw-headline" id=".D0.92.D0.B8.D0.B4.D0.B8.D0.BC.D0.BE.D1.81.D1.82.D1.8C_.D0.B8.D0.BC.D0.B5.D0.BD">Видимость имен</span></h3>
+<p>Проблема управления именами присуща любому языку программирования. 
+Если имя используется в одном из модулей программы и оно случайно 
+совпало с именем в другом модуле у другого программиста, то как отличить
+ одно имя от другого и предотвратить их конфликт? В <i>C</i> это определенно является проблемой, потому что программа с трудом поддается контролю в условиях «моря» имен. Классы <i>C++</i> (на которых основаны классы <i>Java</i>) скрывают функции внутри классов, поэтому их имена не пересекаются с именами функций других классов. Однако в <i>C++</i>
+ дозволяется использование глобальных данных и глобальных функций, 
+соответственно, конфликты полностью не исключены. Для решения означенной
+ проблемы в <i>C++</i> введены пространства имен (<i>namespaces</i>), которые используют дополнительные ключевые слова.
+</p><p>В языке <i>Java</i> для решения этой проблемы было использовано свежее решение. Для создания уникальных имен библиотек разработчики <i>Java</i> предлагают использовать доменное имя, записанное «наоборот», так как эти имена всегда уникальны. Мое доменное имя — <i>MindView.net</i>,
+ и утилиты моей программной библиотеки могли бы называться 
+net.mindview.utility.foibles. За перевернутым доменным именем следует 
+перечень каталогов, разделенных точками.
+</p><p>В версиях <i>Java</i> 1.0 и 1.1 доменные суффиксы <i>com, edu, org, net</i> по умолчанию записывались заглавными буквами, таким образом, имя библиотеки выглядело так: <i><b>NET.mindview.utility.foibles</b></i>. В процессе разработки <i>Java</i> 2 было обнаружено, что принятый подход создает проблемы, и с тех пор имя пакета записывается строчными буквами.
+</p><p>Такой механизм значит, что все ваши файлы автоматически 
+располагаются в своих собственных пространствах имен, и каждый класс в 
+файле должен иметь уникальный идентификатор. Язык сам предотвращает 
+конфликты имен.
+</p>
+<h3><span class="mw-headline" id=".D0.98.D1.81.D0.BF.D0.BE.D0.BB.D1.8C.D0.B7.D0.BE.D0.B2.D0.B0.D0.BD.D0.B8.D0.B5_.D0.B2.D0.BD.D0.B5.D1.88.D0.BD.D0.B8.D1.85_.D0.BA.D0.BE.D0.BC.D0.BF.D0.BE.D0.BD.D0.B5.D0.BD.D1.82.D0.BE.D0.B2">Использование внешних компонентов</span></h3>
+<p>Когда вам понадобится использовать уже определенный класс в вашей 
+программе, компилятор должен знать, как этот класс обнаружить. Конечно, 
+класс может уже находиться в том же самом исходном файле, откуда он 
+вызывается. В таком случае вы просто его используете — даже если 
+определение класса следует где-то дальше в файле (В <i>Java</i> не существует проблемы «опережающих ссылок».)
+</p><p>Но что, если класс находится в каком-то внешнем файле? Казалось 
+бы, компилятор должен запросто найти его, но здесь существует проблема. 
+Представьте, что вам необходим класс с неким именем, для которого 
+имеется более одного определения (вероятно, отличающихся друг от друга).
+ Или, что еще хуже, представьте, что вы пишете программу и при ее 
+создании в библиотеку добавляется новый класс, конфликтующий с именем 
+уже существующего класса. 
+</p><p>Для решения проблемы вам необходимо устранить все возможные неоднозначности. Задача решается при помощи ключевого слова <i><b>import</b></i>, которое говорит компилятору <i>Java</i>, какие точно классы вам нужны. Слово <i><b>import</b></i> приказывает компилятору загрузить пакет (<i><b>package</b></i>),
+ представляющий собой библиотеку классов. (В других языках библиотека 
+может состоять как из классов, так и из функций и данных, но в <i>Java</i> весь код принадлежит классам.)
+</p><p>Большую часть времени вы будете работать с компонентами из стандартных библиотек <i>Java</i>, поставляющихся с компилятором. Для них не нужны длинные обращенные доменные имена; вы просто записываете:
+</p>
+<pre>import java.util.ArrayList;
+</pre>
+<p>чтобы сказать компилятору, что вы хотите использовать класс <i><b>ArrayList</b></i>. Впрочем, пакет <i><b>util</b></i>
+ содержит множество классов, и вам могут понадобиться несколько из них. 
+Чтобы избежать последовательного перечисления классов, используйте 
+подстановочный символ <i><b>*</b></i>&nbsp;:
+</p>
+<pre>import java.util.*;
+</pre>
+<p>Как правило, импортируется целый набор классов именно таким образом, а не выписывается каждый класс по отдельности.
+</p>
+<h3><span class="mw-headline" id=".D0.9A.D0.BB.D1.8E.D1.87.D0.B5.D0.B2.D0.BE.D0.B5_.D1.81.D0.BB.D0.BE.D0.B2.D0.BE_static">Ключевое слово static</span></h3>
+<p>Обычно при создании класса вы описываете, как объекты этого класса 
+ведут себя и как они выглядят. Объект появляется только после того, как 
+он будет создан ключевым словом <i><b>new</b></i>, и только начиная с этого момента для него выделяется память и появляется возможность вызова методов.
+</p><p>Но есть две ситуации, в которых такой подход недостаточен. Первая
+ — это когда некоторые данные должны храниться «в единственном числе» 
+независимо от того, сколько было создано объектов класса. Вторая — когда
+ вам потребуется метод, не привязанный ни к какому конкретному объекту 
+класса (то есть метод, который можно вызвать даже при полном отсутствии 
+объектов класса). 
+</p><p>Такой эффект достигается использованием ключевого слова <i><b>static</b></i>, делающего элемент класса статическим. Когда вы объявляете что-либо как <i><b>static</b></i>,
+ это означает, что данные или метод не привязаны к определенному 
+экземпляру этого класса. Поэтому, даже если вы никогда не создавали 
+объектов класса, вы можете вызвать статический метод или получить доступ
+ к статическим данным. С обычным объектом вам необходимо сначала создать
+ его и использовать для вызова метода или доступа к информации, так как 
+нестатические данные и методы должны точно знать объект, с которым 
+работают.
+</p><p>Некоторые объектно-ориентированные языки используют термины 
+данные уровня класса и методы уровня класса, подразумевая, что данные и 
+методы существуют только на уровне класса в целом, а не для отдельных 
+объектов этого класса. Иногда эти термины встречаются в литературе по <i>Java</i>.
+</p><p>Чтобы сделать данные или метод статическими, просто поместите ключевое слово <i><b>static</b></i> перед их определением. Например, следующий код создает статическое поле класса и инициализирует его:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> <span class="kw2">class</span> StaticTest <span class="br0">{</span>
+  <span class="kw2">static</span> <span class="kw3">int</span> і =<span class="nu0">47</span><span class="sy0">;</span>
+ <span class="br0">}</span></pre></div></div>
+<p>Теперь, даже при создании двух объектов <i><b>StaticTest</b></i>, для элемента <i><b>StaticTest.i</b></i> выделяется единственный блок памяти. Оба объекта совместно используют одно значение <i><b>і</b></i>. Пример:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> StaticTest stl = <span class="kw2">new</span> StaticTest<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+ StaticTest st2 = <span class="kw2">new</span> StaticTest<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span></pre></div></div>
+<p>В данном примере как <i><b>st1.i</b></i>, так и <i><b>st2.i</b></i> имеют одинаковые значения, равные <i>47</i>,
+ потому что расположены они в одном блоке памяти. Существует два способа
+ обратиться к статической переменной. Как было видно выше, вы можете 
+указать ее с помощью объекта, например <i><b>st2.i</b></i>. Также можно обратиться к ней прямо по имени класса (для нестатических членов класса такая возможность отсутствует):
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> StaticTest.<span class="me1">i</span>++<span class="sy0">;</span></pre></div></div>
+<p>Оператор <i><b>++</b></i> увеличивает значение на единицу (инкремент). После выполнения этой команды значения <i><b>st1.i</b></i> и <i><b>st2.i</b></i> будут равны <i>48</i>.
+</p><p>Синтаксис с именем класса является предпочтительным, потому что он не только подчеркивает, что переменная описана как <i><b>static</b></i>, но и в некоторых случаях предоставляет компилятору больше возможностей для оптимизации.
+</p><p>Та же логика верна и для статических методов. Вы можете 
+обратиться к такому методу или через объект, как это делается для всех 
+методов, или в специальном синтаксисе <b>имяКласса.метод()</b>. Статические методы определяются по аналогии со статическими данными:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1">  <span class="kw2">class</span> Incrementable <span class="br0">{</span>
+     <span class="kw2">static</span> <span class="kw3">void</span> increment <span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> StaticTest.<span class="me1">i</span>++<span class="sy0">;</span> <span class="br0">}</span>
+ <span class="br0">}</span></pre></div></div>
+<p>Нетрудно заметить, что метод increment() класса Incrementable увеличивает значение статического поля <i><b>і</b></i>. Метод можно вызвать стандартно, через объект:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1">   Incrementable sf = <span class="kw2">new</span> Incrementable<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+   sf.<span class="me1">increment</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span></pre></div></div>
+<p>Или, поскольку <i><b>increment()</b></i> является статическим, можно вызвать его с прямым указанием класса:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1">  Incrementable.<span class="me1">increment</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span></pre></div></div>
+<p>Применительно к полям ключевое слово <i><b>static</b></i> радикально 
+меняет способ определения данных: статические данные существуют на 
+уровне класса, в то время как нестатические данные существуют на уровне 
+объектов, но в отношении изменения не столь принципиальны. Одним из 
+важных применений <i><b>static</b></i> является определение методов, которые могут вызываться без объектов. В частности, это абсолютно необходимо для метода <i><b>main()</b></i>, который представляет собой точку входа в приложение.
+</p>
+<h3><span class="mw-headline" id=".D0.9D.D0.B0.D1.88.D0.B0_.D0.BF.D0.B5.D1.80.D0.B2.D0.B0.D1.8F_.D0.BF.D1.80.D0.BE.D0.B3.D1.80.D0.B0.D0.BC.D0.BC.D0.B0_.D0.BD.D0.B0_Java">Наша первая программа на <i>Java</i></span></h3>
+<p>Наконец, долгожданная программа. Она запускается, выводит на экран строку, а затем текущую дату, используя стандартный класс <i><b>Date</b></i> из стандартной библиотеки <i>Java</i>:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">// НеlloDate.java</span>
+<span class="kw2">import</span> <span class="co2">java.util.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> HelloDate <span class="br0">{</span>
+&nbsp;
+       <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+            <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">(</span><span class="st0">"Привет, сегодня: "</span><span class="br0">)</span><span class="sy0">;</span> 
+            <span class="kw21">System</span> out println<span class="br0">(</span><span class="kw2">new</span> <span class="kw166">Date</span><span class="br0">(</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+       <span class="br0">}</span>
+&nbsp;
+<span class="br0">}</span></pre></div></div>
+<p>После запуска программы получим текст вида:
+</p>
+<pre>Привет, сегодня:
+Wed Oct 05 14:39:36 MDT 2005
+</pre>
+<p>В начале каждого файла с программой должны находиться директивы <i><b>import</b></i>,
+ в которых перечисляются все дополнительные классы, необходимые вашей 
+программе. Обратите внимание на слово «дополнительные» — существует 
+целая библиотека классов, присоединяющаяся автоматически к каждому файлу
+ <i>Java</i>: <i><b>java.lang</b></i>. Запустите ваш браузер и просмотрите документацию фирмы <i>Sun</i>. (Если вы не загрузили документацию <i>JDK</i> с сайта <a rel="nofollow" class="external free" href="http://java.sun.com/">http://java.sun.com</a> или не получили ее иным способом, обязательно это сделайте.) Учтите, что документация не входит в комплект <i>JDK</i>, ее необходимо загрузить отдельно. Взглянув на список пакетов, вы найдете в нем различные библиотеки классов, поставляемые с <i>Java</i>. 
+</p><p>Выберите <i><b>java.lang</b></i>. Здесь вы увидите список всех классов, составляющих эту библиотеку. Так как пакет <i><b>java.lang</b></i>. автоматически включается в каждую программу на <i>Java</i>, эти классы всегда доступны для использования. Класса <i><b>Date</b></i> в нем нет, а это значит, что для его использования придется импортировать другую библиотеку. 
+</p><p>Если вы не знаете, в какой библиотеке находится нужный класс, или если вам понадобится увидеть все классы, выберите <i><b>Tree</b></i> (дерево классов) в документации. В нем можно обнаружить любой из доступных классов <i>Java</i>. Функция поиска текста в браузере поможет найти класс <i><b>Date</b></i>. Результат поиска показывает, что класс называется <i><b>java.util.Date</b></i>, то есть находится в библиотеке <i><b>util</b></i>, и для получения доступа к классу <i><b>Date</b></i> необходимо будет использовать директиву import для загрузки пакета <i><b>java.util.*</b></i>.
+</p><p>Если вы вернетесь к началу, выберете пакет <i><b>java.lang</b></i>, а затем класс <i><b>System</b></i>, то увидите, что он имеет несколько полей. При выборе поля <i><b>out</b></i> обнаруживается, что оно представляет собой статический объект <i><b>PrintStream</b></i>. Так как поле описано с ключевым словом <i><b>static</b></i>, вам не понадобится создавать объекты. Действия, которые можно выполнять с объектом <i><b>out</b></i>, определяются его типом: <i><b>PrintStream</b></i>. 
+</p><p>Для удобства в описание этого типа включена гиперссылка, и, если 
+щелкнуть на ней, вы обнаружите список всех доступных методов. Этих 
+методов довольно много, и они будут позже рассмотрены в книге. Сейчас 
+нас интересует только метод <i><b>println()</b></i>, вызов которого 
+фактически означает: «вывести то, что передано методу, на консоль и 
+перейти на новую строку». Таким образом, в любую программу на <i>Java</i> можно включить вызов вида <i><b>System.out.println</b></i> ("что-то"), чтобы вывести сообщение на консоль.
+</p><p>Имя класса совпадает с именем файла. Когда вы создаете отдельную 
+программу, подобную этой, один из классов, описанных в файле, должен 
+иметь совпадающее с ним название. (Если это условие нарушено, компилятор
+ сообщит об ошибке.) Одноименный класс должен содержать метод с именем <i><b>main()</b></i> со следующей сигнатурой и возвращаемым типом:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span></pre></div></div>
+<p>Ключевое слово <i><b>public</b></i> обозначает, что метод доступен для внешнего мира (об этом подробно рассказывает глава 5). Аргументом метода <i><b>main()</b></i> является массив строк. В данной программе массив <i><b>args</b></i> не используется, но компилятор <i>Java</i> настаивает на его присутствии, так как массив содержит параметры, переданные программе в командной строке.
+</p><p>Строка, в которой распечатывается число, довольно интересна:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">println</span> <span class="br0">(</span><span class="kw2">new</span> <span class="kw166">Date</span><span class="br0">(</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span></pre></div></div>
+<p>Аргумент представляет собой объект <i><b>Date</b></i>, который создается лишь затем, чтобы передать свое значение (автоматически преобразуемое в <i><b>String</b></i>) методу <i><b>println()</b></i>. Как только команда будет выполнена, объект <i><b>Date</b></i>
+ становится ненужным, сборщик мусора заметит это, и в конце концов сам 
+удалит его. Нам не нужно беспокоиться о его удалении самим.
+</p>
+<h3><span class="mw-headline" id=".D0.9A.D0.BE.D0.BC.D0.BF.D0.B8.D0.BB.D1.8F.D1.86.D0.B8.D1.8F_.D0.B8_.D0.B2.D1.8B.D0.BF.D0.BE.D0.BB.D0.BD.D0.B5.D0.BD.D0.B8.D0.B5">Компиляция и выполнение</span></h3>
+<p>Чтобы скомпилировать и выполнить эту программу, а также все остальные программы в книге, вам понадобится среда разработки <i>Java</i>.
+ Существует множество различных сред разработок от сторонних 
+производителей, но в этой книге мы предполагаем, что вы избрали 
+бесплатную среду <i>JDK Java Developer's Kit</i>) от фирмы <i>Sun</i>. 
+Если же вы используете другие системы разработки программ, вам придется 
+просмотреть их документацию, чтобы узнать, как компилировать и запускать
+ программы.
+</p><p>Подключитесь к Интернету и посетите сайт <a rel="nofollow" class="external free" href="http://java.sun.com/">http://java.sun.com</a>. Там вы найдете информацию и необходимые ссылки, чтобы загрузить и установить <i>JDK</i> для вашей платформы.
+</p><p>Как только вы установите <i>JDK</i> и правильно установите пути запуска, в результате чего система сможет найти утилиты <i><b>javac</b></i> и <i><b>java</b></i>, загрузите и распакуйте исходные тексты программ для этой книги (их можно загрузить с сайта <a rel="nofollow" class="external free" href="http://www.mindview.net/">http://www.MindView.net</a>). Там вы обнаружите каталоги (папки) для каждой главы книги. Перейдите в папку <i><b>objects</b></i> и выполните команду
+</p>
+<pre>javac HelloDate java
+</pre>
+<p>Команда не должна выводить каких-либо сообщений. Если вы получили сообщение об ошибке, значит, вы неверно установили <i>JDK</i> и вам нужно разобраться со своими проблемами.
+</p><p>И наоборот, если все прошло успешно, выполните следующую команду:
+</p>
+<pre>java НеlloDate
+</pre>
+<p>и вы увидите сообщение и число как результат работы программы.
+</p><p>Эта последовательность действий позволяет откомпилировать и 
+выполнить любую программу-пример из этой книги. Однако также вы увидите,
+ что каждая папка содержит файл <i><b>build.xml</b></i> с командами для инструмента ant по автоматической сборке файлов для данной главы. После установки <i><b>ant</b></i> с сайта <a rel="nofollow" class="external free" href="http://jakarta.apache.org/ant">http://jakarta.apache.org/ant</a> можно будет просто набрать команду <i><b>ant</b></i> в командной строке, чтобы скомпилировать и запустить программу из любого примера. Если <i><b>ant</b></i> на вашем компьютере еще не установлен, команды <i><b>javac</b></i> и <i><b>java</b></i> придется вводить вручную.
+</p>
+<h2><span class="mw-headline" id=".D0.9A.D0.BE.D0.BC.D0.BC.D0.B5.D0.BD.D1.82.D0.B0.D1.80.D0.B8.D0.B8_.D0.B8_.D0.B2.D1.81.D1.82.D1.80.D0.BE.D0.B5.D0.BD.D0.BD.D0.B0.D1.8F_.D0.B4.D0.BE.D0.BA.D1.83.D0.BC.D0.B5.D0.BD.D1.82.D0.B0.D1.86.D0.B8.D1.8F">Комментарии и встроенная документация</span></h2>
+<p>В <i>Java</i> приняты два вида комментариев. Первый — традиционные комментарии в стиле <i>C</i>, также унаследованные языком <i>C++</i>. Такие комментарии начинаются с комбинации <i><b>/*</b></i> и распространяются иногда на множество строк, после чего за­канчиваются символами <i><b>*/</b></i>. Заметьте, что многие программисты начинают каждую новую строку таких комментариев символом <i><b>*</b></i>, соответственно, часто можно увидеть следующее:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> <span class="coMULTI">/* Это комментарий,
+ *  распространяющийся на
+ *  несколько строк */</span></pre></div></div>
+<p>Впрочем, все символы между <i><b>/*</b></i> и <i><b>*/</b></i> игнорируются, и с таким же успехом можно использовать запись
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> <span class="coMULTI">/* Это комментарий, 
+распространяющийся на несколько строк */</span></pre></div></div>
+<p>Второй вид комментария пришел из языка <i>C++</i>. Однострочный комментарий начинается с комбинации <i><b>//</b></i>
+ и продолжается до конца строки. Такой стиль очень удобен и прост, 
+поэтому широко используется на практике. Вам не приходится искать на 
+клавиатуре сначала символ <i><b>/</b></i>, а затем <i><b>*</b></i> 
+(вместо этого вы дважды нажимаете одну и ту же клавишу), и не нужно 
+закрывать комментарий. Поэтому часто можно увидеть такие примеры:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> <span class="co1">// это комментарий в одну строку</span></pre></div></div>
+<h3><span class="mw-headline" id=".D0.94.D0.BE.D0.BA.D1.83.D0.BC.D0.B5.D0.BD.D1.82.D0.B0.D1.86.D0.B8.D1.8F_.D0.B2_.D0.BA.D0.BE.D0.BC.D0.BC.D0.B5.D0.BD.D1.82.D0.B0.D1.80.D0.B8.D1.8F.D1.85">Документация в комментариях</span></h3>
+<p>Пожалуй, основные проблемы с документированием кода связаны с его 
+сопровождением. Если код и его документация существуют раздельно, 
+корректировать описание программы при каждом ее изменении становится 
+задачей не из легких. Решение выглядит очень просто: совместить код и 
+документацию. Проще всего объединить их в одном файле. Но для полноты 
+картины понадобится специальный синтаксис комментариев, чтобы помечать 
+документацию, и инструмент, который извлекал бы эти комментарии и 
+оформлял их в подходящем виде. Именно это было сделано в <i>Java</i>.
+</p><p>Инструмент для извлечения комментариев называется <i><b>javadoc</b></i>, он является частью пакета <i>JDK</i>. Некоторые возможности компилятора <i>Java</i>
+ используются в нем для поиска пометок в комментариях, включенных в ваши
+ программы. Он не только извлекает помеченную информацию, но также 
+узнает имя класса или метода, к которому относится данный фрагмент 
+документации. Таким образом, с минимумом затраченных усилий можно 
+создать вполне приличную сопрово­дительную документацию для вашей 
+программы.
+</p><p>Результатом работы программы <i><b>javadoc</b></i> является <i>HTML</i>-файл, который можно просмотреть в браузере. Таким образом, утилита <i><b>javadoc</b></i>
+ позволяет создавать и поддерживать единый файл с исходным текстом и 
+автоматически строить полезную документацию. В результае получается 
+простой и практичный стандарт по созданию документации, поэтому мы можем
+ ожидать (и даже требовать) наличия документации для всех библиотек <i>Java</i>.
+</p><p>Вдобавок, вы можете дополнить <i><b>javadoc</b></i> своими собственными расширениями, называемыми доклетами (<i>doclets</i>), в которых можно проводить специальные операции над обрабатываемыми данными (например, выводить их в другом формате).
+</p><p>Далее следует лишь краткое введение и обзор основных возможностей <i><b>javadoc</b></i>. Более подробное описание можно найти в документации <i>JDK</i>. Распаковав документацию, загляните в папку <i><b>tooldocs</b></i> (или перейдите по ссылке <i><b>tooldocs</b></i>).
+</p>
+<h3><span class="mw-headline" id=".D0.A1.D0.B8.D0.BD.D1.82.D0.B0.D0.BA.D1.81.D0.B8.D1.81">Синтаксис</span></h3>
+<p>Все команды <i><b>javadoc</b></i> находятся только внутри комментариев <i><b>/**</b></i>. Комментарии, как обычно, завершаются последовательностью <i><b>*/</b></i>. Существует два основных способа работы с <i><b>javadoc</b></i>: встраивание <i>HTML</i>-текста
+ или использование разметки документации (тегов). Самостоятельные теги 
+документации — это команды, которые начинаются символом <i><b>@</b></i> и размещаются с новой строки комментария.
+</p><p>(Начальный символ <i><b>*</b></i> игнорируется.) Встроенные теги документации могут располагаться в любом месте комментария <i><b>javadoc</b></i>, также начинаются со знака <i><b>@</b></i>, но должны заключаться в фигурные скобки.
+</p><p>Существует три вида документации в комментариях для разных 
+элементов кода: класса, переменной и метода. Комментарий к классу 
+записывается прямо перед его определением; комментарий к переменной 
+размещается непосредственно перед ее определением, а комментарий к 
+методу тоже записывается прямо перед его определением. Простой пример:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: object/Documentation1.java </span>
+  <span class="co3">/** Комментарий к классу */</span> 
+  <span class="kw2">public</span> <span class="kw2">class</span> Documentation1 <span class="br0">{</span>
+  <span class="co3">/** Комментарий к переменной */</span> 
+  <span class="kw2">public</span> <span class="kw3">int</span> і<span class="sy0">;</span>
+  <span class="co3">/** Комментарий к методу */</span> 
+  <span class="kw2">public</span> <span class="kw3">void</span> f<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span> 
+ <span class="br0">}</span> <span class="co1">///:~</span></pre></div></div>
+<p>Заметьте, что <i><b>javadoc</b></i> обрабатывает документацию в комментариях только для членов класса с уровнем доступа <i><b>public</b></i> и <i><b>protected</b></i>. Комментарии для членов <i><b>private</b></i> и членов с доступом в пределах пакета игнорируются, и документация по ним не строится. (Впрочем, флаг -<i><b>private</b></i> включает обработку и этих членов). Это вполне логично, поскольку только <i><b>public</b></i>- и <i><b>protected</b></i>-члены доступны вне файла, и именно они интересуют программиста-клиента.
+</p><p>Результатом работы программы является <i>HTML</i>-файл в том же формате, что и остальная документация для <i>Java</i>,
+ так что пользователям будет привычно и удобно просматривать и вашу 
+документацию. Попробуйте набрать текст предыдущего примера, «пропустите»
+ его через <i><b>javadoc</b></i> и просмотрите полученный <i>HTML</i>-файл, чтобы увидеть результат.
+</p>
+<h3><span class="mw-headline" id=".D0.92.D1.81.D1.82.D1.80.D0.BE.D0.B5.D0.BD.D0.BD.D1.8B.D0.B9_HTML">Встроенный <i>HTML</i></span></h3>
+<p><i><b>javadoc</b></i> вставляет команды <i>HTML</i> в итоговый документ. Это позволяет полностью использовать все возможности <i>HTML</i>; впрочем, данная возможность прежде всего ориентирована на форматирование кода:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: object/Documentation2.java</span>
+ <span class="co3">/**
+ * &lt;pre&gt;
+ * System.out.println(new Date());
+ * &lt;/pre&gt;
+ */</span>
+ <span class="kw2">public</span> <span class="kw2">class</span> Documentation2 <span class="br0">{</span><span class="br0">}</span></pre></div></div>
+<p>Вы можете использовать <i>HTML</i> точно так же, как в обычных страницах, чтобы привести описание к нужному формату:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: object/Documentation3.java</span>
+ <span class="co3">/**
+ * You can &lt;em&gt;even&lt;/em&gt; insert a list:
+ * &lt;ol&gt;
+ * &lt;li&gt; Пункт первый
+ * &lt;li&gt; Пункт второй
+ * &lt;li&gt; Пункт третий
+ * &lt;/ol&gt;
+ */</span>
+ <span class="kw2">public</span> <span class="kw2">class</span> Documentation3 <span class="br0">{</span><span class="br0">}</span></pre></div></div>
+<p><i><b>javadoc</b></i> игнорирует звездочки в начале строк, а также 
+начальные пробелы. Текст переформатируется таким образом, чтобы он 
+отвечал виду стандартной документации. Не используйте заголовки вида <b>&lt;</b>h1<b>&gt;</b> или <b>&lt;</b>hr<b>&gt;</b> во встроенном <i>HTML</i>, потому что <i><b>javadoc</b></i> вставляет свои собственные заголовки и ваши могут с ними «пересечься».
+</p><p>Встроенный <i>HTML</i>-код поддерживается всеми типами документации в комментариях — для классов, переменных или методов.
+</p>
+<h2><span class="mw-headline" id=".D0.9F.D1.80.D0.B8.D0.BC.D0.B5.D1.80.D1.8B_.D1.82.D0.B5.D0.B3.D0.BE.D0.B2">Примеры тегов</span></h2>
+<p>Далее описаны некоторые из тегов <i><b>javadoc</b></i>, используемых при документировании программы. Прежде чем применять <i><b>javadoc</b></i> для каких-либо серьезных целей, просмотрите руководство по нему в документации пакета <i>JDK</i>, чтобы получить полную информацию о его использовании.
+</p>
+<pre><i><b>@see</b></i>: ссылка на другие классы
+</pre>
+<p>Тег позволяет ссылаться на документацию к другим классам. <i><b> javadoc</b></i> там, где были записаны теги <i><b>@see</b></i>,  создает <i>HTML</i>-ссылки на другие документы. Основные формы использования тега:
+</p>
+<pre><i><b>@see</b></i> имя класса
+<i><b>@see</b></i> полное-имя-класса
+<i><b>@see</b></i> полное-имя-класса#имя-метода
+</pre>
+<p>Каждая из этих форм включает в генерируемую документацию замечание <i>See Also</i> («см. также») со ссылкой на указанные классы. <i><b>javadoc</b></i> не проверяет передаваемые ему гиперссылки.
+</p>
+<pre>{<i><b>@link</b></i> пакет.класс#член_класса метка}
+</pre>
+<p>Тег очень похож на <i><b>@see</b></i>, не считая того, что он может использоваться как встроенный, а вместо стандартного текста <i>See Also</i> в ссылке размещается текст, указанный в поле метка.
+</p>
+<pre>{<i><b>@docRoot</b></i>}
+</pre>
+<p>Позволяет получить относительный путь к корневой папке, в которой 
+находится документация. Полезен при явном задании ссылок на страницы из 
+дерева документации.
+</p>
+<pre>{<i><b>@inheritDoc</b></i>}
+</pre>
+<p>Наследует документацию базового класса, ближайшего к документируемому классу, в текущий файл с документацией.
+</p>
+<pre><i><b>@version</b></i>
+</pre>
+<p>Имеет следующую форму:
+</p>
+<pre><i><b>@version</b></i> информация-о-версии
+</pre>
+<p>Поле информации о версии содержит ту информацию, которую вы сочли нужным включить. Когда в командной строке <i><b>javadoc</b></i> указывается опция <i><b>-version</b></i>, в созданной документации специально отводится место, заполняемое информа­цией о версиях.
+</p>
+<pre><i><b>@author</b></i>
+</pre>
+<p>Записывается в виде
+</p>
+<pre><i><b>@author</b></i> информация-об-авторе
+</pre>
+<p>Предполагается, что поле информация-об-авторе представляет собой имя 
+автора, хотя в него также можно включить адрес электронной почты и любую
+ другую информацию. Когда в командной строке <i><b>javadoc</b></i> указывается опция <i><b>-author</b></i>, в созданной документации сохраняется информация об авторе.
+</p><p>Для создания списка авторов можно записать сразу несколько таких 
+тегов, но они должны размещаться последовательно. Вся информация об 
+авторах объединяется в один раздел в сгенерированном коде <i>HTML</i>.
+</p>
+<pre><i><b>@since</b></i>
+</pre>
+<p>Тег позволяет задать версию кода, с которой началось использование некоторой возможности. В частности, он присутствует в <i>HTML</i>-документации по <i>Java</i>, где служит для указания версии <i>JDK</i>.
+</p>
+<pre><i><b>@param</b></i>
+</pre>
+<p>Полезен при документировании методов. Форма использования:
+</p>
+<pre><i><b>@param</b></i> имя-параметра описание
+</pre>
+<p>где имя-параметра — это идентификатор в списке параметров метода, а 
+описание — текст описания, который можно продолжить на несколько строк. 
+Описание считается завершенным, когда встретится новый тег. Можно 
+записывать любое количество тегов <i><b>@param</b></i>, по одному для каждого параметра метода.
+</p>
+<pre><i><b>@return</b></i>
+</pre>
+<p>Форма использования:
+</p>
+<pre><i><b>@return</b></i> описание
+</pre>
+<p>где описание объясняет, что именно возвращает метод. Описание может состоять из нескольких строк.
+</p>
+<pre><i><b>@throws</b></i>
+</pre>
+<p>Исключения будут рассматриваться в главе 9. В двух словах это объекты, которые можно «возбудить» (<i><b>throw</b></i>)
+ в методе, если его выполнение потерпит неудачу. Хотя при вызове метода 
+создается всегда один объект исключения, определенный метод может 
+вырабатывать произвольное количество исключений, и все они требуют 
+описания. Соответственно, форма тега исключения такова:
+</p>
+<pre><i><b>@throws</b></i> полное-имя-класса описание
+</pre>
+<p>где полное-имя-класса дает уникальное имя класса исключения, который 
+где-то определен, а описание (расположенное на произвольном количестве 
+строк) объясняет, почему данный метод способен создавать это исключение 
+при своем вызове.
+</p>
+<pre><i><b>@deprecated</b></i>
+</pre>
+<p>Тег используется для пометки устаревших возможностей, замещенных 
+новыми и улучшенными. Он сообщает о том, что определенные средства 
+программы не следует использовать, так как в будущем они, скорее всего, 
+будут убраны. В <i>Java</i> <i>SE5</i> тег <i><b>@deprecated</b></i> был заменен директивой <i><b>@Deprecated</b></i> (см. далее).
+</p><p><br>
+</p>
+<h3><span class="mw-headline" id=".D0.9F.D1.80.D0.B8.D0.BC.D0.B5.D1.80_.D0.B4.D0.BE.D0.BA.D1.83.D0.BC.D0.B5.D0.BD.D1.82.D0.B0.D1.86.D0.B8.D0.B8">Пример документации</span></h3>
+<p>Вернемся к нашей первой программе на <i>Java</i>, но на этот раз добавим в нее комментарии со встроенной документацией:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: object/HelloDate.java</span>
+<span class="kw2">import</span> <span class="co2">java.util.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="co3">/** Первая программа-пример книги.
+ * Выводит строку и текущее число.
+ * @author Брюс Эккель
+ * @author www.MindView.net
+ * @version 4.0
+*/</span>
+<span class="kw2">public</span> <span class="kw2">class</span> HelloDate <span class="br0">{</span>
+  <span class="co3">/** Точка входа в класс и приложение
+   * @param Массив строковых аргументов
+   * @throws exceptions Исключения не выдаются 
+  */</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">(</span><span class="st0">"Привет, сегодня: "</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">(</span><span class="kw2">new</span> <span class="kw166">Date</span><span class="br0">(</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span>
+<span class="coMULTI">/*
+Output: (55% match) 
+ Привет, сегодня:
+ Wed Oct 05 14:39:36 MDT 2005 
+*/</span><span class="co1">//:~</span></pre></div></div>
+<p>В первой строке файла использована моя личная методика помещения специального маркера <i><b>//:</b></i>
+ в комментарий как признака того, что в этой строке комментария 
+содержится имя файла с исходным текстом. Здесь указывается путь к файлу (<i><b>object</b></i> означает эту главу) с последующим именем файла. Последняя строка также завершается комментарием (<i><b>///:~</b></i>),
+ обозначающим конец исходного текста программы. Он помогает 
+автоматически извлекать из текста книги программы для проверки 
+компилятором и выполнения.
+</p><p>Тег <i><b>/* Output</b></i>: обозначает начало выходных данных, сгенерированных данным файлом. В этой форме их можно автоматически проверить на точность.
+</p><p>В данном случае значение <i><b>(55% match)</b></i> сообщает 
+системе тестирования, что результаты будут заметно отличаться при разных
+ запусках программы. В большинстве примеров книги результаты приводятся в
+ комментариях такого вида, чтобы вы могли проверить их на правильность.
+</p>
+<h2><span class="mw-headline" id=".D0.A1.D1.82.D0.B8.D0.BB.D1.8C_.D0.BE.D1.84.D0.BE.D1.80.D0.BC.D0.BB.D0.B5.D0.BD.D0.B8.D1.8F_.D0.BF.D1.80.D0.BE.D0.B3.D1.80.D0.B0.D0.BC.D0.BC">Стиль оформления программ</span></h2>
+<p>Согласно правилам стиля, описанным в руководстве <i>Code Conventions for the Java Programming Language</i>
+ имена классов должны записываться с прописной буквы. Если имя состоит 
+из нескольких слов, они объединяются (то есть символы подчеркивания не 
+используются для разделения), и каждое слово в имени начинается с 
+большой буквы:
+</p>
+<pre>class АllTheColorsOfTheRainbow { // ..
+</pre>
+<p>Практически для всего остального: методов, полей и ссылок на объекты —
+ используется такой же способ записи, за одним исключением — первая 
+буква идентификатора записывается строчной. Например:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> <span class="kw2">class</span> AllTheColorsOfTheRainbow <span class="br0">{</span>
+&nbsp;
+     <span class="kw3">int</span> anIntegerRepresentingColors<span class="sy0">;</span> 
+     <span class="kw3">void</span> changeTheHueOfTheColor<span class="br0">(</span><span class="kw3">int</span> newHue<span class="br0">)</span> <span class="br0">{</span> <span class="coMULTI">/*.......*/</span> <span class="br0">}</span>
+     <span class="co1">// ....</span>
+ <span class="br0">}</span></pre></div></div>
+<p>Помните, что пользователю ваших классов и методов придется вводить все эти длинные имена, так что будьте милосердны.
+</p><p>В исходных текстах <i>Java</i>, которые можно увидеть в библиотеках фирмы <i>Sun</i>, также используется схема размещения открывающих и закрывающих фигурных скобок, которая встречается в примерах данной книги.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id=".D0.A0.D0.B5.D0.B7.D1.8E.D0.BC.D0.B5">Резюме</span></h2>
+<p>В этой главе я постарался привести информацию о программировании на <i>Java</i>,
+ достаточную для написания самой простой программы. Также был 
+представлен обзор языка и некоторых его основных свойств. Однако примеры
+ до сих пор имели форму «сначала это, потом это, а после что-то еще». В 
+следующих двух главах будут представлены основные операторы, 
+используемые при программировании на <i>Java</i>, а также способы передачи управления в вашей программе.
+</p><p><br>
+</p>
+<hr>
+<p><a href="http://wikijava.it-cache.net/index.php" title="Thinking in Java 4th edition">назад в Оглавление</a>
+</p><p><br>
+</p>
+
+<!-- 
+NewPP limit report
+CPU time usage: 2.661 seconds
+Real time usage: 2.670 seconds
+Preprocessor visited node count: 472/1000000
+Preprocessor generated node count: 956/1000000
+Post‐expand include size: 242/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 3/40
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key wjava2-wj_:pcache:idhash:15-0!*!0!!ru!*!* and timestamp 20140813081011
+ -->
+</div>								<div class="printfooter">
+				Источник — «<a href="http://wikijava.org.ua/index.php?title=Glava_2_Thinking_in_Java_4th_edition&amp;oldid=249">http://wikijava.org.ua/index.php?title=Глава_2_Thinking_in_Java_4th_edition&amp;oldid=249</a>»				</div>
+                                <div id="catlinks" class="catlinks"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%9A%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D0%B8" title="Служебная:Категории">Категории</a>: <ul><li><a href="http://wikijava.org.ua/index.php?title=%D0%9A%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D1%8F:%D0%9A%D0%BD%D0%B8%D0%B3%D0%B8" title="Категория:Книги">Книги</a></li><li><a href="http://wikijava.org.ua/index.php?title=%D0%9A%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D1%8F:Java" title="Категория:Java">Java</a></li></ul></div></div>												<div class="visualClear"></div>
+            </div>
+		</div>
+		<div id="mw-navigation">
+			<h2>Навигация</h2>
+			<div id="mw-head">
+				<div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
+	<h3 id="p-personal-label">Персональные инструменты</h3>
+	<ul>
+<li id="pt-login"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%92%D1%85%D0%BE%D0%B4&amp;returnto=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0+2+Thinking+in+Java+4th+edition" title="Здесь можно зарегистрироваться в системе, но это необязательно. [o]" accesskey="o">Представиться системе</a></li>	</ul>
+</div>
+				<div id="left-navigation">
+					<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
+	<h3 id="p-namespaces-label">Пространства имён</h3>
+	<ul>
+					<!--<li  id="ca-nstab-main" class="selected"><span><a href="index.php@title=Glava_2_Thinking_in_Java_4th_edition.html"  title="Просмотр основной страницы [c]" accesskey="c">Статья</a></span></li>-->
+					<!--<li  id="ca-talk" class="new"><span><a href="http://wikijava.org.ua/index.php?title=%D0%9E%D0%B1%D1%81%D1%83%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5:%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_2_Thinking_in_Java_4th_edition&amp;action=edit&amp;redlink=1"  title="Обсуждение основной страницы [t]" accesskey="t">Обсуждение</a></span></li>-->
+			</ul>
+</div>
+<div id="p-variants" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-variants-label">
+	<h3 id="mw-vector-current-variant">
+		</h3>
+	<h3 id="p-variants-label"><span>Варианты</span><a href="http://wikijava.it-cache.net/index.php@title=Glava_2_Thinking_in_Java_4th_edition.html#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+				</div>
+				<div id="right-navigation">
+					<div id="p-views" role="navigation" class="vectorTabs" aria-labelledby="p-views-label">
+	<h3 id="p-views-label">Просмотры</h3>
+	<ul>
+					<!--<li id="ca-view" class="selected"><span><a href="index.php@title=Glava_2_Thinking_in_Java_4th_edition.html" >Читать</a></span></li>-->
+					<!--<li id="ca-viewsource"><span><a href="http://wikijava.org.ua/index.php?title=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_2_Thinking_in_Java_4th_edition&amp;action=edit"  title="Эта страница защищена от изменений, но вы можете посмотреть и скопировать её исходный текст [e]" accesskey="e">Просмотр</a></span></li>-->
+					<!--<li id="ca-history" class="collapsible"><span><a href="http://wikijava.org.ua/index.php?title=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_2_Thinking_in_Java_4th_edition&amp;action=history"  title="Журнал изменений страницы [h]" accesskey="h">История</a></span></li>-->
+			</ul>
+</div>
+<div id="p-cactions" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-cactions-label">
+	<h3 id="p-cactions-label"><span>Действия</span><a href="http://wikijava.it-cache.net/index.php@title=Glava_2_Thinking_in_Java_4th_edition.html#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+<div id="p-search" role="search">
+	<h3><label for="searchInput">Поиск</label></h3>
+	<form action="http://wikijava.org.ua/index.php" id="searchform">
+				<div id="simpleSearch">
+						<input name="search" placeholder="Поиск" title="Искать в WikiJava: Wiki of Java: викифицированные книги и статьи по Java [f]" accesskey="f" id="searchInput">						<button type="submit" name="button" title="Найти страницы, содержащие указанный текст" id="searchButton"><img src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%202_files/search-ltr.asc" alt="Найти" height="13" width="12"></button>								<input name="title" value="Служебная:Поиск" type="hidden">
+		</div>
+	</form>
+</div>
+				</div>
+			</div>
+			<div id="mw-panel">
+					<!--<div id="p-logo" role="banner"><a style="background-image: url(/skins/common/images/wikijava.png);" href="index.php@title=Заглавная_страница.html"  title="Перейти на заглавную страницу"></a></div>-->
+				<div class="portal" role="navigation" id="p-navigation" aria-labelledby="p-navigation-label">
+	<h3 id="p-navigation-label">Навигация</h3>
+	<div class="body">
+        <ul>
+            <li id="n-mainpage-description"><a href="http://wikijava.org.ua/index.php?title=%D0%97%D0%B0%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F_%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0" title="Перейти на заглавную страницу [z]" accesskey="z">Заглавная страница</a></li>
+            <li id="n-recentchanges"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%B2%D0%B5%D0%B6%D0%B8%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8" title="Список последних изменений [r]" accesskey="r">Свежие правки</a></li>
+            <li id="n-.D0.9A.D0.BD.D0.B8.D0.B3.D0.B8-Java"><a href="http://wikijava.org.ua/index.php?title=%D0%9A%D0%BD%D0%B8%D0%B3%D0%B8_Java">Книги Java</a></li>
+            <li id="n-.D0.A1.D1.82.D0.B0.D1.82.D1.8C.D0.B8-Java"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D1%82%D0%B0%D1%82%D1%8C%D0%B8_Java">Статьи Java</a></li>
+            <li id="n-Java-.D0.BF.D0.BE.D1.80.D1.82.D0.B0.D0.BB"><a href="http://wikijava.org.ua/index.php?title=Java-portal">Java портал</a></li>
+            <li id="n-help"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B0:%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5" title="Место, где можно получить справку">Справка</a></li>
+            <li id="n-.D0.A1.D1.82.D0.B0.D1.82.D0.B8.D1.81.D1.82.D0.B8.D0.BA.D0.B0"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%81%D1%82%D0%B8%D0%BA%D0%B0">Статистика</a></li>
+        </ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id="p-tb" aria-labelledby="p-tb-label">
+	<h3 id="p-tb-label">Инструменты</h3>
+	<div class="body">
+        <ul>
+            <li id="t-whatlinkshere"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D1%81%D1%8B%D0%BB%D0%BA%D0%B8_%D1%81%D1%8E%D0%B4%D0%B0/%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%81%D1%82%D0%B8%D0%BA%D0%B0" title="Список всех страниц, ссылающихся на данную [j]" accesskey="j">Ссылки сюда</a></li>
+            <li id="t-recentchangeslinked"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%B2%D1%8F%D0%B7%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8/%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%81%D1%82%D0%B8%D0%BA%D0%B0" title="Последние изменения в страницах, на которые ссылается эта страница [k]" accesskey="k">Связанные правки</a></li>
+            <li id="t-specialpages"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%BF%D0%B5%D1%86%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D1%8B" title="Список служебных страниц [q]" accesskey="q">Спецстраницы</a></li>
+            <li id="t-print"><a href="http://wikijava.org.ua/index.php?title=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_2_Thinking_in_Java_4th_edition&amp;printable=yes" rel="alternate" title="Версия этой страницы для печати [p]" accesskey="p">Версия для печати</a></li>
+            <li id="t-permalink"><a href="http://wikijava.org.ua/index.php?title=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_2_Thinking_in_Java_4th_edition&amp;oldid=249" title="Постоянная ссылка на эту версию страницы">Постоянная ссылка</a></li>
+            <li id="t-info"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%81%D1%82%D0%B8%D0%BA%D0%B0&amp;action=info">Сведения о странице</a></li>
+        </ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id="p-.D0.94.D1.80.D1.83.D0.B3.D0.B8.D0.B5_.D0.BF.D1.80.D0.BE.D0.B5.D0.BA.D1.82.D1.8B" aria-labelledby="p-.D0.94.D1.80.D1.83.D0.B3.D0.B8.D0.B5_.D0.BF.D1.80.D0.BE.D0.B5.D0.BA.D1.82.D1.8B-label">
+	<h3 id="p-.D0.94.D1.80.D1.83.D0.B3.D0.B8.D0.B5_.D0.BF.D1.80.D0.BE.D0.B5.D0.BA.D1.82.D1.8B-label">Другие проекты</h3>
+	<div class="body">
+		<ul>
+			<li id="n-rastafara.com.ua"><a href="http://rastafara.com.ua/" rel="nofollow">rastafara.com.ua</a></li>
+			<li id="n-rastafara-blog"><a href="http://sergey-rastafara.blogspot.com/" rel="nofollow">rastafara blog</a></li>
+			<li id="n-rastaban"><a href="http://rastaban.com.ua/" rel="nofollow">rastaban</a></li>
+		</ul>
+	</div>
+</div>
+			</div>
+		</div>
+		<div id="footer" role="contentinfo">
+							<ul id="footer-info">
+											<li id="footer-info-lastmod"> Последнее изменение этой страницы: 10:32, 7 мая 2014.</li>
+											<li id="footer-info-viewcount">К этой странице обращались 4071 раз.</li>
+											<li id="footer-info-copyright">Содержимое доступно по лицензии <a class="external" rel="nofollow" href="http://www.gnu.org/copyleft/fdl.html">GNU Free Documentation License 1.3 или более поздняя</a> (если не указано иное).</li>
+									</ul>
+							<ul id="footer-places">
+											<li id="footer-places-privacy"><a href="http://wikijava.org.ua/index.php?title=WikiJava:_Wiki_of_Java:_%D0%B2%D0%B8%D0%BA%D0%B8%D1%84%D0%B8%D1%86%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5_%D0%BA%D0%BD%D0%B8%D0%B3%D0%B8_%D0%B8_%D1%81%D1%82%D0%B0%D1%82%D1%8C%D0%B8_%D0%BF%D0%BE_Java:%D0%9F%D0%BE%D0%BB%D0%B8%D1%82%D0%B8%D0%BA%D0%B0_%D0%BA%D0%BE%D0%BD%D1%84%D0%B8%D0%B4%D0%B5%D0%BD%D1%86%D0%B8%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D0%B8" title="WikiJava: Wiki of Java: викифицированные книги и статьи по Java:Политика конфиденциальности">Политика конфиденциальности</a></li>
+											<li id="footer-places-about"><a href="http://wikijava.org.ua/index.php?title=WikiJava:_Wiki_of_Java:_%D0%B2%D0%B8%D0%BA%D0%B8%D1%84%D0%B8%D1%86%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5_%D0%BA%D0%BD%D0%B8%D0%B3%D0%B8_%D0%B8_%D1%81%D1%82%D0%B0%D1%82%D1%8C%D0%B8_%D0%BF%D0%BE_Java:%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5" title="WikiJava: Wiki of Java: викифицированные книги и статьи по Java:Описание">Описание WikiJava: Wiki of Java: викифицированные книги и статьи по Java</a></li>
+											<li id="footer-places-disclaimer"><a href="http://wikijava.org.ua/index.php?title=WikiJava:_Wiki_of_Java:_%D0%B2%D0%B8%D0%BA%D0%B8%D1%84%D0%B8%D1%86%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5_%D0%BA%D0%BD%D0%B8%D0%B3%D0%B8_%D0%B8_%D1%81%D1%82%D0%B0%D1%82%D1%8C%D0%B8_%D0%BF%D0%BE_Java:%D0%9E%D1%82%D0%BA%D0%B0%D0%B7_%D0%BE%D1%82_%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D0%BE%D1%81%D1%82%D0%B8" title="WikiJava: Wiki of Java: викифицированные книги и статьи по Java:Отказ от ответственности">Отказ от ответственности</a></li>
+									</ul>
+										<ul id="footer-icons" class="noprint">
+					<li id="footer-copyrightico">
+						<a href="http://www.gnu.org/copyleft/fdl.html"><img src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%202_files/gnu-fdl.png" alt="GNU Free Documentation License 1.3 или более поздняя" height="31" width="88"></a>
+					</li>
+					<li id="footer-poweredbyico">
+						<a href="http://www.mediawiki.org/"><img src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%202_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" height="31" width="88"></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<script>/*<![CDATA[*/window.jQuery && jQuery.ready();/*]]>*/</script><script>if(window.mw){
+mw.loader.state({"site":"loading","user":"ready","user.groups":"ready"});
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.action.view.postEdit","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest","ext.vector.collapsibleNav","ext.vector.collapsibleTabs","ext.vector.editWarning","ext.vector.simpleSearch","skins.vector.collapsibleNav"],null,true);
+}</script>
+<script>if(window.mw){
+mw.loader.state({"site":"ready"});
+}</script>
+<!-- Served in 0.236 secs. -->
+	
+
+</body></html>

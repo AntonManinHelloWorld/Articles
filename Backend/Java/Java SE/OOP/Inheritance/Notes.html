@@ -1,0 +1,57 @@
+﻿A class ( static ) method that is hidden can be invoked by using a reference whose type is the class that actually contains the declaration of the method. In this respect, hiding of static methods is different from overriding of instance methods. The example:
+	class Super {
+		static String greeting() { return "Goodnight"; }
+		String name() { return "Richard"; }
+	}
+
+	class Sub extends Super {
+		static String greeting() { return "Hello"; }
+		String name() { return "Dick"; }
+	}
+
+	class Test {
+		public static void main(String[] args) {
+			Super s = new Sub();
+			System.out.println(s.greeting() + ", " + s.name());
+		}
+	}
+produces the output:
+Goodnight, Dick
+because the invocation of greeting uses the type of s , namely Super , to figure out, at compile time, which class method to invoke, whereas the invocation of name uses the class of s , namely Sub , to figure out, at run time, which instance method to invoke.
+
+For Overriding/Hiding the return type is also important(which is not important for overloading). If types are primitive, then should be same, if Objects, then the return type in subclass should be a subclass of the return type of the method in the superclass.
+
+A method that overrides or hides another method, including methods that
+implement abstract methods defined in interfaces, may not be declared to throw
+more checked exceptions than the overridden or hidden method.
+More precisely, suppose that B is a class or interface, and A is a superclass or
+superinterface of B , and a method declaration n in B overrides or hides a method declaration m in A. Then:
+• If n has a throws clause that mentions any checked exception types, then m must have a throws clause, or a compile-time error occurs.
+• For every checked exception type listed in the throws clause of n , that same
+exception class or one of its supertypes must occur in the erasure of the
+throws clause of m ; otherwise, a compile-time error occurs.
+• If the unerased throws clause of m does not contain a supertype of each exception type in the throws clause of n , a compile-time unchecked warning occurs.
+
+You cannot override the method and use different generic type parameter that was used in the super class.
+Consider the example:
+	class CollectionConverter {
+		List toList(Collection c) {...}
+	}
+
+	class Overrider extends CollectionConverter {
+		List toList(Collection c) {...}
+	}
+Now, assume this code was written before the introduction of generics, and now the author of class CollectionConverter decides to generify the code, thus:
+class CollectionConverter {
+	<T> List<T> toList(Collection<T> c) {...}
+}
+Without special dispensation, Overrider.toList would no longer override
+CollectionConverter.toList . Instead, the code would be illegal.
+The access modifier of an overriding or hiding method must provide at least
+as much access as the overridden or hidden method, as follows:
+• If the overridden or hidden method is public , then the overriding or hiding
+method must be public ; otherwise, a compile-time error occurs.
+• If the overridden or hidden method is protected , then the overriding or hiding method must be protected or public ; otherwise, a compile-time error occurs.
+• If the overridden or hidden method has default (package) access, then the
+overriding or hiding method must not be private; otherwise, a compile-time
+error occurs.

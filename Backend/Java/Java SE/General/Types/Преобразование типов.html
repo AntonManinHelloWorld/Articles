@@ -1,0 +1,698 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
+  <title>Объектно-ориентированное программирование: Преобразование типов</title>
+
+  <script async="" src="%D0%9F%D1%80%D0%B5%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B8%D0%BF%D0%BE%D0%B2_files/cbgapi.loaded_1"></script><script async="" src="%D0%9F%D1%80%D0%B5%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B8%D0%BF%D0%BE%D0%B2_files/cbgapi.loaded_0"></script><script type="text/javascript">(function() { (function(){function c(a){this.t={};this.tick=function(a,c,b){var d=void 0!=b?b:(new Date).getTime();this.t[a]=[d,c];if(void 0==b)try{window.console.timeStamp("CSI/"+a)}catch(e){}};this.tick("start",null,a)}var a;window.performance&&(a=window.performance.timing);var h=a?new c(a.responseStart):new c;window.jstiming={Timer:c,load:h};if(a){var b=a.navigationStart,e=a.responseStart;0<b&&e>=b&&(window.jstiming.srt=e-b)}if(a){var d=window.jstiming.load;0<b&&e>=b&&(d.tick("_wtsrt",void 0,b),d.tick("wtsrt_",
+"_wtsrt",e),d.tick("tbsd_","wtsrt_"))}try{a=null,window.chrome&&window.chrome.csi&&(a=Math.floor(window.chrome.csi().pageT),d&&0<b&&(d.tick("_tbnd",void 0,window.chrome.csi().startE),d.tick("tbnd_","_tbnd",b))),null==a&&window.gtbExternal&&(a=window.gtbExternal.pageT()),null==a&&window.external&&(a=window.external.pageT,d&&0<b&&(d.tick("_tbnd",void 0,window.external.startE),d.tick("tbnd_","_tbnd",b))),a&&(window.jstiming.pt=a)}catch(k){}})();window.tickAboveFold=function(c){var a=0;if(c.offsetParent){do a+=c.offsetTop;while(c=c.offsetParent)}c=a;750>=c&&window.jstiming.load.tick("aft")};var f=!1;function g(){f||(f=!0,window.jstiming.load.tick("firstScrollTime"))}window.addEventListener?window.addEventListener("scroll",g,!1):window.attachEvent("onscroll",g);
+ })();</script><script type="text/javascript">var a="&m=1",d="(^|&)m=",e="?",f="?m=1";function g(){var b=window.location.href,c=b.split(e);switch(c.length){case 1:return b+f;case 2:return 0<=c[1].search(d)?null:b+a;default:return null}}var h=navigator.userAgent;if(-1!=h.indexOf("Mobile")&&-1!=h.indexOf("WebKit")&&-1==h.indexOf("iPad")||-1!=h.indexOf("Opera Mini")||-1!=h.indexOf("IEMobile")){var k=g();k&&window.location.replace(k)};
+</script><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="Blogger">
+<link rel="icon" type="image/vnd.microsoft.icon" href="https://www.blogger.com/favicon.ico">
+<link rel="alternate" type="application/atom+xml" title="Объектно-ориентированное программирование - Atom" href="http://oop-java.blogspot.com/feeds/posts/default">
+<link rel="alternate" type="application/rss+xml" title="Объектно-ориентированное программирование - RSS" href="http://oop-java.blogspot.com/feeds/posts/default?alt=rss">
+<link rel="service.post" type="application/atom+xml" title="Объектно-ориентированное программирование - Atom" href="https://www.blogger.com/feeds/17712793/posts/default">
+<link rel="alternate" type="application/atom+xml" title="Объектно-ориентированное программирование - Atom" href="http://oop-java.blogspot.com/feeds/114049313758978782/comments/default">
+<link rel="stylesheet" type="text/css" href="%D0%9F%D1%80%D0%B5%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B8%D0%BF%D0%BE%D0%B2_files/50269083-blog_controls.css">
+<link rel="stylesheet" type="text/css" href="%D0%9F%D1%80%D0%B5%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B8%D0%BF%D0%BE%D0%B2_files/authorization.css">
+
+
+  <style type="text/css">
+
+/* 
+Blogger Template Style
+Name:     TicTac
+Author:   Dan Cederholm
+URL:      www.simplebits.com
+Date:     1 March 2004
+*/
+
+/* ---( page defaults )--- */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Verdana, sans-serif;
+  font-size: small;
+  text-align: center;
+  color: #333;
+  background: #e0e0e0;
+  }
+
+blockquote {
+  margin: 0 0 0 30px;
+  padding: 10px 0 0 20px;
+  font-size: 88%;
+  line-height: 1.5em;
+  color: #666;
+  background: url(http://www.blogblog.com/tictac/quotes.gif) no-repeat top left;
+  }
+
+blockquote p {
+  margin-top: 0;
+  }
+
+abbr, acronym {
+  cursor: help;
+  font-style: normal;
+  border-bottom: 1px dotted;
+  }
+
+code {
+  color: #f63;
+  }
+
+hr {
+  display: none;
+  }
+
+img {
+  border: none;
+  }
+
+/* unordered list style */
+
+ul {
+  list-style: none;
+  margin: 0 0 20px 30px;
+  padding: 0;
+  }
+
+li {
+  list-style: none;
+  padding-left: 14px;
+  margin-bottom: 3px;
+  background: url(http://www.blogblog.com/tictac/tictac_orange.gif) no-repeat 0 6px;
+  }
+
+/* links */
+
+a:link {
+  color: #69c;
+  }
+
+a:visited {
+  color: #666699;
+  }
+
+a:hover {
+  color: #693;
+  }
+
+a:active {
+  color: #cc3333;
+  text-decoration: none;
+  }
+
+/* ---( layout structure )---*/
+
+#wrap {
+  width: 847px;
+  margin: 0 auto;
+  text-align: left;
+  background: url(http://www.blogblog.com/tictac/tile.gif) repeat-y;
+  }
+
+#content {
+  margin-left: 62px; /* to avoid the BMH */
+  }
+
+#main-content {
+  float: left;
+  width: 460px;
+  margin: 20px 0 0 0;
+  padding: 0;
+  line-height: 1.5em;
+  }
+
+#sidebar {
+  margin: 0 41px 0 547px;
+  padding: 20px 0 0 0;
+  font-size: 85%;
+  line-height: 1.4em;
+  color: #999;
+  background: url(http://www.blogblog.com/tictac/sidebar_bg.gif) no-repeat 0 0;
+  }
+
+
+/* ---( header and site name )--- */
+
+#blog-header {
+  margin: 0;
+  padding: 0;
+  font-family: "Lucida Grande", "Trebuchet MS";
+  background: #e0e0e0 url(http://www.blogblog.com/tictac/top_div.gif) no-repeat top left;
+  }
+
+#blog-header h1 {
+  margin: 0;
+  padding: 45px 60px 50px 160px;
+  font-size: 200%;
+  color: #fff;
+  text-shadow: #81A75B 2px 2px 2px;
+  background: url(http://www.blogblog.com/tictac/top_h1.gif) no-repeat bottom left;
+  }
+
+#blog-header h1 a {
+  text-decoration: none;
+  color: #fff;
+  }
+
+#blog-header h1 a:hover {
+  color: #eee;
+  }
+
+/* ---( main column )--- */
+
+h2.date-header {
+  margin-top: 0;
+  padding-left: 14px;
+  font-size: 90%;
+  color: #f93;
+  background: url(http://www.blogblog.com/tictac/date_icon.gif) no-repeat 0 50%;
+  }
+
+h3.post-title {
+  margin-top: 0;
+  font-family: "Lucida Grande", "Trebuchet MS";
+  font-size: 130%;
+  letter-spacing: -1px;
+  color: #f63;
+  }
+
+.post {
+  margin: 0 0 1.5em 0;
+  padding: 0 0 1.5em 14px;
+  border-bottom: 1px solid #ddd;
+  }
+
+.post-footer {
+  margin: 0;
+  padding: 0 0 0 14px;
+  font-size: 88%;
+  color: #999;
+  background: url(http://www.blogblog.com/tictac/tictac_grey.gif) no-repeat 0 8px;
+  }
+
+.post img {
+  padding: 6px;
+  border-top: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+  border-bottom: 1px solid #c0c0c0;
+  border-right: 1px solid #c0c0c0;
+  }
+
+/* comment styles */
+
+#comments {
+  padding-top: 10px;
+  font-size: 85%;
+  line-height: 1.5em;
+  color: #666;
+  background: #eee url(http://www.blogblog.com/tictac/comments_curve.gif) no-repeat top left;
+  }
+
+#comments h4 {
+  margin: 20px 0 15px 0;
+  padding: 8px 0 0 40px;
+  font-family: "Lucida Grande", "Trebuchet MS";
+  font-size: 130%;
+  color: #666;
+  background: url(http://www.blogblog.com/tictac/bubbles.gif) no-repeat 10px 0;
+  height: 29px !important; /* for most browsers */
+  height /**/:37px; /* for IE5/Win */
+  }
+  
+#comments ul {
+  margin-left: 0;
+  }
+
+#comments li {
+  background: none;
+  padding-left: 0;
+  }
+  
+.comment-body {
+  padding: 0 10px 0 25px;
+  background: url(http://www.blogblog.com/tictac/tictac_orange.gif) no-repeat 10px 5px;
+  }
+
+.comment-body p {
+  margin-bottom: 0;
+  }
+
+.comment-data {
+  margin: 4px 0 0 0;
+  padding: 0 10px 1em 60px;
+  color: #999;
+  border-bottom: 1px solid #ddd;
+  background: url(http://www.blogblog.com/tictac/comment_arrow.gif) no-repeat 44px 2px;
+  }
+
+
+.deleted-comment {
+  font-style:italic;
+  color:gray;
+  }
+
+.comment-link {
+  margin-left:.6em;
+  }
+
+/* ---( sidebar )--- */
+
+h2.sidebar-title {
+  margin: 0 0 0 0;
+  padding: 25px 0 0 50px;
+  font-family: "Lucida Grande", "Trebuchet MS";
+  font-size: 130%;
+  color: #666;
+  height: 32px;
+  background: url(http://www.blogblog.com/tictac/sidebar_icon.gif) no-repeat 20px 15px;
+  height: 32px !important; /* for most browsers */
+  height /**/:57px; /* for IE5/Win */
+  }
+
+#sidebar ul, #sidebar p {
+  margin: 0;
+  padding: 5px 20px 1em 20px;
+  border-bottom: 1px solid #ddd;
+  }
+
+#sidebar li {
+  background: url(http://www.blogblog.com/tictac/tictac_green.gif) no-repeat 0 5px;
+  }
+
+/* profile block */
+
+.profile-datablock {
+  margin: 0;
+  padding: 5px 20px 0 20px;
+  }
+
+.profile-datablock dd {
+  margin: 0;
+  padding: 0;
+  }
+
+.profile-img img {
+  float: left;
+  margin: 0 10px 0 0;
+  padding: 4px;
+  border-top: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+  border-bottom: 1px solid #c0c0c0;
+  border-right: 1px solid #c0c0c0;
+  background: #fff;
+  }
+
+#sidebar p.profile-link {
+  padding-left: 36px;
+  background: url(http://www.blogblog.com/tictac/profile.gif) no-repeat 20px 4px;
+  }
+
+p#powered-by, #sidebar p.profile-textblock {
+  margin-top: 1em;
+  border: none;
+  }
+
+/* ---( footer )--- */
+
+.clear { /* to fix IE6 padding-top issue */
+  clear: both;
+  height: 0;
+  }
+
+#footer {
+  margin: 0;
+  padding: 0 0 9px 0;
+  font-size: 85%;
+  color: #ddd;
+  background: url(http://www.blogblog.com/tictac/bottom_sill.gif) no-repeat bottom left;
+  }
+
+#footer p {
+  margin: 0;
+  padding: 20px 320px 20px 95px;
+  background: url(http://www.blogblog.com/tictac/bottom_sash.gif) no-repeat top left;
+  }
+
+
+/* ---- overrides for post page ---- */
+
+.post {
+  padding: 0;
+  border: none;
+  }
+
+
+</style>
+
+
+<!-- --><style type="text/css">@import url(https://www.blogger.com/static/v1/v-css/navbar/3334278262-classic.css);
+div.b-mobile {display:none;}
+</style>
+
+<style>.gc-bubbleDefault{background-color:transparent !important;text-align:left;padding:0 !important;margin:0 !important;border:0 !important;table-layout:auto !important}.gc-reset{background-color:transparent !important;border:0 !important;padding:0 !important;margin:0 !important;text-align:left}.pls-bubbleTop{border-bottom:1px solid #ccc !important}.pls-topTail,.pls-vertShimLeft,.pls-contentLeft{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/border_3.gif) !important}.pls-topTail{background-repeat:repeat-x !important;background-position:bottom !important}.pls-vertShim{background-color:#fff !important;text-align:right}.tbl-grey .pls-vertShim{background-color:#f5f5f5 !important}.pls-vertShimLeft{background-repeat:repeat-y !important;background-position:right !important;height:4px}.pls-vertShimRight{height:4px}.pls-confirm-container .pls-vertShim{background-color:#fff3c2 !important}.pls-contentWrap{background-color:#fff !important;position:relative !important;vertical-align:top}.pls-contentLeft{background-repeat:repeat-y;background-position:right;vertical-align:top}.pls-dropRight{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleDropR_3.png) !important;background-repeat:repeat-y !important;vertical-align:top}.pls-vert,.pls-tailleft,.pls-dropTR .pls-dropBR,.pls-dropBL,.pls-vert img{vertical-align:top}.pls-dropBottom{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleDropB_3.png) !important;background-repeat:repeat-x !important;width:100%;vertical-align:top}.pls-topLeft{background:inherit !important;text-align:right;vertical-align:bottom}.pls-topRight{background:inherit !important;text-align:left;vertical-align:bottom}.pls-bottomLeft{background:inherit !important;text-align:right}.pls-bottomRight{background:inherit !important;text-align:left;vertical-align:top}.pls-tailtop,.pls-tailright,.pls-tailbottom,.pls-tailleft{display:none;position:relative}.pls-tailbottom,.pls-tailtop,.pls-tailright,.pls-tailleft,.pls-dropTR,.pls-dropBR,.pls-dropBL{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleSprite_3.png) !important;background-repeat:no-repeat}.tbl-grey .pls-tailbottom,.tbl-grey .pls-tailtop,.tbl-grey .pls-tailright,.tbl-grey .pls-tailleft,.tbl-grey .pls-dropTR,.tbl-grey .pls-dropBR,.tbl-grey .pls-dropBL{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleSprite-grey.png) !important}.pls-tailbottom{background-position:-23px 0}.pls-confirm-container .pls-tailbottom{background-position:-23px -10px}.pls-tailtop{background-position:-19px -20px}.pls-tailright{background-position:0 0}.pls-tailleft{background-position:-10px 0}.pls-tailtop{vertical-align:top}.gc-bubbleDefault td{line-height:0;font-size:0}.pls-topLeft img,.pls-topRight img,.pls-tailbottom{vertical-align:bottom}.pls-bottomLeft img,.bubbleDropTR,.pls-dropBottomL img,.pls-dropBottom img,.pls-dropBottomR img,.pls-bottomLeft{vertical-align:top}.pls-dropTR{background-position:0 -22px}.pls-dropBR{background-position:0 -27px}.pls-dropBL{background-position:0 -16px}.pls-spacertop,.pls-spacerright,.pls-spacerbottom,.pls-spacerleft{position:static !important}.pls-spinner{bottom:0;position:absolute;left:0;margin:auto;right:0;top:0} </style><style type="text/css" class="singleton-element">.cookie-choices-info { position:fixed;width:100%;background-color:#666;margin:0;left:0;top:0;padding:0;z-index:4000;text-align:center;color:#fff;line-height:140%;padding:10px 0;font-family:roboto,Arial; } .cookie-choices-info .cookie-choices-inner { position:relative;width:initial;margin:0;left:0;top:0; } .cookie-choices-info .cookie-choices-text { display:inline-block;vertical-align:middle;font-size:16px;margin:10px 20px;color:#ccc;max-width:800px;text-align:left; }.cookie-choices-info .cookie-choices-buttons { display:inline-block;vertical-align:middle;white-space:nowrap;margin:0 10px; } .cookie-choices-info .cookie-choices-button:hover {  color: #fff; } .cookie-choices-info .cookie-choices-button { font-weight:bold;text-transform:UPPERCASE;white-space:nowrap;color:#eee;margin-left:8px;padding:0 6px; text-decoration:none; }</style></head>
+
+<body><script type="text/javascript">
+    function setAttributeOnload(object, attribute, val) {
+      if(window.addEventListener) {
+        window.addEventListener('load',
+          function(){ object[attribute] = val; }, false);
+      } else {
+        window.attachEvent('onload', function(){ object[attribute] = val; });
+      }
+    }
+  </script>
+<div id="navbar-iframe-container"><iframe src="%D0%9F%D1%80%D0%B5%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B8%D0%BF%D0%BE%D0%B2_files/navbar.html" name="navbar-iframe" id="navbar-iframe" vspace="0" tabindex="0" style="" scrolling="no" marginwidth="0" marginheight="0" hspace="0" frameborder="0" width="100%"></iframe></div>
+<script gapi_processed="true" type="text/javascript" src="%D0%9F%D1%80%D0%B5%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B8%D0%BF%D0%BE%D0%B2_files/plusone.js"></script>
+<script type="text/javascript">
+        gapi.load("gapi.iframes:gapi.iframes.style.bubble", function() {
+          if (gapi.iframes && gapi.iframes.getContext) {
+            gapi.iframes.getContext().openChild({
+                url: 'https://www.blogger.com/navbar.g?targetBlogID\07517712793\46blogName\75%D0%9E%D0%B1%D1%8A%D0%B5%D0%BA%D1%82%D0%BD%D0%BE-%D0%BE%D1%80%D0%B8%D0%B5%D0%BD%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D0%BE%D0%B5+%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2...\46publishMode\75PUBLISH_MODE_BLOGSPOT\46navbarType\75BLUE\46layoutType\75CLASSIC\46searchRoot\75//oop-java.blogspot.com/search\46blogLocale\75ru_RU\46v\0752\46homepageUrl\75http://oop-java.blogspot.com/\46vt\75-5323835384467013639',
+                where: document.getElementById("navbar-iframe-container"),
+                id: "navbar-iframe"
+            });
+          }
+        });
+      </script>
+
+<div id="wrap"> <!-- #wrap - for centering -->
+
+<!-- Blog Header -->
+<div id="blog-header">
+  <h1>
+    <a href="http://oop-java.blogspot.de/">
+	Объектно-ориентированное программирование
+	</a>
+  </h1>
+</div>
+
+
+<div id="content"> <!-- #content wrapper -->
+
+<!-- Begin #main-content -->
+<div id="main-content">
+
+
+
+    
+  <h2 class="date-header">21 февраля 2006</h2>
+  
+  
+     
+  <!-- Begin .post -->
+  <div class="post"><a name="114049313758978782"></a>
+     
+    
+    <h3 class="post-title">
+	 
+	 Преобразование типов
+	 
+    </h3>
+    
+     
+    <div class="post-body">
+    
+      <p></p><div style="clear:both;"></div>Java является строго 
+типизированным языком программирования, а это означает, то что каждое 
+выражение и каждая переменная имеет строго определенный тип уже на 
+момент компиляции.<br><strong><em><span style="font-family:Arial;font-size:130%;">Виды приведений</span></em></strong><br>В Java предусмотрено семь видом приведений:<br><ul><li>Тождественное (identity);</li><br><li>Расширение примитивного типа (widening primitive);</li><br><li>Сужение примитивного типа (narrowing primitive);</li><br><li>Расширение объектного типа (widening reference);</li><br><li>Сужение объектного типа (narrowing reference);</li><br><li>Преобразование к строке (String);</li><br><li>Запрещенные преобразования (forbidden);</li></ul>Рассмотрим их по отдельности.<br><strong><span style="font-family:Arial;font-size:130%;">Тождественное преобразование</span></strong><br>Самым
+ простым является тождественное преобразование. В Java преобразование 
+выражения любого типа к точно такому же типу всегда допустимо и успешно 
+выполняется.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Это важно для возможности 
+утверждать с теоретической точки зрения, что любой тип в Java может 
+участвовать в преобразовании, хотя бы в тождественном.<br><strong><span style="font-family:Arial;font-size:130%;">Преобразование примитивных типов (расширение и сужение)</span></strong><br>Для
+ простых типов расширение означает, что осуществляется переход от менее 
+емкого типа к более ёмкому. Например, от типа byte (длина 1 байт) к типу
+ int (длина 4 байта). Такие преобразование безопасны в том смысле, что 
+новый тип всегда гарантировано вмещает в себя все данные, которые 
+хранились в старом типе, и таким образом не происходит потери данных. 
+Именно поэтому компилятор осуществляет его сам, незаметно для 
+разработчика:<br><br><em><span style="font-family:Arial;">byte b=3;</span></em><br><em><span style="font-family:Arial;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int a=b;</span></em><br><br>Следующие 19 преобразований являются расширяющими:<br><ul><li>От byte к short, int, long, float, double</li><br><li>От short к int, long, float, double</li><br><li>От char к int, long, float, double</li><br><li>От int к long, float, double</li><br><li>От long к float, double</li><br><li>От float к double</li></ul>Обратите
+ внимание, что нельзя провести преобразование к типу char от типов 
+меньшей или равной длины (byte, short) или, наоборот, к short от char 
+без потери данных. Это связано с тем, что char, в отличие от остальных 
+целочисленных типов, является знаковым.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Тем
+ не менее, следует помнить, что даже при расширении данные все таки 
+могут быть&nbsp;&nbsp;искажены. Это приведение значений int к типу float
+ и приведение значений типа long к типу float или double. Хотя эти 
+дробные типы вмещают гораздо большие числа, чем соответствующие целые, 
+но у них меньше значащих разрядов.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Например:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><em><span style="font-family:Arial;">long a = 111111111111L;</span></em><br><em><span style="font-family:Arial;">float f=a;</span></em><br><em><span style="font-family:Arial;">a=(long)f; // () это как раз и есть операция преобразования типа</span></em><br><em><span style="font-family:Arial;">System.out.println(a); //результат 111111110656</span></em><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Обратите
+ внимание – сужение – означает, что переход осуществляется от боле 
+емкого типа к менее емкому. При таком преобразовании есть риск потерять 
+данные. Например, если число типа int было больше 127, то при приведении
+ его к byte значения битов старше восьмого будут потеряны. В Java такое 
+преобразование должно совершаться явным образом, т.е. программист в коде
+ должен явно указать, то он намеревается осуществить такое 
+преобразование и готов потерять данные.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Следующие 23 преобразования являются сужающими:<br><ul><li>От byte к char</li><br><li>От short к byte, char</li><br><li>От char к byte, short</li><br><li>От int к byte, short, char</li><br><li>От long к byte, short, char, int</li><br><li>От float к byte, short, char, int, long</li><br><li>От double к byte, short, char, int, long, float</li></ul>При
+ сужении целочисленного типа к более узкому целочисленному все старшие 
+биты, не попадающие в новый тип ,просто отбрасывается. Не производится 
+никакого округления или других действий для получения более корректного 
+результата:<br><br><em><span style="font-family:Arial;">System.out.println((byte)383);</span></em><br><em><span style="font-family:Arial;">System.out.println((byte)384);</span></em><br><em><span style="font-family:Arial;">System.out.println((byte)-384);</span></em><br><br>Результатом будет:<br><br><em><span style="font-family:Arial;">127</span></em><br><em><span style="font-family:Arial;">-128</span></em><br><em><span style="font-family:Arial;">-128</span></em><br>Видно,
+ что знаковый бит при сужении не оказал никакого влияния, так как был 
+просто отброшен – результат приведения обратных чисел (384, -384) 
+оказался одинаковым. Следовательно, может быть потеряно не только точное
+ абсолютное значение, но и знак величины.<br>Это верно&nbsp;&nbsp;и для char:<br><br><em><span style="font-family:Arial;">char c=4000;</span></em><br><em><span style="font-family:Arial;">System.out.println((short)c);</span></em><br><br>Результат:<br><br><em><span style="font-family:Arial;">-25536</span></em><br><strong><span style="font-family:Arial;font-size:130%;">Преобразование ссылочных типов (расширение и сужение)</span></strong><br>Преобразование
+ объектных типов лучше всего иллюстрируется с помощью дерева 
+наследования. Рассмотрим небольшой пример наследования:<br><br><em><span style="font-family:Arial;">class Parent {</span></em><br><em><span style="font-family:Arial;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int x;</span></em><br><em><span style="font-family:Arial;">}</span></em><br><em><span style="font-family:Arial;"></span></em><br><em><span style="font-family:Arial;">class ChildY extends Parent {</span></em><br><em><span style="font-family:Arial;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int y;</span></em><br><em><span style="font-family:Arial;">}</span></em><br><em><span style="font-family:Arial;"></span></em><br><em><span style="font-family:Arial;">class ChildZ extends Parent {</span></em><br><em><span style="font-family:Arial;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int z;</span></em><br><em><span style="font-family:Arial;">}</span></em><br><br>В
+ каждом классе объявлено поле с уникальным именем. Будем рассматривать 
+это поле как пример набора уникальных свойств, присущи некоторому 
+объектному типу.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Объекты класса Parent 
+обладают только одним полем x, а значит, только ссылки типа Parent могут
+ ссылаться на такие объекты. Объекты класса ChildY обладают полем y и 
+полем x, полученным по наследству от класса Parent. Стало быть, на такие
+ объекты могут указывать ссылки типа ChildY&nbsp;&nbsp;или Parent. 
+Пример:<br><br><em><span style="font-family:Arial;">Parent p = new ChildY();</span></em><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Обратите
+ внимание, что с помощью такой ссылки p можно обращаться лишь к полю x 
+созданного объекта. Поле y недоступно, так как компилятор, проверяя 
+корректность выражения p.y, не может предугадать, что ссылка p будет 
+указывать на объект типа ChildY во время исполнения программы. Он 
+анализирует лишь тип самой переменной, а она объявлена как Parent, но в 
+этом классе нет поля y, что и вызовет ошибку компиляции.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Аналогично,
+ объекты класса ChildZ обладают полем z и полем x, полученным по 
+наследству от класса Parent. Значит, на такие объекты могут указывать 
+ссылки типа ChildZ и Parent.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Таким 
+образом, ссылки типа Parent могут указать на объект любого из трех 
+рассматриваемых типов, а ссылки типа ChildY и ChildZ – только на объекты
+ точно такого же типа. Теперь можно перейти к преобразования ссылочных 
+типов на основе такого дерева наследования.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Расширение
+ означает переход от более конкретного типа к менее конкретному, т.е. 
+переход от детей к родителям. Подобно случаю с примитивными типами, этот
+ переход производиться самой JVM при необходимости и «незаметен» для 
+разработчика, то есть не требует никаких специальных преобразования.<br><br><em><span style="font-family:Arial;">Parent p1=new ChildY();</span></em><br><em><span style="font-family:Arial;">Parent p2=new ChildZ();</span></em><br><br>В
+ обеих строках переменным типа Parent присваивается значение другого 
+типа, а значит, происходит преобразование. Поскольку это расширение, оно
+ производиться автоматически и всегда успешно.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Нужно
+ заметить, что при подобном преобразовании с самим объектом ничего не 
+происходит. Несмотря на то что, например, поле y класса ChildY теперь 
+недоступно, это не значит, что оно исчезло. Такое существенно изменение 
+объекта не возможно. Он был порожден от класса ChildY и сохраняет все 
+его свойства. Изменился лишь тип ссылки, через которую идет обращение к 
+объекту.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Обратный переход, то есть 
+движение по дереву наследования вниз, к наследникам, является сужением. 
+Например, для рассматриваемого случая, переход от ссылки типа Parent , 
+которая может ссылаться на объекты трех классов, к ссылке типа ChildY, 
+которая может ссылаться только на один класс из трех, очевидно, является
+ сужением. Такой переход может оказаться невозможным. Если ссылка типа 
+Parent ссылается на объект типа Parent или ChildZ, то переход к ChildY 
+невозможен, так как в обоих случаях объект не обладает полем y, которое 
+объявлено в классе ChildY. Поэтому при сужении разработчику необходимо 
+явным образом указывать на то, что необходимо&nbsp;&nbsp;попытаться 
+провести такое преобразование. JVM во время исполнения проверит 
+корректность перехода. Если он возможен, преобразование будет проведено.
+ Если же нет – возникнет ошибка (обычно ClassCastException).<br><br><em><span style="font-family:Arial;">Parent p=new ChildY();</span></em><br><em><span style="font-family:Arial;">ChildY cy = (ChildY)p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//верно</span></em><br><em><span style="font-family:Arial;">Parent p2=new ChildZ();</span></em><br><em><span style="font-family:Arial;">ChildY cy2 = (ChildY)p2;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//ошибка</span></em><br><br>Чтобы проверить, возможен ли желаемый переход, можно воспользоваться оператором instanceof:<br><br><em><span style="font-family:Arial;">Parent p=new ChildY();</span></em><br><em><span style="font-family:Arial;">if (p instanceof ChildY) {</span></em><br><em><span style="font-family:Arial;">ChildY cy = (ChildY)p;</span></em><br><em><span style="font-family:Arial;">}</span></em><br><em><span style="font-family:Arial;"></span></em><br><em><span style="font-family:Arial;">Parent p2=new ChildZ();</span></em><br><em><span style="font-family:Arial;">if (p2 instanceof ChildY) {</span></em><br><em><span style="font-family:Arial;">ChildY cy = (ChildY)p2;</span></em><br><em><span style="font-family:Arial;">}</span></em><br><em><span style="font-family:Arial;"></span></em><br><em><span style="font-family:Arial;">Parent p3=new Parent();</span></em><br><em><span style="font-family:Arial;">if (p3 instanceof ChildY) {</span></em><br><em><span style="font-family:Arial;">ChildY cy = (ChildY)p3;</span></em><br><em><span style="font-family:Arial;">}</span></em><br><br>В&nbsp;&nbsp;данном
+ примере ошибок не возникнет. Первое преобразование возможно, и оно 
+будет осуществлено. Во втором и третьем случаях условия операторов if не
+ сработают и следовательно некорректного перехода не будет.<br><strong><span style="font-family:Arial;font-size:130%;">Преобразование к строке</span></strong><br>Любой
+ тип может быть приведен к строке, т.е. к экземпляру класса String. 
+Такое преобразование является исключительным в силу того, что охватывает
+ абсолютно все типы.<br>Различные типы преобразуются к строке следующим образом:<br><ul><li>Числовые
+ типы записываются в текстовом виде без потери точности представления. 
+Сначала на основе примитивного значения порождается экземпляр 
+соответствующего класса-«обертки», затем у него вызывается метод 
+toString(). Но поскольку&nbsp;&nbsp;эти действия снаружи незаметны, JVM 
+оптимизирует их и преобразует примитивные значения в текст напрямую.</li><br><li>Булевские величины приводятся к строке «true» или «false» в зависимости от значения.</li><br><li>Для объектных величин вызывается метод toString(). Если метод возвращает null, то результатом будет строка “null”.</li><br><li>Для null-значения генерируется строка “null”.</li></ul><strong><span style="font-family:Arial;font-size:130%;">Запрещенные преобразования</span></strong><br>Не
+ все переходы между произвольными типами допустимы. Например, к 
+запрещенным преобразованиям относятся: переходы от любого ссылочного 
+типа к примитивному и наоборот (кроме преобразования к строке), boolean 
+можно привести только к этому типу или же к строке. Кроме того 
+невозможно привести друг к другу, классы находящиеся на соседних ветвях 
+дерева наследования. В примере, который рассматривался для иллюстрации 
+ссылочных типов, переход от ChildY к ChildZ запрещен.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Этим
+ список запрещенных преобразований не исчерпывается. Он довольно широк и
+ в тоже время все варианты достаточно очевидны, поэтому подробно 
+рассматриваться не будут. Желающие могут получить полную информацию из 
+спецификации.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Разумеется, попытка осуществить запрещенное преобразование вызовет ошибку.<br><br><strong><em><span style="font-family:Arial;font-size:130%;">Применение приведений</span></em></strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ситуации применения преобразования типов могут быть сгруппированы следующим образом:<br><ul><li>Присвоение
+ значений переменным (assignment). Не все переходы допустимы при таком 
+преобразовании – ограничения выбраны таким образом, чтобы не могла 
+возникнуть исключительная ситуация.</li><br><li>Вызов метода. Это 
+преобразование применяется к аргументам вызываемого метода или 
+конструктора. Такое приведение никогда не порождает ошибок. Так же 
+приведение осуществляется при возвращении значения метода.</li><br><li>Явное приведение. В этом случае явно указывается, к какому типу требуется привести исходное значение.</li><br><li>Оператор конкатенации производит преобразование к строке своих аргументов.</li><br><li>Числовое
+ расширение. Числовые операции могут потребовать изменения типа 
+аргумента(ов). Это преобразование имеет особое название – расширенное, 
+так как выбор целевого типа может зависеть не только от исходного 
+значения, но и от второго аргумента операции.</li></ul><strong><em><span style="font-family:Arial;font-size:130%;">Задание #8</span></em></strong><br>Добавить в проект использование приведения для иерархии ваших классов.<br><div style="clear:both; padding-bottom:0.25em"></div><p></p>
+    
+    </div>
+    
+    <p class="post-footer">posted by Sergey A Brazhnik at 
+      <a href="http://oop-java.blogspot.de/2006/02/blog-post_21.html" title="permanent link">09:38</a> 
+       <span class="item-control blog-admin pid-161998092"><a style="border:none;" href="https://www.blogger.com/post-edit.g?blogID=17712793&amp;postID=114049313758978782&amp;from=pencil" title="Изменить сообщение"><img class="icon-action" alt="" src="%D0%9F%D1%80%D0%B5%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B8%D0%BF%D0%BE%D0%B2_files/icon18_edit_allbkg.gif" height="18" width="18"></a></span></p>
+  
+  </div>
+  <!-- End .post -->
+  
+  
+   <!-- Begin #comments -->
+ 
+
+  <div id="comments">
+
+	<a name="comments"></a>
+    
+    <h4>2 Comments:</h4>
+    
+    <ul>
+      
+      <li id="c114383766174639145"><a name="c114383766174639145"></a>
+        <div class="comment-body">
+         <p>Вы писали:<br><br><i>Это связано с тем, что char, в отличие от остальных целочисленных типов, является знаковым.</i><br><br><i>char c=4000;<br>System.out.println((short)c);<br>Результат:<br>-25536<br></i><br><br>Может быть наоборот? Или тогда по-подробнее объясните пожалуйста.<br><br>И ещё:<br><br><i>Это
+ приведение значений int к типу float и приведение значений типа long к 
+типу float или double. Хотя эти дробные типы вмещают гораздо большие 
+числа, чем соответствующие целые, но у них меньше значащих разрядов.<br></i><br><br>Непонятно, а пример приводится на сужение на самом деле<br><br><i>long a = 111111111111L;<br>float f=a;<br>a=(long)f; // () это как раз и есть операция преобразования типа<br>System.out.println(a); //результат 111111110656<br></i></p>
+        </div>
+        <p class="comment-data">By <span style="line-height:16px" class="comment-icon anon-comment-icon"><img src="%D0%9F%D1%80%D0%B5%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B8%D0%BF%D0%BE%D0%B2_files/anon16-rounded.gif" alt="Anonymous" style="display:inline;"></span>&nbsp;<span class="anon-comment-author">Анонимный</span>, at <a href="#c114383766174639145" title="comment permalink">апреля 01, 2006</a>
+	  <span class="item-control blog-admin pid-2062974828"><a style="border:none;" href="https://www.blogger.com/delete-comment.g?blogID=17712793&amp;postID=114383766174639145" title="Удалить комментарий"><span class="delete-comment-icon">&nbsp;</span></a></span></p>
+      </li>
+      
+      <li id="c114383853797358888"><a name="c114383853797358888"></a>
+        <div class="comment-body">
+         <p>Не понятно то что под заголовком "Применение приведений", особенно<br>числовое расширение и вызов метода. Нельзя ли по-подробнее, что имелось ввиду.<br>Заранее благодарю.</p>
+        </div>
+        <p class="comment-data">By <span style="line-height:16px" class="comment-icon anon-comment-icon"><img src="%D0%9F%D1%80%D0%B5%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B8%D0%BF%D0%BE%D0%B2_files/anon16-rounded.gif" alt="Anonymous" style="display:inline;"></span>&nbsp;<span class="anon-comment-author">Анонимный</span>, at <a href="#c114383853797358888" title="comment permalink">апреля 01, 2006</a>
+	  <span class="item-control blog-admin pid-1128849650"><a style="border:none;" href="https://www.blogger.com/delete-comment.g?blogID=17712793&amp;postID=114383853797358888" title="Удалить комментарий"><span class="delete-comment-icon">&nbsp;</span></a></span></p>
+      </li>
+      
+    </ul>
+	
+	<p class="comment-data">
+    <a class="comment-link" href="https://www.blogger.com/comment.g?blogID=17712793&amp;postID=114049313758978782">Отправить комментарий</a>
+    <br><br>
+
+		    
+    
+
+
+
+	<a href="http://oop-java.blogspot.de/">&lt;&lt; Home</a>
+    </p>
+    </div>
+  
+
+  <!-- End #comments -->
+
+
+
+  <hr>
+</div><!-- End #main-content -->
+</div><!-- End #content -->
+
+
+
+<!-- Begin #sidebar -->
+<div id="sidebar">
+
+  <h2 class="sidebar-title">About</h2>
+  
+  <p>Блог учебных материалов по семинарам спец. курса ММФ НГУ "Объектно-ориентированное программирование" (автор <u>Замулин А.В.</u>).</p>
+  
+   <!-- Begin #profile-container -->
+   
+   <div id="profile-container"><h2 class="sidebar-title">Обо мне</h2>
+<dl class="profile-datablock">
+<dd class="profile-data"><strong>Имя:</strong> <a rel="author" href="https://www.blogger.com/profile/11578687700554739069"> Sergey A Brazhnik </a></dd>
+<dd class="profile-data"><strong>Местоположение:</strong>  Novosibirsk, Russia </dd></dl>
+<p class="profile-textblock">Аспирант <a href="http://www.iis.nsk.su/">Института Систем Информатики им. А.П. Ершова СО РАН</a>.<br>
+Системный архитектор компании <a href="http://www.softage.ru/">SoftAge Inc</a>.</p>
+<p class="profile-link"><a rel="author" href="https://www.blogger.com/profile/11578687700554739069">Просмотреть профиль</a></p></div>
+   
+     <!-- End #profile -->
+    
+   
+  
+  
+
+  <h2 class="sidebar-title">Previous</h2>
+  
+  <ul id="recently">
+    
+        <li><a href="http://oop-java.blogspot.de/2006/02/blog-post.html">Господа! Семинарские занятия по спец. курсу начнут...</a></li>
+     
+        <li><a href="http://oop-java.blogspot.de/2005/12/exceptions.html">Исключения (Exceptions)</a></li>
+     
+        <li><a href="http://oop-java.blogspot.de/2005/12/java.html">Полиморфизм в Java</a></li>
+     
+        <li><a href="http://oop-java.blogspot.de/2005/12/6.html">6.12.2005 я опять буду отсутствовать.
+Пишите комме...</a></li>
+     
+        <li><a href="http://oop-java.blogspot.de/2005/12/java-2.html">Объектная модель в Java, часть 2</a></li>
+     
+        <li><a href="http://oop-java.blogspot.de/2005/11/29.html">29.11.2005 меня на занятии не будет. Компьютерный ...</a></li>
+     
+        <li><a href="http://oop-java.blogspot.de/2005/11/java-1.html">Объектная модель в Java, часть 1</a></li>
+     
+        <li><a href="http://oop-java.blogspot.de/2005/11/package.html">Пакет (package)</a></li>
+     
+        <li><a href="http://oop-java.blogspot.de/2005/11/blog-post_13.html">Соглашения по наименованию</a></li>
+     
+        <li><a href="http://oop-java.blogspot.de/2005/11/8.html">8.11.05 я опять не смогу присутствовать на семинар...</a></li>
+     
+  </ul>
+  
+  
+  
+  <!--<h2 class="sidebar-title">New</h2>
+  
+  <p>This is a paragraph of text in the sidebar.</p>
+  -->
+  
+  <p id="powered-by"><a href="http://www.blogger.com/"><img src="%D0%9F%D1%80%D0%B5%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B8%D0%BF%D0%BE%D0%B2_files/bloggerbutton1.gif" alt="Powered by Blogger"></a></p>
+
+
+</div>
+<!-- End #sidebar -->
+
+<div class="clear">&nbsp;</div>
+
+<div id="footer">
+   <p><!-- If you'd like, you could place footer information here. -->&nbsp;</p>
+</div>
+
+</div> <!-- end #wrap -->
+
+<!-- c(~) -->
+
+
+<!-- 'Es liegt in deiner Verantwortung, deine Besucher über die in deinem Blog verwendeten Cookies zu informieren. Weitere Informationen findest du hier http://www.blogger.com/go/cookiechoices.' -->
+<script src="%D0%9F%D1%80%D0%B5%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B8%D0%BF%D0%BE%D0%B2_files/cookiechoices.js" defer="defer"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function(event) {
+    window.cookieChoices && cookieChoices.showCookieConsentBar && cookieChoices.showCookieConsentBar(
+        (window.cookieOptions && cookieOptions.msg) || 'Diese Website verwendet Cookies von Google, um ihre Dienste bereitzustellen, Anzeigen zu personalisieren und Zugriffe zu analysieren. Informationen darüber, wie du die Website verwendest, werden an Google weitergegeben. Durch die Nutzung dieser Website erklärst du dich damit einverstanden, dass sie Cookies verwendet.',
+        (window.cookieOptions && cookieOptions.close) || 'OK',
+        (window.cookieOptions && cookieOptions.learn) || 'Weitere Informationen',
+        (window.cookieOptions && cookieOptions.link) || 'https://www.blogger.com/go/blogspot-cookies');
+  });
+</script>
+
+<script type="text/javascript" src="%D0%9F%D1%80%D0%B5%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B8%D0%BF%D0%BE%D0%B2_files/168336579-csitail.js"></script>
+<script type="text/javascript">BLOG_initCsi('classic_blogspot');</script>
+<div class="cookie-choices-info singleton-element" id="cookieChoiceInfo"><div class="cookie-choices-inner"><span class="cookie-choices-text">Diese
+ Website verwendet Cookies von Google, um ihre Dienste bereitzustellen, 
+Anzeigen zu personalisieren und Zugriffe zu analysieren. Informationen 
+darüber, wie du die Website verwendest, werden an Google weitergegeben. 
+Durch die Nutzung dieser Website erklärst du dich damit einverstanden, 
+dass sie Cookies verwendet.</span><span class="cookie-choices-buttons"><a class="cookie-choices-button" target="_blank" href="https://www.blogger.com/go/blogspot-cookies">Weitere Informationen</a><a class="cookie-choices-button" href="#" id="cookieChoiceDismiss">OK</a></span></div></div></body></html>

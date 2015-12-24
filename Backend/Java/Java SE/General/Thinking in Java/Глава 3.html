@@ -1,0 +1,1911 @@
+<!DOCTYPE html>
+<html dir="ltr" class="client-nojs" lang="ru"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8"><title>Глава 3 Thinking in Java 4th edition — WikiJava: Wiki of Java: викифицированные книги и статьи по Java</title>
+<meta name="generator" content="MediaWiki 1.22.2">
+<link rel="shortcut icon" href="http://wikijava.it-cache.net/favicon.ico">
+<link rel="search" type="application/opensearchdescription+xml" href="http://wikijava.it-cache.net/opensearch_desc.php" title="WikiJava: Wiki of Java: викифицированные книги и статьи по Java (ru)">
+<link rel="EditURI" type="application/rsd+xml" href="http://wikijava.it-cache.net/api.php@action=rsd">
+<link rel="copyright" href="http://www.gnu.org/copyleft/fdl.html">
+<link rel="alternate" type="application/atom+xml" title="WikiJava: Wiki of Java: викифицированные книги и статьи по Java&nbsp;— Atom-лента" href="http://wikijava.it-cache.net/index.php@title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F%253A%D0%A1%D0%B2%D0%B5%D0%B6%D0%B8%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8&amp;feed=atom">
+<link rel="stylesheet" href="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%203_files/style3.css">
+<meta name="ResourceLoaderDynamicStyles" content="">
+<style>a:lang(ar),a:lang(ckb),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}
+/* cache key: wjava2-wj_:resourceloader:filter:minify-css:7:32e7e505403c81fe0a24e297ef166436 */</style>
+
+<script src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%203_files/style1.css"></script><script src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%203_files/load.html"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Глава_3_Thinking_in_Java_4th_edition","wgTitle":"Глава 3 Thinking in Java 4th edition","wgCurRevisionId":26,"wgRevisionId":26,"wgArticleId":16,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Книги","Java"],"wgBreakFrames":false,"wgPageContentLanguage":"ru","wgPageContentModel":"wikitext","wgSeparatorTransformTable":[",\t."," \t,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"],"wgMonthNamesShort":["","янв","фев","мар","апр","май","июн","июл","авг","сен","окт","ноя","дек"],"wgRelevantPageName":"Глава_3_Thinking_in_Java_4th_edition","wgIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgVectorEnabledModules":{"collapsiblenav":true,"collapsibletabs":true,"editwarning":true,"expandablesearch":false,"footercleanup":false,"sectioneditlinks":false,"simplesearch":true,"experiments":true}});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function(){mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"vector-simplesearch":1,"watchcreations":0,"watchdefault":0,"watchdeletion":0,"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,
+"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"useeditwarning":1,"prefershttps":1,"language":"ru","variant-gan":"gan","variant-iu":"iu","variant-kk":"kk","variant-ku":"ku","variant-shi":"shi","variant-sr":"sr","variant-tg":"tg","variant-uz":"uz","variant-zh":"zh","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false,"variant":"ru"});},{},{});mw.loader.implement("user.tokens",function(){mw.user.tokens.set({"editToken":"+\\","patrolToken":false,"watchToken":false});},{},{});
+/* cache key: wjava2-wj_:resourceloader:filter:minify-js:7:07bb1f4d2452379e70abca47c4cde6d9 */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax","skins.vector.js"]);
+}</script>
+<style type="text/css">/*<![CDATA[*/
+.source-java5 {line-height: normal;}
+.source-java5 li, .source-java5 pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for java5
+ * CSS class: source-java5, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.java5.source-java5 .de1, .java5.source-java5 .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;font-family: monospace, monospace;}
+.java5.source-java5  {font-family:monospace;}
+.java5.source-java5 .imp {font-weight: bold; color: red;}
+.java5.source-java5 li, .java5.source-java5 .li1 {font-weight: normal; vertical-align:top;}
+.java5.source-java5 .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.java5.source-java5 .li2 {font-weight: bold; vertical-align:top;}
+.java5.source-java5 .kw1 {color: #000000;  font-weight: bold;}
+.java5.source-java5 .kw2 {color: #000000; font-weight: bold;}
+.java5.source-java5 .kw3 {color: #006600; font-weight: bold;}
+.java5.source-java5 .kw4 {color: #006600; font-weight: bold;}
+.java5.source-java5 .kw5 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw6 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw7 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw8 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw9 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw10 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw11 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw12 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw13 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw14 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw15 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw16 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw17 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw18 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw19 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw20 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw21 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw22 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw23 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw24 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw25 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw26 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw27 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw28 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw29 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw30 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw31 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw32 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw33 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw34 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw35 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw36 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw37 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw38 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw39 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw40 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw41 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw42 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw43 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw44 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw45 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw46 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw47 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw48 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw49 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw50 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw51 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw52 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw53 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw54 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw55 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw56 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw57 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw58 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw59 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw60 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw61 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw62 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw63 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw64 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw65 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw66 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw67 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw68 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw69 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw70 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw71 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw72 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw73 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw74 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw75 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw76 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw77 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw78 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw79 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw80 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw81 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw82 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw83 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw84 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw85 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw86 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw87 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw88 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw89 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw90 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw91 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw92 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw93 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw94 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw95 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw96 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw97 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw98 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw99 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw100 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw101 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw102 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw103 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw104 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw105 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw106 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw107 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw108 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw109 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw110 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw111 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw112 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw113 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw114 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw115 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw116 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw117 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw118 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw119 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw120 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw121 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw122 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw123 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw124 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw125 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw126 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw127 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw128 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw129 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw130 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw131 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw132 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw133 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw134 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw135 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw136 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw137 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw138 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw139 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw140 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw141 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw142 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw143 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw144 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw145 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw146 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw147 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw148 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw149 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw150 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw151 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw152 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw153 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw154 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw155 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw156 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw157 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw158 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw159 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw160 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw161 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw162 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw163 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw164 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw165 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw166 {color: #003399; font-weight: bold;}
+.java5.source-java5 .co1 {color: #666666; font-style: italic;}
+.java5.source-java5 .co2 {color: #006699;}
+.java5.source-java5 .co3 {color: #008000; font-style: italic; font-weight: bold;}
+.java5.source-java5 .coMULTI {color: #666666; font-style: italic;}
+.java5.source-java5 .es0 {color: #000099; font-weight: bold;}
+.java5.source-java5 .br0 {color: #009900;}
+.java5.source-java5 .sy0 {color: #339933;}
+.java5.source-java5 .st0 {color: #0000ff;}
+.java5.source-java5 .nu0 {color: #cc66cc;}
+.java5.source-java5 .me1 {color: #006633;}
+.java5.source-java5 .me2 {color: #006633;}
+.java5.source-java5 .ln-xtra, .java5.source-java5 li.ln-xtra, .java5.source-java5 div.ln-xtra {background-color: #ffc;}
+.java5.source-java5 span.xtra { display:block; }
+
+/*]]>*/
+</style><!--[if lt IE 7]><style type="text/css">body{behavior:url("/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Глава_3_Thinking_in_Java_4th_edition skin-vector action-view vector-animateLayout">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<div id="content" class="mw-body" role="main">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<h1 id="firstHeading" class="firstHeading" lang="ru"><span dir="auto">Глава 3 Thinking in Java 4th edition</span></h1>
+			<div id="bodyContent">
+								<div id="siteSub">Материал из WikiJava: Wiki of Java: викифицированные книги и статьи по Java</div>
+								<div id="contentSub"></div>
+												<div id="jump-to-nav" class="mw-jump">
+					Перейти к:					<a href="http://wikijava.it-cache.net/index.php@title=Glava_3_Thinking_in_Java_4th_edition.html#mw-navigation">навигация</a>, 					<a href="http://wikijava.it-cache.net/index.php@title=Glava_3_Thinking_in_Java_4th_edition.html#p-search">поиск</a>
+				</div>
+				<div id="mw-content-text" dir="ltr" class="mw-content-ltr" lang="ru"><table style="clear: right; margin-bottom: .5em; float: right; padding: .5em 0 .8em 1.4em; background: none; width: auto;" cellpadding="0" cellspacing="0">
+<tbody><tr>
+<td> <div id="toc" class="toc"><div id="toctitle"><h2>Содержание</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="http://wikijava.it-cache.net/index.php@title=Glava_3_Thinking_in_Java_4th_edition.html#.D0.9E.D0.9F.D0.95.D0.A0.D0.90.D0.A2.D0.9E.D0.A0.D0.AB"><span class="tocnumber">1</span> <span class="toctext"><b>ОПЕРАТОРЫ</b></span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="http://wikijava.it-cache.net/index.php@title=Glava_3_Thinking_in_Java_4th_edition.html#.D0.9F.D1.80.D0.BE.D1.81.D1.82.D1.8B.D0.B5_.D0.BA.D0.BE.D0.BC.D0.B0.D0.BD.D0.B4.D1.8B_.D0.BF.D0.B5.D1.87.D0.B0.D1.82.D0.B8"><span class="tocnumber">1.1</span> <span class="toctext">Простые команды печати</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="http://wikijava.it-cache.net/index.php@title=Glava_3_Thinking_in_Java_4th_edition.html#.D0.9E.D0.BF.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80.D1.8B_Java"><span class="tocnumber">1.2</span> <span class="toctext">Операторы <i>Java</i></span></a>
+<ul>
+<li class="toclevel-3 tocsection-4"><a href="http://wikijava.it-cache.net/index.php@title=Glava_3_Thinking_in_Java_4th_edition.html#.D0.9F.D1.80.D0.B8.D0.BE.D1.80.D0.B8.D1.82.D0.B5.D1.82"><span class="tocnumber">1.2.1</span> <span class="toctext">Приоритет</span></a></li>
+<li class="toclevel-3 tocsection-5"><a href="http://wikijava.it-cache.net/index.php@title=Glava_3_Thinking_in_Java_4th_edition.html#.D0.9F.D1.80.D0.B8.D1.81.D0.B2.D0.BE.D0.B5.D0.BD.D0.B8.D0.B5"><span class="tocnumber">1.2.2</span> <span class="toctext">Присвоение</span></a></li>
+<li class="toclevel-3 tocsection-6"><a href="http://wikijava.it-cache.net/index.php@title=Glava_3_Thinking_in_Java_4th_edition.html#.D0.A1.D0.BE.D0.B2.D0.BC.D0.B5.D1.89.D0.B5.D0.BD.D0.B8.D0.B5_.D0.B8.D0.BC.D0.B5.D0.BD_.D0.B2.D0.BE_.D0.B2.D1.80.D0.B5.D0.BC.D1.8F_.D0.B2.D1.8B.D0.B7.D0.BE.D0.B2.D0.B0_.D0.BC.D0.B5.D1.82.D0.BE.D0.B4.D0.BE.D0.B2"><span class="tocnumber">1.2.3</span> <span class="toctext">Совмещение имен во время вызова методов</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-7"><a href="http://wikijava.it-cache.net/index.php@title=Glava_3_Thinking_in_Java_4th_edition.html#.D0.90.D1.80.D0.B8.D1.84.D0.BC.D0.B5.D1.82.D0.B8.D1.87.D0.B5.D1.81.D0.BA.D0.B8.D0.B5_.D0.BE.D0.BF.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80.D1.8B"><span class="tocnumber">1.3</span> <span class="toctext">Арифметические операторы</span></a>
+<ul>
+<li class="toclevel-3 tocsection-8"><a href="http://wikijava.it-cache.net/index.php@title=Glava_3_Thinking_in_Java_4th_edition.html#.D0.9E.D1.81.D0.BD.D0.BE.D0.B2.D0.BD.D1.8B.D0.B5_.D0.BC.D0.B0.D1.82.D0.B5.D0.BC.D0.B0.D1.82.D0.B8.D1.87.D0.B5.D1.81.D0.BA.D0.B8.D0.B5_.D0.BE.D0.BF.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80.D1.8B"><span class="tocnumber">1.3.1</span> <span class="toctext">Основные математические операторы</span></a></li>
+<li class="toclevel-3 tocsection-9"><a href="http://wikijava.it-cache.net/index.php@title=Glava_3_Thinking_in_Java_4th_edition.html#.D0.A3.D0.BD.D0.B0.D1.80.D0.BD.D1.8B.D0.B5_.D0.BE.D0.BF.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80.D1.8B_.D0.BF.D0.BB.D1.8E.D1.81_.D0.B8_.D0.BC.D0.B8.D0.BD.D1.83.D1.81"><span class="tocnumber">1.3.2</span> <span class="toctext">Унарные операторы плюс и минус</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-10"><a href="http://wikijava.it-cache.net/index.php@title=Glava_3_Thinking_in_Java_4th_edition.html#.D0.90.D0.B2.D1.82.D0.BE.D1.83.D0.B2.D0.B5.D0.BB.D0.B8.D1.87.D0.B5.D0.BD.D0.B8.D0.B5_.D0.B8_.D0.B0.D0.B2.D1.82.D0.BE.D1.83.D0.BC.D0.B5.D0.BD.D1.8C.D1.88.D0.B5.D0.BD.D0.B8.D0.B5"><span class="tocnumber">1.4</span> <span class="toctext">Автоувеличение и автоуменьшение</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="http://wikijava.it-cache.net/index.php@title=Glava_3_Thinking_in_Java_4th_edition.html#.D0.9E.D0.BF.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80.D1.8B_.D1.81.D1.80.D0.B0.D0.B2.D0.BD.D0.B5.D0.BD.D0.B8.D1.8F_.D0.B8_.D0.BB.D0.BE.D0.B3.D0.B8.D1.87.D0.B5.D1.81.D0.BA.D0.B8.D0.B5_.D0.BE.D0.BF.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80.D1.8B"><span class="tocnumber">1.5</span> <span class="toctext">Операторы сравнения  и логические операторы</span></a>
+<ul>
+<li class="toclevel-3 tocsection-12"><a href="http://wikijava.it-cache.net/index.php@title=Glava_3_Thinking_in_Java_4th_edition.html#.D0.9F.D1.80.D0.BE.D0.B2.D0.B5.D1.80.D0.BA.D0.B0_.D0.BE.D0.B1.D1.8A.D0.B5.D0.BA.D1.82.D0.BE.D0.B2_.D0.BD.D0.B0_.D1.80.D0.B0.D0.B2.D0.B5.D0.BD.D1.81.D1.82.D0.B2.D0.BE"><span class="tocnumber">1.5.1</span> <span class="toctext">Проверка объектов на равенство</span></a></li>
+<li class="toclevel-3 tocsection-13"><a href="http://wikijava.it-cache.net/index.php@title=Glava_3_Thinking_in_Java_4th_edition.html#.D0.9B.D0.BE.D0.B3.D0.B8.D1.87.D0.B5.D1.81.D0.BA.D0.B8.D0.B5_.D0.BE.D0.BF.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80.D1.8B"><span class="tocnumber">1.5.2</span> <span class="toctext">Логические операторы</span></a></li>
+<li class="toclevel-3 tocsection-14"><a href="http://wikijava.it-cache.net/index.php@title=Glava_3_Thinking_in_Java_4th_edition.html#.D0.A3.D1.81.D0.BA.D0.BE.D1.80.D0.B5.D0.BD.D0.BD.D0.BE.D0.B5_.D0.B2.D1.8B.D1.87.D0.B8.D1.81.D0.BB.D0.B5.D0.BD.D0.B8.D0.B5"><span class="tocnumber">1.5.3</span> <span class="toctext">Ускоренное вычисление</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-15"><a href="http://wikijava.it-cache.net/index.php@title=Glava_3_Thinking_in_Java_4th_edition.html#.D0.9B.D0.B8.D1.82.D0.B5.D1.80.D0.B0.D0.BB.D1.8B"><span class="tocnumber">1.6</span> <span class="toctext">Литералы</span></a></li>
+<li class="toclevel-2 tocsection-16"><a href="http://wikijava.it-cache.net/index.php@title=Glava_3_Thinking_in_Java_4th_edition.html#.D0.AD.D0.BA.D1.81.D0.BF.D0.BE.D0.BD.D0.B5.D0.BD.D1.86.D0.B8.D0.B0.D0.BB.D1.8C.D0.BD.D0.B0.D1.8F_.D0.B7.D0.B0.D0.BF.D0.B8.D1.81.D1.8C"><span class="tocnumber">1.7</span> <span class="toctext">Экспоненциальная запись</span></a></li>
+<li class="toclevel-2 tocsection-17"><a href="http://wikijava.it-cache.net/index.php@title=Glava_3_Thinking_in_Java_4th_edition.html#.D0.9F.D0.BE.D1.80.D0.B0.D0.B7.D1.80.D1.8F.D0.B4.D0.BD.D1.8B.D0.B5_.D0.BE.D0.BF.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80.D1.8B"><span class="tocnumber">1.8</span> <span class="toctext">Поразрядные операторы</span></a>
+<ul>
+<li class="toclevel-3 tocsection-18"><a href="http://wikijava.it-cache.net/index.php@title=Glava_3_Thinking_in_Java_4th_edition.html#.D0.9F.D0.BE.D1.80.D0.B0.D0.B7.D1.80.D1.8F.D0.B4.D0.BD.D1.8B.D0.B5_.D0.BB.D0.BE.D0.B3.D0.B8.D1.87.D0.B5.D1.81.D0.BA.D0.B8.D0.B5_.D0.BE.D0.BF.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80.D1.8B"><span class="tocnumber">1.8.1</span> <span class="toctext">Поразрядные логические операторы</span></a></li>
+<li class="toclevel-3 tocsection-19"><a href="http://wikijava.it-cache.net/index.php@title=Glava_3_Thinking_in_Java_4th_edition.html#.D0.9E.D0.BF.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80.D1.8B_.D1.81.D0.B4.D0.B2.D0.B8.D0.B3.D0.B0"><span class="tocnumber">1.8.2</span> <span class="toctext">Операторы сдвига</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-20"><a href="http://wikijava.it-cache.net/index.php@title=Glava_3_Thinking_in_Java_4th_edition.html#.D0.A2.D0.B5.D1.80.D0.BD.D0.B0.D1.80.D0.BD.D1.8B.D0.B9_.D0.BE.D0.BF.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80_.C2.AB.D0.B5.D1.81.D0.BB.D0.B8-.D0.B8.D0.BD.D0.B0.D1.87.D0.B5.C2.BB"><span class="tocnumber">1.9</span> <span class="toctext">Тернарный оператор «если-иначе»</span></a></li>
+<li class="toclevel-2 tocsection-21"><a href="http://wikijava.it-cache.net/index.php@title=Glava_3_Thinking_in_Java_4th_edition.html#.D0.9E.D0.BF.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80.D1.8B_.2B_.D0.B8_.2B.3D_.D0.B4.D0.BB.D1.8F_String"><span class="tocnumber">1.10</span> <span class="toctext">Операторы + и += для String</span></a></li>
+<li class="toclevel-2 tocsection-22"><a href="http://wikijava.it-cache.net/index.php@title=Glava_3_Thinking_in_Java_4th_edition.html#.D0.A2.D0.B8.D0.BF.D0.B8.D1.87.D0.BD.D1.8B.D0.B5_.D0.BE.D1.88.D0.B8.D0.B1.D0.BA.D0.B8_.D0.BF.D1.80.D0.B8_.D0.B8.D1.81.D0.BF.D0.BE.D0.BB.D1.8C.D0.B7.D0.BE.D0.B2.D0.B0.D0.BD.D0.B8.D0.B8_.D0.BE.D0.BF.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80.D0.BE.D0.B2"><span class="tocnumber">1.11</span> <span class="toctext">Типичные ошибки при использовании операторов</span></a></li>
+<li class="toclevel-2 tocsection-23"><a href="http://wikijava.it-cache.net/index.php@title=Glava_3_Thinking_in_Java_4th_edition.html#.D0.9E.D0.BF.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80.D1.8B_.D0.BF.D1.80.D0.B8.D0.B2.D0.B5.D0.B4.D0.B5.D0.BD.D0.B8.D1.8F"><span class="tocnumber">1.12</span> <span class="toctext">Операторы приведения</span></a></li>
+<li class="toclevel-2 tocsection-24"><a href="http://wikijava.it-cache.net/index.php@title=Glava_3_Thinking_in_Java_4th_edition.html#.D0.9E.D0.BA.D1.80.D1.83.D0.B3.D0.BB.D0.B5.D0.BD.D0.B8.D0.B5_.D0.B8_.D1.83.D1.81.D0.B5.D1.87.D0.B5.D0.BD.D0.B8.D0.B5"><span class="tocnumber">1.13</span> <span class="toctext">Округление и усечение</span></a></li>
+<li class="toclevel-2 tocsection-25"><a href="http://wikijava.it-cache.net/index.php@title=Glava_3_Thinking_in_Java_4th_edition.html#.D0.9F.D0.BE.D0.B2.D1.8B.D1.88.D0.B5.D0.BD.D0.B8.D0.B5"><span class="tocnumber">1.14</span> <span class="toctext">Повышение</span></a></li>
+<li class="toclevel-2 tocsection-26"><a href="http://wikijava.it-cache.net/index.php@title=Glava_3_Thinking_in_Java_4th_edition.html#.D0.92_Java_.D0.BE.D1.82.D1.81.D1.83.D1.82.D1.81.D1.82.D0.B2.D1.83.D0.B5.D1.82_sizeof.28.29"><span class="tocnumber">1.15</span> <span class="toctext">В <i>Java</i> отсутствует sizeof()</span></a></li>
+<li class="toclevel-2 tocsection-27"><a href="http://wikijava.it-cache.net/index.php@title=Glava_3_Thinking_in_Java_4th_edition.html#.D0.A1.D0.B2.D0.BE.D0.B4.D0.BA.D0.B0_.D0.BE.D0.BF.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80.D0.BE.D0.B2"><span class="tocnumber">1.16</span> <span class="toctext">Сводка операторов</span></a></li>
+<li class="toclevel-2 tocsection-28"><a href="http://wikijava.it-cache.net/index.php@title=Glava_3_Thinking_in_Java_4th_edition.html#.D0.A0.D0.B5.D0.B7.D1.8E.D0.BC.D0.B5"><span class="tocnumber">1.17</span> <span class="toctext">Резюме</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+</td></tr></tbody></table>
+
+<h1><span class="mw-headline" id=".D0.9E.D0.9F.D0.95.D0.A0.D0.90.D0.A2.D0.9E.D0.A0.D0.AB"><b>ОПЕРАТОРЫ</b></span></h1>
+<p>На нижнем уровне операции с данными в <i>Java</i> осуществляются посредством операторов.
+Язык <i>Java</i> создавался на основе <i>C++</i>, поэтому большинство этих операторов и конструкций знакомы программистам на <i>C</i> и <i>C++</i>. Также в <i>Java</i> были добавлены некоторые улучшения и упрощения.
+Если вы .знакомы с синтаксисом <i>C</i> или <i>C++</i>, бегло просмотрите эту и следующую главу, останавливаясь на тех местах, в которых <i>Java</i> отличается от этих языков. Если чтение дается вам с трудом, попробуйте обратиться к мультимедийному семинару <b>Thinking in <i>С</i></b>,
+ свободно загружаемому с сайта www.MindView.net. Он содержит 
+аудиолекции, слайды, упражнения и решения, специально разработанные для 
+быстрого ознакомления с синтаксисом <i>C</i>, необходимым для успешного овладения языком <i>Java</i>.
+</p>
+<h2><span class="mw-headline" id=".D0.9F.D1.80.D0.BE.D1.81.D1.82.D1.8B.D0.B5_.D0.BA.D0.BE.D0.BC.D0.B0.D0.BD.D0.B4.D1.8B_.D0.BF.D0.B5.D1.87.D0.B0.D1.82.D0.B8">Простые команды печати</span></h2>
+<p>В предыдущей главе была представлена команда печати <i>Java</i>
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">(</span><span class="st0">"Какая длинная команда..."</span><span class="br0">)</span><span class="sy0">;</span></pre></div></div>
+<p>Вероятно, вы заметили, что команда не только получается слишком длинной, но и плохо читается. Во многих языках до и после <i>Java</i> используется более простой подход к выполнению столь распространенной операции.
+В главе 6 представлена концепция статического импорта, появившаяся в <i>Java</i> <i>SE5</i>,
+ а также крошечная библиотека, упрощающая написание команд печати. Тем 
+не менее для использования библиотеки не обязательно знать все 
+подробности. Программу из предыдущей главы можно переписать в следующем 
+виде:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: operators/HelloDate.java</span>
+<span class="kw2">import</span> <span class="co2">java.util.*</span><span class="sy0">;</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> HelloDate <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    print<span class="br0">(</span><span class="st0">"Привет, сегодня: "</span><span class="br0">)</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="kw2">new</span> <span class="kw166">Date</span><span class="br0">(</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt; 
+</p>
+<pre>Привет, сегодня
+Wed Oct 05 14-39 36 MDT 2005
+</pre>
+<p>&lt;/spoiler&gt;
+Результат смотрится гораздо приятнее. Обратите внимание на ключевое слово <i><b>static</b></i> во второй команде <i><b>import</b></i>.
+</p><p>Чтобы использовать эту библиотеку, необходимо загрузить архив с 
+примерами кода. Распакуйте его и включите корневой каталог дерева в 
+переменную окружения <i><b>CLASSPATH</b></i> вашего компьютера. Хотя использование <i><b>net.mindview.util.Print</b></i>
+ упрощает программный код, оно оправданно не везде. Если программа 
+содержит небольшое количество команд печати, я отказываюсь от <i><b>import</b></i> и записываю полный вызов <i><b>System.out.println()</b></i>.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id=".D0.9E.D0.BF.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80.D1.8B_Java">Операторы <i>Java</i></span></h2>
+<p>Оператор получает один или несколько аргументов и создает на их 
+основе новое значение. Форма передачи аргументов несколько иная, чем при
+ вызове метода, но эффект тот же самый. Сложение (<i><b>+</b></i>), вычитание и унарный минус (<i><b>-</b></i>), умножение (<i><b>*</b></i>), деление (<i><b>/</b></i>) и присвоение (<i><b>=</b></i>) работают одинаково фактически во всех языках программирования.
+</p><p>Все операторы работают с операндами и выдают какой-то результат. 
+Вдобавок некоторые операторы могут изменить значение операнда. Это 
+называется побочным эффектом. Как правило, операторы, изменяющие 
+значение своих операндов, используются именно ради побочного эффекта, но
+ вы должны помнить, что полученное значение может быть использовано в 
+программе и обычным образом, независимо от побочных эффектов.
+</p><p>Почти все операторы работают только с примитивами. Исключениями являются <i><b>=, ==,&nbsp;!=</b></i>, которые могут быть применены к объектам (и создают немало затруднений). Кроме того, класс <i><b>String</b></i> поддерживает операции <i><b>+</b></i> и <i><b>+=</b></i>.
+</p><p><br>
+</p>
+<h3><span class="mw-headline" id=".D0.9F.D1.80.D0.B8.D0.BE.D1.80.D0.B8.D1.82.D0.B5.D1.82">Приоритет</span></h3>
+<p>Приоритет операций определяет порядок вычисления выражений с несколькими операторами. В <i>Java</i>
+ существуют конкретные правила для определения очередности вычислений. 
+Легче всего запомнить, что деление и умножение выполняются раньше 
+сложения и вычитания. Программисты часто забывают правила 
+предшествования, поэтому для явного задания порядка вычислений следует 
+использовать круглые скобки. Например, взгляните на команды (1) и (2):
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: operators/Precedence.java</span>
+<span class="kw2">public</span> <span class="kw2">class</span> Precedence <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw3">int</span> x = <span class="nu0">1</span>, y = <span class="nu0">2</span>, z = <span class="nu0">3</span><span class="sy0">;</span>
+    <span class="kw3">int</span> a = x + y - <span class="nu0">2</span>/<span class="nu0">2</span> + z<span class="sy0">;</span>           <span class="co1">// (1)</span>
+    <span class="kw3">int</span> b = x + <span class="br0">(</span>y - <span class="nu0">2</span><span class="br0">)</span>/<span class="br0">(</span><span class="nu0">2</span> + z<span class="br0">)</span><span class="sy0">;</span>       <span class="co1">// (2)</span>
+    <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">(</span><span class="st0">"a = "</span> + a + <span class="st0">" b = "</span> + b<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>a = 5 b = 1
+</pre>
+<p>&lt;/spoiler&gt;
+Команды похожи друг на друга, но из результатов хорошо видно, что они 
+имеют разный смысл в зависимости от присутствия круглых скобок.
+Обратите внимание на оператор <i><b>+</b></i> в команде <i><b>System.out.println</b></i>.
+ В данном контексте + означает конкатенацию строк, а не суммирование. 
+Когда компилятор встречает объект String, за которым следует <i><b>+</b></i> и объект, отличный от <i><b>String</b></i>, он пытается преобразовать последний объект в <i><b>String</b></i>. Как видно из выходных данных, для <i><b>а </b></i> и <i><b>b</b></i> тип <i><b>int</b></i> был успешно преобразован в <i><b>String</b></i>.
+</p>
+<h3><span class="mw-headline" id=".D0.9F.D1.80.D0.B8.D1.81.D0.B2.D0.BE.D0.B5.D0.BD.D0.B8.D0.B5">Присвоение</span></h3>
+<p>Присвоение выполняется оператором <i><b>=</b></i> 
+</p><p>Трактуется он так: «взять значение из правой части выражения 
+(часто называемое просто значением) и скопировать его в левую часть 
+(часто называемую именующим выражением)». Значением может быть любая 
+константа, переменная или выражение, но в качестве именующего выражения 
+обязательно должна использоваться именованная переменная (то есть для 
+хранения значения должна выделяться физическая память). Например, вы 
+можете присвоить постоянное значение переменной:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> а = <span class="nu0">4</span><span class="sy0">;</span></pre></div></div>
+<p>но нельзя присвоить что-либо константе — она не может использоваться в качестве именующего выражения (например, запись <i><b>4 = а</b></i> недопустима).
+</p><p>Для примитивов присвоение выполняется тривиально. Так как 
+примитивный тип хранит данные, а не ссылку на объект, то присвоение 
+сводится к простому копированию данных из одного места в другое. 
+Например, если команда <i><b>а = b</b></i> выполняется для примитивных типов, то содержимое <i><b>b</b></i> просто копируется в <i><b>а</b></i>. Естественно, последующие изменения <i><b>а</b></i> никак не отражаются на <i><b>b</b></i>. Для программиста именно такое поведение выглядит наиболее логично.
+</p><p>При присвоении объектов все меняется. При выполнении операций с 
+объектом вы в действительности работаете со ссылкой, поэтому присвоение 
+«одного объекта другому» на самом деле означает копирование ссылки из 
+одного места в другое. Это значит, что при выполнении команды <i><b>c = d</b></i> для объектов в конечном итоге <i><b>с</b></i> и <i><b>d</b></i> указывают на один объект, которому изначально соответствовала только ссылка <i><b>d</b></i>. Сказанное демонстрирует следующий пример:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: operators/Assignment.java</span>
+<span class="co1">// Присвоение объектов имеет ряд хитростей</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">class</span> Tank <span class="br0">{</span>
+  <span class="kw3">int</span> level<span class="sy0">;</span>
+<span class="br0">}</span>	
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> Assignment <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    Tank t1 = <span class="kw2">new</span> Tank<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    Tank t2 = <span class="kw2">new</span> Tank<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    t1.<span class="me1">level</span> = <span class="nu0">9</span><span class="sy0">;</span>
+    t2.<span class="me1">level</span> = <span class="nu0">47</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"1: t1.level: "</span> + t1.<span class="me1">level</span> +
+          <span class="st0">", t2.level: "</span> + t2.<span class="me1">level</span><span class="br0">)</span><span class="sy0">;</span>
+    t1 = t2<span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"2: t1.level: "</span> + t1.<span class="me1">level</span> +
+          <span class="st0">", t2.level: "</span> + t2.<span class="me1">level</span><span class="br0">)</span><span class="sy0">;</span>
+    t1.<span class="me1">level</span> = <span class="nu0">27</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"3: t1.level: "</span> + t1.<span class="me1">level</span> +
+          <span class="st0">", t2.level: "</span> + t2.<span class="me1">level</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>1: t1.level: 9, t2.level: 47
+2: t1.level: 47, t2.level: 47
+3: t1.level: 27, t2.level: 27
+</pre>
+<p>&lt;/spoiler&gt;
+Класс <i><b>Tank</b></i> предельно прост, и два его экземпляра (<i><b>t1</b></i> и <i><b>t2</b></i>) создаются внутри метода <i><b>main()</b></i>. Переменной <i><b>level</b></i> для каждого экземпляра придаются различные значения, а затем ссылка <i><b>t2</b></i> присваивается <i><b>t1</b></i>, в результате чего <i><b>t1</b></i> изменяется.
+</p><p>Во многих языках программирования можно было ожидать, что <i><b>t1</b></i> и <i><b>t2</b></i> будут независимы все время, но из-за присвоения ссылок изменение объекта <i><b>t1</b></i> отражается на объекте <i><b>t2</b></i>! 
+Это происходит из-за того, что <i><b>t1</b></i> и <i><b>t2</b></i> содержат одинаковые ссылки, указывающие на один объект. (Исходная ссылка, которая содержалась в <i><b>t1</b></i> и указывала на объект со значением <i>9</i>, была перезаписана во время присвоения и фактически потеряна; ее объект будет вскоре удален сборщиком мусора.)
+</p><p>Этот феномен совмещения имен часто называют синонимией (<i>aliasing</i>), и именно она является основным способом работы с объектами в <i>Java</i>. Но что делать, если совмещение имен нежелательно? Тогда можно пропустить присвоение и записать
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> t1.<span class="me1">level</span> = t2.<span class="me1">level</span><span class="sy0">;</span></pre></div></div>
+<p>При этом программа сохранит два разных объекта, а не «выбросит» один из них, «привязав» ссылки <i><b>t1</b></i> и <i><b>t2</b></i>
+ к единственному объекту. Вскоре вы поймете, что прямая работа с полями 
+данных внутри объектов противоречит принципам объектно-ориентированной 
+разработки. Впрочем, это непростой вопрос, так что пока вам достаточно 
+запомнить, что присвоение объектов может таить в себе немало сюрпризов.
+</p>
+<h3><span class="mw-headline" id=".D0.A1.D0.BE.D0.B2.D0.BC.D0.B5.D1.89.D0.B5.D0.BD.D0.B8.D0.B5_.D0.B8.D0.BC.D0.B5.D0.BD_.D0.B2.D0.BE_.D0.B2.D1.80.D0.B5.D0.BC.D1.8F_.D0.B2.D1.8B.D0.B7.D0.BE.D0.B2.D0.B0_.D0.BC.D0.B5.D1.82.D0.BE.D0.B4.D0.BE.D0.B2">Совмещение имен во время вызова методов</span></h3>
+<p>Совмещение имен также может происходить при передаче объекта методу:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: operators/PassObject.java</span>
+<span class="co1">// Передача объектов методам может работать</span>
+<span class="co1">// не так. как вы привыкли.</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">class</span> Letter <span class="br0">{</span>
+  <span class="kw3">char</span> c<span class="sy0">;</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> PassObject <span class="br0">{</span>
+  <span class="kw2">static</span> <span class="kw3">void</span> f<span class="br0">(</span>Letter y<span class="br0">)</span> <span class="br0">{</span>
+    y.<span class="me1">c</span> = <span class="st0">'z'</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    Letter x = <span class="kw2">new</span> Letter<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    x.<span class="me1">c</span> = <span class="st0">'a'</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"1: x.c: "</span> + x.<span class="me1">c</span><span class="br0">)</span><span class="sy0">;</span>
+    f<span class="br0">(</span>x<span class="br0">)</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"2: x.c: "</span> + x.<span class="me1">c</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>1: x.c: a
+2: x.c: z
+</pre>
+<p>&lt;/spoiler&gt;
+Во многих языках программирования метод <i><b>f()</b></i> создал бы копию своего параметра <i><b>Letter</b></i> у внутри своей области действия. Но из-за передачи ссылки строка
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> у.с = <span class="st0">'z'</span><span class="sy0">;</span></pre></div></div>
+<p>на самом деле изменяет объект за пределами метода <i><b>f()</b></i>.
+</p><p>Совмещение имен и решение этой проблемы — сложные темы. Будьте очень внимательными в таких случаях во избежание ловушек.
+</p>
+<h2><span class="mw-headline" id=".D0.90.D1.80.D0.B8.D1.84.D0.BC.D0.B5.D1.82.D0.B8.D1.87.D0.B5.D1.81.D0.BA.D0.B8.D0.B5_.D0.BE.D0.BF.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80.D1.8B">Арифметические операторы</span></h2>
+<h3><span class="mw-headline" id=".D0.9E.D1.81.D0.BD.D0.BE.D0.B2.D0.BD.D1.8B.D0.B5_.D0.BC.D0.B0.D1.82.D0.B5.D0.BC.D0.B0.D1.82.D0.B8.D1.87.D0.B5.D1.81.D0.BA.D0.B8.D0.B5_.D0.BE.D0.BF.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80.D1.8B">Основные математические операторы</span></h3>
+<p>Основные математические операторы остаются неизменными почти во всех языках программирования: 
+</p>
+<ul>
+<li>сложение ( <i><b>+</b></i> ); 
+</li>
+<li>вычитание ( <i><b>-</b></i> ); 
+</li>
+<li>деление ( <i><b>/</b></i> ); 
+</li>
+<li>умножение ( <i><b>*</b></i> ) 
+</li>
+<li>остаток от деления нацело ( <i><b>%</b></i> ); 
+</li>
+</ul>
+<p>Деление нацело обрезает, а не округляет результат.
+</p><p>В <i>Java</i> также используется укороченная форма записи для 
+того, чтобы одновременно произвести операцию и присвоение. Она 
+обозначается оператором с последующим знаком равенства и работает 
+одинаково для всех операторов языка (когда в этом есть смысл). Например,
+ чтобы прибавить <i>4</i> к переменной <i><b>х</b></i> и присвоить результат <i><b>х</b></i>, используйте команду <i><b>х += 4</b></i>.
+</p><p>Следующий пример демонстрирует использование арифметических операций:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: operators/MathOps.java</span>
+<span class="co1">// Демонстрация математических операций.</span>
+<span class="kw2">import</span> <span class="co2">java.util.*</span><span class="sy0">;</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> MathOps <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    <span class="co1">// Создание и раскрутка генератора случайных чисел:</span>
+    <span class="kw46">Random</span> rand = <span class="kw2">new</span> <span class="kw46">Random</span><span class="br0">(</span><span class="nu0">47</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw3">int</span> i, j, k<span class="sy0">;</span>
+    <span class="co1">// Choose value from 1 to 100:</span>
+    j = rand.<span class="me1">nextInt</span><span class="br0">(</span><span class="nu0">100</span><span class="br0">)</span> + <span class="nu0">1</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"j&nbsp;: "</span> + j<span class="br0">)</span><span class="sy0">;</span>
+    k = rand.<span class="me1">nextInt</span><span class="br0">(</span><span class="nu0">100</span><span class="br0">)</span> + <span class="nu0">1</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"k&nbsp;: "</span> + k<span class="br0">)</span><span class="sy0">;</span>
+    i = j + k<span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"j + k&nbsp;: "</span> + i<span class="br0">)</span><span class="sy0">;</span>
+    i = j - k<span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"j - k&nbsp;: "</span> + i<span class="br0">)</span><span class="sy0">;</span>
+    i = k / j<span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"k / j&nbsp;: "</span> + i<span class="br0">)</span><span class="sy0">;</span>
+    i = k <span class="sy0">*</span> j<span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"k * j&nbsp;: "</span> + i<span class="br0">)</span><span class="sy0">;</span>
+    i = k <span class="sy0">%</span> j<span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"k&nbsp;% j&nbsp;: "</span> + i<span class="br0">)</span><span class="sy0">;</span>
+    j <span class="sy0">%</span>= k<span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"j&nbsp;%= k&nbsp;: "</span> + j<span class="br0">)</span><span class="sy0">;</span>
+     <span class="co1">// Тесты для вещественных чисел:</span>
+    <span class="kw3">float</span> u, v, w<span class="sy0">;</span> <span class="co1">// также можно использовать double</span>
+    v = rand.<span class="me1">nextFloat</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"v&nbsp;: "</span> + v<span class="br0">)</span><span class="sy0">;</span>
+    w = rand.<span class="me1">nextFloat</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"w&nbsp;: "</span> + w<span class="br0">)</span><span class="sy0">;</span>
+    u = v + w<span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"v + w&nbsp;: "</span> + u<span class="br0">)</span><span class="sy0">;</span>
+    u = v - w<span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"v - w&nbsp;: "</span> + u<span class="br0">)</span><span class="sy0">;</span>
+    u = v <span class="sy0">*</span> w<span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"v * w&nbsp;: "</span> + u<span class="br0">)</span><span class="sy0">;</span>
+    u = v / w<span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"v / w&nbsp;: "</span> + u<span class="br0">)</span><span class="sy0">;</span>
+    <span class="co1">// следующее также относится к типам </span>
+    <span class="co1">// char, byte, short, int. long и double:</span>
+    u += v<span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"u += v&nbsp;: "</span> + u<span class="br0">)</span><span class="sy0">;</span>
+    u -= v<span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"u -= v&nbsp;: "</span> + u<span class="br0">)</span><span class="sy0">;</span>
+    u <span class="sy0">*</span>= v<span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"u *= v&nbsp;: "</span> + u<span class="br0">)</span><span class="sy0">;</span>
+    u /= v<span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"u /= v&nbsp;: "</span> + u<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>j&nbsp;: 59
+k&nbsp;: 56
+j + k&nbsp;: 115
+j - k&nbsp;: 3
+k / j&nbsp;: 0
+k * j&nbsp;: 3304
+k&nbsp;% j&nbsp;: 56
+j&nbsp;%= k&nbsp;: 3
+v&nbsp;: 0.5309454
+w&nbsp;: 0.0534122
+v + w&nbsp;: 0.5843576
+v - w&nbsp;: 0.47753322
+v * w&nbsp;: 0.028358962
+v / w&nbsp;: 9.940527
+u += v&nbsp;: 10.471473
+u -= v&nbsp;: 9.940527
+u *= v&nbsp;: 5.2778773
+u /= v&nbsp;: 9.940527
+</pre>
+<p>&lt;/spoiler&gt;
+Для получения случайных чисел создается объект <i><b>Random</b></i>. Если он создается без параметров, <i>Java</i> использует текущее время для раскрутки генератора, чтобы при каждом запуске программы выдавались разные числа.
+</p><p>Программа генерирует различные типы случайных чисел, вызывая соответствующие методы объекта <i><b>Random</b></i>: <i><b>nextInt()</b></i> и <i><b>nextFloat()</b></i> (также можно использовать <i><b>nextLong()</b></i> и <i><b>nextDouble()</b></i>). Аргумент <i><b>nextInt()</b></i> задает верхнюю границу ге­нерируемых чисел. Нижняя граница равна <i>0</i>, но для предотвращения возможного деления на <i>0</i> результат смещается на <i>1</i>.
+</p>
+<h3><span class="mw-headline" id=".D0.A3.D0.BD.D0.B0.D1.80.D0.BD.D1.8B.D0.B5_.D0.BE.D0.BF.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80.D1.8B_.D0.BF.D0.BB.D1.8E.D1.81_.D0.B8_.D0.BC.D0.B8.D0.BD.D1.83.D1.81">Унарные операторы плюс и минус</span></h3>
+<p>Унарные минус (<i><b>-</b></i>) и плюс (<i><b>+</b></i>) внешне не 
+отличаются от аналогичных бинарных операторов. Компилятор выбирает 
+нужный оператор в соответствии с контекстом использования. Например, 
+команда
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> х = -а<span class="sy0">;</span></pre></div></div>
+<p>имеет очевидный смысл. Компилятор без труда разберется, что значит
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> х = а <span class="sy0">*</span> -b<span class="sy0">;</span></pre></div></div>
+<p>но читающий код может запутаться, так что яснее будет написать так:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> х = а <span class="sy0">*</span> <span class="br0">(</span>-b<span class="br0">)</span><span class="sy0">;</span></pre></div></div>
+<p>Унарный минус меняет знак числа на противоположный. Унарный плюс 
+существует «для симметрии», хотя и не производит никаких действий.
+</p>
+<h2><span class="mw-headline" id=".D0.90.D0.B2.D1.82.D0.BE.D1.83.D0.B2.D0.B5.D0.BB.D0.B8.D1.87.D0.B5.D0.BD.D0.B8.D0.B5_.D0.B8_.D0.B0.D0.B2.D1.82.D0.BE.D1.83.D0.BC.D0.B5.D0.BD.D1.8C.D1.88.D0.B5.D0.BD.D0.B8.D0.B5">Автоувеличение и автоуменьшение</span></h2>
+<p>В <i>Java</i>, как и в <i>C</i>, существует множество различных 
+сокращений. Сокращения могут упростить написание кода, а также упростить
+ или усложнить его чтение.
+</p><p>Два наиболее полезных сокращения — это операторы увеличения 
+(инкремента) и уменьшения (декремента) (также часто называемые 
+операторами автоматического приращения и уменьшения). Оператор 
+декремента записывается в виде <i><b>--</b></i> и означает «уменьшить на единицу». 
+</p><p>Оператор инкремента обозначается символами <i><b>++</b></i> и позволяет «увеличить на единицу». Например, если переменная <i><b>а</b></i> является целым числом, то выражение <i><b>++а</b></i> будет эквивалентно (<i><b>а = а + 1</b></i>). Операторы инкремента и декремента не только изменяют переменную, но и устанавливают ей в качестве результата новое значение.
+</p><p>Каждый из этих операторов существует в двух версиях: <i>префиксной</i> и <i>постфиксной</i>. Префиксный инкремент значит, что оператор <i><b>++</b></i>
+ записывается перед переменной или выражением, а при постфиксном 
+инкременте оператор следует после переменной или выражения. Аналогично, 
+при префиксном декременте оператор <i><b>--</b></i> указывается перед переменной или выражением, а при постфиксном - после переменной или выражения.
+</p><p>Для префиксного инкремента и декремента (то есть <i><b>++а</b></i> и <i><b>--а</b></i>) сначала выполняется операция, а затем выдается результат. Для постфиксной записи (<i><b>а++</b></i> и <i><b>а--</b></i>) сначала выдается значение, и лишь затем выполняется операция. Например:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: operators/AutoInc.java</span>
+<span class="co1">// Demonstrates the ++ and -- operators.</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> AutoInc <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw3">int</span> i = <span class="nu0">1</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"i&nbsp;: "</span> + i<span class="br0">)</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"++i&nbsp;: "</span> + ++i<span class="br0">)</span><span class="sy0">;</span> <span class="co1">// Pre-increment</span>
+    print<span class="br0">(</span><span class="st0">"i++&nbsp;: "</span> + i++<span class="br0">)</span><span class="sy0">;</span> <span class="co1">// Post-increment</span>
+    print<span class="br0">(</span><span class="st0">"i&nbsp;: "</span> + i<span class="br0">)</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"--i&nbsp;: "</span> + --i<span class="br0">)</span><span class="sy0">;</span> <span class="co1">// Pre-decrement</span>
+    print<span class="br0">(</span><span class="st0">"i--&nbsp;: "</span> + i--<span class="br0">)</span><span class="sy0">;</span> <span class="co1">// Post-decrement</span>
+    print<span class="br0">(</span><span class="st0">"i&nbsp;: "</span> + i<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>i&nbsp;: 1
+++i&nbsp;: 2
+i++&nbsp;: 2
+i&nbsp;: 3
+--i&nbsp;: 2
+i--&nbsp;: 2
+i&nbsp;: 1
+</pre>
+<p>&lt;/spoiler&gt;
+Вы видите, что при использовании префиксной формы результат получается 
+после выполнения операции, тогда как с постфиксной формой он доступен до
+ выполнения операции. Это единственные операторы (кроме операторов 
+присваивания), которые имеют побочный эффект. (Иначе говоря, они 
+изменяют свой операнд вместо простого использования его значения.)
+</p><p>Оператор инкремента объясняет происхождение названия языка <i>C++</i>; подразумевается «шаг вперед по сравнению с <i>C</i>». В одной из первых речей, посвященных <i>Java</i>, Билл Джой (один из его создателей) сказал, что «<i>Java</i>=C++--» («Си плюс плюс минус минус»). Он имел в виду, что <i>Java</i> — это <i>C++</i>,
+ из которого убрано все, что затрудняет программирование, и поэтому язык
+ стал гораздо проще. Продвигаясь вперед, вы увидите, что отдельные 
+аспекты языка, конечно, проще, и все же <i>Java</i> не настолько проще <i>C++</i>.
+</p>
+<h2><span class="mw-headline" id=".D0.9E.D0.BF.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80.D1.8B_.D1.81.D1.80.D0.B0.D0.B2.D0.BD.D0.B5.D0.BD.D0.B8.D1.8F_.D0.B8_.D0.BB.D0.BE.D0.B3.D0.B8.D1.87.D0.B5.D1.81.D0.BA.D0.B8.D0.B5_.D0.BE.D0.BF.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80.D1.8B">Операторы сравнения  и логические операторы</span></h2>
+<p>Операторы сравнения выдают логический (<i><b>boolean</b></i>) результат. Они проверяют, в каком отношении находятся значения их операндов. Если условие проверки истинно, оператор выдает <i><b>true</b></i>, а если ложно — <i><b>false</b></i>. К операторам сравнения относятся следующие: «меньше чем» (<i><b>&lt;</b></i>), «больше чем» (<i><b>&gt;</b></i>), «меньше чем или равно» (<i><b>&lt;=</b></i>), «больше чем или равно» (<i><b>&gt;=</b></i>), «равно» (<i><b>==</b></i>) и «не равно» (<i><b>!=</b></i>). «Равно» и «не равно» работают для всех примитивных типов данных, однако ос­тальные сравнения не применимы к типу <i><b>boolean</b></i>.
+</p>
+<h3><span class="mw-headline" id=".D0.9F.D1.80.D0.BE.D0.B2.D0.B5.D1.80.D0.BA.D0.B0_.D0.BE.D0.B1.D1.8A.D0.B5.D0.BA.D1.82.D0.BE.D0.B2_.D0.BD.D0.B0_.D1.80.D0.B0.D0.B2.D0.B5.D0.BD.D1.81.D1.82.D0.B2.D0.BE">Проверка объектов на равенство</span></h3>
+<p>Операции отношений <i><b>==</b></i> и <i><b>!= </b></i>также работают с любыми объектами, но их смысл нередко сбивает с толку начинающих программистов на <i>Java</i>. Пример:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: operators/Equivalence.java</span>
+<span class="kw2">public</span> <span class="kw2">class</span> Equivalence <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw21">Integer</span> n1 = <span class="kw2">new</span> <span class="kw21">Integer</span><span class="br0">(</span><span class="nu0">47</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw21">Integer</span> n2 = <span class="kw2">new</span> <span class="kw21">Integer</span><span class="br0">(</span><span class="nu0">47</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">(</span>n1 == n2<span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">(</span>n1 <span class="sy0">!</span>= n2<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>false
+true
+</pre>
+<p>&lt;/spoiler&gt;
+Выражение <i><b>System.out.println(n1 == n2)</b></i> выведет результат логического сравнения, содержащегося в скобках. Казалось бы, в первом случае результат должен быть истинным (<i><b>true</b></i>), а во втором — ложным (<i><b>false</b></i>), так как оба объекта типа <i><b>Integer</b></i> имеют одинаковые значения. Но в то время как содержимое объектов одинаково, ссылки на них разные, а операторы <i><b>!=</b></i> и <i><b>==</b></i> сравнивают именно ссылки. Поэтому результатом первого выражения будет <i><b>false</b></i>, а второго — <i><b>true</b></i>. Естественно, такие результаты поначалу ошеломляют.
+</p><p>А если понадобится сравнить действительное содержимое объектов? Придется использовать специальный метод <i><b>equals()</b></i>, поддерживаемый всеми объектами (но не примитивами, для которых более чем достаточно операторов <i><b>==</b></i> и <i><b>!=</b></i>). Вот как это делается:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: operators/EqualsMethod.java</span>
+<span class="kw2">public</span> <span class="kw2">class</span> EqualsMethod <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw21">Integer</span> n1 = <span class="kw2">new</span> <span class="kw21">Integer</span><span class="br0">(</span><span class="nu0">47</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw21">Integer</span> n2 = <span class="kw2">new</span> <span class="kw21">Integer</span><span class="br0">(</span><span class="nu0">47</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">(</span>n1.<span class="me1">equals</span><span class="br0">(</span>n2<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>true
+</pre>
+<p>&lt;/spoiler&gt;
+На этот раз результат окажется «истиной» (<i><b>true</b></i>), как и предполагалось. Но все не так просто, как кажется. Если вы создадите свой собственный класс вроде такого:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: operators/EqualsMethod2.java</span>
+<span class="co1">// Метод equals() по умолчанию не сравнивает содержимое.</span>
+<span class="kw2">class</span> Value <span class="br0">{</span>
+  <span class="kw3">int</span> i<span class="sy0">;</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> EqualsMethod2 <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    Value v1 = <span class="kw2">new</span> Value<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    Value v2 = <span class="kw2">new</span> Value<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    v1.<span class="me1">i</span> = v2.<span class="me1">i</span> = <span class="nu0">100</span><span class="sy0">;</span>
+    <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">(</span>v1.<span class="me1">equals</span><span class="br0">(</span>v2<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>false
+</pre>
+<p>&lt;/spoiler&gt;
+мы вернемся к тому, с чего начали: результатом будет <i><b>false</b></i>. Дело в том, что метод <i><b>equals()</b></i>
+ по умолчанию сравнивает ссылки. Следовательно, пока вы не 
+переопределите этот метод в вашем новом классе, не получите желаемого 
+результата. К сожалению, переопределение будет рассматриваться только в 
+главе 8, а пока осторожность и общее понимание принципа работы <i><b>equals()</b></i> позволит избежать некоторых неприятностей.
+</p><p>Большинство классов библиотек <i>Java</i> реализуют метод <i><b>equals()</b></i> по-своему, сравнивая содержимое объектов, а не ссылки на них.
+</p><p><br>
+</p>
+<h3><span class="mw-headline" id=".D0.9B.D0.BE.D0.B3.D0.B8.D1.87.D0.B5.D1.81.D0.BA.D0.B8.D0.B5_.D0.BE.D0.BF.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80.D1.8B">Логические операторы</span></h3>
+<p>Логические операторы <i>И</i> (<i><b>&amp;&amp;</b></i>), <i>ИЛИ</i> (<i><b>||</b></i>) и <i>НЕ</i> (<i><b>!</b></i>) производят логические значения <i><b>true</b></i> и <i><b>false</b></i>,
+ основанные на логических отношениях своих аргументов. В следующем 
+примере используются как операторы сравнения, так логические операторы:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: operators/Bool.java</span>
+<span class="co1">// Операторы сравнений и логические операторы.</span>
+<span class="kw2">import</span> <span class="co2">java.util.*</span><span class="sy0">;</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> Bool <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw46">Random</span> rand = <span class="kw2">new</span> <span class="kw46">Random</span><span class="br0">(</span><span class="nu0">47</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw3">int</span> i = rand.<span class="me1">nextInt</span><span class="br0">(</span><span class="nu0">100</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw3">int</span> j = rand.<span class="me1">nextInt</span><span class="br0">(</span><span class="nu0">100</span><span class="br0">)</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"i = "</span> + i<span class="br0">)</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"j = "</span> + j<span class="br0">)</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"i &gt; j is "</span> + <span class="br0">(</span>i <span class="sy0">&gt;</span> j<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"i &lt; j is "</span> + <span class="br0">(</span>i <span class="sy0">&lt;</span> j<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"i &gt;= j is "</span> + <span class="br0">(</span>i <span class="sy0">&gt;</span>= j<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"i &lt;= j is "</span> + <span class="br0">(</span>i <span class="sy0">&lt;</span>= j<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"i == j is "</span> + <span class="br0">(</span>i == j<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"i&nbsp;!= j is "</span> + <span class="br0">(</span>i <span class="sy0">!</span>= j<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="co1">// Treating an int as a boolean is not legal Java:</span>
+<span class="co1">//! print("i &amp;&amp; j is " + (i &amp;&amp; j));</span>
+<span class="co1">//! print("i || j is " + (i || j));</span>
+<span class="co1">//! print("!i is " +&nbsp;!i);</span>
+    print<span class="br0">(</span><span class="st0">"(i &lt; 10) &amp;&amp; (j &lt; 10) is "</span>
+       + <span class="br0">(</span><span class="br0">(</span>i <span class="sy0">&lt;</span> <span class="nu0">10</span><span class="br0">)</span> <span class="sy0">&amp;&amp;</span> <span class="br0">(</span>j <span class="sy0">&lt;</span> <span class="nu0">10</span><span class="br0">)</span><span class="br0">)</span> <span class="br0">)</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"(i &lt; 10) || (j &lt; 10) is "</span>
+       + <span class="br0">(</span><span class="br0">(</span>i <span class="sy0">&lt;</span> <span class="nu0">10</span><span class="br0">)</span> || <span class="br0">(</span>j <span class="sy0">&lt;</span> <span class="nu0">10</span><span class="br0">)</span><span class="br0">)</span> <span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>i = 58
+j = 55
+i &gt; j is true
+i &lt; j is false
+i &gt;= j is true
+i &lt;= j is false
+i == j is false
+i&nbsp;!= j is true
+(i &lt; 10) &amp;&amp; (j &lt; 10) is false
+(i &lt; 10) || (j &lt; 10) is false
+</pre>
+<p>&lt;/spoiler&gt;
+Операции <i>И, ИЛИ</i> и <i>НЕ</i> применяются только к логическим (<i><b>boolean</b></i>) значениям. Нельзя использовать в логических выражениях не-<i><b>boolean</b></i>-типы в качестве булевых, как это разрешается в <i>C</i> и <i>C++</i>. Неудачные попытки такого рода видны в строках, помеченных особым комментарием <i><b>//! </b></i>(этот
+ синтаксис позволяет автоматически удалять комментарии для удобства 
+тестирования). Последующие выражения вырабатывают логические результаты,
+ используя операторы сравнений, после чего к полученным значениям 
+примененяются логические операции.
+</p><p>Заметьте, что значение <i><b>boolean</b></i> автоматически переделывается в подходящее строковое представление там, где предполагается использование строкового типа <i><b>String</b></i>.
+</p><p>Определение <i><b>int</b></i> в этой программе можно заменить любым примитивным типом, за исключением <i><b>boolean</b></i>.
+ Впрочем, будьте осторожны с вещественными числами, поскольку их 
+сравнение проводится с крайне высокой точностью. Число, хотя бы 
+чуть-чуть отличающееся от другого, уже считается неравным ему. Число, на
+ тысячную долю большее нуля, уже не является нулем.
+</p>
+<h3><span class="mw-headline" id=".D0.A3.D1.81.D0.BA.D0.BE.D1.80.D0.B5.D0.BD.D0.BD.D0.BE.D0.B5_.D0.B2.D1.8B.D1.87.D0.B8.D1.81.D0.BB.D0.B5.D0.BD.D0.B8.D0.B5">Ускоренное вычисление</span></h3>
+<p>При работе с логическими операторами можно столкнуться с феноменом, 
+называемым «ускоренным вычислением». Это значит, что выражение 
+вычисляется только до тех пор, пока не станет очевидно, что оно 
+принимает значение «истина» или «ложь». В результате, некоторые части 
+логического выражения могут быть проигнорированы в процессе сравнения. 
+Следующий пример демонстрирует ускоренное вычисление:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: operators/ShortCircuit.java</span>
+<span class="co1">// Демонстрация ускоренного вычисления </span>
+<span class="co1">// при использовании логических операторов</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> ShortCircuit <span class="br0">{</span>
+  <span class="kw2">static</span> <span class="kw3">boolean</span> test1<span class="br0">(</span><span class="kw3">int</span> val<span class="br0">)</span> <span class="br0">{</span>
+    print<span class="br0">(</span><span class="st0">"test1("</span> + val + <span class="st0">")"</span><span class="br0">)</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"result: "</span> + <span class="br0">(</span>val <span class="sy0">&lt;</span> <span class="nu0">1</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw2">return</span> val <span class="sy0">&lt;</span> <span class="nu0">1</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">static</span> <span class="kw3">boolean</span> test2<span class="br0">(</span><span class="kw3">int</span> val<span class="br0">)</span> <span class="br0">{</span>
+    print<span class="br0">(</span><span class="st0">"test2("</span> + val + <span class="st0">")"</span><span class="br0">)</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"result: "</span> + <span class="br0">(</span>val <span class="sy0">&lt;</span> <span class="nu0">2</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw2">return</span> val <span class="sy0">&lt;</span> <span class="nu0">2</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">static</span> <span class="kw3">boolean</span> test3<span class="br0">(</span><span class="kw3">int</span> val<span class="br0">)</span> <span class="br0">{</span>
+    print<span class="br0">(</span><span class="st0">"test3("</span> + val + <span class="st0">")"</span><span class="br0">)</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"result: "</span> + <span class="br0">(</span>val <span class="sy0">&lt;</span> <span class="nu0">3</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw2">return</span> val <span class="sy0">&lt;</span> <span class="nu0">3</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw3">boolean</span> b = test1<span class="br0">(</span><span class="nu0">0</span><span class="br0">)</span> <span class="sy0">&amp;&amp;</span> test2<span class="br0">(</span><span class="nu0">2</span><span class="br0">)</span> <span class="sy0">&amp;&amp;</span> test3<span class="br0">(</span><span class="nu0">2</span><span class="br0">)</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"expression is "</span> + b<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>test1(0)
+result: true
+test2(2)
+result: false
+expression is false
+</pre>
+<p>&lt;/spoiler&gt;
+Каждый из методов <i><b>test()</b></i> проводит сравнение своего аргумента и возвращает либо <i><b>true</b></i>, либо <i><b>false</b></i>. Также они выводят информацию о факте своего вызова. Эти методы используются в выражении:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> testl<span class="br0">(</span><span class="nu0">0</span><span class="br0">)</span> <span class="sy0">&amp;&amp;</span> test2<span class="br0">(</span><span class="nu0">2</span><span class="br0">)</span> <span class="sy0">&amp;&amp;</span> test3<span class="br0">(</span><span class="nu0">2</span><span class="br0">)</span></pre></div></div>
+<p>Естественно было бы ожидать, что все три метода должны выполняться, 
+но результат программы показывает другое. Первый метод возвращает 
+результат <i><b>true</b></i>, поэтому вычисление выражения продолжается. Однако второй метод выдает результат <i><b>false</b></i>. Так как это автоматически означает, что все выражение будет равно <i><b>false</b></i>,
+ зачем продолжать вычисления? Только лишняя трата времени. Именно это и 
+стало причиной введения в язык ускоренного вычисления; отказ от лишних 
+вычислений обеспечивает потенциальный выигрыш в производительности.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id=".D0.9B.D0.B8.D1.82.D0.B5.D1.80.D0.B0.D0.BB.D1.8B">Литералы</span></h2>
+<p>Обычно, когда вы записываете в программе какое-либо значение, 
+компилятор точно знает, к какому типу оно относится. Однако в некоторых 
+ситуациях однозначно определить тип не удается. В таких случаях следует 
+помочь компилятору определить точный тип, добавив дополнительную 
+информацию в виде определенных символьных обозначений, связанных с 
+типами данных. Эти обозначения используются в следующей программе:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: operators/Literals.java</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> Literals <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw3">int</span> i1 = 0x2f<span class="sy0">;</span> <span class="co1">// Hexadecimal (lowercase)</span>
+    print<span class="br0">(</span><span class="st0">"i1: "</span> + <span class="kw21">Integer</span>.<span class="me1">toBinaryString</span><span class="br0">(</span>i1<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw3">int</span> i2 = 0X2F<span class="sy0">;</span> <span class="co1">// Hexadecimal (uppercase)</span>
+    print<span class="br0">(</span><span class="st0">"i2: "</span> + <span class="kw21">Integer</span>.<span class="me1">toBinaryString</span><span class="br0">(</span>i2<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw3">int</span> i3 = 0177<span class="sy0">;</span> <span class="co1">// Octal (leading zero)</span>
+    print<span class="br0">(</span><span class="st0">"i3: "</span> + <span class="kw21">Integer</span>.<span class="me1">toBinaryString</span><span class="br0">(</span>i3<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw3">char</span> c = 0xffff<span class="sy0">;</span> <span class="co1">// max char hex value</span>
+    print<span class="br0">(</span><span class="st0">"c: "</span> + <span class="kw21">Integer</span>.<span class="me1">toBinaryString</span><span class="br0">(</span>c<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw3">byte</span> b = 0x7f<span class="sy0">;</span> <span class="co1">// max byte hex value</span>
+    print<span class="br0">(</span><span class="st0">"b: "</span> + <span class="kw21">Integer</span>.<span class="me1">toBinaryString</span><span class="br0">(</span>b<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw3">short</span> s = 0x7fff<span class="sy0">;</span> <span class="co1">// max short hex value</span>
+    print<span class="br0">(</span><span class="st0">"s: "</span> + <span class="kw21">Integer</span>.<span class="me1">toBinaryString</span><span class="br0">(</span>s<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw3">long</span> n1 = 200L<span class="sy0">;</span> <span class="co1">// long suffix</span>
+    <span class="kw3">long</span> n2 = 200l<span class="sy0">;</span> <span class="co1">// long suffix (but can be confusing)</span>
+    <span class="kw3">long</span> n3 = <span class="nu0">200</span><span class="sy0">;</span>
+    <span class="kw3">float</span> f1 = <span class="nu0">1</span><span class="sy0">;</span>
+    <span class="kw3">float</span> f2 = 1F<span class="sy0">;</span> <span class="co1">// float suffix</span>
+    <span class="kw3">float</span> f3 = 1f<span class="sy0">;</span> <span class="co1">// float suffix</span>
+    <span class="kw3">double</span> d1 = 1d<span class="sy0">;</span> <span class="co1">// double suffix</span>
+    <span class="kw3">double</span> d2 = 1D<span class="sy0">;</span> <span class="co1">// double suffix</span>
+    <span class="co1">// (Hex and Octal also work with long)</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>i1: 101111
+i2: 101111
+i3: 1111111
+c: 1111111111111111
+b: 1111111
+s: 111111111111111
+</pre>
+<p>&lt;/spoiler&gt;
+Последний символ обозначает тип записанного литерала. Прописная или строчная буква <i><b>L</b></i> определяет тип <i><b>long</b></i> (впрочем, строчная <i><b>l</b></i> может создать проблемы, потому что она похожа на цифру <i>1</i>); прописная или строчная <i><b>F</b></i> соответствует типу <i><b>float</b></i>, а заглавная или строчная <i><b>D</b></i> подразумевает тип <i><b>double</b></i>.
+</p><p>Шестнадцатеричное представление (основание 16) работает со всеми встроенными типами данных и обозначается префиксом <i><b>0x</b></i> или <i><b>0X</b></i> с последующим числовым значением из цифр <i><b>0-9</b></i> и букв <i><b>a-f</b></i>,
+ прописных или строчных. Если при определении переменной задается 
+значение, превосходящее максимально для нее возможное (независимо от 
+числовой формы), компилятор сообщит вам об ошибке. В программе указаны 
+максимальные значения для типов <i><b>char, byte</b></i> и <i><b>short</b></i>. При выходе за эти границы компилятор автоматически сделает значение типом <i><b>int</b></i> и сообщит вам, что для присвоения понадобится сужающее приведение.
+</p><p>Восьмеричное представление (по основанию 8) обозначается начальным нулем в записи числа, состоящего из цифр <i><b>0 - 7</b></i>. Для литеральной записи чисел в двоичном представлении в <i>Java</i>, <i>C</i> и <i>C++</i>
+ поддержки нет. Впрочем, при работе с шестнадцатеричныыми и 
+восьмеричными числами часто требуется получить двоичное представление 
+результата. Задача легко решается методами <i><b>static toBinaryString()</b></i> классов <i><b>Integer</b></i> и <i><b>Long</b></i>.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id=".D0.AD.D0.BA.D1.81.D0.BF.D0.BE.D0.BD.D0.B5.D0.BD.D1.86.D0.B8.D0.B0.D0.BB.D1.8C.D0.BD.D0.B0.D1.8F_.D0.B7.D0.B0.D0.BF.D0.B8.D1.81.D1.8C">Экспоненциальная запись</span></h2>
+<p>Экспоненциальные значения записываются, по-моему, очень неудачно: <i><b>1.39e-47f</b></i>. В науке и инженерном деле символом е обозначается основание натурального логарифма, равное примерно <i>2.718</i>. (Более точное значение этой величины можно получить из свойства <i><b>Math.E</b></i>.) 
+</p><p>Оно используется в экспоненциальных выражениях, таких как <i>1.39 * е exp47</i>, что фактически значит <i>1.39 * 2.718 exp47</i>.
+ Однако во время изобретения языка FORTRAN было решено, что е будет 
+обозначать «десять в степени», что достаточно странно, поскольку FORTRAN
+ разрабатывался для науки и техники и можно было предположить, что его 
+создатели обратят внимание на подобную неоднозначность. 
+</p><p>Так или иначе, этот обычай был перенят в <i>C</i>, <i>C++</i>, а затем перешел в <i>Java</i>.
+ Таким образом, если вы привыкли видеть в е основание натурального 
+логарифма, вам придется каждый раз делать преобразование в уме: если вы 
+увидели в <i>Java</i> выражение <i><b>1.39e-43f</b></i>, на самом деле оно значит <i>1.39 * 10 exp43</i>.
+</p><p>Если компилятор может определить тип автоматически, наличие завершающего суффикса типа не обязательно. В записи
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> <span class="kw3">long</span> n3 = <span class="nu0">200</span><span class="sy0">;</span></pre></div></div>
+<p>не существует никаких неясностей, и поэтому использование символа <i><b>L</b></i> после значения <i>200</i> было бы излишним. Однако в записи
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="kw3">float</span> f4 = 1e-43f<span class="sy0">;</span> <span class="co1">// десять в степени</span></pre></div></div>
+<p>компилятор обычно трактует экспоненциальные числа как <i><b>double</b></i>. Без завершающего символа <i><b>f</b></i> он сообщит вам об ошибке и необходимости использования приведения для преобразования <i><b>double</b></i> к типу <i><b>float</b></i>.
+</p>
+<h2><span class="mw-headline" id=".D0.9F.D0.BE.D1.80.D0.B0.D0.B7.D1.80.D1.8F.D0.B4.D0.BD.D1.8B.D0.B5_.D0.BE.D0.BF.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80.D1.8B">Поразрядные операторы</span></h2>
+<h3><span class="mw-headline" id=".D0.9F.D0.BE.D1.80.D0.B0.D0.B7.D1.80.D1.8F.D0.B4.D0.BD.D1.8B.D0.B5_.D0.BB.D0.BE.D0.B3.D0.B8.D1.87.D0.B5.D1.81.D0.BA.D0.B8.D0.B5_.D0.BE.D0.BF.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80.D1.8B">Поразрядные логические операторы</span></h3>
+<p>Поразрядные операторы манипулируют отдельными битами в целочисленных 
+примитивных типах данных. Результат определяется действиями булевой 
+алгебры с соответствующими битами двух операндов.
+Эти битовые операторы происходят от низкоуровневой направленности языка <i>C</i>, где часто приходится напрямую работать с оборудованием и устанавливать биты в аппаратных регистрах. <i>Java</i>
+ изначально разрабатывался для управления телевизионными приставками, 
+поэтому эта низкоуровневая ориентация все еще была нужна. Впрочем, вам 
+вряд ли придется часто использовать эти операторы.
+</p>
+<ul>
+<li>Поразрядный оператор <i>И</i> ( <i><b>&amp;</b></i> ) заносит <i>1</i> в выходной бит, если оба входных бита были равны <i>1</i>; в противном случае результат равен <i>0</i>. 
+</li>
+</ul>
+<ul>
+<li>Поразрядный оператор <i>ИЛИ</i> ( <i><b>|</b></i> ) заносит <i>1</i> в выходной бит, если хотя бы один из битов операндов был равен <i>1</i>; результат равен <i>0</i> только в том случае, если оба бита операндов были нулевыми.
+</li>
+</ul>
+<ul>
+<li>Оператор <i>ИСКЛЮЧАЮЩЕЕ ИЛИ, XOR</i>, ( <i><b>^</b></i> ) имеет результатом единицу тогда, когда один из входных битов был единицей, но не оба вместе. 
+</li>
+</ul>
+<ul>
+<li>Поразрядный оператор <i>НЕ</i> ( <i><b>~</b></i> ), также называемый
+ оператором двоичного дополнения, является унарным оператором, то есть 
+имеет только один операнд. Поразрядное <i>НЕ</i> производит бит, 
+«противоположный» исходному — если входящий бит является нулем, то в 
+результирующем бите окажется единица, если входящий бит — единица, 
+получится ноль.
+</li>
+</ul>
+<p>Поразрядные операторы и логические операторы записываются с помощью 
+одних и тех же символов, поэтому полезно запомнить мнемоническое 
+правило: так как биты «маленькие», в поразрядных операторах используется
+ всего один символ.
+</p><p>Поразрядные операторы могут комбинироваться со знаком равенства <i><b>=</b></i>, чтобы совместить операцию и присвоение: <i><b>&amp;=</b></i>, <i><b>|= </b></i> и <i><b>^=</b></i> являются допустимыми сочетаниями. (Так как <i><b>~</b></i> является унарным оператором, он не может использоваться вместе со знаком "<i><b>=</b></i>".)
+</p><p>Тип <i><b>boolean</b></i> трактуется как однобитовый, поэтому операции с ним выглядят по-другому. Вы вправе выполнить поразрядные <i>И, ИЛИ</i> и <i>ИСКЛЮЧАЮЩЕЕ ИЛИ</i>, но <i>НЕ</i> использовать запрещено (видимо, чтобы предотвратить путаницу с логическим <i>НЕ</i>). Для типа <i><b>boolean</b></i>
+ поразрядные операторы производят тот же эффект, что и логические, за 
+одним исключением — они не поддерживают ускоренного вычисления. 
+</p><p>Кроме того, в число поразрядных операторов для <i><b>boolean</b></i> входит оператор <i>ИСКЛЮЧАЮЩЕЕ ИЛИ</i>,
+ отсутствующий в списке логических операторов. Для булевых типов не 
+разрешается использование операторов сдвига, описанных в следующем 
+разделе.
+</p>
+<h3><span class="mw-headline" id=".D0.9E.D0.BF.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80.D1.8B_.D1.81.D0.B4.D0.B2.D0.B8.D0.B3.D0.B0">Операторы сдвига</span></h3>
+<p>Операторы сдвига также манипулируют битами и используются только с примитивными целочисленными типами. Оператор сдвига влево (<i><b>&lt;&lt;</b></i>)
+ сдвигает влево операнд, находящийся слева от оператора, на количество 
+битов, указанное после оператора. Оператор сдвига вправо (<i><b>&gt;&gt;</b></i>)
+ сдвигает вправо операнд, находящийся слева от оператора, на количество 
+битов, указанное после оператора. При сдвиге вправо используется 
+заполнение знаком: при положительном значении новые биты заполняются 
+нулями, а при отрицательном — единицами. 
+</p><p>В <i>Java</i> также поддерживается беззнаковый сдвиг вправо (<i><b>&gt;&gt;&gt;</b></i>), использующий заполнение нулями: независимо от знака старшие биты заполняются нулями. Такой оператор не имеет аналогов в <i>C</i> и <i>C++</i>.
+</p><p>Если сдвигаемое значение относится к типу <i><b>char, byte</b></i> или <i><b>short</b></i>, эти типы приводятся к <i><b>int</b></i> перед выполнением сдвига, и результат также получится <i><b>int</b></i>.
+ При этом используется только пять младших битов с «правой» стороны. 
+Таким образом, нельзя сдвинуть битов больше, чем вообще существует для 
+целого числа <i><b>int</b></i>. Если вы проводите операции с числами <i><b>long</b></i>, то получите результаты типа <i><b>long</b></i>.
+ При этом будет задействовано только шесть младших битов с «правой» 
+стороны, что предотвращает использование излишнего числа битов.
+</p><p>Сдвиги можно совмещать со знаком равенства (<i><b>&lt;&lt;=</b></i>, или <i><b>&gt;&gt;=</b></i>, или <i><b>&gt;&gt;&gt;=</b></i>).
+ Именующее выражение заменяется им же, но с проведенными над ним 
+операциями сдвига. Однако при этом возникает проблема с оператором 
+беззнакового правого сдвига, совмещенного с присвоением. При 
+использовании его с типом <i><b>byte</b></i> или <i><b>short</b></i> вы не получите правильных результатов. Вместо этого они сначала будут преобразованы к типу <i><b>int</b></i> и сдвинуты вправо, а затем обрезаны при возвращении к исходному типу, и результатом станет <i>-1</i>. Следующий пример демонстрирует это:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: operators/URShift.java</span>
+<span class="co1">// Проверка беззнакового сдвига вправо</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> URShift <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw3">int</span> i = -<span class="nu0">1</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="kw21">Integer</span>.<span class="me1">toBinaryString</span><span class="br0">(</span>i<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    i <span class="sy0">&gt;&gt;&gt;</span>= <span class="nu0">10</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="kw21">Integer</span>.<span class="me1">toBinaryString</span><span class="br0">(</span>i<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw3">long</span> l = -<span class="nu0">1</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="kw21">Long</span>.<span class="me1">toBinaryString</span><span class="br0">(</span>l<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    l <span class="sy0">&gt;&gt;&gt;</span>= <span class="nu0">10</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="kw21">Long</span>.<span class="me1">toBinaryString</span><span class="br0">(</span>l<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw3">short</span> s = -<span class="nu0">1</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="kw21">Integer</span>.<span class="me1">toBinaryString</span><span class="br0">(</span>s<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    s <span class="sy0">&gt;&gt;&gt;</span>= <span class="nu0">10</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="kw21">Integer</span>.<span class="me1">toBinaryString</span><span class="br0">(</span>s<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw3">byte</span> b = -<span class="nu0">1</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="kw21">Integer</span>.<span class="me1">toBinaryString</span><span class="br0">(</span>b<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    b <span class="sy0">&gt;&gt;&gt;</span>= <span class="nu0">10</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="kw21">Integer</span>.<span class="me1">toBinaryString</span><span class="br0">(</span>b<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    b = -<span class="nu0">1</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="kw21">Integer</span>.<span class="me1">toBinaryString</span><span class="br0">(</span>b<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="kw21">Integer</span>.<span class="me1">toBinaryString</span><span class="br0">(</span>b<span class="sy0">&gt;&gt;&gt;</span><span class="nu0">10</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>11111111111111111111111111111111
+1111111111111111111111
+1111111111111111111111111111111111111111111111111111111111111111
+111111111111111111111111111111111111111111111111111111
+11111111111111111111111111111111
+11111111111111111111111111111111
+11111111111111111111111111111111
+11111111111111111111111111111111
+11111111111111111111111111111111
+1111111111111111111111
+</pre>
+<p>&lt;/spoiler&gt;
+В последней команде программы полученное значение не приводится обратно к <i><b>b</b></i>, поэтому получается верное действие.
+</p><p>Следующий пример демонстрирует использование всех операторов, так или иначе связанных с поразрядными операциями:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: operators/BitManipulation.java</span>
+<span class="co1">// Использование поразрядных операторов.</span>
+<span class="kw2">import</span> <span class="co2">java.util.*</span><span class="sy0">;</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> BitManipulation <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw46">Random</span> rand = <span class="kw2">new</span> <span class="kw46">Random</span><span class="br0">(</span><span class="nu0">47</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw3">int</span> i = rand.<span class="me1">nextInt</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw3">int</span> j = rand.<span class="me1">nextInt</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    printBinaryInt<span class="br0">(</span><span class="st0">"-1"</span>, -<span class="nu0">1</span><span class="br0">)</span><span class="sy0">;</span>
+    printBinaryInt<span class="br0">(</span><span class="st0">"+1"</span>, +<span class="nu0">1</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw3">int</span> maxpos = <span class="nu0">2147483647</span><span class="sy0">;</span>
+    printBinaryInt<span class="br0">(</span><span class="st0">"maxpos"</span>, maxpos<span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw3">int</span> maxneg = -<span class="nu0">2147483648</span><span class="sy0">;</span>
+    printBinaryInt<span class="br0">(</span><span class="st0">"maxneg"</span>, maxneg<span class="br0">)</span><span class="sy0">;</span>
+    printBinaryInt<span class="br0">(</span><span class="st0">"i"</span>, i<span class="br0">)</span><span class="sy0">;</span>
+    printBinaryInt<span class="br0">(</span><span class="st0">"~i"</span>, ~i<span class="br0">)</span><span class="sy0">;</span>
+    printBinaryInt<span class="br0">(</span><span class="st0">"-i"</span>, -i<span class="br0">)</span><span class="sy0">;</span>
+    printBinaryInt<span class="br0">(</span><span class="st0">"j"</span>, j<span class="br0">)</span><span class="sy0">;</span>
+    printBinaryInt<span class="br0">(</span><span class="st0">"i &amp; j"</span>, i <span class="sy0">&amp;</span> j<span class="br0">)</span><span class="sy0">;</span>
+    printBinaryInt<span class="br0">(</span><span class="st0">"i | j"</span>, i | j<span class="br0">)</span><span class="sy0">;</span>
+    printBinaryInt<span class="br0">(</span><span class="st0">"i ^ j"</span>, i ^ j<span class="br0">)</span><span class="sy0">;</span>
+    printBinaryInt<span class="br0">(</span><span class="st0">"i &lt;&lt; 5"</span>, i <span class="sy0">&lt;&lt;</span> <span class="nu0">5</span><span class="br0">)</span><span class="sy0">;</span>
+    printBinaryInt<span class="br0">(</span><span class="st0">"i &gt;&gt; 5"</span>, i <span class="sy0">&gt;&gt;</span> <span class="nu0">5</span><span class="br0">)</span><span class="sy0">;</span>
+    printBinaryInt<span class="br0">(</span><span class="st0">"(~i) &gt;&gt; 5"</span>, <span class="br0">(</span>~i<span class="br0">)</span> <span class="sy0">&gt;&gt;</span> <span class="nu0">5</span><span class="br0">)</span><span class="sy0">;</span>
+    printBinaryInt<span class="br0">(</span><span class="st0">"i &gt;&gt;&gt; 5"</span>, i <span class="sy0">&gt;&gt;&gt;</span> <span class="nu0">5</span><span class="br0">)</span><span class="sy0">;</span>
+    printBinaryInt<span class="br0">(</span><span class="st0">"(~i) &gt;&gt;&gt; 5"</span>, <span class="br0">(</span>~i<span class="br0">)</span> <span class="sy0">&gt;&gt;&gt;</span> <span class="nu0">5</span><span class="br0">)</span><span class="sy0">;</span>
+&nbsp;
+    <span class="kw3">long</span> l = rand.<span class="me1">nextLong</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw3">long</span> m = rand.<span class="me1">nextLong</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    printBinaryLong<span class="br0">(</span><span class="st0">"-1L"</span>, -1L<span class="br0">)</span><span class="sy0">;</span>
+    printBinaryLong<span class="br0">(</span><span class="st0">"+1L"</span>, +1L<span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw3">long</span> ll = 922337207L<span class="sy0">;</span>
+    printBinaryLong<span class="br0">(</span><span class="st0">"maxpos"</span>, ll<span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw3">long</span> lln = -922337208L<span class="sy0">;</span>
+    printBinaryLong<span class="br0">(</span><span class="st0">"maxneg"</span>, lln<span class="br0">)</span><span class="sy0">;</span>
+    printBinaryLong<span class="br0">(</span><span class="st0">"l"</span>, l<span class="br0">)</span><span class="sy0">;</span>
+    printBinaryLong<span class="br0">(</span><span class="st0">"~l"</span>, ~l<span class="br0">)</span><span class="sy0">;</span>
+    printBinaryLong<span class="br0">(</span><span class="st0">"-l"</span>, -l<span class="br0">)</span><span class="sy0">;</span>
+    printBinaryLong<span class="br0">(</span><span class="st0">"m"</span>, m<span class="br0">)</span><span class="sy0">;</span>
+    printBinaryLong<span class="br0">(</span><span class="st0">"l &amp; m"</span>, l <span class="sy0">&amp;</span> m<span class="br0">)</span><span class="sy0">;</span>
+    printBinaryLong<span class="br0">(</span><span class="st0">"l | m"</span>, l | m<span class="br0">)</span><span class="sy0">;</span>
+    printBinaryLong<span class="br0">(</span><span class="st0">"l ^ m"</span>, l ^ m<span class="br0">)</span><span class="sy0">;</span>
+    printBinaryLong<span class="br0">(</span><span class="st0">"l &lt;&lt; 5"</span>, l <span class="sy0">&lt;&lt;</span> <span class="nu0">5</span><span class="br0">)</span><span class="sy0">;</span>
+    printBinaryLong<span class="br0">(</span><span class="st0">"l &gt;&gt; 5"</span>, l <span class="sy0">&gt;&gt;</span> <span class="nu0">5</span><span class="br0">)</span><span class="sy0">;</span>
+    printBinaryLong<span class="br0">(</span><span class="st0">"(~l) &gt;&gt; 5"</span>, <span class="br0">(</span>~l<span class="br0">)</span> <span class="sy0">&gt;&gt;</span> <span class="nu0">5</span><span class="br0">)</span><span class="sy0">;</span>
+    printBinaryLong<span class="br0">(</span><span class="st0">"l &gt;&gt;&gt; 5"</span>, l <span class="sy0">&gt;&gt;&gt;</span> <span class="nu0">5</span><span class="br0">)</span><span class="sy0">;</span>
+    printBinaryLong<span class="br0">(</span><span class="st0">"(~l) &gt;&gt;&gt; 5"</span>, <span class="br0">(</span>~l<span class="br0">)</span> <span class="sy0">&gt;&gt;&gt;</span> <span class="nu0">5</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">static</span> <span class="kw3">void</span> printBinaryInt<span class="br0">(</span><span class="kw21">String</span> s, <span class="kw3">int</span> i<span class="br0">)</span> <span class="br0">{</span>
+    print<span class="br0">(</span>s + <span class="st0">", int: "</span> + i + <span class="st0">", binary:<span class="es0">\n</span>   "</span> +
+      <span class="kw21">Integer</span>.<span class="me1">toBinaryString</span><span class="br0">(</span>i<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">static</span> <span class="kw3">void</span> printBinaryLong<span class="br0">(</span><span class="kw21">String</span> s, <span class="kw3">long</span> l<span class="br0">)</span> <span class="br0">{</span>
+    print<span class="br0">(</span>s + <span class="st0">", long: "</span> + l + <span class="st0">", binary:<span class="es0">\n</span>    "</span> +
+      <span class="kw21">Long</span>.<span class="me1">toBinaryString</span><span class="br0">(</span>l<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>-1, int: -1, binary:
+  11111111111111111111111111111111
++1, int: 1, binary:
+  1
+maxpos, int: 2147483647, binary:
+  1111111111111111111111111111111
+maxneg, int: -2147483648, binary:
+  0
+i, int: -1172028779, binary:
+  1
+~i, int: 1172028778, binary:
+  101101010
+-i, int: 1172028779, binary:
+  101101011
+j, int: 1717241110, binary:
+  1100010110
+i &amp; j, int: 570425364, binary:
+  000010100
+i | j, int: -25213033, binary:
+  1111110111
+i ^ j, int: -595638397, binary:
+  1111000011
+i &lt;&lt; 5, int: 1149784736, binary:
+  010100000
+i &gt;&gt; 5, int: -36625900, binary:
+  11111010100
+(~i) &gt;&gt; 5, int: 36625899, binary:
+  1011
+i &gt;&gt;&gt; 5, int: 97591828, binary:
+  010100
+(~i) &gt;&gt;&gt; 5, int: 36625899, binary:
+  1011
+</pre>
+<p>&lt;/spoiler&gt;
+Два метода в конце, <i><b>printBinaryInt()</b></i> и <i><b>printBinaryLong()</b></i>, получают в качестве параметров, соответственно, числа <i><b>int</b></i> и <i><b>long</b></i> и выводят их в двоичном формате вместе с сопроводительным текстом. Вместе с демонстрацией поразрядных опе­раций для типов <i><b>int</b></i> и <i><b>long</b></i> этот пример также выводит минимальное и максимальное значение, <i>+1</i> и <i>-1</i> для этих типов, чтобы вы лучше понимали, как они выглядят в двоичном представлении. Заметьте, что старший бит обозначает знак: <i>0</i> соответствует положительному и <i>1</i> — отрицательному числам. Результат работы для типа <i><b>int</b></i> приведен в конце листинга
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id=".D0.A2.D0.B5.D1.80.D0.BD.D0.B0.D1.80.D0.BD.D1.8B.D0.B9_.D0.BE.D0.BF.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80_.C2.AB.D0.B5.D1.81.D0.BB.D0.B8-.D0.B8.D0.BD.D0.B0.D1.87.D0.B5.C2.BB">Тернарный оператор «если-иначе»</span></h2>
+<p>Тернарный оператор необычен тем, что он использует три операнда. И 
+все же это действительно оператор, так как он производит значение, в 
+отличие от обычной конструкции выбора <i><b>if-else</b></i>, описанной в следующем разделе. Выражение записывается в такой форме:
+</p>
+<pre>логическое-условие&nbsp;? выражение0&nbsp;: выражение1
+</pre>
+<p>Если <b>логическое-условие</b> истинно (<i><b>true</b></i>), то затем вычисляется <b>выражение0</b>, и именно его результат становится результатом выполнения всего оператора. Если же логическое-условие ложно (<i><b>false</b></i>), то вычисляется <b>выражение1</b>, и его значение становится результатом работы оператора.
+Пример использования тернарного оператора:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> <span class="co1">//: operators/TernaryIfElse.java</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> TernaryIfElse <span class="br0">{</span>
+  <span class="kw2">static</span> <span class="kw3">int</span> ternary<span class="br0">(</span><span class="kw3">int</span> i<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw2">return</span> i <span class="sy0">&lt;</span> <span class="nu0">10</span> <span class="sy0">?</span> i <span class="sy0">*</span> <span class="nu0">100</span>&nbsp;: i <span class="sy0">*</span> <span class="nu0">10</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">static</span> <span class="kw3">int</span> standardIfElse<span class="br0">(</span><span class="kw3">int</span> i<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw1">if</span><span class="br0">(</span>i <span class="sy0">&lt;</span> <span class="nu0">10</span><span class="br0">)</span>
+      <span class="kw2">return</span> i <span class="sy0">*</span> <span class="nu0">100</span><span class="sy0">;</span>
+    <span class="kw1">else</span>
+      <span class="kw2">return</span> i <span class="sy0">*</span> <span class="nu0">10</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    print<span class="br0">(</span>ternary<span class="br0">(</span><span class="nu0">9</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    print<span class="br0">(</span>ternary<span class="br0">(</span><span class="nu0">10</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    print<span class="br0">(</span>standardIfElse<span class="br0">(</span><span class="nu0">9</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    print<span class="br0">(</span>standardIfElse<span class="br0">(</span><span class="nu0">10</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>900
+100
+900
+</pre>
+<p>&lt;/spoiler&gt;
+Конечно, здесь можно было бы использовать стандартную конструкцию <i><b>if-else</b></i> (описываемую чуть позже), но тернарный оператор гораздо компактнее. Хотя <i>C</i>
+ (где этот оператор впервые появился) претендует на звание лаконичного 
+языка, и тернарный оператор вводился отчасти для достижения этой цели, 
+будьте благоразумны и не используйте его всюду и постоянно — он может 
+ухудшить читаемость программы.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id=".D0.9E.D0.BF.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80.D1.8B_.2B_.D0.B8_.2B.3D_.D0.B4.D0.BB.D1.8F_String">Операторы + и += для String</span></h2>
+<p>В <i>Java</i> существует особый случай использования оператора: операторы <i><b>+ </b></i>и <i><b>+= </b></i>могут
+ применяться для конкатенации (объединения) строк, и вы уже это видели. 
+Такое действие для этих операторов выглядит вполне естественно, хотя оно
+ и не соответствует традиционным принципам их использования.
+</p><p>При создании <i>C++</i> в язык была добавлена возможность перегрузки операторов, позволяющей программистам <i>C++</i> изменять и расширять смысл почти любого оператора. К сожалению, перегрузка операторов, в сочетании с некоторыми ограничениями <i>C++</i>, создала немало проблем при проектировании классов. Хотя реализацию перегрузки операторов в <i>Java</i> можно было осуществить проще, чем в <i>C++</i> (это доказывает язык <i>C</i>#, где существует простой механиз перегрузки), эту возможность все же посчитали излишне сложной, и поэтому программистам на <i>Java</i> не дано реализовать свои собственные перегруженные операторы, как это делают программисты на <i>C++</i>.
+</p><p>Использование <i><b>+</b></i> и <i><b>+=</b></i> для строк (<i><b>String</b></i>)
+ имеет интересные особенности. Если выражение начинается строкой, то все
+ последующие операнды также будут предварительно преобразованы в 
+строчное представление! (помните, что компилятор превращает символы в 
+кавычках в объект <i><b>String</b></i>).
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> <span class="kw3">int</span> х = <span class="nu0">0</span><span class="sy0">;</span> у = <span class="nu0">1</span><span class="sy0">;</span> z = <span class="nu0">2</span><span class="sy0">;</span>
+ <span class="kw21">String</span> s = <span class="st0">"х, у, z"</span><span class="sy0">;</span>
+ <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">(</span>s + x + у + z<span class="br0">)</span>,</pre></div></div>
+<p>В данном случае компилятор <i>Java</i> приводит переменные <i><b>х, у</b></i> и <i><b>z</b></i> к их строковому представлению, вместо того чтобы сначала арифметически сложить их. А если вы запишете
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">(</span>x + s<span class="br0">)</span><span class="sy0">;</span></pre></div></div>
+<p>то и здесь <i>Java</i> преобразует <i><b>x</b></i> в строку.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id=".D0.A2.D0.B8.D0.BF.D0.B8.D1.87.D0.BD.D1.8B.D0.B5_.D0.BE.D1.88.D0.B8.D0.B1.D0.BA.D0.B8_.D0.BF.D1.80.D0.B8_.D0.B8.D1.81.D0.BF.D0.BE.D0.BB.D1.8C.D0.B7.D0.BE.D0.B2.D0.B0.D0.BD.D0.B8.D0.B8_.D0.BE.D0.BF.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80.D0.BE.D0.B2">Типичные ошибки при использовании операторов</span></h2>
+<p>Многие программисты склонны второпях записывать выражение без скобок,
+ даже когда они не уверены в последовательности вычисления выражения. 
+Это верно и для <i>Java</i>.
+</p><p>Еще одна распространенная ошибка в <i>C</i> и <i>C++</i> выглядит следующим образом:
+</p>
+<pre>while(x = у) { // .
+}
+</pre>
+<p>Программист хотел выполнить сравнение (<i><b>==</b></i>), а не присвоение. В <i>C</i> и <i>C++</i> результат этого выражения всегда будет истинным, если только <i><b>у</b></i> не окажется нулем; вероятно, возникнет бесконечный цикл. В языке <i>Java</i> результат такого выражения не будет являться логическим типом (<i><b>boolean</b></i>), а компилятор ожидает в этом выражении именно <i><b>boolean</b></i> и не разрешает использовать целочисленный тип <i><b>int</b></i>,
+ поэтому вовремя сообщит вам об ошибке времени компиляции, упредив 
+проблему еще перед запуском программы. Поэтому подобная ошибка в <i>Java</i> никогда не происходит. (Программа откомпилируется только в одном случае: если <i><b>х</b></i> и <i><b>у</b></i> одновременно являются типами <i><b>boolean</b></i>, и тогда выражение <i><b>х = у</b></i> будет допустимо, что может привести к ошибке.)
+</p><p>Похожая проблема возникает в <i>C</i> и <i>C++</i> при использовании поразрядных операторов <i>И</i> и <i>ИЛИ</i> вместо их логических аналогов. Поразрядные <i>И</i> и <i>ИЛИ</i> записываются одним символом (<i><b>&amp;</b></i> и <i><b>|</b></i>), в то время как логические <i>И</i> и <i>ИЛИ</i> требуют в написании двух символов (<i><b>&amp;&amp;</b></i> и <i><b>||</b></i>). Так же, как и в случае с операторами <i><b>= </b></i>и <i><b>==</b></i>, легко ошибиться и набрать один символ вместо двух. В <i>Java</i> компилятор предотвращает такие ошибки, так как он не позволяет использовать тип данных в неподходящем контексте.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id=".D0.9E.D0.BF.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80.D1.8B_.D0.BF.D1.80.D0.B8.D0.B2.D0.B5.D0.B4.D0.B5.D0.BD.D0.B8.D1.8F">Операторы приведения</span></h2>
+<p>Слово приведение используется в смысле «приведение к другому типу». В определенных ситуациях <i>Java</i>
+ самостоятельно преобразует данные к другим типам. Например, если 
+вещественной переменной присваивается целое значение, ком­пилятор 
+автоматически выполняет соответствующее преобразование (<i><b>int</b></i> преобразуется во <i><b>float</b></i>).
+ Приведение позволяет сделать замену типа более очевидной или выполнить 
+ее принудительно в случаях, где это не происходит в обычном порядке.
+</p><p>Чтобы выполнить приведение явно, запишите необходимый тип данных 
+(включая все модификаторы) в круглых скобках слева от преобразуемого 
+значения. Пример:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: operators/Casting.java</span>
+<span class="kw2">public</span> <span class="kw2">class</span> Casting <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw3">int</span> i = <span class="nu0">200</span><span class="sy0">;</span>
+    <span class="kw3">long</span> lng = <span class="br0">(</span><span class="kw3">long</span><span class="br0">)</span>i<span class="sy0">;</span>
+    lng = i<span class="sy0">;</span> <span class="co1">// "Расширение", явное преобразование не обязательно</span>
+    <span class="kw3">long</span> lng2 = <span class="br0">(</span><span class="kw3">long</span><span class="br0">)</span><span class="nu0">200</span><span class="sy0">;</span>
+    lng2 = <span class="nu0">200</span><span class="sy0">;</span>
+    <span class="co1">// "Сужающее" преобразование:</span>
+    i = <span class="br0">(</span><span class="kw3">int</span><span class="br0">)</span>lng2<span class="sy0">;</span> <span class="co1">// Преобразование необходимо</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>Как видите, приведение может выполняться и для чисел, и для 
+переменных. Впрочем, в указанных примерах приведение является излишним, 
+поскольку компилятор при необходимости автоматически преобразует целое <i><b>int</b></i> к типу <i><b>long</b></i>.
+ Однако это не мешает вам выполнять необязательные приведения — 
+например, чтобы подчеркнуть какое-то обстоятельство или просто для того,
+ чтобы сделать программу более понятной. В других ситуациях приведение 
+может быть необходимо для нормальной компиляции программы.
+</p><p>В <i>C</i> и <i>C++</i> приведение могло стать источником ошибок и неоднозначности. В <i>Java</i>
+ приведение безопасно, за одним исключением: при выполнении так 
+называемого сужающего приведения (то есть от типа данных, способного 
+хранить больше информации, к менее содержательному типу данных), то есть
+ при опасности потери данных. В таком случае компилятор заставляет вас 
+выполнить явное приведение; фактически он говорит: «это может быть 
+опасно, но, если вы уверены в своей правоте, опишите действие явно». В 
+случае с расширяющим приведением явное описание не понадобится, так как 
+новый тип данных способен хранить больше информации, чем прежний, и 
+поэтому потеря данных исключена.
+</p><p>В <i>Java</i> разрешается приводить любой простейший тип данных к любому другому простейшему типу, но это не относится к типу <i><b>boolean</b></i>,
+ который вообще не подлежит приведению. Классы также не поддерживают 
+произвольное приведение. Чтобы преобразовать один класс в другой, 
+требуются специальные методы. (Как будет показано позднее, объекты можно
+ преобразовывать в рамках семейства типов; объект <b>Дуб</b> можно преобразовать в <b>Дерево</b> и наоборот, но не к постороннему типу вроде <b>Камня</b>.)
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id=".D0.9E.D0.BA.D1.80.D1.83.D0.B3.D0.BB.D0.B5.D0.BD.D0.B8.D0.B5_.D0.B8_.D1.83.D1.81.D0.B5.D1.87.D0.B5.D0.BD.D0.B8.D0.B5">Округление и усечение</span></h2>
+<p>При выполнении сужающих преобразований необходимо обращать внимание 
+на усечение и округление данных. Например, как должен действовать 
+компилятор <i>Java</i> при преобразовании вещественного числа в целое? Скажем, если значение <i>29.7</i> приводится к типу <i><b>int</b></i>, что получится — <i>29</i> или <i>30</i>&nbsp;? 
+</p><p>Ответ на этот вопрос может дать следующий пример:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: operators/CastingNumbers.java</span>
+<span class="co1">// Что происходит при приведении типов </span>
+<span class="co1">// float или double к целочисленным значениям?</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> CastingNumbers <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw3">double</span> above = <span class="nu0">0.7</span>, below = <span class="nu0">0.4</span><span class="sy0">;</span>
+    <span class="kw3">float</span> fabove = 0.7f, fbelow = 0.4f<span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"(int)above: "</span> + <span class="br0">(</span><span class="kw3">int</span><span class="br0">)</span>above<span class="br0">)</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"(int)below: "</span> + <span class="br0">(</span><span class="kw3">int</span><span class="br0">)</span>below<span class="br0">)</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"(int)fabove: "</span> + <span class="br0">(</span><span class="kw3">int</span><span class="br0">)</span>fabove<span class="br0">)</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"(int)fbelow: "</span> + <span class="br0">(</span><span class="kw3">int</span><span class="br0">)</span>fbelow<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>(int)above: 0
+(int)below: 0
+(int)fabove: 0
+(int)fbelow: 0
+</pre>
+<p>&lt;/spoiler&gt;
+Отсюда и ответ на наш вопрос — приведение от типов с повышенной точностью <i><b>double</b></i> и <i><b>float</b></i>
+ к целочисленным значениям всегда осуществляется с усечением целой 
+части. Если вы предпочитаете, чтобы результат округлялся, используйте 
+метод <i><b>round()</b></i> из <i><b>java.lang.Math</b></i>. Так как этот метод является частью <i><b>java.lang</b></i>, дополнительное импортирование не потребуется.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id=".D0.9F.D0.BE.D0.B2.D1.8B.D1.88.D0.B5.D0.BD.D0.B8.D0.B5">Повышение</span></h2>
+<p>Вы можете обнаружить, что при проведении любых математических и поразрядных операций примитивные типы данных, меньшие <i><b>int</b></i> (то есть <i><b>char, byte</b></i> и <i><b>short</b></i>), приводятся к типу <i><b>int</b></i> перед проведением операций, и получаемый результат имеет тип <i><b>int</b></i>.
+ Поэтому, если вам снова понадобится присвоить его меньшему типу, 
+придется использовать приведение. (И тогда возможна потеря информации.) В
+ основном самый емкий тип данных, присутствующий в выражении, и 
+определяет величину результата этого выражения; так, при перемножении <i><b>float</b></i> и <i><b>double</b></i> результатом станет <i><b>double</b></i>, а при сложении <i><b>long</b></i> и <i><b>int</b></i> вы получите в результате <i><b>long</b></i>.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id=".D0.92_Java_.D0.BE.D1.82.D1.81.D1.83.D1.82.D1.81.D1.82.D0.B2.D1.83.D0.B5.D1.82_sizeof.28.29">В <i>Java</i> отсутствует sizeof()</span></h2>
+<p>В <i>C</i> и <i>C++</i> оператор <i>sizeof()</i> выдает количество 
+байтов, выделенных для хранения данных. Главная причина для 
+использования sizeof() — переносимость программы. Различным типам данных
+ может отводиться различное количество памяти на разных компьютерах, 
+поэтому для программиста важно определить размер этих типов перед 
+проведением операций, зависящих от этих величин. Например, один 
+компьютер выделяет под целые числа 32 бита, а другой — всего лишь 16 
+бит. В результате на первой машине программа может хранить в 
+целочисленном представлении числа из большего диапазона. Конечно, 
+аппаратная совместимость создает немало хлопот для программистов на <i>C</i> и <i>C++</i>.
+В <i>Java</i> оператор <i>sizeof()</i> не нужен, так как все типы данных
+ имеют одинаковые размеры на всех машинах. Вам не нужно заботиться о 
+переносимости на низком уровне — она встроена в язык.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id=".D0.A1.D0.B2.D0.BE.D0.B4.D0.BA.D0.B0_.D0.BE.D0.BF.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80.D0.BE.D0.B2">Сводка операторов</span></h2>
+<p>Следующий пример показывает, какие примитивные типы данных 
+используются с теми или иными операторами. Вообще-то это один и тот же 
+пример, повторенный много раз, но для разных типов данных. Файл должен 
+компилироваться без ошибок, поскольку все строки, содержащие неверные 
+операции, предварены символами <i><b>//!</b></i>&nbsp;:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: operators/AllOps.java</span>
+<span class="co1">//  Проверяет все операторы со всеми</span>
+<span class="co1">//  примитивными типами данных, чтобы показать,</span>
+<span class="co1">//  какие операции допускаются компилятором Java</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> AllOps <span class="br0">{</span>
+  <span class="co1">// To accept the results of a boolean test:</span>
+  <span class="kw3">void</span> f<span class="br0">(</span><span class="kw3">boolean</span> b<span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+  <span class="kw3">void</span> boolTest<span class="br0">(</span><span class="kw3">boolean</span> x, <span class="kw3">boolean</span> y<span class="br0">)</span> <span class="br0">{</span>
+    <span class="co1">// Arithmetic operators:</span>
+    <span class="co1">//! x = x * y;</span>
+    <span class="co1">//! x = x / y;</span>
+    <span class="co1">//! x = x&nbsp;% y;</span>
+    <span class="co1">//! x = x + y;</span>
+    <span class="co1">//! x = x - y;</span>
+    <span class="co1">//! x++;</span>
+    <span class="co1">//! x--;</span>
+    <span class="co1">//! x = +y;</span>
+    <span class="co1">//! x = -y;</span>
+    <span class="co1">// Relational and logical:</span>
+    <span class="co1">//! f(x &gt; y);</span>
+    <span class="co1">//! f(x &gt;= y);</span>
+    <span class="co1">//! f(x &lt; y);</span>
+    <span class="co1">//! f(x &lt;= y);</span>
+    f<span class="br0">(</span>x == y<span class="br0">)</span><span class="sy0">;</span>
+    f<span class="br0">(</span>x <span class="sy0">!</span>= y<span class="br0">)</span><span class="sy0">;</span>
+    f<span class="br0">(</span><span class="sy0">!</span>y<span class="br0">)</span><span class="sy0">;</span>
+    x = x <span class="sy0">&amp;&amp;</span> y<span class="sy0">;</span>
+    x = x || y<span class="sy0">;</span>
+    <span class="co1">// Bitwise operators:</span>
+    <span class="co1">//! x = ~y;</span>
+    x = x <span class="sy0">&amp;</span> y<span class="sy0">;</span>
+    x = x | y<span class="sy0">;</span>
+    x = x ^ y<span class="sy0">;</span>
+    <span class="co1">//! x = x &lt;&lt; 1;</span>
+    <span class="co1">//! x = x &gt;&gt; 1;</span>
+    <span class="co1">//! x = x &gt;&gt;&gt; 1;</span>
+    <span class="co1">// Compound assignment:</span>
+    <span class="co1">//! x += y;</span>
+    <span class="co1">//! x -= y;</span>
+    <span class="co1">//! x *= y;</span>
+    <span class="co1">//! x /= y;</span>
+    <span class="co1">//! x&nbsp;%= y;</span>
+    <span class="co1">//! x &lt;&lt;= 1;</span>
+    <span class="co1">//! x &gt;&gt;= 1;</span>
+    <span class="co1">//! x &gt;&gt;&gt;= 1;</span>
+    x <span class="sy0">&amp;</span>= y<span class="sy0">;</span>
+    x ^= y<span class="sy0">;</span>
+    x |= y<span class="sy0">;</span>
+    <span class="co1">// Casting:</span>
+    <span class="co1">//! char c = (char)x;</span>
+    <span class="co1">//! byte b = (byte)x;</span>
+    <span class="co1">//! short s = (short)x;</span>
+    <span class="co1">//! int i = (int)x;</span>
+    <span class="co1">//! long l = (long)x;</span>
+    <span class="co1">//! float f = (float)x;</span>
+    <span class="co1">//! double d = (double)x;</span>
+  <span class="br0">}</span>
+  <span class="kw3">void</span> charTest<span class="br0">(</span><span class="kw3">char</span> x, <span class="kw3">char</span> y<span class="br0">)</span> <span class="br0">{</span>
+    <span class="co1">// Arithmetic operators:</span>
+    x = <span class="br0">(</span><span class="kw3">char</span><span class="br0">)</span><span class="br0">(</span>x <span class="sy0">*</span> y<span class="br0">)</span><span class="sy0">;</span>
+    x = <span class="br0">(</span><span class="kw3">char</span><span class="br0">)</span><span class="br0">(</span>x / y<span class="br0">)</span><span class="sy0">;</span>
+    x = <span class="br0">(</span><span class="kw3">char</span><span class="br0">)</span><span class="br0">(</span>x <span class="sy0">%</span> y<span class="br0">)</span><span class="sy0">;</span>
+    x = <span class="br0">(</span><span class="kw3">char</span><span class="br0">)</span><span class="br0">(</span>x + y<span class="br0">)</span><span class="sy0">;</span>
+    x = <span class="br0">(</span><span class="kw3">char</span><span class="br0">)</span><span class="br0">(</span>x - y<span class="br0">)</span><span class="sy0">;</span>
+    x++<span class="sy0">;</span>
+    x--<span class="sy0">;</span>
+    x = <span class="br0">(</span><span class="kw3">char</span><span class="br0">)</span>+y<span class="sy0">;</span>
+    x = <span class="br0">(</span><span class="kw3">char</span><span class="br0">)</span>-y<span class="sy0">;</span>
+    <span class="co1">// Relational and logical:</span>
+    f<span class="br0">(</span>x <span class="sy0">&gt;</span> y<span class="br0">)</span><span class="sy0">;</span>
+    f<span class="br0">(</span>x <span class="sy0">&gt;</span>= y<span class="br0">)</span><span class="sy0">;</span>
+    f<span class="br0">(</span>x <span class="sy0">&lt;</span> y<span class="br0">)</span><span class="sy0">;</span>
+    f<span class="br0">(</span>x <span class="sy0">&lt;</span>= y<span class="br0">)</span><span class="sy0">;</span>
+    f<span class="br0">(</span>x == y<span class="br0">)</span><span class="sy0">;</span>
+    f<span class="br0">(</span>x <span class="sy0">!</span>= y<span class="br0">)</span><span class="sy0">;</span>
+    <span class="co1">//! f(!x);</span>
+    <span class="co1">//! f(x &amp;&amp; y);</span>
+    <span class="co1">//! f(x || y);</span>
+    <span class="co1">// Bitwise operators:</span>
+    x= <span class="br0">(</span><span class="kw3">char</span><span class="br0">)</span>~y<span class="sy0">;</span>
+    x = <span class="br0">(</span><span class="kw3">char</span><span class="br0">)</span><span class="br0">(</span>x <span class="sy0">&amp;</span> y<span class="br0">)</span><span class="sy0">;</span>
+    x  = <span class="br0">(</span><span class="kw3">char</span><span class="br0">)</span><span class="br0">(</span>x | y<span class="br0">)</span><span class="sy0">;</span>
+    x = <span class="br0">(</span><span class="kw3">char</span><span class="br0">)</span><span class="br0">(</span>x ^ y<span class="br0">)</span><span class="sy0">;</span>
+    x = <span class="br0">(</span><span class="kw3">char</span><span class="br0">)</span><span class="br0">(</span>x <span class="sy0">&lt;&lt;</span> <span class="nu0">1</span><span class="br0">)</span><span class="sy0">;</span>
+    x = <span class="br0">(</span><span class="kw3">char</span><span class="br0">)</span><span class="br0">(</span>x <span class="sy0">&gt;&gt;</span> <span class="nu0">1</span><span class="br0">)</span><span class="sy0">;</span>
+    x = <span class="br0">(</span><span class="kw3">char</span><span class="br0">)</span><span class="br0">(</span>x <span class="sy0">&gt;&gt;&gt;</span> <span class="nu0">1</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="co1">// Compound assignment:</span>
+    x += y<span class="sy0">;</span>
+    x -= y<span class="sy0">;</span>
+    x <span class="sy0">*</span>= y<span class="sy0">;</span>
+    x /= y<span class="sy0">;</span>
+    x <span class="sy0">%</span>= y<span class="sy0">;</span>
+    x <span class="sy0">&lt;&lt;</span>= <span class="nu0">1</span><span class="sy0">;</span>
+    x <span class="sy0">&gt;&gt;</span>= <span class="nu0">1</span><span class="sy0">;</span>
+    x <span class="sy0">&gt;&gt;&gt;</span>= <span class="nu0">1</span><span class="sy0">;</span>
+    x <span class="sy0">&amp;</span>= y<span class="sy0">;</span>
+    x ^= y<span class="sy0">;</span>
+    x |= y<span class="sy0">;</span>
+    <span class="co1">// Casting:</span>
+    <span class="co1">//! boolean bl = (boolean)x;</span>
+    <span class="kw3">byte</span> b = <span class="br0">(</span><span class="kw3">byte</span><span class="br0">)</span>x<span class="sy0">;</span>
+    <span class="kw3">short</span> s = <span class="br0">(</span><span class="kw3">short</span><span class="br0">)</span>x<span class="sy0">;</span>
+    <span class="kw3">int</span> i = <span class="br0">(</span><span class="kw3">int</span><span class="br0">)</span>x<span class="sy0">;</span>
+    <span class="kw3">long</span> l = <span class="br0">(</span><span class="kw3">long</span><span class="br0">)</span>x<span class="sy0">;</span>
+    <span class="kw3">float</span> f = <span class="br0">(</span><span class="kw3">float</span><span class="br0">)</span>x<span class="sy0">;</span>
+    <span class="kw3">double</span> d = <span class="br0">(</span><span class="kw3">double</span><span class="br0">)</span>x<span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw3">void</span> byteTest<span class="br0">(</span><span class="kw3">byte</span> x, <span class="kw3">byte</span> y<span class="br0">)</span> <span class="br0">{</span>
+    <span class="co1">// Arithmetic operators:</span>
+    x = <span class="br0">(</span><span class="kw3">byte</span><span class="br0">)</span><span class="br0">(</span>x<span class="sy0">*</span> y<span class="br0">)</span><span class="sy0">;</span>
+    x = <span class="br0">(</span><span class="kw3">byte</span><span class="br0">)</span><span class="br0">(</span>x / y<span class="br0">)</span><span class="sy0">;</span>
+    x = <span class="br0">(</span><span class="kw3">byte</span><span class="br0">)</span><span class="br0">(</span>x <span class="sy0">%</span> y<span class="br0">)</span><span class="sy0">;</span>
+    x = <span class="br0">(</span><span class="kw3">byte</span><span class="br0">)</span><span class="br0">(</span>x + y<span class="br0">)</span><span class="sy0">;</span>
+    x = <span class="br0">(</span><span class="kw3">byte</span><span class="br0">)</span><span class="br0">(</span>x - y<span class="br0">)</span><span class="sy0">;</span>
+    x++<span class="sy0">;</span>
+    x--<span class="sy0">;</span>
+    x = <span class="br0">(</span><span class="kw3">byte</span><span class="br0">)</span>+ y<span class="sy0">;</span>
+    x = <span class="br0">(</span><span class="kw3">byte</span><span class="br0">)</span>- y<span class="sy0">;</span>
+    <span class="co1">// Relational and logical:</span>
+    f<span class="br0">(</span>x <span class="sy0">&gt;</span> y<span class="br0">)</span><span class="sy0">;</span>
+    f<span class="br0">(</span>x <span class="sy0">&gt;</span>= y<span class="br0">)</span><span class="sy0">;</span>
+    f<span class="br0">(</span>x <span class="sy0">&lt;</span> y<span class="br0">)</span><span class="sy0">;</span>
+    f<span class="br0">(</span>x <span class="sy0">&lt;</span>= y<span class="br0">)</span><span class="sy0">;</span>
+    f<span class="br0">(</span>x == y<span class="br0">)</span><span class="sy0">;</span>
+    f<span class="br0">(</span>x <span class="sy0">!</span>= y<span class="br0">)</span><span class="sy0">;</span>
+    <span class="co1">//! f(!x);</span>
+    <span class="co1">//! f(x &amp;&amp; y);</span>
+    <span class="co1">//! f(x || y);</span>
+    <span class="co1">// Bitwise operators:</span>
+    x = <span class="br0">(</span><span class="kw3">byte</span><span class="br0">)</span>~y<span class="sy0">;</span>
+    x = <span class="br0">(</span><span class="kw3">byte</span><span class="br0">)</span><span class="br0">(</span>x <span class="sy0">&amp;</span> y<span class="br0">)</span><span class="sy0">;</span>
+    x = <span class="br0">(</span><span class="kw3">byte</span><span class="br0">)</span><span class="br0">(</span>x | y<span class="br0">)</span><span class="sy0">;</span>
+    x = <span class="br0">(</span><span class="kw3">byte</span><span class="br0">)</span><span class="br0">(</span>x ^ y<span class="br0">)</span><span class="sy0">;</span>
+    x = <span class="br0">(</span><span class="kw3">byte</span><span class="br0">)</span><span class="br0">(</span>x <span class="sy0">&lt;&lt;</span> <span class="nu0">1</span><span class="br0">)</span><span class="sy0">;</span>
+    x = <span class="br0">(</span><span class="kw3">byte</span><span class="br0">)</span><span class="br0">(</span>x <span class="sy0">&gt;&gt;</span> <span class="nu0">1</span><span class="br0">)</span><span class="sy0">;</span>
+    x = <span class="br0">(</span><span class="kw3">byte</span><span class="br0">)</span><span class="br0">(</span>x <span class="sy0">&gt;&gt;&gt;</span> <span class="nu0">1</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="co1">// Compound assignment:</span>
+    x += y<span class="sy0">;</span>
+    x -= y<span class="sy0">;</span>
+    x <span class="sy0">*</span>= y<span class="sy0">;</span>
+    x /= y<span class="sy0">;</span>
+    x <span class="sy0">%</span>= y<span class="sy0">;</span>
+    x <span class="sy0">&lt;&lt;</span>= <span class="nu0">1</span><span class="sy0">;</span>
+    x <span class="sy0">&gt;&gt;</span>= <span class="nu0">1</span><span class="sy0">;</span>
+    x <span class="sy0">&gt;&gt;&gt;</span>= <span class="nu0">1</span><span class="sy0">;</span>
+    x <span class="sy0">&amp;</span>= y<span class="sy0">;</span>
+    x ^= y<span class="sy0">;</span>
+    x |= y<span class="sy0">;</span>
+    <span class="co1">// Casting:</span>
+    <span class="co1">//! boolean bl = (boolean)x;</span>
+    <span class="kw3">char</span> c = <span class="br0">(</span><span class="kw3">char</span><span class="br0">)</span>x<span class="sy0">;</span>
+    <span class="kw3">short</span> s = <span class="br0">(</span><span class="kw3">short</span><span class="br0">)</span>x<span class="sy0">;</span>
+    <span class="kw3">int</span> i = <span class="br0">(</span><span class="kw3">int</span><span class="br0">)</span>x<span class="sy0">;</span>
+    <span class="kw3">long</span> l = <span class="br0">(</span><span class="kw3">long</span><span class="br0">)</span>x<span class="sy0">;</span>
+    <span class="kw3">float</span> f = <span class="br0">(</span><span class="kw3">float</span><span class="br0">)</span>x<span class="sy0">;</span>
+    <span class="kw3">double</span> d = <span class="br0">(</span><span class="kw3">double</span><span class="br0">)</span>x<span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw3">void</span> shortTest<span class="br0">(</span><span class="kw3">short</span> x, <span class="kw3">short</span> y<span class="br0">)</span> <span class="br0">{</span>
+    <span class="co1">// Arithmetic operators:</span>
+    x = <span class="br0">(</span><span class="kw3">short</span><span class="br0">)</span><span class="br0">(</span>x <span class="sy0">*</span> y<span class="br0">)</span><span class="sy0">;</span>
+    x = <span class="br0">(</span><span class="kw3">short</span><span class="br0">)</span><span class="br0">(</span>x / y<span class="br0">)</span><span class="sy0">;</span>
+    x = <span class="br0">(</span><span class="kw3">short</span><span class="br0">)</span><span class="br0">(</span>x <span class="sy0">%</span> y<span class="br0">)</span><span class="sy0">;</span>
+    x = <span class="br0">(</span><span class="kw3">short</span><span class="br0">)</span><span class="br0">(</span>x + y<span class="br0">)</span><span class="sy0">;</span>
+    x = <span class="br0">(</span><span class="kw3">short</span><span class="br0">)</span><span class="br0">(</span>x - y<span class="br0">)</span><span class="sy0">;</span>
+    x++<span class="sy0">;</span>
+    x--<span class="sy0">;</span>
+    x = <span class="br0">(</span><span class="kw3">short</span><span class="br0">)</span>+y<span class="sy0">;</span>
+    x = <span class="br0">(</span><span class="kw3">short</span><span class="br0">)</span>-y<span class="sy0">;</span>
+    <span class="co1">// Relational and logical:</span>
+    f<span class="br0">(</span>x <span class="sy0">&gt;</span> y<span class="br0">)</span><span class="sy0">;</span>
+    f<span class="br0">(</span>x <span class="sy0">&gt;</span>= y<span class="br0">)</span><span class="sy0">;</span>
+    f<span class="br0">(</span>x <span class="sy0">&lt;</span> y<span class="br0">)</span><span class="sy0">;</span>
+    f<span class="br0">(</span>x <span class="sy0">&lt;</span>= y<span class="br0">)</span><span class="sy0">;</span>
+    f<span class="br0">(</span>x == y<span class="br0">)</span><span class="sy0">;</span>
+    f<span class="br0">(</span>x <span class="sy0">!</span>= y<span class="br0">)</span><span class="sy0">;</span>
+    <span class="co1">//! f(!x);</span>
+    <span class="co1">//! f(x &amp;&amp; y);</span>
+    <span class="co1">//! f(x || y);</span>
+    <span class="co1">// Bitwise operators:</span>
+    x = <span class="br0">(</span><span class="kw3">short</span><span class="br0">)</span>~y<span class="sy0">;</span>
+    x = <span class="br0">(</span><span class="kw3">short</span><span class="br0">)</span><span class="br0">(</span>x <span class="sy0">&amp;</span> y<span class="br0">)</span><span class="sy0">;</span>
+    x = <span class="br0">(</span><span class="kw3">short</span><span class="br0">)</span><span class="br0">(</span>x | y<span class="br0">)</span><span class="sy0">;</span>
+    x = <span class="br0">(</span><span class="kw3">short</span><span class="br0">)</span><span class="br0">(</span>x ^ y<span class="br0">)</span><span class="sy0">;</span>
+    x = <span class="br0">(</span><span class="kw3">short</span><span class="br0">)</span><span class="br0">(</span>x <span class="sy0">&lt;&lt;</span> <span class="nu0">1</span><span class="br0">)</span><span class="sy0">;</span>
+    x = <span class="br0">(</span><span class="kw3">short</span><span class="br0">)</span><span class="br0">(</span>x <span class="sy0">&gt;&gt;</span> <span class="nu0">1</span><span class="br0">)</span><span class="sy0">;</span>
+    x = <span class="br0">(</span><span class="kw3">short</span><span class="br0">)</span><span class="br0">(</span>x <span class="sy0">&gt;&gt;&gt;</span> <span class="nu0">1</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="co1">// Compound assignment:</span>
+    x += y<span class="sy0">;</span>
+    x -= y<span class="sy0">;</span>
+    x <span class="sy0">*</span>= y<span class="sy0">;</span>
+    x /= y<span class="sy0">;</span>
+    x <span class="sy0">%</span>= y<span class="sy0">;</span>
+    x <span class="sy0">&lt;&lt;</span>= <span class="nu0">1</span><span class="sy0">;</span>
+    x <span class="sy0">&gt;&gt;</span>= <span class="nu0">1</span><span class="sy0">;</span>
+    x <span class="sy0">&gt;&gt;&gt;</span>= <span class="nu0">1</span><span class="sy0">;</span>
+    x <span class="sy0">&amp;</span>= y<span class="sy0">;</span>
+    x ^= y<span class="sy0">;</span>
+    x |= y<span class="sy0">;</span>
+    <span class="co1">// Casting:</span>
+    <span class="co1">//! boolean bl = (boolean)x;</span>
+    <span class="kw3">char</span> c = <span class="br0">(</span><span class="kw3">char</span><span class="br0">)</span>x<span class="sy0">;</span>
+    <span class="kw3">byte</span> b = <span class="br0">(</span><span class="kw3">byte</span><span class="br0">)</span>x<span class="sy0">;</span>
+    <span class="kw3">int</span> i = <span class="br0">(</span><span class="kw3">int</span><span class="br0">)</span>x<span class="sy0">;</span>
+    <span class="kw3">long</span> l = <span class="br0">(</span><span class="kw3">long</span><span class="br0">)</span>x<span class="sy0">;</span>
+    <span class="kw3">float</span> f = <span class="br0">(</span><span class="kw3">float</span><span class="br0">)</span>x<span class="sy0">;</span>
+    <span class="kw3">double</span> d = <span class="br0">(</span><span class="kw3">double</span><span class="br0">)</span>x<span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw3">void</span> intTest<span class="br0">(</span><span class="kw3">int</span> x, <span class="kw3">int</span> y<span class="br0">)</span> <span class="br0">{</span>
+    <span class="co1">// Arithmetic operators:</span>
+    x = x <span class="sy0">*</span> y<span class="sy0">;</span>
+    x = x / y<span class="sy0">;</span>
+    x = x <span class="sy0">%</span> y<span class="sy0">;</span>
+    x = x + y<span class="sy0">;</span>
+    x = x - y<span class="sy0">;</span>
+    x++<span class="sy0">;</span>
+    x--<span class="sy0">;</span>
+    x = +y<span class="sy0">;</span>
+    x = -y<span class="sy0">;</span>
+    <span class="co1">// Relational and logical:</span>
+    f<span class="br0">(</span>x <span class="sy0">&gt;</span> y<span class="br0">)</span><span class="sy0">;</span>
+    f<span class="br0">(</span>x <span class="sy0">&gt;</span>= y<span class="br0">)</span><span class="sy0">;</span>
+    f<span class="br0">(</span>x <span class="sy0">&lt;</span> y<span class="br0">)</span><span class="sy0">;</span>
+    f<span class="br0">(</span>x <span class="sy0">&lt;</span>= y<span class="br0">)</span><span class="sy0">;</span>
+    f<span class="br0">(</span>x == y<span class="br0">)</span><span class="sy0">;</span>
+    f<span class="br0">(</span>x <span class="sy0">!</span>= y<span class="br0">)</span><span class="sy0">;</span>
+    <span class="co1">//! f(!x);</span>
+    <span class="co1">//! f(x &amp;&amp; y);</span>
+    <span class="co1">//! f(x || y);</span>
+    <span class="co1">// Bitwise operators:</span>
+    x = ~y<span class="sy0">;</span>
+    x = x <span class="sy0">&amp;</span> y<span class="sy0">;</span>
+    x = x | y<span class="sy0">;</span>
+    x = x ^ y<span class="sy0">;</span>
+    x = x <span class="sy0">&lt;&lt;</span> <span class="nu0">1</span><span class="sy0">;</span>
+    x = x <span class="sy0">&gt;&gt;</span> <span class="nu0">1</span><span class="sy0">;</span>
+    x = x <span class="sy0">&gt;&gt;&gt;</span> <span class="nu0">1</span><span class="sy0">;</span>
+    <span class="co1">// Compound assignment:</span>
+    x += y<span class="sy0">;</span>
+    x -= y<span class="sy0">;</span>
+    x <span class="sy0">*</span>= y<span class="sy0">;</span>
+    x /= y<span class="sy0">;</span>
+    x <span class="sy0">%</span>= y<span class="sy0">;</span>
+    x <span class="sy0">&lt;&lt;</span>= <span class="nu0">1</span><span class="sy0">;</span>
+    x <span class="sy0">&gt;&gt;</span>= <span class="nu0">1</span><span class="sy0">;</span>
+    x <span class="sy0">&gt;&gt;&gt;</span>= <span class="nu0">1</span><span class="sy0">;</span>
+    x <span class="sy0">&amp;</span>= y<span class="sy0">;</span>
+    x ^= y<span class="sy0">;</span>
+    x |= y<span class="sy0">;</span>
+    <span class="co1">// Casting:</span>
+    <span class="co1">//! boolean bl = (boolean)x;</span>
+    <span class="kw3">char</span> c = <span class="br0">(</span><span class="kw3">char</span><span class="br0">)</span>x<span class="sy0">;</span>
+    <span class="kw3">byte</span> b = <span class="br0">(</span><span class="kw3">byte</span><span class="br0">)</span>x<span class="sy0">;</span>
+    <span class="kw3">short</span> s = <span class="br0">(</span><span class="kw3">short</span><span class="br0">)</span>x<span class="sy0">;</span>
+    <span class="kw3">long</span> l = <span class="br0">(</span><span class="kw3">long</span><span class="br0">)</span>x<span class="sy0">;</span>
+    <span class="kw3">float</span> f = <span class="br0">(</span><span class="kw3">float</span><span class="br0">)</span>x<span class="sy0">;</span>
+    <span class="kw3">double</span> d = <span class="br0">(</span><span class="kw3">double</span><span class="br0">)</span>x<span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw3">void</span> longTest<span class="br0">(</span><span class="kw3">long</span> x, <span class="kw3">long</span> y<span class="br0">)</span> <span class="br0">{</span>
+    <span class="co1">// Arithmetic operators:</span>
+    x = x <span class="sy0">*</span> y<span class="sy0">;</span>
+    x = x / y<span class="sy0">;</span>
+    x = x <span class="sy0">%</span> y<span class="sy0">;</span>
+    x = x + y<span class="sy0">;</span>
+    x = x - y<span class="sy0">;</span>
+    x++<span class="sy0">;</span>
+    x--<span class="sy0">;</span>
+    x = +y<span class="sy0">;</span>
+    x = -y<span class="sy0">;</span>
+    <span class="co1">// Relational and logical:</span>
+    f<span class="br0">(</span>x <span class="sy0">&gt;</span> y<span class="br0">)</span><span class="sy0">;</span>
+    f<span class="br0">(</span>x <span class="sy0">&gt;</span>= y<span class="br0">)</span><span class="sy0">;</span>
+    f<span class="br0">(</span>x <span class="sy0">&lt;</span> y<span class="br0">)</span><span class="sy0">;</span>
+    f<span class="br0">(</span>x <span class="sy0">&lt;</span>= y<span class="br0">)</span><span class="sy0">;</span>
+    f<span class="br0">(</span>x == y<span class="br0">)</span><span class="sy0">;</span>
+    f<span class="br0">(</span>x <span class="sy0">!</span>= y<span class="br0">)</span><span class="sy0">;</span>
+    <span class="co1">//! f(!x);</span>
+    <span class="co1">//! f(x &amp;&amp; y);</span>
+    <span class="co1">//! f(x || y);</span>
+    <span class="co1">// Bitwise operators:</span>
+    x = ~y<span class="sy0">;</span>
+    x = x <span class="sy0">&amp;</span> y<span class="sy0">;</span>
+    x = x | y<span class="sy0">;</span>
+    x = x ^ y<span class="sy0">;</span>
+    x = x <span class="sy0">&lt;&lt;</span> <span class="nu0">1</span><span class="sy0">;</span>
+    x = x <span class="sy0">&gt;&gt;</span> <span class="nu0">1</span><span class="sy0">;</span>
+    x = x <span class="sy0">&gt;&gt;&gt;</span> <span class="nu0">1</span><span class="sy0">;</span>
+    <span class="co1">// Compound assignment:</span>
+    x += y<span class="sy0">;</span>
+    x -= y<span class="sy0">;</span>
+    x <span class="sy0">*</span>= y<span class="sy0">;</span>
+    x /= y<span class="sy0">;</span>
+    x <span class="sy0">%</span>= y<span class="sy0">;</span>
+    x <span class="sy0">&lt;&lt;</span>= <span class="nu0">1</span><span class="sy0">;</span>
+    x <span class="sy0">&gt;&gt;</span>= <span class="nu0">1</span><span class="sy0">;</span>
+    x <span class="sy0">&gt;&gt;&gt;</span>= <span class="nu0">1</span><span class="sy0">;</span>
+    x <span class="sy0">&amp;</span>= y<span class="sy0">;</span>
+    x ^= y<span class="sy0">;</span>
+    x |= y<span class="sy0">;</span>
+    <span class="co1">// Casting:</span>
+    <span class="co1">//! boolean bl = (boolean)x;</span>
+    <span class="kw3">char</span> c = <span class="br0">(</span><span class="kw3">char</span><span class="br0">)</span>x<span class="sy0">;</span>
+    <span class="kw3">byte</span> b = <span class="br0">(</span><span class="kw3">byte</span><span class="br0">)</span>x<span class="sy0">;</span>
+    <span class="kw3">short</span> s = <span class="br0">(</span><span class="kw3">short</span><span class="br0">)</span>x<span class="sy0">;</span>
+    <span class="kw3">int</span> i = <span class="br0">(</span><span class="kw3">int</span><span class="br0">)</span>x<span class="sy0">;</span>
+    <span class="kw3">float</span> f = <span class="br0">(</span><span class="kw3">float</span><span class="br0">)</span>x<span class="sy0">;</span>
+    <span class="kw3">double</span> d = <span class="br0">(</span><span class="kw3">double</span><span class="br0">)</span>x<span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw3">void</span> floatTest<span class="br0">(</span><span class="kw3">float</span> x, <span class="kw3">float</span> y<span class="br0">)</span> <span class="br0">{</span>
+    <span class="co1">// Arithmetic operators:</span>
+    x = x <span class="sy0">*</span> y<span class="sy0">;</span>
+    x = x / y<span class="sy0">;</span>
+    x = x <span class="sy0">%</span> y<span class="sy0">;</span>
+    x = x + y<span class="sy0">;</span>
+    x = x - y<span class="sy0">;</span>
+    x++<span class="sy0">;</span>
+    x--<span class="sy0">;</span>
+    x = +y<span class="sy0">;</span>
+    x = -y<span class="sy0">;</span>
+    <span class="co1">// Relational and logical:</span>
+    f<span class="br0">(</span>x <span class="sy0">&gt;</span> y<span class="br0">)</span><span class="sy0">;</span>
+    f<span class="br0">(</span>x <span class="sy0">&gt;</span>= y<span class="br0">)</span><span class="sy0">;</span>
+    f<span class="br0">(</span>x <span class="sy0">&lt;</span> y<span class="br0">)</span><span class="sy0">;</span>
+    f<span class="br0">(</span>x <span class="sy0">&lt;</span>= y<span class="br0">)</span><span class="sy0">;</span>
+    f<span class="br0">(</span>x == y<span class="br0">)</span><span class="sy0">;</span>
+    f<span class="br0">(</span>x <span class="sy0">!</span>= y<span class="br0">)</span><span class="sy0">;</span>
+    <span class="co1">//! f(!x);</span>
+    <span class="co1">//! f(x &amp;&amp; y);</span>
+    <span class="co1">//! f(x || y);</span>
+    <span class="co1">// Bitwise operators:</span>
+    <span class="co1">//! x = ~y;</span>
+    <span class="co1">//! x = x &amp; y;</span>
+    <span class="co1">//! x = x | y;</span>
+    <span class="co1">//! x = x ^ y;</span>
+    <span class="co1">//! x = x &lt;&lt; 1;</span>
+    <span class="co1">//! x = x &gt;&gt; 1;</span>
+    <span class="co1">//! x = x &gt;&gt;&gt; 1;</span>
+    <span class="co1">// Compound assignment:</span>
+    x += y<span class="sy0">;</span>
+    x -= y<span class="sy0">;</span>
+    x <span class="sy0">*</span>= y<span class="sy0">;</span>
+    x /= y<span class="sy0">;</span>
+    x <span class="sy0">%</span>= y<span class="sy0">;</span>
+    <span class="co1">//! x &lt;&lt;= 1;</span>
+    <span class="co1">//! x &gt;&gt;= 1;</span>
+    <span class="co1">//! x &gt;&gt;&gt;= 1;</span>
+    <span class="co1">//! x &amp;= y;</span>
+    <span class="co1">//! x ^= y;</span>
+    <span class="co1">//! x |= y;</span>
+    <span class="co1">// Casting:</span>
+    <span class="co1">//! boolean bl = (boolean)x;</span>
+    <span class="kw3">char</span> c = <span class="br0">(</span><span class="kw3">char</span><span class="br0">)</span>x<span class="sy0">;</span>
+    <span class="kw3">byte</span> b = <span class="br0">(</span><span class="kw3">byte</span><span class="br0">)</span>x<span class="sy0">;</span>
+    <span class="kw3">short</span> s = <span class="br0">(</span><span class="kw3">short</span><span class="br0">)</span>x<span class="sy0">;</span>
+    <span class="kw3">int</span> i = <span class="br0">(</span><span class="kw3">int</span><span class="br0">)</span>x<span class="sy0">;</span>
+    <span class="kw3">long</span> l = <span class="br0">(</span><span class="kw3">long</span><span class="br0">)</span>x<span class="sy0">;</span>
+    <span class="kw3">double</span> d = <span class="br0">(</span><span class="kw3">double</span><span class="br0">)</span>x<span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw3">void</span> doubleTest<span class="br0">(</span><span class="kw3">double</span> x, <span class="kw3">double</span> y<span class="br0">)</span> <span class="br0">{</span>
+    <span class="co1">// Arithmetic operators:</span>
+    x = x <span class="sy0">*</span> y<span class="sy0">;</span>
+    x = x / y<span class="sy0">;</span>
+    x = x <span class="sy0">%</span> y<span class="sy0">;</span>
+    x = x + y<span class="sy0">;</span>
+    x = x - y<span class="sy0">;</span>
+    x++<span class="sy0">;</span>
+    x--<span class="sy0">;</span>
+    x = +y<span class="sy0">;</span>
+    x = -y<span class="sy0">;</span>
+    <span class="co1">// Relational and logical:</span>
+    f<span class="br0">(</span>x <span class="sy0">&gt;</span> y<span class="br0">)</span><span class="sy0">;</span>
+    f<span class="br0">(</span>x <span class="sy0">&gt;</span>= y<span class="br0">)</span><span class="sy0">;</span>
+    f<span class="br0">(</span>x <span class="sy0">&lt;</span> y<span class="br0">)</span><span class="sy0">;</span>
+    f<span class="br0">(</span>x <span class="sy0">&lt;</span>= y<span class="br0">)</span><span class="sy0">;</span>
+    f<span class="br0">(</span>x == y<span class="br0">)</span><span class="sy0">;</span>
+    f<span class="br0">(</span>x <span class="sy0">!</span>= y<span class="br0">)</span><span class="sy0">;</span>
+    <span class="co1">//! f(!x);</span>
+    <span class="co1">//! f(x &amp;&amp; y);</span>
+    <span class="co1">//! f(x || y);</span>
+    <span class="co1">// Bitwise operators:</span>
+    <span class="co1">//! x = ~y;</span>
+    <span class="co1">//! x = x &amp; y;</span>
+    <span class="co1">//! x = x | y;</span>
+    <span class="co1">//! x = x ^ y;</span>
+    <span class="co1">//! x = x &lt;&lt; 1;</span>
+    <span class="co1">//! x = x &gt;&gt; 1;</span>
+    <span class="co1">//! x = x &gt;&gt;&gt; 1;</span>
+    <span class="co1">// Compound assignment:</span>
+    x += y<span class="sy0">;</span>
+    x -= y<span class="sy0">;</span>
+    x <span class="sy0">*</span>= y<span class="sy0">;</span>
+    x /= y<span class="sy0">;</span>
+    x <span class="sy0">%</span>= y<span class="sy0">;</span>
+    <span class="co1">//! x &lt;&lt;= 1;</span>
+    <span class="co1">//! x &gt;&gt;= 1;</span>
+    <span class="co1">//! x &gt;&gt;&gt;= 1;</span>
+    <span class="co1">//! x &amp;= y;</span>
+    <span class="co1">//! x ^= y;</span>
+    <span class="co1">//! x |= y;</span>
+    <span class="co1">// Casting:</span>
+    <span class="co1">//! boolean bl = (boolean)x;</span>
+    <span class="kw3">char</span> c = <span class="br0">(</span><span class="kw3">char</span><span class="br0">)</span>x<span class="sy0">;</span>
+    <span class="kw3">byte</span> b = <span class="br0">(</span><span class="kw3">byte</span><span class="br0">)</span>x<span class="sy0">;</span>
+    <span class="kw3">short</span> s = <span class="br0">(</span><span class="kw3">short</span><span class="br0">)</span>x<span class="sy0">;</span>
+    <span class="kw3">int</span> i = <span class="br0">(</span><span class="kw3">int</span><span class="br0">)</span>x<span class="sy0">;</span>
+    <span class="kw3">long</span> l = <span class="br0">(</span><span class="kw3">long</span><span class="br0">)</span>x<span class="sy0">;</span>
+    <span class="kw3">float</span> f = <span class="br0">(</span><span class="kw3">float</span><span class="br0">)</span>x<span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>Заметьте, что действия с типом <i><b>boolean</b></i> довольно ограничены. Ему можно присвоить значение <i><b>true</b></i> или <i><b>false</b></i>,
+ проверить на истинность или ложность, но нельзя добавить логические 
+переменные к другим типам или произвести с ними любые иные операции.
+</p><p>В случае с типами <i><b>char, byte</b></i> и <i><b>short</b></i> 
+можно заметить эффект повышения при использовании арифметических 
+операторов. Любая арифметическая операция с этими типами дает результат 
+типа <i><b>int</b></i>, который затем нужно явно приводить к 
+изначальному типу (сужающее приведение, при котором возможна потеря 
+информации). При использовании значений типа <i><b>int</b></i> приведение осуществлять не придется, потому что все значения уже имеют этот тип. 
+</p><p>Однако не заблуждайтесь относительно безопасности происходящего. При перемножении двух достаточно больших целых чисел <i><b>int</b></i> произойдет переполнение. Следующий пример демонстрирует сказанное:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: operators/Overflow.java</span>
+<span class="co1">// Сюрприз! В Java можно получить переполнение.</span>
+<span class="kw2">public</span> <span class="kw2">class</span> Overflow <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw3">int</span> big = <span class="kw21">Integer</span>.<span class="me1">MAX_VALUE</span><span class="sy0">;</span>
+    <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">(</span><span class="st0">"большое = "</span> + big<span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw3">int</span> bigger = big <span class="sy0">*</span> <span class="nu0">4</span><span class="sy0">;</span>
+    <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">(</span><span class="st0">"еще больше = "</span> + bigger<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>большое = 2147483647
+еще больше = -4
+</pre>
+<p>&lt;/spoiler&gt;
+Компилятор не выдает никаких ошибок или предупреждений, и во время исполнения не возникнет исключений. Язык <i>Java</i> хорош, но хорош не настолько.
+</p><p>Совмещенное присваивание не требует приведения для типов <i><b>char, byte, short</b></i>,
+ хотя для них и производится повышение, как и в случае с арифметическими
+ операциями. С другой стороны, отсутствие приведения в таких случаях, 
+несомненно, упрощает программу.
+</p><p>Можно легко заметить, что за исключением типа <i><b>boolean</b></i>,
+ любой примитивный тип может быть преобразован к другому примитиву. Как 
+упоминалось ранее, необходимо остерегаться сужающего приведения при 
+преобразованиях к меньшему типу, так как при этом возникает риск потери 
+информации.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id=".D0.A0.D0.B5.D0.B7.D1.8E.D0.BC.D0.B5">Резюме</span></h2>
+<p>Читатели с опытом работы на любом языке семейства <i>C</i> могли убедиться, что операторы <i>Java</i>
+ почти нйчем не отличаются от классических. Если же материал этой главы 
+показался трудным, обращайтесь к мультимедийной презентации «Thinking in
+ <i>C</i>» (www.MindView.net).
+
+</p>
+
+                <p><br>
+                </p>
+                <hr>
+                <p><a href="http://wikijava.it-cache.net/index.php" title="Thinking in Java 4th edition">назад в Оглавление</a>
+                </p><p><br>
+                </p>
+<!-- 
+NewPP limit report
+CPU time usage: 3.102 seconds
+Real time usage: 3.106 seconds
+Preprocessor visited node count: 405/1000000
+Preprocessor generated node count: 818/1000000
+Post‐expand include size: 242/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 3/40
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key wjava2-wj_:pcache:idhash:16-0!*!*!!ru!*!* and timestamp 20140812114510
+ -->
+</div>								<div class="printfooter">
+				Источник — «<a href="http://wikijava.org.ua/index.php?title=Glava_3_Thinking_in_Java_4th_edition&amp;oldid=26">http://wikijava.org.ua/index.php?title=Глава_3_Thinking_in_Java_4th_edition&amp;oldid=26</a>»				</div>
+                                <div id="catlinks" class="catlinks"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%9A%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D0%B8" title="Служебная:Категории">Категории</a>: <ul><li><a href="http://wikijava.org.ua/index.php?title=%D0%9A%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D1%8F:%D0%9A%D0%BD%D0%B8%D0%B3%D0%B8" title="Категория:Книги">Книги</a></li><li><a href="http://wikijava.org.ua/index.php?title=%D0%9A%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D1%8F:Java" title="Категория:Java">Java</a></li></ul></div></div>												<div class="visualClear"></div>
+            </div>
+		</div>
+		<div id="mw-navigation">
+			<h2>Навигация</h2>
+			<div id="mw-head">
+				<div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
+	<h3 id="p-personal-label">Персональные инструменты</h3>
+	<ul>
+<li id="pt-login"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%92%D1%85%D0%BE%D0%B4&amp;returnto=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0+3+Thinking+in+Java+4th+edition" title="Здесь можно зарегистрироваться в системе, но это необязательно. [o]" accesskey="o">Представиться системе</a></li>	</ul>
+</div>
+				<div id="left-navigation">
+					<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
+	<h3 id="p-namespaces-label">Пространства имён</h3>
+	<ul>
+					<!--<li  id="ca-nstab-main" class="selected"><span><a href="index.php@title=Glava_3_Thinking_in_Java_4th_edition.html"  title="Просмотр основной страницы [c]" accesskey="c">Статья</a></span></li>-->
+					<!--<li  id="ca-talk" class="new"><span><a href="http://wikijava.org.ua/index.php?title=%D0%9E%D0%B1%D1%81%D1%83%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5:%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_3_Thinking_in_Java_4th_edition&amp;action=edit&amp;redlink=1"  title="Обсуждение основной страницы [t]" accesskey="t">Обсуждение</a></span></li>-->
+			</ul>
+</div>
+<div id="p-variants" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-variants-label">
+	<h3 id="mw-vector-current-variant">
+		</h3>
+	<h3 id="p-variants-label"><span>Варианты</span><a href="http://wikijava.it-cache.net/index.php@title=Glava_3_Thinking_in_Java_4th_edition.html#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+				</div>
+				<div id="right-navigation">
+					<div id="p-views" role="navigation" class="vectorTabs" aria-labelledby="p-views-label">
+	<h3 id="p-views-label">Просмотры</h3>
+	<ul>
+					<!--<li id="ca-view" class="selected"><span><a href="index.php@title=Glava_3_Thinking_in_Java_4th_edition.html" >Читать</a></span></li>-->
+					<!--<li id="ca-viewsource"><span><a href="http://wikijava.org.ua/index.php?title=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_3_Thinking_in_Java_4th_edition&amp;action=edit"  title="Эта страница защищена от изменений, но вы можете посмотреть и скопировать её исходный текст [e]" accesskey="e">Просмотр</a></span></li>-->
+					<!--<li id="ca-history" class="collapsible"><span><a href="http://wikijava.org.ua/index.php?title=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_3_Thinking_in_Java_4th_edition&amp;action=history"  title="Журнал изменений страницы [h]" accesskey="h">История</a></span></li>-->
+			</ul>
+</div>
+<div id="p-cactions" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-cactions-label">
+	<h3 id="p-cactions-label"><span>Действия</span><a href="http://wikijava.it-cache.net/index.php@title=Glava_3_Thinking_in_Java_4th_edition.html#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+<div id="p-search" role="search">
+	<h3><label for="searchInput">Поиск</label></h3>
+	<form action="http://wikijava.org.ua/index.php" id="searchform">
+				<div id="simpleSearch">
+						<input name="search" placeholder="Поиск" title="Искать в WikiJava: Wiki of Java: викифицированные книги и статьи по Java [f]" accesskey="f" id="searchInput">						<button type="submit" name="button" title="Найти страницы, содержащие указанный текст" id="searchButton"><img src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%203_files/search-ltr.asc" alt="Найти" height="13" width="12"></button>								<input name="title" value="Служебная:Поиск" type="hidden">
+		</div>
+	</form>
+</div>
+				</div>
+			</div>
+			<div id="mw-panel">
+					<!--<div id="p-logo" role="banner"><a style="background-image: url(/skins/common/images/wikijava.png);" href="index.php@title=Заглавная_страница.html"  title="Перейти на заглавную страницу"></a></div>-->
+				<div class="portal" role="navigation" id="p-navigation" aria-labelledby="p-navigation-label">
+	<h3 id="p-navigation-label">Навигация</h3>
+	<div class="body">
+        <ul>
+            <li id="n-mainpage-description"><a href="http://wikijava.org.ua/index.php?title=%D0%97%D0%B0%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F_%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0" title="Перейти на заглавную страницу [z]" accesskey="z">Заглавная страница</a></li>
+            <li id="n-recentchanges"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%B2%D0%B5%D0%B6%D0%B8%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8" title="Список последних изменений [r]" accesskey="r">Свежие правки</a></li>
+            <li id="n-.D0.9A.D0.BD.D0.B8.D0.B3.D0.B8-Java"><a href="http://wikijava.org.ua/index.php?title=%D0%9A%D0%BD%D0%B8%D0%B3%D0%B8_Java">Книги Java</a></li>
+            <li id="n-.D0.A1.D1.82.D0.B0.D1.82.D1.8C.D0.B8-Java"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D1%82%D0%B0%D1%82%D1%8C%D0%B8_Java">Статьи Java</a></li>
+            <li id="n-Java-.D0.BF.D0.BE.D1.80.D1.82.D0.B0.D0.BB"><a href="http://wikijava.org.ua/index.php?title=Java-portal">Java портал</a></li>
+            <li id="n-help"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B0:%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5" title="Место, где можно получить справку">Справка</a></li>
+            <li id="n-.D0.A1.D1.82.D0.B0.D1.82.D0.B8.D1.81.D1.82.D0.B8.D0.BA.D0.B0"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%81%D1%82%D0%B8%D0%BA%D0%B0">Статистика</a></li>
+        </ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id="p-tb" aria-labelledby="p-tb-label">
+	<h3 id="p-tb-label">Инструменты</h3>
+	<div class="body">
+		<ul>
+			<li id="t-whatlinkshere"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D1%81%D1%8B%D0%BB%D0%BA%D0%B8_%D1%81%D1%8E%D0%B4%D0%B0/%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_3_Thinking_in_Java_4th_edition" title="Список всех страниц, ссылающихся на данную [j]" accesskey="j">Ссылки сюда</a></li>
+			<li id="t-recentchangeslinked"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%B2%D1%8F%D0%B7%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8/%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_3_Thinking_in_Java_4th_edition" title="Последние изменения в страницах, на которые ссылается эта страница [k]" accesskey="k">Связанные правки</a></li>
+            <li id="t-specialpages"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%BF%D0%B5%D1%86%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D1%8B" title="Список служебных страниц [q]" accesskey="q">Спецстраницы</a></li>
+			<li id="t-print"><a href="http://wikijava.org.ua/index.php?title=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_3_Thinking_in_Java_4th_edition&amp;printable=yes" rel="alternate" title="Версия этой страницы для печати [p]" accesskey="p">Версия для печати</a></li>
+			<li id="t-permalink"><a href="http://wikijava.org.ua/index.php?title=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_3_Thinking_in_Java_4th_edition&amp;oldid=26" title="Постоянная ссылка на эту версию страницы">Постоянная ссылка</a></li>
+			<li id="t-info"><a href="http://wikijava.org.ua/index.php?title=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_3_Thinking_in_Java_4th_edition&amp;action=info">Сведения о странице</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id="p-.D0.94.D1.80.D1.83.D0.B3.D0.B8.D0.B5_.D0.BF.D1.80.D0.BE.D0.B5.D0.BA.D1.82.D1.8B" aria-labelledby="p-.D0.94.D1.80.D1.83.D0.B3.D0.B8.D0.B5_.D0.BF.D1.80.D0.BE.D0.B5.D0.BA.D1.82.D1.8B-label">
+	<h3 id="p-.D0.94.D1.80.D1.83.D0.B3.D0.B8.D0.B5_.D0.BF.D1.80.D0.BE.D0.B5.D0.BA.D1.82.D1.8B-label">Другие проекты</h3>
+	<div class="body">
+		<ul>
+			<li id="n-rastafara.com.ua"><a href="http://rastafara.com.ua/" rel="nofollow">rastafara.com.ua</a></li>
+			<li id="n-rastafara-blog"><a href="http://sergey-rastafara.blogspot.com/" rel="nofollow">rastafara blog</a></li>
+			<li id="n-rastaban"><a href="http://rastaban.com.ua/" rel="nofollow">rastaban</a></li>
+		</ul>
+	</div>
+</div>
+			</div>
+		</div>
+		<div id="footer" role="contentinfo">
+							<ul id="footer-info">
+											<li id="footer-info-lastmod"> Последнее изменение этой страницы: 16:44, 16 февраля 2014.</li>
+											<li id="footer-info-viewcount">К этой странице обращались 2837 раза.</li>
+											<li id="footer-info-copyright">Содержимое доступно по лицензии <a class="external" rel="nofollow" href="http://www.gnu.org/copyleft/fdl.html">GNU Free Documentation License 1.3 или более поздняя</a> (если не указано иное).</li>
+									</ul>
+							<ul id="footer-places">
+											<li id="footer-places-privacy"><a href="http://wikijava.org.ua/index.php?title=WikiJava:_Wiki_of_Java:_%D0%B2%D0%B8%D0%BA%D0%B8%D1%84%D0%B8%D1%86%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5_%D0%BA%D0%BD%D0%B8%D0%B3%D0%B8_%D0%B8_%D1%81%D1%82%D0%B0%D1%82%D1%8C%D0%B8_%D0%BF%D0%BE_Java:%D0%9F%D0%BE%D0%BB%D0%B8%D1%82%D0%B8%D0%BA%D0%B0_%D0%BA%D0%BE%D0%BD%D1%84%D0%B8%D0%B4%D0%B5%D0%BD%D1%86%D0%B8%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D0%B8" title="WikiJava: Wiki of Java: викифицированные книги и статьи по Java:Политика конфиденциальности">Политика конфиденциальности</a></li>
+											<li id="footer-places-about"><a href="http://wikijava.org.ua/index.php?title=WikiJava:_Wiki_of_Java:_%D0%B2%D0%B8%D0%BA%D0%B8%D1%84%D0%B8%D1%86%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5_%D0%BA%D0%BD%D0%B8%D0%B3%D0%B8_%D0%B8_%D1%81%D1%82%D0%B0%D1%82%D1%8C%D0%B8_%D0%BF%D0%BE_Java:%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5" title="WikiJava: Wiki of Java: викифицированные книги и статьи по Java:Описание">Описание WikiJava: Wiki of Java: викифицированные книги и статьи по Java</a></li>
+											<li id="footer-places-disclaimer"><a href="http://wikijava.org.ua/index.php?title=WikiJava:_Wiki_of_Java:_%D0%B2%D0%B8%D0%BA%D0%B8%D1%84%D0%B8%D1%86%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5_%D0%BA%D0%BD%D0%B8%D0%B3%D0%B8_%D0%B8_%D1%81%D1%82%D0%B0%D1%82%D1%8C%D0%B8_%D0%BF%D0%BE_Java:%D0%9E%D1%82%D0%BA%D0%B0%D0%B7_%D0%BE%D1%82_%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D0%BE%D1%81%D1%82%D0%B8" title="WikiJava: Wiki of Java: викифицированные книги и статьи по Java:Отказ от ответственности">Отказ от ответственности</a></li>
+									</ul>
+										<ul id="footer-icons" class="noprint">
+					<li id="footer-copyrightico">
+						<a href="http://www.gnu.org/copyleft/fdl.html"><img src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%203_files/gnu-fdl.png" alt="GNU Free Documentation License 1.3 или более поздняя" height="31" width="88"></a>
+					</li>
+					<li id="footer-poweredbyico">
+						<a href="http://www.mediawiki.org/"><img src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%203_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" height="31" width="88"></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<script>/*<![CDATA[*/window.jQuery && jQuery.ready();/*]]>*/</script><script>if(window.mw){
+mw.loader.state({"site":"loading","user":"ready","user.groups":"ready"});
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.action.view.postEdit","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest","ext.vector.collapsibleNav","ext.vector.collapsibleTabs","ext.vector.editWarning","ext.vector.simpleSearch","skins.vector.collapsibleNav"],null,true);
+}</script>
+<script>if(window.mw){
+mw.loader.state({"site":"ready"});
+}</script>
+<!-- Served in 0.224 secs. -->
+	
+
+</body></html>

@@ -1,0 +1,114 @@
+The IEEE 754 standard includes not only positive and negative numbers that consist
+of a sign and magnitude, but also positive and negative zeros, positive and negative
+infinities, and special Not-a-Number values (hereafter abbreviated NaN). A NaN
+value is used to represent the result of certain invalid operations such as dividing
+zero by zero. NaN constants of both float and double type are predefined as
+Float.NaN and Double.NaN .
+<br><br>
+A floating-point operation that overflows produces a signed infinity.
+<br><br>
+A floating-point operation that has no mathematically definite result produces NaN.
+// An example of NaN:
+System.out.print("0.0/0.0 is Not-a-Number: " 0.0/0.0);
+System.out.println(Float.POSITIVE_INFINITY*0);
+<br><br>
+All numeric operations with NaN as an operand produce NaN as a result.
+<br><br>
+// An example of inexact results and rounding:
+System.out.print("inexact results with float:");
+for (int i = 0; i < 100; i++) {
+	float z = 1.0f / i;
+	if (z * i != 1.0f)
+	System.out.print(" " + i);
+}
+inexact results with float: 0 41 47 55 61 82 83 94 97
+<br><br>
+Each object is associated with a monitor, which is used by synchronized
+methods and the synchronized statement to provide control over
+concurrent access to state by multiple threads.
+<br><br>
+An array creation expression creates an object that is a new array whose elements
+are of the type specified by the PrimitiveType or ClassOrInterfaceType.<br>
+The rules above imply that the element type in an array creation expression cannot be a
+parameterized type, other than an unbounded wildcard.<br><br>
+A triangular matrix may be created by:<br>	
+float triang[][] = new float[100][];<br>
+for (int i = 0; i < triang.length; i++)<br>
+triang[i] = new float[i+1];<br>
+<br><br>
+true ? 1 : new Double(2.0); //returns 1.0
+true ? 1 : 2.0;	            //returns 1.0
+Because before evaluating it upcasts the second and third operand.
+<br><br>
+A widening conversion of an int or a long value to float , or of a long value to
+double , may result in loss of precision - that is, the result may lose some of the
+least significant bits of the value. In this case, the resulting floating-point value
+will be a correctly rounded version of the integer value, using IEEE 754 round-to-
+nearest mode.
+<br><br>
+The following conversion combines both widening and narrowing primitive
+conversions:
+• byte to char
+First, the byte is converted to an int via widening primitive conversion,
+and then the resulting int is converted to a char by narrowing primitive conversion
+<br><br>
+Numeric promotions are used to convert the operands of a numeric operator to a
+common type so that an operation can be performed. The two kinds of numeric
+promotion are unary numeric promotion and binary numeric promotion.
+<br>
+Binary Numeric Promotion<br>
+When an operator applies binary numeric promotion to a pair of operands, each
+of which must denote a value that is convertible to a numeric type, the following
+rules apply, in order:
+1. If any operand is of a reference type, it is subjected to unboxing conversion.<br>
+2. Widening primitive conversion is applied to convert either or both<br>
+operands as specified by the following rules:<br>
+• If either operand is of type double , the other is converted to double.<br>
+• Otherwise, if either operand is of type float , the other is converted to float.<br>
+• Otherwise, if either operand is of type long , the other is converted to long.<br>
+• Otherwise, both operands are converted to type int .
+Example 5.6.2-1. Binary Numeric Promotion
+class Test {
+public static void main(String[] args) {
+int i= 0;
+float f = 1.0f;
+double d = 2.0;
+// First int*float is promoted to float*float, then
+// float==double is promoted to double==double:
+if (i * f == d) System.out.println("oops");
+// A char&byte is promoted to int&int:
+byte b = 0x1f;
+char c = 'G';
+int control = c & b;
+System.out.println(Integer.toHexString(control));
+// Here int:float is promoted to float:float:
+f = (b==0) ? i : 4.0f;
+System.out.println(1.0/f);
+}
+}
+This program produces the output:
+7
+0.25
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

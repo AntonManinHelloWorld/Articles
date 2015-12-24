@@ -1,0 +1,15 @@
+﻿-XX: +OptimizeStringConcat makes the JVM to compile the concatenation operations of strings into StringBuilder instances.
+
+String.hashCode uses polynomial function: 
+
+
+
+
+
+n-size of the string.
+
+Fields offset and count used in the source code of the java.lang.String are not more present in the Java8. Performance is worse, but no memory leak anymore.
+
+
+
+ 

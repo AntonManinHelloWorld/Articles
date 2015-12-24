@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery для всех</title>
+    <link rel="profile" href="http://gmpg.org/xfn/11">
+    <link rel="pingback" href="http://anton.shevchuk.name/xmlrpc.php">
+    <link rel="apple-touch-icon" sizes="152x152" href="http://anton.shevchuk.name/wp-content/themes/desktop5/images/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="http://anton.shevchuk.name/wp-content/themes/desktop5/images/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="http://anton.shevchuk.name/wp-content/themes/desktop5/images/android-chrome-192x192.png" sizes="192x192">
+    <link rel="manifest" href="http://anton.shevchuk.name/wp-content/themes/desktop5/images/manifest.json">
+    <link rel="shortcut icon" href="http://anton.shevchuk.name/wp-content/themes/desktop5/images/favicon.ico">
+    <meta name="msapplication-TileColor" content="#b91d47">
+    <meta name="msapplication-TileImage" content="/wp-content/themes/desktop5/images/mstile-144x144.png">
+    <meta name="msapplication-config" content="/wp-content/themes/desktop5/images/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="alternate" type="application/rss+xml" title="Антон Шевчук » Announce Feed" href="http://anton.shevchuk.name/feed/?announce=1">
+
+<!-- All in One SEO Pack 2.2.7.2 by Michael Torbert of Semper Fi Web Design[195,234] -->
+<meta name="description" itemprop="description" content="Решил систематизировать все статьи и ссылки посвященные jQuery, если хотите посоветовать кому-то статейки, присылайте ссылку на эту страницу. Цикл статей">
+
+<link rel="canonical" href="http://anton.shevchuk.name/jquery/">
+		<script async="" src="jQuery%20%D0%B4%D0%BB%D1%8F%20%D0%B2%D1%81%D0%B5%D1%85_files/cbgapi.loaded_1"></script><script async="" src="jQuery%20%D0%B4%D0%BB%D1%8F%20%D0%B2%D1%81%D0%B5%D1%85_files/cbgapi.loaded_0"></script><script gapi_processed="true" src="jQuery%20%D0%B4%D0%BB%D1%8F%20%D0%B2%D1%81%D0%B5%D1%85_files/plusone.js" async="" type="text/javascript"></script><script src="jQuery%20%D0%B4%D0%BB%D1%8F%20%D0%B2%D1%81%D0%B5%D1%85_files/ga.js" async="" type="text/javascript"></script><script type="text/javascript">
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-1669896-2']);
+		  _gaq.push(['_trackPageview']);
+		  (function() {
+		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+		</script>
+<!-- /all in one seo pack -->
+<link rel="alternate" type="application/rss+xml" title="Антон Шевчук » Feed" href="http://anton.shevchuk.name/feed/">
+<link rel="alternate" type="application/rss+xml" title="Антон Шевчук » Comments Feed" href="http://anton.shevchuk.name/comments/feed/">
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"http:\/\/s.w.org\/images\/core\/emoji\/72x72\/","ext":".png","source":{"concatemoji":"http:\/\/anton.shevchuk.name\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.3.1"}};
+			!function(a,b,c){function d(a){var c=b.createElement("canvas"),d=c.getContext&&c.getContext("2d");return d&&d.fillText?(d.textBaseline="top",d.font="600 32px Arial","flag"===a?(d.fillText(String.fromCharCode(55356,56812,55356,56807),0,0),c.toDataURL().length>3e3):(d.fillText(String.fromCharCode(55357,56835),0,0),0!==d.getImageData(16,16,1,1).data[0])):!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g;c.supports={simple:d("simple"),flag:d("flag")},c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.simple&&c.supports.flag||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script type="text/javascript" src="jQuery%20%D0%B4%D0%BB%D1%8F%20%D0%B2%D1%81%D0%B5%D1%85_files/wp-emoji-release.js"></script>
+		<link rel="stylesheet" href="jQuery%20%D0%B4%D0%BB%D1%8F%20%D0%B2%D1%81%D0%B5%D1%85_files/6273c1716a67b7f2107f987dee7ed897.css" type="text/css" media="all"> <!-- Cache! -->
+<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<script type="text/javascript" src="jQuery%20%D0%B4%D0%BB%D1%8F%20%D0%B2%D1%81%D0%B5%D1%85_files/jquery.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+/* quicktags */
+var quicktagsL10n = {"closeAllOpenTags":"Close all open tags","closeTags":"close tags","enterURL":"Enter the URL","enterImageURL":"Enter the URL of the image","enterImageDescription":"Enter a description of the image","textdirection":"text direction","toggleTextdirection":"Toggle Editor Text Direction","dfw":"Distraction-free writing mode","strong":"Bold","strongClose":"Close bold tag","em":"Italic","emClose":"Close italic tag","link":"Insert link","blockquote":"Blockquote","blockquoteClose":"Close blockquote tag","del":"Deleted text (strikethrough)","delClose":"Close deleted text tag","ins":"Inserted text","insClose":"Close inserted text tag","image":"Insert image","ul":"Bulleted list","ulClose":"Close bulleted list tag","ol":"Numbered list","olClose":"Close numbered list tag","li":"List item","liClose":"Close list item tag","code":"Code","codeClose":"Close code tag","more":"Insert Read More tag"};
+
+/* ]]> */
+</script>
+<script type="text/javascript" src="jQuery%20%D0%B4%D0%BB%D1%8F%20%D0%B2%D1%81%D0%B5%D1%85_files/fa9a259c869146b80bdb077298acbb8e.js">/*Cache!*/</script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://anton.shevchuk.name/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://anton.shevchuk.name/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 4.3.1">
+<link rel="shortlink" href="http://anton.shevchuk.name/?p=1893">
+<script type="text/javascript">
+	window._wp_rp_static_base_url = 'https://wprp.zemanta.com/static/';
+	window._wp_rp_wp_ajax_url = "http://anton.shevchuk.name/wp-admin/admin-ajax.php";
+	window._wp_rp_plugin_version = '3.5.4';
+	window._wp_rp_post_id = '1893';
+	window._wp_rp_num_rel_posts = '4';
+	window._wp_rp_thumbnails = false;
+	window._wp_rp_post_title = 'jQuery+%D0%B4%D0%BB%D1%8F+%D0%B2%D1%81%D0%B5%D1%85';
+	window._wp_rp_post_tags = [];
+	window._wp_rp_promoted_content = true;
+</script>
+<script type="text/javascript" src="jQuery%20%D0%B4%D0%BB%D1%8F%20%D0%B2%D1%81%D0%B5%D1%85_files/loader.js" async=""></script>
+<style type="text/css" id="syntaxhighlighteranchor"></style>
+    <!--[if IE]>
+    <script type="text/javascript">
+        html5forIE();
+    </script>
+    <![endif]-->
+</head>
+
+<body>
+<div id="wrapper">
+    <div id="container">
+        <header id="title">
+                            <a href="http://anton.shevchuk.name/" title="Антон Шевчук" class="header">
+                    Антон Шевчук                    <span> // Web-разработчик</span>
+                </a>
+
+                    </header>
+        <nav id="menu" class="decor">
+            <a id="jquery" href="http://anton.shevchuk.name/jquery-book/" title="jQuery для начинающих">jQuery</a>
+            <a href="http://anton.shevchuk.name/about/" title="Немного о себе">Об авторе</a>
+            <a href="http://anton.shevchuk.name/projects/" title="Мои проекты">Проекты</a>
+            <a id="twitter" href="http://twitter.com/AntonShevchuk" title="Следуй за мной" onclick="recordOutboundLink(this, 'Social', 'Twitter');return false;">2323</a>
+            <a id="feed" href="http://anton.shevchuk.name/feed/" title="Не ленись - подпишись" onclick="recordOutboundLink(this, 'Social', 'RSS');return false;">3101</a>
+        </nav>
+        <section id="posts">            <article class="entry">
+            <header>
+                <h1 class="title" data-id="1893">
+                    <a href="http://anton.shevchuk.name/jquery/" title="Permalink to jQuery для всех" rel="bookmark">
+                        jQuery для всех                    </a>
+                </h1>
+                <div class="plusone"><div id="___plusone_0" style="position: absolute; width: 450px; left: -10000px;"><iframe data-gapiattached="true" class="pcfykmqlcrtplekulgcu" src="jQuery%20%D0%B4%D0%BB%D1%8F%20%D0%B2%D1%81%D0%B5%D1%85_files/fastbutton.html" name="I0_1449089236953" id="I0_1449089236953" vspace="0" tabindex="0" style="position:absolute;top:-10000px;width:450px;margin:0px;border-style:none" scrolling="no" marginwidth="0" marginheight="0" hspace="0" frameborder="0" width="100%"></iframe></div><div data-gapistub="true" data-onload="true" data-gapiscan="true" class="g-plusone"></div></div>
+            </header>
+            <p><img src="jQuery%20%D0%B4%D0%BB%D1%8F%20%D0%B2%D1%81%D0%B5%D1%85_files/jquery-logo.gif" alt="" title="jquery-logo" class="aligncenter size-full wp-image-1546" height="132" width="132"></p>
+<p>Решил систематизировать все статьи и ссылки посвященные jQuery, если 
+хотите посоветовать кому-то статейки, присылайте ссылку на эту страницу.</p>
+<h2>Цикл статей «jQuery для начинающих»</h2>
+<ol>
+<li><a href="http://anton.shevchuk.name/javascript/jquery-for-beginners/">jQuery для начинающих</a> — больше десятка примеров использования фреймворка, в самый раз для старта</li>
+<li><a href="http://anton.shevchuk.name/javascript/jquery-for-beginners-2/">JavaScript Меню</a> — выпадающие и скользящие <a href="http://anton.shevchuk.name/wp-demo/jquery-tutorials-2/">меню</a></li>
+<li><a href="http://anton.shevchuk.name/javascript/jquery-for-beginners-ajax/">AJAX</a> — всё о AJAX с <a href="http://anton.shevchuk.name/wp-demo/jquery-tutorials-3/">примерами</a></li>
+<li><a href="http://anton.shevchuk.name/javascript/jquery-for-beginners-selectors/">Селекторы</a> — поиск и выборка элементов DOM, обязательна к прочтению. В статье наглядные слайды, в <a href="http://anton.shevchuk.name/wp-demo/jquery-tutorials-4/">примере</a> — наглядный поиск элементов по селектору</li>
+<li><a href="http://anton.shevchuk.name/javascript/jquery-for-beginners-effects/">Эффекты</a> — <a href="http://anton.shevchuk.name/wp-demo/jquery-tutorials-5/">примеры</a> использования, разбор очереди, вкусно и полезно</li>
+<li><a href="http://anton.shevchuk.name/javascript/jquery-for-beginners-events/">События</a> — знать всем, внимательно читать о live, разобраться с <a href="http://anton.shevchuk.name/wp-demo/jquery-tutorials-6/">примерами</a></li>
+<li><a href="http://anton.shevchuk.name/javascript/jquery-for-beginners-write-plugins/">Пишем плагины</a> — становимся круче (как всегда с <a href="http://anton.shevchuk.name/wp-demo/jquery-tutorials-7/">примерами</a>)</li>
+<li><a href="http://anton.shevchuk.name/javascript/jquery-for-beginners-filter-extend/">Расширяем фильтры</a> — копаем вглубь (<a href="http://anton.shevchuk.name/wp-demo/jquery-tutorials-8/">примеры</a>)</li>
+<li><a href="http://anton.shevchuk.name/javascript/jquery-for-beginners-write-animation-plugins/">Пишем плагины анимации</a> — уже практически профессионалы (<a href="http://anton.shevchuk.name/wp-demo/jquery-tutorials-9/">примеры</a>)</li>
+</ol>
+<h2>Рекомендую к прочтению</h2>
+<ul>
+<li><a href="http://anton.shevchuk.name/javascript/html-css-javascript-standarts/">Стандарты кодирования для (X)HTML, CSS и JavaScript’a</a> — в данной статье описаны правила которые упростят вам жизнь</li>
+<li><a href="http://habrahabr.ru/blogs/javascript/17613/">Создание объектов</a></li>
+<li><a href="http://habrahabr.ru/blogs/webdev/38642/">Замыкания в JavaScript</a></li>
+<li><a href="http://habrahabr.ru/blogs/javascript/117069/">Модульный подход в JavaScript</a></li>
+<li><a href="http://habrahabr.ru/blogs/javascript/111563/">Всё, что надо знать о точке с запятой</a></li>
+<li><a href="http://habrahabr.ru/blogs/jquery/120074/">jQuery UI как инфраструктура для плагинов</a></li>
+</ul>
+        </article>
+    <script type="text/javascript">
+    window.___gcfg = {lang: 'ru'};
+    (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/plusone.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+    })();
+</script>
+    </section>
+    <footer>
+        <section id="linkcat-2" class="widget widget_links"><h4>Блогролл</h4>
+	<ul class="xoxo blogroll">
+<li><a href="http://www.fatalseo.com/" title="Рожденный быть свободным">Fatal SEO Blog</a></li>
+<li><a href="http://www.nixsolutions.com/" title="Custom Software Development from My Company">NIX Solutions Ltd.</a></li>
+<li><a href="http://q-zma.com/" title="дневник педантичного отморозка">Q-Zma’s Burrow</a></li>
+<li><a href="http://voituk.kiev.ua/" title="Записки Искателей">Записки Искателей</a></li>
+<li><a href="http://cotoha.info/">Мысли с самого низа</a></li>
+<li><a href="http://www.fatalgame.com/" title="Прохождение игр">Прохождение игр</a></li>
+
+	</ul>
+</section>
+<section id="linkcat-81" class="widget widget_links"><h4>Проекты</h4>
+	<ul class="xoxo blogroll">
+<li><a href="http://donate.hohli.com/">Donate Progress</a></li>
+<li><a href="http://jquery.hohli.com/" title="jQuery-PHP library">jQuery-PHP</a></li>
+<li><a href="http://charts.hohli.com/" title="The service lets you dynamically generate charts.">Online Charts Builder</a></li>
+<li><a href="http://photo.hohli.com/" title="PhotoBlog – Free Full-Size Photos">PhotoBlog</a></li>
+<li><a href="http://analyser.hohli.com/" title="Analasy URL, People, Gadgets">SEO URL Analyser</a></li>
+
+	</ul>
+</section>
+<section id="nav_menu-4" class="widget widget_nav_menu"><h4>Информация</h4><div class="menu-sidebar-container"><ul id="menu-sidebar" class="menu"><li id="menu-item-1723" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1723"><a href="http://anton.shevchuk.name/projects/">Проекты</a></li>
+<li id="menu-item-1721" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1721"><a href="http://anton.shevchuk.name/friends/">Мои друзья</a></li>
+<li id="menu-item-1722" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1722"><a href="http://anton.shevchuk.name/about/">О блоге, и обо мне</a></li>
+<li id="menu-item-1725" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1725"><a href="http://anton.shevchuk.name/wishlist/">Список желаемого</a></li>
+<li id="menu-item-1943" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-1893 current_page_item menu-item-1943"><a href="http://anton.shevchuk.name/jquery/">jQuery для всех</a></li>
+<li id="menu-item-2281" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2281"><a href="https://plus.google.com/116535900041679154752?rel=author">Google+</a></li>
+</ul></div></section>        <p>
+            © Антон Шевчук 2007-2015                        <!--LiveInternet counter-->
+            <script type="text/javascript">
+            <!--
+            document.write("<a href='http://www.liveinternet.ru/click' rel='nofollow' "+
+            "target=_blank><img src='http://counter.yadro.ru/hit?t26.7;r"+
+            escape(document.referrer)+((typeof(screen)=="undefined")?"":
+            ";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+            screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+            ";"+Math.random()+
+            "' alt='' title='LiveInternet: показано число посетителей за"+
+            " сегодня' "+
+            "border=0 width=80 height=15><\/a>")
+            //-->
+            </script><a href="http://www.liveinternet.ru/click" rel="nofollow" target="_blank"><img class="pcfykmqlcrtplekulgcu" src="jQuery%20%D0%B4%D0%BB%D1%8F%20%D0%B2%D1%81%D0%B5%D1%85_files/hit.gif" alt="" title="LiveInternet: показано число посетителей за сегодня" height="15" width="80" border="0"></a>
+            <!--/LiveInternet-->
+        </p>
+        <a href="http://stfalcon.github.io/euromaidan/" class="em-ribbon" style="position: absolute; left:0; top:0; width: 90px; height: 90px; background: url('http://stfalcon.github.io/euromaidan/img/em-ribbon.png'); z-index: 2013; border: 0;"></a>
+
+            </footer>
+    <div id="sidebar">
+    <section class="category">
+        <ul>
+        <li class="categories"><h4>Категории</h4><ul>	<li class="cat-item cat-item-108"><a href="http://anton.shevchuk.name/category/company/">Company</a>
+</li>
+	<li class="cat-item cat-item-48"><a href="http://anton.shevchuk.name/category/design/">Design</a>
+</li>
+	<li class="cat-item cat-item-16"><a href="http://anton.shevchuk.name/category/estimation/">Estimation</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="http://anton.shevchuk.name/category/google/">Google</a>
+</li>
+	<li class="cat-item cat-item-7"><a href="http://anton.shevchuk.name/category/html-and-css/">HTML and CSS</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="http://anton.shevchuk.name/category/internet/">Internet</a>
+</li>
+	<li class="cat-item cat-item-6"><a href="http://anton.shevchuk.name/category/javascript/">JavaScript</a>
+</li>
+	<li class="cat-item cat-item-11"><a href="http://anton.shevchuk.name/category/my-life/" title="About My Life...">My Life</a>
+</li>
+	<li class="cat-item cat-item-3"><a href="http://anton.shevchuk.name/category/php/" title="About PHP">PHP</a>
+</li>
+	<li class="cat-item cat-item-17"><a href="http://anton.shevchuk.name/category/project-management/">Project Management</a>
+</li>
+	<li class="cat-item cat-item-13"><a href="http://anton.shevchuk.name/category/underground/">Underground</a>
+</li>
+	<li class="cat-item cat-item-15"><a href="http://anton.shevchuk.name/category/wordpress/">WordPress</a>
+</li>
+</ul></li>        </ul>
+    </section>
+    <section class="tags">
+        <h4>Теги</h4>
+        <a href="http://anton.shevchuk.name/tag/ajax/" class="tag-link-57" title="4 topics" style="font-size: 8.75pt;">AJAX</a>
+<a href="http://anton.shevchuk.name/tag/announcement/" class="tag-link-76" title="15 topics" style="font-size: 12.5pt;">announcement</a>
+<a href="http://anton.shevchuk.name/tag/blog/" class="tag-link-20" title="7 topics" style="font-size: 10.25pt;">blog</a>
+<a href="http://anton.shevchuk.name/tag/cheatsheet/" class="tag-link-30" title="3 topics" style="font-size: 8pt;">CheatSheet</a>
+<a href="http://anton.shevchuk.name/tag/css/" class="tag-link-29" title="4 topics" style="font-size: 8.75pt;">CSS</a>
+<a href="http://anton.shevchuk.name/tag/design/" class="tag-link-133" title="5 topics" style="font-size: 9.35pt;">Design</a>
+<a href="http://anton.shevchuk.name/tag/google/" class="tag-link-130" title="19 topics" style="font-size: 13.25pt;">Google</a>
+<a href="http://anton.shevchuk.name/tag/hardware/" class="tag-link-120" title="4 topics" style="font-size: 8.75pt;">hardware</a>
+<a href="http://anton.shevchuk.name/tag/javascript/" class="tag-link-131" title="3 topics" style="font-size: 8pt;">JavaScript</a>
+<a href="http://anton.shevchuk.name/tag/jquery/" class="tag-link-56" title="24 topics" style="font-size: 14pt;">jQuery</a>
+<a href="http://anton.shevchuk.name/tag/kharkov/" class="tag-link-115" title="4 topics" style="font-size: 8.75pt;">Kharkov</a>
+<a href="http://anton.shevchuk.name/tag/links-dumper/" class="tag-link-95" title="3 topics" style="font-size: 8pt;">links dumper</a>
+<a href="http://anton.shevchuk.name/tag/php/" class="tag-link-129" title="14 topics" style="font-size: 12.35pt;">PHP</a>
+<a href="http://anton.shevchuk.name/tag/php5/" class="tag-link-34" title="6 topics" style="font-size: 9.875pt;">PHP5</a>
+<a href="http://anton.shevchuk.name/tag/picasa/" class="tag-link-25" title="4 topics" style="font-size: 8.75pt;">picasa</a>
+<a href="http://anton.shevchuk.name/tag/review/" class="tag-link-119" title="5 topics" style="font-size: 9.35pt;">review</a>
+<a href="http://anton.shevchuk.name/tag/seo/" class="tag-link-69" title="6 topics" style="font-size: 9.875pt;">SEO</a>
+<a href="http://anton.shevchuk.name/tag/ukraine/" class="tag-link-27" title="6 topics" style="font-size: 9.875pt;">Ukraine</a>
+<a href="http://anton.shevchuk.name/tag/web-20/" class="tag-link-53" title="4 topics" style="font-size: 8.75pt;">WEB 2.0</a>
+<a href="http://anton.shevchuk.name/tag/zend-framework/" class="tag-link-44" title="18 topics" style="font-size: 13.1pt;">Zend Framework</a>    </section>
+
+            <section class="social">
+            <a href="#favorites" onclick="javascript:bookmark('favorites');return false;" class="favorites" title="Favorites">Favorites</a>
+            <a href="#vkontakte" onclick="javascript:bookmark('vkontakte');return false;" class="vkontakte" title="Vkontakte">Vkontakte</a>
+            <a href="#twitter" onclick="javascript:bookmark('twitter');return false;" class="twitter" title="Twitter">Twitter</a>
+            <a href="#facebook" onclick="javascript:bookmark('facebook');return false;" class="facebook" title="Facebook">Facebook</a>
+        </section>
+    </div></div><!-- id="container" -->
+</div><!-- id="wrapper" -->
+
+
+<iframe tabindex="-1" style="width: 1px; height: 1px; position: absolute; top: -100px;" src="jQuery%20%D0%B4%D0%BB%D1%8F%20%D0%B2%D1%81%D0%B5%D1%85_files/postmessageRelay.html" id="oauth2relay880620578" name="oauth2relay880620578"></iframe></body></html>

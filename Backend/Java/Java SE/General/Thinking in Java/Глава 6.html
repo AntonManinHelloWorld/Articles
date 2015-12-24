@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html dir="ltr" class="client-nojs" lang="ru"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8"><title>Глава 6 Thinking in Java 4th edition — WikiJava: Wiki of Java: викифицированные книги и статьи по Java</title>
+<meta name="generator" content="MediaWiki 1.22.2">
+<link rel="shortcut icon" href="http://wikijava.it-cache.net/favicon.ico">
+<link rel="search" type="application/opensearchdescription+xml" href="http://wikijava.it-cache.net/opensearch_desc.php" title="WikiJava: Wiki of Java: викифицированные книги и статьи по Java (ru)">
+<link rel="EditURI" type="application/rsd+xml" href="http://wikijava.it-cache.net/api.php@action=rsd">
+<link rel="copyright" href="http://www.gnu.org/copyleft/fdl.html">
+<link rel="alternate" type="application/atom+xml" title="WikiJava: Wiki of Java: викифицированные книги и статьи по Java&nbsp;— Atom-лента" href="http://wikijava.it-cache.net/index.php@title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F%253A%D0%A1%D0%B2%D0%B5%D0%B6%D0%B8%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8&amp;feed=atom">
+<link rel="stylesheet" href="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%206_files/style3.css">
+<meta name="ResourceLoaderDynamicStyles" content="">
+<style>a:lang(ar),a:lang(ckb),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}
+/* cache key: wjava2-wj_:resourceloader:filter:minify-css:7:32e7e505403c81fe0a24e297ef166436 */</style>
+
+<script src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%206_files/style1.css"></script><script src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%206_files/load.html"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Глава_6_Thinking_in_Java_4th_edition","wgTitle":"Глава 6 Thinking in Java 4th edition","wgCurRevisionId":30,"wgRevisionId":30,"wgArticleId":20,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Книги","Java"],"wgBreakFrames":false,"wgPageContentLanguage":"ru","wgPageContentModel":"wikitext","wgSeparatorTransformTable":[",\t."," \t,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"],"wgMonthNamesShort":["","янв","фев","мар","апр","май","июн","июл","авг","сен","окт","ноя","дек"],"wgRelevantPageName":"Глава_6_Thinking_in_Java_4th_edition","wgIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgVectorEnabledModules":{"collapsiblenav":true,"collapsibletabs":true,"editwarning":true,"expandablesearch":false,"footercleanup":false,"sectioneditlinks":false,"simplesearch":true,"experiments":true}});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function(){mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"vector-simplesearch":1,"watchcreations":0,"watchdefault":0,"watchdeletion":0,"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,
+"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"useeditwarning":1,"prefershttps":1,"language":"ru","variant-gan":"gan","variant-iu":"iu","variant-kk":"kk","variant-ku":"ku","variant-shi":"shi","variant-sr":"sr","variant-tg":"tg","variant-uz":"uz","variant-zh":"zh","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false,"variant":"ru"});},{},{});mw.loader.implement("user.tokens",function(){mw.user.tokens.set({"editToken":"+\\","patrolToken":false,"watchToken":false});},{},{});
+/* cache key: wjava2-wj_:resourceloader:filter:minify-js:7:07bb1f4d2452379e70abca47c4cde6d9 */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax","skins.vector.js"]);
+}</script>
+<style type="text/css">/*<![CDATA[*/
+.source-java5 {line-height: normal;}
+.source-java5 li, .source-java5 pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for java5
+ * CSS class: source-java5, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.java5.source-java5 .de1, .java5.source-java5 .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;font-family: monospace, monospace;}
+.java5.source-java5  {font-family:monospace;}
+.java5.source-java5 .imp {font-weight: bold; color: red;}
+.java5.source-java5 li, .java5.source-java5 .li1 {font-weight: normal; vertical-align:top;}
+.java5.source-java5 .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.java5.source-java5 .li2 {font-weight: bold; vertical-align:top;}
+.java5.source-java5 .kw1 {color: #000000;  font-weight: bold;}
+.java5.source-java5 .kw2 {color: #000000; font-weight: bold;}
+.java5.source-java5 .kw3 {color: #006600; font-weight: bold;}
+.java5.source-java5 .kw4 {color: #006600; font-weight: bold;}
+.java5.source-java5 .kw5 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw6 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw7 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw8 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw9 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw10 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw11 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw12 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw13 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw14 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw15 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw16 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw17 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw18 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw19 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw20 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw21 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw22 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw23 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw24 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw25 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw26 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw27 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw28 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw29 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw30 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw31 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw32 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw33 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw34 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw35 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw36 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw37 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw38 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw39 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw40 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw41 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw42 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw43 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw44 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw45 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw46 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw47 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw48 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw49 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw50 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw51 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw52 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw53 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw54 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw55 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw56 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw57 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw58 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw59 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw60 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw61 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw62 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw63 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw64 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw65 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw66 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw67 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw68 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw69 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw70 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw71 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw72 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw73 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw74 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw75 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw76 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw77 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw78 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw79 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw80 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw81 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw82 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw83 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw84 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw85 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw86 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw87 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw88 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw89 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw90 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw91 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw92 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw93 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw94 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw95 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw96 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw97 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw98 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw99 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw100 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw101 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw102 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw103 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw104 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw105 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw106 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw107 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw108 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw109 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw110 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw111 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw112 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw113 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw114 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw115 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw116 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw117 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw118 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw119 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw120 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw121 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw122 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw123 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw124 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw125 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw126 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw127 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw128 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw129 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw130 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw131 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw132 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw133 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw134 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw135 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw136 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw137 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw138 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw139 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw140 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw141 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw142 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw143 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw144 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw145 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw146 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw147 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw148 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw149 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw150 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw151 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw152 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw153 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw154 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw155 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw156 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw157 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw158 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw159 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw160 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw161 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw162 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw163 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw164 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw165 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw166 {color: #003399; font-weight: bold;}
+.java5.source-java5 .co1 {color: #666666; font-style: italic;}
+.java5.source-java5 .co2 {color: #006699;}
+.java5.source-java5 .co3 {color: #008000; font-style: italic; font-weight: bold;}
+.java5.source-java5 .coMULTI {color: #666666; font-style: italic;}
+.java5.source-java5 .es0 {color: #000099; font-weight: bold;}
+.java5.source-java5 .br0 {color: #009900;}
+.java5.source-java5 .sy0 {color: #339933;}
+.java5.source-java5 .st0 {color: #0000ff;}
+.java5.source-java5 .nu0 {color: #cc66cc;}
+.java5.source-java5 .me1 {color: #006633;}
+.java5.source-java5 .me2 {color: #006633;}
+.java5.source-java5 .ln-xtra, .java5.source-java5 li.ln-xtra, .java5.source-java5 div.ln-xtra {background-color: #ffc;}
+.java5.source-java5 span.xtra { display:block; }
+
+/*]]>*/
+</style><!--[if lt IE 7]><style type="text/css">body{behavior:url("/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Глава_6_Thinking_in_Java_4th_edition skin-vector action-view vector-animateLayout">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<div id="content" class="mw-body" role="main">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<h1 id="firstHeading" class="firstHeading" lang="ru"><span dir="auto">Глава 6 Thinking in Java 4th edition</span></h1>
+			<div id="bodyContent">
+								<div id="siteSub">Материал из WikiJava: Wiki of Java: викифицированные книги и статьи по Java</div>
+								<div id="contentSub"></div>
+												<div id="jump-to-nav" class="mw-jump">
+					Перейти к:					<a href="http://wikijava.it-cache.net/index.php@title=Glava_6_Thinking_in_Java_4th_edition.html#mw-navigation">навигация</a>, 					<a href="http://wikijava.it-cache.net/index.php@title=Glava_6_Thinking_in_Java_4th_edition.html#p-search">поиск</a>
+				</div>
+				<div id="mw-content-text" dir="ltr" class="mw-content-ltr" lang="ru"><table style="clear: right; margin-bottom: .5em; float: right; padding: .5em 0 .8em 1.4em; background: none; width: auto;" cellpadding="0" cellspacing="0">
+<tbody><tr>
+<td> <div id="toc" class="toc"><div id="toctitle"><h2>Содержание</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="http://wikijava.it-cache.net/index.php@title=Glava_6_Thinking_in_Java_4th_edition.html#.D0.A3.D0.9F.D0.A0.D0.90.D0.92.D0.9B.D0.95.D0.9D.D0.98.D0.95_.D0.94.D0.9E.D0.A1.D0.A2.D0.A3.D0.9F.D0.9E.D0.9C"><span class="tocnumber">1</span> <span class="toctext"><b>УПРАВЛЕНИЕ ДОСТУПОМ</b></span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="http://wikijava.it-cache.net/index.php@title=Glava_6_Thinking_in_Java_4th_edition.html#.D0.9F.D0.B0.D0.BA.D0.B5.D1.82_.D0.BA.D0.B0.D0.BA_.D0.B1.D0.B8.D0.B1.D0.BB.D0.B8.D0.BE.D1.82.D0.B5.D1.87.D0.BD.D1.8B.D0.B9_.D0.BC.D0.BE.D0.B4.D1.83.D0.BB.D1.8C"><span class="tocnumber">1.1</span> <span class="toctext">Пакет как библиотечный модуль</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="http://wikijava.it-cache.net/index.php@title=Glava_6_Thinking_in_Java_4th_edition.html#.D0.A1.D0.BE.D0.B7.D0.B4.D0.B0.D0.BD.D0.B8.D0.B5_.D1.83.D0.BD.D0.B8.D0.BA.D0.B0.D0.BB.D1.8C.D0.BD.D1.8B.D1.85_.D0.B8.D0.BC.D0.B5.D0.BD_.D0.BF.D0.B0.D0.BA.D0.B5.D1.82.D0.BE.D0.B2"><span class="tocnumber">1.2</span> <span class="toctext">Создание уникальных имен пакетов</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="http://wikijava.it-cache.net/index.php@title=Glava_6_Thinking_in_Java_4th_edition.html#.D0.9A.D0.BE.D0.BD.D1.84.D0.BB.D0.B8.D0.BA.D1.82.D1.8B_.D0.B8.D0.BC.D0.B5.D0.BD"><span class="tocnumber">1.3</span> <span class="toctext">Конфликты имен</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="http://wikijava.it-cache.net/index.php@title=Glava_6_Thinking_in_Java_4th_edition.html#.D0.9F.D0.BE.D0.BB.D1.8C.D0.B7.D0.BE.D0.B2.D0.B0.D1.82.D0.B5.D0.BB.D1.8C.D1.81.D0.BA.D0.B8.D0.B5_.D0.B1.D0.B8.D0.B1.D0.BB.D0.B8.D0.BE.D1.82.D0.B5.D0.BA.D0.B8"><span class="tocnumber">1.4</span> <span class="toctext">Пользовательские библиотеки</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="http://wikijava.it-cache.net/index.php@title=Glava_6_Thinking_in_Java_4th_edition.html#.D0.A1.D0.BF.D0.B5.D1.86.D0.B8.D1.84.D0.B8.D0.BA.D0.B0.D1.82.D0.BE.D1.80.D1.8B_.D0.B4.D0.BE.D1.81.D1.82.D1.83.D0.BF.D0.B0_Java"><span class="tocnumber">1.5</span> <span class="toctext">Спецификаторы доступа <i>Java</i></span></a>
+<ul>
+<li class="toclevel-3 tocsection-7"><a href="http://wikijava.it-cache.net/index.php@title=Glava_6_Thinking_in_Java_4th_edition.html#.D0.94.D0.BE.D1.81.D1.82.D1.83.D0.BF_.D0.B2_.D0.BF.D1.80.D0.B5.D0.B4.D0.B5.D0.BB.D0.B0.D1.85_.D0.BF.D0.B0.D0.BA.D0.B5.D1.82.D0.B0"><span class="tocnumber">1.5.1</span> <span class="toctext">Доступ в пределах пакета</span></a></li>
+<li class="toclevel-3 tocsection-8"><a href="http://wikijava.it-cache.net/index.php@title=Glava_6_Thinking_in_Java_4th_edition.html#public"><span class="tocnumber">1.5.2</span> <span class="toctext">public</span></a></li>
+<li class="toclevel-3 tocsection-9"><a href="http://wikijava.it-cache.net/index.php@title=Glava_6_Thinking_in_Java_4th_edition.html#.D0.9F.D0.B0.D0.BA.D0.B5.D1.82_.D0.BF.D0.BE_.D1.83.D0.BC.D0.BE.D0.BB.D1.87.D0.B0.D0.BD.D0.B8.D1.8E"><span class="tocnumber">1.5.3</span> <span class="toctext">Пакет по умолчанию</span></a></li>
+<li class="toclevel-3 tocsection-10"><a href="http://wikijava.it-cache.net/index.php@title=Glava_6_Thinking_in_Java_4th_edition.html#private"><span class="tocnumber">1.5.4</span> <span class="toctext">private</span></a></li>
+<li class="toclevel-3 tocsection-11"><a href="http://wikijava.it-cache.net/index.php@title=Glava_6_Thinking_in_Java_4th_edition.html#protected"><span class="tocnumber">1.5.5</span> <span class="toctext">protected</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-12"><a href="http://wikijava.it-cache.net/index.php@title=Glava_6_Thinking_in_Java_4th_edition.html#.D0.98.D0.BD.D1.82.D0.B5.D1.80.D1.84.D0.B5.D0.B9.D1.81_.D0.B8_.D1.80.D0.B5.D0.B0.D0.BB.D0.B8.D0.B7.D0.B0.D1.86.D0.B8.D1.8F"><span class="tocnumber">1.6</span> <span class="toctext">Интерфейс и реализация</span></a></li>
+<li class="toclevel-2 tocsection-13"><a href="http://wikijava.it-cache.net/index.php@title=Glava_6_Thinking_in_Java_4th_edition.html#.D0.94.D0.BE.D1.81.D1.82.D1.83.D0.BF_.D0.BA_.D0.BA.D0.BB.D0.B0.D1.81.D1.81.D0.B0.D0.BC"><span class="tocnumber">1.7</span> <span class="toctext">Доступ к классам</span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="http://wikijava.it-cache.net/index.php@title=Glava_6_Thinking_in_Java_4th_edition.html#.D0.A0.D0.B5.D0.B7.D1.8E.D0.BC.D0.B5"><span class="tocnumber">1.8</span> <span class="toctext">Резюме</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+</td></tr></tbody></table>
+<h1><span class="mw-headline" id=".D0.A3.D0.9F.D0.A0.D0.90.D0.92.D0.9B.D0.95.D0.9D.D0.98.D0.95_.D0.94.D0.9E.D0.A1.D0.A2.D0.A3.D0.9F.D0.9E.D0.9C"><b>УПРАВЛЕНИЕ ДОСТУПОМ</b></span></h1>
+<p>Важнейшим фактором объектно-ориентированной разработки является 
+отделение переменных составляющих от постоянных.
+Это особенно важно для библиотек. Пользователь {программист-клиент) 
+библиотеки зависит от неизменности некоторого аспекта вашего кода. С 
+другой стороны, создатель библиотеки должен обладать достаточной 
+свободой для проведения изменений и улучшений, но при этом изменения не 
+должны нарушить работоспособность клиентского кода.
+</p><p>Желанная цель может быть достигнута определенными 
+договоренностями: Например, программист библиотеки соглашается не 
+удалять уже существующие методы класса, потому что это может нарушить 
+структуру кода программиста-клиента. В то же время обратная проблема 
+гораздо острее. Например, как создатель библиотеки узнает, какие из 
+полей данных используются программистом-клиентом? Это же относится и к 
+методам, являющимся только частью реализации класса, то есть не 
+предназначенным для прямого использования программистом-клиентом. А если
+ создателю библиотеки понадобится удалить старую реализацию и заменить 
+ее новой? Изменение любого из полей класса может нарушить работу кода 
+программиста-клиента. Выходит, у создателя библиотеки «связаны руки», и 
+он вообще ничего не вправе менять.
+</p><p>Для решения проблемы в <i>Java</i> определены спецификаторы доступа (<i>access specifiers</i>),
+ при помощи которых создатель библиотеки указывает, что доступно 
+программисту-клиенту, а что нет. Уровни доступа (от полного до 
+минимального) задаются следующими ключевыми словами: <i><b>public, protected</b></i>, доступ в пределах пакета (не имеет ключевого слова) и <i><b>private</b></i>.
+ Из предыдущего абзаца может возникнуть впечатление, что создателю 
+библиотеки лучше всего хранить все как можно «секретнее», а открывать 
+только те методы, которые, по вашему мнению, должен использовать 
+программист-клиент. И это абсолютно верно, хотя и выглядит непривычно 
+для людей, чьи программы на других языках (в особенности это касается <i>C</i>) «привыкли» к отсутствию ограничений. К концу этой главы вы наглядно убедитесь в полезности механизма контроля доступа в <i>Java</i>.
+</p><p>Однако концепция библиотеки компонентов и контроля над доступом к
+ этим компонентам — это еще не все. Остается понять, как компоненты 
+связываются в объединенную цельную библиотеку. В <i>Java</i> эта задача решается ключевым словом <i><b>package</b></i>
+ (пакет), и спецификаторы доступа зависят от того, находятся ли классы в
+ одном или в разных пакетах. Поэтому для начала мы разберемся, как 
+компоненты библиотек размещаются в пакетах. После этого вы сможете в 
+полной мере понять смысл спецификаторов доступа.
+</p>
+<h2><span class="mw-headline" id=".D0.9F.D0.B0.D0.BA.D0.B5.D1.82_.D0.BA.D0.B0.D0.BA_.D0.B1.D0.B8.D0.B1.D0.BB.D0.B8.D0.BE.D1.82.D0.B5.D1.87.D0.BD.D1.8B.D0.B9_.D0.BC.D0.BE.D0.B4.D1.83.D0.BB.D1.8C">Пакет как библиотечный модуль</span></h2>
+<p>Пакет содержит группу классов, объединенных в одном пространстве имен.
+Например, в стандартную поставку <i>Java</i> входит служебная библиотека, оформленная в виде пространства имен <i><b>java.util</b></i>. Один из классов <i><b>java.util</b></i> называется <i><b>ArrayList</b></i>. Чтобы использовать класс в программе, можно использовать его полное имя <i><b>java.util.ArrayList</b></i>. Впрочем, полные имена слишком громоздки, поэтому в программе удобнее использовать ключевое слово <i><b>import</b></i>. Если вы собираетесь использовать всего один класс, его можно указать прямо в директиве <i><b>import</b></i>:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: access/SingleImport.java</span>
+<span class="kw2">import</span> <span class="co2">java.util.ArrayList</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> SingleImport <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw46">ArrayList</span> list = <span class="kw2">new</span> java.<span class="me1">util</span>.<span class="kw46">ArrayList</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>Теперь к классу <i><b>ArrayList</b></i> можно обращаться без указания полного имени, но другие классы пакета <i><b>java.util</b></i> останутся недоступными. Чтобы импортировать все классы, укажите <i><b>*</b></i> вместо имени класса, как это делается почти во всех примерах книги:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> <span class="kw2">import</span> <span class="co2">java.util.*</span><span class="sy0">;</span></pre></div></div>
+<p>Механизм импортирования обеспечивает возможность управления 
+пространствами имен. Имена членов классов изолируются друг от друга. 
+Метод <i><b>f()</b></i> класса <i><b>А</b></i> не конфликтует с методом <i><b>f()</b></i> с таким же определением (списком аргументов) класса <i><b>В</b></i>. А как насчет имен классов? Предположим, что класс <i><b>Stack</b></i> создается на компьютере, где кем-то другим уже был определен класс с именем <i><b>Stack</b></i>. Потенциальные конфликты имен — основная причина, по которой так важны управление пространствами имен в <i>Java</i> и возможность создания уникальных идентификаторов для всех классов.
+</p><p>До этого момента большинство примеров книги записывались в 
+отдельных файлах и предназначались для локального использования, поэтому
+ на имена пакетов можно было не обращать внимания. (В таком случае имена
+ классов размещаются в «пакете по умолчанию».) Конечно, это тоже 
+решение, и такой подход будет применяться в книге, где только возможно. 
+Но, если вы создаете библиотеку или программу, использующую другие 
+программы <i>Java</i> на этой же машине, стоит подумать о предотвращении конфликтов имен.
+</p><p>Файл с исходным текстом на <i>Java</i> часто называют компилируемым модулем. Имя каждого компилируемого модуля должно завершаться суффиксом <i><b>.java</b></i>, а внутри него может находиться открытый (<i><b>public</b></i>) класс, имеющий то же имя, что и файл (с заглавной буквы, но без расширения <i><b>.java</b></i>).
+ Любой компилируемый модуль может содержать не более одного открытого 
+класса, иначе компилятор сообщит об ошибке. Остальные классы модуля, 
+если они там есть, скрыты от окружающего мира — они не являются 
+открытыми (<i><b>public</b></i>) и считаются «вспомогательными» по отношению к главному открытому классу.
+</p><p>В результате компиляции для каждого класса, определенного в файле <i><b>.java</b></i>, создается класс с тем же именем но с расширением <i><b>.class</b></i>. Таким образом, при компиляции нескольких файлов <i><b>.java</b></i> может появиться целый ряд файлов с рас­ширением <i><b>.class</b></i>.
+ Если вы программировали на компилируемом языке, то, наверное, привыкли к
+ тому, что компилятор генерирует промежуточные файлы (обычно с 
+расширением <i>OBJ</i>), которые затем объединяются компоновщиком для получения исполняемого файла или библиотеки. <i>Java</i> работает не так. Рабочая программа представляет собой набор однородных файлов <i><b>.class</b></i>, которые объединяются в пакет и сжимаются в файл <i>JAR</i> (утилитой <i>Java</i> <i><b>jar</b></i>). Интерпретатор <i>Java</i> отвечает за поиск, загрузку и интерпретацию этих файлов.
+</p><p>Библиотека также является набором файлов с классами. В каждом файле имеется один <i><b>рublіс</b></i>-класс с любым количеством классов, не имеющих спецификатора <i><b>public</b></i>. Если вы хотите объявить, что все эти компоненты (хранящиеся в отдельных файлах <i><b>.java</b></i> и <i><b>.class</b></i>) связаны друг с другом, воспользуйтесь ключевым словом <i><b>package</b></i>.
+</p><p>Директива <i><b>package</b></i> должна находиться в первой незакомментированной строке файла. Так, команда.
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> <span class="kw2">package</span> <span class="co2">access</span><span class="sy0">;</span></pre></div></div>
+<p>означает, что данный компилируемый модуль входит в библиотеку с именем <i><b>access</b></i>. Иначе говоря, вы указываете, что открытый класс в этом компилируемом модуле принадлежит имени <i><b>mypackage</b></i> и, если кто-то захочет использовать его, ему придется полностью записать или имя класса, или директиву <i><b>import</b></i> с <i><b>access</b></i> (конструкция, указанная выше). Заметьте, что по правилам <i>Java</i> имена пакетов записываются только строчными буквами.
+</p><p>Предположим, файл называется <i><b>MyClass.java</b></i>. Он может содержать один и только один открытый класс (<i><b>public</b></i>), причем последний должен называться <i><b>MyClass</b></i> (с учетом регистра символов):
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: access/mypackage/MyClass.java</span>
+<span class="kw2">package</span> <span class="co2">access.mypackage</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> MyClass <span class="br0">{</span>
+  <span class="co1">// ...</span>
+<span class="br0">}</span></pre></div></div>
+<p>Если теперь кто-то захочет использовать <i><b>MyClass</b></i> или любые другие открытые классы из пакета <i><b>access</b></i>, ему придется использовать ключевое слово <i><b>import</b></i>, чтобы имена из <i><b>access</b></i> стали доступными. Возможен и другой вариант — записать полное имя класса:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: access/QualifiedMyClass.java</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> QualifiedMyClass <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    access.<span class="me1">mypackage</span>.<span class="me1">MyClass</span> m =
+      <span class="kw2">new</span> access.<span class="me1">mypackage</span>.<span class="me1">MyClass</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>С ключевым словом <i><b>import</b></i> решение выглядит гораздо аккуратнее:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: access/ImportedMyClass.java</span>
+<span class="kw2">import</span> <span class="co2">access.mypackage.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> ImportedMyClass <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    MyClass m = <span class="kw2">new</span> MyClass<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>Ключевые слова <i><b>package</b></i> и <i><b>import</b></i> позволяют
+ разработчику библиотеки организовать логическое деление глобального 
+пространства имен, предотвращающее конфликты имен независимо от того, 
+сколько людей подключится к Интернету и начнет писать свои классы на <i>Java</i>.
+</p>
+<h2><span class="mw-headline" id=".D0.A1.D0.BE.D0.B7.D0.B4.D0.B0.D0.BD.D0.B8.D0.B5_.D1.83.D0.BD.D0.B8.D0.BA.D0.B0.D0.BB.D1.8C.D0.BD.D1.8B.D1.85_.D0.B8.D0.BC.D0.B5.D0.BD_.D0.BF.D0.B0.D0.BA.D0.B5.D1.82.D0.BE.D0.B2">Создание уникальных имен пакетов</span></h2>
+<p>Вы можете заметить, что, поскольку пакет на самом деле никогда не 
+«упаковывается» в единый файл, он может состоять из множества файлов <i><b>.class</b></i>, что способно привести к беспорядку, может, даже хаосу. Для предотвращения проблемы логично было бы разместить все файлы <i><b>.class</b></i>
+ конкретного пакета в одном каталоге, то есть воспользоваться 
+иерархической структурой файловой системы. Это первый способ решения 
+проблемы нагромождения файлов в <i>Java</i>; о втором вы узнаете при описании утилиты <i><b>jar</b></i>.
+</p><p>Размещение файлов пакета в отдельном каталоге решает две другие 
+задачи: создание уникальных имен пакетов и обнаружение классов, 
+потерянных в «дебрях» структуры каталогов. Как было упомянуто в главе 2,
+ проблема решается «кодированием» пути файла в имени пакета. По 
+общепринятой схеме первая часть имени пакета должна состоять из 
+перевернутого доменного имени разработчика класса. Так как доменные 
+имена Интернета уникальны, соблюдение этого правила обеспечит 
+уникальность имен пакетов и предотвратит конфликты. (Только если ваше 
+доменное имя не достанется кому-то другому, кто начнет писать программы 
+на <i>Java</i> под тем же именем.) Конечно, если у вас нет собственного 
+доменного имени, для создания уникальных имен пакетов придется придумать
+ комбинацию с малой вероятностью повторения (скажем, имя и фамилия). 
+Если же вы решите публиковать свои программы на <i>Java</i>, стоит немного потратиться на получение собственного доменного имени.
+</p><p>Вторая составляющая — преобразование имени пакета в каталог на 
+диске компьютера. Если программе во время исполнения понадобится 
+загрузить файл <i><b>.class</b></i> (что делается динамически, в точке, 
+где программа создает объект определенного класса, или при запросе 
+доступа к статическим членам класса), она может найти каталог, в котором
+ располагается файл <i><b>.class</b></i>.
+</p><p>Интерпретатор <i>Java</i> действует по следующей схеме. Сначала он проверяет переменную окружения <i><b>CLASSPATH</b></i> (ее значение задается операционной системой, а иногда программой установки <i>Java</i> или инструментарием <i>Java</i>). <i><b>CLASSPATH</b></i> содержит список из одного или нескольких каталогов, используемых в качестве корневых при поиске файлов <i><b>.class</b></i>.
+ Начиная с этих корневых каталогов, интерпретатор берет имя пакета и 
+заменяет точки на слеши для получения полного пути (таким образом, 
+директива <i><b>package foo.bar.baz</b></i> преобразуется в <i><b>foo\bar\baz, foo/bar/baz</b></i> или что-то еще в зависимости от вашей операционной системы). Затем полученное имя присоединяется к различным элементам <i><b>CLASSPATH</b></i>. В указанных местах ведется поиск файлов <i><b>.class</b></i>,
+ имена которых совпадают с именем создаваемого программой класса. (Поиск
+ также ведется в стандартных каталогах, определяемых местонахождением 
+интерпретатора <i>Java</i>.)
+</p><p>Чтобы понять все сказанное, рассмотрим мое доменное имя: <i><b>MindView.net</b></i>. Обращая его, получаем уникальное глобальное имя для моих классов: <i><b>net.mindview</b></i>. (Расширения <i>com, edu, org</i> и другие в пакетах <i>Java</i> прежде записывались в верхнем регистре, но начиная с версии <i>Java</i> 2 имена пакетов записываются только строчными буквами.) Если потребуется создать библиотеку с именем <i><b>simple</b></i>, я получаю следующее имя пакета:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> <span class="kw2">package</span> <span class="co2">net.mindview.simple</span><span class="sy0">;</span></pre></div></div>
+<p>Теперь полученное имя пакета можно использовать в качестве объединяющего пространства имен для следующих двух файлов:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: net/mindview/simple/Vector.java</span>
+<span class="co1">// Создание пакета</span>
+<span class="kw2">package</span> <span class="co2">net.mindview.simple</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> <span class="kw46">Vector</span> <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw46">Vector</span><span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">(</span><span class="st0">"net.mindview.simple.Vector"</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>Как упоминалось ранее, директива <i><b>package</b></i> должна находиться в первой строке исходного кода. Второй файл выглядит почти так же:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: net/mindview/simple/List.java</span>
+<span class="co1">// Создание пакета</span>
+<span class="kw2">package</span> <span class="co2">net.mindview.simple</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> <span class="kw166">List</span> <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw166">List</span><span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">(</span><span class="st0">"net.mindview.simple.List"</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>В моей системе оба файла находятся в следующем подкаталоге:
+</p>
+<pre>С:\DOC\JavaT\net\mindview\simple
+</pre>
+<p>Если вы посмотрите на файлы, то увидите имя пакета <i><b>net.mindview.simple</b></i>, но что с первой частью пути? О ней позаботится переменная окружения <i><b>CLASSPATH</b></i>, которая на моей машине выглядит следующим образом:
+</p>
+<pre>CLASSPATH= D:\JAVA\LIBC\DOC\JavaT
+</pre>
+<p>Как видите, <i><b>CLASSPATH</b></i> может содержать несколько альтернативных путей для поиска.
+</p><p>Однако для файлов <i>JAR</i> используется другой подход. Вы должны записать имя файла <i>JAR</i> в переменной <i><b>CLASSPATH</b></i>, не ограничиваясь указанием пути к месту его расположения. Таким образом, для файла <i>JAR</i> с именем <i><b>grape.jar</b></i> пе­ременная окружения должна выглядеть так:
+</p>
+<pre>CLASSPATH= D:\JAVA\LIBС\flavors\grape.jar
+</pre>
+<p>После настройки <i><b>CLASSPATH</b></i> следующий файл можно разместить в любом каталоге:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: access/LibTest.java</span>
+<span class="co1">// Uses the library.</span>
+<span class="kw2">import</span> <span class="co2">net.mindview.simple.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> LibTest <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw46">Vector</span> v = <span class="kw2">new</span> <span class="kw46">Vector</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw166">List</span> l = <span class="kw2">new</span> <span class="kw166">List</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>net.mindview.simple.Vector
+net.mindview.simple.List
+</pre>
+<p>&lt;/spoiler&gt;
+Когда компилятор встречает директиву <i><b>import</b></i> для библиотеки <i><b>simple</b></i>, он начинает поиск в каталогах, перечисленных в переменной <i><b>CLASSPATH</b></i>, найдет каталог <i><b>net/mindview/simple</b></i>, а затем переходит к поиску компилированных файлов с подходящими именами (<i><b>Vector.class</b></i> для класса <i><b>Vector</b></i> и <i><b>List.class</b></i> для класса <i><b>List</b></i>). Заметьте, что как классы, так и необходимые методы классов <i><b>Vector</b></i> и <i><b>List</b></i> должны быть объявлены со спецификатором <i><b>public</b></i>.
+</p>
+<h2><span class="mw-headline" id=".D0.9A.D0.BE.D0.BD.D1.84.D0.BB.D0.B8.D0.BA.D1.82.D1.8B_.D0.B8.D0.BC.D0.B5.D0.BD">Конфликты имен</span></h2>
+<p>Что происходит при импортировании конструкцией   <i><b>*</b></i>   двух библиотек, имеющих в своем составе идентичные имена? Предположим, программа содержит следующие директивы:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> <span class="kw2">import</span> <span class="co2">net.mindview.simple.*</span><span class="sy0">;</span> 
+ <span class="kw2">import</span> <span class="co2">java.util.*</span><span class="sy0">;</span></pre></div></div>
+<p>Так как пакет <i><b>java.util.*</b></i> тоже содержит класс с именем <i><b>Vector</b></i>,
+ это может привести к потенциальному конфликту. Но, пока вы не начнете 
+писать код, вызывающий конфликты, все будет в порядке — и это хорошо, 
+поскольку иначе вам пришлось бы тратить лишние усилия на предотвращение 
+конфликтов, которых на самом деле нет.
+Конфликт действительно произойдет при попытке создать <i><b>Vector</b></i>:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> <span class="kw46">Vector</span> v = <span class="kw2">new</span> <span class="kw46">Vector</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span></pre></div></div>
+<p>К какому из классов <i><b>Vector</b></i> относится эта команда? Этого
+ не знают ни компилятор, ни читатель программы. Поэтому компилятор 
+выдаст сообщение об ошибке и заставит явно указать нужное имя. Например,
+ если мне понадобится стандартный класс <i>Java</i> с именем <i><b>Vector</b></i>, я должен явно указать этот факт:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> java.<span class="me1">util</span>.<span class="kw46">Vector</span> v = <span class="kw2">new</span> java.<span class="me1">util</span>.<span class="kw46">Vector</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span></pre></div></div>
+<p>Данная команда (вместе с переменной окружения <i><b>CLASSPATH</b></i>) полностью описывает местоположение конкретного класса <i><b>Vector</b></i>, поэтому директива <i><b>import java.util.*</b></i> становится избыточной (по крайней мере, если вам не потребуются другие классы из этого пакета).
+</p>
+<h2><span class="mw-headline" id=".D0.9F.D0.BE.D0.BB.D1.8C.D0.B7.D0.BE.D0.B2.D0.B0.D1.82.D0.B5.D0.BB.D1.8C.D1.81.D0.BA.D0.B8.D0.B5_.D0.B1.D0.B8.D0.B1.D0.BB.D0.B8.D0.BE.D1.82.D0.B5.D0.BA.D0.B8">Пользовательские библиотеки</span></h2>
+<p>Полученные знания позволяют вам создавать собственные библиотеки, 
+сокращающие или полностью исключающие дублирование кода. Для примера 
+можно взять уже знакомый псевдоним для метода <i><b>System.out.println()</b></i>, сокращающий количество вводимых символов. Его можно включить в класс <i><b>Print</b></i>:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: net/mindview/util/Print.java</span>
+<span class="co1">// Методы-печати, которые могут использоваться</span>
+<span class="co1">// без спецификаторов, благодаря конструкции</span>
+<span class="kw2">package</span> <span class="co2">net.mindview.util</span><span class="sy0">;</span>
+<span class="kw2">import</span> <span class="co2">java.io.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> Print <span class="br0">{</span>
+  <span class="co1">// Печать с переводом строки:</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> print<span class="br0">(</span><span class="kw166">Object</span> obj<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">(</span>obj<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="co1">// Перевод строки:</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> print<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="co1">// Печать без перевода строки:</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> printnb<span class="br0">(</span><span class="kw166">Object</span> obj<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">print</span><span class="br0">(</span>obj<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="co1">// Новая конструкция Java SE5 printf() (from C):</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw20">PrintStream</span>
+  printf<span class="br0">(</span><span class="kw21">String</span> format, <span class="kw166">Object</span>... <span class="me1">args</span><span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw2">return</span> <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">printf</span><span class="br0">(</span>format, args<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>Новые методы могут использоваться для вывода любых данных с новой строки (<i><b>print()</b></i>) или в текущей строке (<i><b>printnb()</b></i>).
+</p><p>Как нетрудно предположить, файл должен располагаться в одном из каталогов, указанных в переменной окружения <i><b>CLASSPATH</b></i>, по пути <i><b>net/mindview</b></i>. После компиляции методы <i><b>static print()</b></i> и <i><b>printnb()</b></i> могут использоваться где угодно, для чего в программу достаточно включить директиву <i><b>import static</b></i>:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: access/PrintTest.java</span>
+<span class="co1">// Использование статических методов печати из Print.java</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> PrintTest <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    print<span class="br0">(</span><span class="st0">"Available from now on!"</span><span class="br0">)</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="nu0">100</span><span class="br0">)</span><span class="sy0">;</span>
+    print<span class="br0">(</span>100L<span class="br0">)</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="nu0">3.14159</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>Available from now on!
+100
+100
+3.14159
+</pre>
+<p>&lt;/spoiler&gt;
+Теперь, когда бы вы ни придумали новый интересный инструмент, вы всегда можете добавить его в свою библиотеку.
+</p><p><b>Предостережение при работе с пакетами</b>
+</p><p>Помните, что создание пакета всегда неявно сопряжено с 
+определением структуры каталогов. Пакет обязан находиться в одноименном 
+каталоге, который, в свою очередь, определяется содержимым переменной <i><b>CLASSPATH</b></i>. Первые эксперименты с ключевым словом <i><b>package</b></i>
+ могут оказаться неудачными, пока вы твердо не усвоите правило «имя 
+пакета — его каталог». Иначе компилятор будет выводить множество 
+сообщений о загадочных ошибках выполнения, о не­возможности найти класс,
+ который находится рядом в этом же каталоге. Если у вас возникают такие 
+ошибки, попробуйте закомментировать директиву <i><b>package</b></i>; если все запустится, вы знаете, где искать причины.
+</p>
+<h2><span class="mw-headline" id=".D0.A1.D0.BF.D0.B5.D1.86.D0.B8.D1.84.D0.B8.D0.BA.D0.B0.D1.82.D0.BE.D1.80.D1.8B_.D0.B4.D0.BE.D1.81.D1.82.D1.83.D0.BF.D0.B0_Java">Спецификаторы доступа <i>Java</i></span></h2>
+<p>В <i>Java</i> спецификаторы доступа <i><b>public, protected</b></i> и <i><b>private</b></i>
+ располагаются перед определением членов классов — как полей, так и 
+методов. Каждый спецификатор доступа управляет только одним отдельным 
+определением.
+</p><p>Если спецификатор доступа не указан, используется «пакетный» 
+уровень доступа. Получается, что в любом случае действует та или иная 
+категория доступа. В нескольких ближайших подразделах описаны разные 
+уровни доступа.
+</p>
+<h3><span class="mw-headline" id=".D0.94.D0.BE.D1.81.D1.82.D1.83.D0.BF_.D0.B2_.D0.BF.D1.80.D0.B5.D0.B4.D0.B5.D0.BB.D0.B0.D1.85_.D0.BF.D0.B0.D0.BA.D0.B5.D1.82.D0.B0">Доступ в пределах пакета</span></h3>
+<p>Во всех рассмотренных ранее примерах спецификаторы доступа не 
+указывались. Доступ по умолчанию не имеет ключевого слова, но часто его 
+называют доступом в пределах пакета (<i><b>package access</b></i>, 
+иногда «дружественным»). Это значит, что член класса доступен для всех 
+остальных классов текущего пакета, но для классов за пределами пакета он
+ воспринимается как приватный (private). Так как компилируемый модуль — 
+файл — может принадлежать лишь одному пакету, все классы одного 
+компилируемого модуля автоматически открыты друг для друга в границах 
+пакета.
+</p><p>Доступ в пределах пакета позволяет группировать взаимосвязанные 
+классы в одном пакете, чтобы они могли легко взаимодействовать друг с 
+другом. Размещая классы в одном пакете, вы берете код пакета под полный 
+контроль. Таким образом, только принадлежащий вам код будет обладать 
+пакетным доступом к другому, принадлежащему вам же коду — и это вполне 
+логично. Можно сказать, что доступ в пределах пакета и является основной
+ причиной для группировки классов в пакетах. Во многих языках 
+определения в классах организуются совершенно произвольным образом, но в
+ <i>Java</i> придется привыкать к более жесткой логике структуры. 
+Вдобавок классы, которые не должны иметь доступ к классам текущего 
+пакета, следует просто исключить из этого пакета.
+</p><p>Класс сам определяет, кому разрешен доступ к его членам. Не 
+существует волшебного способа «ворваться» внутрь него. Код из другого 
+пакета не может запросто обратиться к пакету и рассчитывать, что ему 
+вдруг станут доступны все члены: <i><b>protected, private</b></i> и доступные в пакете. Получить доступ можно лишь несколькими «законными» способами:
+</p>
+<hr>
+<ul>
+<li><span style="color:#800000">Объявить член класса открытым (<i><b>public</b></i>), то есть доступным для кого угодно и откуда угодно.</span>
+</li>
+</ul>
+<ul>
+<li><span style="color:#800000">Сделать член класса доступным в пакете, не указывая другие спецификаторы доступа, и разместить другие классы в этом же пакете.</span>
+</li>
+</ul>
+<ul>
+<li><span style="color:#800000">Как вы увидите в главе 7, где рассказывается о наследовании, производный класс может получить доступ к защищенным (<i><b>protected</b></i>) членам базового класса вместе с открытыми членами <i><b>public</b></i> (но не к приватным членам <i><b>private</b></i>).
+ Такой класс может пользоваться доступом в пределах пакета только в том 
+случае, если второй класс принадлежит тому же пакету (впрочем, пока на 
+наследование и доступ protected можно не обращать внимания).</span>
+</li>
+</ul>
+<ul>
+<li><span style="color:#800000">Предоставить «методы доступа», то есть 
+методы для чтения и модификации значения. С точки зрения ООП этот подход
+ является предпочтительным, и именно он используется в технологии <i>JavaBeans</i>.</span>
+</li>
+</ul>
+<hr>
+<h3><span class="mw-headline" id="public">public</span></h3>
+<p>При использовании ключевого слова <i><b>public</b></i> вы фактически 
+объявляете, что следующее за ним объявление члена класса доступно для 
+всех, и прежде всего для клиентских программистов, использующих 
+библиотеку. Предположим, вы определили пакет <i><b>dessert</b></i>, содержащий следующий компилируемый модуль:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: access/dessert/Cookie.java</span>
+<span class="co1">// Создание библиотеки.</span>
+<span class="kw2">package</span> <span class="co2">access.dessert</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> Cookie <span class="br0">{</span>
+  <span class="kw2">public</span> Cookie<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+   <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">(</span><span class="st0">"Cookie constructor"</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw3">void</span> bite<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">(</span><span class="st0">"bite"</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>Помните, что файл <i><b>Cookie.java</b></i> должен располагаться в подкаталоге <i><b>dessert</b></i> каталога с именем <i><b>access</b></i> (соответствующем данной главе книги), а последний должен быть включен в переменную <i><b>CLASSPATH</b></i>. Не стоит полагать, будто <i>Java</i> всегда начинает поиск с текущего каталога. Если вы не укажете символ <i><b>.</b></i> (точка) в переменной окружения <i><b>CLASSPATH</b></i> в качестве одного из путей поиска, то <i>Java</i> и не заглянет в текущий каталог.
+Если теперь написать программу, использующую класс <i><b>Cookie</b></i>:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: access/Dinner.java</span>
+<span class="co1">//  Использование библиотеки.</span>
+<span class="kw2">import</span> <span class="co2">access.dessert.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> Dinner <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    Cookie x = <span class="kw2">new</span> Cookie<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="co1">//! x.bite(); // Обращение невозможно</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>Cookie constructor
+</pre>
+<p>&lt;/spoiler&gt;
+то можно создать объект <i><b>Cookie</b></i>, поскольку конструктор этого класса объявлен открытым (<i><b>public</b></i>) и сам класс также объявлен как <i><b>public</b></i>. (Понятие открытого класса мы позднее рассмотрим чуть подробнее.) Тем не менее метод <i><b>bite()</b></i> этого класса недоступен в файле <i><b>Dinner.java</b></i>, поскольку доступ к нему предоставляется только в пакете <i><b>dessert</b></i>. Так компилятор предотвращает неправильное использование методов.
+</p>
+<h3><span class="mw-headline" id=".D0.9F.D0.B0.D0.BA.D0.B5.D1.82_.D0.BF.D0.BE_.D1.83.D0.BC.D0.BE.D0.BB.D1.87.D0.B0.D0.BD.D0.B8.D1.8E">Пакет по умолчанию</span></h3>
+<p>С другой стороны, следующий код работает, хотя на первый взгляд он вроде бы нарушает правила:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: access/Cake.java</span>
+<span class="co1">// Обращение к классу из другого компилируемого модуля.</span>
+<span class="kw2">class</span> Cake <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    Pie x = <span class="kw2">new</span> Pie<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    x.<span class="me1">f</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>Pie.f()
+</pre>
+<p>&lt;/spoiler&gt;
+Второй файл в том же каталоге:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: access/Pie.java</span>
+<span class="co1">// Другой класс.</span>
+<span class="kw2">class</span> Pie <span class="br0">{</span>
+  <span class="kw3">void</span> f<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">(</span><span class="st0">"Pie.f()"</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>Вроде бы эти два файла не имеют ничего общего, и все же в классе <i><b>Cake</b></i> можно создать объект <i><b>Pie</b></i> и вызвать его метод <i><b>f()</b></i>! (Чтобы файлы компилировались, переменная <i><b>CLASSPATH</b></i> должна содержать символ точки.) Естественно было бы предположить, что класс <i><b>Pie</b></i> и метод <i><b>f()</b></i> имеют доступ в пределах пакета и поэтому закрыты для <i><b>Cake</b></i>. Они действительно обладают доступом в пределах пакета — здесь все верно. Однако их доступность в классе <i><b>Cake.java</b></i> объясняется тем, что они находятся в одном каталоге и не имеют явно заданного имени пакета. <i>Java</i>
+ по умолчанию включает такие файлы в «пакет по умолчанию» для текущего 
+каталога, поэтому они обладают доступом в пределах пакета к другим 
+файлам в этом каталоге.
+</p>
+<h3><span class="mw-headline" id="private">private</span></h3>
+<p>Ключевое слово <i><b>private</b></i> означает, что доступ к члену 
+класса не предоставляется никому, кроме методов этого класса. Другие 
+классы того же пакета также не могут обращаться к <i><b>private</b></i>-членам.
+ На первый взгляд вы вроде бы изолируете класс даже от самого себя. С 
+другой стороны, вполне вероятно, что пакет создается целой группой 
+разработчиков; в этом случае private позволяет изменять члены класса, не
+ опасаясь, что это отразится на другом классе данного пакета.
+</p><p>Предлагаемый по умолчанию доступ в пределах пакета часто 
+оказывается достаточен для сокрытия данных; напомню, что такой член 
+класса недоступен пользователю пакета. Это удобно, так как обычно 
+используется именно такой уровень доступа (даже в том случае, когда вы 
+просто забудете добавить спецификатор доступа). Таким образом, доступ <i><b>public</b></i>
+ чаще всего используется тогда, когда вы хотите сделать какие-либо члены
+ класса доступными для программиста-клиента. Может показаться, что 
+спецификатор доступа <i><b>private</b></i> применяется редко и можно обойтись и без него. Однако разумное применение <i><b>private</b></i> очень важно, особенно в условиях многопоточного программирования (см. далее).
+</p><p>Пример использования private:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: access/IceCream.java</span>
+<span class="co1">// Демонстрация ключевого слова private.</span>
+&nbsp;
+<span class="kw2">class</span> Sundae <span class="br0">{</span>
+  <span class="kw2">private</span> Sundae<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+  <span class="kw2">static</span> Sundae makeASundae<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw2">return</span> <span class="kw2">new</span> Sundae<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> IceCream <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    <span class="co1">//! Sundae x = new Sundae();</span>
+    Sundae x = Sundae.<span class="me1">makeASundae</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>Перед вами пример ситуации, в которой <i><b>private</b></i> может 
+быть очень полезен: предположим, вы хотите контролировать процесс 
+создания объекта, не разрешая посторонним вызывать конкретный 
+конструктор (или любые конструкторы). В данном примере запрещается 
+создавать объекты <i><b>Sundae</b></i> с помощью конструктора; вместо этого пользователь должен использовать метод <i><b>makeASundae()</b></i>.
+</p><p>Все «вспомогательные» методы классов стоит объявить как <i><b>private</b></i>,
+ чтобы предотвратить их случайные вызовы в пакете; тем самым вы 
+фактически запрещаете изменение поведения метода или его удаление.
+</p><p>То же верно и к <i><b>private</b></i>-полям внутри класса. Если 
+только вы не собираетесь предоставить доступ пользователям к внутренней 
+реализации (а это происходит гораздо реже, чем можно себе представить), 
+объявляйте все поля своих классов со спецификатором <i><b>private</b></i>.
+</p>
+<h3><span class="mw-headline" id="protected">protected</span></h3>
+<p>Чтобы понять смысл спецификатора доступа <i><b>protected</b></i>, 
+необходимо немного забежать вперед. Сразу скажу, что понимание этого 
+раздела не обязательно до знакомства с наследованием (глава 7). И все же
+ для получения цельного представления здесь приводится описание 
+protected и примеры его использования.
+</p><p>Ключевое слово <i><b>protected</b></i> тесно связано с понятием 
+наследования, при котором к уже существующему классу (называемому 
+базовым классом) добавляются новые члены, причем исходная реализация 
+остается неизменной. Также можно изменять поведение уже существующих 
+членов класса. Для создания нового класса на базе существующего 
+используется ключевое слово <i><b>extends</b></i>:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> <span class="kw2">class</span> Foo <span class="kw2">extends</span> Bar <span class="br0">{</span><span class="br0">}</span></pre></div></div>
+<p>Остальная часть реализации выглядит как обычно.
+</p><p>Если при создании нового пакета используется наследование от 
+класса, находящегося в другом пакете, новый класс получает доступ только
+ к открытым (<i><b>public</b></i>) членам из исходного пакета. (Конечно,
+ при наследовании в пределах одного пакета можно получить доступ ко всем
+ членам с пакетным уровнем доступа.) Иногда создателю базового класса 
+необходимо предоставить доступ к конкретному методу производным классам,
+ но закрыть его от всех остальных. Именно для этой задачи используется 
+ключевое слово <i><b>protected</b></i>. Спецификатор <i><b>protected</b></i>
+ также предоставляет доступ в пределах пакета — то есть члены с этим 
+спецификатором доступны для других классов из того же пакета.
+</p>
+<h2><span class="mw-headline" id=".D0.98.D0.BD.D1.82.D0.B5.D1.80.D1.84.D0.B5.D0.B9.D1.81_.D0.B8_.D1.80.D0.B5.D0.B0.D0.BB.D0.B8.D0.B7.D0.B0.D1.86.D0.B8.D1.8F">Интерфейс и реализация</span></h2>
+<p>Контроль над доступом часто называют сокрытием реализации. Помещение 
+данных и методов в классы в комбинации с сокрытием реализации часто 
+называют инкапсуляцией. В результате появляется тип данных, обладающий 
+характеристиками и поведением.
+</p><p>Доступ к типам данных ограничивается по двум причинам. Первая 
+причина — чтобы программисту-клиенту знать, что он может использовать, а
+ что не может. Вы вольны встроить в структуру реализации свои внутренние
+ механизмы, не опасаясь того, что программисты-клиенты по случайности 
+используют их в качестве части интерфейса.
+</p><p>Это подводит нас непосредственно ко второй причине — разделению 
+интерфейса и реализации. Если в программе использована определенная 
+структура, но программисты-клиенты не могут получить доступ к ее членам,
+ кроме отправки сообщений <i><b>рubliс</b></i>-интерфейсу, вы можете изменять все, что не объявлено как <i><b>public</b></i> (члены с доступом в пределах пакета, <i><b>protected</b></i> и <i><b>private</b></i>), не нарушая работоспособности изменений клиентского кода.
+</p><p>Для большей ясности при написании классов можно использовать такой стиль: сначала записываются открытые члены (<i><b>public</b></i>), затем следуют защищенные члены (<i><b>protected</b></i>), потом — с доступом в пределах пакета и наконец закрытые члены (<i><b>private</b></i>).
+ Преимущество такой схемы состоит в том, что при чтении исходного текста
+ пользователь сначала видит то, что ему важно (открытые члены, доступ к 
+которым можно получить отовсюду), а затем останавливается при переходе к
+ закрытым членам, являющимся частью внутренней реализации:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: access/OrganizedByAccess.java</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> OrganizedByAccess <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> pub1<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="coMULTI">/* ... */</span> <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> pub2<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="coMULTI">/* ... */</span> <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> pub3<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="coMULTI">/* ... */</span> <span class="br0">}</span>
+  <span class="kw2">private</span> <span class="kw3">void</span> priv1<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="coMULTI">/* ... */</span> <span class="br0">}</span>
+  <span class="kw2">private</span> <span class="kw3">void</span> priv2<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="coMULTI">/* ... */</span> <span class="br0">}</span>
+  <span class="kw2">private</span> <span class="kw3">void</span> priv3<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="coMULTI">/* ... */</span> <span class="br0">}</span>
+  <span class="kw2">private</span> <span class="kw3">int</span> i<span class="sy0">;</span>
+  <span class="co1">// ...</span>
+<span class="br0">}</span></pre></div></div>
+<p>Такой подход лишь частично упрощает чтение кода, поскольку интерфейс и
+ реализация все еще совмещены. Иначе говоря, вы все еще видите исходный 
+код — реализацию — так, как он записан прямо в классе. Вдобавок 
+документация в комментариях, создаваемая с помощью <i><b>javadoc</b></i>, снижает необходимость в чтении исходного текста программистом-клиентом.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id=".D0.94.D0.BE.D1.81.D1.82.D1.83.D0.BF_.D0.BA_.D0.BA.D0.BB.D0.B0.D1.81.D1.81.D0.B0.D0.BC">Доступ к классам</span></h2>
+<p>В <i>Java</i> с помощью спецификаторов доступа можно также указать, 
+какие из классов внутри библиотеки будут доступны для ее пользователей. 
+Если вы хотите, чтобы класс был открыт программисту-клиенту, то 
+добавляете ключевое слово <i><b>public</b></i> для класса в целом. При этом вы управляете даже самой возможностью создания объектов данного класса программистом-клиентом.
+</p><p>Для управления доступом к классу, спецификатор доступа записывается перед ключевым словом <i><b>class</b></i>:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> <span class="kw2">public</span> <span class="kw2">class</span> Widget <span class="br0">{</span><span class="br0">}</span></pre></div></div>
+<p>Если ваша библиотека называется, например, <i><b>access</b></i>, то любой программист-клиент сумеет обратиться извне к классу <i><b>Widget</b></i>:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> <span class="kw2">import</span> <span class="co2">access.Widget</span><span class="sy0">;</span></pre></div></div>
+<p>или
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> <span class="kw2">import</span> <span class="co2">access</span> <span class="sy0">*;</span></pre></div></div>
+<p>Впрочем, при этом действуют некоторые ограничения:
+</p>
+<hr>
+<ul>
+<li><span style="color:#800000">В каждом компилируемом модуле может существовать <b>только один</b> открытый (<i><b>public</b></i>)
+ класс. Идея в том, что каждый компилируемый модуль содержит 
+определенный открытый интерфейс и реализуется этим открытым классом. В 
+модуле может содержаться произвольное количество вспомогательных классов
+ с доступом в пределах пакета. Если в компилируемом модуле определяется 
+более одного открытого класса, компилятор выдаст сообщение об ошибке.</span>
+</li>
+</ul>
+<ul>
+<li><span style="color:#800000">Имя открытого класса должно <b>в точности совпадать</b> с именем файла, в котором содержится компилируемый модуль, включая регистр символов. Поэтому для класса <i><b>Widget</b></i> имя файла должно быть <i><b>Widget.java</b></i>, но никак не <i><b>widget.java</b></i> или <i><b>WIDGET.java</b></i>. В противном случае вы снова получите сообщение об ошибке.</span>
+</li>
+</ul>
+<ul>
+<li><span style="color:#800000">Компилируемый модуль может вообще не 
+содержать открытых классов (хотя это и не типично). В этом случае файлу 
+можно присвоить любое имя по вашему усмотрению. С другой стороны, выбор 
+произвольного имени создаст трудности у тех людей, которые будут читать и
+ сопровождать ваш код.</span>
+</li>
+</ul>
+<hr>
+<p>Допустим, в пакете access имеется класс, который всего лишь выполняет некоторые служебные операции для класса <i><b>Widget</b></i> или для любого другого <i><b>рublic</b></i>-класса
+ пакета. Конечно, вам не хочется возиться с созданием лишней 
+документации для клиента; возможно, когда-нибудь вы просто измените 
+структуру пакета, уберете этот вспомогательный класс и добавите новую 
+реализацию. Но для этого нужно точно знать, что ни один 
+программист-клиент не зависит от конкретной реализации библиотеки. Для 
+этого вы просто опускаете ключевое слово <i><b>public</b></i> в 
+определении класса; ведь в таком случае он ограничивается пакетным 
+доступом, то есть может использоваться только в пределах своего пакета.
+</p><p>При создании класса с доступом в пределах пакета его поля все равно рекомендуется помечать как <i><b>private</b></i>
+ (всегда нужно по максимуму перекрывать доступ к полям класса), но 
+методам стоит давать тот же уровень доступа, что имеет и сам класс (в 
+пределах пакета). Класс с пакетным доступом обычно используется только в
+ своем пакете, и делать методы такого класса открытыми (<i><b>public</b></i>) стоит только при крайней необходимости — а о таких случаях вам сообщит компилятор.
+</p><p>Заметьте, что класс нельзя объявить как <i><b>private</b></i> (что сделает класс недоступным для окружающих, использовать он сможет только «сам себя») или <i><b>protected</b></i>. Поэтому у вас есть лишь такой выбор при задании доступа к классу: в пределах пакета или открытый (<i><b>public</b></i>). Если вы хотите перекрыть доступ к классу для всех, объявите все его конструкторы со спецификатором <i><b>private</b></i>,
+ соответственно, запретив кому бы то ни было создание объектов этого 
+класса. Только вы сами, в статическом методе своего класса, сможете 
+создавать такие объекты. Пример:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">// Demonstrates class access specifiers. Make a class</span>
+<span class="co1">// Спецификаторы доступа для классов. </span>
+<span class="co1">// Использование конструкторов, объявленных private, </span>
+<span class="co1">// делает класс недоступным при создании объектов.</span>
+&nbsp;
+<span class="kw2">class</span> Soup1 <span class="br0">{</span>
+  <span class="kw2">private</span> Soup1<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+  <span class="co1">// (1) Разрешаем создание объектов в статическом методе::</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> Soup1 makeSoup<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw2">return</span> <span class="kw2">new</span> Soup1<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> Soup2 <span class="br0">{</span>
+  <span class="kw2">private</span> Soup2<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+  <span class="co1">// (2) Создаем один статический объект и </span>
+  <span class="co1">// по требованию возвращаем ссылку на него):</span>
+  <span class="kw2">private</span> <span class="kw2">static</span> Soup2 ps1 = <span class="kw2">new</span> Soup2<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> Soup2 access<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw2">return</span> ps1<span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> f<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="co1">// В файле может быть определен только один public-класс:</span>
+<span class="kw2">public</span> <span class="kw2">class</span> Lunch <span class="br0">{</span>
+  <span class="kw3">void</span> testPrivate<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    <span class="co1">// Запрещено, т.к конструктор объявлен приватным::</span>
+    <span class="co1">//! Soup1 soup = new Soup1();</span>
+  <span class="br0">}</span>
+  <span class="kw3">void</span> testStatic<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    Soup1 soup = Soup1.<span class="me1">makeSoup</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw3">void</span> testSingleton<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    Soup2.<span class="me1">access</span><span class="br0">(</span><span class="br0">)</span>.<span class="me1">f</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>До этого момента большинство методов возвращало или <i><b>void</b></i>, или один из примитивных типов, поэтому определение:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> <span class="kw2">public</span> <span class="kw2">static</span> Soupl makeSoup<span class="br0">(</span><span class="br0">)</span><span class="br0">{</span> <span class="kw2">return</span> <span class="kw2">new</span> Soup1<span class="br0">(</span><span class="br0">)</span><span class="br0">}</span></pre></div></div>
+<p>на первый взгляд смотрится немного странно. Слово <i><b>Soup1</b></i> перед именем метода (<i><b>makeSoup</b></i>) показывает, что возвращается методом. В предшествующих примерах обычно использовалось обозначение <i><b>void</b></i>,
+ которое подразумевает, что метод не имеет возвращаемого значения. 
+Однако метод также может возвращать ссылку на объект; в данном случае 
+возвращается ссылка на объект класса <i><b>Soup1</b></i>.
+</p><p>Классы <i><b>Soup1</b></i> и <i><b>Soup2</b></i> наглядно показывают, как предотвратить прямое создание объектов класса, объявив все его конструкторы со спецификатором <i><b>private</b></i>.
+ Помните, что без явного определения хотя бы одного конструктора 
+компилятор сгенерирует конструктор по умолчанию (конструктор без 
+аргументов). Определяя конструктор по умолчанию в программе, вы 
+запрещаете его автоматическое создание. Если конструктор объявлен со 
+спецификатором <i><b>private</b></i>, никто не сможет создавать объекты данного класса. 
+</p><p>Но как же тогда использовать этот класс? Рассмотренный пример демонстрирует два способа. В классе <i><b>Soup1</b></i> определяется статический метод, который создает новый объект <i><b>Soup1</b></i>
+ и возвращает ссылку на него. Это бывает полезно в ситуациях, где вам 
+необходимо провести некоторые операции над объектом перед возвратом 
+ссылки на него, или при подсчете общего количества созданных объектов <i><b>Soup1</b></i> (например, для ограничения их максимального количества).
+</p><p>В классе <i><b>Soup2</b></i> использован другой подход — в программе всегда создается не более одного объекта этого класса. Объект <i><b>Soup2</b></i>
+ создается как статическая приватная переменная, пoтому он всегда 
+существует только в одном экземпляре и его невозможно получить без 
+вызова открытого метода <i><b>access()</b></i>.
+</p>
+<h2><span class="mw-headline" id=".D0.A0.D0.B5.D0.B7.D1.8E.D0.BC.D0.B5">Резюме</span></h2>
+<p>В любых отношениях важно установить ограничения, которые соблюдаются 
+всеми сторонами. При создании библиотеки вы устанавливаете отношения с 
+пользователем библиотеки (программистом-клиентом), который создает 
+программы или библиотеки более высокого уровня с использованием ваших 
+библиотек.
+</p><p>Если программисты-клиенты предоставлены сами себе и не ограничены
+ никакими правилами, они могут делать все, что им заблагорассудится, с 
+любыми членами класса — даже теми, доступ к которым вам хотелось бы 
+ограничить. Все детали реализации класса открыты для окружающего мира.
+</p><p>В этой главе рассматривается процесс построения библиотек из 
+классов; во-первых, механизм группировки классов внутри библиотеки и, 
+во-вторых, механизм управления доступом к членам класса.
+</p><p>По оценкам проекты на языке <i>C</i> начинают «рассыпаться» примерно тогда, когда код достигает объема от 50 до 100 Кбайт, так как <i>C</i> имеет единое «пространство имен»; в системе возникают конфликты имен, создающие массу неудобств. В <i>Java</i> ключевое слово <i><b>package</b></i>, схема именования пакетов и ключевое слово <i><b>import</b></i> обеспечивают полный контроль над именами, так что конфликта имен можно легко избежать.
+</p><p>Существует две причины для ограничения доступа к членам класса. 
+Первая — предотвращение использования клиентами внутренней реализации 
+класса, не входящей во внешний интерфейс. Объявление полей и методов со 
+спецификатором <i><b>private</b></i> только помогает пользователям 
+класса, так как они сразу видят, какие члены класса для них важны, а 
+какие можно игнорировать. Все это упрощает понимание и использование 
+класса.
+</p><p>Вторая, более важная причина для ограничения доступа — 
+возможность изменения внутренней реализации класса, не затрагивающего 
+программистов- клиентов. Например, сначала вы реализуете класс одним 
+способом, а затем выясняется, что реструктуризация кода позволит 
+повысить скорость работы. Отделение интерфейса от реализации позволит 
+сделать это без нарушения работоспособности существующего 
+пользовательского кода, в котором этот класс используется.
+</p><p>Открытый интерфейс класса — это то, что фактически видит его 
+пользователь, поэтому очень важно «довести до ума» именно эту, самую 
+важную, часть класса в процессе анализа и разработки. И даже при этом у 
+вас остается относительная свобода действий. Даже если идеальный 
+интерфейс не удалось построить с первого раза, вы можете добавить в него
+ новые методы — без удаления уже существующих методов, которые могут 
+использоваться программистами- клиентами.
+
+</p>
+                <p><br>
+                </p>
+                <hr>
+                <p><a href="http://wikijava.it-cache.net/index.php" title="Thinking in Java 4th edition">назад в Оглавление</a>
+                </p><p><br>
+                </p>
+<!-- 
+NewPP limit report
+CPU time usage: 2.182 seconds
+Real time usage: 2.186 seconds
+Preprocessor visited node count: 320/1000000
+Preprocessor generated node count: 696/1000000
+Post‐expand include size: 242/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 3/40
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key wjava2-wj_:pcache:idhash:20-0!*!*!!ru!*!* and timestamp 20140812112622
+ -->
+</div>								<div class="printfooter">
+				Источник — «<a href="http://wikijava.org.ua/index.php?title=Glava_6_Thinking_in_Java_4th_edition&amp;oldid=30">http://wikijava.org.ua/index.php?title=Глава_6_Thinking_in_Java_4th_edition&amp;oldid=30</a>»				</div>
+                                <div id="catlinks" class="catlinks"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%9A%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D0%B8" title="Служебная:Категории">Категории</a>: <ul><li><a href="http://wikijava.org.ua/index.php?title=%D0%9A%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D1%8F:%D0%9A%D0%BD%D0%B8%D0%B3%D0%B8" title="Категория:Книги">Книги</a></li><li><a href="http://wikijava.org.ua/index.php?title=%D0%9A%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D1%8F:Java" title="Категория:Java">Java</a></li></ul></div></div>												<div class="visualClear"></div>
+            </div>
+		</div>
+		<div id="mw-navigation">
+			<h2>Навигация</h2>
+			<div id="mw-head">
+				<div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
+	<h3 id="p-personal-label">Персональные инструменты</h3>
+	<ul>
+<li id="pt-login"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%92%D1%85%D0%BE%D0%B4&amp;returnto=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0+6+Thinking+in+Java+4th+edition" title="Здесь можно зарегистрироваться в системе, но это необязательно. [o]" accesskey="o">Представиться системе</a></li>	</ul>
+</div>
+				<div id="left-navigation">
+					<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
+	<h3 id="p-namespaces-label">Пространства имён</h3>
+	<ul>
+					<!--<li  id="ca-nstab-main" class="selected"><span><a href="index.php@title=Glava_6_Thinking_in_Java_4th_edition.html"  title="Просмотр основной страницы [c]" accesskey="c">Статья</a></span></li>-->
+					<!--<li  id="ca-talk" class="new"><span><a href="http://wikijava.org.ua/index.php?title=%D0%9E%D0%B1%D1%81%D1%83%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5:%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_6_Thinking_in_Java_4th_edition&amp;action=edit&amp;redlink=1"  title="Обсуждение основной страницы [t]" accesskey="t">Обсуждение</a></span></li>-->
+			</ul>
+</div>
+<div id="p-variants" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-variants-label">
+	<h3 id="mw-vector-current-variant">
+		</h3>
+	<h3 id="p-variants-label"><span>Варианты</span><a href="http://wikijava.it-cache.net/index.php@title=Glava_6_Thinking_in_Java_4th_edition.html#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+				</div>
+				<div id="right-navigation">
+					<div id="p-views" role="navigation" class="vectorTabs" aria-labelledby="p-views-label">
+	<h3 id="p-views-label">Просмотры</h3>
+	<ul>
+					<!--<li id="ca-view" class="selected"><span><a href="index.php@title=Glava_6_Thinking_in_Java_4th_edition.html" >Читать</a></span></li>-->
+					<!--<li id="ca-viewsource"><span><a href="http://wikijava.org.ua/index.php?title=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_6_Thinking_in_Java_4th_edition&amp;action=edit"  title="Эта страница защищена от изменений, но вы можете посмотреть и скопировать её исходный текст [e]" accesskey="e">Просмотр</a></span></li>-->
+					<!--<li id="ca-history" class="collapsible"><span><a href="http://wikijava.org.ua/index.php?title=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_6_Thinking_in_Java_4th_edition&amp;action=history"  title="Журнал изменений страницы [h]" accesskey="h">История</a></span></li>-->
+			</ul>
+</div>
+<div id="p-cactions" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-cactions-label">
+	<h3 id="p-cactions-label"><span>Действия</span><a href="http://wikijava.it-cache.net/index.php@title=Glava_6_Thinking_in_Java_4th_edition.html#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+<div id="p-search" role="search">
+	<h3><label for="searchInput">Поиск</label></h3>
+	<form action="http://wikijava.org.ua/index.php" id="searchform">
+				<div id="simpleSearch">
+						<input name="search" placeholder="Поиск" title="Искать в WikiJava: Wiki of Java: викифицированные книги и статьи по Java [f]" accesskey="f" id="searchInput">						<button type="submit" name="button" title="Найти страницы, содержащие указанный текст" id="searchButton"><img src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%206_files/search-ltr.asc" alt="Найти" height="13" width="12"></button>								<input name="title" value="Служебная:Поиск" type="hidden">
+		</div>
+	</form>
+</div>
+				</div>
+			</div>
+			<div id="mw-panel">
+					<!--<div id="p-logo" role="banner"><a style="background-image: url(/skins/common/images/wikijava.png);" href="index.php@title=Заглавная_страница.html"  title="Перейти на заглавную страницу"></a></div>-->
+				<div class="portal" role="navigation" id="p-navigation" aria-labelledby="p-navigation-label">
+	<h3 id="p-navigation-label">Навигация</h3>
+	<div class="body">
+        <ul>
+            <li id="n-mainpage-description"><a href="http://wikijava.org.ua/index.php?title=%D0%97%D0%B0%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F_%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0" title="Перейти на заглавную страницу [z]" accesskey="z">Заглавная страница</a></li>
+            <li id="n-recentchanges"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%B2%D0%B5%D0%B6%D0%B8%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8" title="Список последних изменений [r]" accesskey="r">Свежие правки</a></li>
+            <li id="n-.D0.9A.D0.BD.D0.B8.D0.B3.D0.B8-Java"><a href="http://wikijava.org.ua/index.php?title=%D0%9A%D0%BD%D0%B8%D0%B3%D0%B8_Java">Книги Java</a></li>
+            <li id="n-.D0.A1.D1.82.D0.B0.D1.82.D1.8C.D0.B8-Java"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D1%82%D0%B0%D1%82%D1%8C%D0%B8_Java">Статьи Java</a></li>
+            <li id="n-Java-.D0.BF.D0.BE.D1.80.D1.82.D0.B0.D0.BB"><a href="http://wikijava.org.ua/index.php?title=Java-portal">Java портал</a></li>
+            <li id="n-help"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B0:%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5" title="Место, где можно получить справку">Справка</a></li>
+            <li id="n-.D0.A1.D1.82.D0.B0.D1.82.D0.B8.D1.81.D1.82.D0.B8.D0.BA.D0.B0"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%81%D1%82%D0%B8%D0%BA%D0%B0">Статистика</a></li>
+        </ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id="p-tb" aria-labelledby="p-tb-label">
+	<h3 id="p-tb-label">Инструменты</h3>
+	<div class="body">
+		<ul>
+			<li id="t-whatlinkshere"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D1%81%D1%8B%D0%BB%D0%BA%D0%B8_%D1%81%D1%8E%D0%B4%D0%B0/%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_6_Thinking_in_Java_4th_edition" title="Список всех страниц, ссылающихся на данную [j]" accesskey="j">Ссылки сюда</a></li>
+			<li id="t-recentchangeslinked"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%B2%D1%8F%D0%B7%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8/%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_6_Thinking_in_Java_4th_edition" title="Последние изменения в страницах, на которые ссылается эта страница [k]" accesskey="k">Связанные правки</a></li>
+			<li id="t-specialpages"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%BF%D0%B5%D1%86%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D1%8B" title="Список служебных страниц [q]" accesskey="q">Спецстраницы</a></li>
+			<li id="t-print"><a href="http://wikijava.org.ua/index.php?title=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_6_Thinking_in_Java_4th_edition&amp;printable=yes" rel="alternate" title="Версия этой страницы для печати [p]" accesskey="p">Версия для печати</a></li>
+			<li id="t-permalink"><a href="http://wikijava.org.ua/index.php?title=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_6_Thinking_in_Java_4th_edition&amp;oldid=30" title="Постоянная ссылка на эту версию страницы">Постоянная ссылка</a></li>
+			<li id="t-info"><a href="http://wikijava.org.ua/index.php?title=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_6_Thinking_in_Java_4th_edition&amp;action=info">Сведения о странице</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id="p-.D0.94.D1.80.D1.83.D0.B3.D0.B8.D0.B5_.D0.BF.D1.80.D0.BE.D0.B5.D0.BA.D1.82.D1.8B" aria-labelledby="p-.D0.94.D1.80.D1.83.D0.B3.D0.B8.D0.B5_.D0.BF.D1.80.D0.BE.D0.B5.D0.BA.D1.82.D1.8B-label">
+	<h3 id="p-.D0.94.D1.80.D1.83.D0.B3.D0.B8.D0.B5_.D0.BF.D1.80.D0.BE.D0.B5.D0.BA.D1.82.D1.8B-label">Другие проекты</h3>
+	<div class="body">
+		<ul>
+			<li id="n-rastafara.com.ua"><a href="http://rastafara.com.ua/" rel="nofollow">rastafara.com.ua</a></li>
+			<li id="n-rastafara-blog"><a href="http://sergey-rastafara.blogspot.com/" rel="nofollow">rastafara blog</a></li>
+			<li id="n-rastaban"><a href="http://rastaban.com.ua/" rel="nofollow">rastaban</a></li>
+		</ul>
+	</div>
+</div>
+			</div>
+		</div>
+		<div id="footer" role="contentinfo">
+							<ul id="footer-info">
+											<li id="footer-info-lastmod"> Последнее изменение этой страницы: 21:29, 16 февраля 2014.</li>
+											<li id="footer-info-viewcount">К этой странице обращались 1956 раза.</li>
+											<li id="footer-info-copyright">Содержимое доступно по лицензии <a class="external" rel="nofollow" href="http://www.gnu.org/copyleft/fdl.html">GNU Free Documentation License 1.3 или более поздняя</a> (если не указано иное).</li>
+									</ul>
+							<ul id="footer-places">
+											<li id="footer-places-privacy"><a href="http://wikijava.org.ua/index.php?title=WikiJava:_Wiki_of_Java:_%D0%B2%D0%B8%D0%BA%D0%B8%D1%84%D0%B8%D1%86%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5_%D0%BA%D0%BD%D0%B8%D0%B3%D0%B8_%D0%B8_%D1%81%D1%82%D0%B0%D1%82%D1%8C%D0%B8_%D0%BF%D0%BE_Java:%D0%9F%D0%BE%D0%BB%D0%B8%D1%82%D0%B8%D0%BA%D0%B0_%D0%BA%D0%BE%D0%BD%D1%84%D0%B8%D0%B4%D0%B5%D0%BD%D1%86%D0%B8%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D0%B8" title="WikiJava: Wiki of Java: викифицированные книги и статьи по Java:Политика конфиденциальности">Политика конфиденциальности</a></li>
+											<li id="footer-places-about"><a href="http://wikijava.org.ua/index.php?title=WikiJava:_Wiki_of_Java:_%D0%B2%D0%B8%D0%BA%D0%B8%D1%84%D0%B8%D1%86%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5_%D0%BA%D0%BD%D0%B8%D0%B3%D0%B8_%D0%B8_%D1%81%D1%82%D0%B0%D1%82%D1%8C%D0%B8_%D0%BF%D0%BE_Java:%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5" title="WikiJava: Wiki of Java: викифицированные книги и статьи по Java:Описание">Описание WikiJava: Wiki of Java: викифицированные книги и статьи по Java</a></li>
+											<li id="footer-places-disclaimer"><a href="http://wikijava.org.ua/index.php?title=WikiJava:_Wiki_of_Java:_%D0%B2%D0%B8%D0%BA%D0%B8%D1%84%D0%B8%D1%86%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5_%D0%BA%D0%BD%D0%B8%D0%B3%D0%B8_%D0%B8_%D1%81%D1%82%D0%B0%D1%82%D1%8C%D0%B8_%D0%BF%D0%BE_Java:%D0%9E%D1%82%D0%BA%D0%B0%D0%B7_%D0%BE%D1%82_%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D0%BE%D1%81%D1%82%D0%B8" title="WikiJava: Wiki of Java: викифицированные книги и статьи по Java:Отказ от ответственности">Отказ от ответственности</a></li>
+									</ul>
+										<ul id="footer-icons" class="noprint">
+					<li id="footer-copyrightico">
+						<a href="http://www.gnu.org/copyleft/fdl.html"><img src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%206_files/gnu-fdl.png" alt="GNU Free Documentation License 1.3 или более поздняя" height="31" width="88"></a>
+					</li>
+					<li id="footer-poweredbyico">
+						<a href="http://www.mediawiki.org/"><img src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%206_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" height="31" width="88"></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<script>/*<![CDATA[*/window.jQuery && jQuery.ready();/*]]>*/</script><script>if(window.mw){
+mw.loader.state({"site":"loading","user":"ready","user.groups":"ready"});
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.action.view.postEdit","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest","ext.vector.collapsibleNav","ext.vector.collapsibleTabs","ext.vector.editWarning","ext.vector.simpleSearch","skins.vector.collapsibleNav"],null,true);
+}</script>
+<script>if(window.mw){
+mw.loader.state({"site":"ready"});
+}</script>
+<!-- Served in 0.234 secs. -->
+	
+
+</body></html>

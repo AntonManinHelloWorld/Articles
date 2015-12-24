@@ -1,0 +1,677 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <meta name="description" content="Cтатья рассматривает реализацию перечислений в Java (java enum types), начиная от API и заканчивая примерами использования наследования в enum-ах. Статья рекомендуется к прочтению всем java-программистам не зависимо от опыта работы.">
+    <meta name="Keywords" content="перечисления, enum, java перечисления, java enum, перечисления java, enum java, наследование enum, конструктор enum, полиморфизм enum">
+    
+    <link rel="image_src" href="http://www.quizful.net/res/img/logo.png">
+    <meta name="verify-v1" content="6KfOvLrGm4KgPJB+V2B+ELyBzxjG+LoVhKdUcFXetdc=">
+    <meta name="verify-v1" content="qYSVa9mzpQpfGqnpnzskiw2v73evzB42bGM/wcip0Hg=">
+    <meta name="y_key" content="29ad813d1559a2f3">
+    <meta name="google-site-verification" content="iBH4tJ3rxmGwMxXc6uL-qF4pRUbmBrSlRT_XQbw_4Vs">
+
+    <title>Перечисления в Java (java enum)</title>
+
+    <style>@import '/res/page.css?97';</style>
+    <script src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/widgets.js" id="twitter-wjs"></script><script type="text/javascript" src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/page.js"></script>
+    
+
+    <script>
+        //IE6 идет на$#%
+        if ('\v'=='v' && !window.XMLHttpRequest) window.location='/res/no-ie6.html';
+        jQuery(function() { pageInit(); });
+    </script>
+    <link rel="shortcut icon" href="http://www.quizful.net/res/favicon.ico">
+<style type="text/css">/* Chili -- java */
+.java__mlcom { color: #4040c2; }
+.java__com { color: green; }
+.java__string { color: teal; }
+.java__number { color: red; }
+.java__meta { color: red; }
+.java__keyword { color: navy; font-weight: bold; }</style><script src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/button.js" async="" charset="utf-8" type="text/javascript"></script></head>
+<body>
+
+    <div id="header">
+                <a id="logo" title="Онлайн тесты" href="http://www.quizful.net/"></a>
+
+        <div id="top-groups">
+    <iframe class="pcfykmqlcrtplekulgcu" src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/like.html" scrolling="no" style="border:none; overflow:hidden; height:21px; width:90px;" allowtransparency="true" frameborder="0"></iframe>
+</div>
+
+<div id="top-popups">
+    <div id="feedback-block">
+        <div class="feedback-block-button closed" onclick="toggleBlock(jQuery.event.fix(event), '#feedback-block'); return false;"></div>
+
+        <div class="content">
+            <div class="corners"><b></b><u></u><i></i></div>
+
+            <form id="feedback" action="">
+                <div class="errors hidden"></div>
+                <textarea id="feedback-text" name="text" class="form-control"></textarea>
+                                    <div class="captcha">
+                        <img class="captcha-img" src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/feedback.png" style="cursor:pointer;">
+                        <label for="feedback-code">Введите число</label>
+                        <input id="feedback-code" name="captcha" type="text">
+                    </div>
+                                <div class="buttons"><input value="Отправить" class="btn btn-primary btn-xs" type="button"></div>
+            </form>
+        </div>
+    </div>
+    
+</div>
+
+<script type="text/javascript">
+    new Feedback();
+    $(document).bind('click', handleClickOutside);
+
+    function handleClickOutside(e) {
+        var blocks = ['#feedback-block', '#invite-block'];
+        for (var id in blocks) {
+            var blockEl = jQuery(blocks[id] + " .content");
+
+            if (jQuery.find(blocks[id]).length > 0 && blockEl.attr('display') != 'none') {
+                if (jQuery(e.target).parents().index(jQuery(blocks[id])) == -1 && !jQuery(e.target).parent().hasClass('thanks')
+                        && jQuery(e.target).attr('id') != blocks[id].substring(1)) {
+
+//                    alert(jQuery(e.target).parents().map(function() { return this.tagName + " id=" + this.id; }).get().join());
+
+                    blockEl.slideUp(250);
+                    jQuery((blocks[id] + '-button').replace('#', '.')).removeClass('opened').addClass('closed');
+                }
+            }
+        }
+    }
+
+    function toggleBlock(e, block) {
+        if (jQuery(e.target).hasClass('opened')) {
+            jQuery(block + ' .content').slideUp(250);
+            jQuery(e.target).removeClass('opened').addClass('closed');
+        } else {
+            jQuery(e.target).removeClass('closed').addClass('opened');
+            jQuery(block + ' .content').slideDown(250);
+        }
+    }
+</script>
+
+        <ul id="navigation">
+                                    <li class="
+            first                         ">
+                <b></b><a href="http://www.quizful.net/test">Главная</a>
+                            </li>
+            <li class="sep"></li>
+                                                                        <li class="
+                                                                                                                                                                                                                                                                                                                ">
+                <a href="http://www.quizful.net/posts">Статьи</a>
+                            </li>
+            <li class="sep"></li>
+                                                                        <li class="last">
+                <a href="http://www.quizful.net/page/about">О проекте</a><b></b>
+                                    <ul class="sub">
+                                                <li style="display: none;" class="">
+                            <a href="http://www.quizful.net/page/about">описание</a>
+                        </li>
+                                                <li style="display: none;" class="">
+                            <a href="http://www.quizful.net/page/hall-of-fame">зал славы</a>
+                        </li>
+                                                <li style="display: none;" class="">
+                            <a href="http://www.quizful.net/page/certification-exams">сертификаты</a>
+                        </li>
+                                                <li style="display: none;" class="">
+                            <a href="http://www.quizful.net/faq">faq</a>
+                        </li>
+                                                <li style="display: none;" class="last"><b class="left"></b><b class="middle"></b><b class="right"></b></li>
+                    </ul>
+                            </li>
+            
+                                                        </ul>
+
+        <ul id="user-panel">
+            <li> <a href="http://www.quizful.net/LoginAction.loginForm" rel="nofollow">войти</a> </li>
+            <li class="separator"></li>
+                                    <li> <a href="http://www.quizful.net/LoginAction.registration" rel="nofollow">зарегистрироваться</a> </li>
+        </ul>
+
+    </div>
+    <div style="min-height: 471px;" id="content">
+        <div id="contributor"></div>
+        <div id="left">
+                        <div class="a-block">
+                <div class="corners"><s></s><b></b><u></u><i></i></div>
+                <div class="sides"><s></s><b></b><u></u><i></i></div>
+                <div class="content">
+                    <a data-twitter-extracted-i1449072463310365830="true" class="twitter-follow-button" href="https://twitter.com/quizful_com" data-show-count="false" data-size="large">
+Follow @Quizful</a>
+<br><br>
+Contribute to new <a href="http://quizful.com/contribute" target="_blank">Quizful</a> Help to translate Java. 
+<a href="http://quizful.com/contribute" style="padding-left: 25px" target="_blank"><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/contribute_logo1.png"></a>
+<br><br>
+Раздаем бесплатные Q! подробности в группе <a href="https://plus.google.com/communities/103078004820764559925" target="_blank">Quizful.Alpha-test</a>
+
+
+
+<script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+ 
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+ 
+  return t;
+}(document, "script", "twitter-wjs"));</script>
+                </div>
+            </div>
+            
+                            <div id="vips" class="sblock">
+    <div class="corners"><s></s><b></b><u></u><i></i></div>
+    <div class="title"><b>Партнеры</b></div>
+    <div class="content">
+        <table class="table" style="background-color: white;">
+                            <tbody><tr class="vip">
+                    <td class="content"><a href="http://skillbox.io/" target="_blank"><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/banner_prescreening.png" alt="Рекрутерам: Прескрининг кандидатов" border="0"></a></td>
+                    <td>
+                        <img title="" data-original-title="" style="vertical-align:middle; padding-right:5px; opacity: 0.5" alt="about" src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/help-tip.gif" data-tooltip="" data-title="Skillbox - инструмент для прескрининга IT специалистов" data-placement="right">
+                    </td>
+                </tr>
+                            <tr class="vip">
+                    <td class="content"><a href="http://cogniance.com/vacancies/?from=quizful" target="blank"><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/cogniance_logo_image.png" alt="Cogniance тесты работодателя" border="0"></a></td>
+                    <td>
+                        <img title="" data-original-title="" style="vertical-align:middle; padding-right:5px; opacity: 0.5" alt="about" src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/help-tip.gif" data-tooltip="" data-title="Cogniance  — компания, предоставляющая услуги в области проектирования, разработки, тестирования, внедрения и поддержки систем программного обеспечения на международном рынке." data-placement="right">
+                    </td>
+                </tr>
+                    </tbody></table>
+    </div>
+</div>
+            
+            <div id="contributors" class="sblock">
+    <div class="corners"><s></s><b></b><u></u><i></i></div>
+    <div class="title"><b>Топ контрибуторов</b></div>
+    <div class="content" id="contributors-content">
+        <select id="contributors-report">
+            <option value="day">За последние сутки</option>
+            <option selected="selected" value="month">За последний месяц</option>
+            <option value="all">За весь период</option>
+        </select>
+        <img style="display: none;" src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/loading.gif" id="contributors-loading-select" alt="loading" align="absmiddle">
+        <div id="contributors-table"><table class="data"><tbody><tr class="second"><td class="place">1.</td><td class="login">Doublecherry</td><td class="points">48.5&nbsp;Q</td></tr><tr class="first"><td class="place">2.</td><td class="login">kudryashov</td><td class="points">23.0&nbsp;Q</td></tr><tr class="second"><td class="place">3.</td><td class="login">ratushnyak_k</td><td class="points">18.5&nbsp;Q</td></tr><tr class="first"><td class="place">4.</td><td class="login"><a href="http://www.quizful.net/user/joker8999" rel="nofollow">joker8999</a></td><td class="points">15.0&nbsp;Q</td></tr><tr class="second"><td class="place">5.</td><td class="login">ChmilevFA</td><td class="points">10.0&nbsp;Q</td></tr><tr class="first"><td class="place">6.</td><td class="login">dimbesson</td><td class="points">10.0&nbsp;Q</td></tr><tr class="second"><td class="place">7.</td><td class="login">kavokivon</td><td class="points">10.0&nbsp;Q</td></tr><tr class="first"><td class="place">8.</td><td class="login">garrich</td><td class="points">9.5&nbsp;Q</td></tr><tr class="second"><td class="place">9.</td><td class="login"><a href="http://www.quizful.net/user/luna" rel="nofollow">luna</a></td><td class="points">8.5&nbsp;Q</td></tr><tr class="first"><td class="place">10.</td><td class="login"><a href="http://www.quizful.net/user/SirGate" rel="nofollow">SirGate</a></td><td class="points">8.5&nbsp;Q</td></tr></tbody></table><a class="contribute" href="http://www.quizful.net/page/contribute">Получение Q</a></div>
+        <div id="contribution-paging" class="paging">
+            <img style="display: none;" src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/loading.gif" alt="loading" id="contributors-loading" align="absmiddle">
+            <span style="color: gray; cursor: default;" class="arrow">←</span>
+            <span style="color: rgb(65, 159, 221); cursor: pointer;" class="arrow">→</span>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    if (!Cookie.get("reportType"))
+        Cookie.set("reportType", "month", 365);
+    $("#contributors-report").val(Cookie.get("reportType"));
+    new TopContributors();
+</script>
+
+            <div id="tips-block" class="sblock opened">
+    <div class="corners"><s></s><b></b><u></u><i></i></div>
+    <div class="title"><b>Знаете ли Вы, что</b></div>
+    <div class="content">
+        <p id="tips-text">Список полученных сертификатов находится на 
+странице Вашего профиля. Сертификаты можно распечатать или разместить на
+ Вашем сайте.</p>
+        <input id="tip-index" value="2" type="hidden">
+        <p class="link">
+            <img style="display: none;" src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/loading.gif" alt="Loading" id="tips-loading" align="absmiddle">
+            <span class="arrow">←</span>
+            <span class="arrow">→</span>
+        </p>
+    </div>
+</div>
+<script type="text/javascript"> new Tips(); </script>
+
+
+                        <div id="globalfeed" class="sblock">
+    <div class="corners"><s></s><b></b><u></u><i></i></div>
+    <div class="title"><b>Лента обновлений</b></div>
+    <div class="content">
+        <table>
+                            <tbody><tr><td>
+                    <a href="http://www.quizful.net/TestStoreAction.viewQuestion?question=UCCyg6QMl8KX#6810351683575137232">ссылка</a>
+                    <span>15:52:45</span>
+                    <div>
+                    Комментарий от youriver:<br>"подумал что подразумевается то что bean mock объявлен"...
+                </div></td></tr>
+                            <tr class="even"><td>
+                    <a href="http://www.quizful.net/TestStoreAction.viewQuestion?question=UzQ2Gpbsk0x9">ссылка</a>
+                    <span>15:15:04</span>
+                    <div>
+                    Добавлен вопрос в тест JavaScript - Средний уровень
+                </div></td></tr>
+                            <tr><td>
+                    <a href="http://www.quizful.net/TestStoreAction.viewQuestion?question=kjBFSQCol1wG#5876410040971344291">ссылка</a>
+                    <span>13:37:16</span>
+                    <div>
+                    Комментарий от ziko1975:<br>не верно сформулирован вопрос
+                </div></td></tr>
+                            <tr class="even"><td>
+                    <a href="http://www.quizful.net/TestStoreAction.viewQuestion?question=b3AmZiSaZsVm#2057693859858523989">ссылка</a>
+                    <span>13:21:06</span>
+                    <div>
+                    Комментарий от ziko1975:<br>хе, чуваки, а что не так с лоадером d onCreate()? И реа...
+                </div></td></tr>
+                            <tr><td>
+                    <a href="http://www.quizful.net/interview/qa/verification-and-validation#8030755800366149384">ссылка</a>
+                    <span>12:19:56</span>
+                    <div>
+                    Комментарий от DustyCat:<br>Можно ли считать продукт готовым, если он соответствует...
+                </div></td></tr>
+                    </tbody></table>
+    </div>
+</div>
+
+                        <div id="statistics" class="sblock">
+                <div class="corners"><s></s><b></b><u></u><i></i></div>
+                <div class="title"><b>Статистика</b></div>
+                <div class="content">
+                    <p>Тестов: 153, вопросов: 8401.
+                    Пройдено: 284782 / 1340050.</p>
+                </div>
+            </div>
+                    </div>
+        <div id="middle">
+            <div id="page-title-hr"></div>
+            <script type="text/javascript" src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/share.js" charset="windows-1251"></script>
+
+<h1 id="page-title" style="height:auto;">Перечисления в Java (java enum)</h1>
+        <div class="post">
+    <div id="post-info" class="rform">
+        <div class="corners"><s></s><b></b><u></u><i></i></div>
+        <div class="title">
+            <img class="head" src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/blank.gif" alt="head">
+            <img class="tail" src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/blank.gif" alt="tail">
+            <b>Статья</b>
+        </div>
+        <div class="content">
+            <table>
+                                <tbody><tr class="even category"><td colspan="2"><span>категория</span><br><a href="http://www.quizful.net/category/java">Java</a></td></tr>
+                                <tr><td>дата</td><td>15.05.2009</td></tr>
+                <tr class="even"><td>автор</td><td><a href="http://www.quizful.net/user/yohan">yohan</a></td></tr>
+                <tr><td>голосов</td><td id="votes">148</td></tr>
+            </tbody></table>
+        </div>
+    </div>
+
+    <div class="text" style="margin-right:260px;">
+        <style type="text/css"> 
+    pre { border:1px solid #eee; margin:0.5em 0; padding: 0.5em 0.7em; background: white; font-size:14px; }
+    .signature { color: gray; }
+</style>
+
+<h2>Предистория</h2>
+<p>
+Программируя мы часто сталкиваемся с необходимостью ограничить множество допустимых
+значений для некоторого типа данных. Так, например, день недели может иметь 7 разных значений,
+месяц в году - 12, а время года - 4. Для решения подобных задач во многих языках программирования со
+статической типизацией предусмотрен специальный тип данных - перечисление (enum). В Java перечисление
+появилось не сразу. Специализированная языковая конструкция enum была введена начиная с версии 1.5.
+До этого момента программисты использовали другие методы для реализации перечислений.
+</p>
+
+
+<h2>Конструкция enum</h2>
+<p>Начнем с примера. Давайте опишем с помощью enum тип данных для хранения времени года:</p>
+<pre class="chili"><code class="java"><span class="java__keyword">enum</span>&nbsp;Season&nbsp;{&nbsp;WINTER,&nbsp;SPRING,&nbsp;SUMMER,&nbsp;AUTUMN&nbsp;}</code></pre>
+<p>Ну и простой пример его использования:</p>
+
+<pre class="chili"><code class="java">Season&nbsp;season&nbsp;=&nbsp;Season.SPRING;&nbsp;<br><span class="java__keyword">if</span>&nbsp;(season&nbsp;==&nbsp;Season.SPRING)&nbsp;season&nbsp;=&nbsp;Season.SUMMER;&nbsp;<br>System.out.println(season);&nbsp;<br></code></pre>
+<p>В результате выполнения которого на консоль будет выведено SUMMER.
+Думаю, что пример очевиден и в пояснениях не нуждается.
+</p>
+
+
+<h2>Перечисление - это класс</h2>
+<p>Объявляя enum мы неявно создаем класс производный от java.lang.Enum.
+Условно конструкция enum Season { ... } эквивалентна class Season extends java.lang.Enum { ... }.
+И хотя явным образом наследоваться от java.lang.Enum нам не позволяет компилятор, все же в том,
+что enum наследуется, легко убедиться с помощью reflection:
+</p>
+<pre class="chili"><code class="java">System.out.println(Season.<span class="java__keyword">class</span>.getSuperclass());</code></pre>
+
+<p>На консоль будет выведено:</p>
+<pre class="chili"><code class="java"><span class="java__keyword">class</span>&nbsp;java.lang.Enum</code></pre>
+
+<p>Собственно наследование за нас автоматически выполняет компилятор Java. Далее давайте условимся называть
+класс, созданный компилятором для реализации перечисления - enum-классом, а возможные значения перечисляемого типа
+- элементами enum-a.
+</p>
+
+
+<h2>Элементы перечисления - экземпляры enum-класса, доступные статически</h2>
+<p>Элементы enum Season (WINTER, SPRING и т.д.) - это статически доступные экземпляры enum-класса Season.
+Их статическая доступность позволяет нам выполнять сравнение с помощью оператора сравнения ссылок ==. Пример:
+</p>
+<pre class="chili"><code class="java">Season&nbsp;season&nbsp;=&nbsp;Season.SUMMER;&nbsp;<br><span class="java__keyword">if</span>&nbsp;(season&nbsp;==&nbsp;Season.AUTUMN)&nbsp;season&nbsp;=&nbsp;Season.WINTER;&nbsp;<br></code></pre>
+
+
+<h2>Название и порядковый номер элемента enum</h2>
+<p>Как уже было сказано ранее любой enum-класс наследует java.lang.Enum, который содержит ряд методов полезных
+для всех перечислений. Пример:
+</p>
+<pre class="chili"><code class="java">Season&nbsp;season&nbsp;=&nbsp;Season.WINTER;&nbsp;<br>System.out.println(<span class="java__string">"season.name()="</span>&nbsp;+&nbsp;season.name()&nbsp;+&nbsp;<span class="java__string">"&nbsp;season.toString()="</span>&nbsp;+&nbsp;season.toString()&nbsp;+&nbsp;<span class="java__string">"&nbsp;season.ordinal()="</span>&nbsp;+&nbsp;season.ordinal());&nbsp;<br></code></pre>
+<p>Будет выведено:</p>
+<pre class="chili"><code class="java">season.name()=WINTER&nbsp;season.toString()=WINTER&nbsp;season.ordinal()=<span class="java__number">0</span></code></pre>
+<p>
+Здесь показано использования методов name(), toString() и ordinal(). Семантика методов - очевидна. Следует обратить внимание,
+что данные методы enum-класс наследует из класса java.lang.Enum
+</p>
+
+
+<h2>Получение елемента enum по строковому представлению его имени</h2>
+<p>Довольно часто возникает задача получить элемент enum по его строковому представлению.
+Для этих целей в каждом enum-классе компилятор автоматически создает специальный статический метод:
+public static EnumClass valueOf(String name), который возвращает элемент перечисления EnumClass с названием,
+равным name. Пример использования:
+</p>
+<pre class="chili"><code class="java">String&nbsp;name&nbsp;=&nbsp;<span class="java__string">"WINTER"</span>;&nbsp;<br>Season&nbsp;season&nbsp;=&nbsp;Season.valueOf(name);&nbsp;<br></code></pre>
+<p>В результате выполнения кода переменная season будет равна Season.WINTER. Cледует обратить внимание, что если элемент не будет
+найден, то будет выброшен IllegalArgumentException, а в случае, если name равен null - NullPointerException. Об этом,
+кстати, часто забывают. Почему-то многие твердо уверенны, что если функция принимает один аргумент и при некоторых услових
+выбрасывает IllegalArgumentException, то при передачи туда null, также будет неприменно выброшен IllegalArgumentException.
+Но это не относится к делу. Продолжим.
+</p>
+
+
+<h2>Получение всех элементов перечисления</h2>
+<p>Иногда необходимо получить список всех элементов enum-класса во время выполнения. Для этих целей в каждом enum-классе компилятор создает
+метод: <br>
+public static EnumClass[] values(). Пример использования:
+</p>
+<pre class="chili"><code class="java">System.out.println(Arrays.toString(Season.values()));</code></pre>
+<p>Получим вывод:</p>
+<pre class="chili"><code class="java">[WINTER,&nbsp;SPRING,&nbsp;SUMMER,&nbsp;AUTUMN]</code></pre>
+<p>
+Обратите внимание, что ни метод valueOf(), ни метод values() не определен в классе java.lang.Enum. Вместо этого они автоматически добавляются
+компилятором на этапе компиляции enum-класса.
+</p>
+
+
+<h2>Добавляем свои методы в enum-класс</h2>
+<p>У Вас есть возможность добавлять собственные методы как в enum-класс, так и в его элементы:</p>
+
+<pre class="chili"><code class="java"><span class="java__keyword">enum</span>&nbsp;Direction&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;UP,&nbsp;DOWN;&nbsp;<br>&nbsp;<br>&nbsp;&nbsp;&nbsp;<span class="java__keyword">public</span>&nbsp;Direction&nbsp;opposite()&nbsp;{&nbsp;<span class="java__keyword">return</span>&nbsp;<span class="java__keyword">this</span>&nbsp;==&nbsp;UP&nbsp;?&nbsp;DOWN&nbsp;:&nbsp;UP;&nbsp;}&nbsp;<br>}&nbsp;<br></code></pre>
+<p>То же, но с полиморфизмом:</p>
+<pre class="chili"><code class="java"><span class="java__keyword">enum</span>&nbsp;Direction&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;UP&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">public</span>&nbsp;Direction&nbsp;opposite()&nbsp;{&nbsp;<span class="java__keyword">return</span>&nbsp;DOWN;&nbsp;}&nbsp;<br>&nbsp;&nbsp;&nbsp;},&nbsp;<br>&nbsp;&nbsp;&nbsp;DOWN&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">public</span>&nbsp;Direction&nbsp;opposite()&nbsp;{&nbsp;<span class="java__keyword">return</span>&nbsp;UP;&nbsp;}&nbsp;<br>&nbsp;&nbsp;&nbsp;};&nbsp;<br>&nbsp;<br>&nbsp;&nbsp;&nbsp;<span class="java__keyword">public</span>&nbsp;<span class="java__keyword">abstract</span>&nbsp;Direction&nbsp;opposite();&nbsp;<br>}&nbsp;<br></code></pre>
+<p>Последний пример демонстрирует использование наследования в enum. Об этом - далее.</p>
+
+
+<h2>Наследование в enum</h2>
+<p>С помощью enum в Java можно реализовать иерархию классов, объекты которой создаются в единственном экземпляре и доступны
+статически. При этом элементы enum могут содержать собственные конструкторы. Приведем пример:
+</p>
+<pre class="chili"><code class="java"><span class="java__keyword">enum</span>&nbsp;Type&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;INT(<span class="java__keyword">true</span>)&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">public</span>&nbsp;Object&nbsp;parse(String&nbsp;string)&nbsp;{&nbsp;<span class="java__keyword">return</span>&nbsp;Integer.valueOf(string);&nbsp;}&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;},&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;INTEGER(<span class="java__keyword">false</span>)&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">public</span>&nbsp;Object&nbsp;parse(String&nbsp;string)&nbsp;{&nbsp;<span class="java__keyword">return</span>&nbsp;Integer.valueOf(string);&nbsp;}&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;},&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;STRING(<span class="java__keyword">false</span>)&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">public</span>&nbsp;Object&nbsp;parse(String&nbsp;string)&nbsp;{&nbsp;<span class="java__keyword">return</span>&nbsp;string;&nbsp;}&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;};&nbsp;<br>&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">boolean</span>&nbsp;primitive;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;Type(<span class="java__keyword">boolean</span>&nbsp;primitive)&nbsp;{&nbsp;<span class="java__keyword">this</span>.primitive&nbsp;=&nbsp;primitive;&nbsp;}&nbsp;<br>&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">public</span>&nbsp;<span class="java__keyword">boolean</span>&nbsp;isPrimitive()&nbsp;{&nbsp;<span class="java__keyword">return</span>&nbsp;primitive;&nbsp;}&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">public</span>&nbsp;<span class="java__keyword">abstract</span>&nbsp;Object&nbsp;parse(String&nbsp;string);&nbsp;<br>}&nbsp;<br></code></pre>
+<p>Здесь объявляется перечисление Type с тремя элементами INT, INTEGER и STRING.
+Компилятор создаст следующие классы и объекты:
+</p>
+<ul>
+    <li>Type - класс производный от java.lang.Enum</li>
+    <li>INT - объект 1-го класса производного от Type</li>
+    <li>INTEGER - объект 2-го класса производного от Type</li>
+    <li>STRING - объект 3-го класса производного от Type</li>
+</ul>
+<p>Три производных класса будут созданы с полиморфным методом Object parse(String) и конструктором Type(..., boolean)
+При этом объекты классов INT, INTEGER и STRING существуют в единственном экземпляре и доступны статически.
+В этом можно убедится:
+</p>
+<pre class="chili"><code class="java">System.out.println(Type.<span class="java__keyword">class</span>);&nbsp;<br>System.out.println(Type.INT.getClass()&nbsp;+&nbsp;<span class="java__string">"&nbsp;"</span>&nbsp;+&nbsp;Type.INT.getClass().getSuperclass());&nbsp;<br>System.out.println(Type.INTEGER.getClass()&nbsp;+&nbsp;<span class="java__string">"&nbsp;"</span>&nbsp;+&nbsp;Type.INTEGER.getClass().getSuperclass());&nbsp;<br>System.out.println(Type.STRING.getClass()&nbsp;&nbsp;+&nbsp;<span class="java__string">"&nbsp;"</span>&nbsp;+&nbsp;Type.STRING.getClass().getSuperclass());&nbsp;<br></code></pre>
+
+<p>Получим вывод:</p>
+<pre><code>class Type
+class Type$1 class Type
+class Type$2 class Type
+class Type$3 class Type
+</code></pre>
+<p>Видно, что компилятор создал класс Type и 3 nested класса, производных от Type.</p>
+
+
+<h2>Декомпилированный enum-class с наследованием</h2>
+<p>В подтверждение вышесказанному приведем еще результат декомпиляции перечисления Type из примера выше:</p>
+<pre class="chili"><code class="java"><span class="java__keyword">abstract</span>&nbsp;<span class="java__keyword">class</span>&nbsp;Type&nbsp;<span class="java__keyword">extends</span>&nbsp;Enum&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">public</span>&nbsp;<span class="java__keyword">static</span>&nbsp;Type[]&nbsp;values()&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">return</span>&nbsp;(Type[])&nbsp;$VALUES.clone();&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<br>&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">public</span>&nbsp;<span class="java__keyword">static</span>&nbsp;Type&nbsp;valueOf(String&nbsp;name)&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">return</span>&nbsp;(Type)&nbsp;Enum.valueOf(t&nbsp;/&nbsp;T$Type,&nbsp;name);&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<br>&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">public</span>&nbsp;<span class="java__keyword">boolean</span>&nbsp;isPrimitive()&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">return</span>&nbsp;primitive;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<br>&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">public</span>&nbsp;<span class="java__keyword">abstract</span>&nbsp;Object&nbsp;parse(String&nbsp;s);&nbsp;<br>&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">public</span>&nbsp;<span class="java__keyword">static</span>&nbsp;<span class="java__keyword">final</span>&nbsp;Type&nbsp;INT;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">public</span>&nbsp;<span class="java__keyword">static</span>&nbsp;<span class="java__keyword">final</span>&nbsp;Type&nbsp;INTEGER;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">public</span>&nbsp;<span class="java__keyword">static</span>&nbsp;<span class="java__keyword">final</span>&nbsp;Type&nbsp;STRING;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">boolean</span>&nbsp;primitive;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">private</span>&nbsp;<span class="java__keyword">static</span>&nbsp;<span class="java__keyword">final</span>&nbsp;Type&nbsp;$VALUES[];&nbsp;<br>&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">static</span>&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INT&nbsp;=&nbsp;<span class="java__keyword">new</span>&nbsp;Type(<span class="java__string">"INT"</span>,&nbsp;<span class="java__number">0</span>,&nbsp;<span class="java__keyword">true</span>)&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">public</span>&nbsp;Object&nbsp;parse(String&nbsp;string)&nbsp;{&nbsp;<span class="java__keyword">return</span>&nbsp;Integer.valueOf(string);&nbsp;}&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INTEGER&nbsp;=&nbsp;<span class="java__keyword">new</span>&nbsp;Type(<span class="java__string">"INTEGER"</span>,&nbsp;<span class="java__number">1</span>,&nbsp;<span class="java__keyword">false</span>)&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">public</span>&nbsp;Object&nbsp;parse(String&nbsp;string)&nbsp;{&nbsp;<span class="java__keyword">return</span>&nbsp;Integer.valueOf(string);&nbsp;}&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STRING&nbsp;=&nbsp;<span class="java__keyword">new</span>&nbsp;Type(<span class="java__string">"STRING"</span>,&nbsp;<span class="java__number">2</span>,&nbsp;<span class="java__keyword">false</span>)&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">public</span>&nbsp;Object&nbsp;parse(String&nbsp;string)&nbsp;{&nbsp;<span class="java__keyword">return</span>&nbsp;string;&nbsp;}&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};&nbsp;<br>&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$VALUES&nbsp;=&nbsp;(<span class="java__keyword">new</span>&nbsp;Type[]{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INT,&nbsp;INTEGER,&nbsp;STRING&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<br>&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">private</span>&nbsp;Type(String&nbsp;s,&nbsp;<span class="java__keyword">int</span>&nbsp;i,&nbsp;<span class="java__keyword">boolean</span>&nbsp;primitive)&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">super</span>(s,&nbsp;i);&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">this</span>.primitive&nbsp;=&nbsp;primitive;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<br>}&nbsp;<br></code></pre>
+
+
+<h2>Перечисления и параметрический полиморфизм</h2>
+<p>У читателя может возниктуть вопрос: "почему вышеуказанное перечисление Type не использует генерики (generics) ?".
+Дело в том, что в Java использование генериков в enum запрещено. Так следующий пример не скомпилируется:
+</p>
+<pre class="chili"><code class="java"><span class="java__keyword">enum</span>&nbsp;Type&lt;T&gt;&nbsp;{}</code></pre>
+
+
+<h2>Дальнейшее изучение</h2>
+<p>Для более глубокого понимания того, как работают перечисления в Java рекомендую ознакомиться
+с исходными кодами класса java.lang.Enum, а также воспользоваться декопмилятором Jad для изучения
+сгенерированного кода. Более того, изучение исходных кодов библиотеки Java абсолютно необходимо
+для понимания принципов работы многих механизмов в Java и полезно как эталон объектно-ориентированного дизайна.
+</p>
+<p>Также для закрепления знаний рекомендую пройти тесты:<br>
+<a href="http://www.quizful.net/test/java_se_basic">Тест знаний Java - Основы</a><br>
+<a href="http://www.quizful.net/test/java_se_midlevel">Тест знаний Java - Средний уровень</a><br>
+</p>
+
+<p class="signature">
+    --<br>
+    Дмитрий Пекар, апрель 2009
+</p>
+    </div>
+    <div class="vote" id="votePost">
+                <p>Если Вам понравилась статья, проголосуйте за нее</p>
+        <a id="showVoters" href="#">Голосов</a>: <span>148</span>
+        <button class="btn btn-default btn-xs">Голосовать</button> &nbsp;<img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/loading_002.gif" alt="loading..." style="display:none;" align="absmiddle">
+        <script type="text/javascript">
+                        $("#votePost button").click(function() {
+                location.replace("/LoginAction.forbidden");
+                return false;
+            });
+                    </script>
+            </div>
+    <script type="text/javascript">
+        $("#showVoters").on("click", function() {
+            var voters = $("#voters");
+            voters.stop(true, true);
+            voters.slideToggle();
+            voters.toggleClass("closed").toggleClass("opened");
+            return false;
+        });
+    </script>
+    <div id="voters" class="closed">
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/admin.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/admin">admin</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/c0nst.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/c0nst">c0nst</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/lexxzar.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/lexxzar">lexxzar</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/clumsy.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/clumsy">clumsy</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/patisonka.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/patisonka">patisonka</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/breusov.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/breusov">breusov</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/giroy.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/giroy">giroy</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/doctorlife.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/doctorlife">doctorlife</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/alexis112.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/alexis112">alexis112</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/irene_irene.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/irene_irene">irene_irene</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/MaxT.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/MaxT">MaxT</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/fdcc.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/fdcc">fdcc</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/Dustty.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/Dustty">Dustty</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/matias.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/matias">matias</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/m0211spb.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/m0211spb">m0211spb</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/krolser.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/krolser">krolser</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/alniks.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/alniks">alniks</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/fedind.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/fedind">fedind</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/zheka82.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/zheka82">zheka82</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/javadev75.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/javadev75">javadev75</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/makk.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/makk">makk</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/generator.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/generator">generator</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/hatter.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/hatter">hatter</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/DodgeWP.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/DodgeWP">DodgeWP</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/kosolapiy.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/kosolapiy">kosolapiy</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/FAA.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/FAA">FAA</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/uniservise.jpeg" height="24" align="absmiddle"> uniservise</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/ruel.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/ruel">ruel</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/bu_ma_ga.gif" height="24" align="absmiddle"> bu_ma_ga</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/Thonatos.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/Thonatos">Thonatos</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/Andrew1985.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/Andrew1985">Andrew1985</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/piscar.jpeg" height="24" align="absmiddle"> piscar</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/aprl_mary.jpeg" height="24" align="absmiddle"> aprl_mary</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/abihle.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/abihle">abihle</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/gray2.jpeg" height="24" align="absmiddle"> gray2</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/ayscha.jpeg" height="24" align="absmiddle"> ayscha</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/Defend.jpeg" height="24" align="absmiddle"> Defend</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/sheff4ik.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/sheff4ik">sheff4ik</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/oleksa.jpeg" height="24" align="absmiddle"> oleksa</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/helpa.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/helpa">helpa</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/JinSem.jpeg" height="24" align="absmiddle"> JinSem</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/termy.jpeg" height="24" align="absmiddle"> termy</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/nsmirnov.jpeg" height="24" align="absmiddle"> nsmirnov</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/wisd.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/wisd">wisd</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/mokeyd.jpeg" height="24" align="absmiddle"> mokeyd</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/Nastiona.jpeg" height="24" align="absmiddle"> Nastiona</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/Alexander_1.jpeg" height="24" align="absmiddle"> Alexander_1</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/slyshkov.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/slyshkov">slyshkov</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/speedy.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/speedy">speedy</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/Hayao.jpeg" height="24" align="absmiddle"> Hayao</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/san.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/san">san</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/art.jpeg" height="24" align="absmiddle"> art</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/JBL.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/JBL">JBL</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/Timfea.jpeg" height="24" align="absmiddle"> Timfea</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/Saimon2k.jpeg" height="24" align="absmiddle"> Saimon2k</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/Taky.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/Taky">Taky</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/WDM.jpeg" height="24" align="absmiddle"> WDM</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/dector.jpeg" height="24" align="absmiddle"> dector</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/alexbnd1.jpeg" height="24" align="absmiddle"> alexbnd1</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/DoubleDragon.jpeg" height="24" align="absmiddle"> DoubleDragon</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/safonik.jpeg" height="24" align="absmiddle"> safonik</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/child_ron.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/child_ron">child_ron</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/Skirkyn.jpeg" height="24" align="absmiddle"> Skirkyn</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/ost.jpeg" height="24" align="absmiddle"> ost</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/vrnroman.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/vrnroman">vrnroman</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/Skrakan.jpeg" height="24" align="absmiddle"> Skrakan</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/vkozak.jpeg" height="24" align="absmiddle"> vkozak</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/Remez.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/Remez">Remez</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/pu6istiy.jpeg" height="24" align="absmiddle"> pu6istiy</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/maxim1987.jpeg" height="24" align="absmiddle"> maxim1987</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/nikola1.jpeg" height="24" align="absmiddle"> nikola1</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/krieger_.jpeg" height="24" align="absmiddle"> krieger_</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/dzvinka.jpeg" height="24" align="absmiddle"> dzvinka</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/VasylZ.jpeg" height="24" align="absmiddle"> VasylZ</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/KateAlex.jpeg" height="24" align="absmiddle"> KateAlex</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/amazurok.jpeg" height="24" align="absmiddle"> amazurok</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/zheng_bai_qi.jpeg" height="24" align="absmiddle"> zheng_bai_qi</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/ksever.jpeg" height="24" align="absmiddle"> ksever</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/strange_bear.jpeg" height="24" align="absmiddle"> strange_bear</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/NordLad.jpeg" height="24" align="absmiddle"> NordLad</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/fdman.jpeg" height="24" align="absmiddle"> fdman</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/R2D2.jpeg" height="24" align="absmiddle"> R2D2</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/michalerain.jpeg" height="24" align="absmiddle"> michalerain</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/tu_101.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/tu_101">tu_101</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/sick_puppie.jpeg" height="24" align="absmiddle"> sick_puppie</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/Sekt104.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/Sekt104">Sekt104</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/zy0rg.jpeg" height="24" align="absmiddle"> zy0rg</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/Demonic.jpeg" height="24" align="absmiddle"> Demonic</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/ivanlucky.jpeg" height="24" align="absmiddle"> ivanlucky</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/Nickname_53.jpeg" height="24" align="absmiddle"> Nickname_53</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/xZ_.jpeg" height="24" align="absmiddle"> xZ_</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/Quver.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/Quver">Quver</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/alex_skn.jpeg" height="24" align="absmiddle"> alex_skn</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/piggygoose.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/piggygoose">piggygoose</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/inna5.jpeg" height="24" align="absmiddle"> inna5</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/enikeev.jpeg" height="24" align="absmiddle"> enikeev</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/Shved90.jpeg" height="24" align="absmiddle"> Shved90</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/holy_kachok.jpeg" height="24" align="absmiddle"> holy_kachok</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/koma.jpeg" height="24" align="absmiddle"> koma</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/St1G.jpeg" height="24" align="absmiddle"> St1G</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/royksopp.jpeg" height="24" align="absmiddle"> royksopp</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/smr.jpeg" height="24" align="absmiddle"> smr</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/GrygorenkoRoman.jpeg" height="24" align="absmiddle"> GrygorenkoRoman</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/Chessur.jpeg" height="24" align="absmiddle"> Chessur</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/Max64.jpeg" height="24" align="absmiddle"> Max64</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/publo.jpeg" height="24" align="absmiddle"> publo</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/vladuxa.jpeg" height="24" align="absmiddle"> vladuxa</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/Gatonegro.jpeg" height="24" align="absmiddle"> Gatonegro</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/SichikUA.jpeg" height="24" align="absmiddle"> SichikUA</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/GalaranF.jpeg" height="24" align="absmiddle"> GalaranF</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/Wild_klas.jpeg" height="24" align="absmiddle"> Wild_klas</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/sivakpavel.jpeg" height="24" align="absmiddle"> sivakpavel</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/bardakov.jpeg" height="24" align="absmiddle"> bardakov</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/Asdfgh.jpeg" height="24" align="absmiddle"> Asdfgh</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/Metalex.jpeg" height="24" align="absmiddle"> Metalex</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/webnurka.jpeg" height="24" align="absmiddle"> webnurka</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/VeLKerr.jpeg" height="24" align="absmiddle"> VeLKerr</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/timspinregs.jpeg" height="24" align="absmiddle"> timspinregs</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/musclexboy.jpeg" height="24" align="absmiddle"> musclexboy</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/heroin.jpeg" height="24" align="absmiddle"> heroin</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/Riot_Sam.jpeg" height="24" align="absmiddle"> Riot_Sam</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/dezmond.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/dezmond">dezmond</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/tempest.jpeg" height="24" align="absmiddle"> tempest</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/Raido_ddr.jpeg" height="24" align="absmiddle"> Raido_ddr</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/ak_brest.jpeg" height="24" align="absmiddle"> ak_brest</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/atretyakov.jpeg" height="24" align="absmiddle"> atretyakov</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/DunanNat.jpeg" height="24" align="absmiddle"> DunanNat</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/Bagzoid.png" height="24" align="absmiddle"> Bagzoid</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/Ksaron.jpeg" height="24" align="absmiddle"> Ksaron</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/Darwind_.jpeg" height="24" align="absmiddle"> Darwind_</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/siriusbetta.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/siriusbetta">siriusbetta</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/authentikos.jpeg" height="24" align="absmiddle"> authentikos</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/combat1988.jpeg" height="24" align="absmiddle"> combat1988</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/Vitaliy21.jpeg" height="24" align="absmiddle"> Vitaliy21</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/randriyanov.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/randriyanov">randriyanov</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/edivaliev.jpeg" height="24" align="absmiddle"> edivaliev</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/frederique.jpeg" height="24" align="absmiddle"> frederique</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/LuxCore.png" height="24" align="absmiddle"> LuxCore</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/polinkot.jpeg" height="24" align="absmiddle"> polinkot</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/andru4j.jpeg" height="24" align="absmiddle"> andru4j</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/Selfing.jpeg" height="24" align="absmiddle"> Selfing</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/Russa.jpeg" height="24" align="absmiddle"> Russa</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/SamTan.jpeg" height="24" align="absmiddle"> SamTan</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/jacksolovey.jpeg" height="24" align="absmiddle"> jacksolovey</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/sergss2002.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/sergss2002">sergss2002</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/lyapizz.jpeg" height="24" align="absmiddle"> lyapizz</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/ilko1997.jpeg" height="24" align="absmiddle"> ilko1997</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/winner.jpeg" height="24" align="absmiddle"> winner</nobr>&nbsp;&nbsp;
+            </div>
+</div>
+<div style="margin-top:15px;" id="shareThis"></div>
+<div id="post-comments"><div class="comments"><div class="topic-panel" id="comments-top"><div class="total">Комментариев: 7</div><a class="order-link" href="">↑</a><a href="" class="refresh-link">обновить</a></div><div id="5767346184265135642" class="comment-block"><div class="head"><a href="#5767346184265135642" class="link">#</a><span class="author"><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/afigegoznaet.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;afigegoznaet</span><span class="created">27.04.2015 | 20:11:48</span></div><div class="text">У меня глупый вопрос:<br>А что тут происходит?:<br>return (Type) Enum.valueOf(t / T$Type, name);</div><a href="" class="reply-link">ответить</a><div class="sub-comments"></div></div><div id="1682375266405640167" class="comment-block"><div class="head"><a href="#1682375266405640167" class="link">#</a><span class="author"><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/Cyanide.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;Cyanide</span><span class="created">14.10.2013 | 16:15:58</span></div><div class="text">не понятно как использовать  метод определённый в элементе enum'a. Вот как в примере:  DOWN { <br>        public Direction opposite() { return UP; } <br>   }; <br>Когда вызывается данный метод? В момент вызова экземпляра перечисления(DOWN)?</div><a href="" class="reply-link">ответить</a><div class="sub-comments"><div id="5730606117017053281" class="comment-block"><div class="head"><a href="#5730606117017053281" class="link">#</a><span class="author"><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/yohan.png" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;<a href="http://www.quizful.net/user/yohan" rel="nofollow">yohan</a></span><span class="created">14.10.2013 | 16:41:01</span></div><div class="text">Можно вызвать так:<br>Direction.DOWN.opposite() <br>или так:<br>Direction d = ...<br>d.opposite()</div><a href="" class="reply-link">ответить</a><div class="sub-comments"></div></div></div></div><div id="3770632834985476718" class="comment-block"><div class="head"><a href="#3770632834985476718" class="link">#</a><span class="author"><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/piggygoose.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;<a href="http://www.quizful.net/user/piggygoose" rel="nofollow">piggygoose</a></span><span class="created">05.10.2012 | 18:18:15</span></div><div class="text">Я только что видел метод valueOf() в java.lang.Enum (использовал метод getDeclaredMethods() с библиотеки java.lang.reflect):<br> "public static java.lang.Enum valueOf(java.lang.Class, java.lang.String);"<br>__________________________________________________________<br>java version "1.7.0_03"<br>Java(TM) SE Runtime Environment (build 1.7.0_03-b05)<br>Java HotSpot(TM) 64-Bit Server VM (build 22.1-b02, mixed mode)</div><a href="" class="reply-link">ответить</a><div class="sub-comments"><div id="3938068360113430153" class="comment-block"><div class="head"><a href="#3938068360113430153" class="link">#</a><span class="author"><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/ksp107.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;ksp107</span><span class="created">05.10.2012 | 19:35:12</span></div><div class="text">Автор имел в виду, что в классе java.lang.Enum нет метода valueOf() с одним строковым параметром.</div><a href="" class="reply-link">ответить</a><div class="sub-comments"></div></div></div></div><div id="520011761611013092" class="comment-block"><div class="head"><a href="#520011761611013092" class="link">#</a><span class="author"><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/balda_player.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;balda_player</span><span class="created">19.03.2012 | 14:20:07</span></div><div class="text">Малюсенький фикс к хорошей статье: по-русски "предистория" пишется через "ы".<br>http://slovari.yandex.ru/%D0%BF%D1%80%D0%B5%D0%B4%D1%8B%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F/%D0%B7%D0%BD%D0%B0%D1%87%D0%B5%D0%BD%D0%B8%D0%B5/</div><a href="" class="reply-link">ответить</a><div class="sub-comments"></div></div><div id="5958629879185934675" class="comment-block"><div class="head"><a href="#5958629879185934675" class="link">#</a><span class="author"><img src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/palihov.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;palihov</span><span class="created">17.09.2011 | 20:37:53</span></div><div class="text">Статья отличная!<br>Стоит добавить, что:<br>1. Коллекции и карты для работы с enum:<br> - EnumSet (EnumSet.of())<br> - EnumMap<br>2. enum могут реализовывать интерфейсы<br>    enum Test implements Runnable {<br>        K;<br>        @Override<br>        public void run() {}<br>    }<br>3. Получить enum по имени можно и так java.lang.Enum.valueOf(Test .class, "K");<br>4. Автор статьи прав, посмотрите класс java.lang.Enum найдете ответы на вопросы:<br>- можно ли для enum использовать механизм клонирования (метод clone());<br>- какие методы установлены с модификатором final;<br>5. Статические блоки инициализации и переменные могут располагаться только ниже объявления самих экземпляров класса.</div><a href="" class="reply-link">ответить</a><div class="sub-comments"></div></div><form class="comment-form"><div class="title">Добавить комментарий</div><div style="display: none;" class="errors"></div><textarea></textarea><div class="buttons"><button>Отправить</button> </div></form></div></div>
+<style>@import '/comments/comments.css?1';</style>
+
+<script src="%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%20%28java%20enum%29_files/comments.js"></script>
+<script>document.getElementById('post-comments').appendChild(new Comments.Panel('post/java_enums', {onLoad:Markup}));</script>
+
+<script type="text/javascript">
+    ShareThis(jQuery("#shareThis"), window.location, jQuery("title").html(), jQuery('head meta[name=description]').attr('Content'));
+</script>
+            <br class="clear">
+        </div>
+        <br class="clear">
+    </div>
+
+    <div id="footer">
+        <b></b>
+        <a class="forteko" target="_blank" href="http://www.forteko.com/" title="Forteko"></a>
+        
+        <span class="social">
+            <a class="icon-twitter" target="_blank" rel="nofollow" href="http://www.twitter.com/quizful" title="Twitter"></a>
+            <a class="icon-facebook" target="_blank" rel="nofollow" href="http://www.facebook.com/Quizful" title="Facebook"></a>
+            <a class="icon-vkontakte" target="_blank" rel="nofollow" href="http://vkontakte.ru/club8978114" title="VKontakte"></a>
+            <span class="title">Наши представительства</span>
+        </span>
+    </div>
+    <script type="text/javascript">
+    if (window.location.host == 'www.quizful.net') {
+        var pageTracker = _gat._getTracker("UA-199293-2");
+        pageTracker._initData();
+        pageTracker._trackPageview();
+
+        $("#footer .group a").click(function() { pageTracker._trackPageview('/' + this.className); });
+    }
+    </script>
+
+
+</body></html>

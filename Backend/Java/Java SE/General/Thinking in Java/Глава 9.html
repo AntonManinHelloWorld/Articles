@@ -1,0 +1,1551 @@
+<!DOCTYPE html>
+<html dir="ltr" class="client-nojs" lang="ru"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8"><title>Глава 9 Thinking in Java 4th edition — WikiJava: Wiki of Java: викифицированные книги и статьи по Java</title>
+<meta name="generator" content="MediaWiki 1.22.2">
+<link rel="shortcut icon" href="http://wikijava.it-cache.net/favicon.ico">
+<link rel="search" type="application/opensearchdescription+xml" href="http://wikijava.it-cache.net/opensearch_desc.php" title="WikiJava: Wiki of Java: викифицированные книги и статьи по Java (ru)">
+<link rel="EditURI" type="application/rsd+xml" href="http://wikijava.it-cache.net/api.php@action=rsd">
+<link rel="copyright" href="http://www.gnu.org/copyleft/fdl.html">
+<link rel="alternate" type="application/atom+xml" title="WikiJava: Wiki of Java: викифицированные книги и статьи по Java&nbsp;— Atom-лента" href="http://wikijava.it-cache.net/index.php@title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F%253A%D0%A1%D0%B2%D0%B5%D0%B6%D0%B8%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8&amp;feed=atom">
+<link rel="stylesheet" href="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%209_files/style3.css">
+<meta name="ResourceLoaderDynamicStyles" content="">
+<style>a:lang(ar),a:lang(ckb),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}
+/* cache key: wjava2-wj_:resourceloader:filter:minify-css:7:32e7e505403c81fe0a24e297ef166436 */</style>
+
+<script src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%209_files/style1.css"></script><script src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%209_files/load.html"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Глава_9_Thinking_in_Java_4th_edition","wgTitle":"Глава 9 Thinking in Java 4th edition","wgCurRevisionId":33,"wgRevisionId":33,"wgArticleId":23,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Книги","Java","Страницы с неработающими файловыми ссылками"],"wgBreakFrames":false,"wgPageContentLanguage":"ru","wgPageContentModel":"wikitext","wgSeparatorTransformTable":[",\t."," \t,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"],"wgMonthNamesShort":["","янв","фев","мар","апр","май","июн","июл","авг","сен","окт","ноя","дек"],"wgRelevantPageName":"Глава_9_Thinking_in_Java_4th_edition","wgIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgVectorEnabledModules":{"collapsiblenav":true,"collapsibletabs":true,"editwarning":true,"expandablesearch":false,"footercleanup":false,"sectioneditlinks":false,"simplesearch":true,"experiments":true}});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function(){mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"vector-simplesearch":1,"watchcreations":0,"watchdefault":0,"watchdeletion":0,"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,
+"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"useeditwarning":1,"prefershttps":1,"language":"ru","variant-gan":"gan","variant-iu":"iu","variant-kk":"kk","variant-ku":"ku","variant-shi":"shi","variant-sr":"sr","variant-tg":"tg","variant-uz":"uz","variant-zh":"zh","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false,"variant":"ru"});},{},{});mw.loader.implement("user.tokens",function(){mw.user.tokens.set({"editToken":"+\\","patrolToken":false,"watchToken":false});},{},{});
+/* cache key: wjava2-wj_:resourceloader:filter:minify-js:7:07bb1f4d2452379e70abca47c4cde6d9 */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax","skins.vector.js"]);
+}</script>
+<style type="text/css">/*<![CDATA[*/
+.source-java5 {line-height: normal;}
+.source-java5 li, .source-java5 pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for java5
+ * CSS class: source-java5, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.java5.source-java5 .de1, .java5.source-java5 .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;font-family: monospace, monospace;}
+.java5.source-java5  {font-family:monospace;}
+.java5.source-java5 .imp {font-weight: bold; color: red;}
+.java5.source-java5 li, .java5.source-java5 .li1 {font-weight: normal; vertical-align:top;}
+.java5.source-java5 .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.java5.source-java5 .li2 {font-weight: bold; vertical-align:top;}
+.java5.source-java5 .kw1 {color: #000000;  font-weight: bold;}
+.java5.source-java5 .kw2 {color: #000000; font-weight: bold;}
+.java5.source-java5 .kw3 {color: #006600; font-weight: bold;}
+.java5.source-java5 .kw4 {color: #006600; font-weight: bold;}
+.java5.source-java5 .kw5 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw6 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw7 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw8 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw9 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw10 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw11 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw12 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw13 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw14 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw15 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw16 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw17 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw18 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw19 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw20 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw21 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw22 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw23 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw24 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw25 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw26 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw27 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw28 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw29 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw30 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw31 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw32 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw33 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw34 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw35 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw36 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw37 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw38 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw39 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw40 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw41 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw42 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw43 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw44 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw45 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw46 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw47 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw48 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw49 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw50 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw51 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw52 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw53 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw54 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw55 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw56 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw57 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw58 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw59 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw60 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw61 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw62 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw63 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw64 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw65 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw66 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw67 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw68 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw69 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw70 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw71 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw72 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw73 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw74 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw75 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw76 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw77 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw78 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw79 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw80 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw81 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw82 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw83 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw84 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw85 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw86 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw87 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw88 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw89 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw90 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw91 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw92 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw93 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw94 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw95 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw96 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw97 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw98 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw99 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw100 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw101 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw102 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw103 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw104 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw105 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw106 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw107 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw108 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw109 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw110 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw111 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw112 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw113 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw114 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw115 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw116 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw117 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw118 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw119 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw120 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw121 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw122 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw123 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw124 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw125 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw126 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw127 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw128 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw129 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw130 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw131 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw132 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw133 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw134 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw135 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw136 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw137 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw138 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw139 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw140 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw141 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw142 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw143 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw144 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw145 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw146 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw147 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw148 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw149 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw150 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw151 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw152 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw153 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw154 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw155 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw156 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw157 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw158 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw159 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw160 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw161 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw162 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw163 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw164 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw165 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw166 {color: #003399; font-weight: bold;}
+.java5.source-java5 .co1 {color: #666666; font-style: italic;}
+.java5.source-java5 .co2 {color: #006699;}
+.java5.source-java5 .co3 {color: #008000; font-style: italic; font-weight: bold;}
+.java5.source-java5 .coMULTI {color: #666666; font-style: italic;}
+.java5.source-java5 .es0 {color: #000099; font-weight: bold;}
+.java5.source-java5 .br0 {color: #009900;}
+.java5.source-java5 .sy0 {color: #339933;}
+.java5.source-java5 .st0 {color: #0000ff;}
+.java5.source-java5 .nu0 {color: #cc66cc;}
+.java5.source-java5 .me1 {color: #006633;}
+.java5.source-java5 .me2 {color: #006633;}
+.java5.source-java5 .ln-xtra, .java5.source-java5 li.ln-xtra, .java5.source-java5 div.ln-xtra {background-color: #ffc;}
+.java5.source-java5 span.xtra { display:block; }
+
+/*]]>*/
+</style><!--[if lt IE 7]><style type="text/css">body{behavior:url("/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Глава_9_Thinking_in_Java_4th_edition skin-vector action-view vector-animateLayout">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<div id="content" class="mw-body" role="main">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<h1 id="firstHeading" class="firstHeading" lang="ru"><span dir="auto">Глава 9 Thinking in Java 4th edition</span></h1>
+			<div id="bodyContent">
+								<div id="siteSub">Материал из WikiJava: Wiki of Java: викифицированные книги и статьи по Java</div>
+								<div id="contentSub"></div>
+												<div id="jump-to-nav" class="mw-jump">
+					Перейти к:					<a href="http://wikijava.it-cache.net/index.php@title=Glava_9_Thinking_in_Java_4th_edition.html#mw-navigation">навигация</a>, 					<a href="http://wikijava.it-cache.net/index.php@title=Glava_9_Thinking_in_Java_4th_edition.html#p-search">поиск</a>
+				</div>
+				<div id="mw-content-text" dir="ltr" class="mw-content-ltr" lang="ru"><table style="clear: right; margin-bottom: .5em; float: right; padding: .5em 0 .8em 1.4em; background: none; width: auto;" cellpadding="0" cellspacing="0">
+<tbody><tr>
+<td> <div id="toc" class="toc"><div id="toctitle"><h2>Содержание</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="http://wikijava.it-cache.net/index.php@title=Glava_9_Thinking_in_Java_4th_edition.html#.D0.98.D0.9D.D0.A2.D0.95.D0.A0.D0.A4.D0.95.D0.99.D0.A1.D0.AB"><span class="tocnumber">1</span> <span class="toctext"><b>ИНТЕРФЕЙСЫ</b></span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="http://wikijava.it-cache.net/index.php@title=Glava_9_Thinking_in_Java_4th_edition.html#.D0.90.D0.B1.D1.81.D1.82.D1.80.D0.B0.D0.BA.D1.82.D0.BD.D1.8B.D0.B5_.D0.BA.D0.BB.D0.B0.D1.81.D1.81.D1.8B_.D0.B8_.D0.BC.D0.B5.D1.82.D0.BE.D0.B4.D1.8B"><span class="tocnumber">1.1</span> <span class="toctext">Абстрактные классы и методы</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="http://wikijava.it-cache.net/index.php@title=Glava_9_Thinking_in_Java_4th_edition.html#.D0.98.D0.BD.D1.82.D0.B5.D1.80.D1.84.D0.B5.D0.B9.D1.81.D1.8B"><span class="tocnumber">1.2</span> <span class="toctext">Интерфейсы</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="http://wikijava.it-cache.net/index.php@title=Glava_9_Thinking_in_Java_4th_edition.html#.D0.9E.D1.82.D0.B4.D0.B5.D0.BB.D0.B5.D0.BD.D0.B8.D0.B5_.D0.B8.D0.BD.D1.82.D0.B5.D1.80.D1.84.D0.B5.D0.B9.D1.81.D0.B0_.D0.BE.D1.82_.D1.80.D0.B5.D0.B0.D0.BB.D0.B8.D0.B7.D0.B0.D1.86.D0.B8.D0.B8"><span class="tocnumber">1.3</span> <span class="toctext">Отделение интерфейса от реализации</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="http://wikijava.it-cache.net/index.php@title=Glava_9_Thinking_in_Java_4th_edition.html#.C2.AB.D0.9C.D0.BD.D0.BE.D0.B6.D0.B5.D1.81.D1.82.D0.B2.D0.B5.D0.BD.D0.BD.D0.BE.D0.B5_.D0.BD.D0.B0.D1.81.D0.BB.D0.B5.D0.B4.D0.BE.D0.B2.D0.B0.D0.BD.D0.B8.D0.B5.C2.BB_.D0.B2_Java"><span class="tocnumber">1.4</span> <span class="toctext">«Множественное наследование» в <i>Java</i></span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="http://wikijava.it-cache.net/index.php@title=Glava_9_Thinking_in_Java_4th_edition.html#.D0.A0.D0.B0.D1.81.D1.88.D0.B8.D1.80.D0.B5.D0.BD.D0.B8.D0.B5_.D0.B8.D0.BD.D1.82.D0.B5.D1.80.D1.84.D0.B5.D0.B9.D1.81.D0.B0_.D1.87.D0.B5.D1.80.D0.B5.D0.B7_.D0.BD.D0.B0.D1.81.D0.BB.D0.B5.D0.B4.D0.BE.D0.B2.D0.B0.D0.BD.D0.B8.D0.B5"><span class="tocnumber">1.5</span> <span class="toctext">Расширение интерфейса через наследование</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="http://wikijava.it-cache.net/index.php@title=Glava_9_Thinking_in_Java_4th_edition.html#.D0.9A.D0.BE.D0.BD.D1.84.D0.BB.D0.B8.D0.BA.D1.82.D1.8B_.D0.B8.D0.BC.D0.B5.D0.BD_.D0.BF.D1.80.D0.B8_.D1.81.D0.BE.D0.B2.D0.BC.D0.B5.D1.89.D0.B5.D0.BD.D0.B8.D0.B8_.D0.B8.D0.BD.D1.82.D0.B5.D1.80.D1.84.D0.B5.D0.B9.D1.81.D0.BE.D0.B2"><span class="tocnumber">1.6</span> <span class="toctext">Конфликты имен при совмещении интерфейсов</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="http://wikijava.it-cache.net/index.php@title=Glava_9_Thinking_in_Java_4th_edition.html#.D0.98.D0.BD.D1.82.D0.B5.D1.80.D1.84.D0.B5.D0.B9.D1.81.D1.8B_.D0.BA.D0.B0.D0.BA_.D1.81.D1.80.D0.B5.D0.B4.D1.81.D1.82.D0.B2.D0.BE_.D0.B0.D0.B4.D0.B0.D0.BF.D1.82.D0.B0.D1.86.D0.B8.D0.B8"><span class="tocnumber">1.7</span> <span class="toctext">Интерфейсы как средство адаптации</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="http://wikijava.it-cache.net/index.php@title=Glava_9_Thinking_in_Java_4th_edition.html#.D0.9F.D0.BE.D0.BB.D1.8F_.D0.B2_.D0.B8.D0.BD.D1.82.D0.B5.D1.80.D1.84.D0.B5.D0.B9.D1.81.D0.B0.D1.85"><span class="tocnumber">1.8</span> <span class="toctext">Поля в интерфейсах</span></a>
+<ul>
+<li class="toclevel-3 tocsection-10"><a href="http://wikijava.it-cache.net/index.php@title=Glava_9_Thinking_in_Java_4th_edition.html#.D0.9E.D0.B1.D1.8A.D1.8F.D0.B2.D0.BB.D0.B5.D0.BD.D0.B8.D0.B5_.D0.BF.D0.BE.D0.BB.D0.B5.D0.B9_.D0.B8.D0.BD.D1.82.D0.B5.D1.80.D1.84.D0.B5.D0.B9.D1.81.D0.BE.D0.B2"><span class="tocnumber">1.8.1</span> <span class="toctext">Объявление полей интерфейсов</span></a></li>
+<li class="toclevel-3 tocsection-11"><a href="http://wikijava.it-cache.net/index.php@title=Glava_9_Thinking_in_Java_4th_edition.html#.D0.98.D0.BD.D0.B8.D1.86.D0.B8.D0.B0.D0.BB.D0.B8.D0.B7.D0.B0.D1.86.D0.B8.D1.8F_.D0.BF.D0.BE.D0.BB.D0.B5.D0.B9_.D0.B8.D0.BD.D1.82.D0.B5.D1.80.D1.84.D0.B5.D0.B9.D1.81.D0.BE.D0.B2"><span class="tocnumber">1.8.2</span> <span class="toctext">Инициализация полей интерфейсов</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-12"><a href="http://wikijava.it-cache.net/index.php@title=Glava_9_Thinking_in_Java_4th_edition.html#.D0.92.D0.BB.D0.BE.D0.B6.D0.B5.D0.BD.D0.BD.D1.8B.D0.B5_.D0.B8.D0.BD.D1.82.D0.B5.D1.80.D1.84.D0.B5.D0.B9.D1.81.D1.8B"><span class="tocnumber">1.9</span> <span class="toctext">Вложенные интерфейсы</span></a></li>
+<li class="toclevel-2 tocsection-13"><a href="http://wikijava.it-cache.net/index.php@title=Glava_9_Thinking_in_Java_4th_edition.html#.D0.98.D0.BD.D1.82.D0.B5.D1.80.D1.84.D0.B5.D0.B9.D1.81.D1.8B_.D0.B8_.D1.84.D0.B0.D0.B1.D1.80.D0.B8.D0.BA.D0.B8"><span class="tocnumber">1.10</span> <span class="toctext">Интерфейсы и фабрики</span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="http://wikijava.it-cache.net/index.php@title=Glava_9_Thinking_in_Java_4th_edition.html#.D0.A0.D0.B5.D0.B7.D1.8E.D0.BC.D0.B5"><span class="tocnumber">1.11</span> <span class="toctext">Резюме</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+</td></tr></tbody></table>
+<h1><span class="mw-headline" id=".D0.98.D0.9D.D0.A2.D0.95.D0.A0.D0.A4.D0.95.D0.99.D0.A1.D0.AB"><b>ИНТЕРФЕЙСЫ</b></span></h1>
+<p>Интерфейсы и абстрактные классы улучшают структуру кода и способствуют отделению интерфейса от реализации.
+В традиционных языках программирования такие механизмы не получили особого распространения. Например, в <i>C++</i> существует лишь косвенная поддержка этих концепций. Сам факт их существования в <i>Java</i> показывает, что эти концепции были сочтены достаточно важными для прямой поддержки в языке.
+</p><p>Мы начнем с понятия абстрактного класса, который представляет 
+собой своего рода промежуточную ступень между обычным классом и 
+интерфейсом. Абстрактные классы — важный и необходимый инструмент для 
+создания классов, содержащих нереализованные методы. Применение «чистых»
+ интерфейсов возможно не всегда.
+</p>
+<h2><span class="mw-headline" id=".D0.90.D0.B1.D1.81.D1.82.D1.80.D0.B0.D0.BA.D1.82.D0.BD.D1.8B.D0.B5_.D0.BA.D0.BB.D0.B0.D1.81.D1.81.D1.8B_.D0.B8_.D0.BC.D0.B5.D1.82.D0.BE.D0.B4.D1.8B">Абстрактные классы и методы</span></h2>
+<p>В примере с классами музыкальных инструментов из предыдущей главы методы базового класса <i><b>Instrument</b></i>
+ всегда оставались «фиктивными». Попытка вызова такого метода означала, 
+что в программе произошла какая-то ошибка. Это объяснялось тем, что 
+класс <i><b>Instrument</b></i> создавался для определения общего интерфейса всех классов, производных от него.
+</p><p>В этих примерах общий интерфейс создавался для единственной цели—
+ его разной реализации в каждом производном типе. Интерфейс определяет 
+базовую форму, общность всех производных классов. Такие классы, как <i><b>Instrument</b></i>, также называют абстрактными базовыми классами или просто абстрактными классами
+</p><p>Если в программе определяется абстрактный класс вроде <i><b>Instrument</b></i>,
+ создание объектов такого класса практически всегда бессмысленно. 
+Абстрактный класс создается для работы с набором классов через общий 
+интерфейс.
+</p><p>А если <i><b>Instrument</b></i> только выражает интерфейс, а 
+создание объектов того класса не имеет смысла, вероятно, пользователю 
+лучше запретить создавать такие объекты. Конечно, можно заставить все 
+методы <i><b>Instrument</b></i> выдавать ошибки, но в этом случае 
+получение информации откладывается до стадии выполнения. Ошибки такого 
+рода лучше обнаруживать во время компиляции.
+</p><p>В языке <i>Java</i> для решения подобных задач применяются 
+абстрактные методы. Абстрактный метод незавершен; он состоит только из 
+объявления и не имеет тела. Синтаксис объявления абстрактных методов 
+выглядит так:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> <span class="kw2">abstract</span> <span class="kw3">void</span> f<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span></pre></div></div>
+<p>Класс, содержащий абстрактные методы, называется абстрактным классом. Такие классы тоже должны помечаться ключевым словом <i><b>abstract</b></i> (в противном случае компилятор выдает сообщение об ошибке).
+</p><p>Если вы объявляете класс, производный от абстрактного класса, но 
+хотите иметь возможность создания объектов нового типа, вам придется 
+предоставить определения для всех абстрактных методов базового класса. 
+Если этого не сделать, производный класс тоже останется абстрактным, и 
+компилятор заставит пометить новый класс ключевым словом <i><b>abstract</b></i>.
+</p><p>Можно создавать класс с ключевым словом <i><b>abstract</b></i> 
+даже тогда, когда в нем не имеется ни одного абстрактного метода. Это 
+бывает полезно в ситуациях, где в классе абстрактные методы просто не 
+нужны, но необходимо запретить создание экземпляров этого класса.
+</p><p>Класс <i><b>Instrument</b></i> очень легко можно сделать абстрактным. Только некоторые из его методов станут абстрактными, поскольку объявление класса как <i><b>abstract</b></i> не подразумевает, что все его методы должны быть абстрактными. Вот что по­лучится:
+</p><p><br>
+<a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%97%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B0&amp;wpDestFile=P0222.png" class="new" title="Файл:P0222.png">Файл:P0222.png</a>
+</p><p>А вот как выглядит реализация примера оркестра с использованием абстрактных классов и методов:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: interfaces/music4/Music4.java</span>
+<span class="co1">// Абстрактные классы и методы</span>
+<span class="kw2">package</span> <span class="co2">interfaces.music4</span><span class="sy0">;</span>
+<span class="kw2">import</span> <span class="co2">polymorphism.music.Note</span><span class="sy0">;</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">abstract</span> <span class="kw2">class</span> <span class="kw97">Instrument</span> <span class="br0">{</span>
+  <span class="kw2">private</span> <span class="kw3">int</span> i<span class="sy0">;</span> <span class="co1">// Память выделяется для каждого объекта</span>
+  <span class="kw2">public</span> <span class="kw2">abstract</span> <span class="kw3">void</span> play<span class="br0">(</span>Note n<span class="br0">)</span><span class="sy0">;</span>
+  <span class="kw2">public</span> <span class="kw21">String</span> what<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> <span class="st0">"Instrument"</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">abstract</span> <span class="kw3">void</span> adjust<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> Wind <span class="kw2">extends</span> <span class="kw97">Instrument</span> <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> play<span class="br0">(</span>Note n<span class="br0">)</span> <span class="br0">{</span>
+    print<span class="br0">(</span><span class="st0">"Wind.play() "</span> + n<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw21">String</span> what<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> <span class="st0">"Wind"</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> adjust<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> Percussion <span class="kw2">extends</span> <span class="kw97">Instrument</span> <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> play<span class="br0">(</span>Note n<span class="br0">)</span> <span class="br0">{</span>
+    print<span class="br0">(</span><span class="st0">"Percussion.play() "</span> + n<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw21">String</span> what<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> <span class="st0">"Percussion"</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> adjust<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> Stringed <span class="kw2">extends</span> <span class="kw97">Instrument</span> <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> play<span class="br0">(</span>Note n<span class="br0">)</span> <span class="br0">{</span>
+    print<span class="br0">(</span><span class="st0">"Stringed.play() "</span> + n<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw21">String</span> what<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> <span class="st0">"Stringed"</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> adjust<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+<span class="br0">}</span>	
+&nbsp;
+<span class="kw2">class</span> Brass <span class="kw2">extends</span> Wind <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> play<span class="br0">(</span>Note n<span class="br0">)</span> <span class="br0">{</span>
+    print<span class="br0">(</span><span class="st0">"Brass.play() "</span> + n<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> adjust<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> print<span class="br0">(</span><span class="st0">"Brass.adjust()"</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> Woodwind <span class="kw2">extends</span> Wind <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> play<span class="br0">(</span>Note n<span class="br0">)</span> <span class="br0">{</span>
+    print<span class="br0">(</span><span class="st0">"Woodwind.play() "</span> + n<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw21">String</span> what<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> <span class="st0">"Woodwind"</span><span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span>	
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> Music4 <span class="br0">{</span>
+  <span class="co1">// Работа метода не зависит от фактического типа объекта. </span>
+  <span class="co1">// поэтому типы, добавленные в систему, будут работать правильно:</span>
+  <span class="kw2">static</span> <span class="kw3">void</span> tune<span class="br0">(</span><span class="kw97">Instrument</span> i<span class="br0">)</span> <span class="br0">{</span>
+    <span class="co1">// ...</span>
+    i.<span class="me1">play</span><span class="br0">(</span>Note.<span class="me1">MIDDLE_C</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">static</span> <span class="kw3">void</span> tuneAll<span class="br0">(</span><span class="kw97">Instrument</span><span class="br0">[</span><span class="br0">]</span> e<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw1">for</span><span class="br0">(</span><span class="kw97">Instrument</span> i&nbsp;: e<span class="br0">)</span>
+      tune<span class="br0">(</span>i<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>	
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    <span class="co1">// Восходящее преобразование при добавлении в массив</span>
+    <span class="kw97">Instrument</span><span class="br0">[</span><span class="br0">]</span> orchestra = <span class="br0">{</span>
+      <span class="kw2">new</span> Wind<span class="br0">(</span><span class="br0">)</span>,
+      <span class="kw2">new</span> Percussion<span class="br0">(</span><span class="br0">)</span>,
+      <span class="kw2">new</span> Stringed<span class="br0">(</span><span class="br0">)</span>,
+      <span class="kw2">new</span> Brass<span class="br0">(</span><span class="br0">)</span>,
+      <span class="kw2">new</span> Woodwind<span class="br0">(</span><span class="br0">)</span>
+    <span class="br0">}</span><span class="sy0">;</span>
+    tuneAll<span class="br0">(</span>orchestra<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>Wind.play() MIDDLE_C
+Percussion.play() MIDDLE_C
+Stringed.play() MIDDLE_C
+Brass.play() MIDDLE_C
+Woodwind.play() MIDDLE_C
+</pre>
+<p>&lt;/spoiler&gt;
+Как видите, объем изменений минимален.
+Создавать абстрактные классы и методы полезно, так как они подчеркивают 
+абстрактность класса, а также сообщают и пользователю класса, и 
+компилятору, как следует с ним обходиться. Кроме того, абстрактные 
+классы играют полезную роль при переработке программ, потому что они 
+позволяют легко перемещать общие методы вверх по иерархии наследования.
+</p>
+<h2><span class="mw-headline" id=".D0.98.D0.BD.D1.82.D0.B5.D1.80.D1.84.D0.B5.D0.B9.D1.81.D1.8B">Интерфейсы</span></h2>
+<p>Ключевое слово <i><b>interface</b></i> становится следующим шагом на 
+пути к абстракции. Оно используется для создания полностью абстрактных 
+классов, вообще не имеющих реализации. Создатель интерфейса определяет 
+имена методов, списки аргументов и типы возвращаемых значений, но не 
+тела методов.
+</p><p>Ключевое слово <i><b>interface</b></i> фактически означает: 
+«Именно так должны выглядеть все классы, которые реализуют данный 
+интерфейс». Таким образом, любой код, использующий конкретный интерфейс,
+ знает только то, какие методы вызываются для этого интерфейса, но не 
+более того. Интерфейс определяет своего рода «протокол взаимодействия» 
+между классами. Однако интерфейс представляет собой нечто большее, чем 
+абстрактный класс в своем крайнем проявлении, потому что он позволяет 
+реализовать подобие «множественного наследования» <i>C++</i>: иначе говоря, создаваемый класс может быть преобразован к нескольким базовым типам. 
+</p><p>Чтобы создать интерфейс, используйте ключевое слово <i><b>interface</b></i> вместо <i><b>class</b></i>. Как и в случае с классами, вы можете добавить перед словом <i><b>interface</b></i> спецификатор доступа <i><b>public</b></i>
+ (но только если интерфейс определен в файле, имеющем то же имя) или 
+оставить для него дружественный доступ, если он будет использоваться 
+только в пределах своего пакета. Интерфейс также может содержать поля, 
+но они автоматически являются статическими (<i><b>static</b></i>) и неизменными (<i><b>final</b></i>).
+</p><p>Для создания класса, реализующего определенный интерфейс (или группу интерфейсов), используется ключевое слово <i><b>implements</b></i>.
+ Фактически оно означает: «Интерфейс лишь определяет форму, а сейчас 
+будет показано, как это работает». В остальном происходящее выглядит как
+ обычное наследование. Рассмотрим реализацию на примере иерархии классов
+ <i><b>Instrument</b></i>:
+</p><p><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%97%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B0&amp;wpDestFile=P0225.png" class="new" title="Файл:P0225.png">Файл:P0225.png</a>
+</p><p>Классы <i><b>Woodwind</b></i> и <i><b>Brass</b></i> свидетельствуют, что реализация интерфейса представляет собой обычный класс, от которого можно создавать производные классы.
+</p><p>При описании методов в интерфейсе вы можете явно объявить их открытыми (<i><b>public</b></i>), хотя они являются таковыми даже без спецификатора. Однако при реализации интерфейса его методы должны быть объявлены как <i><b>public</b></i>.
+ В противном случае будет использоваться доступ в пределах пакета, а это
+ приведет к уменьшению уровня доступа во время наследования, что 
+запрещается компилятором <i>Java</i>.
+</p><p>Все сказанное можно увидеть в следующем примере с объектами <i><b>Instrument</b></i>.
+ Заметьте, что каждый метод интерфейса ограничивается простым 
+объявлением; ничего большего компилятор не" разрешит. Вдобавок ни один 
+из методов интер­фейса <i><b>Instrument</b></i> не объявлен со спецификатором <i><b>public</b></i>, но все методы автоматически являются открытыми:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: interfaces/music5/Music5.java</span>
+<span class="co1">// Интерфейсы.</span>
+<span class="kw2">package</span> <span class="co2">interfaces.music5</span><span class="sy0">;</span>
+<span class="kw2">import</span> <span class="co2">polymorphism.music.Note</span><span class="sy0">;</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">interface</span> <span class="kw97">Instrument</span> <span class="br0">{</span>
+  <span class="co1">// Константа времени компиляции:</span>
+  <span class="kw3">int</span> VALUE = <span class="nu0">5</span><span class="sy0">;</span> <span class="co1">// static &amp; final</span>
+  <span class="co1">// Определения методов недопустимы:</span>
+  <span class="kw3">void</span> play<span class="br0">(</span>Note n<span class="br0">)</span><span class="sy0">;</span> <span class="co1">// Автоматически объявлен как public</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> Wind <span class="kw2">implements</span> <span class="kw97">Instrument</span> <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> play<span class="br0">(</span>Note n<span class="br0">)</span> <span class="br0">{</span>
+    print<span class="br0">(</span><span class="kw2">this</span> + <span class="st0">".play() "</span> + n<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw21">String</span> toString<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> <span class="st0">"Wind"</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> adjust<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> print<span class="br0">(</span><span class="kw2">this</span> + <span class="st0">".adjust()"</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> Percussion <span class="kw2">implements</span> <span class="kw97">Instrument</span> <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> play<span class="br0">(</span>Note n<span class="br0">)</span> <span class="br0">{</span>
+    print<span class="br0">(</span><span class="kw2">this</span> + <span class="st0">".play() "</span> + n<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw21">String</span> toString<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> <span class="st0">"Percussion"</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> adjust<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> print<span class="br0">(</span><span class="kw2">this</span> + <span class="st0">".adjust()"</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> Stringed <span class="kw2">implements</span> <span class="kw97">Instrument</span> <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> play<span class="br0">(</span>Note n<span class="br0">)</span> <span class="br0">{</span>
+    print<span class="br0">(</span><span class="kw2">this</span> + <span class="st0">".play() "</span> + n<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw21">String</span> toString<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> <span class="st0">"Stringed"</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> adjust<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> print<span class="br0">(</span><span class="kw2">this</span> + <span class="st0">".adjust()"</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> Brass <span class="kw2">extends</span> Wind <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw21">String</span> toString<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> <span class="st0">"Brass"</span><span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span>	
+&nbsp;
+<span class="kw2">class</span> Woodwind <span class="kw2">extends</span> Wind <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw21">String</span> toString<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> <span class="st0">"Woodwind"</span><span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> Music5 <span class="br0">{</span>
+  <span class="co1">// Работа метода не зависит от фактического типа объекта. </span>
+  <span class="co1">// поэтому типы, добавленные в систему, будут работать правильно:</span>
+  <span class="kw2">static</span> <span class="kw3">void</span> tune<span class="br0">(</span><span class="kw97">Instrument</span> i<span class="br0">)</span> <span class="br0">{</span>
+    <span class="co1">// ...</span>
+    i.<span class="me1">play</span><span class="br0">(</span>Note.<span class="me1">MIDDLE_C</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">static</span> <span class="kw3">void</span> tuneAll<span class="br0">(</span><span class="kw97">Instrument</span><span class="br0">[</span><span class="br0">]</span> e<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw1">for</span><span class="br0">(</span><span class="kw97">Instrument</span> i&nbsp;: e<span class="br0">)</span>
+      tune<span class="br0">(</span>i<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>	
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    <span class="co1">// Восходящее преобразование при добавлении в массив:</span>
+    <span class="kw97">Instrument</span><span class="br0">[</span><span class="br0">]</span> orchestra = <span class="br0">{</span>
+      <span class="kw2">new</span> Wind<span class="br0">(</span><span class="br0">)</span>,
+      <span class="kw2">new</span> Percussion<span class="br0">(</span><span class="br0">)</span>,
+      <span class="kw2">new</span> Stringed<span class="br0">(</span><span class="br0">)</span>,
+      <span class="kw2">new</span> Brass<span class="br0">(</span><span class="br0">)</span>,
+      <span class="kw2">new</span> Woodwind<span class="br0">(</span><span class="br0">)</span>
+    <span class="br0">}</span><span class="sy0">;</span>
+    tuneAll<span class="br0">(</span>orchestra<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>Wind.play() MIDDLE_C
+Percussion.play() MIDDLE_C
+Stringed.play() MIDDLE_C
+Brass.play() MIDDLE_C
+Woodwind.play() MIDDLE_C
+</pre>
+<p>&lt;/spoiler&gt;
+В этой версии присутствует еще одно изменение: метод <i><b>what()</b></i> был заменен на <i><b>toString()</b></i>. Так как метод <i><b>toString()</b></i> входит в корневой класс <i><b>Object</b></i>, его присутствие в интерфейсе не обязательно.
+</p><p>Остальной код работает так же, как прежде. Неважно, проводите ли вы преобразование к «обычному» классу с именем <i><b>Instrument</b></i>, к абстрактному классу с именем <i><b>Instrument</b></i> или к интерфейсу с именем <i><b>Instrument</b></i> — действие будет одинаковым. В методе <i><b>tune()</b></i> ничто не указывает на то, является класс <i><b>Instrument</b></i> «обычным» или абстрактным, или это вообще не класс, а интерфейс.
+</p>
+<h2><span class="mw-headline" id=".D0.9E.D1.82.D0.B4.D0.B5.D0.BB.D0.B5.D0.BD.D0.B8.D0.B5_.D0.B8.D0.BD.D1.82.D0.B5.D1.80.D1.84.D0.B5.D0.B9.D1.81.D0.B0_.D0.BE.D1.82_.D1.80.D0.B5.D0.B0.D0.BB.D0.B8.D0.B7.D0.B0.D1.86.D0.B8.D0.B8">Отделение интерфейса от реализации</span></h2>
+<p>В любой ситуации, когда метод работает с классом вместо интерфейса, 
+вы ограничены использованием этого класса или его субклассов. Если метод
+ должен быть применен к классу, не входящему в эту иерархию, — значит, 
+вам не повезло. Интерфейсы в значительной мере ослабляют это 
+ограничение. В результате код становится более универсальным, пригодным 
+для повторного использования.
+</p><p>Представьте, что у нас имеется класс <i><b>Processor</b></i> с методами <i><b>name()</b></i> и <i><b>process()</b></i>.
+ Последний получает входные данные, изменяет их и выдает результат. 
+Базовый класс расширяется для создания разных специализированных типов <i><b>Processor</b></i>. В следующем примере производные типы изменяют объекты <i><b>String</b></i> (обратите внимание: ковариантными могут быть возвращаемые значения, но не типы аргументов):
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: interfaces/classprocessor/Apply.java</span>
+<span class="kw2">package</span> <span class="co2">interfaces.classprocessor</span><span class="sy0">;</span>
+<span class="kw2">import</span> <span class="co2">java.util.*</span><span class="sy0">;</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">class</span> Processor <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw21">String</span> name<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw2">return</span> getClass<span class="br0">(</span><span class="br0">)</span>.<span class="me1">getSimpleName</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw166">Object</span> process<span class="br0">(</span><span class="kw166">Object</span> input<span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> input<span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span>	
+&nbsp;
+<span class="kw2">class</span> Upcase <span class="kw2">extends</span> Processor <span class="br0">{</span>
+  <span class="kw21">String</span> process<span class="br0">(</span><span class="kw166">Object</span> input<span class="br0">)</span> <span class="br0">{</span> <span class="co1">// Ковариантный возвращаемый тип</span>
+    <span class="kw2">return</span> <span class="br0">(</span><span class="br0">(</span><span class="kw21">String</span><span class="br0">)</span>input<span class="br0">)</span>.<span class="me1">toUpperCase</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> Downcase <span class="kw2">extends</span> Processor <span class="br0">{</span>
+  <span class="kw21">String</span> process<span class="br0">(</span><span class="kw166">Object</span> input<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw2">return</span> <span class="br0">(</span><span class="br0">(</span><span class="kw21">String</span><span class="br0">)</span>input<span class="br0">)</span>.<span class="me1">toLowerCase</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> Splitter <span class="kw2">extends</span> Processor <span class="br0">{</span>
+  <span class="kw21">String</span> process<span class="br0">(</span><span class="kw166">Object</span> input<span class="br0">)</span> <span class="br0">{</span>
+    <span class="co1">// Аргумент split() используется для разбиения строки</span>
+    <span class="kw2">return</span> <span class="kw46">Arrays</span>.<span class="me1">toString</span><span class="br0">(</span><span class="br0">(</span><span class="br0">(</span><span class="kw21">String</span><span class="br0">)</span>input<span class="br0">)</span>.<span class="me1">split</span><span class="br0">(</span><span class="st0">" "</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span>	
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> Apply <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> process<span class="br0">(</span>Processor p, <span class="kw166">Object</span> s<span class="br0">)</span> <span class="br0">{</span>
+    print<span class="br0">(</span><span class="st0">"Using Processor "</span> + p.<span class="me1">name</span><span class="br0">(</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    print<span class="br0">(</span>p.<span class="me1">process</span><span class="br0">(</span>s<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw21">String</span> s =
+    <span class="st0">"Disagreement with beliefs is by definition incorrect"</span><span class="sy0">;</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    process<span class="br0">(</span><span class="kw2">new</span> Upcase<span class="br0">(</span><span class="br0">)</span>, s<span class="br0">)</span><span class="sy0">;</span>
+    process<span class="br0">(</span><span class="kw2">new</span> Downcase<span class="br0">(</span><span class="br0">)</span>, s<span class="br0">)</span><span class="sy0">;</span>
+    process<span class="br0">(</span><span class="kw2">new</span> Splitter<span class="br0">(</span><span class="br0">)</span>, s<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>Using Processor Upcase
+DISAGREEMENT WITH BELIEFS IS BY DEFINITION INCORRECT
+Using Processor Downcase
+disagreement with beliefs is by definition incorrect
+Using Processor Splitter
+[Disagreement, with, beliefs, is, by, definition, incorrect]
+</pre>
+<p>&lt;/spoiler&gt;
+Метод <i><b>Apply.process()</b></i> получает любую разновидность <i><b>Processor</b></i>, применяет ее к <i><b>Object</b></i>, а затем выводит результат. Метод <i><b>split()</b></i> является частью класса <i><b>String</b></i>. Он получает объект <i><b>String</b></i>, разбивает его на несколько фрагментов по ограничи­телям, определяемым переданным аргументом, и возвращает <i><b>String[ ]</b></i>. Здесь он используется как более компактный способ создания массива <i><b>String</b></i>.
+Теперь предположим, что вы обнаружили некое семейство электронных фильтров, которые тоже было бы уместно использовать с методом <i><b>Apply. process()</b></i>:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: interfaces/filters/Waveform.java</span>
+<span class="kw2">package</span> <span class="co2">interfaces.filters</span><span class="sy0">;</span>
+ <span class="kw2">public</span> <span class="kw2">class</span> Waveform <span class="br0">{</span>
+  <span class="kw2">private</span> <span class="kw2">static</span> <span class="kw3">long</span> counter<span class="sy0">;</span>
+  <span class="kw2">private</span> <span class="kw2">final</span> <span class="kw3">long</span> id = counter++<span class="sy0">;</span>
+  <span class="kw2">public</span> <span class="kw21">String</span> toString<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> <span class="st0">"Waveform "</span> + id<span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="co1">//: interfaces/filters/Filter.java</span>
+<span class="kw2">package</span> <span class="co2">interfaces.filters</span><span class="sy0">;</span>
+ <span class="kw2">public</span> <span class="kw2">class</span> <span class="kw51">Filter</span> <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw21">String</span> name<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw2">return</span> getClass<span class="br0">(</span><span class="br0">)</span>.<span class="me1">getSimpleName</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> Waveform process<span class="br0">(</span>Waveform input<span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> input<span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="co1">//: interfaces/filters/LowPass.java</span>
+<span class="kw2">package</span> <span class="co2">interfaces.filters</span><span class="sy0">;</span>
+ <span class="kw2">public</span> <span class="kw2">class</span> LowPass <span class="kw2">extends</span> <span class="kw51">Filter</span> <span class="br0">{</span>
+  <span class="kw3">double</span> cutoff<span class="sy0">;</span>
+  <span class="kw2">public</span> LowPass<span class="br0">(</span><span class="kw3">double</span> cutoff<span class="br0">)</span> <span class="br0">{</span> <span class="kw2">this</span>.<span class="me1">cutoff</span> = cutoff<span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw2">public</span> Waveform process<span class="br0">(</span>Waveform input<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw2">return</span> input<span class="sy0">;</span> <span class="co1">//Фиктивная обработка</span>
+  <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="co1">//: interfaces/filters/HighPass.java</span>
+<span class="kw2">package</span> <span class="co2">interfaces.filters</span><span class="sy0">;</span>
+ <span class="kw2">public</span> <span class="kw2">class</span> HighPass <span class="kw2">extends</span> <span class="kw51">Filter</span> <span class="br0">{</span>
+  <span class="kw3">double</span> cutoff<span class="sy0">;</span>
+  <span class="kw2">public</span> HighPass<span class="br0">(</span><span class="kw3">double</span> cutoff<span class="br0">)</span> <span class="br0">{</span> <span class="kw2">this</span>.<span class="me1">cutoff</span> = cutoff<span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw2">public</span> Waveform process<span class="br0">(</span>Waveform input<span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> input<span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="co1">//: interfaces/filters/BandPass.java</span>
+<span class="kw2">package</span> <span class="co2">interfaces.filters</span><span class="sy0">;</span>
+ <span class="kw2">public</span> <span class="kw2">class</span> BandPass <span class="kw2">extends</span> <span class="kw51">Filter</span> <span class="br0">{</span>
+  <span class="kw3">double</span> lowCutoff, highCutoff<span class="sy0">;</span>
+  <span class="kw2">public</span> BandPass<span class="br0">(</span><span class="kw3">double</span> lowCut, <span class="kw3">double</span> highCut<span class="br0">)</span> <span class="br0">{</span>
+    lowCutoff = lowCut<span class="sy0">;</span>
+    highCutoff = highCut<span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> Waveform process<span class="br0">(</span>Waveform input<span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> input<span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>Класс <i><b>Filter</b></i> содержит те же интерфейсные элементы, что и <i><b>Processor</b></i>, но, поскольку он не является производным от <i><b>Processor</b></i> (создатель класса <i><b>Filter</b></i> и не подозревал, что вы захотите использовать его как <i><b>Processor</b></i>), он не может исполь­зоваться с методом <i><b>Apply.process()</b></i>, хотя это выглядело бы вполне естественно.
+</p><p>Логическая привязка между <i><b>Apply.process()</b></i> и <i><b>Processor</b></i> оказывается более сильной, чем реально необходимо, и это обстоятельство препятствует повторному ис­пользованию кода <i><b>Apply.process()</b></i>. Также обратите внимание, что входные и выходные данные относятся к типу <i><b>Waveform</b></i>.
+Но, если преобразовать класс <i><b>Processor</b></i> в интерфейс, ограничения ослабляются и появляется возможность повторного использования <i><b>Apply.process()</b></i>. Обновленные версии <i><b>Processor</b></i> и <i><b>Apply</b></i> выглядят так:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: interfaces/interfaceprocessor/Processor.java</span>
+<span class="kw2">package</span> <span class="co2">interfaces.interfaceprocessor</span><span class="sy0">;</span>
+ <span class="kw2">public</span> <span class="kw2">interface</span> Processor <span class="br0">{</span>
+  <span class="kw21">String</span> name<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="kw166">Object</span> process<span class="br0">(</span><span class="kw166">Object</span> input<span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="co1">//: interfaces/interfaceprocessor/Apply.java</span>
+<span class="kw2">package</span> <span class="co2">interfaces.interfaceprocessor</span><span class="sy0">;</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+ <span class="kw2">public</span> <span class="kw2">class</span> Apply <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> process<span class="br0">(</span>Processor p, <span class="kw166">Object</span> s<span class="br0">)</span> <span class="br0">{</span>
+    print<span class="br0">(</span><span class="st0">"Using Processor "</span> + p.<span class="me1">name</span><span class="br0">(</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    print<span class="br0">(</span>p.<span class="me1">process</span><span class="br0">(</span>s<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>В первом варианте повторного использования кода клиентские программисты пишут свои классы с поддержкой интерфейса:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: interfaces/interfaceprocessor/StringProcessor.java</span>
+<span class="kw2">package</span> <span class="co2">interfaces.interfaceprocessor</span><span class="sy0">;</span>
+<span class="kw2">import</span> <span class="co2">java.util.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">abstract</span> <span class="kw2">class</span> StringProcessor <span class="kw2">implements</span> Processor<span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw21">String</span> name<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw2">return</span> getClass<span class="br0">(</span><span class="br0">)</span>.<span class="me1">getSimpleName</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">abstract</span> <span class="kw21">String</span> process<span class="br0">(</span><span class="kw166">Object</span> input<span class="br0">)</span><span class="sy0">;</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw21">String</span> s =
+    <span class="st0">"If she weighs the same as a duck, she's made of wood"</span><span class="sy0">;</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    Apply.<span class="me1">process</span><span class="br0">(</span><span class="kw2">new</span> Upcase<span class="br0">(</span><span class="br0">)</span>, s<span class="br0">)</span><span class="sy0">;</span>
+    Apply.<span class="me1">process</span><span class="br0">(</span><span class="kw2">new</span> Downcase<span class="br0">(</span><span class="br0">)</span>, s<span class="br0">)</span><span class="sy0">;</span>
+    Apply.<span class="me1">process</span><span class="br0">(</span><span class="kw2">new</span> Splitter<span class="br0">(</span><span class="br0">)</span>, s<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span>	
+&nbsp;
+<span class="kw2">class</span> Upcase <span class="kw2">extends</span> StringProcessor <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw21">String</span> process<span class="br0">(</span><span class="kw166">Object</span> input<span class="br0">)</span> <span class="br0">{</span> <span class="co1">// Covariant return</span>
+    <span class="kw2">return</span> <span class="br0">(</span><span class="br0">(</span><span class="kw21">String</span><span class="br0">)</span>input<span class="br0">)</span>.<span class="me1">toUpperCase</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> Downcase <span class="kw2">extends</span> StringProcessor <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw21">String</span> process<span class="br0">(</span><span class="kw166">Object</span> input<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw2">return</span> <span class="br0">(</span><span class="br0">(</span><span class="kw21">String</span><span class="br0">)</span>input<span class="br0">)</span>.<span class="me1">toLowerCase</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> Splitter <span class="kw2">extends</span> StringProcessor <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw21">String</span> process<span class="br0">(</span><span class="kw166">Object</span> input<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw2">return</span> <span class="kw46">Arrays</span>.<span class="me1">toString</span><span class="br0">(</span><span class="br0">(</span><span class="br0">(</span><span class="kw21">String</span><span class="br0">)</span>input<span class="br0">)</span>.<span class="me1">split</span><span class="br0">(</span><span class="st0">" "</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>	
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>Using Processor Upcase
+IF SHE WEIGHS THE SAME AS A DUCK, SHE'S MADE OF WOOD
+Using Processor Downcase
+if she weighs the same as a duck, she's made of wood
+Using Processor Splitter
+[If, she, weighs, the, same, as, a, duck,, she's, made, of, wood]
+</pre>
+<p>&lt;/spoiler&gt;
+Впрочем, довольно часто модификация тех классов, которые вы собираетесь 
+использовать, невозможна. Например, в примере с электронными фильтрами 
+библиотека была получена из внешнего источника. В таких ситуациях 
+применяется паттерн «адаптер»: вы пишете код, который получает имеющийся
+ интерфейс, и создаете тот интерфейс, который вам нужен:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: interfaces/interfaceprocessor/FilterProcessor.java</span>
+<span class="kw2">package</span> <span class="co2">interfaces.interfaceprocessor</span><span class="sy0">;</span>
+<span class="kw2">import</span> <span class="co2">interfaces.filters.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">class</span> FilterAdapter <span class="kw2">implements</span> Processor <span class="br0">{</span>
+  <span class="kw51">Filter</span> filter<span class="sy0">;</span>
+  <span class="kw2">public</span> FilterAdapter<span class="br0">(</span><span class="kw51">Filter</span> filter<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw2">this</span>.<span class="me1">filter</span> = filter<span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw21">String</span> name<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> filter.<span class="me1">name</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw2">public</span> Waveform process<span class="br0">(</span><span class="kw166">Object</span> input<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw2">return</span> filter.<span class="me1">process</span><span class="br0">(</span><span class="br0">(</span>Waveform<span class="br0">)</span>input<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span>	
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> FilterProcessor <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    Waveform w = <span class="kw2">new</span> Waveform<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    Apply.<span class="me1">process</span><span class="br0">(</span><span class="kw2">new</span> FilterAdapter<span class="br0">(</span><span class="kw2">new</span> LowPass<span class="br0">(</span><span class="nu0">1.0</span><span class="br0">)</span><span class="br0">)</span>, w<span class="br0">)</span><span class="sy0">;</span>
+    Apply.<span class="me1">process</span><span class="br0">(</span><span class="kw2">new</span> FilterAdapter<span class="br0">(</span><span class="kw2">new</span> HighPass<span class="br0">(</span><span class="nu0">2.0</span><span class="br0">)</span><span class="br0">)</span>, w<span class="br0">)</span><span class="sy0">;</span>
+    Apply.<span class="me1">process</span><span class="br0">(</span>
+      <span class="kw2">new</span> FilterAdapter<span class="br0">(</span><span class="kw2">new</span> BandPass<span class="br0">(</span><span class="nu0">3.0</span>, <span class="nu0">4.0</span><span class="br0">)</span><span class="br0">)</span>, w<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>Using Processor LowPass
+Waveform 0
+Using Processor HighPass
+Waveform 0
+Using Processor BandPass
+Waveform 0
+</pre>
+<p>&lt;/spoiler&gt;
+Конструктор <i><b>FilterAdapter</b></i> получает исходный интерфейс (<i><b>Filter</b></i>) и создает объект с требуемым интерфейсом <i><b>Processor</b></i>. Также обратите внимание на применение делегирования в классе <i><b>FilterAdapter</b></i>.
+Отделение интерфейса от реализации позволяет применять интерфейс к 
+разным реализациям, а следовательно, расширяет возможности повторного 
+использования кода.
+</p>
+<h2><span class="mw-headline" id=".C2.AB.D0.9C.D0.BD.D0.BE.D0.B6.D0.B5.D1.81.D1.82.D0.B2.D0.B5.D0.BD.D0.BD.D0.BE.D0.B5_.D0.BD.D0.B0.D1.81.D0.BB.D0.B5.D0.B4.D0.BE.D0.B2.D0.B0.D0.BD.D0.B8.D0.B5.C2.BB_.D0.B2_Java">«Множественное наследование» в <i>Java</i></span></h2>
+<p>Так как интерфейс по определению не имеет реализации (то есть не 
+обладает памятью для хранения данных), нет ничего, что могло бы помешать
+ совмещению нескольких интерфейсов. Это очень полезная возможность, так 
+как в некоторых ситуациях требуется выразить утверждение: «Икс является и
+ А, и Б, и В одновременно». В <i>C++</i> подобное совмещение интерфейсов
+ нескольких классов называется множественным наследованием, и оно имеет 
+ряд очень неприятных аспектов, поскольку каждый класс может иметь свою 
+реализацию. В <i>Java</i> можно добиться аналогичного эффекта, но, 
+поскольку реализацией обладает всего один класс, проблемы, возникающие 
+при совмещении нескольких интерфейсов в <i>C++</i>, в <i>Java</i> принципиально невозможны:
+</p><p><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%97%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B0&amp;wpDestFile=P0232.png" class="new" title="Файл:P0232.png">Файл:P0232.png</a>
+</p><p>При наследовании базовый класс вовсе не обязан быть абстрактным 
+или «реальным» (без абстрактных методов). Если наследование 
+действительно осуществляется не от интерфейса, то среди прямых «предков»
+ класс может быть только один — все остальные должны быть интерфейсами. 
+Имена интерфейсов перечисляются вслед за ключевым словом <i><b>implements</b></i>
+ и разделяются запятыми. Интерфейсов может быть сколько угодно, причем к
+ ним можно проводить восходящее преобразование. Следующий пример 
+показывает, как создать новый класс на основе реального класса и 
+нескольких интерфейсов:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: interfaces/Adventure.java</span>
+<span class="co1">// Использование нескольких интерфейсов.</span>
+&nbsp;
+<span class="kw2">interface</span> CanFight <span class="br0">{</span>
+  <span class="kw3">void</span> fight<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">interface</span> CanSwim <span class="br0">{</span>
+  <span class="kw3">void</span> swim<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">interface</span> CanFly <span class="br0">{</span>
+  <span class="kw3">void</span> fly<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> ActionCharacter <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> fight<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+<span class="br0">}</span>	
+&nbsp;
+<span class="kw2">class</span> Hero <span class="kw2">extends</span> ActionCharacter
+    <span class="kw2">implements</span> CanFight, CanSwim, CanFly <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> swim<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> fly<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> Adventure <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> t<span class="br0">(</span>CanFight x<span class="br0">)</span> <span class="br0">{</span> x.<span class="me1">fight</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> u<span class="br0">(</span>CanSwim x<span class="br0">)</span> <span class="br0">{</span> x.<span class="me1">swim</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> v<span class="br0">(</span>CanFly x<span class="br0">)</span> <span class="br0">{</span> x.<span class="me1">fly</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> w<span class="br0">(</span>ActionCharacter x<span class="br0">)</span> <span class="br0">{</span> x.<span class="me1">fight</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    Hero h = <span class="kw2">new</span> Hero<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    t<span class="br0">(</span>h<span class="br0">)</span><span class="sy0">;</span> <span class="co1">// Используем объект в качестве типа CanFight</span>
+    u<span class="br0">(</span>h<span class="br0">)</span><span class="sy0">;</span> <span class="co1">// Используем объект в качестве типа CanSwim </span>
+    v<span class="br0">(</span>h<span class="br0">)</span><span class="sy0">;</span> <span class="co1">// Используем объект в качестве типа CanFly</span>
+    w<span class="br0">(</span>h<span class="br0">)</span><span class="sy0">;</span> <span class="co1">// Используем объект в качестве ActionCharacter</span>
+&nbsp;
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>Мы видим, что класс <i><b>Неrо</b></i> сочетает реальный класс<i><b> ActionCharacter</b></i> с интерфейсами <i><b>CanFight, CanSwim</b></i> и <i><b>CanFly</b></i>.
+ При объединении реального класса с интерфейсами на первом месте должен 
+стоять реальный класс, а за ним следуют ин­терфейсы (иначе компилятор 
+выдаст ошибку).
+</p><p>Заметьте, что объявление метода <i><b>fight()</b></i> в интерфейсе <i><b>CanFight</b></i> совпадает с тем, что имеется в классе <i><b>ActionCharacter</b></i>, и поэтому в классе <i><b>Неrо</b></i> нет определения метода <i><b>fight()</b></i>. 
+</p><p>Интерфейсы можно расширять, но при этом получается другой 
+интерфейс. Необходимым условием для создания объектов нового типа 
+является наличие всех определений. Хотя класс <i><b>Неrо</b></i> не имеет явного определения метода <i><b>fight()</b></i>, это определение существует в классе <i><b>ActionCharacter</b></i>, что и делает возможным создание объектов класса <i><b>Неrо</b></i>.
+</p><p>Класс <i><b>Adventure</b></i> содержит четыре метода, которые принимают в качестве аргументов разнообразные интерфейсы и реальный класс. Созданный объект <i><b>Неrо</b></i>
+ передается всем этим методам, а это значит, что выполняется восходящее 
+пре­образование объекта к каждому интерфейсу по очереди. Система 
+интерфейсов <i>Java</i> спроектирована так, что она нормально работает без особых усилий со стороны программиста.
+</p><p>Помните, что главная причина введения в язык интерфейсов 
+представлена в приведенном примере: это возможность выполнять восходящее
+ преобразование к нескольким базовым типам. Вторая причина для 
+использования интерфейсов совпадает с предназначением абстрактных 
+классов: запретить програм- мисту-клиенту создание объектов этого 
+класса.
+</p><p>Возникает естественный вопрос: что лучше — интерфейс или 
+абстрактный класс? Если можно создать базовый класс без определений 
+методов и переменных-членов, выбирайте именно интерфейс, а не 
+абстрактный класс. Вообще говоря, если известно, что нечто будет 
+использоваться как базовый класс, первым делом постарайтесь сделать это 
+«нечто» интерфейсом.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id=".D0.A0.D0.B0.D1.81.D1.88.D0.B8.D1.80.D0.B5.D0.BD.D0.B8.D0.B5_.D0.B8.D0.BD.D1.82.D0.B5.D1.80.D1.84.D0.B5.D0.B9.D1.81.D0.B0_.D1.87.D0.B5.D1.80.D0.B5.D0.B7_.D0.BD.D0.B0.D1.81.D0.BB.D0.B5.D0.B4.D0.BE.D0.B2.D0.B0.D0.BD.D0.B8.D0.B5">Расширение интерфейса через наследование</span></h2>
+<p>Наследование позволяет легко добавить в интерфейс объявления новых 
+методов, а также совместить несколько интерфейсов в одном. В обоих 
+случаях получается новый интерфейс, как показано в следующем примере:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: interfaces/HorrorShow.java</span>
+<span class="co1">// Расширение интерфейса с помощью наследования</span>
+&nbsp;
+<span class="kw2">interface</span> Monster <span class="br0">{</span>
+  <span class="kw3">void</span> menace<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">interface</span> DangerousMonster <span class="kw2">extends</span> Monster <span class="br0">{</span>
+  <span class="kw3">void</span> destroy<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">interface</span> Lethal <span class="br0">{</span>
+  <span class="kw3">void</span> kill<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> DragonZilla <span class="kw2">implements</span> DangerousMonster <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> menace<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> destroy<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+<span class="br0">}</span>	
+&nbsp;
+<span class="kw2">interface</span> Vampire <span class="kw2">extends</span> DangerousMonster, Lethal <span class="br0">{</span>
+  <span class="kw3">void</span> drinkBlood<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> VeryBadVampire <span class="kw2">implements</span> Vampire <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> menace<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> destroy<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> kill<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> drinkBlood<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+<span class="br0">}</span>	
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> HorrorShow <span class="br0">{</span>
+  <span class="kw2">static</span> <span class="kw3">void</span> u<span class="br0">(</span>Monster b<span class="br0">)</span> <span class="br0">{</span> b.<span class="me1">menace</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw2">static</span> <span class="kw3">void</span> v<span class="br0">(</span>DangerousMonster d<span class="br0">)</span> <span class="br0">{</span>
+    d.<span class="me1">menace</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    d.<span class="me1">destroy</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">static</span> <span class="kw3">void</span> w<span class="br0">(</span>Lethal l<span class="br0">)</span> <span class="br0">{</span> l.<span class="me1">kill</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    DangerousMonster barney = <span class="kw2">new</span> DragonZilla<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    u<span class="br0">(</span>barney<span class="br0">)</span><span class="sy0">;</span>
+    v<span class="br0">(</span>barney<span class="br0">)</span><span class="sy0">;</span>
+    Vampire vlad = <span class="kw2">new</span> VeryBadVampire<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    u<span class="br0">(</span>vlad<span class="br0">)</span><span class="sy0">;</span>
+    v<span class="br0">(</span>vlad<span class="br0">)</span><span class="sy0">;</span>
+    w<span class="br0">(</span>vlad<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p><i><b>DangerousMonster</b></i> представляет собой простое расширение <i><b>Monster</b></i>, в результате которого образуется новый интерфейс. Он реализуется классом <i><b>DragonZilla</b></i>.
+</p><p>Синтаксис, использованный в интерфейсе <i><b>Vampire</b></i>, работает только при наследовании интерфейсов. Обычно ключевое слово <i><b>extends</b></i> может использоваться всего с одним классом, но, так как интерфейс можно составить из нескольких других интерфейсов, <i><b>extends</b></i>
+ подходит для написания нескольких имен интерфейсов при создании нового 
+интерфейса. Как нетрудно заметить, имена нескольких интерфейсов 
+разделяются при этом запятыми.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id=".D0.9A.D0.BE.D0.BD.D1.84.D0.BB.D0.B8.D0.BA.D1.82.D1.8B_.D0.B8.D0.BC.D0.B5.D0.BD_.D0.BF.D1.80.D0.B8_.D1.81.D0.BE.D0.B2.D0.BC.D0.B5.D1.89.D0.B5.D0.BD.D0.B8.D0.B8_.D0.B8.D0.BD.D1.82.D0.B5.D1.80.D1.84.D0.B5.D0.B9.D1.81.D0.BE.D0.B2">Конфликты имен при совмещении интерфейсов</span></h2>
+<p>При реализации нескольких интерфейсов может возникнуть небольшая проблема. В только что рассмотренном примере интерфейс <i><b>CanFight</b></i> и класс <i><b>ActionCharacter</b></i> имеют идентичные методы <i><b>void fight()</b></i>.
+ Хорошо, если методы полностью тождественны, но что, если они 
+различаются по сигнатуре или типу возвращаемого значения? Рассмотрим 
+такой пример:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: interfaces/InterfaceCollision.java</span>
+<span class="kw2">package</span> <span class="co2">interfaces</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">interface</span> I1 <span class="br0">{</span> <span class="kw3">void</span> f<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+<span class="kw2">interface</span> I2 <span class="br0">{</span> <span class="kw3">int</span> f<span class="br0">(</span><span class="kw3">int</span> i<span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+<span class="kw2">interface</span> I3 <span class="br0">{</span> <span class="kw3">int</span> f<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+<span class="kw2">class</span> C <span class="br0">{</span> <span class="kw2">public</span> <span class="kw3">int</span> f<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> <span class="nu0">1</span><span class="sy0">;</span> <span class="br0">}</span> <span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> C2 <span class="kw2">implements</span> I1, I2 <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> f<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw3">int</span> f<span class="br0">(</span><span class="kw3">int</span> i<span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> <span class="nu0">1</span><span class="sy0">;</span> <span class="br0">}</span> <span class="co1">// перегружен</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> C3 <span class="kw2">extends</span> C <span class="kw2">implements</span> I2 <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw3">int</span> f<span class="br0">(</span><span class="kw3">int</span> i<span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> <span class="nu0">1</span><span class="sy0">;</span> <span class="br0">}</span> <span class="co1">// перегружен</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> C4 <span class="kw2">extends</span> C <span class="kw2">implements</span> I3 <span class="br0">{</span>
+  <span class="co1">// Идентичны, все нормально:</span>
+  <span class="kw2">public</span> <span class="kw3">int</span> f<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> <span class="nu0">1</span><span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="co1">// Методы различаются только по типу возвращаемого значения:</span>
+<span class="co1">//! class C5 extends C implements I1 {}</span>
+<span class="co1">//! interface I4 extends I1, I3 {}</span></pre></div></div>
+<p>Трудность возникает из-за того, что переопределение, реализация и 
+перегрузка образуют опасную «смесь». Кроме того, перегруженные методы не
+ могут различаться только возвращаемыми значениями. Если убрать 
+комментарий в двух последних строках программы, сообщение об ошибке 
+разъясняет суть происходящего:
+</p>
+<dl>
+<dd><b>InterfaceCollіsion.java.23 f() в <i>C</i> не может реализовать f() в I1; попытка использовать несовместимые возвращаемые типы обнаружено: int требуется- void</b>
+</dd>
+</dl>
+<dl>
+<dd><b>InterfaceCollіsi on java:24- интерфейсы І1 и I1 несовместимы; оба определяют f(), но с различными возвращаемыми типами</b>
+</dd>
+</dl>
+<p>Использование одинаковых имен методов в интерфейсах, предназначенных 
+для совмещения, обычно приводит к запутанному и трудному для чтения 
+коду. Постарайтесь по возможности избегать таких ситуаций.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id=".D0.98.D0.BD.D1.82.D0.B5.D1.80.D1.84.D0.B5.D0.B9.D1.81.D1.8B_.D0.BA.D0.B0.D0.BA_.D1.81.D1.80.D0.B5.D0.B4.D1.81.D1.82.D0.B2.D0.BE_.D0.B0.D0.B4.D0.B0.D0.BF.D1.82.D0.B0.D1.86.D0.B8.D0.B8">Интерфейсы как средство адаптации</span></h2>
+<p>Одной из самых убедительных причин для использования интерфейсов 
+является возможность определения нескольких реализаций для одного 
+интерфейса. В простых ситуациях такая схема принимает вид метода, 
+который при вызове передается интерфейсу; от вас потребуется реализовать
+ интерфейс и передать объект методу.
+</p><p>Соответственно, интерфейсы часто применяются в архитектурном 
+паттерне «Стратегия». Вы пишете метод, выполняющий несколько операций; 
+при вызове метод получает интерфейс, который тоже указываете вы. 
+Фактически вы говорите: «Мой метод может использоваться с любым 
+объектом, удовлетворяющим моему интерфейсу». Метод становится более 
+гибким и универсальным.
+</p><p>Например, конструктор класса <i>Java</i> <i>SE5</i> <i><b>Scanner</b></i> получает интерфейс <i><b>Readable</b></i>. Анализ показывает, что <i><b>Readable</b></i> не является аргументом любого другого метода из стандартной библиотеки <i>Java</i> — этот интерфейс создавался исключительно для <i><b>Scanner</b></i>, чтобы его аргументы не ограничивались определенным классом. При таком подходе можно заставить <i><b>Scanner</b></i> работать с другими типами. Если вы хотите создать новый класс, который может использоваться со <i><b>Scanner</b></i>, реализуйте в нем интерфейс <i><b>Readable</b></i>:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: interfaces/RandomWords.java</span>
+<span class="co1">// Реализация интерфейса для выполнения требований метода</span>
+<span class="kw2">import</span> <span class="co2">java.nio.*</span><span class="sy0">;</span>
+<span class="kw2">import</span> <span class="co2">java.util.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> RandomWords <span class="kw2">implements</span> <span class="kw21">Readable</span> <span class="br0">{</span>
+  <span class="kw2">private</span> <span class="kw2">static</span> <span class="kw46">Random</span> rand = <span class="kw2">new</span> <span class="kw46">Random</span><span class="br0">(</span><span class="nu0">47</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="kw2">private</span> <span class="kw2">static</span> <span class="kw2">final</span> <span class="kw3">char</span><span class="br0">[</span><span class="br0">]</span> capitals =
+    <span class="st0">"ABCDEFGHIJKLMNOPQRSTUVWXYZ"</span>.<span class="me1">toCharArray</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="kw2">private</span> <span class="kw2">static</span> <span class="kw2">final</span> <span class="kw3">char</span><span class="br0">[</span><span class="br0">]</span> lowers =
+    <span class="st0">"abcdefghijklmnopqrstuvwxyz"</span>.<span class="me1">toCharArray</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="kw2">private</span> <span class="kw2">static</span> <span class="kw2">final</span> <span class="kw3">char</span><span class="br0">[</span><span class="br0">]</span> vowels =
+    <span class="st0">"aeiou"</span>.<span class="me1">toCharArray</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="kw2">private</span> <span class="kw3">int</span> count<span class="sy0">;</span>
+  <span class="kw2">public</span> RandomWords<span class="br0">(</span><span class="kw3">int</span> count<span class="br0">)</span> <span class="br0">{</span> <span class="kw2">this</span>.<span class="me1">count</span> = count<span class="sy0">;</span> <span class="br0">}</span>	
+  <span class="kw2">public</span> <span class="kw3">int</span> read<span class="br0">(</span><span class="kw29">CharBuffer</span> cb<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw1">if</span><span class="br0">(</span>count-- == <span class="nu0">0</span><span class="br0">)</span>
+      <span class="kw2">return</span> -<span class="nu0">1</span><span class="sy0">;</span> <span class="co1">// Признак конца входных данных</span>
+    cb.<span class="me1">append</span><span class="br0">(</span>capitals<span class="br0">[</span>rand.<span class="me1">nextInt</span><span class="br0">(</span>capitals.<span class="me1">length</span><span class="br0">)</span><span class="br0">]</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw1">for</span><span class="br0">(</span><span class="kw3">int</span> i = <span class="nu0">0</span><span class="sy0">;</span> i <span class="sy0">&lt;</span> <span class="nu0">4</span><span class="sy0">;</span> i++<span class="br0">)</span> <span class="br0">{</span>
+      cb.<span class="me1">append</span><span class="br0">(</span>vowels<span class="br0">[</span>rand.<span class="me1">nextInt</span><span class="br0">(</span>vowels.<span class="me1">length</span><span class="br0">)</span><span class="br0">]</span><span class="br0">)</span><span class="sy0">;</span>
+      cb.<span class="me1">append</span><span class="br0">(</span>lowers<span class="br0">[</span>rand.<span class="me1">nextInt</span><span class="br0">(</span>lowers.<span class="me1">length</span><span class="br0">)</span><span class="br0">]</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+    cb.<span class="me1">append</span><span class="br0">(</span><span class="st0">" "</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw2">return</span> <span class="nu0">10</span><span class="sy0">;</span>  <span class="co1">// Количество присоединенных символов</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw46">Scanner</span> s = <span class="kw2">new</span> <span class="kw46">Scanner</span><span class="br0">(</span><span class="kw2">new</span> RandomWords<span class="br0">(</span><span class="nu0">10</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw1">while</span><span class="br0">(</span>s.<span class="me1">hasNext</span><span class="br0">(</span><span class="br0">)</span><span class="br0">)</span>
+      <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">(</span>s.<span class="me1">next</span><span class="br0">(</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>Yazeruyac
+Fowenucor
+Goeazimom
+Raeuuacio
+Nuoadesiw
+Hageaikux
+Ruqicibui
+Numasetih
+Kuuuuozog
+Waqizeyoy
+</pre>
+<p>&lt;/spoiler&gt;
+Интерфейс <i><b>Readable</b></i> требует только присутствия метода <i><b>read()</b></i>. Метод <i><b>read()</b></i> либо добавляет данные в аргумент <i><b>CharBuffer</b></i> (это можно сделать несколькими способами; обращайтесь к документации <i><b>CharBuffer</b></i>), либо возвращает <i>-1</i> при отсутствии входных данных.
+</p><p>Допустим, у нас имеется класс, не реализующий интерфейс <i><b>Readable</b></i>, — как заставить его работать с <i><b>Scanner</b></i>? Перед вами пример класса, генерирующего вещественные числа:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: interfaces/RandomDoubles.java</span>
+<span class="kw2">import</span> <span class="co2">java.util.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> RandomDoubles <span class="br0">{</span>
+  <span class="kw2">private</span> <span class="kw2">static</span> <span class="kw46">Random</span> rand = <span class="kw2">new</span> <span class="kw46">Random</span><span class="br0">(</span><span class="nu0">47</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="kw2">public</span> <span class="kw3">double</span> next<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> rand.<span class="me1">nextDouble</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    RandomDoubles rd = <span class="kw2">new</span> RandomDoubles<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw1">for</span><span class="br0">(</span><span class="kw3">int</span> i = <span class="nu0">0</span><span class="sy0">;</span> i <span class="sy0">&lt;</span> <span class="nu0">7</span><span class="sy0">;</span> i ++<span class="br0">)</span>
+      <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">print</span><span class="br0">(</span>rd.<span class="me1">next</span><span class="br0">(</span><span class="br0">)</span> + <span class="st0">" "</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>0.7271157860730044 0.5309454508634242
+0.16020656493302599 0.18847866977771732 0.5166020801268457 
+0.2678662084200585 0.2613610344283964
+</pre>
+<p>&lt;/spoiler&gt;
+Мы снова можем воспользоваться схемой адаптера, но на этот раз 
+адаптируемый класс создается наследованием и реализацией интерфейса <i><b>Readable</b></i>. Псевдомножественное наследование, обеспечиваемое ключевым словом <i><b>interface</b></i>, позволяет создать новый класс, который одновременно является и <i><b>RandomDoubles</b></i>, и <i><b>Readable</b></i>:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: interfaces/AdaptedRandomDoubles.java</span>
+<span class="co1">// Создание адаптера посредством наследования</span>
+<span class="kw2">import</span> <span class="co2">java.nio.*</span><span class="sy0">;</span>
+<span class="kw2">import</span> <span class="co2">java.util.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> AdaptedRandomDoubles <span class="kw2">extends</span> RandomDoubles
+<span class="kw2">implements</span> <span class="kw21">Readable</span> <span class="br0">{</span>
+  <span class="kw2">private</span> <span class="kw3">int</span> count<span class="sy0">;</span>
+  <span class="kw2">public</span> AdaptedRandomDoubles<span class="br0">(</span><span class="kw3">int</span> count<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw2">this</span>.<span class="me1">count</span> = count<span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw3">int</span> read<span class="br0">(</span><span class="kw29">CharBuffer</span> cb<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw1">if</span><span class="br0">(</span>count-- == <span class="nu0">0</span><span class="br0">)</span>
+      <span class="kw2">return</span> -<span class="nu0">1</span><span class="sy0">;</span>
+    <span class="kw21">String</span> result = <span class="kw21">Double</span>.<span class="me1">toString</span><span class="br0">(</span>next<span class="br0">(</span><span class="br0">)</span><span class="br0">)</span> + <span class="st0">" "</span><span class="sy0">;</span>
+    cb.<span class="me1">append</span><span class="br0">(</span>result<span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw2">return</span> result.<span class="me1">length</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>	
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw46">Scanner</span> s = <span class="kw2">new</span> <span class="kw46">Scanner</span><span class="br0">(</span><span class="kw2">new</span> AdaptedRandomDoubles<span class="br0">(</span><span class="nu0">7</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw1">while</span><span class="br0">(</span>s.<span class="me1">hasNextDouble</span><span class="br0">(</span><span class="br0">)</span><span class="br0">)</span>
+      <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">print</span><span class="br0">(</span>s.<span class="me1">nextDouble</span><span class="br0">(</span><span class="br0">)</span> + <span class="st0">" "</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>0.7271157860730044 0.5309454508634242 
+0.16020656493302599 0.18847866977771732 0.5166020801268457 
+0.2678662084200585 0.2613610344283964
+</pre>
+<p>&lt;/spoiler&gt;
+Так как интерфейсы можно добавлять подобным образом только к 
+существующим классам, это означает, что любой класс может быть 
+адаптирован для метода, получающего интерфейс. В этом заключается 
+преимущество интерфейсов перед классами.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id=".D0.9F.D0.BE.D0.BB.D1.8F_.D0.B2_.D0.B8.D0.BD.D1.82.D0.B5.D1.80.D1.84.D0.B5.D0.B9.D1.81.D0.B0.D1.85">Поля в интерфейсах</span></h2>
+<h3><span class="mw-headline" id=".D0.9E.D0.B1.D1.8A.D1.8F.D0.B2.D0.BB.D0.B5.D0.BD.D0.B8.D0.B5_.D0.BF.D0.BE.D0.BB.D0.B5.D0.B9_.D0.B8.D0.BD.D1.82.D0.B5.D1.80.D1.84.D0.B5.D0.B9.D1.81.D0.BE.D0.B2">Объявление полей интерфейсов</span></h3>
+<p>Так как все поля, помещаемые в интерфейсе, <i>автоматически являются статическими (<b>static</b>) и неизменными (<b>final</b>)</i>, объявление <i><b>interface</b></i> хорошо подходит для создания групп постоянных значений. До выхода <i>Java</i> <i>SE5</i> только так можно было имитировать перечисляемый тип enum из языков <i>C</i> и <i>C++</i>:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: interfaces/Months.java</span>
+<span class="co1">// Использование интерфейсов для создания групп констант</span>
+<span class="kw2">package</span> <span class="co2">interfaces</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">interface</span> Months <span class="br0">{</span>
+  <span class="kw3">int</span>
+    JANUARY = <span class="nu0">1</span>, FEBRUARY = <span class="nu0">2</span>, MARCH = <span class="nu0">3</span>,
+    APRIL = <span class="nu0">4</span>, MAY = <span class="nu0">5</span>, JUNE = <span class="nu0">6</span>, JULY = <span class="nu0">7</span>,
+    AUGUST = <span class="nu0">8</span>, SEPTEMBER = <span class="nu0">9</span>, OCTOBER = <span class="nu0">10</span>,
+    NOVEMBER = <span class="nu0">11</span>, DECEMBER = <span class="nu0">12</span><span class="sy0">;</span>
+<span class="br0">}</span></pre></div></div>
+<p>Отметьте стиль <i>Java</i> — использование только заглавных букв (с разделением слов подчеркиванием) для полей со спецификаторами <i><b>static</b></i> и <i><b>final</b></i>, которым присваиваются фиксированные значения на месте описания. Поля интерфейса автоматически являются открытыми (<i><b>public</b></i>), поэтому нет необходимости явно указывать это.
+</p><p>В <i>Java</i> <i>SE5</i> появилось гораздо более мощное и удобное ключевое слово <i><b>enum</b></i>,
+ поэтому надобность в применении интерфейсов для определения констант 
+отпала. Впрочем, эта старая идиома еще может встречаться в некоторых 
+старых программах.
+</p>
+<h3><span class="mw-headline" id=".D0.98.D0.BD.D0.B8.D1.86.D0.B8.D0.B0.D0.BB.D0.B8.D0.B7.D0.B0.D1.86.D0.B8.D1.8F_.D0.BF.D0.BE.D0.BB.D0.B5.D0.B9_.D0.B8.D0.BD.D1.82.D0.B5.D1.80.D1.84.D0.B5.D0.B9.D1.81.D0.BE.D0.B2">Инициализация полей интерфейсов</span></h3>
+<p>Поля, определяемые в интерфейсах, не могут быть «пустыми 
+константами», но могут инициализироваться неконстантными выражениями. 
+Например:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: interfaces/RandVals.java</span>
+<span class="co1">// Инициализация полей интерфейсов </span>
+<span class="co1">// не-константными выражениями</span>
+<span class="kw2">import</span> <span class="co2">java.util.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">interface</span> RandVals <span class="br0">{</span>
+  <span class="kw46">Random</span> RAND = <span class="kw2">new</span> <span class="kw46">Random</span><span class="br0">(</span><span class="nu0">47</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="kw3">int</span> RANDOM_INT = RAND.<span class="me1">nextInt</span><span class="br0">(</span><span class="nu0">10</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="kw3">long</span> RANDOM_LONG = RAND.<span class="me1">nextLong</span><span class="br0">(</span><span class="br0">)</span> <span class="sy0">*</span> <span class="nu0">10</span><span class="sy0">;</span>
+  <span class="kw3">float</span> RANDOM_FLOAT = RAND.<span class="me1">nextLong</span><span class="br0">(</span><span class="br0">)</span> <span class="sy0">*</span> <span class="nu0">10</span><span class="sy0">;</span>
+  <span class="kw3">double</span> RANDOM_DOUBLE = RAND.<span class="me1">nextDouble</span><span class="br0">(</span><span class="br0">)</span> <span class="sy0">*</span> <span class="nu0">10</span><span class="sy0">;</span>
+<span class="br0">}</span></pre></div></div>
+<p>Так как поля являются статическими, они инициализируются при первой 
+загрузке класса, которая происходит при первом обращении к любому из 
+полей интерфейса. Простой тест:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: interfaces/TestRandVals.java</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> TestRandVals <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    print<span class="br0">(</span>RandVals.<span class="me1">RANDOM_INT</span><span class="br0">)</span><span class="sy0">;</span>
+    print<span class="br0">(</span>RandVals.<span class="me1">RANDOM_LONG</span><span class="br0">)</span><span class="sy0">;</span>
+    print<span class="br0">(</span>RandVals.<span class="me1">RANDOM_FLOAT</span><span class="br0">)</span><span class="sy0">;</span>
+    print<span class="br0">(</span>RandVals.<span class="me1">RANDOM_DOUBLE</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>8
+-32032247016559954
+-8.5939291E18
+5.779976127815049
+</pre>
+<p>&lt;/spoiler&gt;
+Конечно, поля не являются частью интерфейса. Данные хранятся в статической области памяти, отведенной для данного интерфейса.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id=".D0.92.D0.BB.D0.BE.D0.B6.D0.B5.D0.BD.D0.BD.D1.8B.D0.B5_.D0.B8.D0.BD.D1.82.D0.B5.D1.80.D1.84.D0.B5.D0.B9.D1.81.D1.8B">Вложенные интерфейсы</span></h2>
+<p>Интерфейсы могут вкладываться в классы и в другие интерфейсы. При этом обнаруживается несколько весьма интересных особенностей:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: interfaces/nesting/NestingInterfaces.java</span>
+<span class="kw2">package</span> <span class="co2">interfaces.nesting</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">class</span> A <span class="br0">{</span>
+  <span class="kw2">interface</span> B <span class="br0">{</span>
+    <span class="kw3">void</span> f<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">class</span> BImp <span class="kw2">implements</span> B <span class="br0">{</span>
+    <span class="kw2">public</span> <span class="kw3">void</span> f<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+  <span class="br0">}</span>
+  <span class="kw2">private</span> <span class="kw2">class</span> BImp2 <span class="kw2">implements</span> B <span class="br0">{</span>
+    <span class="kw2">public</span> <span class="kw3">void</span> f<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">interface</span> C <span class="br0">{</span>
+    <span class="kw3">void</span> f<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">class</span> CImp <span class="kw2">implements</span> C <span class="br0">{</span>
+    <span class="kw2">public</span> <span class="kw3">void</span> f<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+  <span class="br0">}</span>	
+  <span class="kw2">private</span> <span class="kw2">class</span> CImp2 <span class="kw2">implements</span> C <span class="br0">{</span>
+    <span class="kw2">public</span> <span class="kw3">void</span> f<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+  <span class="br0">}</span>
+  <span class="kw2">private</span> <span class="kw2">interface</span> D <span class="br0">{</span>
+    <span class="kw3">void</span> f<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">private</span> <span class="kw2">class</span> DImp <span class="kw2">implements</span> D <span class="br0">{</span>
+    <span class="kw2">public</span> <span class="kw3">void</span> f<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">class</span> DImp2 <span class="kw2">implements</span> D <span class="br0">{</span>
+    <span class="kw2">public</span> <span class="kw3">void</span> f<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> D getD<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> <span class="kw2">new</span> DImp2<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw2">private</span> D dRef<span class="sy0">;</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> receiveD<span class="br0">(</span>D d<span class="br0">)</span> <span class="br0">{</span>
+    dRef = d<span class="sy0">;</span>
+    dRef.<span class="me1">f</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span>	
+&nbsp;
+<span class="kw2">interface</span> E <span class="br0">{</span>
+  <span class="kw2">interface</span> G <span class="br0">{</span>
+    <span class="kw3">void</span> f<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="co1">// Избыточное объявление public:</span>
+  <span class="kw2">public</span> <span class="kw2">interface</span> H <span class="br0">{</span>
+    <span class="kw3">void</span> f<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw3">void</span> g<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="co1">// He может быть private внутри интерфейса:</span>
+  <span class="co1">//! private interface I {}</span>
+<span class="br0">}</span>	
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> NestingInterfaces <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">class</span> BImp <span class="kw2">implements</span> A.<span class="me1">B</span> <span class="br0">{</span>
+    <span class="kw2">public</span> <span class="kw3">void</span> f<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+  <span class="br0">}</span>
+  <span class="kw2">class</span> CImp <span class="kw2">implements</span> A.<span class="me1">C</span> <span class="br0">{</span>
+    <span class="kw2">public</span> <span class="kw3">void</span> f<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+  <span class="br0">}</span>
+  <span class="co1">// Private-интерфейс не может быть реализован нигде, </span>
+  <span class="co1">// кроме как внутри класса, где он был определен:</span>
+  <span class="co1">//! class DImp implements A.D {</span>
+  <span class="co1">//!  public void f() {}</span>
+  <span class="co1">//! }</span>
+  <span class="kw2">class</span> EImp <span class="kw2">implements</span> E <span class="br0">{</span>
+    <span class="kw2">public</span> <span class="kw3">void</span> g<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+  <span class="br0">}</span>
+  <span class="kw2">class</span> EGImp <span class="kw2">implements</span> E.<span class="me1">G</span> <span class="br0">{</span>
+    <span class="kw2">public</span> <span class="kw3">void</span> f<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+  <span class="br0">}</span>
+  <span class="kw2">class</span> EImp2 <span class="kw2">implements</span> E <span class="br0">{</span>
+    <span class="kw2">public</span> <span class="kw3">void</span> g<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+    <span class="kw2">class</span> EG <span class="kw2">implements</span> E.<span class="me1">G</span> <span class="br0">{</span>
+      <span class="kw2">public</span> <span class="kw3">void</span> f<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+    <span class="br0">}</span>
+  <span class="br0">}</span>	
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    A a = <span class="kw2">new</span> A<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="co1">// Нет доступа к A.D:</span>
+    <span class="co1">//! A.D ad = a.getD();</span>
+    <span class="co1">// He возвращает ничего, кроме A.D:</span>
+    <span class="co1">//! A.DImp2 di2 = a.getD();</span>
+    <span class="co1">// Член интерфейса недоступен:</span>
+    <span class="co1">//! a.getD().f();</span>
+    <span class="co1">// Только другой объект класса А может использовать getD():</span>
+    A a2 = <span class="kw2">new</span> A<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    a2.<span class="me1">receiveD</span><span class="br0">(</span>a.<span class="me1">getD</span><span class="br0">(</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>Синтаксис вложения интерфейса в класс достаточно очевиден. Вложенные 
+интерфейсы, как и обычные, могут иметь «пакетную» или открытую (<i><b>public</b></i>) видимость.
+</p><p>Любопытная подробность: интерфейсы могут быть объявлены закрытыми (<i><b>private</b></i>), как видно на примере <i><b>A.D</b></i> (используется тот же синтаксис описания, что и для вложенных классов). Для чего нужен закрытый вложенный интерфейс? 
+</p><p>Может показаться, что такой интерфейс реализуется только в виде закрытого (<i><b>private</b></i>) вложенного класса, подобного <i><b>DImp</b></i>, но <i><b>A.DImp2</b></i> показывает, что он также может иметь форму открытого (<i><b>public</b></i>) класса. Тем не менее класс <i><b>A.DImp2</b></i> «замкнут» сам на себя. Факт реализации <i><b>private</b></i>-интерфейса
+ не может упоминаться в программе, поэтому реализация такого интерфейса —
+ просто способ принудительного определения методов этого интерфейса без 
+добавления информации о дополнительном типе (то есть восходящее 
+преобразование становится невозможным).
+</p><p>Метод <i><b>getD()</b></i> усугубляет сложности, связанные с <i><b>private</b></i>-интерфейсом, — это открытый (<i><b>public</b></i>) метод, возвращающий ссылку на закрытый (<i><b>private</b></i>) интерфейс. Что можно сделать с возвращаемым значением этого метода? В методе <i><b>main()</b></i>
+ мы видим несколько попыток использовать это возвращаемое значение, и 
+все они оказались неудачными. Заставить метод работать можно только 
+одним способом — передать возвращаемое значение некоторому объекту, 
+которому разрешено его использование (в нашем случае это еще один объект
+ <i><b>А</b></i>, у которого имеется необходимый метод <i><b>receiveD()</b></i>).
+</p><p>Интерфейс <i><b>Е</b></i> показывает, что интерфейсы могут быть 
+вложены друг в друга. Впрочем, правила для интерфейсов — в особенности 
+то, что все элементы интерфейса должны быть открытыми (<i><b>public</b></i>),
+ — здесь строго соблюдаются, поэтому интерфейс, вложенный внутрь другого
+ интерфейса, автоматически объявляется открытым и его нельзя сделать 
+закрытым (<i><b>private</b></i>).
+</p><p>Пример <i><b>NestingInterfaces</b></i> демонстрирует 
+разнообразные способы реализации вложенных интерфейсов. Особо стоит 
+отметить тот факт, что при реализации интерфейса вы не обязаны 
+реализовывать вложенные в него интерфейсы. Также закрытые (<i><b>private</b></i>) интерфейсы нельзя реализовать за пределами классов, в которых они описываются.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id=".D0.98.D0.BD.D1.82.D0.B5.D1.80.D1.84.D0.B5.D0.B9.D1.81.D1.8B_.D0.B8_.D1.84.D0.B0.D0.B1.D1.80.D0.B8.D0.BA.D0.B8">Интерфейсы и фабрики</span></h2>
+<p>Предполагается, что интерфейс предоставляет своего рода «шлюз» к 
+нескольким альтернативным реализациям. Типичным способом получения 
+объектов, соответствующих интерфейсу, является паттерн «фабрика». Вместо
+ того, чтобы вызывать конструктор напрямую, вы вызываете метод 
+объекта-фабрики, который предоставляет реализацию интерфейса — в этом 
+случае программный код теоретически отделяется от реализации интерфейса,
+ благодаря чему становится возможной совершенно прозрачная замена 
+реализации. Следующий пример демонстрирует типичную структуру фабрики:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: interfaces/Factories.java</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">interface</span> Service <span class="br0">{</span>
+  <span class="kw3">void</span> method1<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="kw3">void</span> method2<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">interface</span> ServiceFactory <span class="br0">{</span>
+  Service getService<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> Implementation1 <span class="kw2">implements</span> Service <span class="br0">{</span>
+  Implementation1<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span> <span class="co1">// Доступ в пределах пакета</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> method1<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>print<span class="br0">(</span><span class="st0">"Implementation1 method1"</span><span class="br0">)</span><span class="sy0">;</span><span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> method2<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>print<span class="br0">(</span><span class="st0">"Implementation1 method2"</span><span class="br0">)</span><span class="sy0">;</span><span class="br0">}</span>
+<span class="br0">}</span>	
+&nbsp;
+<span class="kw2">class</span> Implementation1Factory <span class="kw2">implements</span> ServiceFactory <span class="br0">{</span>
+  <span class="kw2">public</span> Service getService<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw2">return</span> <span class="kw2">new</span> Implementation1<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> Implementation2 <span class="kw2">implements</span> Service <span class="br0">{</span>
+  Implementation2<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span> <span class="co1">// Доступ в пределах пакета</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> method1<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>print<span class="br0">(</span><span class="st0">"Implementation2 method1"</span><span class="br0">)</span><span class="sy0">;</span><span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> method2<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>print<span class="br0">(</span><span class="st0">"Implementation2 method2"</span><span class="br0">)</span><span class="sy0">;</span><span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> Implementation2Factory <span class="kw2">implements</span> ServiceFactory <span class="br0">{</span>
+  <span class="kw2">public</span> Service getService<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw2">return</span> <span class="kw2">new</span> Implementation2<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span>	
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> Factories <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> serviceConsumer<span class="br0">(</span>ServiceFactory fact<span class="br0">)</span> <span class="br0">{</span>
+    Service s = fact.<span class="me1">getService</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    s.<span class="me1">method1</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    s.<span class="me1">method2</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    serviceConsumer<span class="br0">(</span><span class="kw2">new</span> Implementation1Factory<span class="br0">(</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="co1">// Реализации полностью взаимозаменяемы:</span>
+    serviceConsumer<span class="br0">(</span><span class="kw2">new</span> Implementation2Factory<span class="br0">(</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>Implementation1 method1
+Implementation1 method2
+Implementation2 method1
+Implementation2 method2
+</pre>
+<p>&lt;/spoiler&gt;
+Без применения фабрики вам пришлось бы где-то указать точный тип создаваемого объекта <i><b>Service</b></i>, чтобы он мог вызвать подходящий конструктор.
+</p><p>Но зачем вводить лишний уровень абстракции? Данный паттерн часто 
+применяется при создании библиотек. Допустим, вы создаете систему для 
+игр, которая позволяла бы играть в шашки и шахматы на одной доске:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: interfaces/Games.java</span>
+<span class="co1">// Игровая библиотека с использованием фабрики</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">interface</span> Game <span class="br0">{</span> <span class="kw3">boolean</span> move<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+<span class="kw2">interface</span> GameFactory <span class="br0">{</span> Game getGame<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> Checkers <span class="kw2">implements</span> Game <span class="br0">{</span>
+  <span class="kw2">private</span> <span class="kw3">int</span> moves = <span class="nu0">0</span><span class="sy0">;</span>
+  <span class="kw2">private</span> <span class="kw2">static</span> <span class="kw2">final</span> <span class="kw3">int</span> MOVES = <span class="nu0">3</span><span class="sy0">;</span>
+  <span class="kw2">public</span> <span class="kw3">boolean</span> move<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    print<span class="br0">(</span><span class="st0">"Checkers move "</span> + moves<span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw2">return</span> ++moves <span class="sy0">!</span>= MOVES<span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> CheckersFactory <span class="kw2">implements</span> GameFactory <span class="br0">{</span>
+  <span class="kw2">public</span> Game getGame<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> <span class="kw2">new</span> Checkers<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span>	
+&nbsp;
+<span class="kw2">class</span> Chess <span class="kw2">implements</span> Game <span class="br0">{</span>
+  <span class="kw2">private</span> <span class="kw3">int</span> moves = <span class="nu0">0</span><span class="sy0">;</span>
+  <span class="kw2">private</span> <span class="kw2">static</span> <span class="kw2">final</span> <span class="kw3">int</span> MOVES = <span class="nu0">4</span><span class="sy0">;</span>
+  <span class="kw2">public</span> <span class="kw3">boolean</span> move<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    print<span class="br0">(</span><span class="st0">"Chess move "</span> + moves<span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw2">return</span> ++moves <span class="sy0">!</span>= MOVES<span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> ChessFactory <span class="kw2">implements</span> GameFactory <span class="br0">{</span>
+  <span class="kw2">public</span> Game getGame<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> <span class="kw2">new</span> Chess<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span>	
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> Games <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> playGame<span class="br0">(</span>GameFactory factory<span class="br0">)</span> <span class="br0">{</span>
+    Game s = factory.<span class="me1">getGame</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw1">while</span><span class="br0">(</span>s.<span class="me1">move</span><span class="br0">(</span><span class="br0">)</span><span class="br0">)</span>
+      <span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    playGame<span class="br0">(</span><span class="kw2">new</span> CheckersFactory<span class="br0">(</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    playGame<span class="br0">(</span><span class="kw2">new</span> ChessFactory<span class="br0">(</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>Checkers move 0
+Checkers move 1
+Checkers move 2
+Chess move 0
+Chess move 1
+Chess move 2
+Chess move 3
+</pre>
+<p>&lt;/spoiler&gt;
+Если класс <i><b>Games</b></i> представляет сложный блок кода, такое решение позволит повторно использовать его для разных типов игр.
+В следующей главе будет представлен более элегантный способ реализации фабрик на базе анонимных внутренних классов.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id=".D0.A0.D0.B5.D0.B7.D1.8E.D0.BC.D0.B5">Резюме</span></h2>
+<p>После первого знакомства интерфейсы выглядят так хорошо, что может 
+показаться, будто им всегда следует отдавать предпочтение перед 
+реальными классами. Конечно, в любой ситуации, когда вы создаете класс, 
+вместо него можно создать интерфейс и фабрику.
+</p><p>Многие программисты поддались этому искушению. Тем не менее любая
+ абстракция должна быть мотивирована реальной потребностью. Основное 
+назначение интерфейсов — возможность переработки реализации в случае 
+необходи­мости, а не введение лишнего уровня абстракции вместе с 
+дополнительными сложностями. Дополнительные сложности могут оказаться 
+довольно существенными. А представьте, что кто-то будет вынужден 
+разбираться в вашем коде и в конечном итоге поймет, что интерфейсы были 
+добавлены «на всякий случай», без веских причин — в таких ситуациях все 
+проектирование, которое выполнялось данным разработчиком, начинает 
+выглядеть довольно сомнительно.
+</p><p>В общем случае рекомендуется отдавать предпочтение классам перед 
+интерфейсами. Начните с классов, а если необходимость интерфейсов станет
+ очевидной — переработайте архитектуру своего проекта. Интерфейсы — 
+замечательный инструмент, но ими нередко злоупотребляют.
+
+</p>
+                <p><br>
+                </p>
+                <hr>
+                <p><a href="http://wikijava.it-cache.net/index.php" title="Thinking in Java 4th edition">назад в Оглавление</a>
+                </p><p><br>
+                </p>
+<!-- 
+NewPP limit report
+CPU time usage: 2.241 seconds
+Real time usage: 3.202 seconds
+Preprocessor visited node count: 250/1000000
+Preprocessor generated node count: 542/1000000
+Post‐expand include size: 242/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 3/40
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key wjava2-wj_:pcache:idhash:23-0!*!*!!ru!2!* and timestamp 20140813035108
+ -->
+</div>								<div class="printfooter">
+				Источник — «<a href="http://wikijava.org.ua/index.php?title=Glava_9_Thinking_in_Java_4th_edition&amp;oldid=33">http://wikijava.org.ua/index.php?title=Глава_9_Thinking_in_Java_4th_edition&amp;oldid=33</a>»				</div>
+                                <div id="catlinks" class="catlinks"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%9A%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D0%B8" title="Служебная:Категории">Категории</a>: <ul><li><a href="http://wikijava.org.ua/index.php?title=%D0%9A%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D1%8F:%D0%9A%D0%BD%D0%B8%D0%B3%D0%B8" title="Категория:Книги">Книги</a></li><li><a href="http://wikijava.org.ua/index.php?title=%D0%9A%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D1%8F:Java" title="Категория:Java">Java</a></li><li><a href="http://wikijava.org.ua/index.php?title=%D0%9A%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D1%8F:%D0%A1%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D1%8B_%D1%81_%D0%BD%D0%B5%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D1%8E%D1%89%D0%B8%D0%BC%D0%B8_%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2%D1%8B%D0%BC%D0%B8_%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D0%B0%D0%BC%D0%B8" title="Категория:Страницы с неработающими файловыми ссылками">Страницы с неработающими файловыми ссылками</a></li></ul></div></div>												<div class="visualClear"></div>
+            </div>
+		</div>
+		<div id="mw-navigation">
+			<h2>Навигация</h2>
+			<div id="mw-head">
+				<div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
+	<h3 id="p-personal-label">Персональные инструменты</h3>
+	<ul>
+<li id="pt-login"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%92%D1%85%D0%BE%D0%B4&amp;returnto=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0+9+Thinking+in+Java+4th+edition" title="Здесь можно зарегистрироваться в системе, но это необязательно. [o]" accesskey="o">Представиться системе</a></li>	</ul>
+</div>
+				<div id="left-navigation">
+					<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
+	<h3 id="p-namespaces-label">Пространства имён</h3>
+	<ul>
+					<!--<li  id="ca-nstab-main" class="selected"><span><a href="index.php@title=Glava_9_Thinking_in_Java_4th_edition.html"  title="Просмотр основной страницы [c]" accesskey="c">Статья</a></span></li>-->
+					<!--<li  id="ca-talk" class="new"><span><a href="http://wikijava.org.ua/index.php?title=%D0%9E%D0%B1%D1%81%D1%83%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5:%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_9_Thinking_in_Java_4th_edition&amp;action=edit&amp;redlink=1"  title="Обсуждение основной страницы [t]" accesskey="t">Обсуждение</a></span></li>-->
+			</ul>
+</div>
+<div id="p-variants" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-variants-label">
+	<h3 id="mw-vector-current-variant">
+		</h3>
+	<h3 id="p-variants-label"><span>Варианты</span><a href="http://wikijava.it-cache.net/index.php@title=Glava_9_Thinking_in_Java_4th_edition.html#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+				</div>
+				<div id="right-navigation">
+					<div id="p-views" role="navigation" class="vectorTabs" aria-labelledby="p-views-label">
+	<h3 id="p-views-label">Просмотры</h3>
+	<ul>
+					<!--<li id="ca-view" class="selected"><span><a href="index.php@title=Glava_9_Thinking_in_Java_4th_edition.html" >Читать</a></span></li>-->
+					<!--<li id="ca-viewsource"><span><a href="http://wikijava.org.ua/index.php?title=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_9_Thinking_in_Java_4th_edition&amp;action=edit"  title="Эта страница защищена от изменений, но вы можете посмотреть и скопировать её исходный текст [e]" accesskey="e">Просмотр</a></span></li>-->
+					<!--<li id="ca-history" class="collapsible"><span><a href="http://wikijava.org.ua/index.php?title=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_9_Thinking_in_Java_4th_edition&amp;action=history"  title="Журнал изменений страницы [h]" accesskey="h">История</a></span></li>-->
+			</ul>
+</div>
+<div id="p-cactions" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-cactions-label">
+	<h3 id="p-cactions-label"><span>Действия</span><a href="http://wikijava.it-cache.net/index.php@title=Glava_9_Thinking_in_Java_4th_edition.html#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+<div id="p-search" role="search">
+	<h3><label for="searchInput">Поиск</label></h3>
+	<form action="http://wikijava.org.ua/index.php" id="searchform">
+				<div id="simpleSearch">
+						<input name="search" placeholder="Поиск" title="Искать в WikiJava: Wiki of Java: викифицированные книги и статьи по Java [f]" accesskey="f" id="searchInput">						<button type="submit" name="button" title="Найти страницы, содержащие указанный текст" id="searchButton"><img src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%209_files/search-ltr.asc" alt="Найти" height="13" width="12"></button>								<input name="title" value="Служебная:Поиск" type="hidden">
+		</div>
+	</form>
+</div>
+				</div>
+			</div>
+			<div id="mw-panel">
+					<!--<div id="p-logo" role="banner"><a style="background-image: url(/skins/common/images/wikijava.png);" href="index.php@title=Заглавная_страница.html"  title="Перейти на заглавную страницу"></a></div>-->
+				<div class="portal" role="navigation" id="p-navigation" aria-labelledby="p-navigation-label">
+	<h3 id="p-navigation-label">Навигация</h3>
+	<div class="body">
+        <ul>
+            <li id="n-mainpage-description"><a href="http://wikijava.org.ua/index.php?title=%D0%97%D0%B0%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F_%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0" title="Перейти на заглавную страницу [z]" accesskey="z">Заглавная страница</a></li>
+            <li id="n-recentchanges"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%B2%D0%B5%D0%B6%D0%B8%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8" title="Список последних изменений [r]" accesskey="r">Свежие правки</a></li>
+            <li id="n-.D0.9A.D0.BD.D0.B8.D0.B3.D0.B8-Java"><a href="http://wikijava.org.ua/index.php?title=%D0%9A%D0%BD%D0%B8%D0%B3%D0%B8_Java">Книги Java</a></li>
+            <li id="n-.D0.A1.D1.82.D0.B0.D1.82.D1.8C.D0.B8-Java"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D1%82%D0%B0%D1%82%D1%8C%D0%B8_Java">Статьи Java</a></li>
+            <li id="n-Java-.D0.BF.D0.BE.D1.80.D1.82.D0.B0.D0.BB"><a href="http://wikijava.org.ua/index.php?title=Java-portal">Java портал</a></li>
+            <li id="n-help"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B0:%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5" title="Место, где можно получить справку">Справка</a></li>
+            <li id="n-.D0.A1.D1.82.D0.B0.D1.82.D0.B8.D1.81.D1.82.D0.B8.D0.BA.D0.B0"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%81%D1%82%D0%B8%D0%BA%D0%B0">Статистика</a></li>
+        </ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id="p-tb" aria-labelledby="p-tb-label">
+	<h3 id="p-tb-label">Инструменты</h3>
+	<div class="body">
+		<ul>
+			<li id="t-whatlinkshere"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D1%81%D1%8B%D0%BB%D0%BA%D0%B8_%D1%81%D1%8E%D0%B4%D0%B0/%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_9_Thinking_in_Java_4th_edition" title="Список всех страниц, ссылающихся на данную [j]" accesskey="j">Ссылки сюда</a></li>
+			<li id="t-recentchangeslinked"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%B2%D1%8F%D0%B7%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8/%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_9_Thinking_in_Java_4th_edition" title="Последние изменения в страницах, на которые ссылается эта страница [k]" accesskey="k">Связанные правки</a></li>
+			<li id="t-specialpages"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%BF%D0%B5%D1%86%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D1%8B" title="Список служебных страниц [q]" accesskey="q">Спецстраницы</a></li>
+			<li id="t-print"><a href="http://wikijava.org.ua/index.php?title=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_9_Thinking_in_Java_4th_edition&amp;printable=yes" rel="alternate" title="Версия этой страницы для печати [p]" accesskey="p">Версия для печати</a></li>
+			<li id="t-permalink"><a href="http://wikijava.org.ua/index.php?title=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_9_Thinking_in_Java_4th_edition&amp;oldid=33" title="Постоянная ссылка на эту версию страницы">Постоянная ссылка</a></li>
+			<li id="t-info"><a href="http://wikijava.org.ua/index.php?title=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_9_Thinking_in_Java_4th_edition&amp;action=info">Сведения о странице</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id="p-.D0.94.D1.80.D1.83.D0.B3.D0.B8.D0.B5_.D0.BF.D1.80.D0.BE.D0.B5.D0.BA.D1.82.D1.8B" aria-labelledby="p-.D0.94.D1.80.D1.83.D0.B3.D0.B8.D0.B5_.D0.BF.D1.80.D0.BE.D0.B5.D0.BA.D1.82.D1.8B-label">
+	<h3 id="p-.D0.94.D1.80.D1.83.D0.B3.D0.B8.D0.B5_.D0.BF.D1.80.D0.BE.D0.B5.D0.BA.D1.82.D1.8B-label">Другие проекты</h3>
+	<div class="body">
+		<ul>
+			<li id="n-rastafara.com.ua"><a href="http://rastafara.com.ua/" rel="nofollow">rastafara.com.ua</a></li>
+			<li id="n-rastafara-blog"><a href="http://sergey-rastafara.blogspot.com/" rel="nofollow">rastafara blog</a></li>
+			<li id="n-rastaban"><a href="http://rastaban.com.ua/" rel="nofollow">rastaban</a></li>
+		</ul>
+	</div>
+</div>
+			</div>
+		</div>
+		<div id="footer" role="contentinfo">
+							<ul id="footer-info">
+											<li id="footer-info-lastmod"> Последнее изменение этой страницы: 21:43, 16 февраля 2014.</li>
+											<li id="footer-info-viewcount">К этой странице обращались 2916 раза.</li>
+											<li id="footer-info-copyright">Содержимое доступно по лицензии <a class="external" rel="nofollow" href="http://www.gnu.org/copyleft/fdl.html">GNU Free Documentation License 1.3 или более поздняя</a> (если не указано иное).</li>
+									</ul>
+							<ul id="footer-places">
+											<li id="footer-places-privacy"><a href="http://wikijava.org.ua/index.php?title=WikiJava:_Wiki_of_Java:_%D0%B2%D0%B8%D0%BA%D0%B8%D1%84%D0%B8%D1%86%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5_%D0%BA%D0%BD%D0%B8%D0%B3%D0%B8_%D0%B8_%D1%81%D1%82%D0%B0%D1%82%D1%8C%D0%B8_%D0%BF%D0%BE_Java:%D0%9F%D0%BE%D0%BB%D0%B8%D1%82%D0%B8%D0%BA%D0%B0_%D0%BA%D0%BE%D0%BD%D1%84%D0%B8%D0%B4%D0%B5%D0%BD%D1%86%D0%B8%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D0%B8" title="WikiJava: Wiki of Java: викифицированные книги и статьи по Java:Политика конфиденциальности">Политика конфиденциальности</a></li>
+											<li id="footer-places-about"><a href="http://wikijava.org.ua/index.php?title=WikiJava:_Wiki_of_Java:_%D0%B2%D0%B8%D0%BA%D0%B8%D1%84%D0%B8%D1%86%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5_%D0%BA%D0%BD%D0%B8%D0%B3%D0%B8_%D0%B8_%D1%81%D1%82%D0%B0%D1%82%D1%8C%D0%B8_%D0%BF%D0%BE_Java:%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5" title="WikiJava: Wiki of Java: викифицированные книги и статьи по Java:Описание">Описание WikiJava: Wiki of Java: викифицированные книги и статьи по Java</a></li>
+											<li id="footer-places-disclaimer"><a href="http://wikijava.org.ua/index.php?title=WikiJava:_Wiki_of_Java:_%D0%B2%D0%B8%D0%BA%D0%B8%D1%84%D0%B8%D1%86%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5_%D0%BA%D0%BD%D0%B8%D0%B3%D0%B8_%D0%B8_%D1%81%D1%82%D0%B0%D1%82%D1%8C%D0%B8_%D0%BF%D0%BE_Java:%D0%9E%D1%82%D0%BA%D0%B0%D0%B7_%D0%BE%D1%82_%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D0%BE%D1%81%D1%82%D0%B8" title="WikiJava: Wiki of Java: викифицированные книги и статьи по Java:Отказ от ответственности">Отказ от ответственности</a></li>
+									</ul>
+										<ul id="footer-icons" class="noprint">
+					<li id="footer-copyrightico">
+						<a href="http://www.gnu.org/copyleft/fdl.html"><img src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%209_files/gnu-fdl.png" alt="GNU Free Documentation License 1.3 или более поздняя" height="31" width="88"></a>
+					</li>
+					<li id="footer-poweredbyico">
+						<a href="http://www.mediawiki.org/"><img src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%209_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" height="31" width="88"></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<script>/*<![CDATA[*/window.jQuery && jQuery.ready();/*]]>*/</script><script>if(window.mw){
+mw.loader.state({"site":"loading","user":"ready","user.groups":"ready"});
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.action.view.postEdit","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest","ext.vector.collapsibleNav","ext.vector.collapsibleTabs","ext.vector.editWarning","ext.vector.simpleSearch","skins.vector.collapsibleNav"],null,true);
+}</script>
+<script>if(window.mw){
+mw.loader.state({"site":"ready"});
+}</script>
+<!-- Served in 0.220 secs. -->
+	
+
+</body></html>

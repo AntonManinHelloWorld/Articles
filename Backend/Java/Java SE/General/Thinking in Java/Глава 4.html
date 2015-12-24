@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html dir="ltr" class="client-nojs" lang="ru"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8"><title>Глава 4 Thinking in Java 4th edition — WikiJava: Wiki of Java: викифицированные книги и статьи по Java</title>
+<meta name="generator" content="MediaWiki 1.22.2">
+<link rel="shortcut icon" href="http://wikijava.it-cache.net/favicon.ico">
+<link rel="search" type="application/opensearchdescription+xml" href="http://wikijava.it-cache.net/opensearch_desc.php" title="WikiJava: Wiki of Java: викифицированные книги и статьи по Java (ru)">
+<link rel="EditURI" type="application/rsd+xml" href="http://wikijava.it-cache.net/api.php@action=rsd">
+<link rel="copyright" href="http://www.gnu.org/copyleft/fdl.html">
+<link rel="alternate" type="application/atom+xml" title="WikiJava: Wiki of Java: викифицированные книги и статьи по Java&nbsp;— Atom-лента" href="http://wikijava.it-cache.net/index.php@title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F%253A%D0%A1%D0%B2%D0%B5%D0%B6%D0%B8%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8&amp;feed=atom">
+<link rel="stylesheet" href="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%204_files/style3.css">
+<meta name="ResourceLoaderDynamicStyles" content="">
+<style>a:lang(ar),a:lang(ckb),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}
+/* cache key: wjava2-wj_:resourceloader:filter:minify-css:7:32e7e505403c81fe0a24e297ef166436 */</style>
+
+<script src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%204_files/style1.css"></script><script src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%204_files/load.html"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Глава_4_Thinking_in_Java_4th_edition","wgTitle":"Глава 4 Thinking in Java 4th edition","wgCurRevisionId":27,"wgRevisionId":27,"wgArticleId":17,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Книги","Java"],"wgBreakFrames":false,"wgPageContentLanguage":"ru","wgPageContentModel":"wikitext","wgSeparatorTransformTable":[",\t."," \t,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"],"wgMonthNamesShort":["","янв","фев","мар","апр","май","июн","июл","авг","сен","окт","ноя","дек"],"wgRelevantPageName":"Глава_4_Thinking_in_Java_4th_edition","wgIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgVectorEnabledModules":{"collapsiblenav":true,"collapsibletabs":true,"editwarning":true,"expandablesearch":false,"footercleanup":false,"sectioneditlinks":false,"simplesearch":true,"experiments":true}});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function(){mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"vector-simplesearch":1,"watchcreations":0,"watchdefault":0,"watchdeletion":0,"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,
+"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"useeditwarning":1,"prefershttps":1,"language":"ru","variant-gan":"gan","variant-iu":"iu","variant-kk":"kk","variant-ku":"ku","variant-shi":"shi","variant-sr":"sr","variant-tg":"tg","variant-uz":"uz","variant-zh":"zh","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false,"variant":"ru"});},{},{});mw.loader.implement("user.tokens",function(){mw.user.tokens.set({"editToken":"+\\","patrolToken":false,"watchToken":false});},{},{});
+/* cache key: wjava2-wj_:resourceloader:filter:minify-js:7:07bb1f4d2452379e70abca47c4cde6d9 */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax","skins.vector.js"]);
+}</script>
+<style type="text/css">/*<![CDATA[*/
+.source-java5 {line-height: normal;}
+.source-java5 li, .source-java5 pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for java5
+ * CSS class: source-java5, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.java5.source-java5 .de1, .java5.source-java5 .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;font-family: monospace, monospace;}
+.java5.source-java5  {font-family:monospace;}
+.java5.source-java5 .imp {font-weight: bold; color: red;}
+.java5.source-java5 li, .java5.source-java5 .li1 {font-weight: normal; vertical-align:top;}
+.java5.source-java5 .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.java5.source-java5 .li2 {font-weight: bold; vertical-align:top;}
+.java5.source-java5 .kw1 {color: #000000;  font-weight: bold;}
+.java5.source-java5 .kw2 {color: #000000; font-weight: bold;}
+.java5.source-java5 .kw3 {color: #006600; font-weight: bold;}
+.java5.source-java5 .kw4 {color: #006600; font-weight: bold;}
+.java5.source-java5 .kw5 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw6 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw7 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw8 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw9 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw10 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw11 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw12 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw13 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw14 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw15 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw16 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw17 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw18 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw19 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw20 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw21 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw22 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw23 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw24 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw25 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw26 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw27 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw28 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw29 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw30 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw31 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw32 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw33 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw34 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw35 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw36 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw37 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw38 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw39 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw40 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw41 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw42 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw43 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw44 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw45 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw46 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw47 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw48 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw49 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw50 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw51 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw52 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw53 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw54 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw55 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw56 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw57 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw58 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw59 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw60 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw61 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw62 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw63 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw64 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw65 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw66 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw67 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw68 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw69 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw70 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw71 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw72 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw73 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw74 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw75 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw76 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw77 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw78 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw79 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw80 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw81 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw82 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw83 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw84 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw85 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw86 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw87 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw88 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw89 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw90 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw91 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw92 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw93 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw94 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw95 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw96 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw97 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw98 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw99 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw100 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw101 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw102 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw103 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw104 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw105 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw106 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw107 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw108 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw109 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw110 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw111 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw112 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw113 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw114 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw115 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw116 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw117 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw118 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw119 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw120 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw121 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw122 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw123 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw124 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw125 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw126 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw127 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw128 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw129 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw130 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw131 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw132 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw133 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw134 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw135 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw136 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw137 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw138 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw139 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw140 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw141 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw142 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw143 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw144 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw145 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw146 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw147 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw148 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw149 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw150 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw151 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw152 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw153 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw154 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw155 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw156 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw157 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw158 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw159 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw160 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw161 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw162 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw163 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw164 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw165 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw166 {color: #003399; font-weight: bold;}
+.java5.source-java5 .co1 {color: #666666; font-style: italic;}
+.java5.source-java5 .co2 {color: #006699;}
+.java5.source-java5 .co3 {color: #008000; font-style: italic; font-weight: bold;}
+.java5.source-java5 .coMULTI {color: #666666; font-style: italic;}
+.java5.source-java5 .es0 {color: #000099; font-weight: bold;}
+.java5.source-java5 .br0 {color: #009900;}
+.java5.source-java5 .sy0 {color: #339933;}
+.java5.source-java5 .st0 {color: #0000ff;}
+.java5.source-java5 .nu0 {color: #cc66cc;}
+.java5.source-java5 .me1 {color: #006633;}
+.java5.source-java5 .me2 {color: #006633;}
+.java5.source-java5 .ln-xtra, .java5.source-java5 li.ln-xtra, .java5.source-java5 div.ln-xtra {background-color: #ffc;}
+.java5.source-java5 span.xtra { display:block; }
+
+/*]]>*/
+</style><!--[if lt IE 7]><style type="text/css">body{behavior:url("/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Глава_4_Thinking_in_Java_4th_edition skin-vector action-view vector-animateLayout">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<div id="content" class="mw-body" role="main">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<h1 id="firstHeading" class="firstHeading" lang="ru"><span dir="auto">Глава 4 Thinking in Java 4th edition</span></h1>
+			<div id="bodyContent">
+								<div id="siteSub">Материал из WikiJava: Wiki of Java: викифицированные книги и статьи по Java</div>
+								<div id="contentSub"></div>
+												<div id="jump-to-nav" class="mw-jump">
+					Перейти к:					<a href="http://wikijava.it-cache.net/index.php@title=Glava_4_Thinking_in_Java_4th_edition.html#mw-navigation">навигация</a>, 					<a href="http://wikijava.it-cache.net/index.php@title=Glava_4_Thinking_in_Java_4th_edition.html#p-search">поиск</a>
+				</div>
+				<div id="mw-content-text" dir="ltr" class="mw-content-ltr" lang="ru"><table style="clear: right; margin-bottom: .5em; float: right; padding: .5em 0 .8em 1.4em; background: none; width: auto;" cellpadding="0" cellspacing="0">
+<tbody><tr>
+<td> <div id="toc" class="toc"><div id="toctitle"><h2>Содержание</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="http://wikijava.it-cache.net/index.php@title=Glava_4_Thinking_in_Java_4th_edition.html#.D0.A3.D0.9F.D0.A0.D0.90.D0.92.D0.9B.D0.AF.D0.AE.D0.A9.D0.98.D0.95_.D0.9A.D0.9E.D0.9D.D0.A1.D0.A2.D0.A0.D0.A3.D0.9A.D0.A6.D0.98.D0.98"><span class="tocnumber">1</span> <span class="toctext"><b>УПРАВЛЯЮЩИЕ КОНСТРУКЦИИ</b></span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="http://wikijava.it-cache.net/index.php@title=Glava_4_Thinking_in_Java_4th_edition.html#if-else"><span class="tocnumber">1.1</span> <span class="toctext">if-else</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="http://wikijava.it-cache.net/index.php@title=Glava_4_Thinking_in_Java_4th_edition.html#.D0.A6.D0.B8.D0.BA.D0.BB.D1.8B"><span class="tocnumber">1.2</span> <span class="toctext">Циклы</span></a>
+<ul>
+<li class="toclevel-3 tocsection-4"><a href="http://wikijava.it-cache.net/index.php@title=Glava_4_Thinking_in_Java_4th_edition.html#while"><span class="tocnumber">1.2.1</span> <span class="toctext">while</span></a></li>
+<li class="toclevel-3 tocsection-5"><a href="http://wikijava.it-cache.net/index.php@title=Glava_4_Thinking_in_Java_4th_edition.html#do-while"><span class="tocnumber">1.2.2</span> <span class="toctext">do-while</span></a></li>
+<li class="toclevel-3 tocsection-6"><a href="http://wikijava.it-cache.net/index.php@title=Glava_4_Thinking_in_Java_4th_edition.html#for"><span class="tocnumber">1.2.3</span> <span class="toctext">for</span></a></li>
+<li class="toclevel-3 tocsection-7"><a href="http://wikijava.it-cache.net/index.php@title=Glava_4_Thinking_in_Java_4th_edition.html#.D0.9E.D0.BF.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80-.D0.B7.D0.B0.D0.BF.D1.8F.D1.82.D0.B0.D1.8F"><span class="tocnumber">1.2.4</span> <span class="toctext">Оператор-запятая</span></a></li>
+<li class="toclevel-3 tocsection-8"><a href="http://wikijava.it-cache.net/index.php@title=Glava_4_Thinking_in_Java_4th_edition.html#.D0.A1.D0.B8.D0.BD.D1.82.D0.B0.D0.BA.D1.81.D0.B8.D1.81_foreach"><span class="tocnumber">1.2.5</span> <span class="toctext">Синтаксис foreach</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-9"><a href="http://wikijava.it-cache.net/index.php@title=Glava_4_Thinking_in_Java_4th_edition.html#return"><span class="tocnumber">1.3</span> <span class="toctext">return</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="http://wikijava.it-cache.net/index.php@title=Glava_4_Thinking_in_Java_4th_edition.html#break_.D0.B8_continue"><span class="tocnumber">1.4</span> <span class="toctext">break и continue</span></a>
+<ul>
+<li class="toclevel-3 tocsection-11"><a href="http://wikijava.it-cache.net/index.php@title=Glava_4_Thinking_in_Java_4th_edition.html#.D0.9D.D0.B5.D1.85.D0.BE.D1.80.D0.BE.D1.88.D0.B0.D1.8F_.D0.BA.D0.BE.D0.BC.D0.B0.D0.BD.D0.B4.D0.B0_goto"><span class="tocnumber">1.4.1</span> <span class="toctext">Нехорошая команда goto</span></a></li>
+<li class="toclevel-3 tocsection-12"><a href="http://wikijava.it-cache.net/index.php@title=Glava_4_Thinking_in_Java_4th_edition.html#.D0.9C.D0.B5.D1.82.D0.BA.D0.B0"><span class="tocnumber">1.4.2</span> <span class="toctext">Метка</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-13"><a href="http://wikijava.it-cache.net/index.php@title=Glava_4_Thinking_in_Java_4th_edition.html#switch"><span class="tocnumber">1.5</span> <span class="toctext">switch</span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="http://wikijava.it-cache.net/index.php@title=Glava_4_Thinking_in_Java_4th_edition.html#.D0.A0.D0.B5.D0.B7.D1.8E.D0.BC.D0.B5"><span class="tocnumber">1.6</span> <span class="toctext">Резюме</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+</td></tr></tbody></table>
+<h1><span class="mw-headline" id=".D0.A3.D0.9F.D0.A0.D0.90.D0.92.D0.9B.D0.AF.D0.AE.D0.A9.D0.98.D0.95_.D0.9A.D0.9E.D0.9D.D0.A1.D0.A2.D0.A0.D0.A3.D0.9A.D0.A6.D0.98.D0.98"><b>УПРАВЛЯЮЩИЕ КОНСТРУКЦИИ</b></span></h1>
+<p>Подобно любому живому существу, программа должна управлять своим миром и принимать решения во время исполнения. В языке <i>Java</i> для принятия решений используются управляющие конструкции.
+В <i>Java</i> задействованы все управляющие конструкции языка <i>C</i>, поэтому читателям с опытом программирования на языке <i>C</i> или <i>C++</i>
+ основная часть материала будет знакома. Почти во всех процедурных 
+языках поддерживаются стандартные команды управления, и во многих языках
+ они совпадают. В <i>Java</i> к их числу относятся ключевые слова <i><b>if-else, while, do-while, for,</b></i> а также команда выбора <i><b>switch</b></i>. Однако в <i>Java</i> не поддерживается часто критикуемый оператор <i><b>goto</b></i> (который, впрочем, все же является самым компактным решением в некоторых ситуациях). Безусловные переходы «в стиле» <i><b>goto</b></i> возможны, но гораздо более ограничены по сравнению с классическими переходами <i><b>goto</b></i>.
+</p><p><i><b>true</b></i> и <i><b>false</b></i> 
+</p><p>Все конструкции с условием вычисляют истинность или ложность 
+условного выражения, чтобы определить способ выполнения. Пример 
+условного выражения — <i><b>А == В</b></i>. Оператор сравнения <i><b>==</b></i> проверяет, равно ли значение <i><b>А </b></i>значению <i><b>В</b></i>. Результат проверки может быть истинным (<i><b>true</b></i>) или ложным (<i><b>false</b></i>). Любой из описанных в этой главе операторов сравнения может применяться в условном выражении. Заметьте, что <i>Java</i> не разрешает использовать числа в качестве логических значений, хотя это позволено в <i>C</i> и <i>C++</i> (где не-ноль считается «истинным», а ноль — «ложным»). Если вам потребуется использовать числовой тип там, где требуется <i><b>boolean</b></i> (скажем, в условии <i><b>if(a)</b></i>), сначала придется его преобразовать к логическому типу оператором сравнения в условном выражении — например,<i><b> if (а&nbsp;!= 0)</b></i>.
+</p>
+<h2><span class="mw-headline" id="if-else">if-else</span></h2>
+<p>Команда <i><b>if-else</b></i> является, наверное, наиболее распространенным способом передачи управления в программе. Присутствие ключевого слова <i><b>else </b></i>не обязательно, поэтому конструкция <i><b>if</b></i> существует в двух формах:
+</p>
+<pre>if(логическое выражение) команда
+</pre>
+<p>и
+</p>
+<pre>if(логическое выражение) 
+  команда
+else
+  команда
+</pre>
+<p>Условие должно дать результат типа <i><b>boolean</b></i>. В секции 
+команда располагается либо простая команда, завершенная точкой с 
+запятой, либо составная конструкция из команд, заключенная в фигурные 
+скобки.
+В качестве примера применения <i><b>if-else</b></i> представлен метод <i><b>test()</b></i>, который выдает информацию об отношениях между двумя числами — «больше», «меньше» или «равно»:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: control/IfElse.java</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> IfElse <span class="br0">{</span>
+  <span class="kw2">static</span> <span class="kw3">int</span> result = <span class="nu0">0</span><span class="sy0">;</span>
+  <span class="kw2">static</span> <span class="kw3">void</span> test<span class="br0">(</span><span class="kw3">int</span> testval, <span class="kw3">int</span> target<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw1">if</span><span class="br0">(</span>testval <span class="sy0">&gt;</span> target<span class="br0">)</span>
+      result = +<span class="nu0">1</span><span class="sy0">;</span>
+    <span class="kw1">else</span> <span class="kw1">if</span><span class="br0">(</span>testval <span class="sy0">&lt;</span> target<span class="br0">)</span>
+      result = -<span class="nu0">1</span><span class="sy0">;</span>
+    <span class="kw1">else</span>
+      result = <span class="nu0">0</span><span class="sy0">;</span> <span class="co1">// равные числа</span>
+  <span class="br0">}</span>
+&nbsp;
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    test<span class="br0">(</span><span class="nu0">10</span>, <span class="nu0">5</span><span class="br0">)</span><span class="sy0">;</span>
+    print<span class="br0">(</span>result<span class="br0">)</span><span class="sy0">;</span>
+    test<span class="br0">(</span><span class="nu0">5</span>, <span class="nu0">10</span><span class="br0">)</span><span class="sy0">;</span>
+    print<span class="br0">(</span>result<span class="br0">)</span><span class="sy0">;</span>
+    test<span class="br0">(</span><span class="nu0">5</span>, <span class="nu0">5</span><span class="br0">)</span><span class="sy0">;</span>
+    print<span class="br0">(</span>result<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>1
+-1
+0
+</pre>
+<p>&lt;/spoiler&gt;
+Внутри метода <i><b>test()</b></i> встречается конструкция <i><b>else if</b></i>; это не новое ключевое слово, a <i><b>else</b></i>, за которым следует начало другой команды — <i><b>if</b></i>.
+<i>Java</i>, как и <i>C</i> с <i>C++</i>, относится к языкам со 
+свободным форматом. Тем не менее в командах управления рекомендуется 
+делать отступы, благодаря чему читателю программы будет легче понять, 
+где начинается и заканчивается управляющая конструкция.
+</p>
+<h2><span class="mw-headline" id=".D0.A6.D0.B8.D0.BA.D0.BB.D1.8B">Циклы</span></h2>
+<h3><span class="mw-headline" id="while">while</span></h3>
+<p>Конструкции <i><b>while, do-while</b></i> и <i><b>for </b></i>управляют
+ циклами и иногда называются циклическими командами. Команда повторяется
+ до тех пор, пока управляющее логическое выражение не станет ложным. 
+Форма цикла <i><b>while</b></i> следующая:
+</p>
+<pre>while(логическое выражение) команда
+</pre>
+<p>логическое выражение вычисляется перед началом цикла, а затем каждый раз перед выполнением очередного повторения оператора.
+Следующий простой пример генерирует случайные числа до тех пор, пока не будет выполнено определенное условие:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: control/WhileTest.java</span>
+<span class="co1">// Пример использования цикла while</span>
+<span class="kw2">public</span> <span class="kw2">class</span> WhileTest <span class="br0">{</span>
+  <span class="kw2">static</span> <span class="kw3">boolean</span> condition<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw3">boolean</span> result = <span class="kw21">Math</span>.<span class="me1">random</span><span class="br0">(</span><span class="br0">)</span> <span class="sy0">&lt;</span> <span class="nu0">0.99</span><span class="sy0">;</span>
+    <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">print</span><span class="br0">(</span>result + <span class="st0">", "</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw2">return</span> result<span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw1">while</span><span class="br0">(</span>condition<span class="br0">(</span><span class="br0">)</span><span class="br0">)</span>
+      <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">(</span><span class="st0">"Inside 'while'"</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">(</span><span class="st0">"Exited 'while'"</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span> <span class="coMULTI">/* (Выполните, чтобы просмотреть результат) */</span></pre></div></div>
+<p>В примере используется статический метод <i><b>random()</b></i> из библиотеки <i><b>Math</b></i>, который генерирует значение <i><b>double</b></i>, находящееся между <i>0</i> и <i>1</i> (включая <i>0</i>, но не <i>1</i>). Условие <i><b>while</b></i> означает: «повторять, пока <i><b>condition()</b></i> возвращает <i><b>true</b></i>». При каждом запуске программы будет выводаться различное количество чисел.
+</p>
+<h3><span class="mw-headline" id="do-while">do-while</span></h3>
+<p>Форма конструкции <i><b>do-while</b></i> такова:
+</p>
+<pre>do
+ команда
+while(логическое выражение);
+</pre>
+<p>Единственное отличие цикла <i><b>do-while</b></i> от <i><b>while</b></i> состоит в том, что цикл <i><b>do-while</b></i> выполняется по крайней мере единожды, даже если условие изначально ложно. В цикле <i><b>while</b></i>, если условие изначально ложно, тело цикла никогда не от­рабатывает. На практике конструкция <i><b>do-while</b></i> употребляется реже, чем <i><b>while</b></i>.
+</p><p><br>
+</p>
+<h3><span class="mw-headline" id="for">for</span></h3>
+<p>Пожалуй, конструкции <i><b>for</b></i> составляют наиболее распространенную разновидность циклов. Цикл <i><b>for</b></i> проводит инициализацию перед первым шагом цикла. Затем выполняется проверка условия цикла, и в конце каждой итерации
+осуществляется некое «приращение» (обычно изменение управляющей переменной). Цикл <i><b>for</b></i> записывается следующим образом:
+</p>
+<pre>for(инициализация; логическое выражение; шаг)
+ команда
+</pre>
+<p>Любое из трех выражений цикла (инициализация, логическое выражение 
+или шаг) можно пропустить. Перед выполнением каждого шага цикла 
+проверяется условие цикла; если оно окажется ложно, выполнение 
+продолжается с инструкции, следующей за конструкцией <i><b>for</b></i>. В конце каждой итерации выполняется секция шаг.
+Цикл <i><b>for</b></i> обычно используется для «счетных» задач:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: control/ListCharacters.java</span>
+<span class="co1">// Пример использования цикла "for": перебор</span>
+<span class="co1">// всех ASCII-символов нижнего регистра</span>
+<span class="kw2">public</span> <span class="kw2">class</span> ListCharacters <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw1">for</span><span class="br0">(</span><span class="kw3">char</span> c = <span class="nu0">0</span><span class="sy0">;</span> c <span class="sy0">&lt;</span> <span class="nu0">128</span><span class="sy0">;</span> c++<span class="br0">)</span>
+      <span class="kw1">if</span><span class="br0">(</span><span class="kw21">Character</span>.<span class="me1">isLowerCase</span><span class="br0">(</span>c<span class="br0">)</span><span class="br0">)</span>
+        <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">(</span><span class="st0">"value: "</span> + <span class="br0">(</span><span class="kw3">int</span><span class="br0">)</span>c +
+          <span class="st0">" character: "</span> + c<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>value: 97 character: a
+value: 98 character: b
+value: 99 character: c
+value: 100 character: d
+value: 101 character: e
+value: 102 character: f
+value: 103 character: g
+value: 104 character: h
+value: 105 character: i
+value: 106 character: j
+</pre>
+<p>&lt;/spoiler&gt;
+Обратите внимание, что переменная <i><b>c</b></i> определяется в точке ее использования, в управляющем выражении цикла <i><b>for</b></i>, а не в начале блока, обозначенного фигурными скобками. Область действия для <i><b>c</b></i> — все выражения, принадлежащие циклу.
+В программе также используется класс-«обертка» <i><b>java.Lang.Character</b></i>, который не только позволяет представить простейший тип <i><b>char</b></i> в виде объекта, но и содержит ряд дополнительных возможностей. В нашем примере используется статический метод этого класса <i><b>isLowerCase()</b></i>, который проверяет, является ли некоторая буква строчной.
+Традиционные процедурные языки (такие, как <i>C</i>) требовали, чтобы 
+все переменные определялись в начале блока цикла, чтобы компилятор при 
+создании блока мог выделить память под эти переменные. В <i>Java</i> и <i>C++</i>
+ переменные разрешено объявлять в том месте блока цикла, где это 
+необходимо. Это позволяет программировать в более удобном стиле и 
+упрощает понимание кода.
+</p>
+<h3><span class="mw-headline" id=".D0.9E.D0.BF.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80-.D0.B7.D0.B0.D0.BF.D1.8F.D1.82.D0.B0.D1.8F">Оператор-запятая</span></h3>
+<p>Ранее в этой главе уже упоминалось о том, что оператор «запятая» (но 
+не запятая-разделитель, которая разграничивает определения и аргументы 
+функций) может использоваться в <i>Java</i> только в управляющем выражении цикла <i><b>for</b></i>.
+ И в секции инициализации цикла, и в его управляющем выражении можно 
+записать несколько команд, разделенных запятыми; они будут обработаны 
+последовательно.
+Оператор «запятая» позволяет определить несколько переменных в цикле <i><b>for</b></i>, но все эти переменные должны принадлежать к одному типу:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: control/CommaOperator.java</span>
+<span class="kw2">public</span> <span class="kw2">class</span> CommaOperator <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw1">for</span><span class="br0">(</span><span class="kw3">int</span> i = <span class="nu0">1</span>, j = i + <span class="nu0">10</span><span class="sy0">;</span> i <span class="sy0">&lt;</span> <span class="nu0">5</span><span class="sy0">;</span> i++, j = i <span class="sy0">*</span> <span class="nu0">2</span><span class="br0">)</span> <span class="br0">{</span>
+      <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">(</span><span class="st0">"i = "</span> + i + <span class="st0">" j = "</span> + j<span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>i = 1 j = 11
+i = 2 j = 4
+i = 3 j = 6
+i = 4 j = 8
+</pre>
+<p>&lt;/spoiler&gt;
+Определение <i><b>int</b></i> в заголовке <i><b>for</b></i> относится как к <i><b>і</b></i>, так и к <i><b>j</b></i>.
+ Инициализацонная часть может содержать любое количество определений 
+переменных одного типа. Определение переменных в управляющих выражениях 
+возможно только в цикле <i><b>for</b></i>. На другие команды выбора или циклов этот подход не распространяется.
+</p><p><br>
+</p>
+<h3><span class="mw-headline" id=".D0.A1.D0.B8.D0.BD.D1.82.D0.B0.D0.BA.D1.81.D0.B8.D1.81_foreach">Синтаксис foreach</span></h3>
+<p>В <i>Java</i> <i>SE5</i> появилась новая, более компактная форма <i><b>for</b></i> для перебора элементов массивов и контейнеров (см. далее). Эта упрощенная форма, называемая синтаксисом <i><b>foreach</b></i>,
+ не требует ручного изменения служебной переменной для перебора 
+последовательности объектов — цикл автоматически представляет очередной 
+элемент.
+Следующая программа создает массив <i><b>float</b></i>, после чего перебирает все его элементы:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: control/ForEachFloat.java</span>
+<span class="kw2">import</span> <span class="co2">java.util.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> ForEachFloat <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw46">Random</span> rand = <span class="kw2">new</span> <span class="kw46">Random</span><span class="br0">(</span><span class="nu0">47</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw3">float</span> f<span class="br0">[</span><span class="br0">]</span> = <span class="kw2">new</span> <span class="kw3">float</span><span class="br0">[</span><span class="nu0">10</span><span class="br0">]</span><span class="sy0">;</span>
+    <span class="kw1">for</span><span class="br0">(</span><span class="kw3">int</span> i = <span class="nu0">0</span><span class="sy0">;</span> i <span class="sy0">&lt;</span> <span class="nu0">10</span><span class="sy0">;</span> i++<span class="br0">)</span>
+      f<span class="br0">[</span>i<span class="br0">]</span> = rand.<span class="me1">nextFloat</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw1">for</span><span class="br0">(</span><span class="kw3">float</span> x&nbsp;: f<span class="br0">)</span>
+      <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">(</span>x<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>0.72711575
+0.39982635
+0.5309454
+0.0534122
+0.16020656
+0.57799757
+0.18847865
+0.4170137
+0.51660204
+0.73734957
+</pre>
+<p>&lt;/spoiler&gt;
+Массив заполняется уже знакомым циклом <i><b>for</b></i>, потому что для его заполнения должны использоваться индексы. Упрощенный синтаксис используется в следующей команде:
+</p>
+<pre>for(float x: f)
+</pre>
+<p>Эта конструкция определяет переменную <i><b>х</b></i> типа <i><b>float</b></i>, после чего последовательно присваивает ей элементы <i><b>f</b></i>.
+Любой метод, возвращающий массив, может использоваться с данной разновидностью <i><b>for</b></i>. Например, класс <i><b>String</b></i> содержит метод <i><b>toCharArray()</b></i>, возвращающий массив <i><b>char</b></i>; следовательно, перебор символов строки может осуществляться так:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: control/ForEachString.java</span>
+<span class="kw2">public</span> <span class="kw2">class</span> ForEachString <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw1">for</span><span class="br0">(</span><span class="kw3">char</span> c&nbsp;: <span class="st0">"An African Swallow"</span>.<span class="me1">toCharArray</span><span class="br0">(</span><span class="br0">)</span> <span class="br0">)</span>
+      <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">print</span><span class="br0">(</span>c + <span class="st0">" "</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>A n   A f r i c a n   S w a l l o w
+</pre>
+<p>&lt;/spoiler&gt;
+Как будет показано далее, «синтаксис <i><b>foreach</b></i>» также работает для любого объекта, поддерживающего интерфейс <i><b>Iterable</b></i>.
+Многие команды <i><b>for</b></i> основаны на переборе серии целочисленных значений:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> <span class="kw1">for</span> <span class="br0">(</span><span class="kw3">int</span> і = <span class="nu0">0</span><span class="sy0">;</span> і <span class="sy0">&lt;</span> <span class="nu0">100</span><span class="sy0">;</span> і++<span class="br0">)</span></pre></div></div>
+<p>В таких случаях «синтаксис <i><b>foreach</b></i>» работать не будет, если только вы предварительно не создадите массив <i><b>int</b></i>. Для упрощения этой задачи я включил в библиотеку <i><b>net.mindview.util.Range</b></i> метод <i><b>range()</b></i>, который автоматически генерирует соответствующий массив:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: control/ForEachInt.java</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Range.*</span><span class="sy0">;</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> ForEachInt <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw1">for</span><span class="br0">(</span><span class="kw3">int</span> i&nbsp;: range<span class="br0">(</span><span class="nu0">10</span><span class="br0">)</span><span class="br0">)</span> <span class="co1">// 0..9</span>
+      printnb<span class="br0">(</span>i + <span class="st0">" "</span><span class="br0">)</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw1">for</span><span class="br0">(</span><span class="kw3">int</span> i&nbsp;: range<span class="br0">(</span><span class="nu0">5</span>, <span class="nu0">10</span><span class="br0">)</span><span class="br0">)</span> <span class="co1">// 5..9</span>
+      printnb<span class="br0">(</span>i + <span class="st0">" "</span><span class="br0">)</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw1">for</span><span class="br0">(</span><span class="kw3">int</span> i&nbsp;: range<span class="br0">(</span><span class="nu0">5</span>, <span class="nu0">20</span>, <span class="nu0">3</span><span class="br0">)</span><span class="br0">)</span> <span class="co1">// 5..20 step 3</span>
+      printnb<span class="br0">(</span>i + <span class="st0">" "</span><span class="br0">)</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>0 1 2 3 4 5 6 7 8 9
+5 6 7 8 9
+5 8 11 14 17
+</pre>
+<p>&lt;/spoiler&gt;
+Обратите внимание на использование <i><b>printnb()</b></i> вместо <i><b>print()</b></i>. Метод <i><b>printnb()</b></i> не выводит символ новой строки, что позволяет построить строку по фрагментам.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id="return">return</span></h2>
+<p>Следующая группа ключевых слов обеспечивает безусловный переход, то 
+есть передачу управления без проверки каких-либо условий. К их числу 
+относятся команды <i><b>return, break</b></i> и <i><b>continue</b></i>, а также конструкция перехода по метке, аналогичная <i><b>goto</b></i> в других языках.
+У ключевого слова <i><b>return</b></i> имеется два предназначения: оно указывает, какое значение возвращается методом (если только он не возвращает тип <i><b>void</b></i>), а также используется для немедленного выхода из метода. Метод <i><b>test()</b></i> из предыдущего примера можно переписать так, чтобы он воспользовался новыми возможностями:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: control/IfElse2.java</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> IfElse2 <span class="br0">{</span>
+  <span class="kw2">static</span> <span class="kw3">int</span> test<span class="br0">(</span><span class="kw3">int</span> testval, <span class="kw3">int</span> target<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw1">if</span><span class="br0">(</span>testval <span class="sy0">&gt;</span> target<span class="br0">)</span>
+      <span class="kw2">return</span> +<span class="nu0">1</span><span class="sy0">;</span>
+    <span class="kw1">else</span> <span class="kw1">if</span><span class="br0">(</span>testval <span class="sy0">&lt;</span> target<span class="br0">)</span>
+      <span class="kw2">return</span> -<span class="nu0">1</span><span class="sy0">;</span>
+    <span class="kw1">else</span>
+      <span class="kw2">return</span> <span class="nu0">0</span><span class="sy0">;</span> <span class="co1">// Одинаковые значения</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    print<span class="br0">(</span>test<span class="br0">(</span><span class="nu0">10</span>, <span class="nu0">5</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    print<span class="br0">(</span>test<span class="br0">(</span><span class="nu0">5</span>, <span class="nu0">10</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    print<span class="br0">(</span>test<span class="br0">(</span><span class="nu0">5</span>, <span class="nu0">5</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>1
+-1
+0
+</pre>
+<p>&lt;/spoiler&gt;
+В данном случае секция <i><b>else</b></i> не нужна, поскольку работа метода не продолжается после выполнения инструкции <i><b>return</b></i>.
+</p><p>Если метод, возвращающий <i><b>void</b></i>, не содержит команды <i><b>return</b></i>, такая команда неявно выполняется в конце метода. Тем не менее, если метод возвращает любой тип, кроме <i><b>void</b></i>, проследите за тем, чтобы каждая логическая ветвь возвращала конкретное значение.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id="break_.D0.B8_continue">break и continue</span></h2>
+<p>В теле любого из циклов вы можете управлять потоком программы, используя специальные ключевые слова <i><b>break</b></i> и <i><b>continue</b></i>. Команда <i><b>break</b></i> завершает цикл, при этом оставшиеся операторы цикла не выполняются. Команда <i><b>continue</b></i> оста­навливает выполнение текущей итерации цикла и переходит к началу цикла, чтобы начать выполнение нового шага.
+Следующая программа показывает пример использования команд <i><b>break</b></i> и <i><b>continue</b></i> внутри циклов <i><b>for</b></i> и <i><b>while</b></i>:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: control/BreakAndContinue.java</span>
+<span class="co1">// Применение ключевых слов break и continue.</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Range.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> BreakAndContinue <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw1">for</span><span class="br0">(</span><span class="kw3">int</span> i = <span class="nu0">0</span><span class="sy0">;</span> i <span class="sy0">&lt;</span> <span class="nu0">100</span><span class="sy0">;</span> i++<span class="br0">)</span> <span class="br0">{</span>
+      <span class="kw1">if</span><span class="br0">(</span>i == <span class="nu0">74</span><span class="br0">)</span> <span class="kw2">break</span><span class="sy0">;</span> <span class="co1">// Выход из цикла</span>
+      <span class="kw1">if</span><span class="br0">(</span>i <span class="sy0">%</span> <span class="nu0">9</span> <span class="sy0">!</span>= <span class="nu0">0</span><span class="br0">)</span> <span class="kw2">continue</span><span class="sy0">;</span> <span class="co1">// Следующая итерация</span>
+      <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">print</span><span class="br0">(</span>i + <span class="st0">" "</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+    <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="co1">// Использование foreach:</span>
+    <span class="kw1">for</span><span class="br0">(</span><span class="kw3">int</span> i&nbsp;: range<span class="br0">(</span><span class="nu0">100</span><span class="br0">)</span><span class="br0">)</span> <span class="br0">{</span>
+      <span class="kw1">if</span><span class="br0">(</span>i == <span class="nu0">74</span><span class="br0">)</span> <span class="kw2">break</span><span class="sy0">;</span> <span class="co1">// Выход из цикла</span>
+      <span class="kw1">if</span><span class="br0">(</span>i <span class="sy0">%</span> <span class="nu0">9</span> <span class="sy0">!</span>= <span class="nu0">0</span><span class="br0">)</span> <span class="kw2">continue</span><span class="sy0">;</span> <span class="co1">// Следующая итерация</span>
+      <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">print</span><span class="br0">(</span>i + <span class="st0">" "</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+    <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw3">int</span> i = <span class="nu0">0</span><span class="sy0">;</span>
+    <span class="co1">// "Бесконечный цикл":</span>
+    <span class="kw1">while</span><span class="br0">(</span><span class="kw4">true</span><span class="br0">)</span> <span class="br0">{</span>
+      i++<span class="sy0">;</span>
+      <span class="kw3">int</span> j = i <span class="sy0">*</span> <span class="nu0">27</span><span class="sy0">;</span>
+      <span class="kw1">if</span><span class="br0">(</span>j == <span class="nu0">1269</span><span class="br0">)</span> <span class="kw2">break</span><span class="sy0">;</span> <span class="co1">// Выход из цикла</span>
+      <span class="kw1">if</span><span class="br0">(</span>i <span class="sy0">%</span> <span class="nu0">10</span> <span class="sy0">!</span>= <span class="nu0">0</span><span class="br0">)</span> <span class="kw2">continue</span><span class="sy0">;</span> <span class="co1">// Возврат в начало цикла</span>
+      <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">print</span><span class="br0">(</span>i + <span class="st0">" "</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>0 9 18 27 36 45 54 63 72
+0 9 18 27 36 45 54 63 72
+10 20 30 40
+</pre>
+<p>&lt;/spoiler&gt;
+В цикле <i><b>for</b></i> переменная <i><b>і</b></i> никогда не достигает значения <i>100</i> — команда <i><b>break</b></i> прерывает цикл, когда значение переменной становится равным <i>74</i>. Обычно <i><b>break</b></i> используется только тогда, когда вы точно знаете, что условие выхода из цикла действительно достигнуто. Команда <i><b>continue</b></i> переводит исполнение в начало цикла (и таким образом увеличивает значение <i><b>і</b></i>), когда <i><b>і</b></i> не делится без остатка на <i>9</i>. Если деление производится без остатка, значение выводится на экран.
+</p><p>Второй цикл <i><b>for</b></i> демонстрирует использование «синтаксиса <i><b>foreach</b></i>» с тем же результатом.
+</p><p>Последняя часть программы демонстрирует «бесконечный цикл», 
+который теоретически должен исполняться вечно. Однако в теле цикла 
+вызывается команда <i><b>break</b></i>, которая и завершает цикл. Команда <i><b>continue</b></i>
+ переводит исполнение к началу цикла, и при этом остаток цикла не 
+выполняется. (Таким образом, вывод на экран в последнем цикле происходит
+ только в том случае, если значение <i><b>і</b></i> делится на <i>10</i> без остатка.) Значение <i>0</i> выводится, так как <i><b>0&nbsp;% 9</b></i> дает в результате <i>0</i>.
+</p><p>Вторая форма бесконечного цикла — <i><b>for(;;)</b></i>. Компилятор реализует конструкции <i><b>while(true)</b></i> и <i><b>for(;;)</b></i> одинаково, так что выбор является делом вкуса.
+</p>
+<h3><span class="mw-headline" id=".D0.9D.D0.B5.D1.85.D0.BE.D1.80.D0.BE.D1.88.D0.B0.D1.8F_.D0.BA.D0.BE.D0.BC.D0.B0.D0.BD.D0.B4.D0.B0_goto">Нехорошая команда goto</span></h3>
+<p>Ключевое слово goto появилось одновременно с языками 
+программирования. Действительно, безусловный переход заложил основы 
+принятия решений в языке ассемблера: «если условие А, перейти туда, а 
+иначе перейти сюда». Если вам доводилось читать код на ассемблере, 
+который генерируют фактически все компиляторы, наверняка вы замечали 
+многочисленные переходы, управляющие выполнением программы (компилятор <i>Java</i> производит свой собственный «ассемблерный» код, но последний выполняется виртуальной-машиной <i>Java</i>, а не аппаратным процессором).
+Команда <i><b>goto</b></i> реализует безусловный переход на уровне 
+исходного текста программы, и именно это обстоятельство принесло ей 
+дурную славу. Если программа постоянно «прыгает» из одного места в 
+другое, нет ли способа реорганизовать ее код так, чтобы управление 
+программой перестало быть таким «прыгучим»? Команда <i><b>goto</b></i> впала в настоящую немилость с опубликованием знаменитой статьи Эдгара Дейкстры «Команда GOTO вредна» (<i>Goto considered harmful</i>), их тех пор порицание команды <i><b>goto</b></i>
+ стало чуть ли не спортом, а защитники репутации многострадального 
+оператора разбежались по укромным углам.
+Как всегда в ситуациях такого рода, существует «золотая середина». 
+Проблема состоит не в использовании goto вообще, но в злоупотреблении — 
+все же иногда именно оператор <i><b>goto</b></i> позволяет лучше всего организовать управление программой.
+Хотя слово <i><b>goto</b></i> зарезервировано в языке <i>Java</i>, оно там не используется; <i>Java</i> не имеет команды <i><b>goto</b></i>. Однако существует механизм, чем-то похожий на безусловный переход и осуществляемый командами <i><b>break</b></i> и <i><b>continue</b></i>.
+ Скорее, это способ прервать итерацию цикла, а не передать управление в 
+другую точку программы. Причина его обсуждения вместе с <i><b>goto</b></i> состоит в том, что он использует тот же механизм — метки.
+</p>
+<h3><span class="mw-headline" id=".D0.9C.D0.B5.D1.82.D0.BA.D0.B0">Метка</span></h3>
+<p>Метка представляет собой идентификатор с последующим двоеточием:
+</p>
+<pre>label1:
+</pre>
+<p>Единственное место, где в <i>Java</i> метка может оказаться полезной,
+ — прямо перед телом цикла. Причем никаких дополнительных команд между 
+меткой и телом цикла быть не должно. Причина помещения метки перед телом
+ цикла может быть лишь одна — вложение внутри цикла другого цикла или 
+конструкции выбора. Обычные версии <i><b>break</b></i> и <i><b>continue</b></i>
+ прерывают только текущий цикл, в то время как их версии с метками 
+способны досрочно завершать циклы и передавать выполнение в точку, 
+адресуемую меткой:
+</p>
+<pre>label1:
+внешний-цикл {
+  внутренний-цикл {
+    // ...
+    break;     // 1 
+    // ...
+    continue;  // 2 
+    //...
+    continue label1; // З 
+    //...
+    break label1;    // 4
+  }
+}
+</pre>
+<p>В первом случае (1) команда <i><b>break</b></i> прерывает выполнение внутреннего цикла, и управление переходит к внешнему циклу. Во втором случае (2) оператор <i><b>continue</b></i> передает управление к началу внутреннего цикла. Но в третьем варианте (3) команда <i><b>continue label1</b></i> влечет выход из внутреннего и внешнего циклов и возврат к метке <i><b>label1</b></i>. Далее выполнение цикла фактически продолжается, но с внешнего цикла. В четвертом случае (4) команда <i><b>break label1</b></i> также вызывает переход к метке <i><b>label1</b></i>,
+ но на этот раз повторный вход в итерацию не происходит. Это действие 
+останавливает выполнение обоих циклов. Пример использования цикла <i><b>for</b></i> с метками:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: control/LabeledFor.java</span>
+<span class="co1">// Цикл for с метками</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> LabeledFor <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw3">int</span> i = <span class="nu0">0</span><span class="sy0">;</span>
+    outer: <span class="co1">// Другие команды недопустимы </span>
+    <span class="kw1">for</span><span class="br0">(</span><span class="sy0">;</span> <span class="kw4">true</span> <span class="sy0">;</span><span class="br0">)</span> <span class="br0">{</span> <span class="co1">// infinite loop</span>
+      inner: <span class="co1">// Другие команды недопустимы </span>
+      <span class="kw1">for</span><span class="br0">(</span><span class="sy0">;</span> i <span class="sy0">&lt;</span> <span class="nu0">10</span><span class="sy0">;</span> i++<span class="br0">)</span> <span class="br0">{</span>
+        print<span class="br0">(</span><span class="st0">"i = "</span> + i<span class="br0">)</span><span class="sy0">;</span>
+        <span class="kw1">if</span><span class="br0">(</span>i == <span class="nu0">2</span><span class="br0">)</span> <span class="br0">{</span>
+          print<span class="br0">(</span><span class="st0">"continue"</span><span class="br0">)</span><span class="sy0">;</span>
+          <span class="kw2">continue</span><span class="sy0">;</span>
+        <span class="br0">}</span>
+        <span class="kw1">if</span><span class="br0">(</span>i == <span class="nu0">3</span><span class="br0">)</span> <span class="br0">{</span>
+          print<span class="br0">(</span><span class="st0">"break"</span><span class="br0">)</span><span class="sy0">;</span>
+          i++<span class="sy0">;</span> <span class="co1">// В противном случае значение і</span>
+               <span class="co1">// не увеличивается.</span>
+          <span class="kw2">break</span><span class="sy0">;</span>
+        <span class="br0">}</span>
+        <span class="kw1">if</span><span class="br0">(</span>i == <span class="nu0">7</span><span class="br0">)</span> <span class="br0">{</span>
+          print<span class="br0">(</span><span class="st0">"continue outer"</span><span class="br0">)</span><span class="sy0">;</span>
+          i++<span class="sy0">;</span> <span class="co1">// В противном случае значение і</span>
+               <span class="co1">// не увеличивается.</span>
+          <span class="kw2">continue</span> outer<span class="sy0">;</span>
+        <span class="br0">}</span>
+        <span class="kw1">if</span><span class="br0">(</span>i == <span class="nu0">8</span><span class="br0">)</span> <span class="br0">{</span>
+          print<span class="br0">(</span><span class="st0">"break outer"</span><span class="br0">)</span><span class="sy0">;</span>
+          <span class="kw2">break</span> outer<span class="sy0">;</span>
+        <span class="br0">}</span>
+        <span class="kw1">for</span><span class="br0">(</span><span class="kw3">int</span> k = <span class="nu0">0</span><span class="sy0">;</span> k <span class="sy0">&lt;</span> <span class="nu0">5</span><span class="sy0">;</span> k++<span class="br0">)</span> <span class="br0">{</span>
+          <span class="kw1">if</span><span class="br0">(</span>k == <span class="nu0">3</span><span class="br0">)</span> <span class="br0">{</span>
+            print<span class="br0">(</span><span class="st0">"continue inner"</span><span class="br0">)</span><span class="sy0">;</span>
+            <span class="kw2">continue</span> inner<span class="sy0">;</span>
+          <span class="br0">}</span>
+        <span class="br0">}</span>
+      <span class="br0">}</span>
+    <span class="br0">}</span>
+    <span class="co1">// Использовать break или continue </span>
+    <span class="co1">// с метками, здесь не разрешается</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>i = 0
+continue inner
+i = 1
+continue inner
+i = 2
+continue
+i = 3
+break
+i = 4
+continue inner
+i = 5
+continue inner
+i = 6
+continue inner
+i = 7
+continue outer
+i = 8
+</pre>
+<p>&lt;/spoiler&gt;
+Заметьте, что оператор break завершает цикл <i><b>for</b></i>, 
+вследствие этого выражение с инкрементом не выполняется до завершения 
+очередного шага. Поэтому из-за пропуска операции инкремента в цикле 
+переменная непосредственно уве­личивается на единицу, когда <i><b>і == 3</b></i>. При выполнении условия <i><b>і == 7</b></i> команда <i><b>continue outer</b></i> переводит выполнение на начало цикла; инкремент опять пропускается, поэтому и в этом случае переменная увеличивается явно.
+</p><p>Без команды <i><b>break outer</b></i> программе не удалось бы покинуть внешний цикл из внутреннего цикла, так как команда <i><b>break</b></i> сама по себе завершает выполнение только текущего цикла (это справедливо и для <i><b>continue</b></i>).
+</p><p>Конечно, если завершение цикла также приводит к завершению работы метода, можно просто применить команду <i><b>return</b></i>.
+</p><p>Теперь рассмотрим пример, в котором используются команды <i><b>break</b></i> и <i><b>continue</b></i> с метками в цикле <i><b>while</b></i>:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: control/LabeledWhile.java</span>
+<span class="co1">// Цикл while с метками</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> LabeledWhile <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw3">int</span> i = <span class="nu0">0</span><span class="sy0">;</span>
+    outer:
+    <span class="kw1">while</span><span class="br0">(</span><span class="kw4">true</span><span class="br0">)</span> <span class="br0">{</span>
+      print<span class="br0">(</span><span class="st0">"Внешний цикл while"</span><span class="br0">)</span><span class="sy0">;</span>
+      <span class="kw1">while</span><span class="br0">(</span><span class="kw4">true</span><span class="br0">)</span> <span class="br0">{</span>
+        i++<span class="sy0">;</span>
+        print<span class="br0">(</span><span class="st0">"i = "</span> + i<span class="br0">)</span><span class="sy0">;</span>
+        <span class="kw1">if</span><span class="br0">(</span>i == <span class="nu0">1</span><span class="br0">)</span> <span class="br0">{</span>
+          print<span class="br0">(</span><span class="st0">"continue"</span><span class="br0">)</span><span class="sy0">;</span>
+          <span class="kw2">continue</span><span class="sy0">;</span>
+        <span class="br0">}</span>
+        <span class="kw1">if</span><span class="br0">(</span>i == <span class="nu0">3</span><span class="br0">)</span> <span class="br0">{</span>
+          print<span class="br0">(</span><span class="st0">"continue outer"</span><span class="br0">)</span><span class="sy0">;</span>
+          <span class="kw2">continue</span> outer<span class="sy0">;</span>
+        <span class="br0">}</span>
+        <span class="kw1">if</span><span class="br0">(</span>i == <span class="nu0">5</span><span class="br0">)</span> <span class="br0">{</span>
+          print<span class="br0">(</span><span class="st0">"break"</span><span class="br0">)</span><span class="sy0">;</span>
+          <span class="kw2">break</span><span class="sy0">;</span>
+        <span class="br0">}</span>
+        <span class="kw1">if</span><span class="br0">(</span>i == <span class="nu0">7</span><span class="br0">)</span> <span class="br0">{</span>
+          print<span class="br0">(</span><span class="st0">"break outer"</span><span class="br0">)</span><span class="sy0">;</span>
+          <span class="kw2">break</span> outer<span class="sy0">;</span>
+        <span class="br0">}</span>
+      <span class="br0">}</span>
+    <span class="br0">}</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>Внешний цикл while
+i = 1
+continue
+i = 2
+i = 3
+continue outer
+Внешний цикл while
+i = 4
+i = 5
+break
+Внешний цикл while
+i = 6
+i = 7
+break outer
+</pre>
+<p>&lt;/spoiler&gt;
+Те же правила верны и для цикла while:
+</p>
+<hr>
+<ul>
+<li><span style="color:#800000">Обычная команда <i><b>continue</b></i> переводит исполнение к началу текущего внутреннего цикла, программа продолжает работу.</span>
+</li>
+</ul>
+<ul>
+<li><span style="color:#800000">Команда <i><b>continue</b></i> с меткой вызывает переход к метке и повторный вход в цикл, следующий прямо за этой меткой.</span>
+</li>
+</ul>
+<ul>
+<li><span style="color:#800000">Команда <i><b>break</b></i> завершает выполнение текущего цикла.
+</span></li>
+</ul>
+<ul>
+<li><span style="color:#800000">Команда <i><b>break</b></i> с меткой завершает выполнение внутреннего цикла и цикла, который находится после указанной метки.</span>
+</li>
+</ul>
+<hr>
+<p>Важно помнить, что единственная причина для существования меток в <i>Java</i> — наличие вложенных циклов и необходимость выхода по <i><b>break</b></i> и продолжения по <i><b>continue</b></i> не только для внутренних, но и для внешних циклов.
+</p><p>В статье Дейкстры особенно критикуются метки, а не сам оператор <i><b>goto</b></i>.
+ Дейкстра отмечает, что, как правило, количество ошибок в программе 
+растет с увеличением количества меток в этой программе. Метки затрудняют
+ анализ программного кода. Заметьте, что метки <i>Java</i> не страдают 
+этими пороками, потому что их место расположения ограничено и они не 
+могут использоваться для беспорядочной передачи управления. В данном 
+случае от ограничения возмож­ностей функциональность языка только 
+выигрывает.
+</p>
+<h2><span class="mw-headline" id="switch">switch</span></h2>
+<p>Команду <i><b>switch</b></i> часто называют командой выбора. С помощью конструкции <i><b>switch</b></i> осуществляется выбор из нескольких альтернатив, в зависимости от значения целочисленного выражения. Форма команды выглядит так:
+</p>
+<pre>switch(целочисленное-выражение) {
+   case целое-значение1&nbsp;: команда; break; 
+   case целое-значение2&nbsp;: команда; break; 
+   case целое-значение3&nbsp;: команда; break; 
+   case целое-значение4&nbsp;: команда; break; 
+   case целое-значениеб&nbsp;: команда; break; // ..
+default: оператор;
+}
+</pre>
+<p>Целочисленное-выражение — выражение, в результате вычисления которого получается целое число. Команда <i><b>switch</b></i>
+ сравнивает результат целочисленного-выражения с каждым последующим 
+целым-значением. Если обнаруживается совпадение, исполняется 
+соответствующая команда (простая или составная). Если же совпадения не 
+находится, исполняется команда после ключевого слова <i><b>default</b></i>.
+</p><p>Нетрудно заметить, что каждая секция case заканчивается командой <i><b>break</b></i>, которая передает управление к концу команды <i><b>switch</b></i>. Такой синтаксис построения конструкции <i><b>switch</b></i> считается стандартным, но команда <i><b>break</b></i> не является строго обязательной. 
+</p><p>Если она отсутствует, при выходе из секции будет выполняться код следующих секций <i><b>case</b></i>, пока в программе не встретится очередная команда <i><b>break</b></i>. Необходимость в подобном поведении возникает довольно редко, но опытному программисту оно может пригодиться. 
+</p><p>Заметьте, что последняя секция <i><b>default</b></i> не содержит команды <i><b>break</b></i>; выполнение продолжается в конце конструкции <i><b>switch</b></i>, то есть там, где оно оказалось бы после вызова <i><b>break</b></i>. Впрочем, вы можете использовать <i><b>break</b></i> и в предложении <i><b>default</b></i>, без практической пользы, просто ради «единства стиля».
+</p><p>Команда <i><b>switch</b></i> обеспечивает компактный синтаксис 
+реализации множественного выбора (то есть выбора из нескольких путей 
+выполнения программы), но для нее необходимо управляющее выражение, 
+результатом которого является целочисленное значение, такое как <i><b>int</b></i> или <i><b>char</b></i>. Если, например, критерием выбора является строка или вещественное число, то команда <i><b>switch</b></i> не подойдет. Придется использовать серию команд <i><b>if-else</b></i>.
+</p><p>Следующий пример случайным образом генерирует английские буквы. Программа определяет, гласные они или согласные:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: control/VowelsAndConsonants.java</span>
+<span class="co1">// Демонстрация конструкции switch</span>
+<span class="kw2">import</span> <span class="co2">java.util.*</span><span class="sy0">;</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> VowelsAndConsonants <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw46">Random</span> rand = <span class="kw2">new</span> <span class="kw46">Random</span><span class="br0">(</span><span class="nu0">47</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw1">for</span><span class="br0">(</span><span class="kw3">int</span> i = <span class="nu0">0</span><span class="sy0">;</span> i <span class="sy0">&lt;</span> <span class="nu0">100</span><span class="sy0">;</span> i++<span class="br0">)</span> <span class="br0">{</span>
+      <span class="kw3">int</span> c = rand.<span class="me1">nextInt</span><span class="br0">(</span><span class="nu0">26</span><span class="br0">)</span> + <span class="st0">'a'</span><span class="sy0">;</span>
+      printnb<span class="br0">(</span><span class="br0">(</span><span class="kw3">char</span><span class="br0">)</span>c + <span class="st0">", "</span> + c + <span class="st0">": "</span><span class="br0">)</span><span class="sy0">;</span>
+      <span class="kw1">switch</span><span class="br0">(</span>c<span class="br0">)</span> <span class="br0">{</span>
+        <span class="kw1">case</span> <span class="st0">'a'</span>:
+        <span class="kw1">case</span> <span class="st0">'e'</span>:
+        <span class="kw1">case</span> <span class="st0">'i'</span>:
+        <span class="kw1">case</span> <span class="st0">'o'</span>:
+        <span class="kw1">case</span> <span class="st0">'u'</span>: print<span class="br0">(</span><span class="st0">"vowel"</span><span class="br0">)</span><span class="sy0">;</span>
+                  <span class="kw2">break</span><span class="sy0">;</span>
+        <span class="kw1">case</span> <span class="st0">'y'</span>:
+        <span class="kw1">case</span> <span class="st0">'w'</span>: print<span class="br0">(</span><span class="st0">"Sometimes a vowel"</span><span class="br0">)</span><span class="sy0">;</span>
+                  <span class="kw2">break</span><span class="sy0">;</span>
+        <span class="kw1">default</span>:  print<span class="br0">(</span><span class="st0">"consonant"</span><span class="br0">)</span><span class="sy0">;</span>
+      <span class="br0">}</span>
+    <span class="br0">}</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>y, 121: Sometimes a vowel
+n, 110: consonant
+z, 122: consonant
+b, 98: consonant
+r, 114: consonant
+n, 110: consonant
+y, 121: Sometimes a vowel
+g, 103: consonant
+c, 99: consonant
+</pre>
+<p>&lt;/spoiler&gt;
+Так как метод <i><b>Random.nextInt(26)</b></i> генерирует значение между <i>0</i> и <i>26</i>, для получения символа нижнего регистра остается прибавить смещение '<i><b>а'</b></i>. Символы в апострофах в секциях <i><b>case</b></i> также представляют собой целочисленные значения, используемые для сравнения.
+</p><p>Обратите внимание на «стопки» секций <i><b>case</b></i>, обеспечивающие возможность множественного сравнения для одной части кода. Будьте начеку и не забывайте добавлять команду <i><b>break</b></i> после каждой секции <i><b>case</b></i>, иначе программа просто пе­рейдет к выполнению следующей секции <i><b>case</b></i>. В команде
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> <span class="kw3">int</span> с = rand.<span class="me1">nextInt</span><span class="br0">(</span><span class="nu0">26</span><span class="br0">)</span> + <span class="st0">'а'</span><span class="sy0">;</span></pre></div></div>
+<p>метод <i><b>rand.nextInt()</b></i> выдает случайное число <i><b>int</b></i> от <i>0</i> до <i>25</i>, к которому затем прибавляется значение '<i><b>а'</b></i>. Это означает, что символ а автоматически преобразуется к типу <i><b>int</b></i> для выполнения сложения.
+Чтобы вывести <i><b>с</b></i> в символьном виде, его необходимо преобразовать к типу <i><b>char</b></i>; в противном случае значение будет выведено в числовом виде.
+</p>
+<h2><span class="mw-headline" id=".D0.A0.D0.B5.D0.B7.D1.8E.D0.BC.D0.B5">Резюме</span></h2>
+<p>В этой главе завершается описание основных конструкций, 
+присутствующих почти во всех языках программирования: вычислений, 
+приоритета операторов, приведения типов, условных конструкций и циклов. 
+Теперь можно сделать следующий шаг на пути к миру 
+объектно-ориентированного программирования. Следующая глава ответит на 
+важные вопросы об инициализации объектов и завершении их жизненного 
+цикла, после чего мы перейдем к важнейшей концепции сокрытия реализации.
+
+</p>
+                <p><br>
+                </p>
+                <hr>
+                <p><a href="http://wikijava.it-cache.net/index.php" title="Thinking in Java 4th edition">назад в Оглавление</a>
+                </p><p><br>
+                </p>
+<!-- 
+NewPP limit report
+CPU time usage: 1.327 seconds
+Real time usage: 1.334 seconds
+Preprocessor visited node count: 200/1000000
+Preprocessor generated node count: 430/1000000
+Post‐expand include size: 242/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 3/40
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key wjava2-wj_:pcache:idhash:17-0!*!*!!ru!*!* and timestamp 20140813054029
+ -->
+</div>								<div class="printfooter">
+				Источник — «<a href="http://wikijava.org.ua/index.php?title=Glava_4_Thinking_in_Java_4th_edition&amp;oldid=27">http://wikijava.org.ua/index.php?title=Глава_4_Thinking_in_Java_4th_edition&amp;oldid=27</a>»				</div>
+                                <div id="catlinks" class="catlinks"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%9A%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D0%B8" title="Служебная:Категории">Категории</a>: <ul><li><a href="http://wikijava.org.ua/index.php?title=%D0%9A%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D1%8F:%D0%9A%D0%BD%D0%B8%D0%B3%D0%B8" title="Категория:Книги">Книги</a></li><li><a href="http://wikijava.org.ua/index.php?title=%D0%9A%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D1%8F:Java" title="Категория:Java">Java</a></li></ul></div></div>												<div class="visualClear"></div>
+            </div>
+		</div>
+		<div id="mw-navigation">
+			<h2>Навигация</h2>
+			<div id="mw-head">
+				<div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
+	<h3 id="p-personal-label">Персональные инструменты</h3>
+	<ul>
+<li id="pt-login"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%92%D1%85%D0%BE%D0%B4&amp;returnto=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0+4+Thinking+in+Java+4th+edition" title="Здесь можно зарегистрироваться в системе, но это необязательно. [o]" accesskey="o">Представиться системе</a></li>	</ul>
+</div>
+				<div id="left-navigation">
+					<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
+	<h3 id="p-namespaces-label">Пространства имён</h3>
+	<ul>
+					<!--<li  id="ca-nstab-main" class="selected"><span><a href="index.php@title=Glava_4_Thinking_in_Java_4th_edition.html"  title="Просмотр основной страницы [c]" accesskey="c">Статья</a></span></li>-->
+					<!--<li  id="ca-talk" class="new"><span><a href="http://wikijava.org.ua/index.php?title=%D0%9E%D0%B1%D1%81%D1%83%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5:%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_4_Thinking_in_Java_4th_edition&amp;action=edit&amp;redlink=1"  title="Обсуждение основной страницы [t]" accesskey="t">Обсуждение</a></span></li>-->
+			</ul>
+</div>
+<div id="p-variants" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-variants-label">
+	<h3 id="mw-vector-current-variant">
+		</h3>
+	<h3 id="p-variants-label"><span>Варианты</span><a href="http://wikijava.it-cache.net/index.php@title=Glava_4_Thinking_in_Java_4th_edition.html#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+				</div>
+				<div id="right-navigation">
+					<div id="p-views" role="navigation" class="vectorTabs" aria-labelledby="p-views-label">
+	<h3 id="p-views-label">Просмотры</h3>
+	<ul>
+					<!--<li id="ca-view" class="selected"><span><a href="index.php@title=Glava_4_Thinking_in_Java_4th_edition.html" >Читать</a></span></li>-->
+					<!--<li id="ca-viewsource"><span><a href="http://wikijava.org.ua/index.php?title=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_4_Thinking_in_Java_4th_edition&amp;action=edit"  title="Эта страница защищена от изменений, но вы можете посмотреть и скопировать её исходный текст [e]" accesskey="e">Просмотр</a></span></li>-->
+					<!--<li id="ca-history" class="collapsible"><span><a href="http://wikijava.org.ua/index.php?title=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_4_Thinking_in_Java_4th_edition&amp;action=history"  title="Журнал изменений страницы [h]" accesskey="h">История</a></span></li>-->
+			</ul>
+</div>
+<div id="p-cactions" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-cactions-label">
+	<h3 id="p-cactions-label"><span>Действия</span><a href="http://wikijava.it-cache.net/index.php@title=Glava_4_Thinking_in_Java_4th_edition.html#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+<div id="p-search" role="search">
+	<h3><label for="searchInput">Поиск</label></h3>
+	<form action="http://wikijava.org.ua/index.php" id="searchform">
+				<div id="simpleSearch">
+						<input name="search" placeholder="Поиск" title="Искать в WikiJava: Wiki of Java: викифицированные книги и статьи по Java [f]" accesskey="f" id="searchInput">						<button type="submit" name="button" title="Найти страницы, содержащие указанный текст" id="searchButton"><img src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%204_files/search-ltr.asc" alt="Найти" height="13" width="12"></button>								<input name="title" value="Служебная:Поиск" type="hidden">
+		</div>
+	</form>
+</div>
+				</div>
+			</div>
+			<div id="mw-panel">
+					<!--<div id="p-logo" role="banner"><a style="background-image: url(/skins/common/images/wikijava.png);" href="index.php@title=Заглавная_страница.html"  title="Перейти на заглавную страницу"></a></div>-->
+				<div class="portal" role="navigation" id="p-navigation" aria-labelledby="p-navigation-label">
+	<h3 id="p-navigation-label">Навигация</h3>
+	<div class="body">
+        <ul>
+            <li id="n-mainpage-description"><a href="http://wikijava.org.ua/index.php?title=%D0%97%D0%B0%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F_%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0" title="Перейти на заглавную страницу [z]" accesskey="z">Заглавная страница</a></li>
+            <li id="n-recentchanges"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%B2%D0%B5%D0%B6%D0%B8%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8" title="Список последних изменений [r]" accesskey="r">Свежие правки</a></li>
+            <li id="n-.D0.9A.D0.BD.D0.B8.D0.B3.D0.B8-Java"><a href="http://wikijava.org.ua/index.php?title=%D0%9A%D0%BD%D0%B8%D0%B3%D0%B8_Java">Книги Java</a></li>
+            <li id="n-.D0.A1.D1.82.D0.B0.D1.82.D1.8C.D0.B8-Java"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D1%82%D0%B0%D1%82%D1%8C%D0%B8_Java">Статьи Java</a></li>
+            <li id="n-Java-.D0.BF.D0.BE.D1.80.D1.82.D0.B0.D0.BB"><a href="http://wikijava.org.ua/index.php?title=Java-portal">Java портал</a></li>
+            <li id="n-help"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B0:%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5" title="Место, где можно получить справку">Справка</a></li>
+            <li id="n-.D0.A1.D1.82.D0.B0.D1.82.D0.B8.D1.81.D1.82.D0.B8.D0.BA.D0.B0"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%81%D1%82%D0%B8%D0%BA%D0%B0">Статистика</a></li>
+        </ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id="p-tb" aria-labelledby="p-tb-label">
+	<h3 id="p-tb-label">Инструменты</h3>
+	<div class="body">
+		<ul>
+			<li id="t-whatlinkshere"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D1%81%D1%8B%D0%BB%D0%BA%D0%B8_%D1%81%D1%8E%D0%B4%D0%B0/%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_4_Thinking_in_Java_4th_edition" title="Список всех страниц, ссылающихся на данную [j]" accesskey="j">Ссылки сюда</a></li>
+			<li id="t-recentchangeslinked"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%B2%D1%8F%D0%B7%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8/%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_4_Thinking_in_Java_4th_edition" title="Последние изменения в страницах, на которые ссылается эта страница [k]" accesskey="k">Связанные правки</a></li>
+			<li id="t-specialpages"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%BF%D0%B5%D1%86%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D1%8B" title="Список служебных страниц [q]" accesskey="q">Спецстраницы</a></li>
+			<li id="t-print"><a href="http://wikijava.org.ua/index.php?title=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_4_Thinking_in_Java_4th_edition&amp;printable=yes" rel="alternate" title="Версия этой страницы для печати [p]" accesskey="p">Версия для печати</a></li>
+			<li id="t-permalink"><a href="http://wikijava.org.ua/index.php?title=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_4_Thinking_in_Java_4th_edition&amp;oldid=27" title="Постоянная ссылка на эту версию страницы">Постоянная ссылка</a></li>
+			<li id="t-info"><a href="http://wikijava.org.ua/index.php?title=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_4_Thinking_in_Java_4th_edition&amp;action=info">Сведения о странице</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id="p-.D0.94.D1.80.D1.83.D0.B3.D0.B8.D0.B5_.D0.BF.D1.80.D0.BE.D0.B5.D0.BA.D1.82.D1.8B" aria-labelledby="p-.D0.94.D1.80.D1.83.D0.B3.D0.B8.D0.B5_.D0.BF.D1.80.D0.BE.D0.B5.D0.BA.D1.82.D1.8B-label">
+	<h3 id="p-.D0.94.D1.80.D1.83.D0.B3.D0.B8.D0.B5_.D0.BF.D1.80.D0.BE.D0.B5.D0.BA.D1.82.D1.8B-label">Другие проекты</h3>
+	<div class="body">
+		<ul>
+			<li id="n-rastafara.com.ua"><a href="http://rastafara.com.ua/" rel="nofollow">rastafara.com.ua</a></li>
+			<li id="n-rastafara-blog"><a href="http://sergey-rastafara.blogspot.com/" rel="nofollow">rastafara blog</a></li>
+			<li id="n-rastaban"><a href="http://rastaban.com.ua/" rel="nofollow">rastaban</a></li>
+		</ul>
+	</div>
+</div>
+			</div>
+		</div>
+		<div id="footer" role="contentinfo">
+							<ul id="footer-info">
+											<li id="footer-info-lastmod"> Последнее изменение этой страницы: 17:08, 16 февраля 2014.</li>
+											<li id="footer-info-viewcount">К этой странице обращались 2330 раза.</li>
+											<li id="footer-info-copyright">Содержимое доступно по лицензии <a class="external" rel="nofollow" href="http://www.gnu.org/copyleft/fdl.html">GNU Free Documentation License 1.3 или более поздняя</a> (если не указано иное).</li>
+									</ul>
+							<ul id="footer-places">
+											<li id="footer-places-privacy"><a href="http://wikijava.org.ua/index.php?title=WikiJava:_Wiki_of_Java:_%D0%B2%D0%B8%D0%BA%D0%B8%D1%84%D0%B8%D1%86%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5_%D0%BA%D0%BD%D0%B8%D0%B3%D0%B8_%D0%B8_%D1%81%D1%82%D0%B0%D1%82%D1%8C%D0%B8_%D0%BF%D0%BE_Java:%D0%9F%D0%BE%D0%BB%D0%B8%D1%82%D0%B8%D0%BA%D0%B0_%D0%BA%D0%BE%D0%BD%D1%84%D0%B8%D0%B4%D0%B5%D0%BD%D1%86%D0%B8%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D0%B8" title="WikiJava: Wiki of Java: викифицированные книги и статьи по Java:Политика конфиденциальности">Политика конфиденциальности</a></li>
+											<li id="footer-places-about"><a href="http://wikijava.org.ua/index.php?title=WikiJava:_Wiki_of_Java:_%D0%B2%D0%B8%D0%BA%D0%B8%D1%84%D0%B8%D1%86%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5_%D0%BA%D0%BD%D0%B8%D0%B3%D0%B8_%D0%B8_%D1%81%D1%82%D0%B0%D1%82%D1%8C%D0%B8_%D0%BF%D0%BE_Java:%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5" title="WikiJava: Wiki of Java: викифицированные книги и статьи по Java:Описание">Описание WikiJava: Wiki of Java: викифицированные книги и статьи по Java</a></li>
+											<li id="footer-places-disclaimer"><a href="http://wikijava.org.ua/index.php?title=WikiJava:_Wiki_of_Java:_%D0%B2%D0%B8%D0%BA%D0%B8%D1%84%D0%B8%D1%86%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5_%D0%BA%D0%BD%D0%B8%D0%B3%D0%B8_%D0%B8_%D1%81%D1%82%D0%B0%D1%82%D1%8C%D0%B8_%D0%BF%D0%BE_Java:%D0%9E%D1%82%D0%BA%D0%B0%D0%B7_%D0%BE%D1%82_%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D0%BE%D1%81%D1%82%D0%B8" title="WikiJava: Wiki of Java: викифицированные книги и статьи по Java:Отказ от ответственности">Отказ от ответственности</a></li>
+									</ul>
+										<ul id="footer-icons" class="noprint">
+					<li id="footer-copyrightico">
+						<a href="http://www.gnu.org/copyleft/fdl.html"><img src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%204_files/gnu-fdl.png" alt="GNU Free Documentation License 1.3 или более поздняя" height="31" width="88"></a>
+					</li>
+					<li id="footer-poweredbyico">
+						<a href="http://www.mediawiki.org/"><img src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%204_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" height="31" width="88"></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<script>/*<![CDATA[*/window.jQuery && jQuery.ready();/*]]>*/</script><script>if(window.mw){
+mw.loader.state({"site":"loading","user":"ready","user.groups":"ready"});
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.action.view.postEdit","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest","ext.vector.collapsibleNav","ext.vector.collapsibleTabs","ext.vector.editWarning","ext.vector.simpleSearch","skins.vector.collapsibleNav"],null,true);
+}</script>
+<script>if(window.mw){
+mw.loader.state({"site":"ready"});
+}</script>
+<!-- Served in 0.216 secs. -->
+	
+
+</body></html>

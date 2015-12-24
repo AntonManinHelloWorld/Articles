@@ -1,0 +1,3213 @@
+<!DOCTYPE html>
+<html><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta content="width=1024" name="viewport">
+
+    
+
+    <title>Шпаргалка Java программиста 4. Java Stream API / Блог компании Luxoft / Хабрахабр</title>
+
+      <meta name="description" content="
+
+Несмотря на то, что Java 8 вышла уже достаточно давно, далеко не все программисты используют её новые возможности, кого-то останавливает то, что рабочие проекты слишком сложно перевести с Java...">
+
+      <meta name="keywords" content="java, stream, stream api, лямбы, функциональное программирование, многопоточность, java 8">
+
+      <meta property="fb:app_id" content="444736788986613"> 
+<meta property="og:type" content="article"> 
+<meta property="og:url" content="http://habrahabr.ru/company/luxoft/blog/270383/"> 
+<meta property="og:title" content="Шпаргалка Java программиста 4. Java Stream API">
+	<meta property="og:image" content="https://habrastorage.org/files/0b7/b18/760/0b7b1876026c4aa78b926fe5a9027c72.jpg">
+	<link rel="image_src" href="%D0%A8%D0%BF%D0%B0%D1%80%D0%B3%D0%B0%D0%BB%D0%BA%D0%B0%20Java%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%81%D1%82%D0%B0%204.%20Java%20Stream%20API%20_%20%D0%91%D0%BB%D0%BE%D0%B3%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B8%20Luxoft%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/0b7b1876026c4aa78b926fe5a9027c72.jpg">
+	
+<meta property="og:description" content="Несмотря на то, что Java 8 вышла уже достаточно давно, далеко не все программисты используют её новые возможности, кого-то останавливает то, что рабочие...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@habrahabr">
+  <meta property="al:android:url" content="habrahabr://post/270383">
+<meta property="al:android:app_name" content="Habrahabr">
+<meta property="al:android:package" content="ru.habrahabr">
+<meta property="al:windows_phone:url" content="habrahabr://post/270383">
+<meta property="al:windows_phone:app_name" content="Habrahabr">
+<meta property="al:windows_phone:app_id" content="460a6bd6-8955-470f-935e-9ea1726a6060">
+  <link rel="canonical" href="http://habrahabr.ru/company/luxoft/blog/270383/">
+  <link rel="alternate" media="only screen and (max-width: 640px)" href="http://m.habrahabr.ru/company/luxoft/blog/270383/">
+
+
+
+      <link href="%D0%A8%D0%BF%D0%B0%D1%80%D0%B3%D0%B0%D0%BB%D0%BA%D0%B0%20Java%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%81%D1%82%D0%B0%204.%20Java%20Stream%20API%20_%20%D0%91%D0%BB%D0%BE%D0%B3%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B8%20Luxoft%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/company_post_show_common.css" rel="stylesheet" media="all">
+
+    <link href="%D0%A8%D0%BF%D0%B0%D1%80%D0%B3%D0%B0%D0%BB%D0%BA%D0%B0%20Java%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%81%D1%82%D0%B0%204.%20Java%20Stream%20API%20_%20%D0%91%D0%BB%D0%BE%D0%B3%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B8%20Luxoft%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/global_main.css" rel="stylesheet" media="all">
+
+    <script src="%D0%A8%D0%BF%D0%B0%D1%80%D0%B3%D0%B0%D0%BB%D0%BA%D0%B0%20Java%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%81%D1%82%D0%B0%204.%20Java%20Stream%20API%20_%20%D0%91%D0%BB%D0%BE%D0%B3%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B8%20Luxoft%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/watch.js" async="" type="text/javascript"></script><script src="%D0%A8%D0%BF%D0%B0%D1%80%D0%B3%D0%B0%D0%BB%D0%BA%D0%B0%20Java%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%81%D1%82%D0%B0%204.%20Java%20Stream%20API%20_%20%D0%91%D0%BB%D0%BE%D0%B3%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B8%20Luxoft%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/analytics.js" async=""></script><script type="text/javascript" src="%D0%A8%D0%BF%D0%B0%D1%80%D0%B3%D0%B0%D0%BB%D0%BA%D0%B0%20Java%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%81%D1%82%D0%B0%204.%20Java%20Stream%20API%20_%20%D0%91%D0%BB%D0%BE%D0%B3%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B8%20Luxoft%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/global_main.js"></script>
+      <script type="text/javascript" src="%D0%A8%D0%BF%D0%B0%D1%80%D0%B3%D0%B0%D0%BB%D0%BA%D0%B0%20Java%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%81%D1%82%D0%B0%204.%20Java%20Stream%20API%20_%20%D0%91%D0%BB%D0%BE%D0%B3%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B8%20Luxoft%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/company_post_show_common.js"></script>
+
+
+    
+    
+
+    <meta name="yandex-verification" content="67d46b975fa41645">
+    
+    <meta content="Хабрахабр" name="apple-mobile-web-app-title">
+<link href="http://habrahabr.ru/images/apple-touch-icon_142x142.png" rel="apple-touch-icon" type="image/png">
+
+      
+      <script>
+        var N = 5;
+        var ar_duo1 = Math.floor(Math.random()*N+1);
+      </script>
+      <script type="text/javascript" src="%D0%A8%D0%BF%D0%B0%D1%80%D0%B3%D0%B0%D0%BB%D0%BA%D0%B0%20Java%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%81%D1%82%D0%B0%204.%20Java%20Stream%20API%20_%20%D0%91%D0%BB%D0%BE%D0%B3%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B8%20Luxoft%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/adriver.js"></script>
+
+    <link title="Хабрахабр / Блог компании Luxoft / Комментарии к публикации «Шпаргалка Java программиста 4. Java Stream API»" type="application/rss+xml" rel="alternate" href="http://habrahabr.ru/rss/post/270383/">
+
+    <script src="%D0%A8%D0%BF%D0%B0%D1%80%D0%B3%D0%B0%D0%BB%D0%BA%D0%B0%20Java%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%81%D1%82%D0%B0%204.%20Java%20Stream%20API%20_%20%D0%91%D0%BB%D0%BE%D0%B3%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B8%20Luxoft%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/advertising.js"></script>
+
+<script type="text/javascript">
+
+  if (typeof adriver == 'undefined')
+  {
+    var adb1 = 'yes';
+  }
+
+  var user_type = "guest";
+
+  var page_type = "publish_corp";
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-726094-1',  'auto');
+  ga('create', 'UA-726094-24', 'auto', {'name': 'HGM'});
+
+  ga('require', 'displayfeatures');
+  ga('set', 'dimension1', user_type); // user type - guest/readonly/habrauser
+
+
+  ga('set', 'dimension4', adb1);
+
+  ga('set', 'dimension5', page_type);
+
+
+  if(typeof removeUtms === 'undefined') {
+    removeUtms = function(){};
+  }
+
+  ga('HGM.set', 'dimension1', user_type);
+  ga('HGM.set', 'dimension2', "habrahabr");
+  ga('HGM.send', 'pageview');
+
+  ga('send', 'pageview', { 'hitCallback': removeUtms });
+
+
+</script>
+
+
+  </head>
+
+  <body><style type="text/css">#navbar .nav_panel .tab.tab_print:hover path,#navbar .nav_panel .tab.tab_print:hover text { fill: #00aae7; } </style>
+    <div id="TMpanel">
+  <div class="container">
+    <div class="bmenu">
+      <a href="http://tmfeed.ru/?utm_source=tm_habrahabr&amp;utm_medium=tm_top_panel&amp;utm_campaign=tm_promo">TM Feed</a>
+      <a href="http://habrahabr.ru/?utm_source=tm_habrahabr&amp;utm_medium=tm_top_panel&amp;utm_campaign=tm_promo" class="current">Хабрахабр</a>
+      <a href="http://megamozg.ru/?utm_source=tm_habrahabr&amp;utm_medium=tm_top_panel&amp;utm_campaign=tm_promo">Мегамозг</a>
+      <a href="http://geektimes.ru/?utm_source=tm_habrahabr&amp;utm_medium=tm_top_panel&amp;utm_campaign=tm_promo">Geektimes</a>
+      <a href="https://toster.ru/?utm_source=tm_habrahabr&amp;utm_medium=tm_top_panel&amp;utm_campaign=tm_promo">Тостер</a>
+      <a href="https://moikrug.ru/?utm_source=tm_habrahabr&amp;utm_medium=tm_top_panel&amp;utm_campaign=tm_promo">Мой круг</a>
+      <a href="http://freelansim.ru/?utm_source=habrahabr&amp;utm_medium=referral&amp;utm_campaign=mainpage&amp;utm_content=head_link">Фрилансим</a>
+    </div>
+  </div>
+</div>
+
+    <div id="layout">
+      <div id="navbar_overlay" class="hidden"></div>
+<div style="bottom: 29px;" id="navbar">
+    <div class="nav_panel">
+        <a href="http://habrahabr.ru/" class="logo"></a>
+
+            <a href="http://habrahabr.ru/posts/" class="tab tab_menu" data-tab="menu_tab" title="Меню"><span class="g-icon g-icon-burger"></span></a>
+            <a href="https://habrahabr.ru/auth/login/" class="tab tab_login" id="login" title="Войти"><span class="g-icon g-icon-lock"></span></a>
+
+
+        <a href="#" class="scroll_to_up hidden scroll_to_up_for_guest" id="scroll_to_top" title="Наверх"></a>
+    </div>
+
+    <div class="nav_tabs_content ">
+        <div class="nav_tab hidden" id="menu_tab">
+            <div class="title">Разделы</div>
+            <form action="/search/" method="get" class="global_search_form">
+                <div>
+                    <input name="q" placeholder="Поиск" type="text">
+                </div>
+            </form>
+            <div class="menu">
+                <a href="http://habrahabr.ru/posts/top/">Публикации</a>
+                <a href="http://habrahabr.ru/hubs/">Хабы</a>
+                <a href="http://habrahabr.ru/companies/">Компании</a>
+                <a href="http://habrahabr.ru/users/">Пользователи</a>
+                <a href="http://habrahabr.ru/sandbox/">Песочница</a>
+                <div class="line"></div>
+                <a href="http://toster.ru/" class="new_window">Q&amp;A</a>
+                <a href="https://moikrug.ru/?utm_source=tm_habrahabr&amp;utm_medium=tm_left_menu&amp;utm_campaign=tm_promo" class="new_window">Вакансии</a>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+
+      <div class="inner">
+
+        <script type="text/javascript">
+
+    $(document).on('click', '.adb-close', function(){
+        $('.lain_13_what_are_you_doing').animate({ 'height': 0 });
+
+        createCookie('adb-p', '1', 1);
+    });
+
+    function readCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0;i < ca.length;i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1,c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        }
+        return null;
+    }
+
+    $(document).ready(function(){
+        if (adb1 == 'yes' && !readCookie('adb-p'))
+        {
+            $('.lain_13_what_are_you_doing').show();
+        }
+    });
+</script>
+<div class="lain_13_what_are_you_doing" style="display: block;">
+    <div class="adb-text">
+        Привет, Хабрапользователь. Кажется, ты используешь AdBlock. Хабрахабр <br>
+        развивается и существует за счет доходов от рекламы. Добавь нас в исключения.
+    </div>
+    <a class="adb-btn" href="http://habrahabr.ru/adblock/">открытое письмо</a>
+    <a class="adb-btn" href="http://habrahabr.ru/adblock/?how=1">как отключить</a>
+    <div class="adb-close"></div>
+</div>
+
+
+
+        
+
+          
+  <div class="profile-header">
+
+  <div class=" profile-header__summary author-info author-info_profile " id="company_938">
+      <a href="http://habrahabr.ru/company/luxoft" class="author-info__image">
+          <img src="%D0%A8%D0%BF%D0%B0%D1%80%D0%B3%D0%B0%D0%BB%D0%BA%D0%B0%20Java%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%81%D1%82%D0%B0%204.%20Java%20Stream%20API%20_%20%D0%91%D0%BB%D0%BE%D0%B3%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B8%20Luxoft%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/b4472ef43c7d2d2f538d83568723d839.png" class="author-info__image-pic">
+      </a>
+
+      <div class="author-info__desc">
+        <div class="author-info__username">
+          <a href="http://habrahabr.ru/company/luxoft" class="author-info__name">Luxoft</a>
+        </div>
+
+        <div class="author-info__specialization">
+            Компания
+        </div>
+      </div>
+
+  </div>
+
+  <div class="profile-header__stats">
+    <div class="user-rating">
+      <div class="user-rating__value">101,71</div>
+      <div class="user-rating__label" title="Хабраиндекс - абстрактный показатель популярности компании на Хабрахабре">рейтинг</div>
+    </div>
+  </div>
+
+</div>
+  <div class="column-wrapper">
+    <div class="content_left">
+        <div class="tabs">
+    <ul class="tabs-menu tabs-menu_habrahabr">
+          <li class="tabs-menu__item tabs-menu__item_company-profile tabs-menu__item_inline">
+            <a href="http://habrahabr.ru/company/luxoft/profile/" class="tab-item tab-item_stacked ">
+              <span class="tab-item__value stats">
+                <span class="stats__counters stats__counters_big">
+                  <strong class="counter"></strong>
+                </span>
+                <span class="stats__value">Профиль</span>
+            </span></a>
+          </li>
+          <li class="tabs-menu__item tabs-menu__item_company-profile tabs-menu__item_inline">
+            <a href="http://habrahabr.ru/company/luxoft/blog/" class="tab-item tab-item_stacked tab-item_current">
+              <span class="tab-item__value stats">
+                <span class="stats__counters stats__counters_big">
+                  <strong class="counter">111</strong>
+                </span>
+                <span class="stats__value">Блог</span>
+            </span></a>
+          </li>
+          <li class="tabs-menu__item tabs-menu__item_company-profile tabs-menu__item_inline">
+            <a href="http://habrahabr.ru/company/luxoft/vacancies/" class="tab-item tab-item_stacked ">
+              <span class="tab-item__value stats">
+                <span class="stats__counters stats__counters_big">
+                  <strong class="counter">0</strong>
+                </span>
+                <span class="stats__value">Вакансии</span>
+            </span></a>
+          </li>
+          <li class="tabs-menu__item tabs-menu__item_company-profile tabs-menu__item_inline">
+            <a href="http://habrahabr.ru/company/luxoft/fans/" class="tab-item tab-item_stacked ">
+              <span class="tab-item__value stats">
+                <span class="stats__counters stats__counters_big">
+                  <strong class="counter">1,2к</strong>
+                </span>
+                <span class="stats__value">Подписчики</span>
+            </span></a>
+          </li>
+    </ul>
+
+  </div>
+
+      <div class="company_post">
+        
+
+  <div class="post shortcuts_item" id="post_270383">
+    <div class="published">18 ноября в 16:43</div>
+    <h1 class="title">
+      
+
+        <span class="post_title">Шпаргалка Java программиста 4. Java Stream API</span>
+
+      <span class="flag flag_tutorial" title="Обучающий материал">tutorial</span>
+
+      
+
+    </h1>
+
+      <div class="hubs">
+      <a href="http://habrahabr.ru/hub/funcprog/" class="hub " title="Вы не подписаны на этот хаб">Функциональное программирование</a><span class="profiled_hub" title="Профильный хаб">*</span>, 
+      <a href="http://habrahabr.ru/hub/development/" class="hub " title="Вы не подписаны на этот хаб">Разработка</a><span class="profiled_hub" title="Профильный хаб">*</span>, 
+      <a href="http://habrahabr.ru/hub/programming/" class="hub " title="Вы не подписаны на этот хаб">Программирование</a><span class="profiled_hub" title="Профильный хаб">*</span>, 
+      <a href="http://habrahabr.ru/hub/java/" class="hub " title="Вы не подписаны на этот хаб">JAVA</a><span class="profiled_hub" title="Профильный хаб">*</span>, 
+      <a href="http://habrahabr.ru/company/luxoft/" class="hub " title="Вы не подписаны на этот хаб">Блог компании Luxoft</a>
+  </div>
+
+
+    <div class="content html_format">
+      <a href="http://habrahabr.ru/post/270383/"><img src="%D0%A8%D0%BF%D0%B0%D1%80%D0%B3%D0%B0%D0%BB%D0%BA%D0%B0%20Java%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%81%D1%82%D0%B0%204.%20Java%20Stream%20API%20_%20%D0%91%D0%BB%D0%BE%D0%B3%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B8%20Luxoft%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/0b7b1876026c4aa78b926fe5a9027c72.jpg"></a><br>
+<br>
+Несмотря на то, что Java 8 вышла уже достаточно давно, далеко не все 
+программисты используют её новые возможности, кого-то останавливает то, 
+что рабочие проекты слишком сложно перевести с Java 7 или даже Java 6, 
+кого-то использование в своих проектах GWT, кто-то делает проекты под 
+Android и не хочет или не может использовать сторонние библиотеки для 
+реализации лямбд и Stream Api. Однако знание лямбд и Stream Api для 
+программиста Java зачастую требуют на собеседованиях, ну и просто будет 
+полезно при переходе на проект где используется Java 8. Я хотел бы 
+предложить вам краткую шпаргалку по Stream Api с практическими примерами
+ реализации различных задач с новым функциональным подходом. Знания 
+лямбд и функционального программирования не потребуется (я постарался 
+дать примеры так, чтобы все было понятно), уровень от самого базового 
+знания Java и выше. <br>
+<br>
+Также, так как это шпаргалка, статья может использоваться, чтобы быстро 
+вспомнить как работает та или иная особенность Java Stream Api. Краткое 
+перечисление возможностей основных функций дано в начале статьи.<br>
+<br>
+<div class="spoiler"><b class="spoiler_title">Для тех кто совсем не знает что такое Stream Api</b><div class="spoiler_text">Stream
+ API это новый способ работать со структурами данных в функциональном 
+стиле. Чаще всего с помощью stream в Java 8 работают с коллекциями, но 
+на самом деле этот механизм может использоваться для самых различных 
+данных. <br>
+<br>
+Stream Api позволяет писать обработку структур данных в стиле SQL, то 
+если раньше задача получить сумму всех нечетных чисел из коллекции 
+решалась следующим кодом: <br>
+<pre><code class="java hljs">        Integer sumOddOld = <span class="hljs-number">0</span>; 
+        <span class="hljs-keyword">for</span>(Integer i: collection) {
+            <span class="hljs-keyword">if</span>(i % <span class="hljs-number">2</span> != <span class="hljs-number">0</span>) {
+                sumOddOld += i;
+            }
+        }
+</code></pre><br>
+То с помощью Stream Api можно решить такую задачу в функциональном стиле: <br>
+<pre><code class="java hljs">       Integer sumOdd = collection.stream().filter(o -&gt; o % <span class="hljs-number">2</span> != <span class="hljs-number">0</span>).reduce((s1, s2) -&gt; s1 + s2).orElse(<span class="hljs-number">0</span>);
+</code></pre><br>
+Более того, Stream Api позволяет решать задачу параллельно лишь изменив 
+stream() на parallelStream() без всякого лишнего кода, т.е. <br>
+<pre><code class="java hljs">       Integer sumOdd = collection.parallelStream().filter(o -&gt; o % <span class="hljs-number">2</span> != <span class="hljs-number">0</span>).reduce((s1, s2) -&gt; s1 + s2).orElse(<span class="hljs-number">0</span>);
+</code></pre><br>
+Уже делает код параллельным, без всяких семафоров, синхронизаций, рисков взаимных блокировок и т.п. <br>
+</div></div><br>
+<a name="habracut"></a><br>
+Давайте начнем с начала, а именно с создания объектов stream в Java 8.<br>
+<br>
+<h2><b>I. Способы создания стримов</b></h2><br>
+Перечислим несколько способов создать стрим <br>
+<table>
+<tbody><tr>
+<th width="170">Способ создания стрима</th>
+<th width="180">Шаблон создания</th>
+<th>Пример</th>
+</tr>
+<tr>
+<td>1. Классический: Создание стрима из коллекции </td>
+<td>collection.<b>stream</b>()</td>
+<td><pre><code class="java hljs">Collection&lt;String&gt; collection = Arrays.asList(<span class="hljs-string">"a1"</span>, <span class="hljs-string">"a2"</span>, <span class="hljs-string">"a3"</span>);
+        Stream&lt;String&gt; streamFromCollection = collection.stream();
+</code></pre></td>
+</tr>
+<tr>
+<td>2. Создание стрима из значений</td>
+<td><b>Stream.of</b>(<i>значение1</i>,… <i>значениеN</i>)</td>
+<td><pre><code class="java hljs">Stream&lt;String&gt; streamFromValues = Stream.of(<span class="hljs-string">"a1"</span>, <span class="hljs-string">"a2"</span>, <span class="hljs-string">"a3"</span>);
+</code></pre></td>
+</tr>
+<tr>
+<td>3. Создание стрима из массива</td>
+<td><b>Arrays.stream</b>(<i>массив</i>)</td>
+<td><pre><code class="java hljs">String[] array = {<span class="hljs-string">"a1"</span>,<span class="hljs-string">"a2"</span>,<span class="hljs-string">"a3"</span>};                     
+ Stream&lt;String&gt; streamFromArrays = Arrays.stream(array);
+</code></pre></td>
+</tr>
+<tr>
+<td>4. Создание стрима из файла (каждая строка в файле будет отдельным элементом в стриме)</td>
+<td><b>Files.lines</b>(<i>путь_к_файлу</i>)</td>
+<td><pre><code class="java hljs">Stream&lt;String&gt; streamFromFiles = Files.lines(Paths.get(<span class="hljs-string">"file.txt"</span>))
+</code></pre></td>
+</tr>
+<tr>
+<td>5. Создание стрима из строки</td>
+<td>«строка».<b>chars</b>()</td>
+<td><pre><code class="java hljs">IntStream streamFromString = <span class="hljs-string">"123"</span>.chars()
+</code></pre></td>
+</tr>
+<tr>
+<td>6. С помощью Stream.builder</td>
+<td>Stream.<b>builder</b>().<b>add</b>(...)....<b>build</b>()</td>
+<td><pre><code class="java hljs">Stream.builder().add(<span class="hljs-string">"a1"</span>).add(<span class="hljs-string">"a2"</span>).add(<span class="hljs-string">"a3"</span>).build()
+</code></pre></td>
+</tr>
+<tr>
+<td>7. Создание параллельного стрима</td>
+<td>collection.<b>parallelStream</b>()</td>
+<td><pre><code class="java hljs">Stream&lt;String&gt; stream = collection.parallelStream();
+</code></pre><br>
+ </td>
+</tr>
+<tr>
+<td>8. Создание бесконечных стрима с помощью Stream.iterate <br>
+</td>
+<td><b>Stream.iterate</b>(<i>начальное_условие</i>, <i>выражение_генерации</i>)</td>
+<td><pre><code class="java hljs">Stream&lt;Integer&gt; streamFromIterate = Stream.iterate(<span class="hljs-number">1</span>, n -&gt; n + <span class="hljs-number">1</span>)
+</code></pre></td>
+</tr>
+<tr>
+<td>9. Создание бесконечных стрима с помощью Stream.generate</td>
+<td><b>Stream.generate</b>(<i>выражение_генерации</i>)</td>
+<td><pre><code class="java hljs">Stream&lt;String&gt; streamFromGenerate = Stream.generate(() -&gt; <span class="hljs-string">"a1"</span>)
+</code></pre></td>
+</tr>
+</tbody></table><br>
+В принципе, кроме последних двух способов создания стрима, все не 
+отличается от обычных способов создания коллекций. Последние два способа
+ служат для генерации бесконечных стримов, в iterate задается начальное 
+условие и выражение получение следующего значения из предыдущего, то 
+есть Stream.iterate(1, n -&gt; n + 1) будет выдавать значения 1, 2, 3, 
+4,… N. Stream.generate служит для генерации константных и случайных 
+значений, он просто выдает значения соответствующие выражению, в данном 
+примере, он будет выдавать бесконечное количество значений «a1».<br>
+<div class="spoiler"><b class="spoiler_title">Для тех кто не знает лямбды</b><div class="spoiler_text">
+ Выражение n -&gt; n + 1, это просто аналог выражения Integer 
+func(Integer n) { return n+1;}, а выражение () -&gt; «a1» аналог 
+выражения String func() { return «a1»;} обернутых в анонимный класс. <br>
+</div></div> <br>
+<div class="spoiler"><b class="spoiler_title">Более подробные примеры</b><div class="spoiler_text">Так же этот пример можно найти на <a href="https://github.com/Vedenin/java_collections_overview/blob/master/src/com/github/vedenin/rus/stream_api/BuildTests.java">github</a>'e<br>
+<pre><code class="java hljs">        System.out.println(<span class="hljs-string">"Test buildStream start"</span>);
+
+        <span class="hljs-comment">// Создание стрима из значений</span>
+        Stream&lt;String&gt; streamFromValues = Stream.of(<span class="hljs-string">"a1"</span>, <span class="hljs-string">"a2"</span>, <span class="hljs-string">"a3"</span>);
+        System.out.println(<span class="hljs-string">"streamFromValues = "</span> + streamFromValues.collect(Collectors.toList())); <span class="hljs-comment">// напечатает streamFromValues = [a1, a2, a3]</span>
+
+        <span class="hljs-comment">// Создание стрима из массива</span>
+        String[] array = {<span class="hljs-string">"a1"</span>,<span class="hljs-string">"a2"</span>,<span class="hljs-string">"a3"</span>};
+        Stream&lt;String&gt; streamFromArrays = Arrays.stream(array);
+        System.out.println(<span class="hljs-string">"streamFromArrays = "</span> + streamFromArrays.collect(Collectors.toList())); <span class="hljs-comment">// напечатает streamFromArrays = [a1, a2, a3]</span>
+
+        Stream&lt;String&gt; streamFromArrays1 = Stream.of(array);
+        System.out.println(<span class="hljs-string">"streamFromArrays1 = "</span> + streamFromArrays1.collect(Collectors.toList())); <span class="hljs-comment">// напечатает streamFromArrays = [a1, a2, a3]</span>
+
+        <span class="hljs-comment">// Создание стрима из файла (каждая запись в файле будет отдельной строкой в стриме)</span>
+        File file = <span class="hljs-keyword">new</span> File(<span class="hljs-string">"1.tmp"</span>);
+        file.deleteOnExit();
+        PrintWriter out = <span class="hljs-keyword">new</span> PrintWriter(file);
+        out.println(<span class="hljs-string">"a1"</span>);
+        out.println(<span class="hljs-string">"a2"</span>);
+        out.println(<span class="hljs-string">"a3"</span>);
+        out.close();
+
+        Stream&lt;String&gt; streamFromFiles = Files.lines(Paths.get(file.getAbsolutePath()));
+        System.out.println(<span class="hljs-string">"streamFromFiles = "</span> + streamFromFiles.collect(Collectors.toList())); <span class="hljs-comment">// напечатает streamFromFiles = [a1, a2, a3]</span>
+
+        <span class="hljs-comment">// Создание стрима из коллекции</span>
+        Collection&lt;String&gt; collection = Arrays.asList(<span class="hljs-string">"a1"</span>, <span class="hljs-string">"a2"</span>, <span class="hljs-string">"a3"</span>);
+        Stream&lt;String&gt; streamFromCollection = collection.stream();
+        System.out.println(<span class="hljs-string">"streamFromCollection = "</span> + streamFromCollection.collect(Collectors.toList())); <span class="hljs-comment">// напечатает streamFromCollection = [a1, a2, a3]</span>
+
+        <span class="hljs-comment">// Создание числового стрима из строки</span>
+        IntStream streamFromString = <span class="hljs-string">"123"</span>.chars();
+        System.out.print(<span class="hljs-string">"streamFromString = "</span>);
+        streamFromString.forEach((e)-&gt;System.out.print(e + <span class="hljs-string">" , "</span>)); <span class="hljs-comment">// напечатает streamFromString = 49 , 50 , 51 ,</span>
+        System.out.println();
+
+        <span class="hljs-comment">// С помощью Stream.builder</span>
+        Stream.Builder&lt;String&gt; builder = Stream.builder();
+        Stream&lt;String&gt; streamFromBuilder = builder.add(<span class="hljs-string">"a1"</span>).add(<span class="hljs-string">"a2"</span>).add(<span class="hljs-string">"a3"</span>).build();
+        System.out.println(<span class="hljs-string">"streamFromBuilder = "</span> + streamFromBuilder.collect((Collectors.toList()))); <span class="hljs-comment">// напечатает streamFromFiles = [a1, a2, a3]</span>
+
+        <span class="hljs-comment">// Создание бесконечных стримов</span>
+        <span class="hljs-comment">// С помощью Stream.iterate</span>
+        Stream&lt;Integer&gt; streamFromIterate = Stream.iterate(<span class="hljs-number">1</span>, n -&gt; n + <span class="hljs-number">2</span>);
+        System.out.println(<span class="hljs-string">"streamFromIterate = "</span> + streamFromIterate.limit(<span class="hljs-number">3</span>).collect(Collectors.toList())); <span class="hljs-comment">// напечатает streamFromIterate = [1, 3, 5]</span>
+
+        <span class="hljs-comment">// С помощью Stream.generate</span>
+        Stream&lt;String&gt; streamFromGenerate = Stream.generate(() -&gt; <span class="hljs-string">"a1"</span>);
+        System.out.println(<span class="hljs-string">"streamFromGenerate = "</span> + streamFromGenerate.limit(<span class="hljs-number">3</span>).collect(Collectors.toList())); <span class="hljs-comment">// напечатает streamFromGenerate = [a1, a1, a1]</span>
+
+        <span class="hljs-comment">// Создать пустой стрим</span>
+        Stream&lt;String&gt; streamEmpty = Stream.empty();
+        System.out.println(<span class="hljs-string">"streamEmpty = "</span> + streamEmpty.collect(Collectors.toList())); <span class="hljs-comment">// напечатает streamEmpty = []</span>
+
+        <span class="hljs-comment">// Создать параллельный стрим из коллекции</span>
+        Stream&lt;String&gt; parallelStream = collection.parallelStream();
+        System.out.println(<span class="hljs-string">"parallelStream = "</span> + parallelStream.collect(Collectors.toList())); <span class="hljs-comment">// напечатает parallelStream = [a1, a2, a3]</span>
+</code></pre><br>
+</div></div><br>
+<br>
+<h2><b>II. Методы работы со стримами</b></h2><br>
+Java Stream API предлагает два вида методов: <br>
+1. Конвейерные — возвращают другой stream, то есть работают как builder, <br>
+2. Терминальные — возвращают другой объект, такой как коллекция, примитивы, объекты, Optional и т.д.<br>
+<br>
+<div class="spoiler"><b class="spoiler_title">О том чем отличаются конвейерные и терминальные методы</b><div class="spoiler_text"><b>Общее правило</b>:
+ у stream'a может быть сколько угодно вызовов конвейерных вызовов и в 
+конце один терминальный, при этом все конвейерные методы выполняются 
+лениво и пока не будет вызван терминальный метод никаких действий на 
+самом деле не происходит, так же как создать объект Thread или Runnable,
+ но не вызвать у него start.<br>
+<br>
+В целом, этот механизм похож на конструирования SQL запросов, может быть
+ сколько угодно вложенных Select'ов и только один результат в итоге. 
+Например, в выражении collection.stream().filter((s) -&gt; 
+s.contains(«1»)).skip(2).findFirst(), filter и skip — конвейерные, а 
+findFirst — терминальный, он возвращает объект Optional и это 
+заканчивает работу со stream'ом.<br>
+</div></div><br>
+<br>
+<h3><b>2.1 Краткое описание конвейерных методов работы со стримами</b></h3><br>
+<table>
+<tbody><tr>
+<th width="140">Метод stream</th>
+<th>Описание</th>
+<th width="420">Пример</th>
+</tr>
+<tr>
+<td><b>filter</b></td>
+<td>Отфильтровывает записи, возвращает только записи, соответствующие условию</td>
+<td>collection.stream().filter(«a1»::equals).count()</td>
+</tr>
+<tr>
+<td><b>skip</b></td>
+<td>Позволяет пропустить N первых элементов</td>
+<td>collection.stream().skip(collection.size() — 1).findFirst().orElse(«1»)</td>
+</tr>
+<tr>
+<td><b>distinct</b></td>
+<td>Возвращает стрим без дубликатов (для метода equals)</td>
+<td>collection.stream().distinct().collect(Collectors.toList())</td>
+</tr>
+<tr>
+<td><b>map</b></td>
+<td>Преобразует каждый элемент стрима</td>
+<td>collection.stream().map((s) -&gt; s + "_1").collect(Collectors.toList())</td>
+</tr>
+<tr>
+<td><b>peek</b></td>
+<td>Возвращает тот же стрим, но применяет функцию к каждому элементу стрима</td>
+<td>collection.stream().map(String::toUpperCase).peek((e) -&gt; System.out.print("," + e)).<br>
+ collect(Collectors.toList())</td>
+</tr>
+<tr>
+<td><b>limit</b></td>
+<td>Позволяет ограничить выборку определенным количеством первых элементов</td>
+<td>collection.stream().limit(2).collect(Collectors.toList())</td>
+</tr>
+<tr>
+<td><b>sorted</b></td>
+<td>Позволяет сортировать значения либо в натуральном порядке, либо задавая Comparator</td>
+<td>collection.stream().sorted().collect(Collectors.toList())</td>
+</tr>
+<tr>
+<td><b>mapToInt</b>, <br>
+<b>mapToDouble</b>, <br>
+<b>mapToLong</b></td>
+<td>Аналог map, но возвращает числовой стрим (то есть стрим из числовых примитивов)</td>
+<td>collection.stream().mapToInt((s) -&gt; Integer.parseInt(s)).toArray()</td>
+</tr>
+<tr>
+<td><b>flatMap</b>,<br>
+<b>flatMapToInt</b>,<br>
+<b>flatMapToDouble</b>,<br>
+<b>flatMapToLong</b></td>
+<td>Похоже на map, но может создавать из одного элемента несколько</td>
+<td>collection.stream().flatMap((p) -&gt; Arrays.asList(p.split(",")).stream()).toArray(String[]::new)</td>
+</tr>
+</tbody></table><br>
+<br>
+<h3><b>2.2 Краткое описание терминальных методов работы со стримами</b></h3><br>
+<table>
+<tbody><tr>
+<th width="120">Метод stream</th>
+<th>Описание</th>
+<th width="450">Пример</th>
+</tr>
+<tr>
+<td><b>findFirst</b></td>
+<td>Возвращает первый элемент из стрима (возвращает Optional)</td>
+<td>collection.stream().findFirst().orElse(«1»)</td>
+</tr>
+<tr>
+<td><b>findAny</b></td>
+<td>Возвращает любой подходящий элемент из стрима (возвращает Optional)</td>
+<td>collection.stream().findAny().orElse(«1»)</td>
+</tr>
+<tr>
+<td><b>collect</b></td>
+<td>Представление результатов в виде коллекций и других структур данных</td>
+<td>collection.stream().filter((s) -&gt; s.contains(«1»)).collect(Collectors.toList())</td>
+</tr>
+<tr>
+<td><b>count</b></td>
+<td>Возвращает количество элементов в стриме</td>
+<td>collection.stream().filter(«a1»::equals).count()</td>
+</tr>
+<tr>
+<td><b>anyMatch</b></td>
+<td>Возвращает true, если условие выполняется хотя бы для одного элемента</td>
+<td>collection.stream().anyMatch(«a1»::equals)</td>
+</tr>
+<tr>
+<td><b>noneMatch</b></td>
+<td>Возвращает true, если условие не выполняется ни для одного элемента</td>
+<td>collection.stream().noneMatch(«a8»::equals)</td>
+</tr>
+<tr>
+<td><b>allMatch</b></td>
+<td>Возвращает true, если условие выполняется для всех элементов</td>
+<td>collection.stream().allMatch((s) -&gt; s.contains(«1»))</td>
+</tr>
+<tr>
+<td><b>min</b></td>
+<td>Возвращает минимальный элемент, в качестве условия использует компаратор</td>
+<td>collection.stream().min(String::compareTo).get()</td>
+</tr>
+<tr>
+<td><b>max</b></td>
+<td>Возвращает максимальный элемент, в качестве условия использует компаратор</td>
+<td>collection.stream().max(String::compareTo).get()</td>
+</tr>
+<tr>
+<td><b>forEach</b></td>
+<td>Применяет функцию к каждому объекту стрима, порядок при параллельном выполнении не гарантируется</td>
+<td>set.stream().forEach((p) -&gt; p.append("_1"));</td>
+</tr>
+<tr>
+<td><b>forEachOrdered</b></td>
+<td>Применяет функцию к каждому объекту стрима, сохранение порядка элементов гарантирует</td>
+<td>list.stream().forEachOrdered((p) -&gt; p.append("_new"));</td>
+</tr>
+<tr>
+<td><b>toArray</b></td>
+<td>Возвращает массив значений стрима</td>
+<td>collection.stream().map(String::toUpperCase).toArray(String[]::new);</td>
+</tr>
+</tbody></table><br>
+Обратите внимание методы findFirst, findAny, anyMatch это 
+short-circuiting методы, то есть обход стримов организуется таким 
+образом чтобы найти подходящий элемент максимально быстро, а не обходить
+ весь изначальный стрим.<br>
+<br>
+<h3><b>2.3 Краткое описание дополнительных методов у числовых стримов</b></h3><br>
+<table>
+<tbody><tr>
+<th width="100">Метод stream</th>
+<th>Описание</th>
+<th width="450">Пример</th>
+</tr>
+<tr>
+<td><b>sum</b></td>
+<td>Возвращает сумму всех чисел</td>
+<td>collection.stream().mapToInt((s) -&gt; Integer.parseInt(s)).sum()</td>
+</tr>
+<tr>
+<td><b>average</b></td>
+<td>Возвращает среднее арифметическое всех чисел</td>
+<td>collection.stream().mapToInt((s) -&gt; Integer.parseInt(s)).average()</td>
+</tr>
+<tr>
+<td><b>mapToObj</b></td>
+<td>Преобразует числовой стрим обратно в объектный</td>
+<td>intStream.mapToObj((id) -&gt; new Key(id)).toArray()</td>
+</tr>
+</tbody></table><br>
+<br>
+<h3><b>2.4 Несколько других полезных методов стримов</b></h3><br>
+<table>
+<tbody><tr>
+<th width="100">Метод stream</th>
+<th>Описание</th>
+</tr>
+<tr>
+<td><b>isParallel</b></td>
+<td>Узнать является ли стрим параллельным </td>
+</tr>
+<tr>
+<td><b>parallel</b></td>
+<td>Вернуть параллельный стрим, если стрим уже параллельный, то может вернуть самого себя</td>
+</tr>
+<tr>
+<td><b>sequential</b></td>
+<td>Вернуть последовательный стрим, если стрим уже последовательный, то может вернуть самого себя</td>
+</tr>
+</tbody></table><br>
+С помощью, методов parallel и sequential можно определять какие операции
+ могут быть параллельными, а какие только последовательными. Так же из 
+любого последовательного стрима можно сделать параллельный и наоборот, 
+то есть: <br>
+<pre><code class="java hljs">collection.stream().
+peek(...). <span class="hljs-comment">// операция последовательна</span>
+parallel().
+map(...). <span class="hljs-comment">// операция может выполняться параллельно,</span>
+sequential().
+reduce(...) <span class="hljs-comment">// операция снова последовательна </span>
+</code></pre> <br>
+<br>
+<b>Внимание</b>: крайне не рекомендуется использовать параллельные 
+стримы для сколько-нибудь долгих операций (получение данных из базы, 
+сетевых соединений), так как все параллельные стримы работают c одним 
+пулом fork/join и такие долгие операции могут остановить работу всех 
+параллельных стримов в JVM из-за того отсутствия доступных потоков в 
+пуле, т.е. параллельные стримы стоит использовать лишь для коротких 
+операций, где счет идет на миллисекунды, но не для тех где счет может 
+идти на секунды и минуты. <br>
+<br>
+<h2><b>III. Примеры работы с методами стримов</b></h2><br>
+Рассмотрим работу с методами на различных задачах, обычно требующихся при работе с коллекциями.<br>
+<br>
+<h3><b>3.1 Примеры использования filter, findFirst, findAny, skip, limit и count</b></h3><br>
+<b>Условие</b>: дана коллекция строк Arrays.asList(«a1», «a2», «a3», 
+«a1»), давайте посмотрим как её можно обрабатывать используя методы 
+filter, findFirst, findAny, skip и count:<br>
+<table>
+<tbody><tr>
+<th width="300">Задача</th>
+<th>Код примера</th>
+<th width="90">Результат</th>
+</tr>
+<tr>
+<td>Вернуть количество вхождений объекта «a1»</td>
+<td>collection.stream().filter(«a1»::equals).count()</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Вернуть первый элемент коллекции или 0, если коллекция пуста</td>
+<td>collection.stream().findFirst().orElse(0)</td>
+<td>a1</td>
+</tr>
+<tr>
+<td>Вернуть последний элемент коллекции или «empty», если коллекция пуста</td>
+<td>collection.stream().skip(collection.size() — 1).findAny().orElse(«empty»)</td>
+<td>a1</td>
+</tr>
+<tr>
+<td>Найти элемент в коллекции равный «a3» или кинуть ошибку</td>
+<td>collection.stream().filter(«a3»::equals).findFirst().get()</td>
+<td>a3</td>
+</tr>
+<tr>
+<td>Вернуть третий элемент коллекции по порядку</td>
+<td>collection.stream().skip(2).findFirst().get()</td>
+<td>a3</td>
+</tr>
+<tr>
+<td>Вернуть два элемента начиная со второго</td>
+<td>collection.stream().skip(1).limit(2).toArray()</td>
+<td>[a2, a3]</td>
+</tr>
+<tr>
+<td>Выбрать все элементы по шаблону</td>
+<td>collection.stream().filter((s) -&gt; s.contains(«1»)).collect(Collectors.toList())</td>
+<td>[a1, a1]</td>
+</tr>
+</tbody></table><br>
+<b>Обратите внимание</b>, что методы findFirst и findAny возвращают 
+новый тип Optional, появившийся в Java 8, для того чтобы избежать 
+NullPointerException. Метод filter удобно использовать для выборки лишь 
+определенного множества значений, а метод skip позволяет пропускать 
+определенное количество элементов.<br>
+<div class="spoiler"><b class="spoiler_title">Если вы не знаете лямбды</b><div class="spoiler_text">Выражение
+ «a3»::equals это аналог boolean func(s) { return «a3».equals(s);}, а 
+(s) -&gt; s.contains(«1») это аналог boolean func(s) { return 
+s.contains(«1»);} обернутых в анонимный класс.<br>
+</div></div><br>
+<b>Условие</b>: дана коллекция класс People (с полями name — имя, age — 
+возраст, sex — пол), вида Arrays.asList( new People(«Вася», 16, 
+Sex.MAN), new People(«Петя», 23, Sex.MAN), new People(«Елена», 42, 
+Sex.WOMEN), new People(«Иван Иванович», 69, Sex.MAN)). Давайте посмотрим
+ примеры как работать с таким классом: <br>
+<br>
+<table>
+<tbody><tr>
+<th width="300">Задача</th>
+<th>Код примера</th>
+<th width="90">Результат</th>
+</tr>
+<tr>
+<td>Выбрать мужчин-военнообязанных (от 18 до 27 лет)</td>
+<td>peoples.stream().filter((p)-&gt; p.getAge() &gt;= 18 &amp;&amp; p.getAge() &lt; 27<br>
+ &amp;&amp; p.getSex() == Sex.MAN).collect(Collectors.toList())</td>
+<td>[{name='Петя', age=23, sex=MAN}]</td>
+</tr>
+<tr>
+<td>Найти средний возраст среди мужчин</td>
+<td>peoples.stream().filter((p) -&gt; p.getSex() == Sex.MAN).<br>
+ mapToInt(People::getAge).average().getAsDouble()</td>
+<td>36.0</td>
+</tr>
+<tr>
+<td>Найти кол-во потенциально работоспособных людей в выборке (т.е. от 
+18 лет и учитывая что женщины выходят в 55 лет, а мужчина в 60)</td>
+<td>peoples.stream().filter((p) -&gt; p.getAge() &gt;= 18).filter(<br>
+ (p) -&gt; (p.getSex() == Sex.WOMEN &amp;&amp; p.getAge() &lt; 55) || 
+(p.getSex() == Sex.MAN &amp;&amp; p.getAge() &lt; 60)).count()</td>
+<td>2</td>
+</tr>
+</tbody></table><br>
+<div class="spoiler"><b class="spoiler_title">Детальные примеры</b><div class="spoiler_text">Также этот пример можно найти на github'e: <a href="https://github.com/Vedenin/java_collections_overview/blob/master/src/com/github/vedenin/rus/stream_api/FiterAndCountTests.java">первый класс</a> и <a href="https://github.com/Vedenin/java_collections_overview/blob/master/src/com/github/vedenin/rus/stream_api/LimitAndSkipTests.java">второй класс</a><br>
+<pre><code class="java hljs">    <span class="hljs-comment">// filter - возвращает stream, в котором есть только элементы, соответствующие условию фильтра</span>
+    <span class="hljs-comment">// count - возвращает количество элементов в стриме</span>
+    <span class="hljs-comment">// collect - преобразует stream в коллекцию или другую структуру данных</span>
+    <span class="hljs-comment">// mapToInt - преобразовать объект в числовой стрим (стрим, содержащий числа)</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testFilterAndCount</span><span class="hljs-params">()</span> </span>{
+        System.out.println();
+        System.out.println(<span class="hljs-string">"Test filter and count start"</span>);
+        Collection&lt;String&gt; collection = Arrays.asList(<span class="hljs-string">"a1"</span>, <span class="hljs-string">"a2"</span>, <span class="hljs-string">"a3"</span>, <span class="hljs-string">"a1"</span>);
+        Collection&lt;People&gt; peoples = Arrays.asList(
+                <span class="hljs-keyword">new</span> People(<span class="hljs-string">"Вася"</span>, <span class="hljs-number">16</span>, Sex.MAN),
+                <span class="hljs-keyword">new</span> People(<span class="hljs-string">"Петя"</span>, <span class="hljs-number">23</span>, Sex.MAN),
+                <span class="hljs-keyword">new</span> People(<span class="hljs-string">"Елена"</span>, <span class="hljs-number">42</span>, Sex.WOMEN),
+                <span class="hljs-keyword">new</span> People(<span class="hljs-string">"Иван Иванович"</span>, <span class="hljs-number">69</span>, Sex.MAN)
+        );
+
+        <span class="hljs-comment">// Вернуть количество вхождений объекта</span>
+        <span class="hljs-keyword">long</span> count = collection.stream().filter(<span class="hljs-string">"a1"</span>::equals).count();
+        System.out.println(<span class="hljs-string">"count = "</span> + count); <span class="hljs-comment">// напечатает count = 2</span>
+
+        <span class="hljs-comment">// Выбрать все элементы по шаблону</span>
+        List&lt;String&gt; select = collection.stream().filter((s) -&gt; s.contains(<span class="hljs-string">"1"</span>)).collect(Collectors.toList());
+        System.out.println(<span class="hljs-string">"select = "</span> + select); <span class="hljs-comment">// напечатает select = [a1, a1]</span>
+
+        <span class="hljs-comment">// Выбрать мужчин-военнообязанных </span>
+        List&lt;People&gt; militaryService = peoples.stream().filter((p)-&gt; p.getAge() &gt;= <span class="hljs-number">18</span> &amp;&amp; p.getAge() &lt; <span class="hljs-number">27</span>
+                &amp;&amp; p.getSex() == Sex.MAN).collect(Collectors.toList());
+        System.out.println(<span class="hljs-string">"militaryService = "</span> + militaryService); <span class="hljs-comment">// напечатает militaryService = [{name='Петя', age=23, sex=MAN}]</span>
+
+        <span class="hljs-comment">// Найти средний возраст среди мужчин</span>
+        <span class="hljs-keyword">double</span> manAverageAge = peoples.stream().filter((p) -&gt; p.getSex() == Sex.MAN).
+                mapToInt(People::getAge).average().getAsDouble();
+        System.out.println(<span class="hljs-string">"manAverageAge = "</span> + manAverageAge); <span class="hljs-comment">// напечатает manAverageAge = 36.0</span>
+
+        <span class="hljs-comment">// Найти кол-во потенциально работоспособных людей в выборке (т.е. от 18 лет и учитывая что женщины выходят в 55 лет, а мужчина в 60)</span>
+        <span class="hljs-keyword">long</span> peopleHowCanWork = peoples.stream().filter((p) -&gt; p.getAge() &gt;= <span class="hljs-number">18</span>).filter(
+                (p) -&gt; (p.getSex() == Sex.WOMEN &amp;&amp; p.getAge() &lt; <span class="hljs-number">55</span>) || (p.getSex() == Sex.MAN &amp;&amp; p.getAge() &lt; <span class="hljs-number">60</span>)).count();
+        System.out.println(<span class="hljs-string">"peopleHowCanWork = "</span> + peopleHowCanWork); <span class="hljs-comment">// напечатает manAverageAge = 2</span>
+
+    }
+
+   <span class="hljs-comment">// findFirst - возвращает первый Optional элемент из стрима</span>
+    <span class="hljs-comment">// skip - пропускает N первых элементов (где N параметр метода)</span>
+    <span class="hljs-comment">// collect преобразует stream в коллекцию или другую структуру данных</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testFindFirstSkipCount</span><span class="hljs-params">()</span> </span>{
+        Collection&lt;String&gt; collection = Arrays.asList(<span class="hljs-string">"a1"</span>, <span class="hljs-string">"a2"</span>, <span class="hljs-string">"a3"</span>, <span class="hljs-string">"a1"</span>);
+
+        System.out.println(<span class="hljs-string">"Test findFirst and skip start"</span>);
+        <span class="hljs-comment">// вернуть первый элемент коллекции</span>
+        String first = collection.stream().findFirst().orElse(<span class="hljs-string">"1"</span>);
+        System.out.println(<span class="hljs-string">"first = "</span> + first); <span class="hljs-comment">// напечатает first = a1</span>
+
+        <span class="hljs-comment">// вернуть последний элемент коллекции</span>
+        String last = collection.stream().skip(collection.size() - <span class="hljs-number">1</span>).findAny().orElse(<span class="hljs-string">"1"</span>);
+        System.out.println(<span class="hljs-string">"last = "</span> + last ); <span class="hljs-comment">// напечатает last = a1</span>
+
+        <span class="hljs-comment">// найти элемент в коллекции</span>
+        String find = collection.stream().filter(<span class="hljs-string">"a3"</span>::equals).findFirst().get();
+        System.out.println(<span class="hljs-string">"find = "</span> + find); <span class="hljs-comment">// напечатает find = a3</span>
+
+        <span class="hljs-comment">// вернуть третий элемент коллекции по порядку</span>
+        String third = collection.stream().skip(<span class="hljs-number">2</span>).findFirst().get();
+        System.out.println(<span class="hljs-string">"third = "</span> + third); <span class="hljs-comment">// напечатает third = a3</span>
+
+        System.out.println();
+        System.out.println(<span class="hljs-string">"Test collect start"</span>);
+        <span class="hljs-comment">// выбрать все элементы по шаблону</span>
+        List&lt;String&gt; select = collection.stream().filter((s) -&gt; s.contains(<span class="hljs-string">"1"</span>)).collect(Collectors.toList());
+        System.out.println(<span class="hljs-string">"select = "</span> + select); <span class="hljs-comment">// напечатает select = [a1, a1]</span>
+    }
+
+    <span class="hljs-comment">// Метод Limit позволяет ограничить выборку определенным количеством первых элементов</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testLimit</span><span class="hljs-params">()</span> </span>{
+        System.out.println();
+        System.out.println(<span class="hljs-string">"Test limit start"</span>);
+        Collection&lt;String&gt; collection = Arrays.asList(<span class="hljs-string">"a1"</span>, <span class="hljs-string">"a2"</span>, <span class="hljs-string">"a3"</span>, <span class="hljs-string">"a1"</span>);
+
+        <span class="hljs-comment">// Вернуть первые два элемента</span>
+        List&lt;String&gt; limit = collection.stream().limit(<span class="hljs-number">2</span>).collect(Collectors.toList());
+        System.out.println(<span class="hljs-string">"limit = "</span> + limit); <span class="hljs-comment">// напечатает limit = [a1, a2]</span>
+
+        <span class="hljs-comment">// Вернуть два элемента начиная со второго</span>
+        List&lt;String&gt; fromTo = collection.stream().skip(<span class="hljs-number">1</span>).limit(<span class="hljs-number">2</span>).collect(Collectors.toList());
+        System.out.println(<span class="hljs-string">"fromTo = "</span> + fromTo); <span class="hljs-comment">// напечатает fromTo = [a2, a3]</span>
+
+        <span class="hljs-comment">// вернуть последний элемент коллекции</span>
+        String last = collection.stream().skip(collection.size() - <span class="hljs-number">1</span>).findAny().orElse(<span class="hljs-string">"1"</span>);
+        System.out.println(<span class="hljs-string">"last = "</span> + last ); <span class="hljs-comment">// напечатает last = a1</span>
+    }
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">enum</span> Sex {
+        MAN,
+        WOMEN
+    }
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">People</span> </span>{
+        <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> String name;
+        <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Integer age;
+        <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Sex sex;
+
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">People</span><span class="hljs-params">(String name, Integer age, Sex sex)</span> </span>{
+            <span class="hljs-keyword">this</span>.name = name;
+            <span class="hljs-keyword">this</span>.age = age;
+            <span class="hljs-keyword">this</span>.sex = sex;
+        }
+
+        <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">return</span> name;
+        }
+
+        <span class="hljs-function"><span class="hljs-keyword">public</span> Integer <span class="hljs-title">getAge</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">return</span> age;
+        }
+
+        <span class="hljs-function"><span class="hljs-keyword">public</span> Sex <span class="hljs-title">getSex</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">return</span> sex;
+        }
+
+        <span class="hljs-annotation">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">return</span> <span class="hljs-string">"{"</span> +
+                    <span class="hljs-string">"name='"</span> + name + <span class="hljs-string">'\''</span> +
+                    <span class="hljs-string">", age="</span> + age +
+                    <span class="hljs-string">", sex="</span> + sex +
+                    <span class="hljs-string">'}'</span>;
+        }
+    }
+</code></pre><br>
+</div></div><br>
+<br>
+<h3><b>3.2 Примеры использования distinct</b></h3><br>
+Метод distinct возвращает stream без дубликатов, при этом для 
+упорядоченного стрима (например, коллекция на основе list) порядок 
+стабилен, для неупорядоченного — порядок не гарантируется. Рассмотрим 
+результаты работы над коллекцией Collection ordered = 
+Arrays.asList(«a1», «a2», «a2», «a3», «a1», «a2», «a2») и Collection 
+nonOrdered = new HashSet&lt;&gt;(ordered).<br>
+<table>
+<tbody><tr>
+<th width="300">Задача</th>
+<th>Код примера</th>
+<th width="150">Результат</th>
+</tr>
+<tr>
+<td>Получение коллекции без дубликатов из неупорядоченного стрима</td>
+<td>nonOrdered.stream().distinct().collect(Collectors.toList())</td>
+<td>[a1, a2, a3] — <br>
+порядок не гарантируется</td>
+</tr>
+<tr>
+<td>Получение коллекции без дубликатов из упорядоченного стрима</td>
+<td>ordered.stream().distinct().collect(Collectors.toList());</td>
+<td>[a1, a2, a3] — <br>
+порядок гарантируется</td>
+</tr>
+</tbody></table><br>
+<br>
+<b>Обратите внимание:</b><br>
+1. Если вы используете distinct с классом, у которого переопределен 
+equals, обязательно так же корректно переопределить hashCode в 
+соответствие с контрактом equals/hashCode (самое главное чтобы hashCode 
+для всех equals объектов, возвращал одинаковое значение), иначе distinct
+ может не удалить дубликаты (аналогично, как при использовании 
+HashSet/HashMap),<br>
+2. Если вы используете параллельные стримы и вам не важен порядок 
+элементов после удаления дубликатов — намного лучше для 
+производительности сделать сначала стрим неупорядоченным с помощь 
+unordered(), а уже потом применять distinct(), так как подержание 
+стабильности сортировки при параллельном стриме довольно затратно по 
+ресурсам и distinct() на упорядоченным стриме будет выполнятся 
+значительно дольше чем при неупорядоченном,<br>
+<br>
+<div class="spoiler"><b class="spoiler_title">Детальные примеры</b><div class="spoiler_text">Так же этот пример можно найти на <a href="https://github.com/Vedenin/java_collections_overview/blob/master/src/com/github/vedenin/rus/stream_api/DistinctTests.java">github'e</a><br>
+<pre><code class="java hljs"><span class="hljs-comment">// Метод distinct возвращает stream без дубликатов, при этом для упорядоченного стрима (например, коллекция на основе list) порядок стабилен , для неупорядоченного - порядок не гарантируется</span>
+    <span class="hljs-comment">// Метод collect преобразует stream в коллекцию или другую структуру данных</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testDistinct</span><span class="hljs-params">()</span> </span>{
+        System.out.println();
+        System.out.println(<span class="hljs-string">"Test distinct start"</span>);
+        Collection&lt;String&gt; ordered = Arrays.asList(<span class="hljs-string">"a1"</span>, <span class="hljs-string">"a2"</span>, <span class="hljs-string">"a2"</span>, <span class="hljs-string">"a3"</span>, <span class="hljs-string">"a1"</span>, <span class="hljs-string">"a2"</span>, <span class="hljs-string">"a2"</span>);
+        Collection&lt;String&gt; nonOrdered = <span class="hljs-keyword">new</span> HashSet&lt;&gt;(ordered);
+
+        <span class="hljs-comment">// Получение коллекции без дубликатов</span>
+        List&lt;String&gt; distinct = nonOrdered.stream().distinct().collect(Collectors.toList());
+        System.out.println(<span class="hljs-string">"distinct = "</span> + distinct); <span class="hljs-comment">// напечатает distinct = [a1, a2, a3] - порядок не гарантируется</span>
+
+        List&lt;String&gt; distinctOrdered = ordered.stream().distinct().collect(Collectors.toList());
+        System.out.println(<span class="hljs-string">"distinctOrdered = "</span> + distinctOrdered); <span class="hljs-comment">// напечатает distinct = [a1, a2, a3] - порядок гарантируется</span>
+    }
+</code></pre><br>
+</div></div><br>
+<br>
+<h3><b>3.3 Примеры использования Match функций (anyMatch, allMatch, noneMatch)</b></h3><br>
+<b>Условие</b>: дана коллекция строк Arrays.asList(«a1», «a2», «a3», 
+«a1»), давайте посмотрим, как её можно обрабатывать используя Match 
+функции <br>
+<br>
+<table>
+<tbody><tr>
+<th width="300">Задача</th>
+<th>Код примера</th>
+<th width="90">Результат</th>
+</tr>
+<tr>
+<td>Найти существуют ли хоть один «a1» элемент в коллекции</td>
+<td>collection.stream().anyMatch(«a1»::equals)</td>
+<td>true</td>
+</tr>
+<tr>
+<td>Найти существуют ли хоть один «a8» элемент в коллекции</td>
+<td>collection.stream().anyMatch(«a8»::equals)</td>
+<td>false</td>
+</tr>
+<tr>
+<td>Найти есть ли символ «1» у всех элементов коллекции</td>
+<td>collection.stream().allMatch((s) -&gt; s.contains(«1»))</td>
+<td>false</td>
+</tr>
+<tr>
+<td>Проверить что не существуют ни одного «a7» элемента в коллекции</td>
+<td>collection.stream().noneMatch(«a7»::equals)</td>
+<td>true</td>
+</tr>
+</tbody></table><br>
+<div class="spoiler"><b class="spoiler_title">Детальные примеры</b><div class="spoiler_text">Также этот пример можно найти на <a href="https://github.com/Vedenin/java_collections_overview/blob/master/src/com/github/vedenin/rus/stream_api/FindAndMatchTests.java">github'e</a><br>
+<pre><code class="java hljs">    <span class="hljs-comment">// Метод anyMatch - возвращает true, если условие выполняется хотя бы для одного элемента</span>
+    <span class="hljs-comment">// Метод noneMatch - возвращает true, если условие не выполняется ни для одного элемента</span>
+    <span class="hljs-comment">// Метод allMatch - возвращает true, если условие выполняется для всех элементов</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testMatch</span><span class="hljs-params">()</span> </span>{
+        System.out.println();
+        System.out.println(<span class="hljs-string">"Test anyMatch, allMatch, noneMatch  start"</span>);
+        Collection&lt;String&gt; collection = Arrays.asList(<span class="hljs-string">"a1"</span>, <span class="hljs-string">"a2"</span>, <span class="hljs-string">"a3"</span>, <span class="hljs-string">"a1"</span>);
+
+        <span class="hljs-comment">// найти существуют ли хоть одно совпадение с шаблоном в коллекции</span>
+        <span class="hljs-keyword">boolean</span> isAnyOneTrue = collection.stream().anyMatch(<span class="hljs-string">"a1"</span>::equals);
+        System.out.println(<span class="hljs-string">"anyOneTrue "</span> + isAnyOneTrue); <span class="hljs-comment">// напечатает true</span>
+        <span class="hljs-keyword">boolean</span> isAnyOneFalse = collection.stream().anyMatch(<span class="hljs-string">"a8"</span>::equals);
+        System.out.println(<span class="hljs-string">"anyOneFlase "</span> + isAnyOneFalse); <span class="hljs-comment">// напечатает false</span>
+
+        <span class="hljs-comment">// найти существуют ли все совпадения с шаблоном в коллекции</span>
+        <span class="hljs-keyword">boolean</span> isAll = collection.stream().allMatch((s) -&gt; s.contains(<span class="hljs-string">"1"</span>));
+        System.out.println(<span class="hljs-string">"isAll "</span> + isAll); <span class="hljs-comment">// напечатает false</span>
+
+        <span class="hljs-comment">// сравнение на неравенство</span>
+        <span class="hljs-keyword">boolean</span> isNotEquals = collection.stream().noneMatch(<span class="hljs-string">"a7"</span>::equals);
+        System.out.println(<span class="hljs-string">"isNotEquals "</span> + isNotEquals); <span class="hljs-comment">// напечатает true</span>
+    }
+</code></pre><br>
+</div></div><br>
+<br>
+<h3><b>3.4 Примеры использования Map функций (map, mapToInt, FlatMap, FlatMapToInt)</b></h3><br>
+<b>Условие</b>: даны две коллекции collection1 = Arrays.asList(«a1», 
+«a2», «a3», «a1») и collection2 = Arrays.asList(«1,2,0», «4,5»), давайте
+ посмотрим как её можно обрабатывать используя различные map функции<br>
+<br>
+<table>
+<tbody><tr>
+<th width="300">Задача</th>
+<th>Код примера</th>
+<th width="90">Результат</th>
+</tr>
+<tr>
+<td>Добавить "_1" к каждому элементу первой коллекции</td>
+<td>collection1.stream().map((s) -&gt; s + "_1").collect(Collectors.toList())</td>
+<td>[a1_1, a2_1, a3_1, a1_1]</td>
+</tr>
+<tr>
+<td>В первой коллекции убрать первый символ и вернуть массив чисел (int[]) </td>
+<td>collection1.stream().mapToInt((s) -&gt; Integer.parseInt(s.substring(1))).toArray()</td>
+<td>[1, 2, 3, 1]</td>
+</tr>
+<tr>
+<td>Из второй коллекции получить все числа, перечисленные через запятую из всех элементов</td>
+<td>collection2.stream().flatMap((p) -&gt; Arrays.asList(p.split(",")).stream()).toArray(String[]::new)</td>
+<td>[1, 2, 0, 4, 5]</td>
+</tr>
+<tr>
+<td>Из второй коллекции получить сумму всех чисел, перечисленных через запятую</td>
+<td>collection2.stream().flatMapToInt((p) -&gt; Arrays.asList(p.split(",")).stream().mapToInt(Integer::parseInt)).sum()</td>
+<td>12</td>
+</tr>
+</tbody></table><br>
+Обратите внимание: все map функции могут вернуть объект другого типа 
+(класса), то есть map может работать со стримом строк, а на выходе дать 
+Stream из значений Integer или получать класс людей People, а возвращать
+ класс Office, где эти люди работают и т.п., flatMap (flatMapToInt и 
+т.п.) на выходе должны возвращать стрим с одним, несколькими или ни 
+одним элементов для каждого элемента входящего стрима (см. последние два
+ примера). <br>
+<br>
+<div class="spoiler"><b class="spoiler_title">Детальные примеры</b><div class="spoiler_text">Так же этот пример можно найти на <a href="https://github.com/Vedenin/java_collections_overview/blob/master/src/com/github/vedenin/rus/stream_api/MapTests.java">github'e</a><br>
+<pre><code class="java hljs">    <span class="hljs-comment">// Метод Map изменяет выборку по определенному правилу, возвращает stream с новой выборкой</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testMap</span><span class="hljs-params">()</span> </span>{
+        System.out.println();
+        System.out.println(<span class="hljs-string">"Test map start"</span>);
+        Collection&lt;String&gt; collection = Arrays.asList(<span class="hljs-string">"a1"</span>, <span class="hljs-string">"a2"</span>, <span class="hljs-string">"a3"</span>, <span class="hljs-string">"a1"</span>);
+        <span class="hljs-comment">// Изменение всех элементов коллекции</span>
+        List&lt;String&gt; transform = collection.stream().map((s) -&gt; s + <span class="hljs-string">"_1"</span>).collect(Collectors.toList());
+        System.out.println(<span class="hljs-string">"transform = "</span> + transform); <span class="hljs-comment">// напечатает transform = [a1_1, a2_1, a3_1, a1_1]</span>
+
+        <span class="hljs-comment">// убрать первый символ и вернуть числа</span>
+        List&lt;Integer&gt; number = collection.stream().map((s) -&gt; Integer.parseInt(s.substring(<span class="hljs-number">1</span>))).collect(Collectors.toList());
+        System.out.println(<span class="hljs-string">"number = "</span> + number); <span class="hljs-comment">// напечатает transform = [1, 2, 3, 1]</span>
+
+    }
+
+    <span class="hljs-comment">// Метод MapToInt - изменяет выборку по определенному правилу, возвращает stream с новой числовой выборкой</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testMapToInt</span><span class="hljs-params">()</span> </span>{
+        System.out.println();
+        System.out.println(<span class="hljs-string">"Test mapToInt start"</span>);
+        Collection&lt;String&gt; collection = Arrays.asList(<span class="hljs-string">"a1"</span>, <span class="hljs-string">"a2"</span>, <span class="hljs-string">"a3"</span>, <span class="hljs-string">"a1"</span>);
+        <span class="hljs-comment">// убрать первый символ и вернуть числа</span>
+        <span class="hljs-keyword">int</span>[] number = collection.stream().mapToInt((s) -&gt; Integer.parseInt(s.substring(<span class="hljs-number">1</span>))).toArray();
+        System.out.println(<span class="hljs-string">"number = "</span> + Arrays.toString(number)); <span class="hljs-comment">// напечатает number = [1, 2, 3, 1]</span>
+
+    }
+
+    <span class="hljs-comment">// Метод FlatMap - похоже на Map - только вместо одного значения, он возвращает целый stream значений</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testFlatMap</span><span class="hljs-params">()</span> </span>{
+        System.out.println();
+        System.out.println(<span class="hljs-string">"Test flat map start"</span>);
+        Collection&lt;String&gt; collection = Arrays.asList(<span class="hljs-string">"1,2,0"</span>, <span class="hljs-string">"4,5"</span>);
+        <span class="hljs-comment">// получить все числовые значения, которые хранятся через запятую в collection</span>
+        String[] number = collection.stream().flatMap((p) -&gt; Arrays.asList(p.split(<span class="hljs-string">","</span>)).stream()).toArray(String[]::<span class="hljs-keyword">new</span>);
+        System.out.println(<span class="hljs-string">"number = "</span> + Arrays.toString(number)); <span class="hljs-comment">// напечатает number = [1, 2, 0, 4, 5]</span>
+    }
+
+    <span class="hljs-comment">// Метод FlatMapToInt - похоже на MapToInt - только вместо одного значения, он возвращает целый stream значений</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testFlatMapToInt</span><span class="hljs-params">()</span> </span>{
+        System.out.println();
+        System.out.println(<span class="hljs-string">"Test flat map start"</span>);
+        Collection&lt;String&gt; collection = Arrays.asList(<span class="hljs-string">"1,2,0"</span>, <span class="hljs-string">"4,5"</span>);
+        <span class="hljs-comment">// получить сумму всех числовые значения, которые хранятся через запятую в collection</span>
+        <span class="hljs-keyword">int</span> sum = collection.stream().flatMapToInt((p) -&gt; Arrays.asList(p.split(<span class="hljs-string">","</span>)).stream().mapToInt(Integer::parseInt)).sum();
+        System.out.println(<span class="hljs-string">"sum = "</span> + sum); <span class="hljs-comment">// напечатает sum = 12</span>
+    }
+</code></pre><br>
+</div></div><br>
+<br>
+<h3><b>3.5 Примеры использования Sorted функции</b></h3><br>
+<b>Условие</b>: даны две коллекции коллекция строк Arrays.asList(«a1», 
+«a4», «a3», «a2», «a1», «a4») и коллекция людей класса People (с полями 
+name — имя, age — возраст, sex — пол), вида Arrays.asList( new 
+People(«Вася», 16, Sex.MAN), new People(«Петя», 23, Sex.MAN), new 
+People(«Елена», 42, Sex.WOMEN), new People(«Иван Иванович», 69, 
+Sex.MAN)). Давайте посмотрим примеры как их можно сортировать: <br>
+<br>
+<table>
+<tbody><tr>
+<th width="300">Задача</th>
+<th>Код примера</th>
+<th width="130">Результат</th>
+</tr>
+<tr>
+<td>Отсортировать коллекцию строк по алфавиту</td>
+<td>collection.stream().sorted().collect(Collectors.toList())</td>
+<td>[a1, a1, a2, a3, a4, a4]</td>
+</tr>
+<tr>
+<td>Отсортировать коллекцию строк по алфавиту в обратном порядке</td>
+<td>collection.stream().sorted((o1, o2) -&gt; -o1.compareTo(o2)).collect(Collectors.toList())</td>
+<td>[a4, a4, a3, a2, a1, a1]</td>
+</tr>
+<tr>
+<td>Отсортировать коллекцию строк по алфавиту и убрать дубликаты</td>
+<td>collection.stream().sorted().distinct().collect(Collectors.toList())</td>
+<td>[a1, a2, a3, a4]</td>
+</tr>
+<tr>
+<td>Отсортировать коллекцию строк по алфавиту в обратном порядке и убрать дубликаты</td>
+<td>collection.stream().sorted((o1, o2) -&gt; -o1.compareTo(o2)).distinct().collect(Collectors.toList())</td>
+<td>[a4, a3, a2, a1]</td>
+</tr>
+<tr>
+<td>Отсортировать коллекцию людей по имени в обратном алфавитном порядке</td>
+<td>peoples.stream().sorted((o1,o2) -&gt; -o1.getName().compareTo(o2.getName())).collect(Collectors.toList())</td>
+<td>[{'Петя'}, {'Иван Иванович'}, {'Елена'}, {'Вася'}]<br>
+</td>
+</tr>
+<tr>
+<td>Отсортировать коллекцию людей сначала по полу, а потом по возрасту</td>
+<td>peoples.stream().sorted((o1, o2) -&gt; o1.getSex() != o2.getSex()? o1.getSex().<br>
+ compareTo(o2.getSex()): o1.getAge().compareTo(o2.getAge())).collect(Collectors.toList())</td>
+<td>[{'Вася'}, {'Петя'}, {'Иван Иванович'}, {'Елена'}]</td>
+</tr>
+</tbody></table><br>
+<br>
+<div class="spoiler"><b class="spoiler_title">Детальные примеры</b><div class="spoiler_text">Так же этот пример можно найти на <a href="https://github.com/Vedenin/java_collections_overview/blob/master/src/com/github/vedenin/rus/stream_api/SortedTests.java">github'e</a><br>
+<pre><code class="java hljs">    <span class="hljs-comment">// Метод Sorted позволяет сортировать значения либо в натуральном порядке, либо задавая Comparator</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testSorted</span><span class="hljs-params">()</span> </span>{
+        System.out.println();
+        System.out.println(<span class="hljs-string">"Test sorted start"</span>);
+
+        <span class="hljs-comment">// ************ Работа со строками</span>
+        Collection&lt;String&gt; collection = Arrays.asList(<span class="hljs-string">"a1"</span>, <span class="hljs-string">"a4"</span>, <span class="hljs-string">"a3"</span>, <span class="hljs-string">"a2"</span>, <span class="hljs-string">"a1"</span>, <span class="hljs-string">"a4"</span>);
+
+        <span class="hljs-comment">// отсортировать значения по алфавиту</span>
+        List&lt;String&gt; sorted = collection.stream().sorted().collect(Collectors.toList());
+        System.out.println(<span class="hljs-string">"sorted = "</span> + sorted); <span class="hljs-comment">// напечатает sorted = [a1, a1, a2, a3, a4, a4]</span>
+
+        <span class="hljs-comment">// отсортировать значения по алфавиту и убрать дубликаты</span>
+        List&lt;String&gt; sortedDistinct = collection.stream().sorted().distinct().collect(Collectors.toList());
+        System.out.println(<span class="hljs-string">"sortedDistinct = "</span> + sortedDistinct); <span class="hljs-comment">// напечатает sortedDistinct = [a1, a2, a3, a4]</span>
+
+        <span class="hljs-comment">// отсортировать значения по алфавиту в обратном порядке</span>
+        List&lt;String&gt; sortedReverse = collection.stream().sorted((o1, o2) -&gt; -o1.compareTo(o2)).collect(Collectors.toList());
+        System.out.println(<span class="hljs-string">"sortedReverse = "</span> + sortedReverse); <span class="hljs-comment">// напечатает sortedReverse = [a4, a4, a3, a2, a1, a1]</span>
+
+        <span class="hljs-comment">// отсортировать значения по алфавиту в обратном порядке  и убрать дубликаты</span>
+        List&lt;String&gt; distinctReverse = collection.stream().sorted((o1, o2) -&gt; -o1.compareTo(o2)).distinct().collect(Collectors.toList());
+        System.out.println(<span class="hljs-string">"distinctReverse = "</span> + distinctReverse); <span class="hljs-comment">// напечатает sortedReverse = [a4, a3, a2, a1]</span>
+
+        <span class="hljs-comment">// ************ Работа с объектами</span>
+        <span class="hljs-comment">// Зададим коллекцию людей</span>
+        Collection&lt;People&gt; peoples = Arrays.asList(
+                <span class="hljs-keyword">new</span> People(<span class="hljs-string">"Вася"</span>, <span class="hljs-number">16</span>, Sex.MAN),
+                <span class="hljs-keyword">new</span> People(<span class="hljs-string">"Петя"</span>, <span class="hljs-number">23</span>, Sex.MAN),
+                <span class="hljs-keyword">new</span> People(<span class="hljs-string">"Елена"</span>, <span class="hljs-number">42</span>, Sex.WOMEN),
+                <span class="hljs-keyword">new</span> People(<span class="hljs-string">"Иван Иванович"</span>, <span class="hljs-number">69</span>, Sex.MAN)
+        );
+
+        <span class="hljs-comment">// Отсортировать по имени в обратном алфавитном порядке</span>
+        Collection&lt;People&gt; byName = peoples.stream().sorted((o1,o2) -&gt; -o1.getName().compareTo(o2.getName())).collect(Collectors.toList());
+        System.out.println(<span class="hljs-string">"byName = "</span> + byName); <span class="hljs-comment">// byName = [{name='Петя', age=23, sex=MAN}, {name='Иван Иванович', age=69, sex=MAN}, {name='Елена', age=42, sex=WOMEN}, {name='Вася', age=16, sex=MAN}]</span>
+
+        <span class="hljs-comment">// Отсортировать сначала по полу, а потом по возрасту</span>
+        Collection&lt;People&gt; bySexAndAge = peoples.stream().sorted((o1, o2) -&gt; o1.getSex() != o2.getSex() ? o1.getSex().
+                compareTo(o2.getSex()) : o1.getAge().compareTo(o2.getAge())).collect(Collectors.toList());
+        System.out.println(<span class="hljs-string">"bySexAndAge = "</span> + bySexAndAge); <span class="hljs-comment">// bySexAndAge = [{name='Вася', age=16, sex=MAN}, {name='Петя', age=23, sex=MAN}, {name='Иван Иванович', age=69, sex=MAN}, {name='Елена', age=42, sex=WOMEN}]</span>
+    }
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">enum</span> Sex {
+        MAN,
+        WOMEN
+    }
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">People</span> </span>{
+        <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> String name;
+        <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Integer age;
+        <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Sex sex;
+
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">People</span><span class="hljs-params">(String name, Integer age, Sex sex)</span> </span>{
+            <span class="hljs-keyword">this</span>.name = name;
+            <span class="hljs-keyword">this</span>.age = age;
+            <span class="hljs-keyword">this</span>.sex = sex;
+        }
+
+        <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">return</span> name;
+        }
+
+        <span class="hljs-function"><span class="hljs-keyword">public</span> Integer <span class="hljs-title">getAge</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">return</span> age;
+        }
+
+        <span class="hljs-function"><span class="hljs-keyword">public</span> Sex <span class="hljs-title">getSex</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">return</span> sex;
+        }
+
+        <span class="hljs-annotation">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">return</span> <span class="hljs-string">"{"</span> +
+                    <span class="hljs-string">"name='"</span> + name + <span class="hljs-string">'\''</span> +
+                    <span class="hljs-string">", age="</span> + age +
+                    <span class="hljs-string">", sex="</span> + sex +
+                    <span class="hljs-string">'}'</span>;
+        }
+
+        <span class="hljs-annotation">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">equals</span><span class="hljs-params">(Object o)</span> </span>{
+            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span> == o) <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+            <span class="hljs-keyword">if</span> (!(o <span class="hljs-keyword">instanceof</span> People)) <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+            People people = (People) o;
+            <span class="hljs-keyword">return</span> Objects.equals(name, people.name) &amp;&amp;
+                    Objects.equals(age, people.age) &amp;&amp;
+                    Objects.equals(sex, people.sex);
+        }
+
+        <span class="hljs-annotation">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">hashCode</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">return</span> Objects.hash(name, age, sex);
+        }
+    }
+</code></pre><br>
+</div></div><br>
+<br>
+<h3><b>3.6 Примеры использования Max и Min функций</b></h3><br>
+<b>Условие</b>: дана коллекция строк Arrays.asList(«a1», «a2», «a3», 
+«a1»), и коллекция класса Peoples из прошлых примеров про Sorted и 
+Filter функции.<br>
+<br>
+<table>
+<tbody><tr>
+<th width="300">Задача</th>
+<th>Код примера</th>
+<th width="90">Результат</th>
+</tr>
+<tr>
+<td>Найти максимальное значение среди коллекции строк</td>
+<td>collection.stream().max(String::compareTo).get()</td>
+<td>a3</td>
+</tr>
+<tr>
+<td>Найти минимальное значение среди коллекции строк</td>
+<td>collection.stream().min(String::compareTo).get()</td>
+<td>a1</td>
+</tr>
+<tr>
+<td>Найдем человека с максимальным возрастом</td>
+<td>peoples.stream().max((p1, p2) -&gt; p1.getAge().compareTo(p2.getAge())).get()</td>
+<td>{name='Иван Иванович', age=69, sex=MAN}</td>
+</tr>
+<tr>
+<td>Найдем человека с минимальным возрастом</td>
+<td>peoples.stream().min((p1, p2) -&gt; p1.getAge().compareTo(p2.getAge())).get()</td>
+<td>{name='Вася', age=16, sex=MAN}</td>
+</tr>
+</tbody></table><br>
+<br>
+<div class="spoiler"><b class="spoiler_title">Детальные примеры</b><div class="spoiler_text">Так же этот пример можно найти на <a href="https://github.com/Vedenin/java_collections_overview/blob/master/src/com/github/vedenin/rus/stream_api/MaxMinTests.java">github'e</a><br>
+<pre><code class="java hljs">    <span class="hljs-comment">// Метод max вернет максимальный элемент, в качестве условия использует компаратор</span>
+    <span class="hljs-comment">// Метод min вернет минимальный элемент, в качестве условия использует компаратор</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testMinMax</span><span class="hljs-params">()</span> </span>{
+        System.out.println();
+        System.out.println(<span class="hljs-string">"Test min and max start"</span>);
+        <span class="hljs-comment">// ************ Работа со строками</span>
+        Collection&lt;String&gt; collection = Arrays.asList(<span class="hljs-string">"a1"</span>, <span class="hljs-string">"a2"</span>, <span class="hljs-string">"a3"</span>, <span class="hljs-string">"a1"</span>);
+
+        <span class="hljs-comment">// найти максимальное значение</span>
+        String max = collection.stream().max(String::compareTo).get();
+        System.out.println(<span class="hljs-string">"max "</span> + max); <span class="hljs-comment">// напечатает a3</span>
+
+        <span class="hljs-comment">// найти минимальное значение</span>
+        String min = collection.stream().min(String::compareTo).get();
+        System.out.println(<span class="hljs-string">"min "</span> + min); <span class="hljs-comment">// напечатает a1</span>
+
+        <span class="hljs-comment">// ************ Работа со сложными объектами</span>
+
+        <span class="hljs-comment">// Зададим коллекцию людей</span>
+        Collection&lt;People&gt; peoples = Arrays.asList(
+                <span class="hljs-keyword">new</span> People(<span class="hljs-string">"Вася"</span>, <span class="hljs-number">16</span>, Sex.MAN),
+                <span class="hljs-keyword">new</span> People(<span class="hljs-string">"Петя"</span>, <span class="hljs-number">23</span>, Sex.MAN),
+                <span class="hljs-keyword">new</span> People(<span class="hljs-string">"Елена"</span>, <span class="hljs-number">42</span>, Sex.WOMEN),
+                <span class="hljs-keyword">new</span> People(<span class="hljs-string">"Иван Иванович"</span>, <span class="hljs-number">69</span>, Sex.MAN)
+        );
+
+        <span class="hljs-comment">// найти человека с максимальным возрастом</span>
+        People older = peoples.stream().max((p1, p2) -&gt; p1.getAge().compareTo(p2.getAge())).get();
+        System.out.println(<span class="hljs-string">"older "</span> + older); <span class="hljs-comment">// напечатает {name='Иван Иванович', age=69, sex=MAN}</span>
+
+        <span class="hljs-comment">// найти человека с минимальным возрастом</span>
+        People younger = peoples.stream().min((p1, p2) -&gt; p1.getAge().compareTo(p2.getAge())).get();
+        System.out.println(<span class="hljs-string">"younger "</span> + younger); <span class="hljs-comment">// напечатает {name='Вася', age=16, sex=MAN}</span>
+    }
+
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">enum</span> Sex {
+        MAN,
+        WOMEN
+    }
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">People</span> </span>{
+        <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> String name;
+        <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Integer age;
+        <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Sex sex;
+
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">People</span><span class="hljs-params">(String name, Integer age, Sex sex)</span> </span>{
+            <span class="hljs-keyword">this</span>.name = name;
+            <span class="hljs-keyword">this</span>.age = age;
+            <span class="hljs-keyword">this</span>.sex = sex;
+        }
+
+        <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">return</span> name;
+        }
+
+        <span class="hljs-function"><span class="hljs-keyword">public</span> Integer <span class="hljs-title">getAge</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">return</span> age;
+        }
+
+        <span class="hljs-function"><span class="hljs-keyword">public</span> Sex <span class="hljs-title">getSex</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">return</span> sex;
+        }
+
+        <span class="hljs-annotation">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">return</span> <span class="hljs-string">"{"</span> +
+                    <span class="hljs-string">"name='"</span> + name + <span class="hljs-string">'\''</span> +
+                    <span class="hljs-string">", age="</span> + age +
+                    <span class="hljs-string">", sex="</span> + sex +
+                    <span class="hljs-string">'}'</span>;
+        }
+
+        <span class="hljs-annotation">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">equals</span><span class="hljs-params">(Object o)</span> </span>{
+            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span> == o) <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+            <span class="hljs-keyword">if</span> (!(o <span class="hljs-keyword">instanceof</span> People)) <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+            People people = (People) o;
+            <span class="hljs-keyword">return</span> Objects.equals(name, people.name) &amp;&amp;
+                    Objects.equals(age, people.age) &amp;&amp;
+                    Objects.equals(sex, people.sex);
+        }
+
+        <span class="hljs-annotation">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">hashCode</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">return</span> Objects.hash(name, age, sex);
+        }
+    }
+</code></pre><br>
+</div></div><br>
+<br>
+<h3><b>3.7 Примеры использования ForEach и Peek функций</b></h3><br>
+Обе ForEach и Peek по сути делают одно и тоже, меняют свойства объектов в
+ стриме, единственная разница между ними в том что ForEach терминальная и
+ она заканчивает работу со стримом, в то время как Peek конвейерная и 
+работа со стримом продолжается. Например, есть коллекция: <pre><code class="java hljs">        Collection&lt;StringBuilder&gt; list = Arrays.asList(<span class="hljs-keyword">new</span> StringBuilder(<span class="hljs-string">"a1"</span>), <span class="hljs-keyword">new</span> StringBuilder(<span class="hljs-string">"a2"</span>), <span class="hljs-keyword">new</span> StringBuilder(<span class="hljs-string">"a3"</span>));
+</code></pre><br>
+И нужно добавить к каждому элементу "_new", то для ForEach код будет <br>
+<pre><code class="java hljs">        list.stream().forEachOrdered((p) -&gt; p.append(<span class="hljs-string">"_new"</span>)); <span class="hljs-comment">// list - содержит [a1_new, a2_new, a3_new]</span>
+</code></pre><br>
+а для peek код будет <br>
+ <pre><code class="java hljs">  List&lt;StringBuilder&gt; newList = list.stream().peek((p) -&gt; p.append(<span class="hljs-string">"_new"</span>)).collect(Collectors.toList()); <span class="hljs-comment">// и list и newList содержат [a1_new, a2_new, a3_new]</span>
+</code></pre><br>
+<br>
+<div class="spoiler"><b class="spoiler_title">Детальные примеры</b><div class="spoiler_text">Так же этот пример можно найти на <a href="https://github.com/Vedenin/java_collections_overview/blob/master/src/com/github/vedenin/rus/stream_api/ForEachAndPeekTests.java">github'e</a><br>
+<pre><code class="java hljs">    <span class="hljs-comment">// Метод ForEach применяет указанный метод к каждому элементу стрима и заканчивает работу со стримом</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testForEach</span><span class="hljs-params">()</span> </span>{
+        System.out.println();
+        System.out.println(<span class="hljs-string">"For each start"</span>);
+        Collection&lt;String&gt; collection = Arrays.asList(<span class="hljs-string">"a1"</span>, <span class="hljs-string">"a2"</span>, <span class="hljs-string">"a3"</span>, <span class="hljs-string">"a1"</span>);
+        <span class="hljs-comment">// Напечатать отладочную информацию по каждому элементу стрима</span>
+        System.out.print(<span class="hljs-string">"forEach = "</span>);
+        collection.stream().map(String::toUpperCase).forEach((e) -&gt; System.out.print(e + <span class="hljs-string">","</span>)); <span class="hljs-comment">// напечатает forEach = A1,A2,A3,A1,</span>
+        System.out.println();
+
+        Collection&lt;StringBuilder&gt; list = Arrays.asList(<span class="hljs-keyword">new</span> StringBuilder(<span class="hljs-string">"a1"</span>), <span class="hljs-keyword">new</span> StringBuilder(<span class="hljs-string">"a2"</span>), <span class="hljs-keyword">new</span> StringBuilder(<span class="hljs-string">"a3"</span>));
+        list.stream().forEachOrdered((p) -&gt; p.append(<span class="hljs-string">"_new"</span>));
+        System.out.println(<span class="hljs-string">"forEachOrdered = "</span> + list); <span class="hljs-comment">// напечатает forEachOrdered = [a1_new, a2_new, a3_new]</span>
+    }
+
+    <span class="hljs-comment">// Метод Peek возвращает тот же стрим, но при этом применяет указанный метод к каждому элементу стрима</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testPeek</span><span class="hljs-params">()</span> </span>{
+        System.out.println();
+        System.out.println(<span class="hljs-string">"Test peek start"</span>);
+        Collection&lt;String&gt; collection = Arrays.asList(<span class="hljs-string">"a1"</span>, <span class="hljs-string">"a2"</span>, <span class="hljs-string">"a3"</span>, <span class="hljs-string">"a1"</span>);
+        <span class="hljs-comment">// Напечатать отладочную информацию по каждому элементу стрима</span>
+        System.out.print(<span class="hljs-string">"peak1 = "</span>);
+        List&lt;String&gt; peek = collection.stream().map(String::toUpperCase).peek((e) -&gt; System.out.print(e + <span class="hljs-string">","</span>)).
+                collect(Collectors.toList());
+        System.out.println(); <span class="hljs-comment">// напечатает peak1 = A1,A2,A3,A1,</span>
+        System.out.println(<span class="hljs-string">"peek2 = "</span> + peek); <span class="hljs-comment">// напечатает peek2 = [A1, A2, A3, A1]</span>
+
+        Collection&lt;StringBuilder&gt; list = Arrays.asList(<span class="hljs-keyword">new</span> StringBuilder(<span class="hljs-string">"a1"</span>), <span class="hljs-keyword">new</span> StringBuilder(<span class="hljs-string">"a2"</span>), <span class="hljs-keyword">new</span> StringBuilder(<span class="hljs-string">"a3"</span>));
+        List&lt;StringBuilder&gt; newList = list.stream().peek((p) -&gt; p.append(<span class="hljs-string">"_new"</span>)).collect(Collectors.toList());
+        System.out.println(<span class="hljs-string">"newList = "</span> + newList); <span class="hljs-comment">// напечатает newList = [a1_new, a2_new, a3_new]</span>
+    }
+</code></pre><br>
+</div></div><br>
+<br>
+<h3><b>3.8 Примеры использования Reduce функции</b></h3><br>
+Метод reduce позволяет выполнять агрегатные функции на всей коллекцией 
+(такие как сумма, нахождение минимального или максимального значение и 
+т.п.), он возвращает одно значение для стрима, функция получает два 
+аргумента — значение полученное на прошлых шагах и текущее значение.<br>
+<br>
+<b>Условие</b>: Дана коллекция чисел Arrays.asList(1, 2, 3, 4, 2) выполним над ними несколько действий используя reduce.<br>
+<br>
+<table>
+<tbody><tr>
+<th width="300">Задача</th>
+<th>Код примера</th>
+<th width="90">Результат</th>
+</tr>
+<tr>
+<td>Получить сумму чисел или вернуть 0</td>
+<td>collection.stream().reduce((s1, s2) -&gt; s1 + s2).orElse(0)</td>
+<td>12</td>
+</tr>
+<tr>
+<td>Вернуть максимум или -1</td>
+<td>collection.stream().reduce(Integer::max).orElse(-1)</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Вернуть сумму нечетных чисел или 0</td>
+<td>collection.stream().filter(o -&gt; o % 2 != 0).reduce((s1, s2) -&gt; s1 + s2).orElse(0)</td>
+<td>4</td>
+</tr>
+</tbody></table><br>
+<br>
+<div class="spoiler"><b class="spoiler_title">Детальные примеры</b><div class="spoiler_text">Также этот пример можно найти на <a href="https://github.com/Vedenin/java_collections_overview/blob/master/src/com/github/vedenin/rus/stream_api/ReduceTests.java">github'e</a><br>
+<pre><code class="java hljs">    <span class="hljs-comment">// Метод reduce позволяет выполнять агрегатные функции на всей коллекцией (такие как сумма, нахождение минимального или максимального значение и т.п.)</span>
+    <span class="hljs-comment">// Он возвращает одно Optional значение</span>
+    <span class="hljs-comment">// map - преобразует один объект в другой (например, класс одного тип в другой)</span>
+    <span class="hljs-comment">// mapToInt - преобразование объектов в числовой стрим (стрим, состоящий из значений int)</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testReduce</span><span class="hljs-params">()</span> </span>{
+        System.out.println();
+        System.out.println(<span class="hljs-string">"Test reduce start"</span>);
+
+        <span class="hljs-comment">// ************ Работа с числовыми объектами</span>
+        Collection&lt;Integer&gt; collection = Arrays.asList(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>);
+
+        <span class="hljs-comment">// Вернуть сумму</span>
+        Integer sum = collection.stream().reduce((s1, s2) -&gt; s1 + s2).orElse(<span class="hljs-number">0</span>); <span class="hljs-comment">// через stream Api</span>
+        Integer sumOld = <span class="hljs-number">0</span>; <span class="hljs-comment">// по старому методу</span>
+        <span class="hljs-keyword">for</span>(Integer i: collection) {
+            sumOld += i;
+        }
+        System.out.println(<span class="hljs-string">"sum = "</span> + sum + <span class="hljs-string">" : "</span> + sumOld); <span class="hljs-comment">// напечатает sum = 12 : 12</span>
+
+
+        <span class="hljs-comment">// Вернуть максимум</span>
+        Integer max1 = collection.stream().reduce((s1, s2) -&gt; s1 &gt; s2 ? s1 : s2).orElse(<span class="hljs-number">0</span>); <span class="hljs-comment">// через stream Api</span>
+        Integer max2 = collection.stream().reduce(Integer::max).orElse(<span class="hljs-number">0</span>); <span class="hljs-comment">// через stream Api используя Integer::max</span>
+        Integer maxOld = <span class="hljs-keyword">null</span>; <span class="hljs-comment">// по старому методу</span>
+        <span class="hljs-keyword">for</span>(Integer i: collection) {
+            maxOld = maxOld != <span class="hljs-keyword">null</span> &amp;&amp; maxOld &gt; i? maxOld: i;
+        }
+        maxOld = maxOld == <span class="hljs-keyword">null</span>? <span class="hljs-number">0</span> : maxOld;
+        System.out.println(<span class="hljs-string">"max = "</span> + max1 + <span class="hljs-string">" : "</span> + max2 + <span class="hljs-string">" : "</span> + maxOld); <span class="hljs-comment">// напечатает max1 = 4 : 4 : 4</span>
+
+        <span class="hljs-comment">// Вернуть минимум</span>
+        Integer min = collection.stream().reduce((s1, s2) -&gt; s1 &lt; s2 ? s1 : s2).orElse(<span class="hljs-number">0</span>); <span class="hljs-comment">// через stream Api</span>
+        Integer minOld = <span class="hljs-keyword">null</span>; <span class="hljs-comment">// по старому методу</span>
+        <span class="hljs-keyword">for</span>(Integer i: collection) {
+            minOld = minOld != <span class="hljs-keyword">null</span> &amp;&amp; minOld &lt; i? minOld: i;
+        }
+        minOld = minOld == <span class="hljs-keyword">null</span>? <span class="hljs-number">0</span> : minOld;
+        System.out.println(<span class="hljs-string">"min = "</span> + min+ <span class="hljs-string">" : "</span> + minOld); <span class="hljs-comment">// напечатает min = 1 : 1</span>
+
+        <span class="hljs-comment">// Вернуть последний элемент</span>
+        Integer last = collection.stream().reduce((s1, s2) -&gt; s2).orElse(<span class="hljs-number">0</span>); <span class="hljs-comment">// через stream Api</span>
+        Integer lastOld = <span class="hljs-keyword">null</span>; <span class="hljs-comment">// по старому методу</span>
+        <span class="hljs-keyword">for</span>(Integer i: collection) {
+            lastOld = i;
+        }
+        lastOld = lastOld == <span class="hljs-keyword">null</span>? <span class="hljs-number">0</span> : lastOld;
+        System.out.println(<span class="hljs-string">"last = "</span> + last + <span class="hljs-string">" : "</span> + lastOld); <span class="hljs-comment">// напечатает last = 2 : 2</span>
+
+        <span class="hljs-comment">// Вернуть сумму чисел, которые больше 2</span>
+        Integer sumMore2 = collection.stream().filter(o -&gt; o &gt; <span class="hljs-number">2</span>).reduce((s1, s2) -&gt; s1 + s2).orElse(<span class="hljs-number">0</span>);     <span class="hljs-comment">// через stream Api</span>
+        Integer sumMore2Old = <span class="hljs-number">0</span>; <span class="hljs-comment">// по старому методу</span>
+        <span class="hljs-keyword">for</span>(Integer i: collection) {
+            <span class="hljs-keyword">if</span>(i &gt; <span class="hljs-number">2</span>) {
+                sumMore2Old += i;
+            }
+        }
+        System.out.println(<span class="hljs-string">"sumMore2 = "</span> + sumMore2 + <span class="hljs-string">" : "</span> + sumMore2Old); <span class="hljs-comment">// напечатает sumMore2 = 7 : 7</span>
+
+        <span class="hljs-comment">// Вернуть сумму нечетных чисел</span>
+        Integer sumOdd = collection.stream().filter(o -&gt; o % <span class="hljs-number">2</span> != <span class="hljs-number">0</span>).reduce((s1, s2) -&gt; s1 + s2).orElse(<span class="hljs-number">0</span>); <span class="hljs-comment">// через stream Api</span>
+        Integer sumOddOld = <span class="hljs-number">0</span>; <span class="hljs-comment">// по старому методу</span>
+        <span class="hljs-keyword">for</span>(Integer i: collection) {
+            <span class="hljs-keyword">if</span>(i % <span class="hljs-number">2</span> != <span class="hljs-number">0</span>) {
+                sumOddOld += i;
+            }
+        }
+        System.out.println(<span class="hljs-string">"sumOdd = "</span> + sumOdd + <span class="hljs-string">" : "</span> + sumOddOld); <span class="hljs-comment">// напечатает sumOdd = 4 : 4</span>
+
+        <span class="hljs-comment">// ************ Работа со сложными объектами</span>
+
+        <span class="hljs-comment">// Зададим коллекцию людей</span>
+        Collection&lt;People&gt; peoples = Arrays.asList(
+                <span class="hljs-keyword">new</span> People(<span class="hljs-string">"Вася"</span>, <span class="hljs-number">16</span>, Sex.MAN),
+                <span class="hljs-keyword">new</span> People(<span class="hljs-string">"Петя"</span>, <span class="hljs-number">23</span>, Sex.MAN),
+                <span class="hljs-keyword">new</span> People(<span class="hljs-string">"Елена"</span>, <span class="hljs-number">42</span>, Sex.WOMEN),
+                <span class="hljs-keyword">new</span> People(<span class="hljs-string">"Иван Иванович"</span>, <span class="hljs-number">69</span>, Sex.MAN)
+        );
+
+        <span class="hljs-comment">// Найдем самого старшего мужчину</span>
+        <span class="hljs-keyword">int</span> oldMan = peoples.stream().filter((p) -&gt; p.getSex() == Sex.MAN).map(People::getAge).reduce((s1, s2) -&gt; s1 &gt; s2 ? s1 : s2).get();
+        System.out.println(<span class="hljs-string">"oldMan = "</span> + oldMan); <span class="hljs-comment">// напечатает 69</span>
+
+        <span class="hljs-comment">// Найдем самого минимальный возраст человека у которого есть бука е в имени</span>
+        <span class="hljs-keyword">int</span> younger = peoples.stream().filter((p) -&gt; p.getName().contains(<span class="hljs-string">"е"</span>)).mapToInt(People::getAge).reduce((s1, s2) -&gt; s1 &lt; s2 ? s1 : s2).orElse(<span class="hljs-number">0</span>);
+        System.out.println(<span class="hljs-string">"younger = "</span> + younger); <span class="hljs-comment">// напечатает 23</span>
+    }
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">enum</span> Sex {
+        MAN,
+        WOMEN
+    }
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">People</span> </span>{
+        <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> String name;
+        <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Integer age;
+        <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Sex sex;
+
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">People</span><span class="hljs-params">(String name, Integer age, Sex sex)</span> </span>{
+            <span class="hljs-keyword">this</span>.name = name;
+            <span class="hljs-keyword">this</span>.age = age;
+            <span class="hljs-keyword">this</span>.sex = sex;
+        }
+
+        <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">return</span> name;
+        }
+
+        <span class="hljs-function"><span class="hljs-keyword">public</span> Integer <span class="hljs-title">getAge</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">return</span> age;
+        }
+
+        <span class="hljs-function"><span class="hljs-keyword">public</span> Sex <span class="hljs-title">getSex</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">return</span> sex;
+        }
+
+        <span class="hljs-annotation">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">return</span> <span class="hljs-string">"{"</span> +
+                    <span class="hljs-string">"name='"</span> + name + <span class="hljs-string">'\''</span> +
+                    <span class="hljs-string">", age="</span> + age +
+                    <span class="hljs-string">", sex="</span> + sex +
+                    <span class="hljs-string">'}'</span>;
+        }
+
+        <span class="hljs-annotation">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">equals</span><span class="hljs-params">(Object o)</span> </span>{
+            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span> == o) <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+            <span class="hljs-keyword">if</span> (!(o <span class="hljs-keyword">instanceof</span> People)) <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+            People people = (People) o;
+            <span class="hljs-keyword">return</span> Objects.equals(name, people.name) &amp;&amp;
+                    Objects.equals(age, people.age) &amp;&amp;
+                    Objects.equals(sex, people.sex);
+        }
+
+        <span class="hljs-annotation">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">hashCode</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">return</span> Objects.hash(name, age, sex);
+        }
+    }
+</code></pre><br>
+</div></div><br>
+<br>
+<h3><b>3.9 Примеры использования toArray и collect функции</b></h3><br>
+Если с toArray все просто, можно либо вызвать toArray() получить 
+Object[], либо toArray(T[]::new) — получив массив типа T, то collect 
+позволяет много возможностей преобразовать значение в коллекцию, map'у 
+или любой другой тип. Для этого используются статические методы из 
+Collectors, например преобразование в List будет 
+stream.collect(Collectors.toList()). <br>
+<br>
+Давайте рассмотрим статические методы из Collectors: <br>
+<table>
+<tbody><tr>
+<th width="200">Метод</th>
+<th>Описание</th>
+</tr>
+<tr>
+<td>toList, toCollection, toSet</td>
+<td>представляют стрим в виде списка, коллекции или множества</td>
+</tr>
+<tr>
+<td>toConcurrentMap, toMap</td>
+<td>позволяют преобразовать стрим в map</td>
+</tr>
+<tr>
+<td>averagingInt, averagingDouble, averagingLong</td>
+<td>возвращают среднее значение</td>
+</tr>
+<tr>
+<td>summingInt, summingDouble, summingLong</td>
+<td>возвращает сумму</td>
+</tr>
+<tr>
+<td>summarizingInt, summarizingDouble, summarizingLong</td>
+<td>возвращают SummaryStatistics с разными агрегатными значениями</td>
+</tr>
+<tr>
+<td>partitioningBy</td>
+<td>разделяет коллекцию на две части по соответствию условию и возвращает их как Map&lt;Boolean, List&gt;</td>
+</tr>
+<tr>
+<td>groupingBy</td>
+<td>разделяет коллекцию на несколько частей и возвращает Map&lt;N, List&lt;T&gt;&gt;</td>
+</tr>
+<tr>
+<td>mapping</td>
+<td>дополнительные преобразования значений для сложных Collector'ов</td>
+</tr>
+</tbody></table><br>
+<br>
+Теперь давайте рассмотрим работу с collect и toArray на примерах: <br>
+<b>Условие:</b> Дана коллекция чисел Arrays.asList(1, 2, 3, 4), рассмотрим работу collect и toArray с ней<br>
+<table>
+<tbody><tr>
+<th width="300">Задача</th>
+<th>Код примера</th>
+<th width="150">Результат</th>
+</tr>
+<tr>
+<td>Получить сумму нечетных чисел</td>
+<td>numbers.stream().collect(Collectors.summingInt(((p) -&gt; p % 2 == 1? p: 0)))</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Вычесть от каждого элемента 1 и получить среднее</td>
+<td>numbers.stream().collect(Collectors.averagingInt((p) -&gt; p — 1))</td>
+<td>1.5</td>
+</tr>
+<tr>
+<td>Прибавить к числам 3 и получить статистику</td>
+<td>numbers.stream().collect(Collectors.summarizingInt((p) -&gt; p + 3))</td>
+<td>IntSummaryStatistics{count=4, sum=22, min=4, average=5.5, max=7}</td>
+</tr>
+<tr>
+<td>Разделить числа на четные и нечетные</td>
+<td>numbers.stream().collect(Collectors.partitioningBy((p) -&gt; p % 2 == 0))</td>
+<td>{false=[1, 3], true=[2, 4]}</td>
+</tr>
+</tbody></table><br>
+<br>
+<b>Условие:</b> Дана коллекция строк Arrays.asList(«a1», «b2», «c3», «a1»), рассмотрим работу collect и toArray с ней<br>
+<table>
+<tbody><tr>
+<th width="300">Задача</th>
+<th>Код примера</th>
+<th width="120">Результат</th>
+</tr>
+<tr>
+<td>Получение списка без дубликатов</td>
+<td>strings.stream().distinct().collect(Collectors.toList())</td>
+<td>[a1, b2, c3]</td>
+</tr>
+<tr>
+<td>Получить массив строк без дубликатов и в верхнем регистре</td>
+<td>strings.stream().distinct().map(String::toUpperCase).toArray(String[]::new)</td>
+<td>{A1, B2, C3}</td>
+</tr>
+<tr>
+<td>Объединить все элементы в одну строку через разделитель: и обернуть тегами &lt;b&gt;… &lt;/b&gt;</td>
+<td>strings.stream().collect(Collectors.joining(": ", "&lt;b&gt; ", " &lt;/b&gt;"))</td>
+<td>&lt;b&gt; a1: b2: c3: a1 &lt;/b&gt;</td>
+</tr>
+<tr>
+<td>Преобразовать в map, где первый символ ключ, второй символ значение</td>
+<td>strings.stream().distinct().collect(Collectors.toMap((p) -&gt; p.substring(0, 1), (p) -&gt; p.substring(1, 2)))</td>
+<td>{a=1, b=2, c=3}</td>
+</tr>
+<tr>
+<td>Преобразовать в map, сгруппировав по первому символу строки</td>
+<td>strings.stream().collect(Collectors.groupingBy((p) -&gt; p.substring(0, 1)))</td>
+<td>{a=[a1, a1], b=[b2], c=[c3]}</td>
+</tr>
+<tr>
+<td>Преобразовать в map, сгруппировав по первому символу строки и объединим вторые символы через :</td>
+<td>strings.stream().collect(Collectors.groupingBy((p) -&gt; 
+p.substring(0, 1), Collectors.mapping((p) -&gt; p.substring(1, 2), 
+Collectors.joining(":"))))</td>
+<td>{a=1:1, b=2, c=3}</td>
+</tr>
+</tbody></table><br>
+<br>
+<div class="spoiler"><b class="spoiler_title">Детальные примеры</b><div class="spoiler_text">Также примеры можно найти на <a href="https://github.com/Vedenin/java_collections_overview/blob/master/src/com/github/vedenin/rus/stream_api/CollectAndToArrayTests.java">github'e</a><br>
+<pre><code class="java hljs">    <span class="hljs-comment">// Метод collect преобразует stream в коллекцию или другую структуру данных</span>
+    <span class="hljs-comment">// Полезные статические методы из Collectors:</span>
+    <span class="hljs-comment">// toList, toCollection, toSet - представляют стрим в виде списка, коллекции или множества</span>
+    <span class="hljs-comment">// toConcurrentMap, toMap - позволяют преобразовать стрим в map, используя указанные функции</span>
+    <span class="hljs-comment">// averagingInt, averagingDouble, averagingLong - возвращают среднее значение</span>
+    <span class="hljs-comment">// summingInt, summingDouble, summingLong - возвращает сумму</span>
+    <span class="hljs-comment">// summarizingInt, summarizingDouble, summarizingLong - возвращают SummaryStatistics с разными агрегатными значениями</span>
+    <span class="hljs-comment">// partitioningBy - разделяет коллекцию на две части по соответствию условию и возвращает их как Map&lt;Boolean, List&gt;</span>
+    <span class="hljs-comment">// groupingBy - разделить коллекцию по условию и вернуть Map&lt;N, List&lt;T&gt;&gt;, где T - тип последнего стрима, N - значение разделителя</span>
+    <span class="hljs-comment">// mapping - дополнительные преобразования значений для сложных Collector'ов</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testCollect</span><span class="hljs-params">()</span> </span>{
+        System.out.println();
+        System.out.println(<span class="hljs-string">"Test distinct start"</span>);
+
+        <span class="hljs-comment">// ******** Работа со строками</span>
+        Collection&lt;String&gt; strings = Arrays.asList(<span class="hljs-string">"a1"</span>, <span class="hljs-string">"b2"</span>, <span class="hljs-string">"c3"</span>, <span class="hljs-string">"a1"</span>);
+
+        <span class="hljs-comment">// Получение списка из коллекции строк без дубликатов</span>
+        List&lt;String&gt; distinct = strings.stream().distinct().collect(Collectors.toList());
+        System.out.println(<span class="hljs-string">"distinct = "</span> + distinct); <span class="hljs-comment">// напечатает distinct = [a1, b2, c3]</span>
+
+        <span class="hljs-comment">// Получение массива уникальных значений из коллекции строк</span>
+        String[] array = strings.stream().distinct().map(String::toUpperCase).toArray(String[]::<span class="hljs-keyword">new</span>);
+        System.out.println(<span class="hljs-string">"array = "</span> + Arrays.asList(array)); <span class="hljs-comment">// напечатает array = [A1, B2, C3]</span>
+
+        <span class="hljs-comment">// Объединить все элементы в одну строку через разделитель : и обернуть тегами &lt;b&gt; ... &lt;/b&gt;</span>
+        String join = strings.stream().collect(Collectors.joining(<span class="hljs-string">" : "</span>, <span class="hljs-string">"&lt;b&gt; "</span>, <span class="hljs-string">" &lt;/b&gt;"</span>));
+        System.out.println(<span class="hljs-string">"join = "</span> + join); <span class="hljs-comment">// напечатает &lt;b&gt; a1 : b2 : c3 : a1 &lt;/b&gt;</span>
+
+        <span class="hljs-comment">// Преобразовать в map, где первый символ ключ, второй символ значение</span>
+        Map&lt;String, String&gt; map = strings.stream().distinct().collect(Collectors.toMap((p) -&gt; p.substring(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), (p) -&gt; p.substring(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)));
+        System.out.println(<span class="hljs-string">"map = "</span> + map); <span class="hljs-comment">// напечатает map = {a=1, b=2, c=3}</span>
+
+        <span class="hljs-comment">// Преобразовать в map, сгруппировав по первому символу строки</span>
+        Map&lt;String, List&lt;String&gt;&gt; groups = strings.stream().collect(Collectors.groupingBy((p) -&gt; p.substring(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>)));
+        System.out.println(<span class="hljs-string">"groups = "</span> + groups); <span class="hljs-comment">// напечатает groups = {a=[a1, a1], b=[b2], c=[c3]}</span>
+
+        <span class="hljs-comment">// Преобразовать в map, сгруппировав по первому символу строки и в качестве значения взять второй символ объединим через :</span>
+        Map&lt;String, String&gt; groupJoin = strings.stream().collect(Collectors.groupingBy((p) -&gt; p.substring(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), Collectors.mapping((p) -&gt; p.substring(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>), Collectors.joining(<span class="hljs-string">":"</span>))));
+        System.out.println(<span class="hljs-string">"groupJoin = "</span> + groupJoin); <span class="hljs-comment">// напечатает groupJoin = groupJoin = {a=1/1, b=2, c=3}</span>
+
+        <span class="hljs-comment">// ******** Работа с числами</span>
+        Collection&lt;Integer&gt; numbers = Arrays.asList(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>);
+
+        <span class="hljs-comment">// Получить сумму нечетных чисел</span>
+        <span class="hljs-keyword">long</span> sumOdd = numbers.stream().collect(Collectors.summingInt(((p) -&gt; p % <span class="hljs-number">2</span> == <span class="hljs-number">1</span> ? p : <span class="hljs-number">0</span>)));
+        System.out.println(<span class="hljs-string">"sumOdd = "</span> + sumOdd); <span class="hljs-comment">// напечатает sumEven = 4</span>
+
+        <span class="hljs-comment">// Вычесть к каждого элемента 1 и получить среднее</span>
+        <span class="hljs-keyword">double</span> average = numbers.stream().collect(Collectors.averagingInt((p) -&gt; p - <span class="hljs-number">1</span>));
+        System.out.println(<span class="hljs-string">"average = "</span> + average); <span class="hljs-comment">// напечатает average = 1.5</span>
+
+        <span class="hljs-comment">// Прибавить к числам 3 и получить статистику</span>
+        IntSummaryStatistics statistics = numbers.stream().collect(Collectors.summarizingInt((p) -&gt; p + <span class="hljs-number">3</span>));
+        System.out.println(<span class="hljs-string">"statistics = "</span> + statistics); <span class="hljs-comment">// напечатает statistics = IntSummaryStatistics{count=4, sum=22, min=4, average=5.500000, max=7}</span>
+
+        <span class="hljs-comment">// Получить сумму четных чисел через IntSummaryStatistics</span>
+        <span class="hljs-keyword">long</span> sumEven = numbers.stream().collect(Collectors.summarizingInt((p) -&gt; p % <span class="hljs-number">2</span> == <span class="hljs-number">0</span> ? p : <span class="hljs-number">0</span>)).getSum();
+        System.out.println(<span class="hljs-string">"sumEven = "</span> + sumEven); <span class="hljs-comment">// напечатает sumEven = 6</span>
+
+        <span class="hljs-comment">// Разделить числа на четные и нечетные</span>
+        Map&lt;Boolean, List&lt;Integer&gt;&gt; parts = numbers.stream().collect(Collectors.partitioningBy((p) -&gt; p % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>));
+        System.out.println(<span class="hljs-string">"parts = "</span> + parts); <span class="hljs-comment">// напечатает parts = {false=[1, 3], true=[2, 4]}</span>
+    }
+</code></pre><br>
+</div></div><br>
+<br>
+<h3><b>3.10 Пример создания собственного Collector'a</b></h3><br>
+Кроме Collector'ов уже определенных в Collectors можно так же создать 
+собственный Collector, Давайте рассмотрим пример как его можно создать. <br>
+<br>
+Метод определения пользовательского Collector'a: <br>
+<br>
+<pre><code class="java hljs">Collector&lt;Тип_источника, Тип_аккумулятора, Тип_результата&gt; сollector =  Collector.of(
+                метод_инициализации_аккумулятора,
+                метод_обработки_каждого_элемента,
+                метод_соединения_двух_аккумуляторов,
+                [метод_последней_обработки_аккумулятора]
+        );
+</code></pre><br>
+<br>
+Как видно из кода выше, для реализации своего Collector'a нужно 
+определить три или четыре метода (метод_последней_обработки_аккумулятора
+ не обязателен). Рассмотрим следующий кода, который мы писали до Java 8,
+ чтобы объединить все строки коллекции: <br>
+<br>
+<pre><code class="java hljs">        StringBuilder b = <span class="hljs-keyword">new</span> StringBuilder(); <span class="hljs-comment">// метод_инициализации_аккумулятора</span>
+        <span class="hljs-keyword">for</span>(String s: strings) {
+            b.append(s).append(<span class="hljs-string">" , "</span>); <span class="hljs-comment">// метод_обработки_каждого_элемента,</span>
+        }
+        String joinBuilderOld = b.toString(); <span class="hljs-comment">// метод_последней_обработки_аккумулятора</span>
+</code></pre><br>
+<br>
+И аналогичный код, который будет написан в Java 8<br>
+<br>
+<pre><code class="java hljs">String joinBuilder = strings.stream().collect(
+   Collector.of(
+                StringBuilder::<span class="hljs-keyword">new</span>, <span class="hljs-comment">// метод_инициализации_аккумулятора</span>
+                (b ,s) -&gt; b.append(s).append(<span class="hljs-string">" , "</span>), <span class="hljs-comment">// метод_обработки_каждого_элемента,</span>
+                (b1, b2) -&gt; b1.append(b2).append(<span class="hljs-string">" , "</span>), <span class="hljs-comment">// метод_соединения_двух_аккумуляторов</span>
+                StringBuilder::toString <span class="hljs-comment">// метод_последней_обработки_аккумулятора</span>
+        )
+);
+</code></pre><br>
+<br>
+В общем-то, три метода легко понять из кода выше, их мы писали 
+практически при каждой обработки коллекций, но вот что такое 
+метод_соединения_двух_аккумуляторов? Это метод который нужен для 
+параллельной обработки Collector'a, в данном случае при параллельном 
+стриме коллекция может быть разделенной на две части (или больше 
+частей), в каждой из которых будет свой аккумулятор StringBuilder и 
+потом необходимо будет их объединить, то код до Java 8 при 2 потоках 
+будет таким:<br>
+<br>
+<pre><code class="java hljs">        StringBuilder b1 = <span class="hljs-keyword">new</span> StringBuilder(); <span class="hljs-comment">// метод_инициализации_аккумулятора_1        </span>
+        <span class="hljs-keyword">for</span>(String s: stringsPart1) { <span class="hljs-comment">//  stringsPart1 - первая часть коллекции strings</span>
+            b1.append(s).append(<span class="hljs-string">" , "</span>); <span class="hljs-comment">// метод_обработки_каждого_элемента,</span>
+        }
+
+        StringBuilder b2 = <span class="hljs-keyword">new</span> StringBuilder(); <span class="hljs-comment">// метод_инициализации_аккумулятора_2        </span>
+        <span class="hljs-keyword">for</span>(String s: stringsPart2) { <span class="hljs-comment">//  stringsPart2 - вторая часть коллекции strings</span>
+            b2.append(s).append(<span class="hljs-string">" , "</span>); <span class="hljs-comment">// метод_обработки_каждого_элемента,</span>
+        }
+
+        StringBuilder b = b1.append(b2).append(<span class="hljs-string">" , "</span>), <span class="hljs-comment">// метод_соединения_двух_аккумуляторов</span>
+
+        String joinBuilderOld = b.toString(); <span class="hljs-comment">// метод_последней_обработки_аккумулятора</span>
+</code></pre><br>
+<br>
+Напишем свой аналог Collectors.toList() для работы со строковым стримом:<br>
+<pre><code class="java hljs"> <span class="hljs-comment">// Напишем свой аналог toList </span>
+        Collector&lt;String, List&lt;String&gt;, List&lt;String&gt;&gt; toList = Collector.of(
+                ArrayList::<span class="hljs-keyword">new</span>, <span class="hljs-comment">// метод инициализации аккумулятора</span>
+                List::add, <span class="hljs-comment">// метод обработки каждого элемента</span>
+                (l1, l2) -&gt; { l1.addAll(l2); <span class="hljs-keyword">return</span> l1; } <span class="hljs-comment">// метод соединения двух аккумуляторов при параллельном выполнении</span>
+        );
+<span class="hljs-comment">// Используем его для получение списка строк без дубликатов из стрима</span>
+        List&lt;String&gt; distinct1 = strings.stream().distinct().collect(toList);
+</code></pre><br>
+<br>
+<div class="spoiler"><b class="spoiler_title">Детальные примеры</b><div class="spoiler_text">Так же примеры можно найти на <a href="https://github.com/Vedenin/java_collections_overview/blob/master/src/com/github/vedenin/rus/stream_api/CollectAndToArrayTests.java">github'e</a><br>
+<pre><code class="java hljs">        <span class="hljs-comment">// Напишем собственный Collector, который будет выполнять объединение строк с помощью StringBuilder</span>
+        Collector&lt;String,StringBuilder, String&gt; stringBuilderCollector =  Collector.of(
+                StringBuilder::<span class="hljs-keyword">new</span>, <span class="hljs-comment">// метод инициализации аккумулятора</span>
+                (b ,s) -&gt; b.append(s).append(<span class="hljs-string">" , "</span>), <span class="hljs-comment">// метод обработки каждого элемента</span>
+                (b1, b2) -&gt; b1.append(b2).append(<span class="hljs-string">" , "</span>), <span class="hljs-comment">// метод соединения двух аккумуляторов при параллельном выполнении</span>
+                StringBuilder::toString <span class="hljs-comment">// метод, выполняющийся в самом конце</span>
+        );
+        String joinBuilder = strings.stream().collect(stringBuilderCollector);
+        System.out.println(<span class="hljs-string">"joinBuilder = "</span> + joinBuilder); <span class="hljs-comment">// напечатает joinBuilder = a1 , b2 , c3 , a1 ,</span>
+
+        <span class="hljs-comment">// Аналог Collector'а выше стилем JDK7 и ниже</span>
+        StringBuilder b = <span class="hljs-keyword">new</span> StringBuilder(); <span class="hljs-comment">// метод инициализации аккумулятора</span>
+        <span class="hljs-keyword">for</span>(String s: strings) {
+            b.append(s).append(<span class="hljs-string">" , "</span>); <span class="hljs-comment">// метод обработки каждого элемента</span>
+        }
+        String joinBuilderOld = b.toString(); <span class="hljs-comment">// метод, выполняющийся в самом конце</span>
+        System.out.println(<span class="hljs-string">"joinBuilderOld = "</span> + joinBuilderOld); <span class="hljs-comment">// напечатает joinBuilderOld = a1 , b2 , c3 , a1 ,</span>
+
+        <span class="hljs-comment">// Напишем свой аналог toList для получение списка из коллекции строк без дубликатов</span>
+        Collector&lt;String, List&lt;String&gt;, List&lt;String&gt;&gt; toList = Collector.of(
+                ArrayList::<span class="hljs-keyword">new</span>, <span class="hljs-comment">// метод инициализации аккумулятора</span>
+                List::add, <span class="hljs-comment">// метод обработки каждого элемента</span>
+                (l1, l2) -&gt; { l1.addAll(l2); <span class="hljs-keyword">return</span> l1; } <span class="hljs-comment">// метод соединения двух аккумуляторов при параллельном выполнении</span>
+        );
+        List&lt;String&gt; distinct1 = strings.stream().distinct().collect(toList);
+        System.out.println(<span class="hljs-string">"distinct1 = "</span> + distinct1); <span class="hljs-comment">// напечатает distinct1 = [a1, b2, c3]</span>
+</code></pre><br>
+</div></div><br>
+<h2><b>IV. Заключение</b></h2><br>
+Вот и все. Надеюсь, моя небольшая шпаргалка по работе со stream api была для вас полезной. Все исходники есть на <a href="https://github.com/Vedenin/java_collections_overview/tree/master/src/com/github/vedenin/rus/stream_api">github'е</a>, удачи в написании хорошего кода.<br>
+<br>
+<b>P.S.</b> Список других статей, где можно прочитать дополнительно про Stream Api:<br>
+1. <a href="http://www.oracle.com/technetwork/articles/java/ma14-java-se-8-streams-2177646.html">Processing Data with Java SE 8 Streams, Part 1</a> от Oracle,<br>
+2. <a href="http://www.oracle.com/technetwork/articles/java/architect-streams-pt2-2227132.html">Processing Data with Java SE 8 Streams, Part 2</a> от Oracle,<br>
+3. <a href="http://prologistic.com.ua/polnoe-rukovodstvo-po-java-8-stream.html">Полное руководство по Java 8 Stream</a>
+
+      	<div class="polling">
+		
+
+	<form action="/json/polling/" class="poll" method="post">
+
+		<div class="poll_title">Используете ли вы уже Stream Api?</div>
+
+		<input name="post_id" value="270383" type="hidden">
+		<input name="polling_question_id" value="14223" type="hidden">
+
+		<table class="answer">
+			<tbody><tr>
+				<td class="input">
+					<input id="vv69733" class="radio js-field-data" name="variant[]" value="69733" type="radio">
+				</td>
+
+
+				<td class="label">
+					<label for="vv69733">Да, уже в production</label>
+				</td>
+			</tr>
+			<tr>
+				<td class="input">
+					<input id="vv69735" class="radio js-field-data" name="variant[]" value="69735" type="radio">
+				</td>
+
+
+				<td class="label">
+					<label for="vv69735">Да, но только в личных проектах</label>
+				</td>
+			</tr>
+			<tr>
+				<td class="input">
+					<input id="vv69737" class="radio js-field-data" name="variant[]" value="69737" type="radio">
+				</td>
+
+
+				<td class="label">
+					<label for="vv69737">Очень ограничено</label>
+				</td>
+			</tr>
+			<tr>
+				<td class="input">
+					<input id="vv69739" class="radio js-field-data" name="variant[]" value="69739" type="radio">
+				</td>
+
+
+				<td class="label">
+					<label for="vv69739">Лишь планируем использовать</label>
+				</td>
+			</tr>
+			<tr>
+				<td class="input">
+					<input id="vv69741" class="radio js-field-data" name="variant[]" value="69741" type="radio">
+				</td>
+
+
+				<td class="label">
+					<label for="vv69741">Нет, предпочитаю старый подход</label>
+				</td>
+			</tr>
+			<tr>
+				<td class="input">
+					<input id="vv69743" class="radio js-field-data" name="variant[]" value="69743" type="radio">
+				</td>
+
+
+				<td class="label">
+					<label for="vv69743">Нет, но хотел бы</label>
+				</td>
+			</tr>
+			<tr>
+				<td class="input">
+					<input id="vv69745" class="radio js-field-data" name="variant[]" value="69745" type="radio">
+				</td>
+
+
+				<td class="label">
+					<label for="vv69745">Нет, и мне все равно использовать или нет</label>
+				</td>
+			</tr>
+			<tr>
+				<td class="input">
+					<input id="vv69747" class="radio js-field-data" name="variant[]" value="69747" type="radio">
+				</td>
+
+
+				<td class="label">
+					<label for="vv69747">Я вообще не пишу на Java</label>
+				</td>
+			</tr>
+		</tbody></table>
+		
+		<p class="total">Проголосовало 360 человек. Воздержался 71 человек.</p>
+	</form>
+
+    <p class="for_users_only_msg">Только зарегистрированные пользователи могут участвовать в опросе. <a href="https://habrahabr.ru/auth/login/">Войдите</a>, пожалуйста.</p>
+	</div>
+
+      <div class="clear"></div>
+    </div>
+
+    
+  <ul class="tags icon_tag">
+      <li>
+        <a href="http://habrahabr.ru/search/?q=%5Bjava%5D&amp;target_type=posts" rel="tag">java</a>
+      </li>
+      <li>, 
+        <a href="http://habrahabr.ru/search/?q=%5Bstream%5D&amp;target_type=posts" rel="tag">stream</a>
+      </li>
+      <li>, 
+        <a href="http://habrahabr.ru/search/?q=%5Bstream%20api%5D&amp;target_type=posts" rel="tag">stream api</a>
+      </li>
+      <li>, 
+        <a href="http://habrahabr.ru/search/?q=%5B%D0%BB%D1%8F%D0%BC%D0%B1%D1%8B%5D&amp;target_type=posts" rel="tag">лямбы</a>
+      </li>
+      <li>, 
+        <a href="http://habrahabr.ru/search/?q=%5B%D1%84%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%B5%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%5D&amp;target_type=posts" rel="tag">функциональное программирование</a>
+      </li>
+      <li>, 
+        <a href="http://habrahabr.ru/search/?q=%5B%D0%BC%D0%BD%D0%BE%D0%B3%D0%BE%D0%BF%D0%BE%D1%82%D0%BE%D1%87%D0%BD%D0%BE%D1%81%D1%82%D1%8C%5D&amp;target_type=posts" rel="tag">многопоточность</a>
+      </li>
+      <li>, 
+        <a href="http://habrahabr.ru/search/?q=%5Bjava%208%5D&amp;target_type=posts" rel="tag">java 8</a>
+      </li>
+  </ul>
+
+
+      <div class="infopanel_wrapper">
+    <ul class="postinfo-panel postinfo-panel_post" id="infopanel_post_270383">
+
+          <li class="postinfo-panel__item">
+            <div class="voting-wjt voting-wjt_infopanel js-voting  ">
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи.">
+                  <span>↑</span>
+                </button>
+
+              <div class="voting-wjt__counter voting-wjt__counter_positive  js-mark">
+                  <span class="voting-wjt__counter-score js-score" title="Общий рейтинг 29: ↑27 и ↓2">+25</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи.">
+                  <span>↓</span>
+                </button>
+
+            </div>
+          </li>
+
+      <li class="postinfo-panel__item">
+        <div class="views-count_post" title="Просмотры публикации">20,5к</div>
+      </li>
+
+      <li class="postinfo-panel__item">
+        <div class="favorite-wjt favorite">
+            <button type="button" disabled="disabled" class="favorite-wjt__button favorite-wjt__button_disabled" onclick="return false;" title="Только зарегистрированные пользователи могут добавлять публикации в избранное">
+              <span>Добавить в избранное</span>
+            </button>
+          <span class="favorite-wjt__counter js-favs_count" title="Количество пользователей, добавивших публикацию в избранное">503</span>
+        </div>
+      </li>
+
+
+
+
+      <!-- шеринг в соцсети -->
+        <li class="postinfo-panel__item postinfo-panel__item_socials  postinfo-panel__item_socials_right ">
+          <ul class="post-share">
+            <li class="post-share__item">
+              <a href="http://twitter.com/intent/tweet?text=%D0%A8%D0%BF%D0%B0%D1%80%D0%B3%D0%B0%D0%BB%D0%BA%D0%B0+Java+%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%81%D1%82%D0%B0+4.+Java+Stream+API+http://habr.ru/p/270383/+via+%40habrahabr+%23habr" class="post-share__item-link twitter" title="Опубликовать ссылку в Twitter" target="_blank"></a>
+            </li>
+            <li class="post-share__item">
+              <a href="https://vk.com/share.php?url=http://habrahabr.ru/company/luxoft/blog/270383/" class="post-share__item-link vkontakte" title="Опубликовать ссылку во ВКонтакте" onclick="window.open(this.href, 'Опубликовать ссылку во Вконтакте', 'width=800,height=300'); return false"></a>
+            </li>
+            <li class="post-share__item">
+              <a href="https://www.facebook.com/sharer/sharer.php?u=http://habrahabr.ru/company/luxoft/blog/270383/" class="post-share__item-link facebook" title="Опубликовать ссылку в Facebook" onclick="window.open(this.href, 'Опубликовать ссылку в Facebook', 'width=640,height=436,toolbar=0,status=0'); return false"></a>
+            </li>
+            <li class="post-share__item">
+              <a href="https://getpocket.com/edit?url=http://habrahabr.ru/company/luxoft/blog/270383/" target="_blank" class="post-share__item-link pocket" title="Добавить ссылку в Pocket"></a>
+            </li>
+          </ul>
+        </li>
+
+      <!-- кнопка пожаловаться -->
+    </ul>
+  </div>
+
+
+          <div class="post-type">
+    <span class="post-type_nowrap">
+      <span class="post-type__label post-type__label_author">Автор:</span>
+      <a href="http://habrahabr.ru/users/vedenin1980" class="post-type__value post-type__value_author" title="Веденин Вячеслав">@vedenin1980</a>
+
+
+
+    </span>
+  </div>
+
+  <div class="author-info " id="company_938">
+      <a href="http://habrahabr.ru/company/luxoft" class="author-info__image">
+          <img src="%D0%A8%D0%BF%D0%B0%D1%80%D0%B3%D0%B0%D0%BB%D0%BA%D0%B0%20Java%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%81%D1%82%D0%B0%204.%20Java%20Stream%20API%20_%20%D0%91%D0%BB%D0%BE%D0%B3%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B8%20Luxoft%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/b4472ef43c7d2d2f538d83568723d839.png" class="author-info__image-pic">
+      </a>
+
+      <div class="author-info__desc">
+        <div class="author-info__username">
+
+          <a href="http://habrahabr.ru/company/luxoft" class="author-info__name">Luxoft</a>
+
+          <div class="user-rating">
+            <span class="user-rating__label">рейтинг</span>
+            <span class="user-rating__value">101,71</span>
+          </div>
+        </div>
+
+
+      </div>
+
+  </div>
+
+
+  </div>
+
+        
+        <div class="block_after_post">
+
+    <div class="similar-posts">
+      <h2 class="similar-posts__title">Похожие публикации</h2>
+
+      <ul class="content-list content-list_posts">
+          <li class="content-list__item">
+            <div class="post-preview">
+              <div class="post-preview__rating">+3</div>
+              <div class="post-preview__desc">
+                <a class="post-preview__link" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'similar_posts', 'common'); }" href="http://habrahabr.ru/post/229791/">Мастер-класс Адама Бина «Java EE: Архитектура, шаблоны и решения»: отзывы и впечатления участников</a>
+                <span class="post-preview__attrs inline-list inline-list_attrs">
+                  <span class="inline-list__item views-count">4,6к</span>
+                  <span class="inline-list__item favorites-count">22</span>
+                  <span class="inline-list__item comments-count">5</span>
+                </span>
+              </div>
+            </div>
+          </li>
+          <li class="content-list__item">
+            <div class="post-preview">
+              <div class="post-preview__rating">+11</div>
+              <div class="post-preview__desc">
+                <a class="post-preview__link" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'similar_posts', 'common'); }" href="http://habrahabr.ru/post/218789/">DEV Labs 2014. ОНЛАЙН конференция для JAVA разработчиков</a>
+                <span class="post-preview__attrs inline-list inline-list_attrs">
+                  <span class="inline-list__item views-count">4,3к</span>
+                  <span class="inline-list__item favorites-count">27</span>
+                  <span class="inline-list__item comments-count">14</span>
+                </span>
+              </div>
+            </div>
+          </li>
+          <li class="content-list__item">
+            <div class="post-preview">
+              <div class="post-preview__rating">+6</div>
+              <div class="post-preview__desc">
+                <a class="post-preview__link" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'similar_posts', 'common'); }" href="http://habrahabr.ru/post/150368/">Тестирование табличных данных с hamcrest на Java</a>
+                <span class="post-preview__attrs inline-list inline-list_attrs">
+                  <span class="inline-list__item views-count">7,0к</span>
+                  <span class="inline-list__item favorites-count">20</span>
+                  <span class="inline-list__item comments-count">3</span>
+                </span>
+              </div>
+            </div>
+          </li>
+      </ul>
+    </div>
+
+</div>
+
+              <div class="comments_list " id="comments">
+
+        <h2 class="title ">Комментарии (<span id="comments_count">11</span>)
+            
+
+        </h2>
+
+        
+
+              <div class="comment_item" id="comment_8658411">
+  
+    <span class="parent_id" data-parent_id="0"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  " rel="8658411">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/burjui/" class="comment-item__avatar">
+              <img src="%D0%A8%D0%BF%D0%B0%D1%80%D0%B3%D0%B0%D0%BB%D0%BA%D0%B0%20Java%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%81%D1%82%D0%B0%204.%20Java%20Stream%20API%20_%20%D0%91%D0%BB%D0%BE%D0%B3%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B8%20Luxoft%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/fc72ab83365007635ab126459e925156_small.jpg" alt="" class="comment-item__avatar-img">
+          </a>
+          <a href="http://habrahabr.ru/users/burjui/" class="comment-item__username">burjui</a>
+          <time class="comment-item__time_published">19 ноября 2015 в 00:10</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_8658411" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_8658411" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark voting-wjt__counter_positive ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 2: ↑2 и ↓0">+2</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          Проголосовал за production, но использую не Java 8 Stream, а 
+библиотеку totallylazy ( https://github.com/bodar/totallylazy ) в 
+сочетании с gradle-retrolambda, т.к. пишу под Android. Помимо Stream, 
+которые там называются Sequence, там ещё много полезностей — в том 
+числе, Option и Either.
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_8658411">
+        <div class="comment_item" id="comment_8659129">
+  
+    <span class="parent_id" data-parent_id="8658411"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  " rel="8659129">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/NonGrate/" class="comment-item__avatar">
+              <img src="%D0%A8%D0%BF%D0%B0%D1%80%D0%B3%D0%B0%D0%BB%D0%BA%D0%B0%20Java%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%81%D1%82%D0%B0%204.%20Java%20Stream%20API%20_%20%D0%91%D0%BB%D0%BE%D0%B3%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B8%20Luxoft%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/5bfe3eb4da899722ffcc4845ac750af3_small.jpg" alt="" class="comment-item__avatar-img">
+          </a>
+          <a href="http://habrahabr.ru/users/NonGrate/" class="comment-item__username">NonGrate</a>
+          <time class="comment-item__time_published">19 ноября 2015 в 14:55</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_8659129" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+              <span class="icon_comment-tree js-comment_tree" data-id="8659129" data-parent_id="8658411" title="Показать ветку комментариев"></span>
+              <a href="#comment_8658411" class="icon_comment-parent js-comment_parent" data-id="8659129" data-parent_id="8658411" title="Показать предыдущий комментарий"></a>
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_8659129" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark voting-wjt__counter_positive ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 1: ↑1 и ↓0">+1</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          Я пользуюсь Lightweight-Stream-API для андроида. Вы 
+пользовались им? Если да, не могли бы вы описать, чем totallylazy 
+отличается от урезанного Stream API?<br>
+<br>
+Я первый раз слышу о totallylazy, раньше думал, что 
+Lightweight-Stream-API единственная библиотека. К тому же, в репозитории
+ написано, что это то же Stream API из джавы, только переписанное, чтобы
+ работало на семёрке. Что может быть лучше, чем код из самой джавы.
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_8659129">
+        <div class="comment_item" id="comment_8659303">
+  
+    <span class="parent_id" data-parent_id="8659129"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  " rel="8659303">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/burjui/" class="comment-item__avatar">
+              <img src="%D0%A8%D0%BF%D0%B0%D1%80%D0%B3%D0%B0%D0%BB%D0%BA%D0%B0%20Java%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%81%D1%82%D0%B0%204.%20Java%20Stream%20API%20_%20%D0%91%D0%BB%D0%BE%D0%B3%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B8%20Luxoft%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/fc72ab83365007635ab126459e925156_small.jpg" alt="" class="comment-item__avatar-img">
+          </a>
+          <a href="http://habrahabr.ru/users/burjui/" class="comment-item__username">burjui</a>
+          <time class="comment-item__time_published">19 ноября 2015 в 16:49</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_8659303" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+              <span class="icon_comment-tree js-comment_tree" data-id="8659303" data-parent_id="8659129" title="Показать ветку комментариев"></span>
+              <a href="#comment_8659129" class="icon_comment-parent js-comment_parent" data-id="8659303" data-parent_id="8659129" title="Показать предыдущий комментарий"></a>
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_8659303" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark voting-wjt__counter_positive ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 1: ↑1 и ↓0">+1</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          Нет, не пользовался, но, судя по примерам кода, работа с 
+«потоками» очень похожа. Но totallylazy ориентирована на функциональное 
+программирование вообще, а Lightweight-Stream-API — именно на «потоки». 
+Поэтому в Lightweight-Stream-API вы не найдёте всяких функторов, монад и
+ т.п. 
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_8659303">
+        <div class="comment_item" id="comment_8659339">
+  
+    <span class="parent_id" data-parent_id="8659303"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  " rel="8659339">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/NonGrate/" class="comment-item__avatar">
+              <img src="%D0%A8%D0%BF%D0%B0%D1%80%D0%B3%D0%B0%D0%BB%D0%BA%D0%B0%20Java%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%81%D1%82%D0%B0%204.%20Java%20Stream%20API%20_%20%D0%91%D0%BB%D0%BE%D0%B3%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B8%20Luxoft%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/5bfe3eb4da899722ffcc4845ac750af3_small.jpg" alt="" class="comment-item__avatar-img">
+          </a>
+          <a href="http://habrahabr.ru/users/NonGrate/" class="comment-item__username">NonGrate</a>
+          <time class="comment-item__time_published">19 ноября 2015 в 17:12</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_8659339" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+              <span class="icon_comment-tree js-comment_tree" data-id="8659339" data-parent_id="8659303" title="Показать ветку комментариев"></span>
+              <a href="#comment_8659303" class="icon_comment-parent js-comment_parent" data-id="8659339" data-parent_id="8659303" title="Показать предыдущий комментарий"></a>
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_8659339" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark voting-wjt__counter_positive ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 1: ↑1 и ↓0">+1</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          Подскажите, пожалуйста, какие-нибудь туториалы по totallylazy,
+ если знаете? Конкретнее, именно по функциональному программированию. 
+Можно ли с помощью totallylazy сохранять функцию в переменную? 
+Обязательно посмотрю, что эта ленивая библиотека из себя представляет.<br>
+<br>
+Спасибо!
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_8659339">
+        <div class="comment_item" id="comment_8659455">
+  
+    <span class="parent_id" data-parent_id="8659339"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  " rel="8659455">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/burjui/" class="comment-item__avatar">
+              <img src="%D0%A8%D0%BF%D0%B0%D1%80%D0%B3%D0%B0%D0%BB%D0%BA%D0%B0%20Java%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%81%D1%82%D0%B0%204.%20Java%20Stream%20API%20_%20%D0%91%D0%BB%D0%BE%D0%B3%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B8%20Luxoft%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/fc72ab83365007635ab126459e925156_small.jpg" alt="" class="comment-item__avatar-img">
+          </a>
+          <a href="http://habrahabr.ru/users/burjui/" class="comment-item__username">burjui</a>
+          <time class="comment-item__time_published">19 ноября 2015 в 18:26</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_8659455" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+              <span class="icon_comment-tree js-comment_tree" data-id="8659455" data-parent_id="8659339" title="Показать ветку комментариев"></span>
+              <a href="#comment_8659339" class="icon_comment-parent js-comment_parent" data-id="8659455" data-parent_id="8659339" title="Показать предыдущий комментарий"></a>
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_8659455" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark voting-wjt__counter_positive ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 1: ↑1 и ↓0">+1</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          По функциональному программированию вообще я бы рекомендовал 
+бесплатную книгу «Learn You a Haskell for Great Good!» — 
+http://learnyouahaskell.com/chapters<br>
+Первые несколько глав дают общее представление о ФП, дальше начинается 
+самый сок и нарастает хардкорность. Книга забавно иллюстрирована и 
+вообще написана интересно и с юмором. Сразу скажу, после долгого 
+использования императивного стиля функциональный даётся не сразу, мешает
+ инертность мышления. Не жалейте времени, перечитайте непонятные вещи 
+несколько раз, если нужно. Как писал автор одной книги по теории чисел: 
+«Если вы читаете больше одной страницы в час, возможно, вы слишком 
+спешите». Поищите туториалы на Youtube. Разнообразнее источники 
+информации только улучшат понимание темы.<br>
+<br>
+Когда придёт понимание концепции ФП, для вас уже не будет проблемой 
+использовать ту или иную библиотеку для этого — вы уже будете знать, что
+ в ней искать и зачем. А по totallylazy я сам искал, но не нашёл — даже 
+полноценных доков, не то что туториалов. Мои задачи она решает.<br>
+<br>
+Что касается сохранения функции в переменную, вам это позволяет и Java 8
+ с её Lambda, functional interfaces и method references. Пример для 
+Android:<br>
+<br>
+<pre><code class="java hljs"><span class="hljs-keyword">final</span> DialogInterface.OnClickListener clickListener = (dialog, which) -&gt; {
+    <span class="hljs-keyword">switch</span> (which) {
+        ...
+    }
+};
+
+<span class="hljs-keyword">final</span> AlertDialog.Builder builder = <span class="hljs-keyword">new</span> AlertDialog.Builder(context);
+builder.setPositiveButton(R.string.yes, clickListener);
+builder.setNegativeButton(R.string.no, clickListener);
+</code></pre><br>
+или вот ещё:<br>
+<br>
+<pre><code class="java hljs"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Example</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doSomething</span><span class="hljs-params">()</span> </span>{
+        ...
+    }
+}
+
+<span class="hljs-keyword">final</span> Runnable action = Example::doSomething;
+</code></pre><br>
+Работает это потому, OnClickListener — интерфейс с одним методом, или 
+«функциональный» интерфейс. Разумеется, Java в этом плане и рядом с 
+Haskell не валялась, т.к. в последнем не нужны всякие специальные 
+интерфейсы, и можно просто указать сигнатуру функции на месте типа, или 
+вообще ничего не указывать, положившись на автоматическое выведение 
+типов.
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_8659455">
+      
+    </div>
+  </div>
+
+    </div>
+  </div>
+
+    </div>
+  </div>
+
+    </div>
+  </div>
+
+    </div>
+  </div>
+
+              <div class="comment_item" id="comment_8658535">
+  
+    <span class="parent_id" data-parent_id="0"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  " rel="8658535">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/orthanner/" class="comment-item__avatar">
+              <span class="comment-item__avatar-img_default user-pic_pink"></span>
+          </a>
+          <a href="http://habrahabr.ru/users/orthanner/" class="comment-item__username">orthanner</a>
+          <time class="comment-item__time_published">19 ноября 2015 в 06:01</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_8658535" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_8658535" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark voting-wjt__counter_positive ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 1: ↑1 и ↓0">+1</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          Ну Option и здесь есть (aka Optional), но лично мне не шибко 
+нравится то, как это реализовано, в принципе. Если уж сделали в 
+интерфейсах реализации по умолчанию, так можно было и стандартный 
+Collections API доработать (для ленивых — интерфейс Iterator). Нет же, 
+породили новую сущность. И всё равно реализация по умолчанию не является
+ потокобезопасной. Казалось бы — зачем? и тут мы вспоминаем, что Java 
+Collections API мутабельно чуть менее, чем полностью (а меньшая часть 
+просто не даёт себя модифицировать).<br>
+И да, Either здесь нет, но реализуется достаточно просто (правда, без 
+sealed traits придётся повозиться, чтобы защитить иерархию классов от 
+нежелательного расширения).
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_8658535">
+      
+    </div>
+  </div>
+
+              <div class="comment_item" id="comment_8658659">
+  
+    <span class="parent_id" data-parent_id="0"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  " rel="8658659">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/NCNecros/" class="comment-item__avatar">
+              <span class="comment-item__avatar-img_default user-pic_lilac"></span>
+          </a>
+          <a href="http://habrahabr.ru/users/NCNecros/" class="comment-item__username">NCNecros</a>
+          <time class="comment-item__time_published">19 ноября 2015 в 10:33</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_8658659" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_8658659" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark voting-wjt__counter_positive ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 1: ↑1 и ↓0">+1</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          Насчет distinct(), мне кажется вы ошиблись. Я думаю «For 
+ordered streams, the selection of distinct elements is stable (for 
+duplicated elements, the element appearing first in the encounter order 
+is preserved.) For unordered streams, no stability guarantees are made.»
+ означет что distinct() гарантировано работает только если список 
+отсортирован. На синтетических примерах с примитивами это не имеет 
+значения, но я столкнулся с проблемой когда у меня список содержал кучу 
+объектов с переопределенным equals(), но нереализованым компаратором для
+ сортировки. Применение distinct() к такому списку не давала ничего. Из 
+нескольких миллионов записей ни одна не убиралась.
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_8658659">
+        <div class="comment_item" id="comment_8658759">
+  
+    <span class="parent_id" data-parent_id="8658659"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  is_topic_starter  " rel="8658759">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/vedenin1980/" class="comment-item__avatar">
+              <img src="%D0%A8%D0%BF%D0%B0%D1%80%D0%B3%D0%B0%D0%BB%D0%BA%D0%B0%20Java%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%81%D1%82%D0%B0%204.%20Java%20Stream%20API%20_%20%D0%91%D0%BB%D0%BE%D0%B3%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B8%20Luxoft%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/7eb7632e5a0d2720be542c25ec40614f_small.jpg" alt="" class="comment-item__avatar-img">
+          </a>
+          <a href="http://habrahabr.ru/users/vedenin1980/" class="comment-item__username">vedenin1980</a>
+          <time class="comment-item__time_published">19 ноября 2015 в 11:40</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_8658759" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+              <span class="icon_comment-tree js-comment_tree" data-id="8658759" data-parent_id="8658659" title="Показать ветку комментариев"></span>
+              <a href="#comment_8658659" class="icon_comment-parent js-comment_parent" data-id="8658759" data-parent_id="8658659" title="Показать предыдущий комментарий"></a>
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_8658759" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark voting-wjt__counter_positive ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 1: ↑1 и ↓0">+1</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          Спасибо за замечание, но мне кажется в фразе «For ordered 
+streams, the selection of distinct elements is stable (for duplicated 
+elements, the element appearing first in the encounter order is 
+preserved.) For unordered streams, no stability guarantees are made.» 
+речь идет о таком свойстве сортировки как «Устойчивость (англ. 
+stability) — устойчивая сортировка не меняет взаимного расположения 
+элементов с одинаковыми ключами» <a href="https://en.wikipedia.org/wiki/Sorting_algorithm#Stability">вики</a>. <br>
+<br>
+Это подтверждает и дальнейшее замечание в <a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#distinct--">javadoc</a>: <br>
+API Note:<br>
+Preserving <b>stability </b>for distinct() in parallel pipelines is 
+relatively expensive (requires that the operation act as a full barrier,
+ with substantial buffering overhead), and <b>stability </b>is often not
+ needed. Using an unordered stream source (such as generate(Supplier)) 
+or removing the ordering constraint with BaseStream.unordered() may 
+result in significantly more efficient execution for distinct() in 
+parallel pipelines, if the semantics of your situation permit. If 
+consistency with encounter order is required, and you are experiencing 
+poor performance or memory utilization with distinct() in parallel 
+pipelines, switching to sequential execution with 
+BaseStream.sequential() may improve performance.<br>
+<br>
+Очень странно что у вас distinct не работал, а можете дать пример вашего класса и несколько значений в личку? 
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_8658759">
+      
+    </div>
+  </div>
+  <div class="comment_item" id="comment_8658775">
+  
+    <span class="parent_id" data-parent_id="8658659"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  is_topic_starter  " rel="8658775">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/vedenin1980/" class="comment-item__avatar">
+              <img src="%D0%A8%D0%BF%D0%B0%D1%80%D0%B3%D0%B0%D0%BB%D0%BA%D0%B0%20Java%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%81%D1%82%D0%B0%204.%20Java%20Stream%20API%20_%20%D0%91%D0%BB%D0%BE%D0%B3%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B8%20Luxoft%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/7eb7632e5a0d2720be542c25ec40614f_small.jpg" alt="" class="comment-item__avatar-img">
+          </a>
+          <a href="http://habrahabr.ru/users/vedenin1980/" class="comment-item__username">vedenin1980</a>
+          <time class="comment-item__time_published">19 ноября 2015 в 11:53</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_8658775" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+              <span class="icon_comment-tree js-comment_tree" data-id="8658775" data-parent_id="8658659" title="Показать ветку комментариев"></span>
+              <a href="#comment_8658659" class="icon_comment-parent js-comment_parent" data-id="8658775" data-parent_id="8658659" title="Показать предыдущий комментарий"></a>
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_8658775" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark voting-wjt__counter_positive ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 1: ↑1 и ↓0">+1</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          Да, у вас hashCode тоже переопределен в соответствии с 
+контрактами (в частности, что все equals объекты всегда имеют один и тот
+ же hashCode)? Так как если я правильно понимаю работу distinct он 
+работает по принципу HashSet, то есть сначала сортирует по hashCode, а 
+уже потом среди объектов с одинаковым hashCode начинает проверять на 
+equals, соответственно при нарушении контракта hashCode/equals ничего 
+работать не будет. 
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_8658775">
+        <div class="comment_item" id="comment_8659031">
+  
+    <span class="parent_id" data-parent_id="8658775"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  " rel="8659031">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/NCNecros/" class="comment-item__avatar">
+              <span class="comment-item__avatar-img_default user-pic_lilac"></span>
+          </a>
+          <a href="http://habrahabr.ru/users/NCNecros/" class="comment-item__username">NCNecros</a>
+          <time class="comment-item__time_published">19 ноября 2015 в 14:02<span class="comment-item__time_changed"> (комментарий был изменён)</span></time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_8659031" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+              <span class="icon_comment-tree js-comment_tree" data-id="8659031" data-parent_id="8658775" title="Показать ветку комментариев"></span>
+              <a href="#comment_8658775" class="icon_comment-parent js-comment_parent" data-id="8659031" data-parent_id="8658775" title="Показать предыдущий комментарий"></a>
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_8659031" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark voting-wjt__counter_positive ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 1: ↑1 и ↓0">+1</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          Правда ваша. Я вышел из этой ситуации обернув класс в обертку 
+перед distinct(), а обертка как раз добавляет equals и hashcode. Косяк 
+конечно мой, но этот камень можете указать где-нибудь в примечаниях, что
+ distict() работает на классах при наличии hashcode и equals. Хорошая у 
+Вас статья, stream() очень приятная штука.
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_8659031">
+        <div class="comment_item" id="comment_8659101">
+  
+    <span class="parent_id" data-parent_id="8659031"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  is_topic_starter  " rel="8659101">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/vedenin1980/" class="comment-item__avatar">
+              <img src="%D0%A8%D0%BF%D0%B0%D1%80%D0%B3%D0%B0%D0%BB%D0%BA%D0%B0%20Java%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%81%D1%82%D0%B0%204.%20Java%20Stream%20API%20_%20%D0%91%D0%BB%D0%BE%D0%B3%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B8%20Luxoft%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/7eb7632e5a0d2720be542c25ec40614f_small.jpg" alt="" class="comment-item__avatar-img">
+          </a>
+          <a href="http://habrahabr.ru/users/vedenin1980/" class="comment-item__username">vedenin1980</a>
+          <time class="comment-item__time_published">19 ноября 2015 в 14:36</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_8659101" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+              <span class="icon_comment-tree js-comment_tree" data-id="8659101" data-parent_id="8659031" title="Показать ветку комментариев"></span>
+              <a href="#comment_8659031" class="icon_comment-parent js-comment_parent" data-id="8659101" data-parent_id="8659031" title="Показать предыдущий комментарий"></a>
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_8659101" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark voting-wjt__counter_positive ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 1: ↑1 и ↓0">+1</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          Ок, добавил примечание к distinct
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_8659101">
+      
+    </div>
+  </div>
+
+    </div>
+  </div>
+
+    </div>
+  </div>
+
+    </div>
+  </div>
+
+    </div>
+
+
+          			<p class="for_users_only_msg">Только зарегистрированные пользователи могут оставлять комментарии. <a href="https://habrahabr.ru/auth/login/">Войдите</a>, пожалуйста.</p>
+
+
+        
+<form action="/json/favorites/" method="post" id="edit_tags_form" class="hidden">
+  <input name="action" value="add" type="hidden">
+  <input name="ti" value="0" type="hidden">
+  <input name="tt" value="0" type="hidden">
+  <label>Пометьте топик понятными вам метками, если хотите</label>
+  <input autocomplete="off" name="tags_string" class="tags_string" type="text">
+  <div class="description">Метки лучше разделять запятой. Например: <i>общение, социальные сети, myspace.com, подростки, мердок</i></div>
+  <input value="Сохранить" class="submit" type="submit"> или <a href="#" class="close" onclick="return close_edit_tags()">закрыть</a>
+</form>
+
+      </div>
+    </div>
+
+    <div class="sidebar_right">
+        
+  
+  
+
+  <div class="block corporate_blog">
+  <div class="title">Блог на Хабрахабре</div>
+  <div class="posts_list">
+      <div class="post_item">
+        <a href="http://habrahabr.ru/company/luxoft/blog/270383/" class="post_name">Шпаргалка Java программиста 4. Java Stream API</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/company/luxoft/blog/270383/#comments" class="count count_icon">11</a>
+      </div>
+      <div class="post_item">
+        <a href="http://habrahabr.ru/company/luxoft/blog/256877/" class="post_name">Шпаргалка Java программиста 3. Коллекции в Java (стандартные, guava, apache, trove, gs-collections и другие)</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/company/luxoft/blog/256877/#comments" class="count count_icon">39</a>
+      </div>
+      <div class="post_item">
+        <a href="http://habrahabr.ru/company/luxoft/blog/269305/" class="post_name">Правила безопасного программирования на С: прошлое, настоящее и будущее</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/company/luxoft/blog/269305/#comments" class="count count_icon">3</a>
+      </div>
+      <div class="post_item">
+        <a href="http://habrahabr.ru/company/luxoft/blog/268355/" class="post_name">DEV Labs 2015. Онлайн конференция для .NET разработчиков. 17 октября</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/company/luxoft/blog/268355/#comments" class="count count_icon">2</a>
+      </div>
+      <div class="post_item">
+        <a href="http://habrahabr.ru/company/luxoft/blog/265339/" class="post_name">Бесплатная библиотека Self-learning – более 20 курсов по ключевым направлениям Software Engineering</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/company/luxoft/blog/265339/#comments" class="count count_icon">9</a>
+      </div>
+      <div class="post_item">
+        <a href="http://habrahabr.ru/company/luxoft/blog/264011/" class="post_name">Microservices Q&amp;A</a>&nbsp;&nbsp;
+      </div>
+      <div class="post_item">
+        <a href="http://habrahabr.ru/company/luxoft/blog/261959/" class="post_name">TEST Labs 2015. Онлайн конференция для тестировщиков и тест-менеджеров. 25 июля</a>&nbsp;&nbsp;
+      </div>
+      <div class="post_item">
+        <a href="http://habrahabr.ru/company/luxoft/blog/260509/" class="post_name">Доступ к разделяемым атомарным объектам из обработчика сигнала в C</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/company/luxoft/blog/260509/#comments" class="count count_icon">3</a>
+      </div>
+      <div class="post_item">
+        <a href="http://habrahabr.ru/company/luxoft/blog/259409/" class="post_name">Видеозаписи семинара CLRium #2</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/company/luxoft/blog/259409/#comments" class="count count_icon">11</a>
+      </div>
+      <div class="post_item">
+        <a href="http://habrahabr.ru/company/luxoft/blog/258257/" class="post_name">Микросервисы. Хорошие, плохие, злые</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/company/luxoft/blog/258257/#comments" class="count count_icon">3</a>
+      </div>
+  </div>
+</div>
+
+  
+
+    </div>
+  </div>
+
+
+        
+  <div class="column-wrapper column-wrapper_bottom column-wrapper_bordered">
+    <div class="content_left">
+      
+
+  <div class="top-materials top-materials_geektimes">
+    <h2 class="top-materials__title">
+      <a href="http://geektimes.ru/" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo" class="top-materials__title-link">Лучшее на Geektimes</a>
+    </h2>
+
+    <div class="top-materials__content">
+      <ol class="content-list content-list_top-materials">
+          <li class="content-list__item">
+            <div class="content-list__item_wrap">
+              <a class="content-list__item-link" href="http://geektimes.ru/post/266766/" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Светодиодные лампы из магазина Ашан</a>&nbsp;&nbsp;<a href="http://geektimes.ru/post/266766/#comments" class="content-list__item-counter">46</a>
+            </div>
+          </li>
+          <li class="content-list__item">
+            <div class="content-list__item_wrap">
+              <a class="content-list__item-link" href="http://geektimes.ru/post/266746/" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">О проблемах осанки. Почему корректоры осанки редко помогают</a>&nbsp;&nbsp;<a href="http://geektimes.ru/post/266746/#comments" class="content-list__item-counter">35</a>
+            </div>
+          </li>
+          <li class="content-list__item">
+            <div class="content-list__item_wrap">
+              <a class="content-list__item-link" href="http://geektimes.ru/post/266738/" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Эволюция носителей информации, часть 2: оптические накопители</a>&nbsp;&nbsp;<a href="http://geektimes.ru/post/266738/#comments" class="content-list__item-counter">10</a>
+            </div>
+          </li>
+          <li class="content-list__item">
+            <div class="content-list__item_wrap">
+              <a class="content-list__item-link" href="http://geektimes.ru/post/266790/" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Назначена дата первого запуска Wendelstein 7-X</a>&nbsp;&nbsp;<a href="http://geektimes.ru/post/266790/#comments" class="content-list__item-counter">10</a>
+            </div>
+          </li>
+          <li class="content-list__item">
+            <div class="content-list__item_wrap">
+              <a class="content-list__item-link" href="http://geektimes.ru/post/266772/" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Открытие научно-популярного лектория Set Up 5 декабря</a>&nbsp;&nbsp;
+            </div>
+          </li>
+      </ol>
+
+      <ul class="top-materials__menu menu menu_inline">
+        <li class="menu__item">
+          <a href="http://geektimes.ru/" target="blank" class="menu__item-link" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Все публикации</a>
+        </li>
+        <li class="menu__item">
+          <a href="http://geektimes.ru/hubs/" target="blank" class="menu__item-link" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Популярные хабы</a>
+        </li>
+        <li class="menu__item">
+          <a href="http://geektimes.ru/companies/" target="blank" class="menu__item-link" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Компании</a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+
+      
+
+  <div class="top-materials top-materials_megamozg">
+    <h2 class="top-materials__title">
+      <a href="http://megamozg.ru/" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo" class="top-materials__title-link">Лучшее на Мегамозге</a>
+    </h2>
+
+    <div class="top-materials__content">
+      <ol class="content-list content-list_top-materials">
+          <li class="content-list__item">
+            <div class="content-list__item_wrap">
+              <a class="content-list__item-link" href="http://megamozg.ru/post/22308/" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Меньше, да лучше: Mozilla Firefox «худеет», чтобы бегать быстрее конкурентов</a>&nbsp;&nbsp;<a href="http://megamozg.ru/post/22308/#comments" class="content-list__item-counter">10</a>
+            </div>
+          </li>
+          <li class="content-list__item">
+            <div class="content-list__item_wrap">
+              <a class="content-list__item-link" href="http://megamozg.ru/post/22306/" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Тинькофф-банк ожидает получить больше прибыли за 2015 год, чем планировал изначально</a>&nbsp;&nbsp;<a href="http://megamozg.ru/post/22306/#comments" class="content-list__item-counter">18</a>
+            </div>
+          </li>
+          <li class="content-list__item">
+            <div class="content-list__item_wrap">
+              <a class="content-list__item-link" href="http://megamozg.ru/post/22294/" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Испытание публичностью: компания Atlassian проведет одно из самых успешных IPO в этом году</a>&nbsp;&nbsp;
+            </div>
+          </li>
+          <li class="content-list__item">
+            <div class="content-list__item_wrap">
+              <a class="content-list__item-link" href="http://megamozg.ru/post/22300/" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Венсан Жанти: зачем крупным компаниям дружить со стартапами</a>&nbsp;&nbsp;
+            </div>
+          </li>
+          <li class="content-list__item">
+            <div class="content-list__item_wrap">
+              <a class="content-list__item-link" href="http://megamozg.ru/post/22312/" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Интернет вещей сулит большое будущее для Intel</a>&nbsp;&nbsp;
+            </div>
+          </li>
+      </ol>
+
+      <ul class="top-materials__menu menu menu_inline">
+        <li class="menu__item">
+          <a href="http://megamozg.ru/" target="_blank" class="menu__item-link" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Все публикации</a>
+        </li>
+        <li class="menu__item">
+          <a href="http://megamozg.ru/hubs/" target="_blank" class="menu__item-link" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Популярные хабы</a>
+        </li>
+        <li class="menu__item">
+          <a href="http://megamozg.ru/companies/startups/" target="_blank" class="menu__item-link" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Стартапы</a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+
+
+    </div>
+
+  </div>
+
+
+
+        <div class="clear"></div>
+
+        <div class="footer_panel">
+          <div id="footer">
+  <dl>
+    <dd><a href="https://habrahabr.ru/auth/login/">Войти</a></dd>
+    <dd><a href="https://habrahabr.ru/auth/register/">Регистрация</a></dd>
+  </dl>
+  <dl>
+    <dt>Разделы</dt>
+    <dd><a href="http://habrahabr.ru/posts/top/">Публикации</a></dd>
+    <dd><a href="http://habrahabr.ru/hubs/">Хабы</a></dd>
+    <dd><a href="http://habrahabr.ru/companies/">Компании</a></dd>
+    <dd><a href="http://habrahabr.ru/users/">Пользователи</a></dd>
+    <dd><a href="http://toster.ru/?_aa=press_anykey">Q&amp;A</a></dd>
+    <dd><a href="http://habrahabr.ru/sandbox/">Песочница</a></dd>
+
+  </dl>
+  <dl>
+    <dt>Инфо</dt>
+    <dd><a href="http://habrahabr.ru/info/about/">О сайте</a></dd>
+    <dd><a href="http://habrahabr.ru/info/help/rules/">Правила</a></dd>
+    <dd><a href="http://habrahabr.ru/info/help/">Помощь</a></dd>
+    <dd><a href="http://habrahabr.ru/info/agreement/">Соглашение</a></dd>
+  </dl>
+  <dl>
+    <dt>Услуги</dt>
+    <dd><a href="http://special.habrahabr.ru/advertising/">Реклама</a></dd>
+      <dd><a href="http://special.habrahabr.ru/">Спецпроекты</a></dd>
+      <dd><a href="http://special.habrahabr.ru/corporate/">Тарифы</a></dd>
+      <dd><a href="http://special.habrahabr.ru/content/">Контент</a></dd>
+      <dd><a href="http://special.habrahabr.ru/workshops/">Вебинары</a></dd>
+  </dl>
+
+  <dl>
+    <dt>Разное</dt>
+    <dd><a href="http://habrahabr.ru/apps/">Приложения</a></dd>
+    <dd><a href="http://special.habrahabr.ru/microsoft/mobile/" target="_blank">Тест-драйв</a></dd>
+    <dd><a href="http://special.habrahabr.ru/hello_startup/bizspark/" target="_blank">Помощь стартапам</a></dd>
+      <dd><a href="http://special.habrahabr.ru/#hr">Работа в IT</a></dd>
+  </dl>
+  <div class="copyright">
+
+    <div class="about">
+      <a href="http://tmtm.ru/">© TM</a>
+
+      <br><br>
+      <a href="http://habrahabr.ru/feedback/">Служба поддержки</a><br><br>
+          <a href="http://m.habrahabr.ru/post/270383/?mobile=yes">Мобильная версия</a><br><br>
+
+
+      <div class="social_accounts">
+        <a href="https://twitter.com/habrahabr" class="tw"></a>
+        <a href="https://www.facebook.com/habrahabr.ru" class="fb"></a>
+        <a href="http://vk.com/habr" class="vk"></a>
+        <!-- <a href="" class="gp"></a> //-->
+      </div>
+
+    </div>
+  </div>
+</div>
+        </div>
+      </div>
+    </div>
+
+
+      <script type="text/javascript" src="%D0%A8%D0%BF%D0%B0%D1%80%D0%B3%D0%B0%D0%BB%D0%BA%D0%B0%20Java%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%81%D1%82%D0%B0%204.%20Java%20Stream%20API%20_%20%D0%91%D0%BB%D0%BE%D0%B3%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B8%20Luxoft%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/jquery.js"></script>
+      <script type="text/javascript">
+        $(document).ready( function(){
+          window.tmidLogin = function(){ return false; };
+          if( $.cookie('tmid_no_check') == undefined ) {
+            var expire = new Date();
+            expire.setMinutes(expire.getMinutes() + 10 );
+            $.cookie('tmid_no_check', 1, { expires: expire } );
+            $.getScript("https://id.tmtm.ru/checklogin/", function(){
+              if( window.tmidLogin() ) {
+
+                  var href = $('#login').attr('href');
+
+                  if( href !== undefined ) {
+                      window.location.href = href;
+                  }
+              }
+            });
+          }
+        });
+      </script>
+
+    <script type="text/javascript">
+  // global vars
+  var g_base_url = 'habrahabr.ru';
+  var g_show_xpanel = false;
+  var g_base_fullurl = 'http://habrahabr.ru/';
+  var g_is_guest = false;
+</script> 
+
+      <script type="text/javascript" src="%D0%A8%D0%BF%D0%B0%D1%80%D0%B3%D0%B0%D0%BB%D0%BA%D0%B0%20Java%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%81%D1%82%D0%B0%204.%20Java%20Stream%20API%20_%20%D0%91%D0%BB%D0%BE%D0%B3%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B8%20Luxoft%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/shortcuts.js"></script>
+
+    <script type="text/javascript" src="%D0%A8%D0%BF%D0%B0%D1%80%D0%B3%D0%B0%D0%BB%D0%BA%D0%B0%20Java%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%81%D1%82%D0%B0%204.%20Java%20Stream%20API%20_%20%D0%91%D0%BB%D0%BE%D0%B3%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B8%20Luxoft%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/global_footer_main.js"></script>
+
+    	<script type="text/javascript" src="%D0%A8%D0%BF%D0%B0%D1%80%D0%B3%D0%B0%D0%BB%D0%BA%D0%B0%20Java%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%81%D1%82%D0%B0%204.%20Java%20Stream%20API%20_%20%D0%91%D0%BB%D0%BE%D0%B3%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B8%20Luxoft%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/a"></script>
+
+    
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+(function (d, w, c) {
+    (w[c] = w[c] || []).push(function() {
+        try {
+            if (typeof (_yaparams) != 'undefined') {
+                w.yaCounter24049213 = new Ya.Metrika({id:24049213,
+                    webvisor:true,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    params:_yaparams});
+            } else {
+                w.yaCounter24049213 = new Ya.Metrika({id:24049213,
+                    webvisor:true,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true});
+            }
+
+        } catch(e) { }
+    });
+
+    var n = d.getElementsByTagName("script")[0],
+        s = d.createElement("script"),
+        f = function () { n.parentNode.insertBefore(s, n); };
+    s.type = "text/javascript";
+    s.async = true;
+    s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+    if (w.opera == "[object Opera]") {
+        d.addEventListener("DOMContentLoaded", f, false);
+    } else { f(); }
+})(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="//mc.yandex.ru/watch/24049213" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+    
+
+    
+
+    <!-- Хабр не резиновый! -->
+  
+
+<div id="AutocompleteContainter_ab8a1" style="position: absolute; z-index: 9999; top: 2px; left: 0px;"><div class="autocomplete-w1"><div class="autocomplete" id="Autocomplete_ab8a1" style="display: none; width: 300px; max-height: 400px;"></div></div></div><div id="AutocompleteContainter_1c052" style="position: absolute; z-index: 9999; top: 2px; left: 0px;"><div class="autocomplete-w1"><div class="autocomplete" id="Autocomplete_1c052" style="display: none; width: 300px; max-height: 400px;"></div></div></div></body></html>

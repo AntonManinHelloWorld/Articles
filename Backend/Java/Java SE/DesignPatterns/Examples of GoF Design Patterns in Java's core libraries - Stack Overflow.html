@@ -1,0 +1,2146 @@
+<!DOCTYPE html>
+<html itemscope="" itemtype="http://schema.org/QAPage"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<title>oop - Examples of GoF Design Patterns in Java's core libraries - Stack Overflow</title>
+    <link rel="shortcut icon" href="http://cdn.sstatic.net/stackoverflow/img/favicon.ico?v=4f32ecc8f43d">
+    <link rel="apple-touch-icon image_src" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+    <link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="http://stackoverflow.com/opensearch.xml">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="stackoverflow.com">
+    <meta property="og:type" content="website">    
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon@2.png?v=73d79a89bded&amp;a">
+    <meta name="twitter:title" property="og:title" itemprop="title name" content="Examples of GoF Design Patterns in Java's core libraries">
+    <meta name="twitter:description" property="og:description" itemprop="description" content="I am learning GoF Java Design Patterns and I want to see some real life examples of them. What are some good examples of these Design Patterns in Java's core libraries?
+">
+    <meta property="og:url" content="http://stackoverflow.com/questions/1673841/examples-of-gof-design-patterns-in-javas-core-libraries">
+    <link rel="canonical" href="http://stackoverflow.com/questions/1673841/examples-of-gof-design-patterns-in-javas-core-libraries">
+
+    
+    
+    <script src="Examples%20of%20GoF%20Design%20Patterns%20in%20Java%27s%20core%20libraries%20-%20Stack%20Overflow_files/ados.js" async="" type="text/javascript"></script><script src="Examples%20of%20GoF%20Design%20Patterns%20in%20Java%27s%20core%20libraries%20-%20Stack%20Overflow_files/quant.js" async=""></script><script src="Examples%20of%20GoF%20Design%20Patterns%20in%20Java%27s%20core%20libraries%20-%20Stack%20Overflow_files/beacon.js" async=""></script><script src="Examples%20of%20GoF%20Design%20Patterns%20in%20Java%27s%20core%20libraries%20-%20Stack%20Overflow_files/analytics.js" async=""></script><script src="Examples%20of%20GoF%20Design%20Patterns%20in%20Java%27s%20core%20libraries%20-%20Stack%20Overflow_files/ados_002.js" async="" type="text/javascript"></script><script src="Examples%20of%20GoF%20Design%20Patterns%20in%20Java%27s%20core%20libraries%20-%20Stack%20Overflow_files/jquery.js"></script>
+    <script src="Examples%20of%20GoF%20Design%20Patterns%20in%20Java%27s%20core%20libraries%20-%20Stack%20Overflow_files/stub.js"></script>
+    <link rel="stylesheet" type="text/css" href="Examples%20of%20GoF%20Design%20Patterns%20in%20Java%27s%20core%20libraries%20-%20Stack%20Overflow_files/all.css">
+
+            <meta name="twitter:app:country" content="US">
+            <meta name="twitter:app:name:iphone" content="Stack Exchange iOS">
+            <meta name="twitter:app:id:iphone" content="871299723">
+            <meta name="twitter:app:url:iphone" content="se-zaphod://stackoverflow.com/questions/1673841/examples-of-gof-design-patterns-in-javas-core-libraries">
+            <meta name="twitter:app:name:ipad" content="Stack Exchange iOS">
+            <meta name="twitter:app:id:ipad" content="871299723">
+            <meta name="twitter:app:url:ipad" content="se-zaphod://stackoverflow.com/questions/1673841/examples-of-gof-design-patterns-in-javas-core-libraries">
+            <meta name="twitter:app:name:googleplay" content="Stack Exchange Android">
+            <meta name="twitter:app:url:googleplay" content="http://stackoverflow.com/questions/1673841/examples-of-gof-design-patterns-in-javas-core-libraries">
+            <meta name="twitter:app:id:googleplay" content="com.stackexchange.marvin">
+        <script>
+        
+            StackExchange.ready(function () {
+                    
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.initSnippetRenderer();
+                    });
+                    
+
+                StackExchange.using("postValidation", function () {
+                    StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+                });
+
+                
+                StackExchange.question.init({showAnswerHelp:true,totalCommentCount:0,shownCommentCount:0,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:1673841});
+
+                styleCode();
+
+                    StackExchange.realtime.subscribeToQuestion('1', '1673841');
+                                                                    StackExchange.using("gps", function () { StackExchange.gps.trackOutboundClicks('#content', '.post-text'); });
+
+            });
+        </script>
+
+
+    <script>
+        StackExchange.init({"locale":"en","stackAuthUrl":"https://stackauth.com","serverTime":1449076059,"networkMetaHostname":"meta.stackexchange.com","routeName":"Questions/Show","styleCode":true,"enableUserHovercards":true,"snippets":{"enabled":true,"domain":"stacksnippets.net"},"site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdchgIAAAAAAJwGpIzRQSOFaO0pU6s44Xt8aTwc","recaptchaAudioLang":"en","enableNewTagCreationWarning":true,"insertSpaceAfterNameTabCompletion":false,"id":1,"nonAsciiTags":true,"enableSocialMediaInSharePopup":true},"user":{"fkey":"403aacb6ad65e2352d636eae87907085","rep":0,"isAnonymous":true,"isAnonymousNetworkWide":true}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"3961c61ca69a","js/moderator.en.js":"97fe5aef6f7f","js/full-anon.en.js":"33499cc2cad7","js/full.en.js":"1e4fcf6f9ef0","js/wmd.en.js":"a3d548c88788","js/third-party/jquery.autocomplete.min.js":"e5f01e97f7c3","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"16f21161a721","js/help.en.js":"7be3de40c932","js/tageditor.en.js":"228dca89f504","js/tageditornew.en.js":"baf6339578c3","js/inline-tag-editing.en.js":"239de90350f6","js/revisions.en.js":"9e897f24d78d","js/review.en.js":"38c906a6db58","js/tagsuggestions.en.js":"d1ff9b84abe5","js/post-validation.en.js":"e9d59f898ee2","js/explore-qlist.en.js":"415c9ef1f829","js/events.en.js":"b6ad5fb336a6","js/keyboard-shortcuts.en.js":"8027a5b2287f","js/external-editor.en.js":"cf58cc6630ef","js/external-editor.en.js":"cf58cc6630ef","js/snippet-javascript.en.js":"1034ef6a3153","js/snippet-javascript-codemirror.en.js":"aeb2a0b12236"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </script>
+    
+        <script>
+            StackExchange.ready(function () {
+                $('#nav-tour').click(function () {
+                    StackExchange.using("gps", function() {
+                        StackExchange.gps.track("aboutpage.click", { aboutclick_location: "headermain" }, true);
+                    });
+                });
+            });
+        </script>
+    
+    
+<script src="Examples%20of%20GoF%20Design%20Patterns%20in%20Java%27s%20core%20libraries%20-%20Stack%20Overflow_files/full-anon.js" async=""></script><script src="Examples%20of%20GoF%20Design%20Patterns%20in%20Java%27s%20core%20libraries%20-%20Stack%20Overflow_files/adFeedback.js" type="text/javascript"></script><link href="Examples%20of%20GoF%20Design%20Patterns%20in%20Java%27s%20core%20libraries%20-%20Stack%20Overflow_files/adFeedback.css" rel="stylesheet"><script src="Examples%20of%20GoF%20Design%20Patterns%20in%20Java%27s%20core%20libraries%20-%20Stack%20Overflow_files/snippet-javascript.js" async=""></script><script src="Examples%20of%20GoF%20Design%20Patterns%20in%20Java%27s%20core%20libraries%20-%20Stack%20Overflow_files/post-validation.js" async=""></script><script src="Examples%20of%20GoF%20Design%20Patterns%20in%20Java%27s%20core%20libraries%20-%20Stack%20Overflow_files/prettify-full.js" async=""></script><script src="Examples%20of%20GoF%20Design%20Patterns%20in%20Java%27s%20core%20libraries%20-%20Stack%20Overflow_files/p.js" async=""></script><link href="Examples%20of%20GoF%20Design%20Patterns%20in%20Java%27s%20core%20libraries%20-%20Stack%20Overflow_files/jobs.css" rel="stylesheet" type="text/css"></head>
+<body class="question-page new-topbar">
+    <noscript><div id="noscript-padding"></div></noscript>
+    <div id="notify-container"></div>
+    <div id="overlay-header"></div>
+    <div id="custom-header"></div>
+
+
+
+
+
+<div class="topbar">
+    <div class="topbar-wrapper">
+
+        <div class="js-topbar-dialog-corral">
+
+
+<div class="topbar-dialog siteSwitcher-dialog dno">
+    <div class="header">
+        <h3><a href="http://stackoverflow.com/">current community</a></h3>
+    </div>
+    <div class="modal-content current-site-container">
+        <ul class="current-site">
+                <li>
+                        <div class="related-links">
+                    <a href="http://chat.stackoverflow.com/" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:6 })">chat</a>
+            </div>
+
+
+
+
+    <a href="http://stackoverflow.com/" class="current-site-link site-link js-gps-track" data-id="1" data-gps-track="
+        site_switcher.click({ item_type:3 })">
+        <div class="site-icon favicon favicon-stackoverflow" title="Stack Overflow"></div>
+        Stack Overflow
+    </a>
+
+                </li>
+                <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    
+
+
+
+    <a href="http://meta.stackoverflow.com/" class="site-link js-gps-track" data-id="552" data-gps-track="
+            site.switch({ target_site:552, item_type:3 }),
+        site_switcher.click({ item_type:4 })">
+        <div class="site-icon favicon favicon-stackoverflowmeta" title="Meta Stack Overflow"></div>
+        Meta Stack Overflow
+    </a>
+
+                </li>
+                            <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    <a class="site-link js-gps-track" href="http://careers.stackoverflow.com/?utm_source=stackoverflow.com&amp;utm_medium=site-ui&amp;utm_campaign=multicollider" data-gps-track="site_switcher.click({ item_type:9 })">
+                        <div class="site-icon favicon favicon-careers" title="Stack Overflow Careers"></div>
+                        Stack Overflow Careers
+                    </a>
+                </li>
+        </ul>
+    </div>
+    
+    <div class="header" id="your-communities-header">
+        <h3>
+your communities        </h3>
+            
+    </div>
+    <div class="modal-content" id="your-communities-section">
+            
+            <div class="call-to-login">
+<a href="https://stackoverflow.com/users/signup?ssrc=site_switcher&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f1673841%2fexamples-of-gof-design-patterns-in-javas-core-libraries" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:10 })">Sign up</a> or <a href="https://stackoverflow.com/users/login?ssrc=site_switcher&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f1673841%2fexamples-of-gof-design-patterns-in-javas-core-libraries" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:11 })">log in</a> to customize your list.
+            </div>
+    </div>
+    
+    <div class="header">
+        <h3><a href="http://stackexchange.com/sites">more stack exchange communities</a></h3>
+        <a href="http://blog.stackoverflow.com/" class="fr">company blog</a>
+    </div>
+    <div class="modal-content">
+            <div class="child-content"></div>
+    </div>
+</div>
+        </div>
+
+        <div class="network-items">
+
+            <a href="http://stackexchange.com/" class="topbar-icon icon-site-switcher yes-hover js-site-switcher-button js-gps-track" data-gps-track="site_switcher.show" title="A list of all 150 Stack Exchange sites">
+                <span class="hidden-text">Stack Exchange</span>
+            </a>
+
+    <a href="#" class="topbar-icon icon-inbox yes-hover js-inbox-button" title="Recent inbox messages">
+        <span class="hidden-text">Inbox</span>
+        <span class="unread-count" style="display:none"></span>
+    </a>
+    <a href="#" class="topbar-icon icon-achievements yes-hover js-achievements-button " data-unread-class="" title="Recent achievements: reputation, badges, and privileges earned">
+        <span class="hidden-text">Reputation and Badges</span>
+        <span class="unread-count" style="display:none">
+            
+        </span>
+    </a>
+        </div>
+
+        <div class="topbar-links">
+
+                <div class="links-container">
+                <span class="topbar-menu-links">
+                                    <a href="https://stackoverflow.com/users/signup?ssrc=head&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f1673841%2fexamples-of-gof-design-patterns-in-javas-core-libraries" class="login-link">sign up</a>
+                                <a href="https://stackoverflow.com/users/login?ssrc=head&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f1673841%2fexamples-of-gof-design-patterns-in-javas-core-libraries" class="login-link">log in</a>
+
+                        <a href="http://stackoverflow.com/tour">tour</a>
+                            <a href="#" class="icon-help js-help-button" title="Help Center and other resources">
+        help
+        <span class="triangle"></span>
+    </a>
+    <div class="topbar-dialog help-dialog js-help-dialog dno">
+        <div class="modal-content">
+            <ul>
+                                    <li>
+                        <a href="http://stackoverflow.com/tour" class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })">
+                            Tour
+                            <span class="item-summary">
+                                Start here for a quick overview of the site
+                            </span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="http://stackoverflow.com/help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })">
+                        Help Center
+                        <span class="item-summary">
+                            Detailed answers to any questions you might have
+                        </span>
+                    </a>
+                </li>
+                    <li>
+                        <a href="http://meta.stackoverflow.com/" class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })">
+                            Meta
+                            <span class="item-summary">
+                                Discuss the workings and policies of this site
+                            </span>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+
+                            <a href="http://careers.stackoverflow.com/?utm_source=stackoverflow.com&amp;utm_medium=site-ui&amp;utm_campaign=anon-topbar">stack overflow careers</a>
+                    </span>
+                </div>
+
+            <div class="search-container">
+                <form id="search" action="/search" method="get" autocomplete="off">
+                    <input name="q" placeholder="search" tabindex="1" autocomplete="off" maxlength="240" type="text">
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+    <script>
+        StackExchange.ready(function() { StackExchange.topbar.init(); });
+    </script>
+
+    <div class="container">
+        <div id="header">
+            <br class="cbt">
+            <div id="hlogo">
+                <a href="http://stackoverflow.com/">
+                    Stack Overflow
+                </a>
+            </div>
+            <div id="hmenus">
+                <div class="nav mainnavs">
+                    <ul>
+                        <li class="youarehere"><a id="nav-questions" href="http://stackoverflow.com/questions">Questions</a></li>
+                        <li><a id="nav-tags" href="http://stackoverflow.com/tags">Tags</a></li>
+                        <li><a id="nav-users" href="http://stackoverflow.com/users">Users</a></li>
+                        <li><a id="nav-badges" href="http://stackoverflow.com/help/badges">Badges</a></li>
+                                                                    </ul>
+                </div>
+                <div class="nav askquestion">
+                    <ul>
+                        <li>
+                            <a id="nav-askquestion" href="http://stackoverflow.com/questions/ask">Ask Question</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+
+
+
+        <div id="content" class="snippet-hidden">
+            
+
+<div itemscope="" itemtype="http://schema.org/Question">
+    <link itemprop="image" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+			<!--googleoff: all-->
+
+<div id="herobox-mini">
+    <div id="hero-content">
+        <span id="controls">
+                <a href="http://stackoverflow.com/users/signup?ssrc=hero&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f1673841%2fexamples-of-gof-design-patterns-in-javas-core-libraries" id="tell-me-more" class="button">Sign up</a>
+            <span id="close"><a title="click to dismiss">×</a></span>
+        </span>
+        <div id="blurb">
+            Stack Overflow is a community of 4.7 million programmers, 
+just like you, helping each other. Join them; it only takes a minute:
+        </div>        
+    </div>
+    <script>
+        StackExchange.ready(function() {
+            var clickSource = $("body").attr("class") + '-mini';
+            var location = 0;
+            if ($("body").hasClass("questions-page")) {
+                clickSource = 'questionpagemini';
+                location = 2;
+            } else if ($("body").hasClass("question-page")) {
+                clickSource = 'questionpagemini';
+                location = 2;
+            } else if ($("body").hasClass("home-page")) {
+                clickSource = 'homepagemini';
+                location = 4;
+            }
+
+            $('#tell-me-more').click(function () {
+                StackExchange.using("gps", function () {
+                    StackExchange.gps.track("hero.action", { hero_action_type: 'cta', location: location }, true);
+                });
+            });
+            $('#herobox-mini #close').click(function () {
+                StackExchange.using("gps", function () {
+                    StackExchange.gps.track("hero.action", { hero_action_type: "close", location: location }, true);
+                });
+                $.cookie("hero", "none", { path: "/", expires: 365 });
+                var $hero = $("#herobox-mini");
+                $hero.slideUp('fast', function () { $hero.remove(); });
+                return false;
+            });
+        });
+    </script>
+</div>
+			<!--googleon: all-->
+			<div id="question-header">
+                <h1 itemprop="name"><a href="http://stackoverflow.com/questions/1673841/examples-of-gof-design-patterns-in-javas-core-libraries" class="question-hyperlink">Examples of GoF Design Patterns in Java's core libraries</a></h1>
+		</div>
+			<div id="mainbar">
+
+			
+
+<div class="question" data-questionid="1673841" id="question">
+
+        <input id="1673841-only-allow-inform-moderator-flagging" value="true" type="hidden">
+    <script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk2087743512",4).setZone(43); });
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk2087743512"><a href="http://engine.adzerk.net/r?e=eyJhdiI6NDE0LCJhdCI6NCwiYnQiOjAsImNtIjozMjI1MTQsImNoIjoxMTc4LCJjayI6e30sImNyIjoxMTk1Nzg3LCJkaSI6IjJjYzIyZTQ1NTFmZDQwNzdiNGJjYjJmYmY0NDc0ZDk0IiwiZG0iOjEsImZjIjoxMjY5MTQ2LCJmbCI6ODY0MjI1LCJpcCI6IjEzNC42MC4xNDguOTciLCJrdyI6ImphdmEsb29wLGRlc2lnbi1wYXR0ZXJucyxqYXZhLWFwaSIsIm53IjoyMiwicGMiOjAsImVjIjowLCJwciI6MTYwNCwicnQiOjEsInJmIjoiaHR0cDovL2luZm8uamF2YXJ1c2gucnUvSmF2YVJ1c2hfbGVjdHVyZXNfZGlzY3Vzc2lvbi8yMDEzLzEwLzIwL9Cb0LXQutGG0LjRjy0yOC5odG1sIiwic3QiOjgyNzcsInVrIjoidWUxLTE1MzFiMDkyYjQ0MzQzNzRhNDMwNTFlMmU3NGQ3MDc0Iiwiem4iOjQzLCJ0cyI6MTQ0OTA3NjA2MDcxNCwiYmYiOnRydWUsInBuIjoiYWR6ZXJrMjA4Nzc0MzUxMiIsInVyIjoiaHR0cDovL2NhcmVlcnMuc3RhY2tvdmVyZmxvdy5jb20vam9icy9yZW1vdGU_dXRtX3NvdXJjZT1zdGFja292ZXJmbG93LmNvbSZ1dG1fbWVkaXVtPWFkJnV0bV9jYW1wYWlnbj1jYW5kaWRhdGVzLXdmaCZ1dG1fY29udGVudD1sYi13ZmgtcGFqYW1hcyJ9&amp;s=NgTD4G8Nuy0x7Wn38shSxTEKPPU" rel="nofollow" target="_blank" title=""><img class="pcfykmqlcrtplekulgcu" src="Examples%20of%20GoF%20Design%20Patterns%20in%20Java%27s%20core%20libraries%20-%20Stack%20Overflow_files/61136988e3094e8c909f7d159bc49c2c.png" title="" alt="" height="90" width="728" border="0"></a><img class="pcfykmqlcrtplekulgcu" src="Examples%20of%20GoF%20Design%20Patterns%20in%20Java%27s%20core%20libraries%20-%20Stack%20Overflow_files/i_002.gif" style="position:absolute;" height="0px" width="0px" border="0"></div>    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="1673841" type="hidden">
+        <a class="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">673</span>
+        <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a>
+
+        <a class="star-off" href="#" title="This is a favorite question (click again to undo)">favorite</a>
+        <div class="favoritecount"><b>2371</b></div>
+
+
+</div>
+
+            </td>
+            
+<td class="postcell">
+<div>
+    <div class="post-text" itemprop="text">
+
+<p>I am learning GoF Java Design Patterns and I want to see some real 
+life examples of them. What are some good examples of these Design 
+Patterns in Java's core libraries?</p>
+    </div>
+    <div class="post-taglist">
+        <a href="http://stackoverflow.com/questions/tagged/java" class="post-tag js-gps-track" title="show questions tagged 'java'" rel="tag">java</a> <a href="http://stackoverflow.com/questions/tagged/oop" class="post-tag js-gps-track" title="show questions tagged 'oop'" rel="tag">oop</a> <a href="http://stackoverflow.com/questions/tagged/design-patterns" class="post-tag js-gps-track" title="show questions tagged 'design-patterns'" rel="tag">design-patterns</a> <a href="http://stackoverflow.com/questions/tagged/java-api" class="post-tag js-gps-track" title="show questions tagged 'java-api'" rel="tag">java-api</a> 
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/q/1673841" title="short permalink to this question" class="short-link" id="link-post-1673841">share</a></div>        
+    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/1673841/revisions" title="show all edits to this post">edited <span title="2015-04-11 03:40:40Z" class="relativetime">Apr 11 at 3:40</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+    <td class="post-signature">
+        <div class="user-info">
+    <div class="user-details">
+        <span class="community-wiki" title="This post is community owned as of Nov 4 '09 at 13:45. Votes do not generate reputation, and it can be edited by users with 100 rep">
+            community wiki
+        </span>
+    </div><br>
+    <div class="user-details">
+        <a id="history-1673841" href="http://stackoverflow.com/posts/1673841/revisions" title="show revision history for this post">
+        16 revs, 7 users 56%<br></a><a href="http://stackoverflow.com/users/82368">unj2</a>
+        
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</div>
+</td>
+        </tr>
+        
+            <tr>
+            <td class="special-status" colspan="2">
+                <div class="question-status">
+        <h2>                    <b>locked</b> by <a href="http://stackoverflow.com/users/811/shog9">Shog9</a><span class="mod-flair" title="moderator">♦</span> <span dir="ltr"><span title="2015-04-11 03:39:50Z" class="relativetime">Apr 11 at 3:39</span></span>
+</h2>
+        <p>This question's answers are a collaborative effort: if you 
+see something that can be improved, just edit the answer to improve it! <i>No additional answers can be added here</i></p>
+    </div>
+            </td>
+        </tr>
+    
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-1673841" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="false" data-comments-unavailable="true" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-1673841" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments.">comments disabled on deleted / locked posts / reviews</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>        </tbody></table>
+</div>
+
+			<div id="answers">
+
+				<a name="tab-top"></a>
+				<div id="answers-header">
+					<div class="subheader answers-subheader">
+						<h2>
+								7 Answers
+                                <span style="display:none;" itemprop="answerCount">7</span>
+						</h2>
+						<div>
+							<div id="tabs">
+        <a href="http://stackoverflow.com/questions/1673841/examples-of-gof-design-patterns-in-javas-core-libraries?answertab=active#tab-top" data-nav-xhref="" title="Answers with the latest activity first" data-value="active">active</a>
+        <a href="http://stackoverflow.com/questions/1673841/examples-of-gof-design-patterns-in-javas-core-libraries?answertab=oldest#tab-top" data-nav-xhref="" title="Answers in the order they were provided" data-value="oldest">oldest</a>
+        <a class="youarehere" href="http://stackoverflow.com/questions/1673841/examples-of-gof-design-patterns-in-javas-core-libraries?answertab=votes#tab-top" data-nav-xhref="" title="Answers with the highest score first" data-value="votes">votes</a>
+</div>
+						</div>
+					</div>    
+				</div>    
+
+
+
+
+  
+<a name="2707195"></a>
+<div id="answer-2707195" class="answer accepted-answer" data-answerid="2707195" itemscope="" itemtype="http://schema.org/Answer" itemprop="acceptedAnswer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="2707195" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post high-scored-post">1826</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+        <span class="vote-accepted-on load-accepted-answer-date" title="loading when this answer was accepted...">accepted</span>
+<div class="bounty-award-container"><span class="bounty-award" title="This answer has been awarded bounties worth 250 reputation by unj2">+250</span></div>
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>You can find an overview of a lot of design patterns in <a href="http://en.wikipedia.org/wiki/Design_pattern_%28computer_science%29#Classification_and_list">Wikipedia</a>.
+ It also mentions which patterns are mentioned by GoF. I'll sum them up 
+here and try to assign as much as possible pattern implementations found
+ in both the Java SE and Java EE API's.</p>
+
+<hr>
+
+<h2><a href="http://en.wikipedia.org/wiki/Creational_pattern">Creational patterns</a></h2>
+
+<h3><a href="http://en.wikipedia.org/wiki/Abstract_factory_pattern">Abstract factory</a> <sup><sub>(recognizeable
+ by creational methods returning the factory itself which in turn can be
+ used to create another abstract/interface type)</sub></sup></h3>
+
+<ul>
+<li><a href="http://docs.oracle.com/javase/6/docs/api/javax/xml/parsers/DocumentBuilderFactory.html#newInstance%28%29"><code>javax.xml.parsers.DocumentBuilderFactory#newInstance()</code></a></li>
+<li><a href="http://docs.oracle.com/javase/6/docs/api/javax/xml/transform/TransformerFactory.html#newInstance%28%29"><code>javax.xml.transform.TransformerFactory#newInstance()</code></a></li>
+<li><a href="http://docs.oracle.com/javase/6/docs/api/javax/xml/xpath/XPathFactory.html#newInstance%28%29"><code>javax.xml.xpath.XPathFactory#newInstance()</code></a></li>
+</ul>
+
+<h3><a href="http://en.wikipedia.org/wiki/Builder_pattern">Builder</a> <sup><sub>(recognizeable by creational methods returning the instance itself)</sub></sup></h3>
+
+<ul>
+<li><a href="http://docs.oracle.com/javase/6/docs/api/java/lang/StringBuilder.html#append%28boolean%29"><code>java.lang.StringBuilder#append()</code></a> (unsynchronized)</li>
+<li><a href="http://docs.oracle.com/javase/6/docs/api/java/lang/StringBuffer.html#append%28boolean%29"><code>java.lang.StringBuffer#append()</code></a> (synchronized)</li>
+<li><a href="http://docs.oracle.com/javase/6/docs/api/java/nio/ByteBuffer.html#put%28byte%29"><code>java.nio.ByteBuffer#put()</code></a> (also on <a href="http://docs.oracle.com/javase/6/docs/api/java/nio/CharBuffer.html#put%28char%29"><code>CharBuffer</code></a>, <a href="http://docs.oracle.com/javase/6/docs/api/java/nio/ShortBuffer.html#put%28short%29"><code>ShortBuffer</code></a>, <a href="http://docs.oracle.com/javase/6/docs/api/java/nio/IntBuffer.html#put%28int%29"><code>IntBuffer</code></a>, <a href="http://docs.oracle.com/javase/6/docs/api/java/nio/LongBuffer.html#put%28long%29"><code>LongBuffer</code></a>, <a href="http://docs.oracle.com/javase/6/docs/api/java/nio/FloatBuffer.html#put%28float%29"><code>FloatBuffer</code></a> and <a href="http://docs.oracle.com/javase/6/docs/api/java/nio/DoubleBuffer.html#put%28double%29"><code>DoubleBuffer</code></a>)</li>
+<li><a href="http://docs.oracle.com/javase/6/docs/api/javax/swing/GroupLayout.Group.html#addComponent%28java.awt.Component%29"><code>javax.swing.GroupLayout.Group#addComponent()</code></a></li>
+<li>All implementations of <a href="http://docs.oracle.com/javase/6/docs/api/java/lang/Appendable.html"><code>java.lang.Appendable</code></a></li>
+</ul>
+
+<h3><a href="http://en.wikipedia.org/wiki/Factory_method_pattern">Factory method</a> <sup><sub>(recognizeable by creational methods returning an implementation of an abstract/interface type)</sub></sup></h3>
+
+<ul>
+<li><a href="http://docs.oracle.com/javase/6/docs/api/java/util/Calendar.html#getInstance%28%29"><code>java.util.Calendar#getInstance()</code></a></li>
+<li><a href="http://docs.oracle.com/javase/6/docs/api/java/util/ResourceBundle.html#getBundle%28java.lang.String%29"><code>java.util.ResourceBundle#getBundle()</code></a></li>
+<li><a href="http://docs.oracle.com/javase/6/docs/api/java/text/NumberFormat.html#getInstance%28%29"><code>java.text.NumberFormat#getInstance()</code></a></li>
+<li><a href="http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#forName%28java.lang.String%29"><code>java.nio.charset.Charset#forName()</code></a></li>
+<li><a href="http://docs.oracle.com/javase/6/docs/api/java/net/URLStreamHandlerFactory.html"><code>java.net.URLStreamHandlerFactory#createURLStreamHandler(String)</code></a> (Returns singleton object per protocol)</li>
+</ul>
+
+<h3><a href="http://en.wikipedia.org/wiki/Prototype_pattern">Prototype</a> <sup><sub>(recognizeable by creational methods returning a <em>different</em> instance of itself with the same properties)</sub></sup></h3>
+
+<ul>
+<li><a href="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html#clone%28%29"><code>java.lang.Object#clone()</code></a> (the class has to implement <a href="http://docs.oracle.com/javase/6/docs/api/java/lang/Cloneable.html"><code>java.lang.Cloneable</code></a>)</li>
+</ul>
+
+<h3><a href="http://en.wikipedia.org/wiki/Singleton_pattern">Singleton</a> <sup><sub>(recognizeable by creational methods returning the <em>same</em> instance (usually of itself) everytime)</sub></sup></h3>
+
+<ul>
+<li><a href="http://docs.oracle.com/javase/6/docs/api/java/lang/Runtime.html#getRuntime%28%29"><code>java.lang.Runtime#getRuntime()</code></a></li>
+<li><a href="http://docs.oracle.com/javase/6/docs/api/java/awt/Desktop.html#getDesktop%28%29"><code>java.awt.Desktop#getDesktop()</code></a></li>
+<li><a href="http://docs.oracle.com/javase/6/docs/api/java/lang/System.html#getSecurityManager%28%29"><code>java.lang.System#getSecurityManager()</code></a></li>
+</ul>
+
+<hr>
+
+<h2><a href="http://en.wikipedia.org/wiki/Structural_pattern">Structural patterns</a></h2>
+
+<h3><a href="http://en.wikipedia.org/wiki/Adapter_pattern">Adapter</a> <sup><sub>(recognizeable by creational methods taking an instance of <em>different</em> abstract/interface type and returning an implementation of own/another abstract/interface type which <em>decorates/overrides</em> the given instance)</sub></sup></h3>
+
+<ul>
+<li><a href="http://docs.oracle.com/javase/6/docs/api/java/util/Arrays.html#asList%28T...%29"><code>java.util.Arrays#asList()</code></a></li>
+<li><a href="http://docs.oracle.com/javase/6/docs/api/java/io/InputStreamReader.html#InputStreamReader%28java.io.InputStream%29"><code>java.io.InputStreamReader(InputStream)</code></a> (returns a <code>Reader</code>)</li>
+<li><a href="http://docs.oracle.com/javase/6/docs/api/java/io/OutputStreamWriter.html#OutputStreamWriter%28java.io.OutputStream%29"><code>java.io.OutputStreamWriter(OutputStream)</code></a> (returns a <code>Writer</code>)</li>
+<li><a href="http://docs.oracle.com/javase/6/docs/api/javax/xml/bind/annotation/adapters/XmlAdapter.html#marshal%28BoundType%29"><code>javax.xml.bind.annotation.adapters.XmlAdapter#marshal()</code></a> and <a href="http://docs.oracle.com/javase/6/docs/api/javax/xml/bind/annotation/adapters/XmlAdapter.html#unmarshal%28ValueType%29"><code>#unmarshal()</code></a></li>
+</ul>
+
+<h3><a href="http://en.wikipedia.org/wiki/Bridge_pattern">Bridge</a> <sup><sub>(recognizeable by creational methods taking an instance of <em>different</em> abstract/interface type and returning an implementation of own abstract/interface type which <em>delegates/uses</em> the given instance)</sub></sup></h3>
+
+<ul>
+<li>None comes to mind yet. A fictive example would be <code>new LinkedHashMap(LinkedHashSet&lt;K&gt;, List&lt;V&gt;)</code> which returns an unmodifiable linked map which doesn't clone the items, but <em>uses</em> them. The <a href="http://docs.oracle.com/javase/6/docs/api/java/util/Collections.html#newSetFromMap%28java.util.Map%29"><code>java.util.Collections#newSetFromMap()</code></a> and <a href="http://docs.oracle.com/javase/6/docs/api/java/util/Collections.html#singleton%28T%29"><code>singletonXXX()</code></a> methods however comes close.</li>
+</ul>
+
+<h3><a href="http://en.wikipedia.org/wiki/Composite_pattern">Composite</a> <sup><sub>(recognizeable by behavioral methods taking an instance of <em>same</em> abstract/interface type into a tree structure)</sub></sup></h3>
+
+<ul>
+<li><a href="http://docs.oracle.com/javase/6/docs/api/java/awt/Container.html#add%28java.awt.Component%29"><code>java.awt.Container#add(Component)</code></a> (practically all over Swing thus)</li>
+<li><a href="http://docs.oracle.com/javaee/6/api/javax/faces/component/UIComponent.html#getChildren%28%29"><code>javax.faces.component.UIComponent#getChildren()</code></a> (practically all over JSF UI thus)</li>
+</ul>
+
+<h3><a href="http://en.wikipedia.org/wiki/Decorator_pattern">Decorator</a> <sup><sub>(recognizeable by creational methods taking an instance of <em>same</em> abstract/interface type which adds additional behaviour)</sub></sup></h3>
+
+<ul>
+<li>All subclasses of <a href="http://docs.oracle.com/javase/6/docs/api/java/io/InputStream.html"><code>java.io.InputStream</code></a>, <a href="http://docs.oracle.com/javase/6/docs/api/java/io/OutputStream.html"><code>OutputStream</code></a>, <a href="http://docs.oracle.com/javase/6/docs/api/java/io/Reader.html"><code>Reader</code></a> and <a href="http://docs.oracle.com/javase/6/docs/api/java/io/Writer.html"><code>Writer</code></a> have a constructor taking an instance of same type.</li>
+<li><a href="http://docs.oracle.com/javase/6/docs/api/java/util/Collections.html"><code>java.util.Collections</code></a>, the <a href="http://docs.oracle.com/javase/6/docs/api/java/util/Collections.html#checkedCollection%28java.util.Collection,%20java.lang.Class%29"><code>checkedXXX()</code></a>, <a href="http://docs.oracle.com/javase/6/docs/api/java/util/Collections.html#synchronizedCollection%28java.util.Collection%29"><code>synchronizedXXX()</code></a> and <a href="http://docs.oracle.com/javase/6/docs/api/java/util/Collections.html#unmodifiableCollection%28java.util.Collection%29"><code>unmodifiableXXX()</code></a> methods.</li>
+<li><a href="http://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpServletRequestWrapper.html"><code>javax.servlet.http.HttpServletRequestWrapper</code></a> and <a href="http://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpServletResponseWrapper.html"><code>HttpServletResponseWrapper</code></a></li>
+</ul>
+
+<h3><a href="http://en.wikipedia.org/wiki/Facade_pattern">Facade</a> <sup><sub>(recognizeable by behavioral methods which internally uses instances of <em>different</em> independent abstract/interface types)</sub></sup></h3>
+
+<ul>
+<li><a href="http://docs.oracle.com/javaee/6/api/javax/faces/context/FacesContext.html"><code>javax.faces.context.FacesContext</code></a>, it internally uses among others the abstract/interface types <a href="http://docs.oracle.com/javaee/6/api/javax/faces/lifecycle/Lifecycle.html"><code>LifeCycle</code></a>, <a href="http://docs.oracle.com/javaee/6/api/javax/faces/application/ViewHandler.html"><code>ViewHandler</code></a>, <a href="http://docs.oracle.com/javaee/6/api/javax/faces/application/NavigationHandler.html"><code>NavigationHandler</code></a> and many more without that the enduser has to worry about it (which are however overrideable by injection).</li>
+<li><a href="http://docs.oracle.com/javaee/6/api/javax/faces/context/ExternalContext.html"><code>javax.faces.context.ExternalContext</code></a>, which internally uses <a href="http://docs.oracle.com/javaee/6/api/javax/servlet/ServletContext.html"><code>ServletContext</code></a>, <a href="http://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpSession.html"><code>HttpSession</code></a>, <a href="http://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpServletRequest.html"><code>HttpServletRequest</code></a>, <a href="http://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpServletResponse.html"><code>HttpServletResponse</code></a>, etc.</li>
+</ul>
+
+<h3><a href="http://en.wikipedia.org/wiki/Flyweight_pattern">Flyweight</a> <sup><sub>(recognizeable by creational methods returning a cached instance, a bit the "multiton" idea)</sub></sup></h3>
+
+<ul>
+<li><a href="http://docs.oracle.com/javase/6/docs/api/java/lang/Integer.html#valueOf%28int%29"><code>java.lang.Integer#valueOf(int)</code></a> (also on <a href="http://docs.oracle.com/javase/6/docs/api/java/lang/Boolean.html#valueOf%28boolean%29"><code>Boolean</code></a>, <a href="http://docs.oracle.com/javase/6/docs/api/java/lang/Byte.html#valueOf%28byte%29"><code>Byte</code></a>, <a href="http://docs.oracle.com/javase/6/docs/api/java/lang/Character.html#valueOf%28char%29"><code>Character</code></a>, <a href="http://docs.oracle.com/javase/6/docs/api/java/lang/Short.html#valueOf%28short%29"><code>Short</code></a>, <a href="http://docs.oracle.com/javase/6/docs/api/java/lang/Long.html#valueOf%28long%29"><code>Long</code></a> and <a href="https://docs.oracle.com/javase/8/docs/api/java/math/BigDecimal.html#valueOf-long-int-"><code>BigDecimal</code></a>)</li>
+</ul>
+
+<h3><a href="http://en.wikipedia.org/wiki/Proxy_pattern">Proxy</a> <sup><sub>(recognizeable by creational methods which returns an implementation of given abstract/interface type which in turn <em>delegates/uses</em> a <em>different</em> implementation of given abstract/interface type)</sub></sup></h3>
+
+<ul>
+<li><a href="http://docs.oracle.com/javase/6/docs/api/java/lang/reflect/Proxy.html"><code>java.lang.reflect.Proxy</code></a></li>
+<li><a href="http://docs.oracle.com/javase/6/docs/api/java/rmi/package-summary.html"><code>java.rmi.*</code></a>, the whole API actually.</li>
+</ul>
+
+<p><sup><sub>The Wikipedia example is IMHO a bit poor, lazy loading has actually completely nothing to do with the proxy pattern at all.</sub></sup></p>
+
+<hr>
+
+<h2><a href="http://en.wikipedia.org/wiki/Behavioral_pattern">Behavioral patterns</a></h2>
+
+<h3><a href="http://en.wikipedia.org/wiki/Chain_of_responsibility_pattern">Chain of responsibility</a> <sup><sub>(recognizeable by behavioral methods which (indirectly) invokes the same method in <em>another</em> implementation of <em>same</em> abstract/interface type in a queue)</sub></sup></h3>
+
+<ul>
+<li><a href="http://docs.oracle.com/javase/6/docs/api/java/util/logging/Logger.html#log%28java.util.logging.Level,%20java.lang.String%29"><code>java.util.logging.Logger#log()</code></a></li>
+<li><a href="http://docs.oracle.com/javaee/6/api/javax/servlet/Filter.html#doFilter%28javax.servlet.ServletRequest,%20javax.servlet.ServletResponse,%20javax.servlet.FilterChain%29"><code>javax.servlet.Filter#doFilter()</code></a></li>
+</ul>
+
+<h3><a href="http://en.wikipedia.org/wiki/Command_pattern">Command</a> <sup><sub>(recognizeable by behavioral methods in an abstract/interface type which invokes a method in an implementation of a <em>different</em> abstract/interface type which has been <em>encapsulated</em> by the command implementation during its creation)</sub></sup></h3>
+
+<ul>
+<li>All implementations of <a href="http://docs.oracle.com/javase/6/docs/api/java/lang/Runnable.html"><code>java.lang.Runnable</code></a></li>
+<li>All implementations of <a href="http://docs.oracle.com/javase/6/docs/api/javax/swing/Action.html"><code>javax.swing.Action</code></a></li>
+</ul>
+
+<h3><a href="http://en.wikipedia.org/wiki/Interpreter_pattern">Interpreter</a> <sup><sub>(recognizeable by behavioral methods returning a <em>structurally</em>
+ different instance/type of the given instance/type; note that 
+parsing/formatting is not part of the pattern, determining the pattern 
+and how to apply it is)</sub></sup></h3>
+
+<ul>
+<li><a href="http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html"><code>java.util.Pattern</code></a></li>
+<li><a href="http://docs.oracle.com/javase/6/docs/api/java/text/Normalizer.html"><code>java.text.Normalizer</code></a></li>
+<li>All subclasses of <a href="http://docs.oracle.com/javase/6/docs/api/java/text/Format.html"><code>java.text.Format</code></a></li>
+<li>All subclasses of <a href="http://docs.oracle.com/javaee/6/api/javax/el/ELResolver.html"><code>javax.el.ELResolver</code></a></li>
+</ul>
+
+<h3><a href="http://en.wikipedia.org/wiki/Iterator_pattern">Iterator</a> <sup><sub>(recognizeable by behavioral methods sequentially returning instances of a <em>different</em> type from a queue)</sub></sup></h3>
+
+<ul>
+<li>All implementations of <a href="http://docs.oracle.com/javase/6/docs/api/java/util/Iterator.html"><code>java.util.Iterator</code></a> (thus among others also <a href="http://docs.oracle.com/javase/6/docs/api/java/util/Scanner.html"><code>java.util.Scanner</code></a>!).</li>
+<li>All implementations of <a href="http://docs.oracle.com/javase/6/docs/api/java/util/Enumeration.html"><code>java.util.Enumeration</code></a></li>
+</ul>
+
+<h3><a href="http://en.wikipedia.org/wiki/Mediator_pattern">Mediator</a> <sup><sub>(recognizeable
+ by behavioral methods taking an instance of different 
+abstract/interface type (usually using the command pattern) which 
+delegates/uses the given instance)</sub></sup></h3>
+
+<ul>
+<li><a href="http://docs.oracle.com/javase/6/docs/api/java/util/Timer.html"><code>java.util.Timer</code></a> (all <code>scheduleXXX()</code> methods)</li>
+<li><a href="http://docs.oracle.com/javase/6/docs/api/java/util/concurrent/Executor.html#execute%28java.lang.Runnable%29"><code>java.util.concurrent.Executor#execute()</code></a></li>
+<li><a href="http://docs.oracle.com/javase/6/docs/api/java/util/concurrent/ExecutorService.html"><code>java.util.concurrent.ExecutorService</code></a> (the <code>invokeXXX()</code> and <code>submit()</code> methods)</li>
+<li><a href="http://docs.oracle.com/javase/6/docs/api/java/util/concurrent/ScheduledExecutorService.html"><code>java.util.concurrent.ScheduledExecutorService</code></a> (all <code>scheduleXXX()</code> methods)</li>
+<li><a href="http://docs.oracle.com/javase/6/docs/api/java/lang/reflect/Method.html#invoke%28java.lang.Object,%20java.lang.Object...%29"><code>java.lang.reflect.Method#invoke()</code></a></li>
+</ul>
+
+<h3><a href="http://en.wikipedia.org/wiki/Memento_pattern">Memento</a> <sup><sub>(recognizeable by behavioral methods which internally changes the state of the <em>whole</em> instance)</sub></sup></h3>
+
+<ul>
+<li><a href="http://docs.oracle.com/javase/6/docs/api/java/util/Date.html"><code>java.util.Date</code></a> (the setter methods do that, <code>Date</code> is internally represented by a <code>long</code> value)</li>
+<li>All implementations of <a href="http://docs.oracle.com/javase/6/docs/api/java/io/Serializable.html"><code>java.io.Serializable</code></a></li>
+<li>All implementations of <a href="http://docs.oracle.com/javaee/6/api/javax/faces/component/StateHolder.html"><code>javax.faces.component.StateHolder</code></a></li>
+</ul>
+
+<h3><a href="http://en.wikipedia.org/wiki/Observer_pattern">Observer (or Publish/Subscribe)</a> <sup><sub>(recognizeable by behavioral methods which invokes a method on an instance of <em>another</em> abstract/interface type, depending on own state)</sub></sup></h3>
+
+<ul>
+<li><a href="http://docs.oracle.com/javase/6/docs/api/java/util/Observer.html"><code>java.util.Observer</code></a>/<a href="http://docs.oracle.com/javase/6/docs/api/java/util/Observable.html"><code>java.util.Observable</code></a> (rarely used in real world though)</li>
+<li>All implementations of <a href="http://docs.oracle.com/javase/6/docs/api/java/util/EventListener.html"><code>java.util.EventListener</code></a> (practically all over Swing thus)</li>
+<li><a href="http://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpSessionBindingListener.html"><code>javax.servlet.http.HttpSessionBindingListener</code></a></li>
+<li><a href="http://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpSessionAttributeListener.html"><code>javax.servlet.http.HttpSessionAttributeListener</code></a></li>
+<li><a href="http://docs.oracle.com/javaee/6/api/javax/faces/event/PhaseListener.html"><code>javax.faces.event.PhaseListener</code></a></li>
+</ul>
+
+<h3><a href="http://en.wikipedia.org/wiki/State_pattern">State</a> <sup><sub>(recognizeable
+ by behavioral methods which changes its behaviour depending on the 
+instance's state which can be controlled externally)</sub></sup></h3>
+
+<ul>
+<li><a href="http://docs.oracle.com/javaee/6/api/javax/faces/lifecycle/Lifecycle.html#execute%28javax.faces.context.FacesContext%29"><code>javax.faces.lifecycle.LifeCycle#execute()</code></a> (controlled by <a href="http://docs.oracle.com/javaee/6/api/javax/faces/webapp/FacesServlet.html"><code>FacesServlet</code></a>, the behaviour is dependent on current phase (state) of JSF lifecycle)</li>
+</ul>
+
+<h3><a href="http://en.wikipedia.org/wiki/Strategy_pattern">Strategy</a> <sup><sub>(recognizeable by behavioral methods in an abstract/interface type which invokes a method in an implementation of a <em>different</em> abstract/interface type which has been <em>passed-in</em> as method argument into the strategy implementation)</sub></sup></h3>
+
+<ul>
+<li><a href="http://docs.oracle.com/javase/6/docs/api/java/util/Comparator.html#compare%28T,%20T%29"><code>java.util.Comparator#compare()</code></a>, executed by among others <code>Collections#sort()</code>.</li>
+<li><a href="http://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpServlet.html"><code>javax.servlet.http.HttpServlet</code></a>, the <code>service()</code> and all <code>doXXX()</code> methods take <code>HttpServletRequest</code> and <code>HttpServletResponse</code> and the implementor has to process them (and not to get hold of them as instance variables!).</li>
+<li><a href="http://docs.oracle.com/javaee/6/api/javax/servlet/Filter.html#doFilter%28javax.servlet.ServletRequest,%20javax.servlet.ServletResponse,%20javax.servlet.FilterChain%29"><code>javax.servlet.Filter#doFilter()</code></a></li>
+</ul>
+
+<h3><a href="http://en.wikipedia.org/wiki/Template_method_pattern">Template method</a> <sup><sub>(recognizeable by behavioral methods which already have a "default" behaviour definied by an abstract type)</sub></sup></h3>
+
+<ul>
+<li>All non-abstract methods of <a href="http://docs.oracle.com/javase/6/docs/api/java/io/InputStream.html"><code>java.io.InputStream</code></a>, <a href="http://docs.oracle.com/javase/6/docs/api/java/io/OutputStream.html"><code>java.io.OutputStream</code></a>, <a href="http://docs.oracle.com/javase/6/docs/api/java/io/Reader.html"><code>java.io.Reader</code></a> and <a href="http://docs.oracle.com/javase/6/docs/api/java/io/Writer.html"><code>java.io.Writer</code></a>.</li>
+<li>All non-abstract methods of <a href="http://docs.oracle.com/javase/6/docs/api/java/util/AbstractList.html"><code>java.util.AbstractList</code></a>, <a href="http://docs.oracle.com/javase/6/docs/api/java/util/AbstractSet.html"><code>java.util.AbstractSet</code></a> and <a href="http://docs.oracle.com/javase/6/docs/api/java/util/AbstractMap.html"><code>java.util.AbstractMap</code></a>.</li>
+<li><a href="http://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpServlet.html"><code>javax.servlet.http.HttpServlet</code></a>, all the <code>doXXX()</code> methods by default sends a HTTP 405 "Method Not Allowed" error to the response. You're free to implement none or any of them.</li>
+</ul>
+
+<h3><a href="http://en.wikipedia.org/wiki/Visitor_pattern">Visitor</a> <sup><sub>(recognizeable by two <em>different</em> abstract/interface types which has methods definied which takes each the <em>other</em> abstract/interface type; the one actually calls the method of the other and the other executes the desired strategy on it)</sub></sup></h3>
+
+<ul>
+<li><a href="http://docs.oracle.com/javase/6/docs/api/javax/lang/model/element/AnnotationValue.html"><code>javax.lang.model.element.AnnotationValue</code></a> and <a href="http://docs.oracle.com/javase/6/docs/api/javax/lang/model/element/AnnotationValueVisitor.html"><code>AnnotationValueVisitor</code></a></li>
+<li><a href="http://docs.oracle.com/javase/6/docs/api/javax/lang/model/element/Element.html"><code>javax.lang.model.element.Element</code></a> and <a href="http://docs.oracle.com/javase/6/docs/api/javax/lang/model/element/ElementVisitor.html"><code>ElementVisitor</code></a></li>
+<li><a href="http://docs.oracle.com/javase/6/docs/api/javax/lang/model/type/TypeMirror.html"><code>javax.lang.model.type.TypeMirror</code></a> and <a href="http://docs.oracle.com/javase/6/docs/api/javax/lang/model/type/TypeVisitor.html"><code>TypeVisitor</code></a></li>
+<li><a href="http://docs.oracle.com/javase/7/docs/api/java/nio/file/FileVisitor.html"><code>java.nio.file.FileVisitor</code></a> and <a href="http://docs.oracle.com/javase/7/docs/api/java/nio/file/SimpleFileVisitor.html"><code>SimpleFileVisitor</code></a></li>
+</ul>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/2707195" title="short permalink to this answer" class="short-link" id="link-post-2707195">share</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/2707195/revisions" title="show all edits to this post">edited <span title="2015-09-25 15:47:13Z" class="relativetime">Sep 25 at 15:47</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info">
+    <div class="user-details">
+        <span class="community-wiki" title="This post is community owned as of Apr 25 '10 at 4:51. Votes do not generate reputation, and it can be edited by users with 100 rep">
+            community wiki
+        </span>
+    </div><br>
+    <div class="user-details">
+        <a id="history-2707195" href="http://stackoverflow.com/posts/2707195/revisions" title="show revision history for this post">
+        30 revs, 8 users 79%<br></a><a href="http://stackoverflow.com/users/157882">BalusC</a>
+        
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-2707195" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="12" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-2738603" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">3</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">impressive.. :) +1. <code>javax.lang.model.element</code> defines visitors ;) I'm not quite sure whether <code>doXXX</code> and <code>doFilter</code> are "strategies".</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/203907/bozho" title="340152 reputation" class="comment-user">Bozho</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment2738603_2707195"><span title="2010-04-26 13:14:48Z" class="relativetime-clean">Apr 26 '10 at 13:14</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-4615814" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">2</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">This related blog post just appeared <a href="http://www.briandupreez.net/2010/11/design-patterns-in-jdk.html" rel="nofollow">briandupreez.net/2010/11/design-patterns-in-jdk.html</a></span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/203907/bozho" title="340152 reputation" class="comment-user">Bozho</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment4615814_2707195"><span title="2010-11-23 19:09:56Z" class="relativetime-clean">Nov 23 '10 at 19:09</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-7107007" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">4</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">The mentioned builders e.g. 
+StrinbgBuilder are all not an example for the Builder-Pattern. It is a 
+very common mistake however to consider them as builders (so you are not
+ really to blame ^_^)</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/358562/angel-osphere" title="1671 reputation" class="comment-user">Angel O'Sphere</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment7107007_2707195"><span title="2011-05-25 13:41:30Z" class="relativetime-clean">May 25 '11 at 13:41</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-17620735" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="warm">7</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@BalusC: Object.toString() 
+can hardly be considered to be a factory method; the class relationship 
+is right but the intention is wrong. It's hard to draw the line of 
+course, but any method creating and returning another object can't be 
+called a factory method. Maybe you can say that purpose of toString 
+isn't to create a string but the return info about the receiver, 
+therefore it is not a factory method.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/452775/lii" title="1860 reputation" class="comment-user">Lii</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment17620735_2707195"><span title="2012-10-20 15:40:47Z" class="relativetime-clean">Oct 20 '12 at 15:40</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-19769123" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="warm">11</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@BalusC, I have a question to ask you. Did you read the <b>WHOLE</b> source code of Java and JSF?</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/576758/tapas-bose" title="7136 reputation" class="comment-user">Tapas Bose</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment19769123_2707195"><span title="2013-01-09 21:39:47Z" class="relativetime-clean">Jan 9 '13 at 21:39</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-2707195" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link  dno" title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."></a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link " title="expand to show all comments on this post" href="#" onclick="">show <b>12</b> more comments</a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+<script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk1485972961",4).setZone(44); });
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk1485972961"><a href="http://engine.adzerk.net/r?e=eyJhdiI6MTA2MTg5LCJhdCI6NCwiYnQiOjAsImNtIjozMzA1ODAsImNoIjoxMTc4LCJjayI6e30sImNyIjoxMjMxODg2LCJkaSI6IjkyMjNlNzVkNmMyYzQ4YzRhNTBjYjliMDNmNzc4NDNiIiwiZG0iOjEsImZjIjoxMzEzOTE3LCJmbCI6OTI0NjUyLCJpcCI6IjEzNC42MC4xNDguOTciLCJrdyI6ImphdmEsb29wLGRlc2lnbi1wYXR0ZXJucyxqYXZhLWFwaSIsIm1rIjoiamF2YSIsIm53IjoyMiwicGMiOjYuNSwiZWMiOjYuNSwicHIiOjc2NSwicnQiOjIsInJmIjoiaHR0cDovL2luZm8uamF2YXJ1c2gucnUvSmF2YVJ1c2hfbGVjdHVyZXNfZGlzY3Vzc2lvbi8yMDEzLzEwLzIwL9Cb0LXQutGG0LjRjy0yOC5odG1sIiwic3QiOjgyNzcsInVrIjoidWUxLTE1MzFiMDkyYjQ0MzQzNzRhNDMwNTFlMmU3NGQ3MDc0Iiwiem4iOjQ0LCJ0cyI6MTQ0OTA3NjA2MDcxNywiYmYiOnRydWUsInBuIjoiYWR6ZXJrMTQ4NTk3Mjk2MSIsInVyIjoiaHR0cHM6Ly9jYXJlZXJzLnN0YWNrb3ZlcmZsb3cuY29tL2pvYnMvMTAyNzc0L3NvZnR3YXJlZW50d2lja2xlci1tLXctamVlLXBlbnRhc3lzLWFnIn0&amp;s=VjLsuvg_ClGfKgKKDgPSbNgQpu8" rel="nofollow" target="_blank" title=""><img class="pcfykmqlcrtplekulgcu" src="Examples%20of%20GoF%20Design%20Patterns%20in%20Java%27s%20core%20libraries%20-%20Stack%20Overflow_files/39cf78d383bb43ea8372f77270ded33e.jpg" title="" alt="" height="90" width="728" border="0"></a><img class="pcfykmqlcrtplekulgcu" src="Examples%20of%20GoF%20Design%20Patterns%20in%20Java%27s%20core%20libraries%20-%20Stack%20Overflow_files/i_003.gif" style="position:absolute;" height="0px" width="0px" border="0"></div>
+  
+<a name="1673862"></a>
+<div id="answer-1673862" class="answer" data-answerid="1673862" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="1673862" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">60</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<ol>
+<li>Observer pattern throughout whole swing (<code>Observable</code>, <code>Observer</code>)</li>
+<li>MVC also in swing</li>
+<li>Adapter pattern: InputStreamReader and OutputStreamWriter
+ NOTE: <code>ContainerAdapter</code>, <code>ComponentAdapter</code>, <code>FocusAdapter</code>, <code>KeyAdapter</code>, <code>MouseAdapter</code> are <em>not</em> adapters; they are actually Null Objects. Poor naming choice by Sun.</li>
+<li>Decorator pattern (<code>BufferedInputStream</code> can decorate other streams such as <code>FilterInputStream</code>)</li>
+<li>AbstractFactory Pattern for the AWT Toolkit and the Swing pluggable look-and-feel classes</li>
+<li><code>java.lang.Runtime#getRuntime()</code> is Singleton</li>
+<li><code>ButtonGroup</code> for Mediator pattern</li>
+<li><code>Action</code>, <code>AbstractAction</code> may be used for different visual represntations to execute same code -&gt; Command pattern</li>
+<li>Interned Strings or CellRender in JTable for Flyweight Pattern (Also
+ think about various pools - Thread pools, connection pools, EJB object 
+pools - Flyweight is really about management of shared resources)</li>
+<li>The Java 1.0 event model is an example of Chain of Responsibility, as are Servlet Filters.</li>
+<li>Iterator pattern in Collections Framework</li>
+<li>Nested containers in AWT/Swing use the Composite pattern</li>
+<li>Layout Managers in AWT/Swing are an example of Strategy</li>
+</ol>
+
+<p>and many more I guess</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/1673862" title="short permalink to this answer" class="short-link" id="link-post-1673862">share</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/1673862/revisions" title="show all edits to this post">edited <span title="2012-10-05 03:00:39Z" class="relativetime">Oct 5 '12 at 3:00</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info">
+    <div class="user-details">
+        <span class="community-wiki" title="This post is community owned as of Nov 4 '09 at 13:51. Votes do not generate reputation, and it can be edited by users with 100 rep">
+            community wiki
+        </span>
+    </div><br>
+    <div class="user-details">
+        <a id="history-1673862" href="http://stackoverflow.com/posts/1673862/revisions" title="show revision history for this post">
+        7 revs, 3 users 69%<br></a><a href="http://stackoverflow.com/users/122428">jitter</a>
+
+        
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-1673862" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-2731064" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="hot">28</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">java.lang.Math (6th one) is not singleton, you don't have an instance to start with, everything is static. That's not singleton</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/90843/ion-todirel" title="2075 reputation" class="comment-user">Ion Todirel</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment2731064_1673862"><span title="2010-04-25 05:11:29Z" class="relativetime-clean">Apr 25 '10 at 5:11</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 3 times"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-48797403" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Thanks for the tip on MouseAdapter. I found this exaplanation: <a href="http://stackoverflow.com/questions/9244185/why-is-mouseadapter-an-adapter" title="why is mouseadapter an adapter">stackoverflow.com/questions/9244185/…</a></span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/1178043/lincoln" title="91 reputation" class="comment-user">Lincoln</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment48797403_1673862"><span title="2015-05-20 14:24:43Z" class="relativetime-clean">May 20 at 14:24</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-1673862" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="1673964"></a>
+<div id="answer-1673964" class="answer" data-answerid="1673964" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="1673964" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">32</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<ol>
+<li><b>Flyweight</b> is used with some values of Byte, Short, Integer, Long and String.</li>
+<li><b>Facade</b> is used in many place but the most obvious is Scripting interfaces.</li>
+<li><b>Singleton</b> - java.lang.Runtime comes to mind.</li>
+<li><b>Abstract Factory</b> - Also Scripting and JDBC API.</li>
+<li><b>Command</b> - TextComponent's Undo/Redo.</li>
+<li><b>Interpreter</b> - RegEx (java.util.regex.<em>) and SQL (java.sql.</em>) API.</li>
+<li><b>Prototype</b> - Not 100% sure if this count, but I thinkg <code>clone()</code> method can be used for this purpose.</li>
+</ol>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/1673964" title="short permalink to this answer" class="short-link" id="link-post-1673964">share</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/1673964/revisions" title="show all edits to this post">edited <span title="2009-11-04 14:16:25Z" class="relativetime">Nov 4 '09 at 14:16</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info">
+    <div class="user-details">
+        <span class="community-wiki" title="This post is community owned as of Nov 4 '09 at 14:09. Votes do not generate reputation, and it can be edited by users with 100 rep">
+            community wiki
+        </span>
+    </div><br>
+    <div class="user-details">
+        <a id="history-1673964" href="http://stackoverflow.com/posts/1673964/revisions" title="show revision history for this post">
+        2 revs<br></a><a href="http://stackoverflow.com/users/176180">NawaMan</a>
+        
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-1673964" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-1549547" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="warm">7</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">You're correct about Prototype</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/12541/scott-stanchfield" title="19594 reputation" class="comment-user">Scott Stanchfield</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment1549547_1673964"><span title="2009-11-04 18:49:50Z" class="relativetime-clean">Nov 4 '09 at 18:49</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-54413903" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Concerning <b>Flyweight</b> pattern: it could be different Layout Managers from <code>java.awt</code> and <code>java.swing</code>
+ packages. Indeed, they share almost identical intrinsic attributes and 
+extrinsic attributes are different UI components that they lay out in UI
+ form.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/5195810/vitaly" title="185 reputation" class="comment-user">Vitaly</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment54413903_1673964"><span title="2015-10-23 16:48:28Z" class="relativetime-clean">Oct 23 at 16:48</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-1673964" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="1677958"></a>
+<div id="answer-1677958" class="answer" data-answerid="1677958" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="1677958" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">23</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>RMI is based on Proxy.</p>
+
+<p>Should be possible to cite one for most of the 23 patterns in GoF:</p>
+
+<ol>
+<li>Abstract Factory: java.sql interfaces all get their concrete implementations from JDBC JAR when driver is registered.</li>
+<li>Builder: java.lang.StringBuilder.</li>
+<li>Factory Method: XML factories, among others.</li>
+<li>Prototype: Maybe clone(), but I'm not sure I'm buying that.</li>
+<li>Singleton: java.lang.System</li>
+<li>Adapter: Adapter classes in java.awt.event, e.g., WindowAdapter.</li>
+<li>Bridge: Collection classes in java.util. List implemented by ArrayList.</li>
+<li>Composite: java.awt. java.awt.Component + java.awt.Container</li>
+<li>Decorator: All over the java.io package.</li>
+<li>Facade: <a href="http://docs.oracle.com/javaee/6/api/javax/faces/context/ExternalContext.html">ExternalContext</a> behaves as a facade for performing cookie, session scope and similar operations.</li>
+<li>Flyweight: Integer, Character, etc.</li>
+<li>Proxy: java.rmi package</li>
+<li>Chain of Responsibility: Servlet filters</li>
+<li>Command: Swing menu items</li>
+<li>Interpreter: No directly in JDK, but JavaCC certainly uses this.</li>
+<li>Iterator: java.util.Iterator interface; can't be clearer than that.</li>
+<li>Mediator: JMS?</li>
+<li>Memento: </li>
+<li>Observer: java.util.Observer/Observable (badly done, though)</li>
+<li>State: </li>
+<li>Strategy: </li>
+<li>Template: </li>
+<li>Visitor: </li>
+</ol>
+
+<p>I can't think of examples in Java for 10 out of the 23, but I'll see if I can do better tomorrow.  That's what edit is for.</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/1677958" title="short permalink to this answer" class="short-link" id="link-post-1677958">share</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/1677958/revisions" title="show all edits to this post">edited <span title="2012-09-29 10:24:03Z" class="relativetime">Sep 29 '12 at 10:24</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info">
+    <div class="user-details">
+        <span class="community-wiki" title="This post is community owned as of Nov 5 '09 at 2:26. Votes do not generate reputation, and it can be edited by users with 100 rep">
+            community wiki
+        </span>
+    </div><br>
+    <div class="user-details">
+        <a id="history-1677958" href="http://stackoverflow.com/posts/1677958/revisions" title="show revision history for this post">
+        4 revs, 3 users 85%<br></a><a href="http://stackoverflow.com/users/37213">duffymo</a>
+
+        
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-1677958" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-1677958" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="1673906"></a>
+<div id="answer-1673906" class="answer" data-answerid="1673906" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="1673906" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">21</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>The Abstract Factory pattern is used in various places. E.g., 
+DatagramSocketImplFactory, PreferencesFactory. There are many 
+more---search the Javadoc for interfaces which have the word "Factory" 
+in their name.</p>
+
+<p>Also there are quite a few instances of the Factory pattern, too.</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/1673906" title="short permalink to this answer" class="short-link" id="link-post-1673906">share</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        answered <a href="http://stackoverflow.com/posts/1673906/revisions" title="show all edits to this post"><span title="2009-11-04 13:59:12Z" class="relativetime">Nov 4 '09 at 13:59</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info">
+    <div class="user-details">
+        <span class="community-wiki" title="This post is community owned as of Nov 4 '09 at 13:59. Votes do not generate reputation, and it can be edited by users with 100 rep">
+            community wiki
+        </span>
+    </div><br>
+    <div class="user-details">
+        <a id="history-1673906" href="http://stackoverflow.com/posts/1673906/revisions" title="show revision history for this post">
+        uckelman
+        </a>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-1673906" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-1673906" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="1673950"></a>
+<div id="answer-1673950" class="answer" data-answerid="1673950" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="1673950" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">14</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Even though I'm sort of a broken clock with this one, Java XML API uses Factory a lot. I mean just look at this:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="typ">Document</span><span class="pln"> doc </span><span class="pun">=</span><span class="pln"> </span><span class="typ">DocumentBuilderFactory</span><span class="pun">.</span><span class="pln">newInstance</span><span class="pun">().</span><span class="pln">newDocumentBuilder</span><span class="pun">().</span><span class="pln">parse</span><span class="pun">(</span><span class="pln">source</span><span class="pun">);</span><span class="pln">
+</span><span class="typ">String</span><span class="pln"> title </span><span class="pun">=</span><span class="pln"> </span><span class="typ">XPathFactory</span><span class="pun">.</span><span class="pln">newInstance</span><span class="pun">().</span><span class="pln">newXPath</span><span class="pun">().</span><span class="pln">evaluate</span><span class="pun">(</span><span class="str">"//title"</span><span class="pun">,</span><span class="pln"> doc</span><span class="pun">);</span></code></pre>
+
+<p>...and so on and so forth.</p>
+
+<p>Additionally various Buffers (StringBuffer, ByteBuffer, StringBuilder) use Builder.</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/1673950" title="short permalink to this answer" class="short-link" id="link-post-1673950">share</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        answered <a href="http://stackoverflow.com/posts/1673950/revisions" title="show all edits to this post"><span title="2009-11-04 14:07:13Z" class="relativetime">Nov 4 '09 at 14:07</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info">
+    <div class="user-details">
+        <span class="community-wiki" title="This post is community owned as of Nov 4 '09 at 14:07. Votes do not generate reputation, and it can be edited by users with 100 rep">
+            community wiki
+        </span>
+    </div><br>
+    <div class="user-details">
+        <a id="history-1673950" href="http://stackoverflow.com/posts/1673950/revisions" title="show revision history for this post">
+        Esko
+        </a>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-1673950" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-1673950" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="6080919"></a>
+<div id="answer-6080919" class="answer" data-answerid="6080919" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="6080919" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">13</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<ul>
+<li><a href="http://www.oodesign.com/factory-method-pattern.html">Factory method</a></li>
+</ul>
+
+<p>java.util.Collection#Iterator is a good example of a Factory Method. 
+Depending on the concrete subclass of Collection you use, it will create
+ an Iterator implementation. Because both the Factory superclass 
+(Collection) and the Iterator created are interfaces, it is sometimes 
+confused with AbstractFactory. Most of the examples for AbstractFactory 
+in the the accepted answer (BalusC) are examples of <a href="http://www.oodesign.com/factory-pattern.html">Factory</a>,
+ a simplified version of Factory Method, which is not part of the 
+original GoF patterns. In Facory the Factory class hierarchy is 
+collapsed and the factory uses other means to choose the product to be 
+returned.</p>
+
+<ul>
+<li>Abstract Factory</li>
+</ul>
+
+<p>An abstract factory has multiple factory methods, each creating a 
+different product. The products produced by one factory are intended to 
+be used together (your printer and cartridges better be from the same 
+(abstract) factory). As mentioned in answers above the families of AWT 
+GUI components, differing from platform to platform, are an example of 
+this (although its implementation differs from the structure described 
+in Gof).</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/6080919" title="short permalink to this answer" class="short-link" id="link-post-6080919">share</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/6080919/revisions" title="show all edits to this post">edited <span title="2011-05-22 08:44:10Z" class="relativetime">May 22 '11 at 8:44</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info">
+    <div class="user-details">
+        <span class="community-wiki" title="This post is community owned as of May 21 '11 at 9:42. Votes do not generate reputation, and it can be edited by users with 100 rep">
+            community wiki
+        </span>
+    </div><br>
+    <div class="user-details">
+        <a id="history-6080919" href="http://stackoverflow.com/posts/6080919/revisions" title="show revision history for this post">
+        3 revs<br></a><a href="http://stackoverflow.com/users/451797">Catweazle</a>
+        
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-6080919" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-6080919" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+				
+
+
+						<h2 class="bottom-notice" data-loc="1">
+Not the answer you're looking for?							Browse other questions tagged <a href="http://stackoverflow.com/questions/tagged/java" class="post-tag" title="show questions tagged 'java'" rel="tag">java</a> <a href="http://stackoverflow.com/questions/tagged/oop" class="post-tag" title="show questions tagged 'oop'" rel="tag">oop</a> <a href="http://stackoverflow.com/questions/tagged/design-patterns" class="post-tag" title="show questions tagged 'design-patterns'" rel="tag">design-patterns</a> <a href="http://stackoverflow.com/questions/tagged/java-api" class="post-tag" title="show questions tagged 'java-api'" rel="tag">java-api</a>  or <a href="http://stackoverflow.com/questions/ask">ask your own question</a>.						</h2>
+			</div>
+		</div>
+				<div id="sidebar" class="show-votes">
+						    <div class="module question-stats">
+			        <table id="qinfo">
+			            <tbody><tr>
+			                <td>
+			                    <p class="label-key">asked</p>
+			                </td>
+			                <td style="padding-left: 10px">
+			                    <p class="label-key" title="2009-11-04 13:45:52Z"><b>6 years ago</b></p>
+			                </td>
+			            </tr>
+			            <tr>
+			                <td>
+			                    <p class="label-key">viewed</p>
+			                </td>
+
+			                <td style="padding-left: 10px">
+			                    <p class="label-key">
+			                        <b>309620 times</b>
+			                    </p>
+			                </td>
+			            </tr>
+			                <tr>
+			                    <td>
+			                        <p class="label-key">active</p>
+			                    </td>
+			                    <td style="padding-left: 10px">
+			                        <p class="label-key"><b><a href="http://stackoverflow.com/questions/1673841/examples-of-gof-design-patterns-in-javas-core-libraries?lastactivity" class="lastactivity-link" title="2015-09-25 15:47:13Z">2 months ago</a></b></p>
+			                    </td>
+			                </tr>
+			        </tbody></table>
+			    </div>
+						
+			<script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk1292532661",[17,2221]).setZone(45); });
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk1292532661"><div id="careersadsdoublehigh" style="display:none;"></div><img class="pcfykmqlcrtplekulgcu" src="Examples%20of%20GoF%20Design%20Patterns%20in%20Java%27s%20core%20libraries%20-%20Stack%20Overflow_files/i_004.gif" style="position:absolute;" height="0px" width="0px" border="0"></div>
+        <div class=" orange looking tagged" id="hireme"><a href="http://careers.stackoverflow.com/jobs" target="_blank" data-tz="1" data-ti="0" class="top"><span>Looking for a job?</span></a><div class="middle"><ul class="jobs"><li><a data-tz="3" data-ti="183227" href="http://careers.stackoverflow.com/jobs/97256/frontend-web-entwickler-f%C3%BCr-onlinel%C3%B6sungen-m-w-wolters-kluwer-software-und" target="_blank" title="Frontend Web Entwickler für Onlinelösungen (m/w) at Wolters Kluwer Software und Service GmbH. Click to learn more.">Frontend Web Entwickler für Onlinelösungen (m/w)<br><div class="company">Wolters Kluwer Software un…</div><div class="location" title="Ludwigsburg, Deutschland">Ludwigsburg, Deutschland</div><span class="post-tag">css</span><span class="post-tag">jquery</span></a></li><li><a data-tz="3" data-ti="186140" href="http://careers.stackoverflow.com/jobs/100193/frontend-developer-m-w-adorsys-gmbh-co-kg" target="_blank" title="Frontend Developer (m/w) at adorsys GmbH &amp; Co. KG. Click to learn more.">Frontend Developer (m/w)<br><div class="company">adorsys GmbH &amp; Co. KG</div><div class="location" title="Nürnberg, Deutschland / relocation">Nürnberg, Deutschland / relocation</div><span class="post-tag">javascript</span><span class="post-tag">css3</span></a></li><li><a data-tz="3" data-ti="168315" href="http://careers.stackoverflow.com/jobs/82011/software-user-interface-developer-m-w-bosch-software-innovations" target="_blank" title="Software &amp; User Interface Developer (m/w) - Connected Mobility/ 360° Parking at Bosch Software Innovations GmbH. Click to learn more.">Software &amp; User Interface Developer (m/w) - Connected Mobility/ 360° Parking<br><div class="company">Bosch Software Innovations…</div><div class="location" title="Waiblingen, Deutschland / relocation">Waiblingen, Deutschland / relocation</div><span class="post-tag highlight">java</span><span class="post-tag">javascript</span></a></li><li><a data-tz="3" data-ti="189580" href="http://careers.stackoverflow.com/jobs/103646/devops-and-support-engineer-with-it-background-f-leica-geosystems-ag" target="_blank" title="DevOps and Support Engineer with IT background (f/m) at Leica Geosystems AG. Click to learn more.">DevOps and Support Engineer with IT background (f/m)<br><div class="company">Leica Geosystems AG</div><div class="location" title="Balgach, Schweiz / relocation">Balgach, Schweiz / relocation</div></a></li></ul></div><img class="impression" src="Examples%20of%20GoF%20Design%20Patterns%20in%20Java%27s%20core%20libraries%20-%20Stack%20Overflow_files/i.gif" style="display:none;"></div>
+			  
+    
+            <div class="module sidebar-linked">
+	<h4 id="h-linked">Linked</h4>
+	<div class="linked" data-tracker="lq=1">
+<div class="spacer">
+	<a href="http://stackoverflow.com/q/3649754?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">15</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/3649754/examples-of-design-patterns-used-in-jdk?lq=1" class="question-hyperlink">Examples of Design Patterns used in JDK</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/14831606?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">2</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/14831606/what-is-gang-of-four-design-pattern?lq=1" class="question-hyperlink">what is Gang of Four design pattern</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/7172155?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">1</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/7172155/is-the-factory-design-pattern-used-in-a-java-api?lq=1" class="question-hyperlink">Is the factory design pattern used in a Java API?</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/7500954?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/7500954/java-design-patterns-examples?lq=1" class="question-hyperlink">Java Design Patterns Examples</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/3494581?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">1</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/3494581/design-patterns-illustrated-by-java-se-ee-apis?lq=1" class="question-hyperlink">Design patterns illustrated by Java SE/EE APIs?</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/16754265?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">1</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/16754265/keyadapter-inner-class-what-exactly-is-java-doing-here?lq=1" class="question-hyperlink">KeyAdapter inner class… What exactly is Java doing here?</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/22377782?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/22377782/pattern-examples-in-java-development-kit?lq=1" class="question-hyperlink">Pattern examples in Java Development Kit</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/70689?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted large">437</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/70689/what-is-an-efficient-way-to-implement-a-singleton-pattern-in-java?lq=1" class="question-hyperlink">What is an efficient way to implement a singleton pattern in Java?</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/3541077?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted large">253</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/3541077/design-patterns-web-based-applications?lq=1" class="question-hyperlink">Design Patterns web based applications</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/2707401?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">88</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/2707401/please-help-me-understand-the-decorator-pattern-with-a-real-world-example?lq=1" class="question-hyperlink">Please help me understand the “Decorator Pattern” with a real world example.</a>
+</div>					<div class="spacer more">
+				<a href="http://stackoverflow.com/questions/linked/1673841?lq=1">see more linked questions…</a>
+			</div>
+	</div>
+</div>
+
+				<div class="module sidebar-related">
+					<h4 id="h-related">Related</h4>
+                    <div class="related js-gps-related-questions" data-tracker="rq=1">
+                        <div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/244706?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">81
+    </div>
+</a><a href="http://stackoverflow.com/questions/244706/learning-implementing-design-patterns-for-newbies?rq=1" class="question-hyperlink">Learning/Implementing Design Patterns (For Newbies)</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/327955?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted large">657
+    </div>
+</a><a href="http://stackoverflow.com/questions/327955/does-functional-programming-replace-gof-design-patterns?rq=1" class="question-hyperlink">Does Functional Programming Replace GoF Design Patterns?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/2829106?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">10
+    </div>
+</a><a href="http://stackoverflow.com/questions/2829106/disadvantages-of-builder-design-pattern?rq=1" class="question-hyperlink">disadvantages of builder design pattern</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/3384726?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">2
+    </div>
+</a><a href="http://stackoverflow.com/questions/3384726/c-sharp-gof-pattern-examples?rq=1" class="question-hyperlink">C# GOF Pattern Examples</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/3541077?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted large">253
+    </div>
+</a><a href="http://stackoverflow.com/questions/3541077/design-patterns-web-based-applications?rq=1" class="question-hyperlink">Design Patterns web based applications</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/6366847?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">-3
+    </div>
+</a><a href="http://stackoverflow.com/questions/6366847/examples-of-design-patterns-used-in-foss?rq=1" class="question-hyperlink">Examples of Design Patterns used in FOSS</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/7420766?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">2
+    </div>
+</a><a href="http://stackoverflow.com/questions/7420766/connection-between-gof-design-patterns-and-solid?rq=1" class="question-hyperlink">Connection between GoF Design Patterns and SOLID</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/9484708?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">2
+    </div>
+</a><a href="http://stackoverflow.com/questions/9484708/examples-of-gof-design-patterns-in-net?rq=1" class="question-hyperlink">Examples of GoF design patterns in .net</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/17012159?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">35
+    </div>
+</a><a href="http://stackoverflow.com/questions/17012159/which-gof-design-pattern-will-be-changed-or-influenced-by-the-introduction-of-la?rq=1" class="question-hyperlink">Which GoF Design pattern will be changed or influenced by the introduction of lambdas in Java8?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/22097049?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">-1
+    </div>
+</a><a href="http://stackoverflow.com/questions/22097049/gof-design-pattern-detection?rq=1" class="question-hyperlink">GoF design pattern detection</a>
+</div>
+
+                    </div>
+				</div>
+            
+<div id="hot-network-questions" class="module">
+    <h4>
+        <a href="http://stackexchange.com/questions?tab=hot" class="js-gps-track" data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">
+            Hot Network Questions
+        </a>
+    </h4>
+    <ul>
+            <li>
+                <div class="favicon favicon-stackoverflow" title="Stack Overflow"></div><a href="http://stackoverflow.com/questions/34014906/is-x-y-z-faster-than-x-y-and-y-z" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:1 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is "x &lt; y &lt; z" faster than "x &lt; y and y &lt; z"?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="http://math.stackexchange.com/questions/1554929/zero-divided-by-zero-must-be-equal-to-zero" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Zero divided by zero must be equal to zero
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-vi" title="Vi and Vim Stack Exchange"></div><a href="http://vi.stackexchange.com/questions/5681/replace-a-string-without-changing-case" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:599 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Replace a string without changing case?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-electronics" title="Electrical Engineering Stack Exchange"></div><a href="http://electronics.stackexchange.com/questions/203903/how-do-i-increase-the-drive-current-from-the-arduino-digital-pins" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:135 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How do I increase the drive current from the arduino digital pins?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="http://english.stackexchange.com/questions/290772/is-there-a-male-counterpart-to-being-a-virgin" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is there a male counterpart to being a virgin?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-security" title="Information Security Stack Exchange"></div><a href="http://security.stackexchange.com/questions/106855/how-should-i-set-up-emergency-access-to-business-critical-secrets-in-case-i-am" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:162 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How should I set up emergency access to business-critical secrets in case I am "hit by a bus"?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-dba" title="Database Administrators Stack Exchange"></div><a href="http://dba.stackexchange.com/questions/122666/replication-taking-too-much-time-between-requests" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:182 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Replication taking too much time between requests
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="http://scifi.stackexchange.com/questions/109289/are-there-police-in-the-wizarding-world" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Are there police in the Wizarding World?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-aviation" title="Aviation Stack Exchange"></div><a href="http://aviation.stackexchange.com/questions/23271/how-dangerous-was-the-turbulence-on-this-commercial-flight" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:528 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How dangerous was the turbulence on this commercial flight?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="http://worldbuilding.stackexchange.com/questions/30738/how-do-mermaids-perform-major-surgical-procedure-underwater" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How do mermaids perform major surgical procedure underwater?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-stats" title="Cross Validated"></div><a href="http://stats.stackexchange.com/questions/184648/is-there-any-kernel-defined-for-simplex-domain-i-e-probability-vector" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:65 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is there any kernel defined for simplex domain (i.e. probability vector)?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="http://english.stackexchange.com/questions/291034/phrase-to-describe-a-moving-goal-that-is-forever-just-out-of-reach" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Phrase to describe a moving goal that is forever just out of reach
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-mathoverflow" title="MathOverflow"></div><a href="http://mathoverflow.net/questions/225055/is-lehmers-polynomial-solvable" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:504 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is Lehmer's polynomial solvable?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-cooking" title="Seasoned Advice"></div><a href="http://cooking.stackexchange.com/questions/64035/how-was-the-usage-of-yeast-for-bread-discovered" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:49 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How was the usage of yeast for bread discovered?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-parenting" title="Parenting Stack Exchange"></div><a href="http://parenting.stackexchange.com/questions/23230/how-do-you-teach-a-toddler-how-to-wait" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:228 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How do you teach a toddler how to wait?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-codereview" title="Code Review Stack Exchange"></div><a href="http://codereview.stackexchange.com/questions/112592/calculating-length-with-different-units" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:196 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Calculating length with different units
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-space" title="Space Exploration Stack Exchange"></div><a href="http://space.stackexchange.com/questions/12844/why-dont-reaction-wheels-destabilize-spacecraft-over-time" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:508 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why don't reaction wheels destabilize spacecraft over time?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-mathematica" title="Mathematica Stack Exchange"></div><a href="http://mathematica.stackexchange.com/questions/100990/making-a-button-smaller-in-width" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:387 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Making a Button smaller in width
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="http://worldbuilding.stackexchange.com/questions/30662/an-underwater-creature-that-could-take-down-a-boat" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    An underwater creature that could take down a boat
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-stackoverflow" title="Stack Overflow"></div><a href="http://stackoverflow.com/questions/34034904/more-efficient-way-to-write-this-algorithm" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:1 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    More efficient way to write this algorithm?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-unix" title="Unix &amp; Linux Stack Exchange"></div><a href="http://unix.stackexchange.com/questions/246798/exit-status-in-bash-script" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:106 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Exit status in bash script
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-codereview" title="Code Review Stack Exchange"></div><a href="http://codereview.stackexchange.com/questions/112401/palindromes-in-c" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:196 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Palindromes in C
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-unix" title="Unix &amp; Linux Stack Exchange"></div><a href="http://unix.stackexchange.com/questions/246888/how-do-i-convert-linux-man-pages-to-html-without-using-groff" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:106 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How do I convert Linux man pages to HTML without using groff?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-security" title="Information Security Stack Exchange"></div><a href="http://security.stackexchange.com/questions/106953/how-do-attackers-find-the-ip-addresses-of-recently-deployed-servers" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:162 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How do attackers find the IP addresses of recently deployed servers?
+                </a>
+
+            </li>
+    </ul>
+
+        
+</div>
+		</div>
+		<script>
+StackExchange.ready(function(){$.get('/posts/1673841/ivc/8f14');});
+</script>
+<noscript>
+    <div><img src="/posts/1673841/ivc/8f14" class="dno" alt="" width="0" height="0"></div>
+</noscript><div style="display:none" id="prettify-lang">lang-java</div></div>
+
+
+        </div>
+    </div>
+    <div id="footer" class="categories">
+        <div class="footerwrap">
+            <div id="footer-menu">
+                <div class="top-footer-links">
+                        <a href="http://stackoverflow.com/tour">tour</a>
+                    <a href="http://stackoverflow.com/help">help</a>
+                    <a href="http://blog.stackoverflow.com/?blb=1">blog</a>
+                        <a href="http://chat.stackoverflow.com/">chat</a>
+                    <a href="http://data.stackexchange.com/">data</a>
+                    <a href="http://stackexchange.com/legal">legal</a>
+                    <a href="http://stackexchange.com/legal/privacy-policy">privacy policy</a>
+                    <a href="http://stackexchange.com/work-here">work here</a>
+                    <a href="http://stackexchange.com/mediakit">advertising info</a>
+
+                    <a onclick='StackExchange.switchMobile("on")'>mobile</a>
+                    <b><a href="http://stackoverflow.com/contact">contact us</a></b>
+                        <b><a href="http://meta.stackoverflow.com/">feedback</a></b>
+                    
+                </div>
+                <div id="footer-sites">
+                    <table>
+    <tbody><tr>
+            <th colspan="3">
+                Technology
+            </th>
+            <th>
+                Life / Arts
+            </th>
+            <th>
+                Culture / Recreation
+            </th>
+            <th>
+                Science
+            </th>
+            <th>
+                Other
+            </th>
+    </tr>
+    <tr>
+            <td>
+                <ol>
+                        <li><a href="http://stackoverflow.com/" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                        <li><a href="http://serverfault.com/" title="system and network administrators">Server Fault</a></li>
+                        <li><a href="http://superuser.com/" title="computer enthusiasts and power users">Super User</a></li>
+                        <li><a href="http://webapps.stackexchange.com/" title="power users of web applications">Web Applications</a></li>
+                        <li><a href="http://askubuntu.com/" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                        <li><a href="http://webmasters.stackexchange.com/" title="pro webmasters">Webmasters</a></li>
+                        <li><a href="http://gamedev.stackexchange.com/" title="professional and independent game developers">Game Development</a></li>
+                        <li><a href="http://tex.stackexchange.com/" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://programmers.stackexchange.com/" title="professional programmers interested in conceptual questions about software development">Programmers</a></li>
+                        <li><a href="http://unix.stackexchange.com/" title="users of Linux, FreeBSD and other Un*x-like operating systems">Unix &amp; Linux</a></li>
+                        <li><a href="http://apple.stackexchange.com/" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+                        <li><a href="http://wordpress.stackexchange.com/" title="WordPress developers and administrators">WordPress Development</a></li>
+                        <li><a href="http://gis.stackexchange.com/" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+                        <li><a href="http://electronics.stackexchange.com/" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+                        <li><a href="http://android.stackexchange.com/" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+                        <li><a href="http://security.stackexchange.com/" title="information security professionals">Information Security</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://dba.stackexchange.com/" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+                        <li><a href="http://drupal.stackexchange.com/" title="Drupal developers and administrators">Drupal Answers</a></li>
+                        <li><a href="http://sharepoint.stackexchange.com/" title="SharePoint enthusiasts">SharePoint</a></li>
+                        <li><a href="http://ux.stackexchange.com/" title="user experience researchers and experts">User Experience</a></li>
+                        <li><a href="http://mathematica.stackexchange.com/" title="users of Mathematica">Mathematica</a></li>
+                        <li><a href="http://salesforce.stackexchange.com/" title="Salesforce administrators, implementation experts, developers and anybody in-between">Salesforce</a></li>
+                        <li><a href="http://expressionengine.stackexchange.com/" title="administrators, end users, developers and designers for ExpressionEngine® CMS">ExpressionEngine® Answers</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#technology" class="more">
+                                more (13)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://photo.stackexchange.com/" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                        <li><a href="http://scifi.stackexchange.com/" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                        <li><a href="http://graphicdesign.stackexchange.com/" title="Graphic Design professionals, students, and enthusiasts">Graphic Design</a></li>
+                        <li><a href="http://movies.stackexchange.com/" title="movie and tv enthusiasts">Movies &amp; TV</a></li>
+                        <li><a href="http://cooking.stackexchange.com/" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                        <li><a href="http://diy.stackexchange.com/" title="contractors and serious DIYers">Home Improvement</a></li>
+                        <li><a href="http://money.stackexchange.com/" title="people who want to be financially literate">Personal Finance &amp; Money</a></li>
+                        <li><a href="http://academia.stackexchange.com/" title="academics and those enrolled in higher education">Academia</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#lifearts" class="more">
+                                more (9)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://english.stackexchange.com/" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                        <li><a href="http://skeptics.stackexchange.com/" title="scientific skepticism">Skeptics</a></li>
+                        <li><a href="http://judaism.stackexchange.com/" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                        <li><a href="http://travel.stackexchange.com/" title="road warriors and seasoned travelers">Travel</a></li>
+                        <li><a href="http://christianity.stackexchange.com/" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                        <li><a href="http://gaming.stackexchange.com/" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+                        <li><a href="http://bicycles.stackexchange.com/" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+                        <li><a href="http://rpg.stackexchange.com/" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#culturerecreation" class="more">
+                                more (21)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://math.stackexchange.com/" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                        <li><a href="http://stats.stackexchange.com/" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                        <li><a href="http://cstheory.stackexchange.com/" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                        <li><a href="http://physics.stackexchange.com/" title="active researchers, academics and students of physics">Physics</a></li>
+                        <li><a href="http://mathoverflow.net/" title="professional mathematicians">MathOverflow</a></li>
+                        <li><a href="http://chemistry.stackexchange.com/" title="scientists, academics, teachers and students">Chemistry</a></li>
+                        <li><a href="http://biology.stackexchange.com/" title="biology researchers, academics, and students">Biology</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#science" class="more">
+                                more (5)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://stackapps.com/" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                        <li><a href="http://meta.stackexchange.com/" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Exchange</a></li>
+                        <li><a href="http://area51.stackexchange.com/" title="proposing new sites in the Stack Exchange network">Area 51</a></li>
+                        <li><a href="http://careers.stackoverflow.com/">Stack Overflow Careers</a></li>
+                    
+                </ol>
+            </td>
+    </tr>
+</tbody></table>
+                </div>
+            </div>
+
+            <div id="copyright">
+                site design / logo © 2015 Stack Exchange Inc; user contributions licensed under <a href="http://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc by-sa 3.0</a> 
+                with <a href="http://blog.stackoverflow.com/2009/06/attribution-required/" rel="license">attribution required</a>
+            </div>
+            <div id="svnrev">
+                rev 2015.12.1.3044
+            </div>
+            
+        </div>
+    </div>
+    <noscript>
+        <div id="noscript-warning">Stack Overflow works best with JavaScript enabled<img src="http://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"></div>
+    </noscript>
+<script>var p = "http", d = "static"; if (document.location.protocol == "https:") { p += "s"; d = "engine"; } var z = document.createElement("script"); z.type = "text/javascript"; z.async = true; z.src = p + "://" + d + ".adzerk.net/ados.js"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(z, s);</script>
+<script>
+    var ados = ados || {};
+    ados.run = ados.run || [];
+    ados.run.push(function () { ados_setKeywords('java,oop,design-patterns,java-api');; ados_load(); });         
+</script>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-5620270-1');
+                        ga('set', 'dimension2', '|java|oop|design-patterns|java-api|');         ga('send', 'pageview');
+        var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+        (function () {
+            var ssl='https:'==document.location.protocol,
+                s=document.getElementsByTagName('script')[0],
+                qc=document.createElement('script');
+            qc.async=true;
+            qc.src=(ssl?'https://secure':'http://edge')+'.quantserve.com/quant.js';
+            s.parentNode.insertBefore(qc, s);
+            var sc=document.createElement('script');
+            sc.async=true;
+            sc.src=(ssl?'https://sb':'http://b') + '.scorecardresearch.com/beacon.js';
+            s.parentNode.insertBefore(sc, s);
+        })();
+        _comscore.push({ c1: "2", c2: "17440561" });
+        _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+    </script>
+            
+    
+</body></html>

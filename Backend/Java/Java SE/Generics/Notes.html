@@ -1,0 +1,7 @@
+It is possible that a variable of a parameterized type will refer to an object that is
+not of that parameterized type. This situation is known as heap pollution.
+<br><br>
+List l = new ArrayList<Number>();<br><br>
+A a = new A();<br>
+A<Integer> a2 = a; //heap pollution<br>
+<br><br>

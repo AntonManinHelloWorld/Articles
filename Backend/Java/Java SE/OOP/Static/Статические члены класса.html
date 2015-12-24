@@ -1,0 +1,490 @@
+<html><head>
+<title>4.1    Статические члены класса</title>
+
+<style>
+body 
+{
+margin-top:5px; margin-bottom:5px; font-family: arial, verdana, sans-serif;
+}
+
+td
+{
+font-size: 90%; 
+}
+
+h1
+{
+margin-top:5px; font-size: 100%; color:#000000; font-weight: 900; margin-top:3px;
+}
+
+h4
+{
+margin-top:-5px; font-size: 100%; color:#351F00; font-weight: 900; margin-bottom:-10px;
+}
+
+p
+{
+color:#000000;
+}
+
+p.p
+{
+margin-left:0px; margin-right:0px; margin-top:3px; margin-bottom:0px;
+}
+
+a
+{
+text-decoration: none;
+color:#077BA6;
+}
+
+a.menu
+{
+text-decoration: none; font-size: 90%; color:#ffffff; font-weight: 900;
+}
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+
+</head>
+
+
+
+<body align="center" width="970" height="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#C0C0C0">
+
+<!-- открыта общая таблица сайта -->
+
+<table valign="top" width="970" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" align="center">
+
+<tbody><tr width="100%" valign="top" align="center">
+<td height="158" valign="top" width="100%" align="center">
+
+	<!-- открыта таблица шапки -->
+	<table valign="top" height="158" width="970" bgcolor="" border="0" cellpadding="0" cellspacing="0" align="center">
+
+	<tbody><tr width="100%" valign="top" align="">
+	<td height="158" valign="top" width="100%" align="">
+
+	<a href="http://opensourcerules.net/"><img src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/open-logo.gif" border="0"></a>
+
+	</td></tr></tbody></table>
+
+</td></tr><tr width="100%" valign="top" align="center">
+<td height="171" valign="top" width="100%" bgcolor="#EEF2F5" align="center">
+
+	<!-- открыта таблица полосы меню -->
+	<table valign="top" width="970" bgcolor="#EEF2F5" border="0" cellpadding="0" cellspacing="0">
+
+	<tbody><tr valign="top" align="">
+	<td valign="top" width="141" align="">
+
+	<a href="http://opensourcerules.net/"><img src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/menu-about.gif" style="margin-top:8px;" border="0"></a><br>
+	<a href="http://opensourcerules.net/company.html"><img src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/menu-company.gif" border="0"></a><br>
+	<a href="http://opensourcerules.net/services.html"><img src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/menu-uslugi.gif" border="0"></a><br>
+	<a href="http://opensourcerules.net/projects.html"><img src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/menu-proekty.gif" border="0"></a><br>
+	<a href="http://opensourcerules.net/partners.html"><img src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/menu-partner.gif" border="0"></a><br>
+	<a href="http://opensourcerules.net/ooperative.html"><img src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/menu-s.gif" border="0"></a>
+
+	</td><td valign="top" width="829">
+
+	<div style="margin-top:8px; margin-left:50px;">
+	<a href="http://opensourcerules.net/blog.html"><img src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/blog.gif" style="margin-left:0px;" border="0"></a><a href="http://opensourcerules.net/support.html"><img src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/support.gif" style="margin-left:8px;" border="0"></a><a href="http://opensourcerules.net/Software.html"><img src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/software.gif" style="margin-left:8px;" border="0"></a><a href="http://opensourcerules.net/knowledgebase.html"><img src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/baza.gif" style="margin-left:8px;" border="0"></a>
+	</div>
+
+	</td></tr></tbody></table>
+
+</td></tr><tr width="100%" valign="top" align="center">
+<td height="" valign="top" width="100%" align="center">
+
+	<table cellpadding="0" cellspacing="0">
+
+	<tbody><tr valign="top" align="">
+
+	<td valign="top" width="774" align="">
+	<img src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/line-1.gif">
+
+	</td><td height="8" valign="top" width="196" bgcolor="#EEF2F5" align="">
+
+	</td></tr></tbody></table>
+
+</td></tr><tr width="100%" valign="top" align="">
+<td height="" valign="top" width="100%" align="">
+
+	<table cellpadding="0" cellspacing="0">
+	<tbody><tr valign="top" align="">
+
+	<td valign="top" width="768" align="">
+
+		<!-- открыта таблица контента сайта -->
+		<table style="margin:10px;" cellpadding="0" cellspacing="0">
+
+		<tbody><tr valign="top" align="">
+		<td valign="top" align="">
+
+
+			<table width="" cellpadding="0" cellspacing="0">
+			<tbody><tr valign="top" align="left">
+
+			<td valign="top" width="31" align="">
+			<img src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/disk.gif">
+
+			</td><td valign="top" align="left">
+
+
+
+
+
+
+			<h1>4.1    Статические члены класса</h1>
+
+			</td></tr></tbody></table>
+
+		</td></tr><tr width="100%" valign="top" align="center">
+		<td valign="top" width="100%" align="center">
+
+<div align="justify"><b></b><center><b></b><h2><b>4.1    Статические члены класса</b></h2></center>Модификатор
+ static может использоваться переменной, методом или блоком кода. 
+Статическая переменная или метод или блок кода в классе - не 
+определенный для конкретного экземпляра, который вызывается с помощью 
+имени класса и нет никакой потребности создавать объект класса, чтобы 
+обратиться к статическому члену класса.
+<br>
+<br><b></b><center><b></b><h3><b>4.1.1  Атрибуты static</b></h3></center>Статические
+ переменные - переменные, созданные с ключевым словом 'static'. К 
+статическим переменным класса обращаются только статические методы. Есть
+ только одна копия статической области на класс - независимо от того, 
+сколько экземпляров класса создано.
+<br>Следующий пример показывает простой класс с единственной статической переменной:
+<br><font color="#043D52"><b> class  StaticDemo
+<br>{
+<br>static  int  x  =   0;
+<br>StaticDemo()
+<br>&nbsp; &nbsp; &nbsp; &nbsp;{ 
+<br>x++ ;
+<br>&nbsp; &nbsp; &nbsp; &nbsp;}
+<br>}</b></font>
+<br>
+<br>Переменная x является статической; это означает, что есть только 
+одна переменная х, независимо от того, сколько экземпляров класса 
+StaticDemo могло бы существовать. Возможно существование нескольких 
+экземпляров класса StaticDemo, или одного, или даже не одного; 
+существует точно одна переменная х. Четыре байта памяти, занятой х 
+распределены, когда загружен класс StaticDemo. Инициализация к нолю 
+также происходит во время загрузки класса. Статическая переменная 
+увеличивается каждый раз, когда вызывается конструктор, так что можно 
+узнать, сколько случаев создания было.
+<br>
+<br>Есть два пути ссылки на статическую переменную:
+<br><img src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/str.gif" align="left">        Через ссылку на любой экземпляр класса
+<br><img src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/str.gif" align="left">        Через имя класса
+<br>
+<br>Первый метод может кончиться запутывающим кодом и рассматривается как некорректность. Следующий пример показывает почему:
+<br><font color="#043D52"><b>
+<br>StaticDemo  d1   =  new StaticDemo();
+<br>StaticDemo  d2   =  new StaticDemo();
+<br>d1.x   =   100 ;
+<br>d2.x   =   200;
+<br>testVariable = d1.x;
+<br></b></font>
+<br>В вышеупомянутом коде, если бы мы не знали, что х является 
+статическим, мы могли бы подумать, что testVariable равно 100 на пятой 
+строчке кода. Фактически, она равна 200, потому что <i>d1.x</i> и <i>d2.x </i>обращаются к одной и той же (статической) переменной.
+<br>
+<br>Лучший способ обратиться к статической переменной - через имя класса. Следующий код идентичен коду выше:<font color="#043D52"><b>
+<br>StaticDemo d1 = new StaticDemo(); 
+<br>StaticDemo d2 = new StaticDemo(); 
+<br>StaticDemo.x = 100; 
+<br>StaticDemo.x = 200; 
+<br>testVariable = StaticDemo.x;
+<br></b></font>
+<br>Теперь  ясно,   что  строчка  3  кода  является  бесполезной,   и  значение  testVariable установлено на 200 в строчке 5.
+<br>
+<br>Следующий  пример  показывает,   как можно  обратиться  к статической  переменной класса.
+<br>
+<br><i><b>Пример 1:</b></i><font color="#043D52"><b>
+<br>class StaticModifier
+<br>{
+<br>static int i = 10;
+<br>int j ;
+<br>StaticModifier()
+<br>&nbsp; &nbsp; &nbsp; &nbsp;{
+<br>j =20;
+<br>&nbsp; &nbsp; &nbsp; &nbsp;}
+<br>}
+<br>public class StaticDemo
+<br>{
+<br>public static void main(String args[])
+<br>&nbsp; &nbsp; &nbsp; &nbsp;{
+<br>System.out.println( Static variable i =  +StaticModifier.i);
+<br>StaticModifier s = new StaticModifier();
+<br>System.out.println( Instance variable j =  +s.j);
+<br>&nbsp; &nbsp; &nbsp; &nbsp;} 
+<br>}</b></font>
+<br>
+<br>Вывод вышеупомянутой программы:
+<br><b><i></i></b><i></i><center><i><b><img src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/p4-1.jpg">
+<br>Рисунок 4.1: Результат</b></i></center>
+<br>
+<br>В вышеупомянутой программе, обращаются к статической переменной i, 
+не создавая объект класса. Это происходит потому, что только одна копия 
+статических переменных создана на весь класс, и следовательно к ней 
+можно обратиться с именем класса.
+<br>
+<br><b>Обратите внимание:</b> Мы можем обращаться к статическим 
+переменным с объектами, но нет никакого значения в выполнении, потому 
+что значение, содержавшееся в статической переменной, является одним и 
+тем же для всех объектов.
+<br>
+<br><b></b><center><b></b><h3><b>4.1.2             Статический метод</b></h3></center>Java
+ обеспечивает 'статические' методы, которые определяются в описании 
+класса и к ним можно обращаться, не создавая экземпляр класса.
+<br>
+<br>Статическую переменную или метод также называют переменной класса 
+или методом, так как она принадлежит непосредственно классу, а не 
+экземпляру этого класса.
+<br>
+<br>Статический метод не может быть отменен, чтобы быть нестатическим.  Код ниже, например, не будет откомпилирован:<font color="#043D52"><b>
+<br>class  StaticTest
+<br>{
+<br>static void test()    {   }
+<br>}
+<br>
+<br>class Staticex extends StaticTest
+<br>{
+<br>void test () {}
+<br>}</b></font>
+<br>
+<br>Компилятор помечает строчку 6 кода сообщением, "Static methods can't
+ be overridden." (Статические методы не могут быть отменены). Если бы 
+шестая строка была заменена на " static void test() {}" , то компиляция 
+прошла бы успешно.
+<br>
+<br>Некоторые важные пункты относительно статических методов:
+<br><img src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/str.gif" align="left">        Статические методы класса вызываются только статическими методами.
+<br><img src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/str.gif" align="left">        Статический метод не имеет 'this'
+<br><img src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/str.gif" align="left">        Статический метод не может быть отменён нестатическим методом
+<br>
+<br><b></b><center><b></b><h3><b>4.1.3 Статический блок</b></h3></center>Блок инициализации - блок кода между фигурными скобками, который выполнен прежде, чем будет создан объект класса. <b>Статический блок инициализации</b>
+ - определенный блок, использующий ключевое слово, static, он 
+выполняется один раз, когда загружается класс и может только 
+инициализировать статических членов данного класса.
+<br>
+<br>Давайте определим простой класс со статическим блоком инициализации:
+<br>
+<br><i><b>Пример 2:</b></i><font color="#043D52"><b>
+<br>class Trylnitialization
+<br>{
+<br>static int[] values = new int[10]; //Static array member
+<br>// Initialization block
+<br>static
+<br>&nbsp; &nbsp; &nbsp; &nbsp;{
+<br>System.out.println( Running initialization block. ); 
+<br>for(int i=0; i<values.length; i++)="" <br="">values[i] = (int)(100.0*Math.random());
+<br>&nbsp; &nbsp; &nbsp; &nbsp;}
+<br>// List values in the array for an object 
+<br>void listValues()
+<br>&nbsp; &nbsp; &nbsp; &nbsp;{ 
+<br>System.out.println();&nbsp; &nbsp; &nbsp; &nbsp;  // Start a new line 
+<br>for(int i=0; i<values.length; i++)="" <br="">System.out.print(&nbsp; &nbsp; &nbsp; &nbsp;   + values[i]); //Display values 
+<br>System.out.println () ; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  // Start a new line
+<br>&nbsp; &nbsp; &nbsp; &nbsp;}
+<br>public static void main(String[ ] args)
+<br>&nbsp; &nbsp; &nbsp; &nbsp;{ 
+<br>Trylnitialization example = new Trylnitialization(); System.out.println( <img src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/1.jpg">nFirst object: ); 
+<br>example.listValues(); 
+<br>example = new Trylnitialization(); 
+<br>System.out.println( <img src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/1.jpg">    nSecond object: ); 
+<br>example.listValues();
+<br>&nbsp; &nbsp; &nbsp; &nbsp;} 
+<br>}
+<br></values.length;></values.length;></b></font>
+<br>Когда мы компилируем и выполняем эту программу, мы используем 
+идентичные наборы значений для двух объектов - как могли бы ожидаться, 
+так как массив значений является статическим.
+<br>
+<br>Вывод вышеупомянутой программы:
+<br><b><i></i></b><i></i><center><i><b><img src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/p4-2.jpg"> 
+<br>Рисунок 4.2: Вывод</b></i></center>
+<br>
+<br>В вышеупомянутом примере класс Trylnitialization имеет статический 
+член, значения которого является массив 10 целых чисел. Эти значения 
+могут отличаться из-за использования функции Math.random (), которая 
+производит случайные числа. Статический блок инициализации - код:<font color="#043D52"><b>
+<br>static
+<br>{
+<br>System.out.println( Running initialization block. );
+<br>for(int i=0; i<values.length; i++)="" <br="">values [i] = (int) (100.0*Math.random());
+<br>}
+<br></values.length;></b></font>
+<br>Здесь инициализируется массив значений с псевдослучайными значениями
+ целого числа, произведенными в for loop. Запись вывода в блоке должна 
+делать запись только там, где выполняется блок инициализации. Поскольку 
+этот блок инициализации является статическим, то он выполняется только 
+однажды в течение выполнения программы, когда загружен класс.
+<br>
+<br>Метод print (), мы используем в listValues () для работы метода 
+точно так же как println (), но не запуская новую запись кода перед 
+представлением вывода, так что мы получаем все значения на той же самой 
+записи.
+<br>
+<br>В main(), мы создаём объект типа Trylnitialization, и затем вызываем
+ его методом listValues (). Мы тогда создаем второй объект и вызываем 
+методом listValues () для того же. Вывод демонстрирует, что 
+инициализация блока выполняет только однажды, и что значения переданные 
+для обоих объектов, одни и те же.
+<br>
+<br><center><a href="http://opensourcerules.net/java/gl4.html"><img src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/l.jpg" alt="назад" title="назад" border="0"></a>  <a href="http://opensourcerules.net/osn_java.html"><img src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/o.jpg" alt="к оглавлению" title="к оглавлению" border="0"></a>  <a href="http://opensourcerules.net/java/gl4_2.html"><img src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/p.jpg" alt="вперед" title="вперед" border="0"></a>
+<br></center></div>
+		</td></tr></tbody></table>
+
+
+	</td><td style="background-image: url(/open-images/line-bg.jpg);" valign="top" width="6" align="">
+
+	
+	</td><td height="100%" valign="top" width="196" bgcolor="#EEF2F5" align="">
+	
+		<table width="196" cellpadding="0" cellspacing="0" align="right">
+
+		<tbody><tr width="196" valign="top" align="right">
+		<td valign="top" width="196" align="right">
+		
+		<div style="margin-top:30px;" align="right"><a href="http://opensourcerules.net/books.html"><img src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/knigi.gif" border="0"></a></div>
+		<div align="right"><img src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/line-bok.gif" style="margin-bottom:2px;"></div>
+		<div align="right"><img src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/knopka-bok.gif"></div>
+
+		</td></tr><tr width="196" valign="top" align="right">
+		<td valign="top" width="196" align="right">
+		
+		<div style="margin-top:30px;" align="right"><a href="http://opensourcerules.net/games.html"><img src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/pingvin.gif" border="0"></a></div>
+		<div align="right"><img src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/line-bok.gif" style="margin-bottom:2px;"></div>
+		<div align="right"><img src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/knopka-bok-igry.gif"></div>
+
+		</td></tr><tr width="196" valign="top" align="right">
+		<td valign="top" width="196" align="right">
+		
+		<div style="margin-top:30px;" align="right"><a href="http://opensourcerules.net/Soft_site_catalog.html"><img src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/shar.gif" border="0"></a></div>
+		<div align="right"><img src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/line-bok.gif" style="margin-bottom:2px;"></div>
+		<div align="right"><img src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/knopka-bok-ssk.gif"></div>
+
+		</td></tr><tr width="196" valign="top" align="right">
+		<td valign="top" width="196" align="right">
+		
+<div style="margin-top:30px;" align="right"><a href="http://opensourcerules.net/news-inet.html"><img src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/news_.gif" border="0"></a></div>
+		<div align="right"><img src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/line-bok.gif" style="margin-bottom:2px;"></div>
+		<div align="right"><img src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/news-internet.gif"></div>
+
+		</td></tr><tr width="196" valign="top" align="right">
+		<td valign="top" width="196" align="right">
+		
+		<div style="margin-top:30px;" align="right"><a href="http://opensourcerules.net/Optimikon.html"><img src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/nout.gif" border="0"></a></div>
+		<div align="right"><img src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/line-bok.gif" style="margin-bottom:2px;"></div>
+		<div align="right"><img src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/knopka-bok-opt.gif"></div>
+
+		</td></tr><tr width="196" height="10" valign="top" align="right">
+		<td height="10" valign="top" width="196" align="right">
+
+		</td></tr><tr width="196" valign="top" align="right">
+		<td valign="top" width="196" align="right">
+
+			
+
+		</td></tr><tr width="196" height="10" valign="top" align="right">
+		<td height="10" valign="top" width="196" align="right">
+
+		</td></tr><tr>
+		<td valign="top" width="196" align="left">
+
+		<div style="font-size: 80%;">
+		<script src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/watch.js" async="" type="text/javascript"></script><script src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/aci.js" async="" type="text/javascript"></script><script type="text/javascript">
+<!--
+var _acic={dataProvider:10};(function(){var e=document.createElement("script");e.type="text/javascript";e.async=true;e.src="//www.acint.net/aci.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})()
+//-->
+</script>
+		</div>
+
+		</td></tr><tr width="196" height="10" valign="top" align="right">
+		<td height="10" valign="top" width="196" align="right">
+
+		</td></tr></tbody></table>
+		
+
+	</td></tr></tbody></table>
+
+</td></tr><tr width="970" height="105" valign="top" align="">
+<td valign="top" width="970" align="">
+
+	<table height="105" width="970" bgcolor="#317991" cellpadding="0" cellspacing="0">
+	<tbody><tr height="105" valign="top" align="">
+
+	<td height="105" valign="top" align="">
+	<img src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/konvert.gif" style="margin-left:14px; margin-top:20px;">
+
+	</td><td height="105" valign="top" align="">
+	<p style="margin-top:20px; margin-left:10px; color:#ffffff; font-size: 80%;">Rus. Open Source company, г. Саратов
+	<br>ул. Орджоникидзе, 156, офис 203
+	<br>тел: 8 (8452) 57-84-41
+	<br>e-mail: info@rus_opensource.com
+
+	</p></td><td height="105" valign="top" align="">
+	<p style="margin-top:20px; margin-left:70px; color:#ffffff; font-size: 80%;"><a href="http://opensourcerules.net/" style="color:#ffffff;">Главная</a> | <a href="http://opensourcerules.net/obzor_it" style="color:#ffffff;">Обзоры</a> | <a href="http://opensourcerules.net/o-raznom.html" style="color:#ffffff;">О разном</a>
+<br> <a href="http://opensourcerules.net/sitemap.html" style="color:#ffffff;">Карта сайта</a> | <a href="http://opensourcerules.net/drevnee.html" style="color:#ffffff;">Прошлое нашего IT</a> 
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+(function (d, w, c) {
+    (w[c] = w[c] || []).push(function() {
+        try {
+            w.yaCounter25630922 = new Ya.Metrika({id:25630922,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true});
+        } catch(e) { }
+    });
+
+    var n = d.getElementsByTagName("script")[0],
+        s = d.createElement("script"),
+        f = function () { n.parentNode.insertBefore(s, n); };
+    s.type = "text/javascript";
+    s.async = true;
+    s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+    if (w.opera == "[object Opera]") {
+        d.addEventListener("DOMContentLoaded", f, false);
+    } else { f(); }
+})(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="//mc.yandex.ru/watch/25630922" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+
+
+<!-- Rating@Mail.ru counter -->
+<script type="text/javascript">//<![CDATA[
+(function(w,n,d,r,s){d.write('<div><a href="http://top.mail.ru/jump?from=2336625"><img src="'+
+('https:'==d.location.protocol?'https:':'http:')+'//top-fwz1.mail.ru/counter?id=2336625;t=130;js=13'+
+((r=d.referrer)?';r='+escape(r):'')+((s=w.screen)?';s='+s.width+'*'+s.height:'')+';_='+Math.random()+
+'" style="border:0;" height="40" width="88" alt="Рейтинг@Mail.ru" /><\/a><\/div>');})(window,navigator,document);//]]>
+</script></p><div><a href="http://top.mail.ru/jump?from=2336625"><img class="pcfykmqlcrtplekulgcu" src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/counter.gif" style="border:0;" alt="Рейтинг@Mail.ru" height="40" width="88"></a></div><noscript><div><a href="http://top.mail.ru/jump?from=2336625">
+<img src="//top-fwz1.mail.ru/counter?id=2336625;t=130;js=na" style="border:0;"
+height="40" width="88" alt="Рейтинг@Mail.ru" /></a></div></noscript>
+<!-- //Rating@Mail.ru counter -->
+	</td><td height="105" valign="top" align="">
+	<p style="margin-top:20px; margin-left:70px; color:#ffffff; font-size: 80%;">Учебная литература:
+	<br>• <a href="http://opensourcerules.net/osn_java.html" style="color:#ffffff;">Основы JAVA</a>
+	<br>• <a href="http://opensourcerules.net/uchebnik.html" style="color:#ffffff;">Учебник по HTML</a>
+	<br>• <a href="http://opensourcerules.net/v_linux.html" style="color:#ffffff;">Введение в Linux</a>
+	<br>• <a href="http://opensourcerules.net/news-inet-2.html" style="color:#ffffff;">Архивы</a>
+
+	</p></td><td height="105" valign="top" align="right">
+	<div style="margin-top:5px; margin-right:5px; color:#ffffff; font-size: 80%;">© <b>2013</b> opensourcerules.net</div>
+	<img src="%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0_files/logo-niz.gif" style="margin-top:3px;">
+
+	</td><td width="10">
+
+	</td></tr></tbody></table>
+
+</td></tr></tbody></table>
+	
+
+</body></html>

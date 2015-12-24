@@ -1,0 +1,2811 @@
+<!DOCTYPE html>
+<html itemscope="" itemtype="http://schema.org/QAPage"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<title>java - Iterating through a list, avoiding ConcurrentModificationException when removing in loop - Stack Overflow</title>
+    <link rel="shortcut icon" href="http://cdn.sstatic.net/stackoverflow/img/favicon.ico?v=4f32ecc8f43d">
+    <link rel="apple-touch-icon image_src" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+    <link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="http://stackoverflow.com/opensearch.xml">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="stackoverflow.com">
+    <meta property="og:type" content="website">    
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon@2.png?v=73d79a89bded&amp;a">
+    <meta name="twitter:title" property="og:title" itemprop="title name" content="Iterating through a list, avoiding ConcurrentModificationException when removing in loop">
+    <meta name="twitter:description" property="og:description" itemprop="description" content="We all know you can't do this:
+
+for (Object i : l) {
+    if (condition(i)) {
+        l.remove(i);
+    }
+}
+
+
+ConcurrentModificationException etc... this apparently works sometimes, but not always. H...">
+    <meta property="og:url" content="http://stackoverflow.com/questions/223918/iterating-through-a-list-avoiding-concurrentmodificationexception-when-removing">
+    <link rel="canonical" href="http://stackoverflow.com/questions/223918/iterating-through-a-list-avoiding-concurrentmodificationexception-when-removing">
+
+    
+    
+    <script src="Iterating%20through%20a%20list,%20avoiding%20ConcurrentModificationException%20when%20removing%20in%20loop%20-%20Stack%20Overflow_files/ados_002.js" async="" type="text/javascript"></script><script src="Iterating%20through%20a%20list,%20avoiding%20ConcurrentModificationException%20when%20removing%20in%20loop%20-%20Stack%20Overflow_files/quant.js" async=""></script><script src="Iterating%20through%20a%20list,%20avoiding%20ConcurrentModificationException%20when%20removing%20in%20loop%20-%20Stack%20Overflow_files/beacon.js" async=""></script><script src="Iterating%20through%20a%20list,%20avoiding%20ConcurrentModificationException%20when%20removing%20in%20loop%20-%20Stack%20Overflow_files/analytics.js" async=""></script><script src="Iterating%20through%20a%20list,%20avoiding%20ConcurrentModificationException%20when%20removing%20in%20loop%20-%20Stack%20Overflow_files/ados.js" async="" type="text/javascript"></script><script src="Iterating%20through%20a%20list,%20avoiding%20ConcurrentModificationException%20when%20removing%20in%20loop%20-%20Stack%20Overflow_files/jquery.js"></script>
+    <script src="Iterating%20through%20a%20list,%20avoiding%20ConcurrentModificationException%20when%20removing%20in%20loop%20-%20Stack%20Overflow_files/stub.js"></script>
+    <link rel="stylesheet" type="text/css" href="Iterating%20through%20a%20list,%20avoiding%20ConcurrentModificationException%20when%20removing%20in%20loop%20-%20Stack%20Overflow_files/all.css">
+
+            <link rel="alternate" type="application/atom+xml" title="Feed for question 'Iterating through a list, avoiding ConcurrentModificationException when removing in loop'" href="http://stackoverflow.com/feeds/question/223918">
+            <meta name="twitter:app:country" content="US">
+            <meta name="twitter:app:name:iphone" content="Stack Exchange iOS">
+            <meta name="twitter:app:id:iphone" content="871299723">
+            <meta name="twitter:app:url:iphone" content="se-zaphod://stackoverflow.com/questions/223918/iterating-through-a-list-avoiding-concurrentmodificationexception-when-removing">
+            <meta name="twitter:app:name:ipad" content="Stack Exchange iOS">
+            <meta name="twitter:app:id:ipad" content="871299723">
+            <meta name="twitter:app:url:ipad" content="se-zaphod://stackoverflow.com/questions/223918/iterating-through-a-list-avoiding-concurrentmodificationexception-when-removing">
+            <meta name="twitter:app:name:googleplay" content="Stack Exchange Android">
+            <meta name="twitter:app:url:googleplay" content="http://stackoverflow.com/questions/223918/iterating-through-a-list-avoiding-concurrentmodificationexception-when-removing">
+            <meta name="twitter:app:id:googleplay" content="com.stackexchange.marvin">
+        <script>
+        
+            StackExchange.ready(function () {
+                    
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.initSnippetRenderer();
+                    });
+                    
+
+                StackExchange.using("postValidation", function () {
+                    StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+                });
+
+                
+                StackExchange.question.init({showAnswerHelp:true,totalCommentCount:1,shownCommentCount:1,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:223918});
+
+                styleCode();
+
+                    StackExchange.realtime.subscribeToQuestion('1', '223918');
+                                                                    StackExchange.using("gps", function () { StackExchange.gps.trackOutboundClicks('#content', '.post-text'); });
+
+            });
+        </script>
+
+
+    <script>
+        StackExchange.init({"locale":"en","stackAuthUrl":"https://stackauth.com","serverTime":1449060297,"networkMetaHostname":"meta.stackexchange.com","routeName":"Questions/Show","styleCode":true,"enableUserHovercards":true,"snippets":{"enabled":true,"domain":"stacksnippets.net"},"site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdchgIAAAAAAJwGpIzRQSOFaO0pU6s44Xt8aTwc","recaptchaAudioLang":"en","enableNewTagCreationWarning":true,"insertSpaceAfterNameTabCompletion":false,"id":1,"nonAsciiTags":true,"enableSocialMediaInSharePopup":true},"user":{"fkey":"403aacb6ad65e2352d636eae87907085","rep":0,"isAnonymous":true,"isAnonymousNetworkWide":true}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"3961c61ca69a","js/moderator.en.js":"97fe5aef6f7f","js/full-anon.en.js":"33499cc2cad7","js/full.en.js":"1e4fcf6f9ef0","js/wmd.en.js":"a3d548c88788","js/third-party/jquery.autocomplete.min.js":"e5f01e97f7c3","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"16f21161a721","js/help.en.js":"7be3de40c932","js/tageditor.en.js":"228dca89f504","js/tageditornew.en.js":"baf6339578c3","js/inline-tag-editing.en.js":"239de90350f6","js/revisions.en.js":"9e897f24d78d","js/review.en.js":"38c906a6db58","js/tagsuggestions.en.js":"d1ff9b84abe5","js/post-validation.en.js":"e9d59f898ee2","js/explore-qlist.en.js":"415c9ef1f829","js/events.en.js":"b6ad5fb336a6","js/keyboard-shortcuts.en.js":"8027a5b2287f","js/external-editor.en.js":"cf58cc6630ef","js/external-editor.en.js":"cf58cc6630ef","js/snippet-javascript.en.js":"1034ef6a3153","js/snippet-javascript-codemirror.en.js":"aeb2a0b12236"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </script>
+    
+        <script>
+            StackExchange.ready(function () {
+                $('#nav-tour').click(function () {
+                    StackExchange.using("gps", function() {
+                        StackExchange.gps.track("aboutpage.click", { aboutclick_location: "headermain" }, true);
+                    });
+                });
+            });
+        </script>
+    
+    
+<script src="Iterating%20through%20a%20list,%20avoiding%20ConcurrentModificationException%20when%20removing%20in%20loop%20-%20Stack%20Overflow_files/full-anon.js" async=""></script><script src="Iterating%20through%20a%20list,%20avoiding%20ConcurrentModificationException%20when%20removing%20in%20loop%20-%20Stack%20Overflow_files/adFeedback.js" type="text/javascript"></script><link href="Iterating%20through%20a%20list,%20avoiding%20ConcurrentModificationException%20when%20removing%20in%20loop%20-%20Stack%20Overflow_files/adFeedback.css" rel="stylesheet"><script src="Iterating%20through%20a%20list,%20avoiding%20ConcurrentModificationException%20when%20removing%20in%20loop%20-%20Stack%20Overflow_files/snippet-javascript.js" async=""></script><script src="Iterating%20through%20a%20list,%20avoiding%20ConcurrentModificationException%20when%20removing%20in%20loop%20-%20Stack%20Overflow_files/post-validation.js" async=""></script><script src="Iterating%20through%20a%20list,%20avoiding%20ConcurrentModificationException%20when%20removing%20in%20loop%20-%20Stack%20Overflow_files/prettify-full.js" async=""></script><script src="Iterating%20through%20a%20list,%20avoiding%20ConcurrentModificationException%20when%20removing%20in%20loop%20-%20Stack%20Overflow_files/p.js" async=""></script><link href="Iterating%20through%20a%20list,%20avoiding%20ConcurrentModificationException%20when%20removing%20in%20loop%20-%20Stack%20Overflow_files/jobs.css" rel="stylesheet" type="text/css"></head>
+<body class="question-page new-topbar">
+    <noscript><div id="noscript-padding"></div></noscript>
+    <div id="notify-container"></div>
+    <div id="overlay-header"></div>
+    <div id="custom-header"></div>
+
+
+
+
+
+<div class="topbar">
+    <div class="topbar-wrapper">
+
+        <div class="js-topbar-dialog-corral">
+
+
+<div class="topbar-dialog siteSwitcher-dialog dno">
+    <div class="header">
+        <h3><a href="http://stackoverflow.com/">current community</a></h3>
+    </div>
+    <div class="modal-content current-site-container">
+        <ul class="current-site">
+                <li>
+                        <div class="related-links">
+                    <a href="http://chat.stackoverflow.com/" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:6 })">chat</a>
+            </div>
+
+
+
+
+    <a href="http://stackoverflow.com/" class="current-site-link site-link js-gps-track" data-id="1" data-gps-track="
+        site_switcher.click({ item_type:3 })">
+        <div class="site-icon favicon favicon-stackoverflow" title="Stack Overflow"></div>
+        Stack Overflow
+    </a>
+
+                </li>
+                <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    
+
+
+
+    <a href="http://meta.stackoverflow.com/" class="site-link js-gps-track" data-id="552" data-gps-track="
+            site.switch({ target_site:552, item_type:3 }),
+        site_switcher.click({ item_type:4 })">
+        <div class="site-icon favicon favicon-stackoverflowmeta" title="Meta Stack Overflow"></div>
+        Meta Stack Overflow
+    </a>
+
+                </li>
+                            <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    <a class="site-link js-gps-track" href="http://careers.stackoverflow.com/?utm_source=stackoverflow.com&amp;utm_medium=site-ui&amp;utm_campaign=multicollider" data-gps-track="site_switcher.click({ item_type:9 })">
+                        <div class="site-icon favicon favicon-careers" title="Stack Overflow Careers"></div>
+                        Stack Overflow Careers
+                    </a>
+                </li>
+        </ul>
+    </div>
+    
+    <div class="header" id="your-communities-header">
+        <h3>
+your communities        </h3>
+            
+    </div>
+    <div class="modal-content" id="your-communities-section">
+            
+            <div class="call-to-login">
+<a href="https://stackoverflow.com/users/signup?ssrc=site_switcher&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f223918%2fiterating-through-a-list-avoiding-concurrentmodificationexception-when-removing" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:10 })">Sign up</a> or <a href="https://stackoverflow.com/users/login?ssrc=site_switcher&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f223918%2fiterating-through-a-list-avoiding-concurrentmodificationexception-when-removing" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:11 })">log in</a> to customize your list.
+            </div>
+    </div>
+    
+    <div class="header">
+        <h3><a href="http://stackexchange.com/sites">more stack exchange communities</a></h3>
+        <a href="http://blog.stackoverflow.com/" class="fr">company blog</a>
+    </div>
+    <div class="modal-content">
+            <div class="child-content"></div>
+    </div>
+</div>
+        </div>
+
+        <div class="network-items">
+
+            <a href="http://stackexchange.com/" class="topbar-icon icon-site-switcher yes-hover js-site-switcher-button js-gps-track" data-gps-track="site_switcher.show" title="A list of all 150 Stack Exchange sites">
+                <span class="hidden-text">Stack Exchange</span>
+            </a>
+
+    <a href="#" class="topbar-icon icon-inbox yes-hover js-inbox-button" title="Recent inbox messages">
+        <span class="hidden-text">Inbox</span>
+        <span class="unread-count" style="display:none"></span>
+    </a>
+    <a href="#" class="topbar-icon icon-achievements yes-hover js-achievements-button " data-unread-class="" title="Recent achievements: reputation, badges, and privileges earned">
+        <span class="hidden-text">Reputation and Badges</span>
+        <span class="unread-count" style="display:none">
+            
+        </span>
+    </a>
+        </div>
+
+        <div class="topbar-links">
+
+                <div class="links-container">
+                <span class="topbar-menu-links">
+                                    <a href="https://stackoverflow.com/users/signup?ssrc=head&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f223918%2fiterating-through-a-list-avoiding-concurrentmodificationexception-when-removing" class="login-link">sign up</a>
+                                <a href="https://stackoverflow.com/users/login?ssrc=head&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f223918%2fiterating-through-a-list-avoiding-concurrentmodificationexception-when-removing" class="login-link">log in</a>
+
+                        <a href="http://stackoverflow.com/tour">tour</a>
+                            <a href="#" class="icon-help js-help-button" title="Help Center and other resources">
+        help
+        <span class="triangle"></span>
+    </a>
+    <div class="topbar-dialog help-dialog js-help-dialog dno">
+        <div class="modal-content">
+            <ul>
+                                    <li>
+                        <a href="http://stackoverflow.com/tour" class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })">
+                            Tour
+                            <span class="item-summary">
+                                Start here for a quick overview of the site
+                            </span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="http://stackoverflow.com/help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })">
+                        Help Center
+                        <span class="item-summary">
+                            Detailed answers to any questions you might have
+                        </span>
+                    </a>
+                </li>
+                    <li>
+                        <a href="http://meta.stackoverflow.com/" class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })">
+                            Meta
+                            <span class="item-summary">
+                                Discuss the workings and policies of this site
+                            </span>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+
+                            <a href="http://careers.stackoverflow.com/?utm_source=stackoverflow.com&amp;utm_medium=site-ui&amp;utm_campaign=anon-topbar">stack overflow careers</a>
+                    </span>
+                </div>
+
+            <div class="search-container">
+                <form id="search" action="/search" method="get" autocomplete="off">
+                    <input name="q" placeholder="search" tabindex="1" autocomplete="off" maxlength="240" type="text">
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+    <script>
+        StackExchange.ready(function() { StackExchange.topbar.init(); });
+    </script>
+
+    <div class="container">
+        <div id="header">
+            <br class="cbt">
+            <div id="hlogo">
+                <a href="http://stackoverflow.com/">
+                    Stack Overflow
+                </a>
+            </div>
+            <div id="hmenus">
+                <div class="nav mainnavs">
+                    <ul>
+                        <li class="youarehere"><a id="nav-questions" href="http://stackoverflow.com/questions">Questions</a></li>
+                        <li><a id="nav-tags" href="http://stackoverflow.com/tags">Tags</a></li>
+                        <li><a id="nav-users" href="http://stackoverflow.com/users">Users</a></li>
+                        <li><a id="nav-badges" href="http://stackoverflow.com/help/badges">Badges</a></li>
+                                                                    </ul>
+                </div>
+                <div class="nav askquestion">
+                    <ul>
+                        <li>
+                            <a id="nav-askquestion" href="http://stackoverflow.com/questions/ask">Ask Question</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+
+
+
+        <div id="content" class="snippet-hidden">
+            
+
+<div itemscope="" itemtype="http://schema.org/Question">
+    <link itemprop="image" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+			<!--googleoff: all-->
+
+<div id="herobox-mini">
+    <div id="hero-content">
+        <span id="controls">
+                <a href="http://stackoverflow.com/users/signup?ssrc=hero&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f223918%2fiterating-through-a-list-avoiding-concurrentmodificationexception-when-removing" id="tell-me-more" class="button">Sign up</a>
+            <span id="close"><a title="click to dismiss">×</a></span>
+        </span>
+        <div id="blurb">
+            Stack Overflow is a community of 4.7 million programmers, 
+just like you, helping each other. Join them; it only takes a minute:
+        </div>        
+    </div>
+    <script>
+        StackExchange.ready(function() {
+            var clickSource = $("body").attr("class") + '-mini';
+            var location = 0;
+            if ($("body").hasClass("questions-page")) {
+                clickSource = 'questionpagemini';
+                location = 2;
+            } else if ($("body").hasClass("question-page")) {
+                clickSource = 'questionpagemini';
+                location = 2;
+            } else if ($("body").hasClass("home-page")) {
+                clickSource = 'homepagemini';
+                location = 4;
+            }
+
+            $('#tell-me-more').click(function () {
+                StackExchange.using("gps", function () {
+                    StackExchange.gps.track("hero.action", { hero_action_type: 'cta', location: location }, true);
+                });
+            });
+            $('#herobox-mini #close').click(function () {
+                StackExchange.using("gps", function () {
+                    StackExchange.gps.track("hero.action", { hero_action_type: "close", location: location }, true);
+                });
+                $.cookie("hero", "none", { path: "/", expires: 365 });
+                var $hero = $("#herobox-mini");
+                $hero.slideUp('fast', function () { $hero.remove(); });
+                return false;
+            });
+        });
+    </script>
+</div>
+			<!--googleon: all-->
+			<div id="question-header">
+                <h1 itemprop="name"><a href="http://stackoverflow.com/questions/223918/iterating-through-a-list-avoiding-concurrentmodificationexception-when-removing" class="question-hyperlink">Iterating through a list, avoiding ConcurrentModificationException when removing in loop</a></h1>
+		</div>
+			<div id="mainbar">
+
+			
+
+<div class="question" data-questionid="223918" id="question">
+
+    <script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk1813223966",4).setZone(43); });
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk1813223966">
+            <iframe scrolling="no" id="ados_frame_adzerk1813223966_909411" frameborder="0" height="90" width="728"></iframe><img class="pcfykmqlcrtplekulgcu" src="Iterating%20through%20a%20list,%20avoiding%20ConcurrentModificationException%20when%20removing%20in%20loop%20-%20Stack%20Overflow_files/i_004.gif" style="position:absolute;" height="0px" width="0px" border="0"></div>    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="223918" type="hidden">
+        <a class="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">545</span>
+        <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a>
+
+        <a class="star-off" href="#" title="This is a favorite question (click again to undo)">favorite</a>
+        <div class="favoritecount"><b>176</b></div>
+
+
+</div>
+
+            </td>
+            
+<td class="postcell">
+<div>
+    <div class="post-text" itemprop="text">
+
+<p>We all know you can't do this:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Object</span><span class="pln"> i </span><span class="pun">:</span><span class="pln"> l</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">condition</span><span class="pun">(</span><span class="pln">i</span><span class="pun">))</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        l</span><span class="pun">.</span><span class="pln">remove</span><span class="pun">(</span><span class="pln">i</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p><code>ConcurrentModificationException</code> etc... this apparently works sometimes, but not always. Here's some specific code:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">String</span><span class="pun">[]</span><span class="pln"> args</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="typ">Collection</span><span class="pun">&lt;</span><span class="typ">Integer</span><span class="pun">&gt;</span><span class="pln"> l </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">ArrayList</span><span class="pun">&lt;</span><span class="typ">Integer</span><span class="pun">&gt;();</span><span class="pln">
+
+    </span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> i</span><span class="pun">=</span><span class="lit">0</span><span class="pun">;</span><span class="pln"> i </span><span class="pun">&lt;</span><span class="pln"> </span><span class="lit">10</span><span class="pun">;</span><span class="pln"> </span><span class="pun">++</span><span class="pln">i</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        l</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Integer</span><span class="pun">(</span><span class="lit">4</span><span class="pun">));</span><span class="pln">
+        l</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Integer</span><span class="pun">(</span><span class="lit">5</span><span class="pun">));</span><span class="pln">
+        l</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Integer</span><span class="pun">(</span><span class="lit">6</span><span class="pun">));</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Integer</span><span class="pln"> i </span><span class="pun">:</span><span class="pln"> l</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">i</span><span class="pun">.</span><span class="pln">intValue</span><span class="pun">()</span><span class="pln"> </span><span class="pun">==</span><span class="pln"> </span><span class="lit">5</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            l</span><span class="pun">.</span><span class="pln">remove</span><span class="pun">(</span><span class="pln">i</span><span class="pun">);</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="pln">l</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>This, of course, results in:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="typ">Exception</span><span class="pln"> in thread </span><span class="str">"main"</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">util</span><span class="pun">.</span><span class="typ">ConcurrentModificationException</span></code></pre>
+
+<p>... even though multiple threads aren't doing it... Anyway.</p>
+
+<p>What's the best solution to this problem? How can I remove an item 
+from the collection in a loop without throwing this exception?</p>
+
+<p>I'm also using an arbitrary <code>Collection</code> here, not necessarily an <code>ArrayList</code>, so you can't rely on <code>get</code>.</p>
+    </div>
+    <div class="post-taglist">
+        <a href="http://stackoverflow.com/questions/tagged/java" class="post-tag js-gps-track" title="show questions tagged 'java'" rel="tag">java</a> <a href="http://stackoverflow.com/questions/tagged/collections" class="post-tag js-gps-track" title="show questions tagged 'collections'" rel="tag">collections</a> 
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/q/223918" title="short permalink to this question" class="short-link" id="link-post-223918">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/223918/edit" class="suggest-edit-post" title="">improve this question</a></div>        
+    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/223918/revisions" title="show all edits to this post">edited <span title="2015-09-24 20:33:27Z" class="relativetime">Sep 24 at 20:33</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/4607317/budi"><div class="gravatar-wrapper-32"><img src="Iterating%20through%20a%20list,%20avoiding%20ConcurrentModificationException%20when%20removing%20in%20loop%20-%20Stack%20Overflow_files/af899d41b150721c39677e9ddf19daa7.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/4607317/budi">budi</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">510</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="3 silver badges"><span class="badge2"></span><span class="badgecount">3</span></span><span title="25 bronze badges"><span class="badge3"></span><span class="badgecount">25</span></span>
+    </div>
+</div>    </td>
+    <td class="post-signature owner">
+        <div class="user-info user-hover">
+    <div class="user-action-time">
+        asked <span title="2008-10-21 23:23:33Z" class="relativetime">Oct 21 '08 at 23:23</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/15055/claudiu"><div class="gravatar-wrapper-32"><img src="Iterating%20through%20a%20list,%20avoiding%20ConcurrentModificationException%20when%20removing%20in%20loop%20-%20Stack%20Overflow_files/7f71287b47b7189d11fe6d3fbc7ed2fe.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/15055/claudiu">Claudiu</a><br>
+        <span class="reputation-score" title="reputation score 79233" dir="ltr">79.2k</span><span title="73 gold badges"><span class="badge1"></span><span class="badgecount">73</span></span><span title="274 silver badges"><span class="badge2"></span><span class="badgecount">274</span></span><span title="459 bronze badges"><span class="badge3"></span><span class="badgecount">459</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</div>
+</td>
+        </tr>
+                
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-223918" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-21033171" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">2</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I doubt, you can have both time and space efficiency with a <i>better Logic</i> , no?</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/586836/vivek-jonam" title="1061 reputation" class="comment-user">vivek_jonam</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment21033171_223918"><span title="2013-02-20 11:35:11Z" class="relativetime-clean">Feb 20 '13 at 11:35</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-223918" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>        </tbody></table>
+</div>
+
+			<div id="answers">
+
+				<a name="tab-top"></a>
+				<div id="answers-header">
+					<div class="subheader answers-subheader">
+						<h2>
+								12 Answers
+                                <span style="display:none;" itemprop="answerCount">12</span>
+						</h2>
+						<div>
+							<div id="tabs">
+        <a href="http://stackoverflow.com/questions/223918/iterating-through-a-list-avoiding-concurrentmodificationexception-when-removing?answertab=active#tab-top" data-nav-xhref="" title="Answers with the latest activity first" data-value="active">active</a>
+        <a href="http://stackoverflow.com/questions/223918/iterating-through-a-list-avoiding-concurrentmodificationexception-when-removing?answertab=oldest#tab-top" data-nav-xhref="" title="Answers in the order they were provided" data-value="oldest">oldest</a>
+        <a class="youarehere" href="http://stackoverflow.com/questions/223918/iterating-through-a-list-avoiding-concurrentmodificationexception-when-removing?answertab=votes#tab-top" data-nav-xhref="" title="Answers with the highest score first" data-value="votes">votes</a>
+</div>
+						</div>
+					</div>    
+				</div>    
+
+
+
+
+  
+<a name="223929"></a>
+<div id="answer-223929" class="answer accepted-answer" data-answerid="223929" itemscope="" itemtype="http://schema.org/Answer" itemprop="acceptedAnswer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="223929" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">874</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+        <span class="vote-accepted-on load-accepted-answer-date" title="loading when this answer was accepted...">accepted</span>
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p><code>Iterator.remove()</code> is safe, you can use it like this:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="typ">List</span><span class="pun">&lt;</span><span class="typ">String</span><span class="pun">&gt;</span><span class="pln"> list </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">ArrayList</span><span class="pun">&lt;&gt;();</span><span class="pln">
+
+</span><span class="com">// This is a clever way to create the iterator and call iterator.hasNext() like</span><span class="pln">
+</span><span class="com">// you would do in a while-loop. It would be the same as doing:</span><span class="pln">
+</span><span class="com">//     Iterator&lt;String&gt; iterator = list.iterator();</span><span class="pln">
+</span><span class="com">//     while (iterator.hasNext()) {</span><span class="pln">
+</span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Iterator</span><span class="pun">&lt;</span><span class="typ">String</span><span class="pun">&gt;</span><span class="pln"> iterator </span><span class="pun">=</span><span class="pln"> list</span><span class="pun">.</span><span class="pln">iterator</span><span class="pun">();</span><span class="pln"> iterator</span><span class="pun">.</span><span class="pln">hasNext</span><span class="pun">();)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="typ">String</span><span class="pln"> string </span><span class="pun">=</span><span class="pln"> iterator</span><span class="pun">.</span><span class="pln">next</span><span class="pun">();</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">string</span><span class="pun">.</span><span class="pln">isEmpty</span><span class="pun">())</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="com">// Remove the current element from the iterator and the list.</span><span class="pln">
+        iterator</span><span class="pun">.</span><span class="pln">remove</span><span class="pun">();</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>Note that <code>Iterator.remove</code> is the only safe way to modify
+ a collection during iteration; the behavior is unspecified if the 
+underlying collection is modified in any other way while the iteration 
+is in progress.</p>
+
+<p>Source:</p>
+
+<p><a href="http://docs.oracle.com/javase/tutorial/collections/interfaces/collection.html">http://docs.oracle.com/javase/tutorial/collections/interfaces/collection.html</a></p>
+
+<hr>
+
+<p>And similarly, if you have a <code>ListIterator</code> and want to <em>add</em> items, you can use <a href="http://docs.oracle.com/javase/8/docs/api/java/util/ListIterator.html#add-E-"><code>ListIterator#add</code></a>, for the same reason you can use <code>Iterator#remove</code>&nbsp;— it's designed to allow it.</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/223929" title="short permalink to this answer" class="short-link" id="link-post-223929">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/223929/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/223929/revisions" title="show all edits to this post">edited <span title="2015-07-16 11:30:52Z" class="relativetime">Jul 16 at 11:30</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/157247/t-j-crowder"><div class="gravatar-wrapper-32"><img src="Iterating%20through%20a%20list,%20avoiding%20ConcurrentModificationException%20when%20removing%20in%20loop%20-%20Stack%20Overflow_files/ca3e484c121268e4c8302616b2395eb9.jpeg" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/157247/t-j-crowder">T.J. Crowder</a><br>
+        <span class="reputation-score" title="reputation score 403841" dir="ltr">404k</span><span title="58 gold badges"><span class="badge1"></span><span class="badgecount">58</span></span><span title="609 silver badges"><span class="badge2"></span><span class="badgecount">609</span></span><span title="755 bronze badges"><span class="badge3"></span><span class="badgecount">755</span></span>
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2008-10-21 23:27:15Z" class="relativetime">Oct 21 '08 at 23:27</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/12943/bill-k"><div class="gravatar-wrapper-32"><img src="Iterating%20through%20a%20list,%20avoiding%20ConcurrentModificationException%20when%20removing%20in%20loop%20-%20Stack%20Overflow_files/d6a9924b767fe91c46def7edc7bce035.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/12943/bill-k">Bill K</a><br>
+        <span class="reputation-score" title="reputation score 39385" dir="ltr">39.4k</span><span title="7 gold badges"><span class="badge1"></span><span class="badgecount">7</span></span><span title="64 silver badges"><span class="badge2"></span><span class="badgecount">64</span></span><span title="114 bronze badges"><span class="badge3"></span><span class="badgecount">114</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-223929" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="3" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-91628" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="supernova">61</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">wasn't aware this functionality was there. I usually copy the list and iterate over the copy.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/14359/michael-brown" title="6616 reputation" class="comment-user">Michael Brown</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment91628_223929"><span title="2008-10-21 23:30:02Z" class="relativetime-clean">Oct 21 '08 at 23:30</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-23064661" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">3</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">What if you want to remove an element other than the element returned in the current iteration?</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/1908482/eugen" title="730 reputation" class="comment-user">Eugen</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment23064661_223929"><span title="2013-04-22 09:51:53Z" class="relativetime-clean">Apr 22 '13 at 9:51</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-23081682" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">You have to use the .remove in the iterator and that is only able to remove the current element, so no :)</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/12943/bill-k" title="39385 reputation" class="comment-user">Bill K</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment23081682_223929"><span title="2013-04-22 18:00:39Z" class="relativetime-clean">Apr 22 '13 at 18:00</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-41705409" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Be aware that this is slower compared to using ConcurrentLinkedDeque or CopyOnWriteArrayList (at least in my case)</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/1413756/dan" title="134 reputation" class="comment-user">Dan</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment41705409_223929"><span title="2014-10-24 01:43:16Z" class="relativetime-clean">Oct 24 '14 at 1:43</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-42838173" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">i used to iterate backwards over an array and remove..</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/1578124/morksinaanab" title="174 reputation" class="comment-user">morksinaanab</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment42838173_223929"><span title="2014-11-27 15:38:08Z" class="relativetime-clean">Nov 27 '14 at 15:38</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-223929" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link  dno" title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."></a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link " title="expand to show all comments on this post" href="#" onclick="">show <b>3</b> more comments</a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+<script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk1716998176",4).setZone(44); });
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk1716998176"><a href="http://engine.adzerk.net/r?e=eyJhdiI6NDE0LCJhdCI6NCwiYnQiOjAsImNtIjozMjI1MTQsImNoIjoxMTc4LCJjayI6e30sImNyIjoxMTk1OTcyLCJkaSI6IjVlNmI1Mzk5ZWFiNTQ5NGY5ZThkOWNkNjUwM2E0M2Y5IiwiZG0iOjEsImZjIjoxMjY5MzMwLCJmbCI6ODY0MjI2LCJpcCI6IjEzNC42MC4xNDguOTciLCJrdyI6ImphdmEsY29sbGVjdGlvbnMiLCJudyI6MjIsInBjIjowLCJlYyI6MCwicHIiOjE1NjgsInJ0IjoxLCJyZiI6Imh0dHA6Ly9pbmZvLmphdmFydXNoLnJ1L0phdmFSdXNoX2xlY3R1cmVzX2Rpc2N1c3Npb24vMjAxMy8wNS8yMC9sZWN0dXJlLTcuaHRtbCIsInN0Ijo4Mjc3LCJ1ayI6InVlMS0xNTMxYjA5MmI0NDM0Mzc0YTQzMDUxZTJlNzRkNzA3NCIsInpuIjo0NCwidHMiOjE0NDkwNjAyOTg5NDAsImJmIjp0cnVlLCJwbiI6ImFkemVyazE3MTY5OTgxNzYiLCJ1ciI6Imh0dHA6Ly9jYXJlZXJzLnN0YWNrb3ZlcmZsb3cuY29tL3doeS1zdGFjaz91dG1fc291cmNlPXN0YWNrb3ZlcmZsb3cuY29tJnV0bV9tZWRpdW09YWQmdXRtX2NhbXBhaWduPWNhbmRpZGF0ZXMtYWRkLWN2JnV0bV9jb250ZW50PWxiLWNhcmVlcnMtZ2l0aHViIn0&amp;s=g55l4-e8nCe_LayHjZVzIInsy3A" rel="nofollow" target="_blank" title=""><img class="pcfykmqlcrtplekulgcu" src="Iterating%20through%20a%20list,%20avoiding%20ConcurrentModificationException%20when%20removing%20in%20loop%20-%20Stack%20Overflow_files/847ff0b628984d7e82568ef9658ca863.png" title="" alt="" height="90" width="728" border="0"></a><img class="pcfykmqlcrtplekulgcu" src="Iterating%20through%20a%20list,%20avoiding%20ConcurrentModificationException%20when%20removing%20in%20loop%20-%20Stack%20Overflow_files/i_003.gif" style="position:absolute;" height="0px" width="0px" border="0"></div>
+  
+<a name="223927"></a>
+<div id="answer-223927" class="answer" data-answerid="223927" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="223927" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">244</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Silly me:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="typ">Iterator</span><span class="pun">&lt;</span><span class="typ">Integer</span><span class="pun">&gt;</span><span class="pln"> iter </span><span class="pun">=</span><span class="pln"> l</span><span class="pun">.</span><span class="pln">iterator</span><span class="pun">();</span><span class="pln">
+</span><span class="kwd">while</span><span class="pln"> </span><span class="pun">(</span><span class="pln">iter</span><span class="pun">.</span><span class="pln">hasNext</span><span class="pun">())</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">iter</span><span class="pun">.</span><span class="pln">next</span><span class="pun">().</span><span class="pln">intValue</span><span class="pun">()</span><span class="pln"> </span><span class="pun">==</span><span class="pln"> </span><span class="lit">5</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        iter</span><span class="pun">.</span><span class="pln">remove</span><span class="pun">();</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>I assumed that since a foreach loop is syntactic sugar for iterating, using an iterator wouldn't help... but it gives you this <code>.remove()</code> functionality.</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/223927" title="short permalink to this answer" class="short-link" id="link-post-223927">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/223927/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/223927/revisions" title="show all edits to this post">edited <span title="2013-05-07 15:26:11Z" class="relativetime">May 7 '13 at 15:26</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature owner" align="right">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2008-10-21 23:26:31Z" class="relativetime">Oct 21 '08 at 23:26</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/15055/claudiu"><div class="gravatar-wrapper-32"><img src="Iterating%20through%20a%20list,%20avoiding%20ConcurrentModificationException%20when%20removing%20in%20loop%20-%20Stack%20Overflow_files/7f71287b47b7189d11fe6d3fbc7ed2fe.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/15055/claudiu">Claudiu</a><br>
+        <span class="reputation-score" title="reputation score 79233" dir="ltr">79.2k</span><span title="73 gold badges"><span class="badge1"></span><span class="badgecount">73</span></span><span title="274 silver badges"><span class="badge2"></span><span class="badgecount">274</span></span><span title="459 bronze badges"><span class="badge3"></span><span class="badgecount">459</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-223927" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-91631" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="hot">23</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">foreach loop <i>is</i> 
+syntactic sugar for iterating. However as you pointed out, you need to 
+call remove on the iterator - which foreach doesn't give you access to. 
+Hence the reason why you can't remove in a foreach loop (even though you
+ <i>are</i> actually using an iterator under the hood)</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/14160/madlep" title="19823 reputation" class="comment-user">madlep</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment91631_223927"><span title="2008-10-21 23:30:41Z" class="relativetime-clean">Oct 21 '08 at 23:30</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-17166432" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="supernova">30</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">+1 for example code to use iter.remove() in context, which Bill K's answer does not [directly] have.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/88821/eddified" title="943 reputation" class="comment-user">Eddified</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment17166432_223927"><span title="2012-10-03 17:01:24Z" class="relativetime-clean">Oct 3 '12 at 17:01</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-36010678" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I am removing iterator as you did here but I still keep getting same error. Any idea?</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/1106598/gokhan-arik" title="759 reputation" class="comment-user">Gokhan Arik</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment36010678_223927"><span title="2014-05-06 01:49:57Z" class="relativetime-clean">May 6 '14 at 1:49</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-223927" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="23908758"></a>
+<div id="answer-23908758" class="answer" data-answerid="23908758" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="23908758" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">57</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>With Java 8 you can use <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html#removeIf-java.util.function.Predicate-">the new <code>removeIf</code> method</a>. Applied to your example:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="typ">Collection</span><span class="pun">&lt;</span><span class="typ">Integer</span><span class="pun">&gt;</span><span class="pln"> coll </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">ArrayList</span><span class="pun">&lt;</span><span class="typ">Integer</span><span class="pun">&gt;();</span><span class="pln">
+</span><span class="com">//populate</span><span class="pln">
+
+coll</span><span class="pun">.</span><span class="pln">removeIf</span><span class="pun">(</span><span class="pln">i </span><span class="pun">-&gt;</span><span class="pln"> i</span><span class="pun">.</span><span class="pln">intValue</span><span class="pun">()</span><span class="pln"> </span><span class="pun">==</span><span class="pln"> </span><span class="lit">5</span><span class="pun">);</span></code></pre>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/23908758" title="short permalink to this answer" class="short-link" id="link-post-23908758">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/23908758/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/23908758/revisions" title="show all edits to this post">edited <span title="2014-05-28 10:23:22Z" class="relativetime">May 28 '14 at 10:23</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2014-05-28 10:11:44Z" class="relativetime">May 28 '14 at 10:11</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/829571/assylias"><div class="gravatar-wrapper-32"><img src="Iterating%20through%20a%20list,%20avoiding%20ConcurrentModificationException%20when%20removing%20in%20loop%20-%20Stack%20Overflow_files/nGMm2.jpg" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/829571/assylias">assylias</a><br>
+        <span class="reputation-score" title="reputation score 145439" dir="ltr">145k</span><span title="15 gold badges"><span class="badge1"></span><span class="badgecount">15</span></span><span title="260 silver badges"><span class="badge2"></span><span class="badgecount">260</span></span><span title="396 bronze badges"><span class="badge3"></span><span class="badgecount">396</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-23908758" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-53334368" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Ooooo! I was hoping something in Java 8 or 9 might help. This still seems rather verbose to me, but I still like it.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/146698/doc" title="264 reputation" class="comment-user">Doc</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment53334368_23908758"><span title="2015-09-23 18:25:15Z" class="relativetime-clean">Sep 23 at 18:25</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-23908758" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="2841570"></a>
+<div id="answer-2841570" class="answer" data-answerid="2841570" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="2841570" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">23</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Since the question has been already answered i.e. the best way is to 
+use the remove method of the iterator object, I would go into the 
+specifics of the place where the error <code>"java.util.ConcurrentModificationException"</code> is thrown.</p>
+
+<p>Every collection class has a private class which implements the Iterator interface and provides methods like <code>next()</code>, <code>remove()</code> and <code>hasNext()</code>.</p>
+
+<p>The code for next looks something like this...</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">public</span><span class="pln"> E next</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    checkForComodification</span><span class="pun">();</span><span class="pln">
+    </span><span class="kwd">try</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        E next </span><span class="pun">=</span><span class="pln"> get</span><span class="pun">(</span><span class="pln">cursor</span><span class="pun">);</span><span class="pln">
+        lastRet </span><span class="pun">=</span><span class="pln"> cursor</span><span class="pun">++;</span><span class="pln">
+        </span><span class="kwd">return</span><span class="pln"> next</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">catch</span><span class="pun">(</span><span class="typ">IndexOutOfBoundsException</span><span class="pln"> e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        checkForComodification</span><span class="pun">();</span><span class="pln">
+        </span><span class="kwd">throw</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">NoSuchElementException</span><span class="pun">();</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>Here the method <code>checkForComodification</code> is implemented as </p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">final</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> checkForComodification</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">modCount </span><span class="pun">!=</span><span class="pln"> expectedModCount</span><span class="pun">)</span><span class="pln">
+        </span><span class="kwd">throw</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">ConcurrentModificationException</span><span class="pun">();</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>So, as you can see, if you explicitly try to remove an element from the collection. It results in <code>modCount</code> getting different from <code>expectedModCount</code>, resulting in the exception <code>ConcurrentModificationException</code>.</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/2841570" title="short permalink to this answer" class="short-link" id="link-post-2841570">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/2841570/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/2841570/revisions" title="show all edits to this post">edited <span title="2015-06-19 10:22:32Z" class="relativetime">Jun 19 at 10:22</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/1216775/akhil-mittal"><div class="gravatar-wrapper-32"><img src="Iterating%20through%20a%20list,%20avoiding%20ConcurrentModificationException%20when%20removing%20in%20loop%20-%20Stack%20Overflow_files/1UFRy.jpg" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/1216775/akhil-mittal">akhil_mittal</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">4,442</span><span title="10 silver badges"><span class="badge2"></span><span class="badgecount">10</span></span><span title="24 bronze badges"><span class="badge3"></span><span class="badgecount">24</span></span>
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2010-05-15 19:57:56Z" class="relativetime">May 15 '10 at 19:57</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/275264/ashish"><div class="gravatar-wrapper-32"><img src="Iterating%20through%20a%20list,%20avoiding%20ConcurrentModificationException%20when%20removing%20in%20loop%20-%20Stack%20Overflow_files/da062cb7450b6dbd1028ec6f70976d54.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/275264/ashish">Ashish</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">933</span><span title="4 gold badges"><span class="badge1"></span><span class="badgecount">4</span></span><span title="13 silver badges"><span class="badge2"></span><span class="badgecount">13</span></span><span title="27 bronze badges"><span class="badge3"></span><span class="badgecount">27</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-2841570" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-53334445" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Very interesting. Thank you! I
+ often don't call remove() myself, I instead favour clearing the 
+collection after iterating through it. Not to say that's a good pattern,
+ just what I've been doing lately.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/146698/doc" title="264 reputation" class="comment-user">Doc</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment53334445_2841570"><span title="2015-09-23 18:27:34Z" class="relativetime-clean">Sep 23 at 18:27</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-2841570" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="223942"></a>
+<div id="answer-223942" class="answer" data-answerid="223942" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="223942" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">15</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>You can either use the iterator directly like you mentioned, or else 
+keep a second collection and add each item you want to remove to the new
+ collection, then removeAll at the end. This allows you to keep using 
+the type-safety of the for-each loop at the cost of increased memory use
+ and cpu time (shouldn't be a huge problem unless you have really, 
+really big lists or a really old computer)</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">String</span><span class="pun">[]</span><span class="pln"> args</span><span class="pun">)</span><span class="pln">
+</span><span class="pun">{</span><span class="pln">
+    </span><span class="typ">Collection</span><span class="pun">&lt;</span><span class="typ">Integer</span><span class="pun">&gt;</span><span class="pln"> l </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">ArrayList</span><span class="pun">&lt;</span><span class="typ">Integer</span><span class="pun">&gt;();</span><span class="pln">
+    </span><span class="typ">Collection</span><span class="pun">&lt;</span><span class="typ">Integer</span><span class="pun">&gt;</span><span class="pln"> itemsToRemove </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">ArrayList</span><span class="pun">&lt;</span><span class="typ">Integer</span><span class="pun">&gt;();</span><span class="pln">
+    </span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> i</span><span class="pun">=</span><span class="lit">0</span><span class="pun">;</span><span class="pln"> i </span><span class="pun">&lt;</span><span class="pln"> </span><span class="lit">10</span><span class="pun">;</span><span class="pln"> </span><span class="pun">++</span><span class="pln">i</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    l</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Integer</span><span class="pun">(</span><span class="lit">4</span><span class="pun">));</span><span class="pln">
+    l</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Integer</span><span class="pun">(</span><span class="lit">5</span><span class="pun">));</span><span class="pln">
+    l</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Integer</span><span class="pun">(</span><span class="lit">6</span><span class="pun">));</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+    </span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Integer</span><span class="pln"> i </span><span class="pun">:</span><span class="pln"> l</span><span class="pun">)</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">i</span><span class="pun">.</span><span class="pln">intValue</span><span class="pun">()</span><span class="pln"> </span><span class="pun">==</span><span class="pln"> </span><span class="lit">5</span><span class="pun">)</span><span class="pln">
+            itemsToRemove</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="pln">i</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    l</span><span class="pun">.</span><span class="pln">removeAll</span><span class="pun">(</span><span class="pln">itemsToRemove</span><span class="pun">);</span><span class="pln">
+    </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="pln">l</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/223942" title="short permalink to this answer" class="short-link" id="link-post-223942">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/223942/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2008-10-21 23:32:17Z" class="relativetime">Oct 21 '08 at 23:32</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/943/rodeoclown"><div class="gravatar-wrapper-32"><img src="Iterating%20through%20a%20list,%20avoiding%20ConcurrentModificationException%20when%20removing%20in%20loop%20-%20Stack%20Overflow_files/d2ffa472b72f308b8b5b6cc8ea528e4a.jpeg" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/943/rodeoclown">RodeoClown</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">4,884</span><span title="8 gold badges"><span class="badge1"></span><span class="badgecount">8</span></span><span title="34 silver badges"><span class="badge2"></span><span class="badgecount">34</span></span><span title="53 bronze badges"><span class="badge3"></span><span class="badgecount">53</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-223942" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="1" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-91656" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="warm">6</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">this is what i normally do, but the explicit iterator is a more elgant solution i feel.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/15055/claudiu" title="79233 reputation" class="comment-user owner">Claudiu</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment91656_223942"><span title="2008-10-21 23:51:25Z" class="relativetime-clean">Oct 21 '08 at 23:51</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-91667" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Fair enough, as long as you 
+aren't doing anything else with the iterator - having it exposed makes 
+it easier to do things like call .next() twice per loop etc. Not a huge 
+problem, but can cause issues if you are doing anything more complicated
+ than just running through a list to delete entries.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/943/rodeoclown" title="4884 reputation" class="comment-user">RodeoClown</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment91667_223942"><span title="2008-10-21 23:58:25Z" class="relativetime-clean">Oct 21 '08 at 23:58</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-93093" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@RodeoClown: in the original question, Claudiu is removing from the Collection, not the iterator.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/4249/matt-b" title="85660 reputation" class="comment-user">matt b</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment93093_223942"><span title="2008-10-22 14:29:29Z" class="relativetime-clean">Oct 22 '08 at 14:29</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-93920" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Removing from the iterator 
+removes from the underlying collection... but what I was saying in the 
+last comment is that if you are doing anything more complicated than 
+just looking for deletes in the loop (like processing correct data) 
+using the iterator can make some errors easier to make.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/943/rodeoclown" title="4884 reputation" class="comment-user">RodeoClown</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment93920_223942"><span title="2008-10-22 18:35:47Z" class="relativetime-clean">Oct 22 '08 at 18:35</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-93923" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">If it is a simple delete 
+values that aren't needed and the loop is only doing that one thing, 
+using the iterator directly and calling .remove() is absolutely fine.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/943/rodeoclown" title="4884 reputation" class="comment-user">RodeoClown</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment93923_223942"><span title="2008-10-22 18:36:37Z" class="relativetime-clean">Oct 22 '08 at 18:36</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-223942" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link  dno" title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."></a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link " title="expand to show all comments on this post" href="#" onclick="">show <b>1</b> more comment</a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="18357676"></a>
+<div id="answer-18357676" class="answer" data-answerid="18357676" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="18357676" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">10</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Same answer as <a href="http://stackoverflow.com/a/223927/1433392">Claudius</a> with a for loop:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Iterator</span><span class="pun">&lt;</span><span class="typ">Object</span><span class="pun">&gt;</span><span class="pln"> it </span><span class="pun">=</span><span class="pln"> objects</span><span class="pun">.</span><span class="pln">iterator</span><span class="pun">();</span><span class="pln"> it</span><span class="pun">.</span><span class="pln">hasNext</span><span class="pun">();)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="typ">Object</span><span class="pln"> object </span><span class="pun">=</span><span class="pln"> it</span><span class="pun">.</span><span class="pln">next</span><span class="pun">();</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">test</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        it</span><span class="pun">.</span><span class="pln">remove</span><span class="pun">();</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/18357676" title="short permalink to this answer" class="short-link" id="link-post-18357676">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/18357676/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/18357676/revisions" title="show all edits to this post">edited <span title="2014-08-29 09:43:13Z" class="relativetime">Aug 29 '14 at 9:43</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/1433392/maxime-lorant"><div class="gravatar-wrapper-32"><img src="Iterating%20through%20a%20list,%20avoiding%20ConcurrentModificationException%20when%20removing%20in%20loop%20-%20Stack%20Overflow_files/fddde6afcae4aa0dafbee013a1d0f7d4.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/1433392/maxime-lorant">Maxime Lorant</a><br>
+        <span class="reputation-score" title="reputation score 12732" dir="ltr">12.7k</span><span title="10 gold badges"><span class="badge1"></span><span class="badgecount">10</span></span><span title="31 silver badges"><span class="badge2"></span><span class="badgecount">31</span></span><span title="50 bronze badges"><span class="badge3"></span><span class="badgecount">50</span></span>
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2013-08-21 12:39:45Z" class="relativetime">Aug 21 '13 at 12:39</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/1485230/antzi"><div class="gravatar-wrapper-32"><img src="Iterating%20through%20a%20list,%20avoiding%20ConcurrentModificationException%20when%20removing%20in%20loop%20-%20Stack%20Overflow_files/50a581523d3174f592aa9486aebbf0d8.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/1485230/antzi">Antzi</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">3,401</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="11 silver badges"><span class="badge2"></span><span class="badgecount">11</span></span><span title="34 bronze badges"><span class="badge3"></span><span class="badgecount">34</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-18357676" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-18357676" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="13943008"></a>
+<div id="answer-13943008" class="answer" data-answerid="13943008" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="13943008" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">6</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>In <a href="https://github.com/goldmansachs/gs-collections">GS Collections</a>, the method removeIf defined on <a href="https://github.com/goldmansachs/gs-collections/blob/master/collections-api/src/main/java/com/gs/collections/api/collection/MutableCollection.java#L215">MutableCollection</a> will work:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="typ">MutableList</span><span class="pun">&lt;</span><span class="typ">Integer</span><span class="pun">&gt;</span><span class="pln"> list </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Lists</span><span class="pun">.</span><span class="pln">mutable</span><span class="pun">.</span><span class="pln">of</span><span class="pun">(</span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2</span><span class="pun">,</span><span class="pln"> </span><span class="lit">3</span><span class="pun">,</span><span class="pln"> </span><span class="lit">4</span><span class="pun">,</span><span class="pln"> </span><span class="lit">5</span><span class="pun">);</span><span class="pln">
+list</span><span class="pun">.</span><span class="pln">removeIf</span><span class="pun">(</span><span class="typ">Predicates</span><span class="pun">.</span><span class="pln">lessThan</span><span class="pun">(</span><span class="lit">3</span><span class="pun">));</span><span class="pln">
+</span><span class="typ">Assert</span><span class="pun">.</span><span class="pln">assertEquals</span><span class="pun">(</span><span class="typ">Lists</span><span class="pun">.</span><span class="pln">mutable</span><span class="pun">.</span><span class="pln">of</span><span class="pun">(</span><span class="lit">3</span><span class="pun">,</span><span class="pln"> </span><span class="lit">4</span><span class="pun">,</span><span class="pln"> </span><span class="lit">5</span><span class="pun">),</span><span class="pln"> list</span><span class="pun">);</span></code></pre>
+
+<p>In Java 8 with Lambda support this can be written as follows:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="typ">MutableList</span><span class="pun">&lt;</span><span class="typ">Integer</span><span class="pun">&gt;</span><span class="pln"> list </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Lists</span><span class="pun">.</span><span class="pln">mutable</span><span class="pun">.</span><span class="pln">of</span><span class="pun">(</span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2</span><span class="pun">,</span><span class="pln"> </span><span class="lit">3</span><span class="pun">,</span><span class="pln"> </span><span class="lit">4</span><span class="pun">,</span><span class="pln"> </span><span class="lit">5</span><span class="pun">);</span><span class="pln">
+list</span><span class="pun">.</span><span class="pln">removeIf</span><span class="pun">(</span><span class="pln">integer </span><span class="pun">-&gt;</span><span class="pln"> integer </span><span class="pun">&lt;</span><span class="pln"> </span><span class="lit">3</span><span class="pun">);</span><span class="pln">
+</span><span class="typ">Assert</span><span class="pun">.</span><span class="pln">assertEquals</span><span class="pun">(</span><span class="typ">Lists</span><span class="pun">.</span><span class="pln">mutable</span><span class="pun">.</span><span class="pln">of</span><span class="pun">(</span><span class="lit">3</span><span class="pun">,</span><span class="pln"> </span><span class="lit">4</span><span class="pun">,</span><span class="pln"> </span><span class="lit">5</span><span class="pun">),</span><span class="pln"> list</span><span class="pun">);</span></code></pre>
+
+<p>Note: I am a developer on GS Collections</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/13943008" title="short permalink to this answer" class="short-link" id="link-post-13943008">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/13943008/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2012-12-18 23:08:46Z" class="relativetime">Dec 18 '12 at 23:08</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/1570415/donald-raab"><div class="gravatar-wrapper-32"><img src="Iterating%20through%20a%20list,%20avoiding%20ConcurrentModificationException%20when%20removing%20in%20loop%20-%20Stack%20Overflow_files/e1c799e1ddc8f9e3ea7d2d0cfaea96ff.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/1570415/donald-raab">Donald Raab</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">1,158</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="10 silver badges"><span class="badge2"></span><span class="badgecount">10</span></span><span title="13 bronze badges"><span class="badge3"></span><span class="badgecount">13</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-13943008" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-13943008" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="25565900"></a>
+<div id="answer-25565900" class="answer" data-answerid="25565900" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="25565900" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">6</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>In such cases a common trick is (was?) to go backwards:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">for</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> i </span><span class="pun">=</span><span class="pln"> l</span><span class="pun">.</span><span class="pln">size</span><span class="pun">()</span><span class="pln"> </span><span class="pun">-</span><span class="pln"> </span><span class="lit">1</span><span class="pun">;</span><span class="pln"> i </span><span class="pun">&gt;=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"> i </span><span class="pun">--)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">l</span><span class="pun">.</span><span class="pln">get</span><span class="pun">(</span><span class="pln">i</span><span class="pun">)</span><span class="pln"> </span><span class="pun">==</span><span class="pln"> </span><span class="lit">5</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    l</span><span class="pun">.</span><span class="pln">remove</span><span class="pun">(</span><span class="pln">i</span><span class="pun">);</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>That said, I'm more than happy that you have better ways in Java 8, e.g. <code>removeIf</code> or <code>filter</code> on streams.</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/25565900" title="short permalink to this answer" class="short-link" id="link-post-25565900">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/25565900/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2014-08-29 09:56:15Z" class="relativetime">Aug 29 '14 at 9:56</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/375232/landei"><div class="gravatar-wrapper-32"><img src="Iterating%20through%20a%20list,%20avoiding%20ConcurrentModificationException%20when%20removing%20in%20loop%20-%20Stack%20Overflow_files/1d7b3caf0333d42f0e8c8e37561df378.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/375232/landei">Landei</a><br>
+        <span class="reputation-score" title="reputation score 35700" dir="ltr">35.7k</span><span title="8 gold badges"><span class="badge1"></span><span class="badgecount">8</span></span><span title="50 silver badges"><span class="badge2"></span><span class="badgecount">50</span></span><span title="138 bronze badges"><span class="badge3"></span><span class="badgecount">138</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-25565900" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-39937544" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">This is a good trick. But it wouldn't work on non-indexed collections like sets, and it'd be really slow on say linked lists.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/15055/claudiu" title="79233 reputation" class="comment-user owner">Claudiu</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment39937544_25565900"><span title="2014-08-29 16:12:49Z" class="relativetime-clean">Aug 29 '14 at 16:12</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-39959455" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@Claudiu Yes, this is definitely just for <code>ArrayList</code>s or similar collections.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/375232/landei" title="35700 reputation" class="comment-user">Landei</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment39959455_25565900"><span title="2014-08-30 15:47:56Z" class="relativetime-clean">Aug 30 '14 at 15:47</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-25565900" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="11201224"></a>
+<div id="answer-11201224" class="answer" data-answerid="11201224" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="11201224" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">3</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Make a copy of existing list and iterate over new copy.</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="typ">String</span><span class="pln"> str </span><span class="pun">:</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">ArrayList</span><span class="pun">&lt;</span><span class="typ">String</span><span class="pun">&gt;(</span><span class="pln">listOfStr</span><span class="pun">))</span><span class="pln">     
+</span><span class="pun">{</span><span class="pln">
+    listOfStr</span><span class="pun">.</span><span class="pln">remove</span><span class="pun">(</span><span class="com">/* object reference or index */</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/11201224" title="short permalink to this answer" class="short-link" id="link-post-11201224">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/11201224/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2012-06-26 05:28:35Z" class="relativetime">Jun 26 '12 at 5:28</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/1392956/priyank-doshi"><div class="gravatar-wrapper-32"><img src="Iterating%20through%20a%20list,%20avoiding%20ConcurrentModificationException%20when%20removing%20in%20loop%20-%20Stack%20Overflow_files/Mv7ij.jpg" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/1392956/priyank-doshi">Priyank Doshi</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">4,332</span><span title="5 gold badges"><span class="badge1"></span><span class="badgecount">5</span></span><span title="31 silver badges"><span class="badge2"></span><span class="badgecount">31</span></span><span title="57 bronze badges"><span class="badge3"></span><span class="badgecount">57</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-11201224" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-26950463" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="warm">8</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Making a copy sounds like a waste of resources.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/1485230/antzi" title="3401 reputation" class="comment-user">Antzi</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment26950463_11201224"><span title="2013-08-21 12:35:42Z" class="relativetime-clean">Aug 21 '13 at 12:35</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-11201224" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="20067507"></a>
+<div id="answer-20067507" class="answer" data-answerid="20067507" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="20067507" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">1</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>I have a suggestion for the problem above. No need of secondary list 
+or any extra time. Please find an example which would do the same stuff 
+but in a different way.</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="com">//"list" is ArrayList&lt;Object&gt;</span><span class="pln">
+</span><span class="com">//"state" is some boolean variable, which when set to true, Object will be removed from the list</span><span class="pln">
+</span><span class="kwd">int</span><span class="pln"> index </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">while</span><span class="pun">(</span><span class="pln">index </span><span class="pun">&lt;</span><span class="pln"> list</span><span class="pun">.</span><span class="pln">size</span><span class="pun">())</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="typ">Object</span><span class="pln"> r </span><span class="pun">=</span><span class="pln"> list</span><span class="pun">.</span><span class="pln">get</span><span class="pun">(</span><span class="pln">index</span><span class="pun">);</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pun">(</span><span class="pln"> state </span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        list</span><span class="pun">.</span><span class="pln">remove</span><span class="pun">(</span><span class="pln">index</span><span class="pun">);</span><span class="pln">
+        index </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln">
+        </span><span class="kwd">continue</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+    index </span><span class="pun">+=</span><span class="pln"> </span><span class="lit">1</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>
+This would avoid the Concurrency Exception.</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/20067507" title="short permalink to this answer" class="short-link" id="link-post-20067507">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/20067507/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/20067507/revisions" title="show all edits to this post">edited <span title="2014-12-11 18:41:25Z" class="relativetime">Dec 11 '14 at 18:41</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/41071/svick"><div class="gravatar-wrapper-32"><img src="Iterating%20through%20a%20list,%20avoiding%20ConcurrentModificationException%20when%20removing%20in%20loop%20-%20Stack%20Overflow_files/0ec0f5be7749c8cc8ccda4a809103f36.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/41071/svick">svick</a><br>
+        <span class="reputation-score" title="reputation score 104186" dir="ltr">104k</span><span title="18 gold badges"><span class="badge1"></span><span class="badgecount">18</span></span><span title="163 silver badges"><span class="badge2"></span><span class="badgecount">163</span></span><span title="258 bronze badges"><span class="badge3"></span><span class="badgecount">258</span></span>
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2013-11-19 09:18:45Z" class="relativetime">Nov 19 '13 at 9:18</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/1711555/nandhan-thiravia"><div class="gravatar-wrapper-32"><img src="Iterating%20through%20a%20list,%20avoiding%20ConcurrentModificationException%20when%20removing%20in%20loop%20-%20Stack%20Overflow_files/09c293cefa0c365f3560cad306466f9c.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/1711555/nandhan-thiravia">Nandhan Thiravia</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">42</span><span title="5 bronze badges"><span class="badge3"></span><span class="badgecount">5</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-20067507" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-35204056" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">The question explicitly states, that the OP is not necessary using <code>ArrayList</code> and thus cannot rely on <code>get()</code>. Otherwise probably a good approach, though.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/337120/kaskelotti" title="870 reputation" class="comment-user">kaskelotti</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment35204056_20067507"><span title="2014-04-13 11:09:19Z" class="relativetime-clean">Apr 13 '14 at 11:09</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-20067507" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="29994846"></a>
+<div id="answer-29994846" class="answer" data-answerid="29994846" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="29994846" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">-1</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>In addition to <code>@assylias</code> <a href="http://stackoverflow.com/a/23908758/303598">answer</a> you can also use the new <a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html" rel="nofollow">Stream</a> api if you use Java 8:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="typ">List</span><span class="pun">&lt;</span><span class="typ">Integer</span><span class="pun">&gt;</span><span class="pln"> l </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Arrays</span><span class="pun">.</span><span class="pln">asList</span><span class="pun">(</span><span class="lit">4</span><span class="pun">,</span><span class="pln"> </span><span class="lit">5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">6</span><span class="pun">);</span><span class="pln">
+
+</span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">boolean</span><span class="pln"> condition</span><span class="pun">(</span><span class="typ">Integer</span><span class="pln"> i</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">return</span><span class="pln"> i </span><span class="pun">==</span><span class="pln"> </span><span class="lit">5</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="kwd">static</span><span class="pln"> </span><span class="typ">Predicate</span><span class="pun">&lt;</span><span class="typ">Integer</span><span class="pun">&gt;</span><span class="pln"> predicate </span><span class="pun">=</span><span class="pln"> </span><span class="typ">YourClassName</span><span class="pun">::</span><span class="pln">condition</span><span class="pun">;</span><span class="pln">
+
+l</span><span class="pun">.</span><span class="pln">stream</span><span class="pun">()</span><span class="pln">
+    </span><span class="pun">.</span><span class="pln">filter</span><span class="pun">(</span><span class="pln">predicate</span><span class="pun">.</span><span class="pln">negate</span><span class="pun">())</span><span class="pln">
+    </span><span class="pun">.</span><span class="pln">forEach</span><span class="pun">(</span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">::</span><span class="pln">println</span><span class="pun">);</span></code></pre>
+
+<hr>
+
+<p>If you invert the condition, the solution is even more concise since you do not need to <code>negate()</code> the predicate, thus allowing you to use just the method reference:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="typ">List</span><span class="pun">&lt;</span><span class="typ">Integer</span><span class="pun">&gt;</span><span class="pln"> l </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Arrays</span><span class="pun">.</span><span class="pln">asList</span><span class="pun">(</span><span class="lit">4</span><span class="pun">,</span><span class="pln"> </span><span class="lit">5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">6</span><span class="pun">);</span><span class="pln">
+
+</span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">boolean</span><span class="pln"> condition</span><span class="pun">(</span><span class="typ">Integer</span><span class="pln"> i</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">return</span><span class="pln"> i </span><span class="pun">!=</span><span class="pln"> </span><span class="lit">5</span><span class="pun">;</span><span class="pln">    </span><span class="com">// &lt;-- condition has been negated</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+l</span><span class="pun">.</span><span class="pln">stream</span><span class="pun">()</span><span class="pln">
+    </span><span class="pun">.</span><span class="pln">filter</span><span class="pun">(</span><span class="typ">YourClassName</span><span class="pun">::</span><span class="pln">condition</span><span class="pun">)</span><span class="pln">
+    </span><span class="pun">.</span><span class="pln">forEach</span><span class="pun">(</span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">::</span><span class="pln">println</span><span class="pun">);</span></code></pre>
+
+<hr>
+
+<p>One of the beauties of this is that the stream is lazily evaluated, i.e. <code>filter()</code> operation is not actually evaluated until it is used by a terminal operation such as <code>forEach()</code>. More on this can be found in Oracle's <a href="https://docs.oracle.com/javase/tutorial/collections/streams/" rel="nofollow">Tutorial</a>.</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/29994846" title="short permalink to this answer" class="short-link" id="link-post-29994846">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/29994846/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/29994846/revisions" title="show all edits to this post">edited <span title="2015-05-01 21:00:42Z" class="relativetime">May 1 at 21:00</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2015-05-01 20:43:12Z" class="relativetime">May 1 at 20:43</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/303598/matsev"><div class="gravatar-wrapper-32"><img src="Iterating%20through%20a%20list,%20avoiding%20ConcurrentModificationException%20when%20removing%20in%20loop%20-%20Stack%20Overflow_files/409678a88624be6466e650f389ee8eaa.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/303598/matsev">matsev</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">9,795</span><span title="32 silver badges"><span class="badge2"></span><span class="badgecount">32</span></span><span title="64 bronze badges"><span class="badge3"></span><span class="badgecount">64</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-29994846" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-53090788" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">This only filters out the 
+elements, which ultimately either gets returned or is consumed via 
+side-effects.  It doesn't modify the existing, actual list, which I 
+think is what is intended.  <a href="http://stackoverflow.com/a/23908758/1079354">This answer</a> actually describes how an element can be removed with Java 8.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/1079354/makoto" title="44686 reputation" class="comment-user">Makoto</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment53090788_29994846"><span title="2015-09-16 23:11:50Z" class="relativetime-clean">Sep 16 at 23:11</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-29994846" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="19330700"></a>
+<div id="answer-19330700" class="answer" data-answerid="19330700" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="19330700" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">-2</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>this might not be the best way, but for most of the small cases this should acceptable:</p>
+
+<blockquote>
+  <p><em>"create a second empty-array and add only the ones you want to keep"</em></p>
+</blockquote>
+
+<p><sub>I don't remeber where I read this from... for justiness I will 
+make this wiki in hope someone finds it or just to don't earn rep I 
+don't deserve.</sub></p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/19330700" title="short permalink to this answer" class="short-link" id="link-post-19330700">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/19330700/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        answered <a href="http://stackoverflow.com/posts/19330700/revisions" title="show all edits to this post"><span title="2013-10-12 04:57:52Z" class="relativetime">Oct 12 '13 at 4:57</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info">
+    <div class="user-details">
+        <span class="community-wiki" title="This post is community owned as of Oct 12 '13 at 4:57. Votes do not generate reputation, and it can be edited by users with 100 rep">
+            community wiki
+        </span>
+    </div><br>
+    <div class="user-details">
+        <a id="history-19330700" href="http://stackoverflow.com/posts/19330700/revisions" title="show revision history for this post">
+        ajax333221
+        </a>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-19330700" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-19330700" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+				    <div class="question-status">
+        <h2>                    <b>protected</b> by <a href="http://stackoverflow.com/users/1079354/makoto">Makoto</a> <span dir="ltr"><span title="2015-09-22 14:40:34Z" class="relativetime">Sep 22 at 14:40</span></span>
+</h2>
+        <p>
+Thank you for your interest in this question. 
+Because it has attracted low-quality or spam answers that had to be removed, posting an answer now requires 10 <a href="http://stackoverflow.com/help/whats-reputation">reputation</a> on this site.
+<br><br>
+Would you like to answer one of these <a href="http://stackoverflow.com/unanswered?fromProtectedNotice=true">unanswered questions</a> instead?
+</p>
+    </div>
+
+
+
+
+
+						<h2 class="bottom-notice" data-loc="1">
+Not the answer you're looking for?							Browse other questions tagged <a href="http://stackoverflow.com/questions/tagged/java" class="post-tag" title="show questions tagged 'java'" rel="tag">java</a> <a href="http://stackoverflow.com/questions/tagged/collections" class="post-tag" title="show questions tagged 'collections'" rel="tag">collections</a>  or <a href="http://stackoverflow.com/questions/ask">ask your own question</a>.						</h2>
+			</div>
+		</div>
+				<div id="sidebar" class="show-votes">
+						    <div class="module question-stats">
+			        <table id="qinfo">
+			            <tbody><tr>
+			                <td>
+			                    <p class="label-key">asked</p>
+			                </td>
+			                <td style="padding-left: 10px">
+			                    <p class="label-key" title="2008-10-21 23:23:33Z"><b>7 years ago</b></p>
+			                </td>
+			            </tr>
+			            <tr>
+			                <td>
+			                    <p class="label-key">viewed</p>
+			                </td>
+
+			                <td style="padding-left: 10px">
+			                    <p class="label-key">
+			                        <b>223270 times</b>
+			                    </p>
+			                </td>
+			            </tr>
+			                <tr>
+			                    <td>
+			                        <p class="label-key">active</p>
+			                    </td>
+			                    <td style="padding-left: 10px">
+			                        <p class="label-key"><b><a href="http://stackoverflow.com/questions/223918/iterating-through-a-list-avoiding-concurrentmodificationexception-when-removing?lastactivity" class="lastactivity-link" title="2015-09-24 20:33:27Z">2 months ago</a></b></p>
+			                    </td>
+			                </tr>
+			        </tbody></table>
+			    </div>
+						
+			<script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk1328734159",[17,2221]).setZone(45); });
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk1328734159"><div id="careersadsdoublehigh" style="display:none;"></div><img class="pcfykmqlcrtplekulgcu" src="Iterating%20through%20a%20list,%20avoiding%20ConcurrentModificationException%20when%20removing%20in%20loop%20-%20Stack%20Overflow_files/i_002.gif" style="position:absolute;" height="0px" width="0px" border="0"></div>
+        <div class=" blue looking tagged" id="hireme"><a href="http://careers.stackoverflow.com/jobs" target="_blank" data-tz="1" data-ti="0" class="top"><span>Looking for a job?</span></a><div class="middle"><ul class="jobs"><li><a data-tz="3" data-ti="185673" href="http://careers.stackoverflow.com/jobs/99726/senior-javascript-frontend-entwickler-m-w-tresmo-gmbh" target="_blank" title="Senior Javascript Frontend-Entwickler (m/w) at tresmo GmbH. Click to learn more.">Senior Javascript Frontend-Entwickler (m/w)<br><div class="company">tresmo GmbH</div><div class="location" title="Augsburg, Germany">Augsburg, Germany</div><span class="post-tag">javascript</span><span class="post-tag">css3</span></a></li><li><a data-tz="3" data-ti="183231" href="http://careers.stackoverflow.com/jobs/97260/backend-entwickler-f%C3%BCr-onlinel%C3%B6sungen-im-java-wolters-kluwer-software-und" target="_blank" title="Backend Entwickler für Onlinelösungen im JAVA Umfeld (m/w) at Wolters Kluwer Software und Service GmbH. Click to learn more.">Backend Entwickler für Onlinelösungen im JAVA Umfeld (m/w)<br><div class="company">Wolters Kluwer Software un…</div><div class="location" title="Ludwigsburg, Deutschland">Ludwigsburg, Deutschland</div><span class="post-tag">maven</span><span class="post-tag">tomcat</span></a></li><li><a data-tz="3" data-ti="186255" href="http://careers.stackoverflow.com/jobs/100308/softwareentwickler-java-eclipse-m-w-eplan-software-service-gmbh" target="_blank" title="Softwareentwickler Java/Eclipse (m/w) at EPLAN Software &amp; Service GmbH &amp; Co. KG. Click to learn more.">Softwareentwickler Java/Eclipse (m/w)<br><div class="company">EPLAN Software &amp; Service G…</div><div class="location" title="Stuttgart, Deutschland">Stuttgart, Deutschland</div><span class="post-tag highlight">java</span><span class="post-tag">eclipse</span></a></li><li><a data-tz="3" data-ti="187977" href="http://careers.stackoverflow.com/jobs/102040/senior-web-engineer-m-w-nolte-lauth-gmbh" target="_blank" title="Senior Web Engineer (m/w) at NOLTE&amp;LAUTH GmbH. Click to learn more.">Senior Web Engineer (m/w)<br><div class="company">NOLTE&amp;LAUTH GmbH</div><div class="location" title="Stuttgart, Deutschland">Stuttgart, Deutschland</div><span class="post-tag">javascript</span><span class="post-tag">angularjs</span></a></li></ul></div><img class="impression" src="Iterating%20through%20a%20list,%20avoiding%20ConcurrentModificationException%20when%20removing%20in%20loop%20-%20Stack%20Overflow_files/i.gif" style="display:none;"></div>
+			<div style="margin-bottom: 10px;">
+        
+
+<style type="text/css">
+#newsletter-ad {
+    width: 190px;
+    height: 250px;
+    overflow: hidden;
+    background: url('//cdn.sstatic.net/stackoverflow/img/newsletter-ad.png?v=2');
+    padding: 0 15px 0 15px;
+}
+#newsletter-ad-header {
+    margin-top: 60px;
+}
+#newsletter-ad ul {
+    margin: 1em 0 1em 1.5em;
+}
+#newsletter-ad ul li {
+    margin-bottom: 5px;
+}
+#newsletter-signup-container {
+    text-align: center;
+}
+#newsletter-preview-container {
+    margin-top: 10px;
+    text-align: center;
+}
+#newsletter-email-input {
+    width: 200px;
+}
+</style>
+
+<script>
+    StackExchange.ready(function () {
+        StackExchange.newsletterAd.init();
+    });
+</script>
+
+<div id="newsletter-ad">
+    <p id="newsletter-ad-header">Get the <b>weekly newsletter!</b></p>
+    <ul>
+        <li>Top questions and answers</li>
+        <li>Important announcements</li>
+        <li>Unanswered questions</li>
+    </ul>
+    <div id="newsletter-signup-container"><input id="newsletter-signup" value="Sign up for the newsletter" type="button"></div>
+    <p id="newsletter-preview-container">see an <a href="http://stackexchange.com/newsletters/newsletter?site=stackoverflow.com" id="newsletter-preview">example newsletter</a></p>
+    <div class="dno">
+        
+<p class="privacy-policy-agreement">
+By subscribing, you agree to the <a href="http://stackexchange.com/legal/privacy-policy" target="_blank">privacy policy</a> and <a href="http://stackexchange.com/legal/terms-of-service" target="_blank">terms of service</a>.</p>
+<input name="legalLinksShown" value="1" type="hidden">
+    </div>
+</div>
+
+    </div>  
+    
+            <div class="module sidebar-linked">
+	<h4 id="h-linked">Linked</h4>
+	<div class="linked" data-tracker="lq=1">
+<div class="spacer">
+	<a href="http://stackoverflow.com/q/1196586?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted large">321</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/1196586/calling-remove-in-foreach-loop-in-java?lq=1" class="question-hyperlink">Calling remove in foreach loop in Java</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/18448671?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">80</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/18448671/how-to-avoid-concurrentmodificationexception-while-removing-elements-from-arr?lq=1" class="question-hyperlink">How to avoid “ConcurrentModificationException” while removing elements from `ArrayList` while iterating it?</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/3184883?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">44</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/3184883/concurrentmodificationexception-for-arraylist?lq=1" class="question-hyperlink">ConcurrentModificationException for ArrayList</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/1921104?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">20</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/1921104/loop-on-list-with-remove?lq=1" class="question-hyperlink">loop on list with remove</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/2513509?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">6</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/2513509/how-to-remove-concurrentmodificationexception?lq=1" class="question-hyperlink">how to remove ConcurrentModificationException</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/3517666?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">5</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/3517666/how-can-i-iterate-over-an-object-while-modifying-it-in-java?lq=1" class="question-hyperlink">How can I iterate over an object while modifying it in Java?</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/13344447?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">1</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/13344447/linkedlist-iterator-remove?lq=1" class="question-hyperlink">LinkedList iterator remove</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/17357959?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">-2</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/17357959/java-util-concurrentmodificationexception-while-removing-some-objects-from-a-l?lq=1" class="question-hyperlink">“java.util.ConcurrentModificationException” while removing some objects from a list</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/15444391?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">0</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/15444391/concurrentmodificationexception?lq=1" class="question-hyperlink">ConcurrentModificationException?</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/17732193?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">2</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/17732193/how-to-modify-objects-in-a-collection-at-the-same-time-while-iterating-through-t?lq=1" class="question-hyperlink">How to modify objects in a collection at the same time while iterating through the collection in java</a>
+</div>					<div class="spacer more">
+				<a href="http://stackoverflow.com/questions/linked/223918?lq=1">see more linked questions…</a>
+			</div>
+	</div>
+</div>
+
+				<div class="module sidebar-related">
+					<h4 id="h-related">Related</h4>
+                    <div class="related js-gps-related-questions" data-tracker="rq=1">
+                        <div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/1066589?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted extra-large">1606
+    </div>
+</a><a href="http://stackoverflow.com/questions/1066589/iterate-through-a-hashmap?rq=1" class="question-hyperlink">Iterate through a HashMap</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/2102499?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted large">122
+    </div>
+</a><a href="http://stackoverflow.com/questions/2102499/iterating-through-a-list-in-reverse-order-in-java?rq=1" class="question-hyperlink">Iterating through a list in reverse order in java</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/2113216?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted large">110
+    </div>
+</a><a href="http://stackoverflow.com/questions/2113216/which-is-more-efficient-a-for-each-loop-or-an-iterator?rq=1" class="question-hyperlink">Which is more efficient, a for-each loop, or an iterator?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/6596673?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">6
+    </div>
+</a><a href="http://stackoverflow.com/questions/6596673/java-concurrentmodificationexception-while-iterating-over-list?rq=1" class="question-hyperlink">Java : ConcurrentModificationException while iterating over list</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/18410035?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted large">186
+    </div>
+</a><a href="http://stackoverflow.com/questions/18410035/ways-to-iterate-over-a-list-in-java?rq=1" class="question-hyperlink">Ways to iterate over a List in java?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/21508058?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">4
+    </div>
+</a><a href="http://stackoverflow.com/questions/21508058/how-to-avoid-concurrentmodificationexception-while-iterating-this-collection?rq=1" class="question-hyperlink">How to avoid ConcurrentModificationException while iterating this collection?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/24030239?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/24030239/how-to-avoid-concurrentmodificationexception?rq=1" class="question-hyperlink">How to avoid ConcurrentModificationException?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/28260544?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">2
+    </div>
+</a><a href="http://stackoverflow.com/questions/28260544/concurrentmodificationexception-for-loop?rq=1" class="question-hyperlink">ConcurrentModificationException for loop</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/31102873?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">-1
+    </div>
+</a><a href="http://stackoverflow.com/questions/31102873/concurrentmodificationexception-when-iterating-through-connections?rq=1" class="question-hyperlink">ConcurrentModificationException when iterating through connections</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/32131671?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">1
+    </div>
+</a><a href="http://stackoverflow.com/questions/32131671/concurrentmodificationexception-when-iterate-through-list?rq=1" class="question-hyperlink">ConcurrentModificationException when iterate through List</a>
+</div>
+
+                    </div>
+				</div>
+            
+<div id="hot-network-questions" class="module">
+    <h4>
+        <a href="http://stackexchange.com/questions?tab=hot" class="js-gps-track" data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">
+            Hot Network Questions
+        </a>
+    </h4>
+    <ul>
+            <li>
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="http://math.stackexchange.com/questions/1553990/easy-way-of-memorizing-sin-cos-tan-values-for-the-unit-circle" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Easy way of memorizing Sin Cos Tan values for the unit circle.
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-electronics" title="Electrical Engineering Stack Exchange"></div><a href="http://electronics.stackexchange.com/questions/203757/which-is-faster-executing-a-program-from-rom-or-ram" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:135 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Which is faster, Executing a program from ROM or RAM?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="http://english.stackexchange.com/questions/290735/single-word-term-for-number-of-employees" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Single-word term for "Number of employees"
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-mathoverflow" title="MathOverflow"></div><a href="http://mathoverflow.net/questions/225055/is-lehmers-polynomial-solvable" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:504 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is Lehmer's polynomial solvable?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="http://worldbuilding.stackexchange.com/questions/30738/how-do-mermaids-perform-major-surgical-procedure-underwater" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How do mermaids perform major surgical procedure underwater?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-ell" title="English Language Learners Stack Exchange"></div><a href="http://ell.stackexchange.com/questions/74469/what-do-we-call-these-squeezed-papers" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:481 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What do we call these 'squeezed' papers?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-codereview" title="Code Review Stack Exchange"></div><a href="http://codereview.stackexchange.com/questions/112461/pythonish-integer-range-in-java" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:196 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Pythonish integer range in Java
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-outdoors" title="The Great Outdoors Stack Exchange"></div><a href="http://outdoors.stackexchange.com/questions/10042/repair-broken-plastic-buckle-in-the-middle-of-hiking-or-alternative-way-to-fix-i" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:395 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Repair broken plastic buckle in the middle of Hiking or alternative way to fix it
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-workplace" title="The Workplace Stack Exchange"></div><a href="http://workplace.stackexchange.com/questions/58481/how-to-resign-due-to-incompetence" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:423 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to resign due to incompetence?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="http://codegolf.stackexchange.com/questions/65329/is-q-a-quadratic-residue-of-n" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is q a quadratic residue of n?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-music" title="Music: Practice &amp; Theory Stack Exchange"></div><a href="http://music.stackexchange.com/questions/39871/learn-piano-one-hand-at-a-time-or-simultaneously" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:240 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Learn piano one hand at a time or simultaneously?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-rpg" title="Role-playing Games Stack Exchange"></div><a href="http://rpg.stackexchange.com/questions/71673/warhammer-war-pick-how-to-handle-this-in-dnd" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:122 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Warhammer = war pick, how to handle this in DnD?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-workplace" title="The Workplace Stack Exchange"></div><a href="http://workplace.stackexchange.com/questions/58526/doing-inefficient-work-vs-eliminating-own-position" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:423 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Doing Inefficient Work vs Eliminating Own Position
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-security" title="Information Security Stack Exchange"></div><a href="http://security.stackexchange.com/questions/106855/how-should-i-set-up-emergency-access-to-business-critical-secrets-in-case-i-am" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:162 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How should I set up emergency access to business-critical secrets in case I am "hit by a bus"?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-unix" title="Unix &amp; Linux Stack Exchange"></div><a href="http://unix.stackexchange.com/questions/246798/exit-status-in-bash-script" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:106 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Exit status in bash script
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="http://scifi.stackexchange.com/questions/109078/did-tolkien-create-any-characters-based-on-people-he-knew" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Did Tolkien create any characters based on people he knew?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-electronics" title="Electrical Engineering Stack Exchange"></div><a href="http://electronics.stackexchange.com/questions/203903/how-do-i-increase-the-drive-current-from-the-arduino-digital-pins" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:135 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How do I increase the drive current from the arduino digital pins?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-stats" title="Cross Validated"></div><a href="http://stats.stackexchange.com/questions/184609/regression-how-to-interpret-different-linear-relations" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:65 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Regression: how to interpret different linear relations?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="http://math.stackexchange.com/questions/1556307/what-are-the-applications-of-functional-analysis" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What are the applications of functional analysis?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="http://scifi.stackexchange.com/questions/109289/are-there-police-in-the-wizarding-world" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Are there police in the Wizarding World?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-superuser" title="Super User"></div><a href="http://superuser.com/questions/1007968/what-lubricants-can-be-safely-added-to-a-laptop-fan" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:3 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What lubricants can be safely added to a laptop fan?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-economics" title="Economics Stack Exchange"></div><a href="http://economics.stackexchange.com/questions/9531/how-does-black-friday-work" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:591 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How does Black Friday work?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-bicycles" title="Bicycles Stack Exchange"></div><a href="http://bicycles.stackexchange.com/questions/35812/is-the-shark-wheel-a-good-idea-for-a-bicycle" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:126 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is the 'shark wheel' a good idea for a bicycle?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-security" title="Information Security Stack Exchange"></div><a href="http://security.stackexchange.com/questions/106953/how-do-attackers-find-the-ip-addresses-of-recently-deployed-servers" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:162 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How do attackers find the IP addresses of recently deployed servers?
+                </a>
+
+            </li>
+    </ul>
+
+        
+</div>
+		</div>
+	
+<div id="feed-link">
+    <div id="feed-link-text">
+        <a href="http://stackoverflow.com/feeds/question/223918" title="feed of this question and its answers">
+            <span class="feed-icon"></span>question feed
+        </a>
+    </div>
+</div>	<script>
+StackExchange.ready(function(){$.get('/posts/223918/ivc/ecd5');});
+</script>
+<noscript>
+    <div><img src="/posts/223918/ivc/ecd5" class="dno" alt="" width="0" height="0"></div>
+</noscript><div style="display:none" id="prettify-lang">lang-java</div></div>
+
+
+        </div>
+    </div>
+    <div id="footer" class="categories">
+        <div class="footerwrap">
+            <div id="footer-menu">
+                <div class="top-footer-links">
+                        <a href="http://stackoverflow.com/tour">tour</a>
+                    <a href="http://stackoverflow.com/help">help</a>
+                    <a href="http://blog.stackoverflow.com/?blb=1">blog</a>
+                        <a href="http://chat.stackoverflow.com/">chat</a>
+                    <a href="http://data.stackexchange.com/">data</a>
+                    <a href="http://stackexchange.com/legal">legal</a>
+                    <a href="http://stackexchange.com/legal/privacy-policy">privacy policy</a>
+                    <a href="http://stackexchange.com/work-here">work here</a>
+                    <a href="http://stackexchange.com/mediakit">advertising info</a>
+
+                    <a onclick='StackExchange.switchMobile("on")'>mobile</a>
+                    <b><a href="http://stackoverflow.com/contact">contact us</a></b>
+                        <b><a href="http://meta.stackoverflow.com/">feedback</a></b>
+                    
+                </div>
+                <div id="footer-sites">
+                    <table>
+    <tbody><tr>
+            <th colspan="3">
+                Technology
+            </th>
+            <th>
+                Life / Arts
+            </th>
+            <th>
+                Culture / Recreation
+            </th>
+            <th>
+                Science
+            </th>
+            <th>
+                Other
+            </th>
+    </tr>
+    <tr>
+            <td>
+                <ol>
+                        <li><a href="http://stackoverflow.com/" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                        <li><a href="http://serverfault.com/" title="system and network administrators">Server Fault</a></li>
+                        <li><a href="http://superuser.com/" title="computer enthusiasts and power users">Super User</a></li>
+                        <li><a href="http://webapps.stackexchange.com/" title="power users of web applications">Web Applications</a></li>
+                        <li><a href="http://askubuntu.com/" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                        <li><a href="http://webmasters.stackexchange.com/" title="pro webmasters">Webmasters</a></li>
+                        <li><a href="http://gamedev.stackexchange.com/" title="professional and independent game developers">Game Development</a></li>
+                        <li><a href="http://tex.stackexchange.com/" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://programmers.stackexchange.com/" title="professional programmers interested in conceptual questions about software development">Programmers</a></li>
+                        <li><a href="http://unix.stackexchange.com/" title="users of Linux, FreeBSD and other Un*x-like operating systems">Unix &amp; Linux</a></li>
+                        <li><a href="http://apple.stackexchange.com/" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+                        <li><a href="http://wordpress.stackexchange.com/" title="WordPress developers and administrators">WordPress Development</a></li>
+                        <li><a href="http://gis.stackexchange.com/" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+                        <li><a href="http://electronics.stackexchange.com/" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+                        <li><a href="http://android.stackexchange.com/" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+                        <li><a href="http://security.stackexchange.com/" title="information security professionals">Information Security</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://dba.stackexchange.com/" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+                        <li><a href="http://drupal.stackexchange.com/" title="Drupal developers and administrators">Drupal Answers</a></li>
+                        <li><a href="http://sharepoint.stackexchange.com/" title="SharePoint enthusiasts">SharePoint</a></li>
+                        <li><a href="http://ux.stackexchange.com/" title="user experience researchers and experts">User Experience</a></li>
+                        <li><a href="http://mathematica.stackexchange.com/" title="users of Mathematica">Mathematica</a></li>
+                        <li><a href="http://salesforce.stackexchange.com/" title="Salesforce administrators, implementation experts, developers and anybody in-between">Salesforce</a></li>
+                        <li><a href="http://expressionengine.stackexchange.com/" title="administrators, end users, developers and designers for ExpressionEngine® CMS">ExpressionEngine® Answers</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#technology" class="more">
+                                more (13)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://photo.stackexchange.com/" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                        <li><a href="http://scifi.stackexchange.com/" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                        <li><a href="http://graphicdesign.stackexchange.com/" title="Graphic Design professionals, students, and enthusiasts">Graphic Design</a></li>
+                        <li><a href="http://movies.stackexchange.com/" title="movie and tv enthusiasts">Movies &amp; TV</a></li>
+                        <li><a href="http://cooking.stackexchange.com/" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                        <li><a href="http://diy.stackexchange.com/" title="contractors and serious DIYers">Home Improvement</a></li>
+                        <li><a href="http://money.stackexchange.com/" title="people who want to be financially literate">Personal Finance &amp; Money</a></li>
+                        <li><a href="http://academia.stackexchange.com/" title="academics and those enrolled in higher education">Academia</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#lifearts" class="more">
+                                more (9)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://english.stackexchange.com/" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                        <li><a href="http://skeptics.stackexchange.com/" title="scientific skepticism">Skeptics</a></li>
+                        <li><a href="http://judaism.stackexchange.com/" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                        <li><a href="http://travel.stackexchange.com/" title="road warriors and seasoned travelers">Travel</a></li>
+                        <li><a href="http://christianity.stackexchange.com/" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                        <li><a href="http://gaming.stackexchange.com/" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+                        <li><a href="http://bicycles.stackexchange.com/" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+                        <li><a href="http://rpg.stackexchange.com/" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#culturerecreation" class="more">
+                                more (21)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://math.stackexchange.com/" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                        <li><a href="http://stats.stackexchange.com/" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                        <li><a href="http://cstheory.stackexchange.com/" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                        <li><a href="http://physics.stackexchange.com/" title="active researchers, academics and students of physics">Physics</a></li>
+                        <li><a href="http://mathoverflow.net/" title="professional mathematicians">MathOverflow</a></li>
+                        <li><a href="http://chemistry.stackexchange.com/" title="scientists, academics, teachers and students">Chemistry</a></li>
+                        <li><a href="http://biology.stackexchange.com/" title="biology researchers, academics, and students">Biology</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#science" class="more">
+                                more (5)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://stackapps.com/" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                        <li><a href="http://meta.stackexchange.com/" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Exchange</a></li>
+                        <li><a href="http://area51.stackexchange.com/" title="proposing new sites in the Stack Exchange network">Area 51</a></li>
+                        <li><a href="http://careers.stackoverflow.com/">Stack Overflow Careers</a></li>
+                    
+                </ol>
+            </td>
+    </tr>
+</tbody></table>
+                </div>
+            </div>
+
+            <div id="copyright">
+                site design / logo © 2015 Stack Exchange Inc; user contributions licensed under <a href="http://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc by-sa 3.0</a> 
+                with <a href="http://blog.stackoverflow.com/2009/06/attribution-required/" rel="license">attribution required</a>
+            </div>
+            <div id="svnrev">
+                rev 2015.12.1.3044
+            </div>
+            
+        </div>
+    </div>
+    <noscript>
+        <div id="noscript-warning">Stack Overflow works best with JavaScript enabled<img src="http://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"></div>
+    </noscript>
+<script>var p = "http", d = "static"; if (document.location.protocol == "https:") { p += "s"; d = "engine"; } var z = document.createElement("script"); z.type = "text/javascript"; z.async = true; z.src = p + "://" + d + ".adzerk.net/ados.js"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(z, s);</script>
+<script>
+    var ados = ados || {};
+    ados.run = ados.run || [];
+    ados.run.push(function () { ados_setKeywords('java,collections');; ados_load(); });         
+</script>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-5620270-1');
+                        ga('set', 'dimension2', '|java|collections|');         ga('send', 'pageview');
+        var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+        (function () {
+            var ssl='https:'==document.location.protocol,
+                s=document.getElementsByTagName('script')[0],
+                qc=document.createElement('script');
+            qc.async=true;
+            qc.src=(ssl?'https://secure':'http://edge')+'.quantserve.com/quant.js';
+            s.parentNode.insertBefore(qc, s);
+            var sc=document.createElement('script');
+            sc.async=true;
+            sc.src=(ssl?'https://sb':'http://b') + '.scorecardresearch.com/beacon.js';
+            s.parentNode.insertBefore(sc, s);
+        })();
+        _comscore.push({ c1: "2", c2: "17440561" });
+        _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+    </script>
+            
+    
+</body></html>

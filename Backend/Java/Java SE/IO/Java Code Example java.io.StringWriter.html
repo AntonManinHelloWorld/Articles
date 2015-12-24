@@ -1,0 +1,1320 @@
+<html><head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Java Code Example java.io.StringWriter</title>
+        
+        <link type="text/css" rel="stylesheet" media="screen" href="Java%20Code%20Example%20java.io.StringWriter_files/style.css">  
+       
+        
+        
+		
+
+		<!--  <script language="javaScript" src="./includes/js/jquery.js"></script> -->
+		  <script src="Java%20Code%20Example%20java.io.StringWriter_files/analytics.js" async=""></script><script src="Java%20Code%20Example%20java.io.StringWriter_files/jquery_002.js"></script>
+		<script language="javaScript" src="Java%20Code%20Example%20java.io.StringWriter_files/jquery.js"></script>
+	
+		
+		
+		<link type="text/css" rel="stylesheet" media="screen" href="Java%20Code%20Example%20java.io.StringWriter_files/prettify.css"> 
+		<script language="javaScript" src="Java%20Code%20Example%20java.io.StringWriter_files/prettify.js"></script>
+   		<!--<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>-->
+	
+		<meta name="description" content="This page provides Java code examples for java.io.StringWriter. The examples are extracted from open source Java projects from GitHub. ">
+		<meta name="keywords" content="Java code examples, java.io.StringWriter">
+			
+		
+		
+	</head>
+
+	<body onload="prettyPrint()">
+	
+	<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			
+			  ga('create', 'UA-7639629-4', 'auto');
+			  ga('send', 'pageview');
+			
+			</script>
+
+<div id="header">
+<div id="header-center">
+    
+
+  <span id="login">
+
+<a href="http://www.programcreek.com/java-api-examples/">Search</a>
+	   
+	   		
+	    	&nbsp; &nbsp; 
+	     <a href="http://www.programcreek.com/">Home</a> 	 
+	   		
+	    	&nbsp; &nbsp;
+	    	
+	   		<a href="http://www.programcreek.com/java-api-examples/?action=index">Top APIs</a> 
+	   		
+<!--     	&nbsp; &nbsp; <a href="http://www.programcreek.com">Program Creek</a> -->
+	    	
+	</span>
+	
+	<span style="float:right; margin-top: 4px;">
+			<!-- sidebar-link-728 -->
+			<ins class="adsbygoogle" style="display:inline-block;width:728px;height:15px" data-ad-client="ca-pub-5732630628268628" data-ad-slot="9596194014"></ins>
+			<script>
+			(adsbygoogle = window.adsbygoogle || []).push({});
+			</script>
+	
+	</span>
+	<!-- 
+	<div class="addthis_toolbox addthis_default_style" style="width:50%">
+	<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+	<a class="addthis_button_tweet"></a>
+	<a class="addthis_counter addthis_pill_style"></a>
+	</div>
+	<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4e1a385f21c923c3"></script>
+-->
+    
+    
+
+<!--
+<span style="width:200px;float:left;">
+<table width="20%">
+<tr>
+<td width="50%"><div class="fb-like" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div></td>
+<td width="20%"><div class="g-plusone" data-size="medium"></div></td>
+<td width="30%"><a href="https://twitter.com/share" class="twitter-share-button" data-via="ProgramCreek">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></td>
+</tr>
+</table>
+</span>
+-->
+	
+	     
+</div>
+</div>
+    
+ <div style="clear:both;width:100%;"></div>
+	  
+ 
+    
+
+ <!-- main content-->
+<div id="content">
+	<div id="sidebar"> 
+		<script async="" src="Java%20Code%20Example%20java.io.StringWriter_files/adsbygoogle.js"></script>
+		
+		<!-- 
+		<script>
+			$(document).ready(function () {
+				$('#aspose').show(1000); // 10 seconds
+			});
+		</script>
+		<style>
+		#aspose{
+			width:300px;
+			height:250px;
+			display:none;
+		}
+		</style>
+		-->
+		
+		
+		<a id="aspose" href="http://www.aspose.com/total-component-suite.aspx?utm_source=ProgramCreek&amp;utm_medium=banner&amp;utm_campaign=ProgramCreek-1">
+		 <img src="Java%20Code%20Example%20java.io.StringWriter_files/aspose.gif" alt="" style="width:300px;height:250px;"> 
+		</a>
+		<div style="height: 10px;clear:both;"></div>
+		
+	
+		
+		<ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-5732630628268628" data-ad-slot="1961849215"></ins>
+		<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
+		
+		
+		<div style="height: 10px;clear:both;"></div>
+		
+		<ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-5732630628268628" data-ad-slot="3672680817"></ins>
+		<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
+		
+		<div style="height: 10px;clear:both;"></div>
+		
+		<ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-5732630628268628" data-ad-slot="5172936410"></ins>
+		<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
+		
+		<div style="height: 10px;clear:both;"></div>
+		
+		
+		<ins class="adsbygoogle" style="display:inline-block;width:300px;height:600px" data-ad-client="ca-pub-5732630628268628" data-ad-slot="6392048811"></ins>
+		<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
+		
+		<!-- 
+		<div style="height: 10px;clear:both;"></div>
+	
+		<div style="width:300px; text-align: center;">
+			
+			<ins class="adsbygoogle"
+			     style="display:inline-block;width:160px;height:600px"
+			     data-ad-client="ca-pub-5732630628268628"
+			     data-ad-slot="5302835215"></ins>
+			<script>
+			(adsbygoogle = window.adsbygoogle || []).push({});
+			</script>
+		</div>
+		-->
+		
+	</div>
+	<div id="main">
+		 
+<script language="javaScript">
+$(document).ready(function(){
+	//$('#memo').focus();
+	//click to delete
+	$('.vote').click(function(){
+		var item_id = $(this).attr("id");
+		$(this).text("thanks");
+		$(this).fadeOut(2000);
+		//alert(item_id);
+		$.post('back.php',
+		{
+			todo: "vote",
+			method_id: item_id 
+			
+		},function(data){
+			$('#memo_list').text(data);
+		});	
+	});
+});
+</script>
+
+
+<h1 style="font-weight:100;
+	color:#333333;
+	font-size: 28px;
+    line-height: 34px;
+	letter-spacing:0px;
+	text-align:center;">
+	Java Code Examples for <span style=""><i>java.io.StringWriter</i></span>
+</h1>
+	
+
+
+		
+						
+	<p>
+	The following are <span style="color:#0B97D4;"><i>20</i></span> Jave code examples that show how to use the  
+	<span style="color:#3A5099;">java.io.StringWriter</span> class. These examples are extracted from open source projects. 
+	You can click <img src="Java%20Code%20Example%20java.io.StringWriter_files/like.png" height="20" width="20"> to
+	 vote up the examples you like. Your votes will be used in an intelligent system to get 
+	 more and better code examples. Thanks! <br> 
+	</p>
+
+		<div style="width:100%; margin-top:20px;">
+				
+				<!-- 1. example number -->
+				<p style="color:#424345; font-weight:bold;">Example 1</p>
+				
+				<!-- 2. description -->
+				<div style=" margin: 0px 0 0 0;padding: 10px 0;">	
+					
+					<div style="float:right; color:grey; ">
+						&nbsp;&nbsp;10&nbsp;
+					</div>
+					<div class="vote" id="712">
+						<img alt="vote" src="Java%20Code%20Example%20java.io.StringWriter_files/like.png" width="25"> 
+					</div>
+					
+					<p>
+					From project <span style="font-style:italic;">101repo</span>, 
+					under directory  <span style="font-style:italic;">/technologies/GeFLo/src/org/json/</span>,
+					in source file <span style="font-style:italic;">JSONObject.java</span> 
+					</p>
+					
+					<p>
+						<!-- <a href="http://programcreek.com/java-api-examples/index.php?source_code=101repo-/technologies/GeFLo/src/org/json/-JSONObject.java"> -->
+							
+							
+						<!-- </a> -->
+					</p>
+				</div>
+				
+				<!-- 3. code -->	
+				<div class="code">					
+						<pre class="prettyprint"><span class="com">/** 
+ * Produce a string in double quotes with backslash sequences in all the right places. A backslash will be inserted within &lt;/, producing &lt;\/, allowing JSON text to be delivered in HTML. In JSON text, a string cannot contain a control character or an unescaped quote or backslash.
+ * @param string A String
+ * @return  A String correctly formatted for insertion in a JSON text.
+ */</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> quote</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> </span><span class="kwd">string</span><span class="pun">){</span><span class="pln">
+  </span><span class="highlight"><span class="typ">StringWriter</span></span><span class="pln"> sw</span><span class="pun">=</span><span class="kwd">new</span><span class="pln"> </span><span class="highlight"><span class="typ">StringWriter</span></span><span class="pun">();</span><span class="pln">
+</span><span class="kwd">synchronized</span><span class="pln"> </span><span class="pun">(</span><span class="pln">sw</span><span class="pun">.</span><span class="pln">getBuffer</span><span class="pun">())</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">try</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="kwd">return</span><span class="pln"> quote</span><span class="pun">(</span><span class="kwd">string</span><span class="pun">,</span><span class="pln">sw</span><span class="pun">).</span><span class="pln">toString</span><span class="pun">();</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+ </span><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="pln">    </span><span class="typ">IOException</span><span class="pln"> ignored</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="kwd">return</span><span class="pln"> </span><span class="str">""</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+ </span></pre><br>
+				</div>
+				
+						</div>	
+				
+		<div style="width:100%; margin-top:20px;">
+				
+				<!-- 1. example number -->
+				<p style="color:#424345; font-weight:bold;">Example 2</p>
+				
+				<!-- 2. description -->
+				<div style=" margin: 0px 0 0 0;padding: 10px 0;">	
+					
+					<div style="float:right; color:grey; ">
+						&nbsp;&nbsp;9&nbsp;
+					</div>
+					<div class="vote" id="9009">
+						<img alt="vote" src="Java%20Code%20Example%20java.io.StringWriter_files/like.png" width="25"> 
+					</div>
+					
+					<p>
+					From project <span style="font-style:italic;">abiquo</span>, 
+					under directory  <span style="font-style:italic;">/server/src/main/java/com/abiquo/mailman/velocity/</span>,
+					in source file <span style="font-style:italic;">VelocityManager.java</span> 
+					</p>
+					
+					<p>
+						<!-- <a href="http://programcreek.com/java-api-examples/index.php?source_code=abiquo-/server/src/main/java/com/abiquo/mailman/velocity/-VelocityManager.java"> -->
+							
+							
+						<!-- </a> -->
+					</p>
+				</div>
+				
+				<!-- 3. code -->	
+				<div class="code">					
+						<pre class="prettyprint"><span class="com">/** 
+ * Merge the template with the context param.
+ * @param templateName
+ * @param context
+ * @param langId
+ * @param brandId
+ * @return String - merged template.
+ * @throws ResourceNotFoundException
+ * @throws ParseErrorException
+ * @throws MethodInvocationException
+ * @throws Exception
+ */</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> merge</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> templateName</span><span class="pun">,</span><span class="typ">Context</span><span class="pln"> context</span><span class="pun">,</span><span class="typ">String</span><span class="pln"> langId</span><span class="pun">,</span><span class="typ">String</span><span class="pln"> brandId</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">throws</span><span class="pln"> </span><span class="typ">ResourceNotFoundException</span><span class="pun">,</span><span class="pln"> </span><span class="typ">ParseErrorException</span><span class="pun">,</span><span class="pln"> </span><span class="typ">MethodInvocationException</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Exception</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="typ">Writer</span><span class="pln"> result</span><span class="pun">=</span><span class="kwd">new</span><span class="pln"> </span><span class="highlight"><span class="typ">StringWriter</span></span><span class="pun">();</span><span class="pln">
+  </span><span class="typ">TemplateCacheBean</span><span class="pln"> cache</span><span class="pun">=</span><span class="pln">getTemplate</span><span class="pun">(</span><span class="pln">templateName</span><span class="pun">,</span><span class="pln">langId</span><span class="pun">,</span><span class="pln">brandId</span><span class="pun">);</span><span class="pln">
+  </span><span class="typ">Template</span><span class="pln"> </span><span class="kwd">template</span><span class="pun">=</span><span class="pln">cache</span><span class="pun">.</span><span class="pln">getTemplate</span><span class="pun">();</span><span class="pln">
+  </span><span class="kwd">template</span><span class="pun">.</span><span class="pln">merge</span><span class="pun">(</span><span class="pln">context</span><span class="pun">,</span><span class="pln">result</span><span class="pun">);</span><span class="pln">
+  </span><span class="kwd">return</span><span class="pln"> result</span><span class="pun">.</span><span class="pln">toString</span><span class="pun">();</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+ </span></pre><br>
+				</div>
+				
+								<script async="" src="Java%20Code%20Example%20java.io.StringWriter_files/adsbygoogle.js"></script>
+				<!-- java api examples -->
+				<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-5732630628268628" data-ad-slot="8058070175"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>
+
+
+
+						</div>	
+				
+		<div style="width:100%; margin-top:20px;">
+				
+				<!-- 1. example number -->
+				<p style="color:#424345; font-weight:bold;">Example 3</p>
+				
+				<!-- 2. description -->
+				<div style=" margin: 0px 0 0 0;padding: 10px 0;">	
+					
+					<div style="float:right; color:grey; ">
+						&nbsp;&nbsp;9&nbsp;
+					</div>
+					<div class="vote" id="9220">
+						<img alt="vote" src="Java%20Code%20Example%20java.io.StringWriter_files/like.png" width="25"> 
+					</div>
+					
+					<p>
+					From project <span style="font-style:italic;">able</span>, 
+					under directory  <span style="font-style:italic;">/able-soy/src/main/java/net/lightbody/able/soy/</span>,
+					in source file <span style="font-style:italic;">SilkenServlet.java</span> 
+					</p>
+					
+					<p>
+						<!-- <a href="http://programcreek.com/java-api-examples/index.php?source_code=able-/able-soy/src/main/java/net/lightbody/able/soy/-SilkenServlet.java"> -->
+							
+							
+						<!-- </a> -->
+					</p>
+				</div>
+				
+				<!-- 3. code -->	
+				<div class="code">					
+						<pre class="prettyprint"><span class="kwd">private</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> error</span><span class="pun">(</span><span class="typ">HttpServletRequest</span><span class="pln"> req</span><span class="pun">,</span><span class="typ">HttpServletResponse</span><span class="pln"> resp</span><span class="pun">,</span><span class="typ">Exception</span><span class="pln"> ex</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">throws</span><span class="pln"> </span><span class="typ">ServletException</span><span class="pun">,</span><span class="pln"> </span><span class="typ">IOException</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="typ">StringBuffer</span><span class="pln"> html</span><span class="pun">=</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">StringBuffer</span><span class="pun">();</span><span class="pln">
+  html</span><span class="pun">.</span><span class="pln">append</span><span class="pun">(</span><span class="str">"&lt;html&gt;"</span><span class="pun">);</span><span class="pln">
+  html</span><span class="pun">.</span><span class="pln">append</span><span class="pun">(</span><span class="str">"&lt;title&gt;Error&lt;/title&gt;"</span><span class="pun">);</span><span class="pln">
+  html</span><span class="pun">.</span><span class="pln">append</span><span class="pun">(</span><span class="str">"&lt;body bgcolor=\"#ffffff\"&gt;"</span><span class="pun">);</span><span class="pln">
+  html</span><span class="pun">.</span><span class="pln">append</span><span class="pun">(</span><span class="str">"&lt;h2&gt;SoyTemplateRenderer: Error rendering template&lt;/h2&gt;"</span><span class="pun">);</span><span class="pln">
+  html</span><span class="pun">.</span><span class="pln">append</span><span class="pun">(</span><span class="str">"&lt;pre style='white-space: pre-wrap;'&gt;"</span><span class="pun">);</span><span class="pln">
+  </span><span class="typ">String</span><span class="pln"> why</span><span class="pun">=</span><span class="pln">ex</span><span class="pun">.</span><span class="pln">getMessage</span><span class="pun">();</span><span class="pln">
+  </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">why </span><span class="pun">!=</span><span class="pln"> </span><span class="kwd">null</span><span class="pln"> </span><span class="pun">&amp;&amp;</span><span class="pln"> why</span><span class="pun">.</span><span class="pln">trim</span><span class="pun">().</span><span class="pln">length</span><span class="pun">()</span><span class="pln"> </span><span class="pun">&gt;</span><span class="pln"> </span><span class="lit">0</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    html</span><span class="pun">.</span><span class="pln">append</span><span class="pun">(</span><span class="pln">why</span><span class="pun">);</span><span class="pln">
+    html</span><span class="pun">.</span><span class="pln">append</span><span class="pun">(</span><span class="str">"&lt;br&gt;"</span><span class="pun">);</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+  </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">config</span><span class="pun">.</span><span class="pln">isShowStackTracesInErrors</span><span class="pun">())</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    html</span><span class="pun">.</span><span class="pln">append</span><span class="pun">(</span><span class="str">"&lt;br&gt;"</span><span class="pun">);</span><span class="pln">
+    </span><span class="highlight"><span class="typ">StringWriter</span></span><span class="pln"> sw</span><span class="pun">=</span><span class="kwd">new</span><span class="pln"> </span><span class="highlight"><span class="typ">StringWriter</span></span><span class="pun">();</span><span class="pln">
+    ex</span><span class="pun">.</span><span class="pln">printStackTrace</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">PrintWriter</span><span class="pun">(</span><span class="pln">sw</span><span class="pun">));</span><span class="pln">
+    html</span><span class="pun">.</span><span class="pln">append</span><span class="pun">(</span><span class="pln">sw</span><span class="pun">.</span><span class="pln">toString</span><span class="pun">());</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+  html</span><span class="pun">.</span><span class="pln">append</span><span class="pun">(</span><span class="str">"&lt;/pre&gt;"</span><span class="pun">);</span><span class="pln">
+  html</span><span class="pun">.</span><span class="pln">append</span><span class="pun">(</span><span class="str">"&lt;/body&gt;"</span><span class="pun">);</span><span class="pln">
+  html</span><span class="pun">.</span><span class="pln">append</span><span class="pun">(</span><span class="str">"&lt;/html&gt;"</span><span class="pun">);</span><span class="pln">
+  resp</span><span class="pun">.</span><span class="pln">getWriter</span><span class="pun">().</span><span class="pln">append</span><span class="pun">(</span><span class="pln">html</span><span class="pun">.</span><span class="pln">toString</span><span class="pun">());</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+ </span></pre><br>
+				</div>
+				
+						</div>	
+				
+		<div style="width:100%; margin-top:20px;">
+				
+				<!-- 1. example number -->
+				<p style="color:#424345; font-weight:bold;">Example 4</p>
+				
+				<!-- 2. description -->
+				<div style=" margin: 0px 0 0 0;padding: 10px 0;">	
+					
+					<div style="float:right; color:grey; ">
+						&nbsp;&nbsp;8&nbsp;
+					</div>
+					<div class="vote" id="2075">
+						<img alt="vote" src="Java%20Code%20Example%20java.io.StringWriter_files/like.png" width="25"> 
+					</div>
+					
+					<p>
+					From project <span style="font-style:italic;">2Degrees-Toolbox</span>, 
+					under directory  <span style="font-style:italic;">/Toolbox/src/biz/shadowservices/DegreesToolbox/</span>,
+					in source file <span style="font-style:italic;">HttpGetter.java</span> 
+					</p>
+					
+					<p>
+						<!-- <a href="http://programcreek.com/java-api-examples/index.php?source_code=2Degrees-Toolbox-/Toolbox/src/biz/shadowservices/DegreesToolbox/-HttpGetter.java"> -->
+							
+							
+						<!-- </a> -->
+					</p>
+				</div>
+				
+				<!-- 3. code -->	
+				<div class="code">					
+						<pre class="prettyprint"><span class="kwd">public</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> execute</span><span class="pun">()</span><span class="pln"> </span><span class="kwd">throws</span><span class="pln"> </span><span class="typ">ClientProtocolException</span><span class="pun">,</span><span class="pln"> </span><span class="typ">IOException</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">response </span><span class="pun">==</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="typ">HttpClient</span><span class="pln"> httpClient</span><span class="pun">=</span><span class="typ">HttpClientSingleton</span><span class="pun">.</span><span class="pln">getInstance</span><span class="pun">();</span><span class="pln">
+    </span><span class="typ">HttpResponse</span><span class="pln"> serverresponse</span><span class="pun">=</span><span class="kwd">null</span><span class="pun">;</span><span class="pln">
+    serverresponse</span><span class="pun">=</span><span class="pln">httpClient</span><span class="pun">.</span><span class="pln">execute</span><span class="pun">(</span><span class="pln">httpget</span><span class="pun">);</span><span class="pln">
+    </span><span class="typ">HttpEntity</span><span class="pln"> entity</span><span class="pun">=</span><span class="pln">serverresponse</span><span class="pun">.</span><span class="pln">getEntity</span><span class="pun">();</span><span class="pln">
+    </span><span class="highlight"><span class="typ">StringWriter</span></span><span class="pln"> writer</span><span class="pun">=</span><span class="kwd">new</span><span class="pln"> </span><span class="highlight"><span class="typ">StringWriter</span></span><span class="pun">();</span><span class="pln">
+    </span><span class="typ">IOUtils</span><span class="pun">.</span><span class="pln">copy</span><span class="pun">(</span><span class="pln">entity</span><span class="pun">.</span><span class="pln">getContent</span><span class="pun">(),</span><span class="pln">writer</span><span class="pun">);</span><span class="pln">
+    response</span><span class="pun">=</span><span class="pln">writer</span><span class="pun">.</span><span class="pln">toString</span><span class="pun">();</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+  </span><span class="kwd">return</span><span class="pln"> response</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+ </span></pre><br>
+				</div>
+				
+						</div>	
+				
+		<div style="width:100%; margin-top:20px;">
+				
+				<!-- 1. example number -->
+				<p style="color:#424345; font-weight:bold;">Example 5</p>
+				
+				<!-- 2. description -->
+				<div style=" margin: 0px 0 0 0;padding: 10px 0;">	
+					
+					<div style="float:right; color:grey; ">
+						&nbsp;&nbsp;8&nbsp;
+					</div>
+					<div class="vote" id="2092">
+						<img alt="vote" src="Java%20Code%20Example%20java.io.StringWriter_files/like.png" width="25"> 
+					</div>
+					
+					<p>
+					From project <span style="font-style:italic;">2Degrees-Toolbox</span>, 
+					under directory  <span style="font-style:italic;">/Toolbox/src/biz/shadowservices/DegreesToolbox/</span>,
+					in source file <span style="font-style:italic;">HttpPoster.java</span> 
+					</p>
+					
+					<p>
+						<!-- <a href="http://programcreek.com/java-api-examples/index.php?source_code=2Degrees-Toolbox-/Toolbox/src/biz/shadowservices/DegreesToolbox/-HttpPoster.java"> -->
+							
+							
+						<!-- </a> -->
+					</p>
+				</div>
+				
+				<!-- 3. code -->	
+				<div class="code">					
+						<pre class="prettyprint"><span class="kwd">public</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> execute</span><span class="pun">()</span><span class="pln"> </span><span class="kwd">throws</span><span class="pln"> </span><span class="typ">ClientProtocolException</span><span class="pun">,</span><span class="pln"> </span><span class="typ">IOException</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">response </span><span class="pun">==</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="typ">HttpClient</span><span class="pln"> httpClient</span><span class="pun">=</span><span class="typ">HttpClientSingleton</span><span class="pun">.</span><span class="pln">getInstance</span><span class="pun">();</span><span class="pln">
+    </span><span class="typ">HttpResponse</span><span class="pln"> serverresponse</span><span class="pun">=</span><span class="kwd">null</span><span class="pun">;</span><span class="pln">
+    serverresponse</span><span class="pun">=</span><span class="pln">httpClient</span><span class="pun">.</span><span class="pln">execute</span><span class="pun">(</span><span class="pln">httppost</span><span class="pun">);</span><span class="pln">
+    </span><span class="typ">HttpEntity</span><span class="pln"> entity</span><span class="pun">=</span><span class="pln">serverresponse</span><span class="pun">.</span><span class="pln">getEntity</span><span class="pun">();</span><span class="pln">
+    </span><span class="highlight"><span class="typ">StringWriter</span></span><span class="pln"> writer</span><span class="pun">=</span><span class="kwd">new</span><span class="pln"> </span><span class="highlight"><span class="typ">StringWriter</span></span><span class="pun">();</span><span class="pln">
+    </span><span class="typ">IOUtils</span><span class="pun">.</span><span class="pln">copy</span><span class="pun">(</span><span class="pln">entity</span><span class="pun">.</span><span class="pln">getContent</span><span class="pun">(),</span><span class="pln">writer</span><span class="pun">);</span><span class="pln">
+    response</span><span class="pun">=</span><span class="pln">writer</span><span class="pun">.</span><span class="pln">toString</span><span class="pun">();</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+  </span><span class="kwd">return</span><span class="pln"> response</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+ </span></pre><br>
+				</div>
+				
+						</div>	
+				
+		<div style="width:100%; margin-top:20px;">
+				
+				<!-- 1. example number -->
+				<p style="color:#424345; font-weight:bold;">Example 6</p>
+				
+				<!-- 2. description -->
+				<div style=" margin: 0px 0 0 0;padding: 10px 0;">	
+					
+					<div style="float:right; color:grey; ">
+						&nbsp;&nbsp;8&nbsp;
+					</div>
+					<div class="vote" id="3338">
+						<img alt="vote" src="Java%20Code%20Example%20java.io.StringWriter_files/like.png" width="25"> 
+					</div>
+					
+					<p>
+					From project <span style="font-style:italic;">3Dto2DApplet</span>, 
+					under directory  <span style="font-style:italic;">/src/java/nl/dannyarends/generic/</span>,
+					in source file <span style="font-style:italic;">Utils.java</span> 
+					</p>
+					
+					<p>
+						<!-- <a href="http://programcreek.com/java-api-examples/index.php?source_code=3Dto2DApplet-/src/java/nl/dannyarends/generic/-Utils.java"> -->
+							
+							
+						<!-- </a> -->
+					</p>
+				</div>
+				
+				<!-- 3. code -->	
+				<div class="code">					
+						<pre class="prettyprint"><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> log</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> message</span><span class="pun">,</span><span class="typ">Throwable</span><span class="pln"> throwable</span><span class="pun">){</span><span class="pln">
+  </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">throwable </span><span class="pun">!=</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="highlight"><span class="typ">StringWriter</span></span><span class="pln"> sw</span><span class="pun">;</span><span class="pln">
+    </span><span class="typ">PrintWriter</span><span class="pln"> pw</span><span class="pun">=</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">PrintWriter</span><span class="pun">(</span><span class="pln">sw</span><span class="pun">=</span><span class="kwd">new</span><span class="pln"> </span><span class="highlight"><span class="typ">StringWriter</span></span><span class="pun">());</span><span class="pln">
+    throwable</span><span class="pun">.</span><span class="pln">printStackTrace</span><span class="pun">(</span><span class="pln">pw</span><span class="pun">);</span><span class="pln">
+    message</span><span class="pun">=</span><span class="pln">message </span><span class="pun">+</span><span class="pln"> </span><span class="str">'\n'</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> sw</span><span class="pun">;</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+  log</span><span class="pun">(</span><span class="pln">message</span><span class="pun">,</span><span class="typ">System</span><span class="pun">.</span><span class="pln">err</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+ </span></pre><br>
+				</div>
+				
+						</div>	
+				
+		<div style="width:100%; margin-top:20px;">
+				
+				<!-- 1. example number -->
+				<p style="color:#424345; font-weight:bold;">Example 7</p>
+				
+				<!-- 2. description -->
+				<div style=" margin: 0px 0 0 0;padding: 10px 0;">	
+					
+					<div style="float:right; color:grey; ">
+						&nbsp;&nbsp;8&nbsp;
+					</div>
+					<div class="vote" id="4922">
+						<img alt="vote" src="Java%20Code%20Example%20java.io.StringWriter_files/like.png" width="25"> 
+					</div>
+					
+					<p>
+					From project <span style="font-style:italic;">Aardvark</span>, 
+					under directory  <span style="font-style:italic;">/aardvark-core/src/test/java/gw/vark/</span>,
+					in source file <span style="font-style:italic;">AardvarkHelpModeTest.java</span> 
+					</p>
+					
+					<p>
+						<!-- <a href="http://programcreek.com/java-api-examples/index.php?source_code=Aardvark-/aardvark-core/src/test/java/gw/vark/-AardvarkHelpModeTest.java"> -->
+							
+							
+						<!-- </a> -->
+					</p>
+				</div>
+				
+				<!-- 3. code -->	
+				<div class="code">					
+						<pre class="prettyprint"><span class="lit">@Test</span><span class="pln"> </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> printHelp</span><span class="pun">(){</span><span class="pln">
+  </span><span class="highlight"><span class="typ">StringWriter</span></span><span class="pln"> writer</span><span class="pun">=</span><span class="kwd">new</span><span class="pln"> </span><span class="highlight"><span class="typ">StringWriter</span></span><span class="pun">();</span><span class="pln">
+  </span><span class="typ">PrintWriter</span><span class="pln"> </span><span class="kwd">out</span><span class="pun">=</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">PrintWriter</span><span class="pun">(</span><span class="pln">writer</span><span class="pun">);</span><span class="pln">
+  </span><span class="typ">AardvarkHelpMode</span><span class="pun">.</span><span class="pln">printHelp</span><span class="pun">(</span><span class="kwd">out</span><span class="pun">);</span><span class="pln">
+  </span><span class="typ">String</span><span class="pln"> eol</span><span class="pun">=</span><span class="typ">System</span><span class="pun">.</span><span class="pln">getProperty</span><span class="pun">(</span><span class="str">"line.separator"</span><span class="pun">);</span><span class="pln">
+  assertEquals</span><span class="pun">(</span><span class="str">"Usage:"</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> eol </span><span class="pun">+</span><span class="pln"> </span><span class="str">"        vark [-f FILE] [options] [targets...]"</span><span class="pun">+</span><span class="pln"> eol</span><span class="pun">+</span><span class="pln"> </span><span class="str">""</span><span class="pun">+</span><span class="pln"> eol</span><span class="pun">+</span><span class="pln"> </span><span class="str">"Options:"</span><span class="pun">+</span><span class="pln"> eol</span><span class="pun">+</span><span class="pln"> </span><span class="str">"        -f, -file FILE              load a file-based Gosu source"</span><span class="pun">+</span><span class="pln"> eol</span><span class="pun">+</span><span class="pln"> </span><span class="str">"            -url URL                load a url-based Gosu source"</span><span class="pun">+</span><span class="pln"> eol</span><span class="pun">+</span><span class="pln"> </span><span class="str">"            -classpath PATH         additional elements for the classpath, separated by commas"</span><span class="pun">+</span><span class="pln"> eol</span><span class="pun">+</span><span class="pln"> </span><span class="str">"        -p, -projecthelp            show project help (e.g. targets)"</span><span class="pun">+</span><span class="pln"> eol</span><span class="pun">+</span><span class="pln"> </span><span class="str">"            -logger LOGGERFQN       class name for a logger to use"</span><span class="pun">+</span><span class="pln"> eol</span><span class="pun">+</span><span class="pln"> </span><span class="str">"        -q, -quiet                  run with logging in quiet mode"</span><span class="pun">+</span><span class="pln"> eol</span><span class="pun">+</span><span class="pln"> </span><span class="str">"        -v, -verbose                run with logging in verbose mode"</span><span class="pun">+</span><span class="pln"> eol</span><span class="pun">+</span><span class="pln"> </span><span class="str">"        -d, -debug                  run with logging in debug mode"</span><span class="pun">+</span><span class="pln"> eol</span><span class="pun">+</span><span class="pln"> </span><span class="str">"        -g, -graphical              starts the graphical Aardvark editor"</span><span class="pun">+</span><span class="pln"> eol</span><span class="pun">+</span><span class="pln"> </span><span class="str">"            -verify                 verifies the Gosu source"</span><span class="pun">+</span><span class="pln"> eol</span><span class="pun">+</span><span class="pln"> </span><span class="str">"            -version                displays the version of Aardvark"</span><span class="pun">+</span><span class="pln"> eol</span><span class="pun">+</span><span class="pln"> </span><span class="str">"        -h, -help                   displays this command-line help"</span><span class="pun">+</span><span class="pln"> eol</span><span class="pun">+</span><span class="pln"> </span><span class="str">""</span><span class="pun">,</span><span class="pln">writer</span><span class="pun">.</span><span class="pln">toString</span><span class="pun">());</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+ </span></pre><br>
+				</div>
+				
+						</div>	
+				
+		<div style="width:100%; margin-top:20px;">
+				
+				<!-- 1. example number -->
+				<p style="color:#424345; font-weight:bold;">Example 8</p>
+				
+				<!-- 2. description -->
+				<div style=" margin: 0px 0 0 0;padding: 10px 0;">	
+					
+					<div style="float:right; color:grey; ">
+						&nbsp;&nbsp;8&nbsp;
+					</div>
+					<div class="vote" id="5887">
+						<img alt="vote" src="Java%20Code%20Example%20java.io.StringWriter_files/like.png" width="25"> 
+					</div>
+					
+					<p>
+					From project <span style="font-style:italic;">abdera</span>, 
+					under directory  <span style="font-style:italic;">/extensions/opensearch/src/test/java/org/apache/abdera/test/ext/opensearch/model/</span>,
+					in source file <span style="font-style:italic;">OpenSearchAtomTest.java</span> 
+					</p>
+					
+					<p>
+						<!-- <a href="http://programcreek.com/java-api-examples/index.php?source_code=abdera-/extensions/opensearch/src/test/java/org/apache/abdera/test/ext/opensearch/model/-OpenSearchAtomTest.java"> -->
+							
+							
+						<!-- </a> -->
+					</p>
+				</div>
+				
+				<!-- 3. code -->	
+				<div class="code">					
+						<pre class="prettyprint"><span class="lit">@Test</span><span class="pln"> </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> testFeedSimpleExtension</span><span class="pun">()</span><span class="pln"> </span><span class="kwd">throws</span><span class="pln"> </span><span class="typ">Exception</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="typ">Feed</span><span class="pln"> feed</span><span class="pun">=</span><span class="typ">Abdera</span><span class="pun">.</span><span class="pln">getInstance</span><span class="pun">().</span><span class="pln">getFactory</span><span class="pun">().</span><span class="pln">newFeed</span><span class="pun">();</span><span class="pln">
+  feed</span><span class="pun">.</span><span class="pln">setId</span><span class="pun">(</span><span class="str">"http://example.com/opensearch+example"</span><span class="pun">);</span><span class="pln">
+  feed</span><span class="pun">.</span><span class="pln">setTitle</span><span class="pun">(</span><span class="str">"An OpenSearch Example"</span><span class="pun">);</span><span class="pln">
+  feed</span><span class="pun">.</span><span class="pln">setUpdated</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Date</span><span class="pun">());</span><span class="pln">
+  feed</span><span class="pun">.</span><span class="pln">addSimpleExtension</span><span class="pun">(</span><span class="typ">OpenSearchConstants</span><span class="pun">.</span><span class="pln">TOTAL_RESULTS</span><span class="pun">,</span><span class="typ">String</span><span class="pun">.</span><span class="pln">valueOf</span><span class="pun">(</span><span class="pln">TOTAL_RESULTS</span><span class="pun">));</span><span class="pln">
+  feed</span><span class="pun">.</span><span class="pln">addSimpleExtension</span><span class="pun">(</span><span class="typ">OpenSearchConstants</span><span class="pun">.</span><span class="pln">ITEMS_PER_PAGE</span><span class="pun">,</span><span class="typ">String</span><span class="pun">.</span><span class="pln">valueOf</span><span class="pun">(</span><span class="pln">ITEMS_PER_PAGE</span><span class="pun">));</span><span class="pln">
+  </span><span class="highlight"><span class="typ">StringWriter</span></span><span class="pln"> writer</span><span class="pun">=</span><span class="kwd">new</span><span class="pln"> </span><span class="highlight"><span class="typ">StringWriter</span></span><span class="pun">();</span><span class="pln">
+  feed</span><span class="pun">.</span><span class="pln">writeTo</span><span class="pun">(</span><span class="pln">writer</span><span class="pun">);</span><span class="pln">
+  </span><span class="typ">String</span><span class="pln"> result</span><span class="pun">=</span><span class="pln">writer</span><span class="pun">.</span><span class="pln">toString</span><span class="pun">();</span><span class="pln">
+  assertXpathEvaluatesTo</span><span class="pun">(</span><span class="typ">String</span><span class="pun">.</span><span class="pln">valueOf</span><span class="pun">(</span><span class="pln">TOTAL_RESULTS</span><span class="pun">),</span><span class="str">"//os:totalResults"</span><span class="pun">,</span><span class="pln">result</span><span class="pun">);</span><span class="pln">
+  assertXpathEvaluatesTo</span><span class="pun">(</span><span class="typ">String</span><span class="pun">.</span><span class="pln">valueOf</span><span class="pun">(</span><span class="pln">ITEMS_PER_PAGE</span><span class="pun">),</span><span class="str">"//os:itemsPerPage"</span><span class="pun">,</span><span class="pln">result</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+ </span></pre><br>
+				</div>
+				
+						</div>	
+				
+		<div style="width:100%; margin-top:20px;">
+				
+				<!-- 1. example number -->
+				<p style="color:#424345; font-weight:bold;">Example 9</p>
+				
+				<!-- 2. description -->
+				<div style=" margin: 0px 0 0 0;padding: 10px 0;">	
+					
+					<div style="float:right; color:grey; ">
+						&nbsp;&nbsp;8&nbsp;
+					</div>
+					<div class="vote" id="5891">
+						<img alt="vote" src="Java%20Code%20Example%20java.io.StringWriter_files/like.png" width="25"> 
+					</div>
+					
+					<p>
+					From project <span style="font-style:italic;">abdera</span>, 
+					under directory  <span style="font-style:italic;">/extensions/opensearch/src/test/java/org/apache/abdera/test/ext/opensearch/model/</span>,
+					in source file <span style="font-style:italic;">TestSelectNodes.java</span> 
+					</p>
+					
+					<p>
+						<!-- <a href="http://programcreek.com/java-api-examples/index.php?source_code=abdera-/extensions/opensearch/src/test/java/org/apache/abdera/test/ext/opensearch/model/-TestSelectNodes.java"> -->
+							
+							
+						<!-- </a> -->
+					</p>
+				</div>
+				
+				<!-- 3. code -->	
+				<div class="code">					
+						<pre class="prettyprint"><span class="lit">@Test</span><span class="pln"> </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> testJson</span><span class="pun">()</span><span class="pln"> </span><span class="kwd">throws</span><span class="pln"> </span><span class="typ">IOException</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="typ">Abdera</span><span class="pln"> abdera</span><span class="pun">=</span><span class="typ">Abdera</span><span class="pun">.</span><span class="pln">getInstance</span><span class="pun">();</span><span class="pln">
+  </span><span class="typ">Feed</span><span class="pln"> f</span><span class="pun">=</span><span class="pln">abdera</span><span class="pun">.</span><span class="pln">newFeed</span><span class="pun">();</span><span class="pln">
+  </span><span class="typ">IntegerElement</span><span class="pln"> ext</span><span class="pun">=</span><span class="pln">f</span><span class="pun">.</span><span class="pln">addExtension</span><span class="pun">(</span><span class="typ">OpenSearchConstants</span><span class="pun">.</span><span class="pln">START_INDEX</span><span class="pun">);</span><span class="pln">
+  ext</span><span class="pun">.</span><span class="pln">setValue</span><span class="pun">(</span><span class="lit">101</span><span class="pun">);</span><span class="pln">
+  </span><span class="typ">Writer</span><span class="pln"> json</span><span class="pun">=</span><span class="pln">abdera</span><span class="pun">.</span><span class="pln">getWriterFactory</span><span class="pun">().</span><span class="pln">getWriter</span><span class="pun">(</span><span class="str">"json"</span><span class="pun">);</span><span class="pln">
+  </span><span class="highlight"><span class="typ">StringWriter</span></span><span class="pln"> stWriter</span><span class="pun">=</span><span class="kwd">new</span><span class="pln"> </span><span class="highlight"><span class="typ">StringWriter</span></span><span class="pun">();</span><span class="pln">
+  </span><span class="typ">PrintWriter</span><span class="pln"> pWriter</span><span class="pun">=</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">PrintWriter</span><span class="pun">(</span><span class="pln">stWriter</span><span class="pun">);</span><span class="pln">
+  f</span><span class="pun">.</span><span class="pln">writeTo</span><span class="pun">(</span><span class="pln">json</span><span class="pun">,</span><span class="pln">pWriter</span><span class="pun">);</span><span class="pln">
+  assertTrue</span><span class="pun">(</span><span class="pln">stWriter</span><span class="pun">.</span><span class="pln">toString</span><span class="pun">().</span><span class="pln">contains</span><span class="pun">(</span><span class="str">"101"</span><span class="pun">));</span><span class="pln">
+  assertTrue</span><span class="pun">(</span><span class="pln">stWriter</span><span class="pun">.</span><span class="pln">toString</span><span class="pun">().</span><span class="pln">contains</span><span class="pun">(</span><span class="str">"os:startIndex"</span><span class="pun">));</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+ </span></pre><br>
+				</div>
+				
+						</div>	
+				
+		<div style="width:100%; margin-top:20px;">
+				
+				<!-- 1. example number -->
+				<p style="color:#424345; font-weight:bold;">Example 10</p>
+				
+				<!-- 2. description -->
+				<div style=" margin: 0px 0 0 0;padding: 10px 0;">	
+					
+					<div style="float:right; color:grey; ">
+						&nbsp;&nbsp;8&nbsp;
+					</div>
+					<div class="vote" id="6638">
+						<img alt="vote" src="Java%20Code%20Example%20java.io.StringWriter_files/like.png" width="25"> 
+					</div>
+					
+					<p>
+					From project <span style="font-style:italic;">abdera</span>, 
+					under directory  <span style="font-style:italic;">/server/src/test/java/org/apache/abdera/protocol/server/test/multipart/</span>,
+					in source file <span style="font-style:italic;">MultipartRelatedTest.java</span> 
+					</p>
+					
+					<p>
+						<!-- <a href="http://programcreek.com/java-api-examples/index.php?source_code=abdera-/server/src/test/java/org/apache/abdera/protocol/server/test/multipart/-MultipartRelatedTest.java"> -->
+							
+							
+						<!-- </a> -->
+					</p>
+				</div>
+				
+				<!-- 3. code -->	
+				<div class="code">					
+						<pre class="prettyprint"><span class="lit">@Test</span><span class="pln"> </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> testServiceDocument</span><span class="pun">()</span><span class="pln"> </span><span class="kwd">throws</span><span class="pln"> </span><span class="typ">Exception</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  initializeJetty</span><span class="pun">(</span><span class="str">"/"</span><span class="pun">);</span><span class="pln">
+  </span><span class="typ">AbderaClient</span><span class="pln"> client</span><span class="pun">=</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">AbderaClient</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Abdera</span><span class="pun">());</span><span class="pln">
+  </span><span class="typ">ClientResponse</span><span class="pln"> res</span><span class="pun">=</span><span class="pln">client</span><span class="pun">.</span><span class="kwd">get</span><span class="pun">(</span><span class="str">"http://localhost:9002/"</span><span class="pun">);</span><span class="pln">
+  assertEquals</span><span class="pun">(</span><span class="lit">200</span><span class="pun">,</span><span class="pln">res</span><span class="pun">.</span><span class="pln">getStatus</span><span class="pun">());</span><span class="pln">
+  </span><span class="highlight"><span class="typ">StringWriter</span></span><span class="pln"> sw</span><span class="pun">=</span><span class="kwd">new</span><span class="pln"> </span><span class="highlight"><span class="typ">StringWriter</span></span><span class="pun">();</span><span class="pln">
+  res</span><span class="pun">.</span><span class="pln">getDocument</span><span class="pun">().</span><span class="pln">writeTo</span><span class="pun">(</span><span class="pln">sw</span><span class="pun">);</span><span class="pln">
+  assertTrue</span><span class="pun">(</span><span class="pln">sw</span><span class="pun">.</span><span class="pln">toString</span><span class="pun">().</span><span class="pln">contains</span><span class="pun">(</span><span class="str">"accept alternate=\"multipart-related\"&gt;image/png"</span><span class="pun">));</span><span class="pln">
+  assertTrue</span><span class="pun">(</span><span class="pln">sw</span><span class="pun">.</span><span class="pln">toString</span><span class="pun">().</span><span class="pln">contains</span><span class="pun">(</span><span class="str">"accept&gt;video/*"</span><span class="pun">));</span><span class="pln">
+  assertTrue</span><span class="pun">(</span><span class="pln">sw</span><span class="pun">.</span><span class="pln">toString</span><span class="pun">().</span><span class="pln">contains</span><span class="pun">(</span><span class="str">"accept&gt;image/jpg"</span><span class="pun">));</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+ </span></pre><br>
+				</div>
+				
+						</div>	
+				
+		<div style="width:100%; margin-top:20px;">
+				
+				<!-- 1. example number -->
+				<p style="color:#424345; font-weight:bold;">Example 11</p>
+				
+				<!-- 2. description -->
+				<div style=" margin: 0px 0 0 0;padding: 10px 0;">	
+					
+					<div style="float:right; color:grey; ">
+						&nbsp;&nbsp;8&nbsp;
+					</div>
+					<div class="vote" id="10395">
+						<img alt="vote" src="Java%20Code%20Example%20java.io.StringWriter_files/like.png" width="25"> 
+					</div>
+					
+					<p>
+					From project <span style="font-style:italic;">acceleo</span>, 
+					under directory  <span style="font-style:italic;">/plugins/org.eclipse.acceleo.common/src/org/eclipse/acceleo/common/utils/</span>,
+					in source file <span style="font-style:italic;">ModelUtils.java</span> 
+					</p>
+					
+					<p>
+						<!-- <a href="http://programcreek.com/java-api-examples/index.php?source_code=acceleo-/plugins/org.eclipse.acceleo.common/src/org/eclipse/acceleo/common/utils/-ModelUtils.java"> -->
+							
+							
+						<!-- </a> -->
+					</p>
+				</div>
+				
+				<!-- 3. code -->	
+				<div class="code">					
+						<pre class="prettyprint"><span class="com">/** 
+ * Serializes the given EObjet as a String.
+ * @param root Root of the objects to be serialized.
+ * @return The given EObjet serialized as a String.
+ * @throws IOException Thrown if an I/O operation has failed or been interrupted during the saving process.
+ */</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> serialize</span><span class="pun">(</span><span class="typ">EObject</span><span class="pln"> root</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">throws</span><span class="pln"> </span><span class="typ">IOException</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">root </span><span class="pun">==</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">throw</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">NullPointerException</span><span class="pun">(</span><span class="typ">AcceleoCommonMessages</span><span class="pun">.</span><span class="pln">getString</span><span class="pun">(</span><span class="str">"ModelUtils.NullSaveRoot"</span><span class="pun">));</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+  </span><span class="kwd">final</span><span class="pln"> </span><span class="typ">EObject</span><span class="pln"> copyRoot</span><span class="pun">=</span><span class="typ">EcoreUtil</span><span class="pun">.</span><span class="pln">copy</span><span class="pun">(</span><span class="pln">root</span><span class="pun">);</span><span class="pln">
+  attachResource</span><span class="pun">(</span><span class="pln">URI</span><span class="pun">.</span><span class="pln">createFileURI</span><span class="pun">(</span><span class="str">"resource.xml"</span><span class="pun">),</span><span class="pln">copyRoot</span><span class="pun">);</span><span class="pln">
+  </span><span class="kwd">final</span><span class="pln"> </span><span class="highlight"><span class="typ">StringWriter</span></span><span class="pln"> writer</span><span class="pun">=</span><span class="kwd">new</span><span class="pln"> </span><span class="highlight"><span class="typ">StringWriter</span></span><span class="pun">();</span><span class="pln">
+  </span><span class="kwd">final</span><span class="pln"> </span><span class="typ">Map</span><span class="pun">&lt;</span><span class="typ">String</span><span class="pun">,</span><span class="typ">String</span><span class="pun">&gt;</span><span class="pln"> options</span><span class="pun">=</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">HashMap</span><span class="pun">&lt;</span><span class="typ">String</span><span class="pun">,</span><span class="typ">String</span><span class="pun">&gt;();</span><span class="pln">
+  options</span><span class="pun">.</span><span class="pln">put</span><span class="pun">(</span><span class="typ">XMLResource</span><span class="pun">.</span><span class="pln">OPTION_ENCODING</span><span class="pun">,</span><span class="typ">System</span><span class="pun">.</span><span class="pln">getProperty</span><span class="pun">(</span><span class="pln">ENCODING_PROPERTY</span><span class="pun">));</span><span class="pln">
+  </span><span class="pun">((</span><span class="typ">XMLResource</span><span class="pun">)</span><span class="pln">copyRoot</span><span class="pun">.</span><span class="pln">eResource</span><span class="pun">()).</span><span class="pln">save</span><span class="pun">(</span><span class="pln">writer</span><span class="pun">,</span><span class="pln">options</span><span class="pun">);</span><span class="pln">
+  </span><span class="kwd">final</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> result</span><span class="pun">=</span><span class="pln">writer</span><span class="pun">.</span><span class="pln">toString</span><span class="pun">();</span><span class="pln">
+  writer</span><span class="pun">.</span><span class="pln">flush</span><span class="pun">();</span><span class="pln">
+  </span><span class="kwd">return</span><span class="pln"> result</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+ </span></pre><br>
+				</div>
+				
+						</div>	
+				
+		<div style="width:100%; margin-top:20px;">
+				
+				<!-- 1. example number -->
+				<p style="color:#424345; font-weight:bold;">Example 12</p>
+				
+				<!-- 2. description -->
+				<div style=" margin: 0px 0 0 0;padding: 10px 0;">	
+					
+					<div style="float:right; color:grey; ">
+						&nbsp;&nbsp;7&nbsp;
+					</div>
+					<div class="vote" id="5427">
+						<img alt="vote" src="Java%20Code%20Example%20java.io.StringWriter_files/like.png" width="25"> 
+					</div>
+					
+					<p>
+					From project <span style="font-style:italic;">abdera</span>, 
+					under directory  <span style="font-style:italic;">/client/src/test/java/org/apache/abdera/test/client/util/</span>,
+					in source file <span style="font-style:italic;">MultipartRelatedRequestEntityTest.java</span> 
+					</p>
+					
+					<p>
+						<!-- <a href="http://programcreek.com/java-api-examples/index.php?source_code=abdera-/client/src/test/java/org/apache/abdera/test/client/util/-MultipartRelatedRequestEntityTest.java"> -->
+							
+							
+						<!-- </a> -->
+					</p>
+				</div>
+				
+				<!-- 3. code -->	
+				<div class="code">					
+						<pre class="prettyprint"><span class="lit">@Test</span><span class="pln"> </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> testMultipartFormat</span><span class="pun">()</span><span class="pln"> </span><span class="kwd">throws</span><span class="pln"> </span><span class="typ">IOException</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="typ">Entry</span><span class="pln"> entry</span><span class="pun">=</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">FOMEntry</span><span class="pun">();</span><span class="pln">
+  entry</span><span class="pun">.</span><span class="pln">setTitle</span><span class="pun">(</span><span class="str">"my image"</span><span class="pun">);</span><span class="pln">
+  entry</span><span class="pun">.</span><span class="pln">addAuthor</span><span class="pun">(</span><span class="str">"david"</span><span class="pun">);</span><span class="pln">
+  entry</span><span class="pun">.</span><span class="pln">setId</span><span class="pun">(</span><span class="str">"tag:apache.org,2008:234534344"</span><span class="pun">);</span><span class="pln">
+  entry</span><span class="pun">.</span><span class="pln">setSummary</span><span class="pun">(</span><span class="str">"multipart test"</span><span class="pun">);</span><span class="pln">
+  entry</span><span class="pun">.</span><span class="pln">setContent</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> IRI</span><span class="pun">(</span><span class="str">"cid:234234@example.com"</span><span class="pun">),</span><span class="str">"image/jpg"</span><span class="pun">);</span><span class="pln">
+  </span><span class="typ">RequestEntity</span><span class="pln"> request</span><span class="pun">=</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">MultipartRelatedRequestEntity</span><span class="pun">(</span><span class="pln">entry</span><span class="pun">,</span><span class="kwd">this</span><span class="pun">.</span><span class="pln">getClass</span><span class="pun">().</span><span class="pln">getResourceAsStream</span><span class="pun">(</span><span class="str">"info.png"</span><span class="pun">),</span><span class="str">"image/jpg"</span><span class="pun">,</span><span class="str">"asdfasdfasdf"</span><span class="pun">);</span><span class="pln">
+  </span><span class="highlight"><span class="typ">StringWriter</span></span><span class="pln"> sw</span><span class="pun">=</span><span class="kwd">new</span><span class="pln"> </span><span class="highlight"><span class="typ">StringWriter</span></span><span class="pun">();</span><span class="pln">
+  </span><span class="typ">WriterOutputStream</span><span class="pln"> os</span><span class="pun">=</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">WriterOutputStream</span><span class="pun">(</span><span class="pln">sw</span><span class="pun">);</span><span class="pln">
+  request</span><span class="pun">.</span><span class="pln">writeRequest</span><span class="pun">(</span><span class="pln">os</span><span class="pun">);</span><span class="pln">
+  </span><span class="typ">String</span><span class="pln"> multipart</span><span class="pun">=</span><span class="pln">sw</span><span class="pun">.</span><span class="pln">toString</span><span class="pun">();</span><span class="pln">
+  assertTrue</span><span class="pun">(</span><span class="pln">multipart</span><span class="pun">.</span><span class="pln">contains</span><span class="pun">(</span><span class="str">"content-id: &lt;234234@example.com&gt;"</span><span class="pun">));</span><span class="pln">
+  assertTrue</span><span class="pun">(</span><span class="pln">multipart</span><span class="pun">.</span><span class="pln">contains</span><span class="pun">(</span><span class="str">"content-type: image/jpg"</span><span class="pun">));</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+ </span></pre><br>
+				</div>
+				
+						</div>	
+				
+		<div style="width:100%; margin-top:20px;">
+				
+				<!-- 1. example number -->
+				<p style="color:#424345; font-weight:bold;">Example 13</p>
+				
+				<!-- 2. description -->
+				<div style=" margin: 0px 0 0 0;padding: 10px 0;">	
+					
+					<div style="float:right; color:grey; ">
+						&nbsp;&nbsp;7&nbsp;
+					</div>
+					<div class="vote" id="5885">
+						<img alt="vote" src="Java%20Code%20Example%20java.io.StringWriter_files/like.png" width="25"> 
+					</div>
+					
+					<p>
+					From project <span style="font-style:italic;">abdera</span>, 
+					under directory  <span style="font-style:italic;">/extensions/opensearch/src/test/java/org/apache/abdera/test/ext/opensearch/model/</span>,
+					in source file <span style="font-style:italic;">OpenSearchAtomTest.java</span> 
+					</p>
+					
+					<p>
+						<!-- <a href="http://programcreek.com/java-api-examples/index.php?source_code=abdera-/extensions/opensearch/src/test/java/org/apache/abdera/test/ext/opensearch/model/-OpenSearchAtomTest.java"> -->
+							
+							
+						<!-- </a> -->
+					</p>
+				</div>
+				
+				<!-- 3. code -->	
+				<div class="code">					
+						<pre class="prettyprint"><span class="lit">@Test</span><span class="pln"> </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> testAtomResponseCreation</span><span class="pun">()</span><span class="pln"> </span><span class="kwd">throws</span><span class="pln"> </span><span class="typ">Exception</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="typ">Feed</span><span class="pln"> feed</span><span class="pun">=</span><span class="typ">Abdera</span><span class="pun">.</span><span class="pln">getInstance</span><span class="pun">().</span><span class="pln">getFactory</span><span class="pun">().</span><span class="pln">newFeed</span><span class="pun">();</span><span class="pln">
+  feed</span><span class="pun">.</span><span class="pln">setId</span><span class="pun">(</span><span class="str">"http://example.com/opensearch+example"</span><span class="pun">);</span><span class="pln">
+  feed</span><span class="pun">.</span><span class="pln">setTitle</span><span class="pun">(</span><span class="str">"An OpenSearch Example"</span><span class="pun">);</span><span class="pln">
+  feed</span><span class="pun">.</span><span class="pln">setUpdated</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Date</span><span class="pun">());</span><span class="pln">
+  </span><span class="typ">Query</span><span class="pln"> query</span><span class="pun">=</span><span class="pln">feed</span><span class="pun">.</span><span class="pln">addExtension</span><span class="pun">(</span><span class="typ">OpenSearchConstants</span><span class="pun">.</span><span class="pln">QUERY</span><span class="pun">);</span><span class="pln">
+  query</span><span class="pun">.</span><span class="pln">setRole</span><span class="pun">(</span><span class="typ">Query</span><span class="pun">.</span><span class="typ">Role</span><span class="pun">.</span><span class="pln">REQUEST</span><span class="pun">);</span><span class="pln">
+  query</span><span class="pun">.</span><span class="pln">setSearchTerms</span><span class="pun">(</span><span class="pln">QUERY_TERMS</span><span class="pun">);</span><span class="pln">
+  </span><span class="typ">IntegerElement</span><span class="pln"> totalResults</span><span class="pun">=</span><span class="pln">feed</span><span class="pun">.</span><span class="pln">addExtension</span><span class="pun">(</span><span class="typ">OpenSearchConstants</span><span class="pun">.</span><span class="pln">TOTAL_RESULTS</span><span class="pun">);</span><span class="pln">
+  totalResults</span><span class="pun">.</span><span class="pln">setValue</span><span class="pun">(</span><span class="pln">TOTAL_RESULTS</span><span class="pun">);</span><span class="pln">
+  </span><span class="typ">IntegerElement</span><span class="pln"> itemsPerPage</span><span class="pun">=</span><span class="pln">feed</span><span class="pun">.</span><span class="pln">addExtension</span><span class="pun">(</span><span class="typ">OpenSearchConstants</span><span class="pun">.</span><span class="pln">ITEMS_PER_PAGE</span><span class="pun">);</span><span class="pln">
+  itemsPerPage</span><span class="pun">.</span><span class="pln">setValue</span><span class="pun">(</span><span class="pln">ITEMS_PER_PAGE</span><span class="pun">);</span><span class="pln">
+  </span><span class="typ">IntegerElement</span><span class="pln"> startIndex</span><span class="pun">=</span><span class="pln">feed</span><span class="pun">.</span><span class="pln">addExtension</span><span class="pun">(</span><span class="typ">OpenSearchConstants</span><span class="pun">.</span><span class="pln">START_INDEX</span><span class="pun">);</span><span class="pln">
+  startIndex</span><span class="pun">.</span><span class="pln">setValue</span><span class="pun">(</span><span class="pln">START_INDEX</span><span class="pun">);</span><span class="pln">
+  </span><span class="highlight"><span class="typ">StringWriter</span></span><span class="pln"> writer</span><span class="pun">=</span><span class="kwd">new</span><span class="pln"> </span><span class="highlight"><span class="typ">StringWriter</span></span><span class="pun">();</span><span class="pln">
+  feed</span><span class="pun">.</span><span class="pln">writeTo</span><span class="pun">(</span><span class="pln">writer</span><span class="pun">);</span><span class="pln">
+  </span><span class="typ">String</span><span class="pln"> result</span><span class="pun">=</span><span class="pln">writer</span><span class="pun">.</span><span class="pln">toString</span><span class="pun">();</span><span class="pln">
+  </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="pln">result</span><span class="pun">);</span><span class="pln">
+  assertXpathEvaluatesTo</span><span class="pun">(</span><span class="typ">String</span><span class="pun">.</span><span class="pln">valueOf</span><span class="pun">(</span><span class="pln">TOTAL_RESULTS</span><span class="pun">),</span><span class="str">"//os:totalResults"</span><span class="pun">,</span><span class="pln">result</span><span class="pun">);</span><span class="pln">
+  assertXpathEvaluatesTo</span><span class="pun">(</span><span class="typ">String</span><span class="pun">.</span><span class="pln">valueOf</span><span class="pun">(</span><span class="pln">ITEMS_PER_PAGE</span><span class="pun">),</span><span class="str">"//os:itemsPerPage"</span><span class="pun">,</span><span class="pln">result</span><span class="pun">);</span><span class="pln">
+  assertXpathEvaluatesTo</span><span class="pun">(</span><span class="typ">String</span><span class="pun">.</span><span class="pln">valueOf</span><span class="pun">(</span><span class="pln">START_INDEX</span><span class="pun">),</span><span class="str">"//os:startIndex"</span><span class="pun">,</span><span class="pln">result</span><span class="pun">);</span><span class="pln">
+  assertXpathEvaluatesTo</span><span class="pun">(</span><span class="typ">Query</span><span class="pun">.</span><span class="typ">Role</span><span class="pun">.</span><span class="pln">REQUEST</span><span class="pun">.</span><span class="pln">toString</span><span class="pun">().</span><span class="pln">toLowerCase</span><span class="pun">(),</span><span class="str">"//os:Query/@role"</span><span class="pun">,</span><span class="pln">result</span><span class="pun">);</span><span class="pln">
+  assertXpathEvaluatesTo</span><span class="pun">(</span><span class="pln">QUERY_TERMS</span><span class="pun">,</span><span class="str">"//os:Query/@searchTerms"</span><span class="pun">,</span><span class="pln">result</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+ </span></pre><br>
+				</div>
+				
+						</div>	
+				
+		<div style="width:100%; margin-top:20px;">
+				
+				<!-- 1. example number -->
+				<p style="color:#424345; font-weight:bold;">Example 14</p>
+				
+				<!-- 2. description -->
+				<div style=" margin: 0px 0 0 0;padding: 10px 0;">	
+					
+					<div style="float:right; color:grey; ">
+						&nbsp;&nbsp;7&nbsp;
+					</div>
+					<div class="vote" id="5888">
+						<img alt="vote" src="Java%20Code%20Example%20java.io.StringWriter_files/like.png" width="25"> 
+					</div>
+					
+					<p>
+					From project <span style="font-style:italic;">abdera</span>, 
+					under directory  <span style="font-style:italic;">/extensions/opensearch/src/test/java/org/apache/abdera/test/ext/opensearch/model/</span>,
+					in source file <span style="font-style:italic;">OpenSearchDescriptionTest.java</span> 
+					</p>
+					
+					<p>
+						<!-- <a href="http://programcreek.com/java-api-examples/index.php?source_code=abdera-/extensions/opensearch/src/test/java/org/apache/abdera/test/ext/opensearch/model/-OpenSearchDescriptionTest.java"> -->
+							
+							
+						<!-- </a> -->
+					</p>
+				</div>
+				
+				<!-- 3. code -->	
+				<div class="code">					
+						<pre class="prettyprint"><span class="lit">@Test</span><span class="pln"> </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> testOpenSearchDescriptionDocumentCreation</span><span class="pun">()</span><span class="pln"> </span><span class="kwd">throws</span><span class="pln"> </span><span class="typ">Exception</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="typ">OpenSearchDescription</span><span class="pln"> document</span><span class="pun">=</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">OpenSearchDescription</span><span class="pun">(</span><span class="typ">Abdera</span><span class="pun">.</span><span class="pln">getInstance</span><span class="pun">());</span><span class="pln">
+  document</span><span class="pun">.</span><span class="pln">setShortName</span><span class="pun">(</span><span class="pln">SHORT_NAME</span><span class="pun">);</span><span class="pln">
+  document</span><span class="pun">.</span><span class="pln">setDescription</span><span class="pun">(</span><span class="pln">DESCRIPTION</span><span class="pun">);</span><span class="pln">
+  document</span><span class="pun">.</span><span class="pln">setTags</span><span class="pun">(</span><span class="pln">TAG1</span><span class="pun">,</span><span class="pln">TAG2</span><span class="pun">);</span><span class="pln">
+  </span><span class="typ">Url</span><span class="pln"> url</span><span class="pun">=</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Url</span><span class="pun">(</span><span class="typ">Abdera</span><span class="pun">.</span><span class="pln">getInstance</span><span class="pun">());</span><span class="pln">
+  url</span><span class="pun">.</span><span class="pln">setType</span><span class="pun">(</span><span class="pln">URL_TYPE</span><span class="pun">);</span><span class="pln">
+  url</span><span class="pun">.</span><span class="pln">setTemplate</span><span class="pun">(</span><span class="pln">URL_TEMPLATE</span><span class="pun">);</span><span class="pln">
+  </span><span class="typ">Query</span><span class="pln"> query</span><span class="pun">=</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Query</span><span class="pun">(</span><span class="typ">Abdera</span><span class="pun">.</span><span class="pln">getInstance</span><span class="pun">());</span><span class="pln">
+  query</span><span class="pun">.</span><span class="pln">setRole</span><span class="pun">(</span><span class="typ">Query</span><span class="pun">.</span><span class="typ">Role</span><span class="pun">.</span><span class="pln">EXAMPLE</span><span class="pun">);</span><span class="pln">
+  query</span><span class="pun">.</span><span class="pln">setSearchTerms</span><span class="pun">(</span><span class="pln">QUERY_TERMS</span><span class="pun">);</span><span class="pln">
+  document</span><span class="pun">.</span><span class="pln">addUrls</span><span class="pun">(</span><span class="pln">url</span><span class="pun">);</span><span class="pln">
+  document</span><span class="pun">.</span><span class="pln">addQueries</span><span class="pun">(</span><span class="pln">query</span><span class="pun">);</span><span class="pln">
+  </span><span class="highlight"><span class="typ">StringWriter</span></span><span class="pln"> writer</span><span class="pun">=</span><span class="kwd">new</span><span class="pln"> </span><span class="highlight"><span class="typ">StringWriter</span></span><span class="pun">();</span><span class="pln">
+  document</span><span class="pun">.</span><span class="pln">writeTo</span><span class="pun">(</span><span class="pln">writer</span><span class="pun">);</span><span class="pln">
+  </span><span class="typ">String</span><span class="pln"> result</span><span class="pun">=</span><span class="pln">writer</span><span class="pun">.</span><span class="pln">toString</span><span class="pun">();</span><span class="pln">
+  </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="pln">result</span><span class="pun">);</span><span class="pln">
+  assertXpathEvaluatesTo</span><span class="pun">(</span><span class="pln">SHORT_NAME</span><span class="pun">,</span><span class="str">"/os:OpenSearchDescription/os:ShortName"</span><span class="pun">,</span><span class="pln">result</span><span class="pun">);</span><span class="pln">
+  assertXpathEvaluatesTo</span><span class="pun">(</span><span class="pln">DESCRIPTION</span><span class="pun">,</span><span class="str">"/os:OpenSearchDescription/os:Description"</span><span class="pun">,</span><span class="pln">result</span><span class="pun">);</span><span class="pln">
+  assertXpathEvaluatesTo</span><span class="pun">(</span><span class="pln">TAGS</span><span class="pun">,</span><span class="str">"/os:OpenSearchDescription/os:Tags"</span><span class="pun">,</span><span class="pln">result</span><span class="pun">);</span><span class="pln">
+  assertXpathEvaluatesTo</span><span class="pun">(</span><span class="pln">URL_TYPE</span><span class="pun">,</span><span class="str">"/os:OpenSearchDescription/os:Url/@type"</span><span class="pun">,</span><span class="pln">result</span><span class="pun">);</span><span class="pln">
+  assertXpathEvaluatesTo</span><span class="pun">(</span><span class="pln">URL_TEMPLATE</span><span class="pun">,</span><span class="str">"/os:OpenSearchDescription/os:Url/@template"</span><span class="pun">,</span><span class="pln">result</span><span class="pun">);</span><span class="pln">
+  assertXpathEvaluatesTo</span><span class="pun">(</span><span class="typ">Query</span><span class="pun">.</span><span class="typ">Role</span><span class="pun">.</span><span class="pln">EXAMPLE</span><span class="pun">.</span><span class="pln">toString</span><span class="pun">().</span><span class="pln">toLowerCase</span><span class="pun">(),</span><span class="str">"/os:OpenSearchDescription/os:Query/@role"</span><span class="pun">,</span><span class="pln">result</span><span class="pun">);</span><span class="pln">
+  assertXpathEvaluatesTo</span><span class="pun">(</span><span class="pln">QUERY_TERMS</span><span class="pun">,</span><span class="str">"/os:OpenSearchDescription/os:Query/@searchTerms"</span><span class="pun">,</span><span class="pln">result</span><span class="pun">);</span><span class="pln">
+  assertXpathEvaluatesTo</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Integer</span><span class="pun">(</span><span class="lit">1</span><span class="pun">).</span><span class="pln">toString</span><span class="pun">(),</span><span class="str">"/os:OpenSearchDescription/os:Url/@indexOffset"</span><span class="pun">,</span><span class="pln">result</span><span class="pun">);</span><span class="pln">
+  assertXpathEvaluatesTo</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Integer</span><span class="pun">(</span><span class="lit">1</span><span class="pun">).</span><span class="pln">toString</span><span class="pun">(),</span><span class="str">"/os:OpenSearchDescription/os:Url/@pageOffset"</span><span class="pun">,</span><span class="pln">result</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+ </span></pre><br>
+				</div>
+				
+						</div>	
+				
+		<div style="width:100%; margin-top:20px;">
+				
+				<!-- 1. example number -->
+				<p style="color:#424345; font-weight:bold;">Example 15</p>
+				
+				<!-- 2. description -->
+				<div style=" margin: 0px 0 0 0;padding: 10px 0;">	
+					
+					<div style="float:right; color:grey; ">
+						&nbsp;&nbsp;7&nbsp;
+					</div>
+					<div class="vote" id="5898">
+						<img alt="vote" src="Java%20Code%20Example%20java.io.StringWriter_files/like.png" width="25"> 
+					</div>
+					
+					<p>
+					From project <span style="font-style:italic;">abdera</span>, 
+					under directory  <span style="font-style:italic;">/extensions/opensearch/src/test/java/org/apache/abdera/test/ext/opensearch/server/impl/</span>,
+					in source file <span style="font-style:italic;">SimpleOpenSearchInfoTest.java</span> 
+					</p>
+					
+					<p>
+						<!-- <a href="http://programcreek.com/java-api-examples/index.php?source_code=abdera-/extensions/opensearch/src/test/java/org/apache/abdera/test/ext/opensearch/server/impl/-SimpleOpenSearchInfoTest.java"> -->
+							
+							
+						<!-- </a> -->
+					</p>
+				</div>
+				
+				<!-- 3. code -->	
+				<div class="code">					
+						<pre class="prettyprint"><span class="lit">@Test</span><span class="pln"> </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> testOpenSearchDescriptionCreationFromOpenSearchInfo</span><span class="pun">()</span><span class="pln"> </span><span class="kwd">throws</span><span class="pln"> </span><span class="typ">Exception</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="typ">RequestContext</span><span class="pln"> requestMock</span><span class="pun">=</span><span class="pln">createMock</span><span class="pun">(</span><span class="typ">RequestContext</span><span class="pun">.</span><span class="kwd">class</span><span class="pun">);</span><span class="pln">
+  expect</span><span class="pun">(</span><span class="pln">requestMock</span><span class="pun">.</span><span class="pln">getAbdera</span><span class="pun">()).</span><span class="pln">andReturn</span><span class="pun">(</span><span class="typ">Abdera</span><span class="pun">.</span><span class="pln">getInstance</span><span class="pun">()).</span><span class="pln">anyTimes</span><span class="pun">();</span><span class="pln">
+  expect</span><span class="pun">(</span><span class="pln">requestMock</span><span class="pun">.</span><span class="pln">getBaseUri</span><span class="pun">()).</span><span class="pln">andReturn</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> IRI</span><span class="pun">(</span><span class="str">"http://www.acme.org/"</span><span class="pun">)).</span><span class="pln">anyTimes</span><span class="pun">();</span><span class="pln">
+  replay</span><span class="pun">(</span><span class="pln">requestMock</span><span class="pun">);</span><span class="pln">
+  </span><span class="typ">OpenSearchDescription</span><span class="pln"> description</span><span class="pun">=</span><span class="kwd">this</span><span class="pun">.</span><span class="pln">osInfo</span><span class="pun">.</span><span class="pln">asOpenSearchDescriptionElement</span><span class="pun">(</span><span class="pln">requestMock</span><span class="pun">);</span><span class="pln">
+  </span><span class="highlight"><span class="typ">StringWriter</span></span><span class="pln"> writer</span><span class="pun">=</span><span class="kwd">new</span><span class="pln"> </span><span class="highlight"><span class="typ">StringWriter</span></span><span class="pun">();</span><span class="pln">
+  description</span><span class="pun">.</span><span class="pln">writeTo</span><span class="pun">(</span><span class="pln">writer</span><span class="pun">);</span><span class="pln">
+  </span><span class="typ">String</span><span class="pln"> result</span><span class="pun">=</span><span class="pln">writer</span><span class="pun">.</span><span class="pln">toString</span><span class="pun">();</span><span class="pln">
+  </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="pln">result</span><span class="pun">);</span><span class="pln">
+  assertXpathEvaluatesTo</span><span class="pun">(</span><span class="pln">SHORT_NAME</span><span class="pun">,</span><span class="str">"/os:OpenSearchDescription/os:ShortName"</span><span class="pun">,</span><span class="pln">result</span><span class="pun">);</span><span class="pln">
+  assertXpathEvaluatesTo</span><span class="pun">(</span><span class="pln">DESCRIPTION</span><span class="pun">,</span><span class="str">"/os:OpenSearchDescription/os:Description"</span><span class="pun">,</span><span class="pln">result</span><span class="pun">);</span><span class="pln">
+  assertXpathEvaluatesTo</span><span class="pun">(</span><span class="pln">TAGS</span><span class="pun">,</span><span class="str">"/os:OpenSearchDescription/os:Tags"</span><span class="pun">,</span><span class="pln">result</span><span class="pun">);</span><span class="pln">
+  assertXpathEvaluatesTo</span><span class="pun">(</span><span class="typ">Query</span><span class="pun">.</span><span class="typ">Role</span><span class="pun">.</span><span class="pln">EXAMPLE</span><span class="pun">.</span><span class="pln">toString</span><span class="pun">().</span><span class="pln">toLowerCase</span><span class="pun">(),</span><span class="str">"/os:OpenSearchDescription/os:Query/@role"</span><span class="pun">,</span><span class="pln">result</span><span class="pun">);</span><span class="pln">
+  assertXpathEvaluatesTo</span><span class="pun">(</span><span class="pln">QUERY_TERMS</span><span class="pun">,</span><span class="str">"/os:OpenSearchDescription/os:Query/@searchTerms"</span><span class="pun">,</span><span class="pln">result</span><span class="pun">);</span><span class="pln">
+  assertXpathEvaluatesTo</span><span class="pun">(</span><span class="str">"application/atom+xml"</span><span class="pun">,</span><span class="str">"/os:OpenSearchDescription/os:Url[1]/@type"</span><span class="pun">,</span><span class="pln">result</span><span class="pun">);</span><span class="pln">
+  assertXpathEvaluatesTo</span><span class="pun">(</span><span class="str">"http://www.acme.org/search1?q={searchTerms}&amp;c={count?}"</span><span class="pun">,</span><span class="str">"/os:OpenSearchDescription/os:Url[1]/@template"</span><span class="pun">,</span><span class="pln">result</span><span class="pun">);</span><span class="pln">
+  assertXpathEvaluatesTo</span><span class="pun">(</span><span class="str">"application/atom+xml"</span><span class="pun">,</span><span class="str">"/os:OpenSearchDescription/os:Url[2]/@type"</span><span class="pun">,</span><span class="pln">result</span><span class="pun">);</span><span class="pln">
+  assertXpathEvaluatesTo</span><span class="pun">(</span><span class="str">"http://www.acme.org/search2?q={searchTerms}&amp;c={count?}"</span><span class="pun">,</span><span class="str">"/os:OpenSearchDescription/os:Url[2]/@template"</span><span class="pun">,</span><span class="pln">result</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+ </span></pre><br>
+				</div>
+				
+						</div>	
+				
+		<div style="width:100%; margin-top:20px;">
+				
+				<!-- 1. example number -->
+				<p style="color:#424345; font-weight:bold;">Example 16</p>
+				
+				<!-- 2. description -->
+				<div style=" margin: 0px 0 0 0;padding: 10px 0;">	
+					
+					<div style="float:right; color:grey; ">
+						&nbsp;&nbsp;7&nbsp;
+					</div>
+					<div class="vote" id="5911">
+						<img alt="vote" src="Java%20Code%20Example%20java.io.StringWriter_files/like.png" width="25"> 
+					</div>
+					
+					<p>
+					From project <span style="font-style:italic;">abdera</span>, 
+					under directory  <span style="font-style:italic;">/extensions/opensearch/src/test/java/org/apache/abdera/test/ext/opensearch/server/processors/</span>,
+					in source file <span style="font-style:italic;">OpenSearchDescriptionRequestProcessorTest.java</span> 
+					</p>
+					
+					<p>
+						<!-- <a href="http://programcreek.com/java-api-examples/index.php?source_code=abdera-/extensions/opensearch/src/test/java/org/apache/abdera/test/ext/opensearch/server/processors/-OpenSearchDescriptionRequestProcessorTest.java"> -->
+							
+							
+						<!-- </a> -->
+					</p>
+				</div>
+				
+				<!-- 3. code -->	
+				<div class="code">					
+						<pre class="prettyprint"><span class="lit">@Test</span><span class="pln"> </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> testOpenSearchDescriptionRequestProcessorOutput</span><span class="pun">()</span><span class="pln"> </span><span class="kwd">throws</span><span class="pln"> </span><span class="typ">Exception</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="typ">AbderaClient</span><span class="pln"> client</span><span class="pun">=</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">AbderaClient</span><span class="pun">();</span><span class="pln">
+  </span><span class="typ">ClientResponse</span><span class="pln"> resp</span><span class="pun">=</span><span class="pln">client</span><span class="pun">.</span><span class="kwd">get</span><span class="pun">(</span><span class="str">"http://localhost:9002/search"</span><span class="pun">);</span><span class="pln">
+  assertNotNull</span><span class="pun">(</span><span class="pln">resp</span><span class="pun">);</span><span class="pln">
+  assertEquals</span><span class="pun">(</span><span class="typ">ResponseType</span><span class="pun">.</span><span class="pln">SUCCESS</span><span class="pun">,</span><span class="pln">resp</span><span class="pun">.</span><span class="pln">getType</span><span class="pun">());</span><span class="pln">
+  assertTrue</span><span class="pun">(</span><span class="typ">MimeTypeHelper</span><span class="pun">.</span><span class="pln">isMatch</span><span class="pun">(</span><span class="pln">resp</span><span class="pun">.</span><span class="pln">getContentType</span><span class="pun">().</span><span class="pln">toString</span><span class="pun">(),</span><span class="typ">OpenSearchConstants</span><span class="pun">.</span><span class="pln">OPENSEARCH_DESCRIPTION_CONTENT_TYPE</span><span class="pun">));</span><span class="pln">
+  </span><span class="typ">Document</span><span class="pln"> doc</span><span class="pun">=</span><span class="pln">resp</span><span class="pun">.</span><span class="pln">getDocument</span><span class="pun">();</span><span class="pln">
+  </span><span class="highlight"><span class="typ">StringWriter</span></span><span class="pln"> writer</span><span class="pun">=</span><span class="kwd">new</span><span class="pln"> </span><span class="highlight"><span class="typ">StringWriter</span></span><span class="pun">();</span><span class="pln">
+  doc</span><span class="pun">.</span><span class="pln">writeTo</span><span class="pun">(</span><span class="pln">writer</span><span class="pun">);</span><span class="pln">
+  </span><span class="typ">String</span><span class="pln"> result</span><span class="pun">=</span><span class="pln">writer</span><span class="pun">.</span><span class="pln">toString</span><span class="pun">();</span><span class="pln">
+  </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="pln">result</span><span class="pun">);</span><span class="pln">
+  assertXpathEvaluatesTo</span><span class="pun">(</span><span class="pln">SHORT_NAME</span><span class="pun">,</span><span class="str">"/os:OpenSearchDescription/os:ShortName"</span><span class="pun">,</span><span class="pln">result</span><span class="pun">);</span><span class="pln">
+  assertXpathEvaluatesTo</span><span class="pun">(</span><span class="pln">DESCRIPTION</span><span class="pun">,</span><span class="str">"/os:OpenSearchDescription/os:Description"</span><span class="pun">,</span><span class="pln">result</span><span class="pun">);</span><span class="pln">
+  assertXpathEvaluatesTo</span><span class="pun">(</span><span class="pln">TAGS</span><span class="pun">,</span><span class="str">"/os:OpenSearchDescription/os:Tags"</span><span class="pun">,</span><span class="pln">result</span><span class="pun">);</span><span class="pln">
+  assertXpathEvaluatesTo</span><span class="pun">(</span><span class="typ">Query</span><span class="pun">.</span><span class="typ">Role</span><span class="pun">.</span><span class="pln">EXAMPLE</span><span class="pun">.</span><span class="pln">toString</span><span class="pun">().</span><span class="pln">toLowerCase</span><span class="pun">(),</span><span class="str">"/os:OpenSearchDescription/os:Query/@role"</span><span class="pun">,</span><span class="pln">result</span><span class="pun">);</span><span class="pln">
+  assertXpathEvaluatesTo</span><span class="pun">(</span><span class="pln">QUERY_TERMS</span><span class="pun">,</span><span class="str">"/os:OpenSearchDescription/os:Query/@searchTerms"</span><span class="pun">,</span><span class="pln">result</span><span class="pun">);</span><span class="pln">
+  assertXpathEvaluatesTo</span><span class="pun">(</span><span class="str">"application/atom+xml"</span><span class="pun">,</span><span class="str">"/os:OpenSearchDescription/os:Url[1]/@type"</span><span class="pun">,</span><span class="pln">result</span><span class="pun">);</span><span class="pln">
+  assertXpathEvaluatesTo</span><span class="pun">(</span><span class="str">"http://localhost:9002/search1?q={searchTerms}&amp;c={count?}"</span><span class="pun">,</span><span class="str">"/os:OpenSearchDescription/os:Url[1]/@template"</span><span class="pun">,</span><span class="pln">result</span><span class="pun">);</span><span class="pln">
+  assertXpathEvaluatesTo</span><span class="pun">(</span><span class="str">"application/atom+xml"</span><span class="pun">,</span><span class="str">"/os:OpenSearchDescription/os:Url[2]/@type"</span><span class="pun">,</span><span class="pln">result</span><span class="pun">);</span><span class="pln">
+  assertXpathEvaluatesTo</span><span class="pun">(</span><span class="str">"http://localhost:9002/search2?q={searchTerms}&amp;c={count?}"</span><span class="pun">,</span><span class="str">"/os:OpenSearchDescription/os:Url[2]/@template"</span><span class="pun">,</span><span class="pln">result</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+ </span></pre><br>
+				</div>
+				
+						</div>	
+				
+		<div style="width:100%; margin-top:20px;">
+				
+				<!-- 1. example number -->
+				<p style="color:#424345; font-weight:bold;">Example 17</p>
+				
+				<!-- 2. description -->
+				<div style=" margin: 0px 0 0 0;padding: 10px 0;">	
+					
+					<div style="float:right; color:grey; ">
+						&nbsp;&nbsp;7&nbsp;
+					</div>
+					<div class="vote" id="6047">
+						<img alt="vote" src="Java%20Code%20Example%20java.io.StringWriter_files/like.png" width="25"> 
+					</div>
+					
+					<p>
+					From project <span style="font-style:italic;">abdera</span>, 
+					under directory  <span style="font-style:italic;">/parser/src/main/java/org/apache/abdera/parser/stax/</span>,
+					in source file <span style="font-style:italic;">FOMDiv.java</span> 
+					</p>
+					
+					<p>
+						<!-- <a href="http://programcreek.com/java-api-examples/index.php?source_code=abdera-/parser/src/main/java/org/apache/abdera/parser/stax/-FOMDiv.java"> -->
+							
+							
+						<!-- </a> -->
+					</p>
+				</div>
+				
+				<!-- 3. code -->	
+				<div class="code">					
+						<pre class="prettyprint"><span class="kwd">protected</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> getInternalValue</span><span class="pun">(){</span><span class="pln">
+  </span><span class="kwd">try</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="highlight"><span class="typ">StringWriter</span></span><span class="pln"> </span><span class="kwd">out</span><span class="pun">=</span><span class="kwd">new</span><span class="pln"> </span><span class="highlight"><span class="typ">StringWriter</span></span><span class="pun">();</span><span class="pln">
+    </span><span class="typ">XMLStreamWriter</span><span class="pln"> writer</span><span class="pun">=</span><span class="typ">XMLOutputFactory</span><span class="pun">.</span><span class="pln">newInstance</span><span class="pun">().</span><span class="pln">createXMLStreamWriter</span><span class="pun">(</span><span class="kwd">out</span><span class="pun">);</span><span class="pln">
+    writer</span><span class="pun">.</span><span class="pln">writeStartElement</span><span class="pun">(</span><span class="str">""</span><span class="pun">);</span><span class="pln">
+    </span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Iterator</span><span class="pun">&lt;?&gt;</span><span class="pln"> nodes</span><span class="pun">=</span><span class="kwd">this</span><span class="pun">.</span><span class="pln">getChildren</span><span class="pun">();</span><span class="pln"> nodes</span><span class="pun">.</span><span class="pln">hasNext</span><span class="pun">();</span><span class="pln"> </span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="typ">OMNode</span><span class="pln"> node</span><span class="pun">=(</span><span class="typ">OMNode</span><span class="pun">)</span><span class="pln">nodes</span><span class="pun">.</span><span class="kwd">next</span><span class="pun">();</span><span class="pln">
+      node</span><span class="pun">.</span><span class="pln">serialize</span><span class="pun">(</span><span class="pln">writer</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+    writer</span><span class="pun">.</span><span class="pln">writeEndElement</span><span class="pun">();</span><span class="pln">
+    </span><span class="kwd">return</span><span class="pln"> </span><span class="kwd">out</span><span class="pun">.</span><span class="pln">getBuffer</span><span class="pun">().</span><span class="pln">toString</span><span class="pun">().</span><span class="pln">substring</span><span class="pun">(</span><span class="lit">2</span><span class="pun">);</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+ </span><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="pln">  </span><span class="typ">Exception</span><span class="pln"> e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+  </span><span class="kwd">return</span><span class="pln"> </span><span class="str">""</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+ </span></pre><br>
+				</div>
+				
+						</div>	
+				
+		<div style="width:100%; margin-top:20px;">
+				
+				<!-- 1. example number -->
+				<p style="color:#424345; font-weight:bold;">Example 18</p>
+				
+				<!-- 2. description -->
+				<div style=" margin: 0px 0 0 0;padding: 10px 0;">	
+					
+					<div style="float:right; color:grey; ">
+						&nbsp;&nbsp;7&nbsp;
+					</div>
+					<div class="vote" id="6252">
+						<img alt="vote" src="Java%20Code%20Example%20java.io.StringWriter_files/like.png" width="25"> 
+					</div>
+					
+					<p>
+					From project <span style="font-style:italic;">abdera</span>, 
+					under directory  <span style="font-style:italic;">/parser/src/test/java/org/apache/abdera/test/parser/</span>,
+					in source file <span style="font-style:italic;">ServiceDocumentTest.java</span> 
+					</p>
+					
+					<p>
+						<!-- <a href="http://programcreek.com/java-api-examples/index.php?source_code=abdera-/parser/src/test/java/org/apache/abdera/test/parser/-ServiceDocumentTest.java"> -->
+							
+							
+						<!-- </a> -->
+					</p>
+				</div>
+				
+				<!-- 3. code -->	
+				<div class="code">					
+						<pre class="prettyprint"><span class="com">/** 
+ * Test whether the Service Document includes &lt;accept&gt; for collections.
+ */</span><span class="pln">
+</span><span class="lit">@Test</span><span class="pln"> </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> testCollectionAccepts</span><span class="pun">()</span><span class="pln"> </span><span class="kwd">throws</span><span class="pln"> </span><span class="typ">Exception</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="typ">Abdera</span><span class="pln"> abdera</span><span class="pun">=</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Abdera</span><span class="pun">();</span><span class="pln">
+  </span><span class="typ">Factory</span><span class="pln"> factory</span><span class="pun">=</span><span class="pln">abdera</span><span class="pun">.</span><span class="pln">getFactory</span><span class="pun">();</span><span class="pln">
+  </span><span class="typ">Service</span><span class="pln"> svc</span><span class="pun">=</span><span class="pln">factory</span><span class="pun">.</span><span class="pln">newService</span><span class="pun">();</span><span class="pln">
+  </span><span class="typ">Workspace</span><span class="pln"> ws</span><span class="pun">=</span><span class="pln">svc</span><span class="pun">.</span><span class="pln">addWorkspace</span><span class="pun">(</span><span class="str">"test-ws"</span><span class="pun">);</span><span class="pln">
+  </span><span class="typ">Collection</span><span class="pln"> coll</span><span class="pun">=</span><span class="pln">ws</span><span class="pun">.</span><span class="pln">addCollection</span><span class="pun">(</span><span class="str">"test-coll"</span><span class="pun">,</span><span class="pln">ws</span><span class="pun">.</span><span class="pln">getTitle</span><span class="pun">()</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="str">"/test-coll"</span><span class="pun">);</span><span class="pln">
+  coll</span><span class="pun">.</span><span class="pln">setAcceptsEntry</span><span class="pun">();</span><span class="pln">
+  assertTrue</span><span class="pun">(</span><span class="str">"Collection does not accept entries."</span><span class="pun">,</span><span class="pln">coll</span><span class="pun">.</span><span class="pln">acceptsEntry</span><span class="pun">());</span><span class="pln">
+  coll</span><span class="pun">.</span><span class="pln">addAccepts</span><span class="pun">(</span><span class="str">"application/apples"</span><span class="pun">);</span><span class="pln">
+  assertTrue</span><span class="pun">(</span><span class="str">"Collection does not accept apples."</span><span class="pun">,</span><span class="pln">coll</span><span class="pun">.</span><span class="pln">accepts</span><span class="pun">(</span><span class="str">"application/apples"</span><span class="pun">));</span><span class="pln">
+  </span><span class="highlight"><span class="typ">StringWriter</span></span><span class="pln"> sw</span><span class="pun">=</span><span class="kwd">new</span><span class="pln"> </span><span class="highlight"><span class="typ">StringWriter</span></span><span class="pun">();</span><span class="pln">
+  svc</span><span class="pun">.</span><span class="pln">writeTo</span><span class="pun">(</span><span class="pln">sw</span><span class="pun">);</span><span class="pln">
+  </span><span class="typ">String</span><span class="pln"> s</span><span class="pun">=</span><span class="pln">sw</span><span class="pun">.</span><span class="pln">toString</span><span class="pun">();</span><span class="pln">
+  assertTrue</span><span class="pun">(</span><span class="str">"Service document does not specify acceptance of entries."</span><span class="pun">,</span><span class="pln">s</span><span class="pun">.</span><span class="pln">contains</span><span class="pun">(</span><span class="str">"application/atom+xml; type=entry"</span><span class="pun">));</span><span class="pln">
+  assertTrue</span><span class="pun">(</span><span class="str">"Service document does not specify acceptance of apples."</span><span class="pun">,</span><span class="pln">s</span><span class="pun">.</span><span class="pln">contains</span><span class="pun">(</span><span class="str">"application/apples"</span><span class="pun">));</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+ </span></pre><br>
+				</div>
+				
+						</div>	
+				
+		<div style="width:100%; margin-top:20px;">
+				
+				<!-- 1. example number -->
+				<p style="color:#424345; font-weight:bold;">Example 19</p>
+				
+				<!-- 2. description -->
+				<div style=" margin: 0px 0 0 0;padding: 10px 0;">	
+					
+					<div style="float:right; color:grey; ">
+						&nbsp;&nbsp;7&nbsp;
+					</div>
+					<div class="vote" id="6256">
+						<img alt="vote" src="Java%20Code%20Example%20java.io.StringWriter_files/like.png" width="25"> 
+					</div>
+					
+					<p>
+					From project <span style="font-style:italic;">abdera</span>, 
+					under directory  <span style="font-style:italic;">/parser/src/test/java/org/apache/abdera/test/parser/</span>,
+					in source file <span style="font-style:italic;">ServiceDocumentTest.java</span> 
+					</p>
+					
+					<p>
+						<!-- <a href="http://programcreek.com/java-api-examples/index.php?source_code=abdera-/parser/src/test/java/org/apache/abdera/test/parser/-ServiceDocumentTest.java"> -->
+							
+							
+						<!-- </a> -->
+					</p>
+				</div>
+				
+				<!-- 3. code -->	
+				<div class="code">					
+						<pre class="prettyprint"><span class="com">/** 
+ * Test whether the &lt;accept&gt; element includes the multipart attribute.
+ */</span><span class="pln">
+</span><span class="lit">@Test</span><span class="pln"> </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> testCollectionAcceptsMultipart</span><span class="pun">()</span><span class="pln"> </span><span class="kwd">throws</span><span class="pln"> </span><span class="typ">Exception</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="typ">Abdera</span><span class="pln"> abdera</span><span class="pun">=</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Abdera</span><span class="pun">();</span><span class="pln">
+  </span><span class="typ">Factory</span><span class="pln"> factory</span><span class="pun">=</span><span class="pln">abdera</span><span class="pun">.</span><span class="pln">getFactory</span><span class="pun">();</span><span class="pln">
+  </span><span class="typ">Service</span><span class="pln"> svc</span><span class="pun">=</span><span class="pln">factory</span><span class="pun">.</span><span class="pln">newService</span><span class="pun">();</span><span class="pln">
+  </span><span class="typ">Workspace</span><span class="pln"> ws</span><span class="pun">=</span><span class="pln">svc</span><span class="pun">.</span><span class="pln">addWorkspace</span><span class="pun">(</span><span class="str">"test-ws"</span><span class="pun">);</span><span class="pln">
+  </span><span class="typ">FOMMultipartCollection</span><span class="pln"> coll</span><span class="pun">=(</span><span class="typ">FOMMultipartCollection</span><span class="pun">)</span><span class="pln">ws</span><span class="pun">.</span><span class="pln">addMultipartCollection</span><span class="pun">(</span><span class="str">"test multipart coll"</span><span class="pun">,</span><span class="str">"/test-coll"</span><span class="pun">);</span><span class="pln">
+  coll</span><span class="pun">.</span><span class="pln">setAcceptsEntry</span><span class="pun">();</span><span class="pln">
+  coll</span><span class="pun">.</span><span class="pln">addAccepts</span><span class="pun">(</span><span class="str">"image/*"</span><span class="pun">,</span><span class="str">"multipart-related"</span><span class="pun">);</span><span class="pln">
+  assertTrue</span><span class="pun">(</span><span class="str">"Collection does not accept entries."</span><span class="pun">,</span><span class="pln">coll</span><span class="pun">.</span><span class="pln">acceptsEntry</span><span class="pun">());</span><span class="pln">
+  assertTrue</span><span class="pun">(</span><span class="str">"Collection does not accept multipart related images"</span><span class="pun">,</span><span class="pln">coll</span><span class="pun">.</span><span class="pln">acceptsMultipart</span><span class="pun">(</span><span class="str">"image/*"</span><span class="pun">));</span><span class="pln">
+  </span><span class="highlight"><span class="typ">StringWriter</span></span><span class="pln"> sw</span><span class="pun">=</span><span class="kwd">new</span><span class="pln"> </span><span class="highlight"><span class="typ">StringWriter</span></span><span class="pun">();</span><span class="pln">
+  svc</span><span class="pun">.</span><span class="pln">writeTo</span><span class="pun">(</span><span class="pln">sw</span><span class="pun">);</span><span class="pln">
+  </span><span class="typ">String</span><span class="pln"> s</span><span class="pun">=</span><span class="pln">sw</span><span class="pun">.</span><span class="pln">toString</span><span class="pun">();</span><span class="pln">
+  assertTrue</span><span class="pun">(</span><span class="str">"Service document does not specify acceptance of entries."</span><span class="pun">,</span><span class="pln">s</span><span class="pun">.</span><span class="pln">contains</span><span class="pun">(</span><span class="str">"application/atom+xml; type=entry"</span><span class="pun">));</span><span class="pln">
+  assertTrue</span><span class="pun">(</span><span class="str">"Service document does not specify acceptance of apples."</span><span class="pun">,</span><span class="pln">s</span><span class="pun">.</span><span class="pln">contains</span><span class="pun">(</span><span class="str">"image/*"</span><span class="pun">));</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+ </span></pre><br>
+				</div>
+				
+						</div>	
+				
+		<div style="width:100%; margin-top:20px;">
+				
+				<!-- 1. example number -->
+				<p style="color:#424345; font-weight:bold;">Example 20</p>
+				
+				<!-- 2. description -->
+				<div style=" margin: 0px 0 0 0;padding: 10px 0;">	
+					
+					<div style="float:right; color:grey; ">
+						&nbsp;&nbsp;5&nbsp;
+					</div>
+					<div class="vote" id="4249">
+						<img alt="vote" src="Java%20Code%20Example%20java.io.StringWriter_files/like.png" width="25"> 
+					</div>
+					
+					<p>
+					From project <span style="font-style:italic;">499Project</span>, 
+					under directory  <span style="font-style:italic;">/src/com/cs/uwindsor/group/CARE/db/</span>,
+					in source file <span style="font-style:italic;">XMLHelper.java</span> 
+					</p>
+					
+					<p>
+						<!-- <a href="http://programcreek.com/java-api-examples/index.php?source_code=499Project-/src/com/cs/uwindsor/group/CARE/db/-XMLHelper.java"> -->
+							
+							
+						<!-- </a> -->
+					</p>
+				</div>
+				
+				<!-- 3. code -->	
+				<div class="code">					
+						<pre class="prettyprint"><span class="com">/** 
+ * Given a XML Document it returns a String containing the Document
+ * @param doc
+ * @return
+ * @throws Exception
+ */</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> xmlDocToString</span><span class="pun">(</span><span class="typ">Document</span><span class="pln"> doc</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">throws</span><span class="pln"> </span><span class="typ">IllegalArgumentException</span><span class="pun">,</span><span class="pln"> </span><span class="typ">TransformerException</span><span class="pun">,</span><span class="pln"> </span><span class="typ">TransformerFactoryConfigurationError</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="typ">Transformer</span><span class="pln"> transformer</span><span class="pun">=</span><span class="typ">TransformerFactory</span><span class="pun">.</span><span class="pln">newInstance</span><span class="pun">().</span><span class="pln">newTransformer</span><span class="pun">();</span><span class="pln">
+  transformer</span><span class="pun">.</span><span class="pln">setOutputProperty</span><span class="pun">(</span><span class="typ">OutputKeys</span><span class="pun">.</span><span class="pln">INDENT</span><span class="pun">,</span><span class="str">"yes"</span><span class="pun">);</span><span class="pln">
+  transformer</span><span class="pun">.</span><span class="pln">setOutputProperty</span><span class="pun">(</span><span class="typ">OutputKeys</span><span class="pun">.</span><span class="pln">OMIT_XML_DECLARATION</span><span class="pun">,</span><span class="str">"yes"</span><span class="pun">);</span><span class="pln">
+  transformer</span><span class="pun">.</span><span class="pln">setOutputProperty</span><span class="pun">(</span><span class="str">"{http://xml.apache.org/xslt}indent-amount"</span><span class="pun">,</span><span class="str">"2"</span><span class="pun">);</span><span class="pln">
+  </span><span class="typ">StreamResult</span><span class="pln"> result</span><span class="pun">=</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">StreamResult</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="highlight"><span class="typ">StringWriter</span></span><span class="pun">());</span><span class="pln">
+  </span><span class="typ">DOMSource</span><span class="pln"> source</span><span class="pun">=</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">DOMSource</span><span class="pun">(</span><span class="pln">doc</span><span class="pun">);</span><span class="pln">
+  transformer</span><span class="pun">.</span><span class="pln">transform</span><span class="pun">(</span><span class="pln">source</span><span class="pun">,</span><span class="pln">result</span><span class="pun">);</span><span class="pln">
+  </span><span class="typ">String</span><span class="pln"> xmlString</span><span class="pun">=</span><span class="pln">result</span><span class="pun">.</span><span class="pln">getWriter</span><span class="pun">().</span><span class="pln">toString</span><span class="pun">();</span><span class="pln">
+  </span><span class="kwd">return</span><span class="pln"> xmlString</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+ </span></pre><br>
+				</div>
+				
+						</div>	
+				
+
+<!-- java api examples - bottom 
+<ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-5732630628268628"
+     data-ad-slot="6827668015"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+-->
+
+<script type="text/javascript">
+		$('.vote').hover(
+			function () {
+				$(this).addClass("hover");
+			},
+			function () {
+				$(this).removeClass("hover");
+			}
+		);
+		
+		
+		$("pre").highlight("StringWriter", {caseSensitive:true});
+		
+		//$(this).html().replace( new RegExp(StringWriter, "ig") ,'<div style="background-color:red">' + StringWriter + '</div>')
+		
+</script>
+
+		
+	</div> 
+	
+
+
+</div> 
+<!--end of content-->
+
+
+	
+	
+	
+</body></html>

@@ -1,0 +1,14 @@
+﻿It is a compile-time error if a blank final static variable is not definitely assigned by a static initializer of the class in which it is declared.
+
+At run time, static fields that are final and that are initialized with constant
+expressions are initialized first.
+
+Initialization expressions for instance variables may use the simple name of any
+static variable declared in or inherited by the class, even one whose declaration occurs textually later.
+	class Test {
+		float f = j;
+		static int j = 1;
+	}
+This program compiles without error; it initializes j to 1 when class Test is initialized, and initializes f to the current value of j every time an instance of class Test is created.
+
+

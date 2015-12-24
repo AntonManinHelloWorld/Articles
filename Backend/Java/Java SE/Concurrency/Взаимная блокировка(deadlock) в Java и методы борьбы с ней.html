@@ -1,0 +1,1065 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head>
+    <title>
+        Взаимная блокировка(deadlock) в Java и методы борьбы с ней / Сообщество разработчиков developers on the net
+    </title>
+    <link rel="shortcut icon" href="http://www.developersonthe.net/images/favicon.png" charset="utf-8">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="yandex-verification" content="40559cc60c467e75">
+    <meta name="description" content="При разработке многопоточных приложений часто возникает дилемма: что важнее надежность или работоспособность приложения. Например, мы используем синхронизацию для поточной безопасности(thread safety), при этом в случаи, неверного порядка синхронизации, мы можем вызвать взаимную блокировки. Так же, мы используем пулы потоков и семафоры, для ограничения потребления ресурсов, при этом ошибка в таком дизайне может привести к взаимной блокировке, вследствие недостатка ресурсов. В данной статье мы поговорим о том, как избегать взаимной блокировки, а так же других проблем в работоспособности приложения. Так же мы рассмотрим, как может приложение быть написано таким образом, чтоб иметь возможность восстановится в случаи взаимной блокировки.Взаимная блокировка  – это ситуация в которой, два или более процесса занимая некоторые ресурсы, пытаются заполучить некоторые другие ресурсы, занятые другими процессами и ни один из процессов не может занять необходимый им ресурс, и соответственно освободить занимаемый. Данное определение слишком общее, поэтому сложно для восприятия, для лучшего ">
+    <meta name="keywords" content="Взаимная, блокировка(deadlock), Java, методы, борьбы, с, ней">
+    <!--append meta)(keywords, descriptions, etc.)/-->
+    <script async="" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/cbgapi.loaded_1"></script><script async="" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/cbgapi.loaded_0"></script><script gapi_processed="true" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/plusone.js" async="" type="text/javascript"></script><script src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/code.js" async="" type="text/javascript"></script><script src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/widgets.js" id="twitter-wjs"></script><script src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/all.js" id="facebook-jssdk"></script><script src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/ga.js" async="" type="text/javascript"></script><script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/jquery-2.js"></script>
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/jquery-ui-1.js"></script>
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/jquery-ui-i18n.js"></script>
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/bootstrap.js"></script>
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/highlight.js"></script>
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/1c.js"></script>
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/apache.js"></script>
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/avrasm.js"></script>
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/axapta.js"></script>
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/bash.js"></script>
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/cmake.js"></script>
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/cpp.js"></script>
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/cs.js"></script>
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/css.js"></script>
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/delphi.js"></script>
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/diff.js"></script>
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/xml.js"></script>
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/django.js"></script>
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/dos.js"></script>
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/erlang.js"></script>
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/erlang-repl.js"></script>
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/go.js"></script>
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/haskell.js"></script>
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/ini.js"></script>
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/java.js"></script>
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/javascript.js"></script>
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/lisp.js"></script>
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/lua.js"></script>
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/mel.js"></script>
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/nginx.js"></script>
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/objectivec.js"></script>
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/parser3.js"></script>
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/perl.js"></script>
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/php.js"></script>
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/profile.js"></script>
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/python.js"></script>
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/qt.js"></script>
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/renderman.js"></script>
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/ruby.js"></script>
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/scala.js"></script>
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/smalltalk.js"></script>
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/sql.js"></script>
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/tex.js"></script>
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/vala.js"></script>
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/vbscript.js"></script>
+    <script type="text/javascript" language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/vhdl.js"></script>
+    <script type="text/javascript" language="javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-34711740-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <script type="text/javascript" language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/social-widgets.js"></script>
+    <script type="text/javascript" language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/social-auth.js"></script>
+    <script type="text/javascript" language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/modal.js"></script>
+    <script type="text/javascript" language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/main.js"></script>
+    <script type="text/javascript" language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/deeplinks.js"></script>
+    <script type="text/javascript" language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/hash-function.js"></script>
+    <script type="text/javascript" language="javascript">
+        var lang = "ru";
+        var user_id = "";
+        var timezone = "";
+    </script>
+    <link type="text/css" rel="stylesheet" href="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/bootstrap.css">
+    <!--link type="text/css" rel="stylesheet" href="/css/bootstrap/bootstrap-responsive.min.css"-->
+    <link type="text/css" rel="stylesheet" href="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/main.css">
+    <link type="text/css" rel="stylesheet" href="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/code_highlight.css">
+    <meta id="scripts_and_styles-predecessor">
+
+    <!--    vk login                     -->
+    <script type="text/javascript">
+        window.vkAsyncInit = function () {
+            VK.init({
+                apiId: 3417181
+            });
+        };
+        $(function () {
+            var el = document.createElement("script");
+            el.type = "text/javascript";
+            el.src = "http://vk.com/js/api/openapi.js";
+            el.async = true;
+            document.getElementById("vk_api_transport").appendChild(el);
+        }, 0);
+        /**
+         * FB Login
+         */
+        window.fbAsyncInit = function () {
+            // init the FB JS SDK
+            FB.init({
+                appId: 463701690429309,                        // App ID from the app dashboard
+                status: true,                                 // Check Facebook Login status
+                cookie: true,
+                xfbml: true                                  // Look for social plugins on the page
+            });
+            // Additional initialization code such as adding Event Listeners goes here
+        };
+        // Load the SDK asynchronously
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {
+                return;
+            }
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/en_US/all.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/voting.js"></script>
+<script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/posts.js"></script>
+<script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/comments.js"></script>
+<script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/tag_keys.js"></script>
+<script language="javascript" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/ajaxfileupload.js"></script>
+<style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_reposition{overflow-x:hidden;position:relative}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}.fb_link img{border:none}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_reset .fb_dialog_legacy{overflow:visible}.fb_dialog_advanced{padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px}.fb_dialog_content{background:#fff;color:#333}.fb_dialog_close_icon{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;_background-image:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;_background-image:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_close_icon:active{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;_background-image:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_loader{background-color:#f6f7f8;border:1px solid #606060;font-size:24px;padding:20px}.fb_dialog_top_left,.fb_dialog_top_right,.fb_dialog_bottom_left,.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}.fb_dialog_top_left{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}.fb_dialog_top_right{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}.fb_dialog_bottom_left{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}.fb_dialog_bottom_right{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}.fb_dialog_vert_left,.fb_dialog_vert_right,.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}.fb_dialog_vert_left,.fb_dialog_vert_right{width:10px;height:100%}.fb_dialog_vert_left{margin-left:-10px}.fb_dialog_vert_right{right:0;margin-right:-10px}.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{width:100%;height:10px}.fb_dialog_horiz_top{margin-top:-10px}.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #3a5795;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{-webkit-transform:none;height:100%;margin:0;overflow:visible;position:absolute;top:-10000px;left:0;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{width:auto;height:auto;min-height:initial;min-width:initial;background:none}.fb_dialog.fb_dialog_mobile.loading.centered #fb_dialog_loader_spinner{width:100%}.fb_dialog.fb_dialog_mobile.loading.centered .fb_dialog_content{background:none}.loading.centered #fb_dialog_loader_close{color:#fff;display:block;padding-top:20px;clear:both;font-size:18px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;left:0;top:0;width:100%;min-height:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#4966A6), color-stop(.5, #355492), to(#2A4887));border:1px solid #2f477a;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset, rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f6f7f8;border:1px solid #555;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}#fb_dialog_loader_spinner{animation:rotateSpinner 1.2s linear infinite;background-color:transparent;background-image:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yD/r/t-wz8gw1xG1.png);background-repeat:no-repeat;background-position:50% 50%;height:24px;width:24px}@keyframes rotateSpinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_hide_iframes iframe{position:relative;left:-10000px}.fb_iframe_widget_loader{position:relative;display:inline-block}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}.fb_iframe_widget_loader .FB_Loader{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}</style><script src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/button.js" async="" charset="utf-8" type="text/javascript"></script></head>
+<body class="inner-page">
+<img id="loadIndicator" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/loading.gif" style="display:none;" class="common-load-indicator" width="125">
+<a href="http://www.developersonthe.net/ru/feedback/" class="feedback-widget widget"><div class="full-feedback">Ваше мнение важно для нас. <br>Поделитесь своими предоложениями и пожеланиями.</div><div class="feedback-icon"><img src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/feedback.jpg" height="30px"></div></a>
+<div style="position: absolute; top: -10000px;" id="vk_api_transport"><script async="" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/openapi.js" type="text/javascript"></script></div>
+<div class=" fb_reset" id="fb-root"><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/TlA_zCeMkxl.html" style="border: medium none;" tabindex="-1" title="Facebook Cross Domain Communication Frame" aria-hidden="true" id="fb_xdm_frame_http" scrolling="no" allowfullscreen="true" allowtransparency="true" name="fb_xdm_frame_http" frameborder="0"></iframe><iframe src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/TlA_zCeMkxl_002.html" style="border: medium none;" tabindex="-1" title="Facebook Cross Domain Communication Frame" aria-hidden="true" id="fb_xdm_frame_https" scrolling="no" allowfullscreen="true" allowtransparency="true" name="fb_xdm_frame_https" frameborder="0"></iframe></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div></div></div></div>
+<div id="messageDiv" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="messageDiv" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <br>
+    </div>
+    <div class="modal-body">
+        <p class="content"></p>
+    </div>
+</div>
+<div id="imageAlignment" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="imageAlignment" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3>Выравнивание картинки</h3>
+    </div>
+    <div class="modal-body" align="center">
+        Выберите выравнивание картинки относительно текста
+        <div id="imageAlignmentOptions">
+            <label><input name="alignment" id="imageAlignLeft" value="" checked="checked" type="radio">По левому
+                краю</label>
+            <label><input name="alignment" id="imageAlignCenter" value="style=&quot;float:none&quot; " type="radio">По
+                центру</label>
+            <label><input name="alignment" id="imageAlignRight" value="style=&quot;float:right&quot; " type="radio">По правому
+                краю</label>
+
+            <div class="hint">По умолчанию применяется выравнивание по левому краю</div>
+            <a class="submit btn" tabindex="1006">Применить</a>
+        </div>
+    </div>
+</div>
+<div id="issueComment" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="issueComment" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3>Ваш комментарий</h3>
+    </div>
+    <div class="modal-body" align="center">
+        <div class="issueStatusChangeDiv">
+            <form>
+                <textarea name="text"></textarea>
+                <input name="from" id="from" type="hidden">
+                <input name="to" id="to" type="hidden">
+                <input name="bug_id" id="bug_id" type="hidden">
+                <br>
+                <a class="submit btn" tabindex="1006">Переместить</a>
+                <a class="cancel btn" tabindex="1006">Отмена</a>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true" previewtitle="Предварительный просмотр">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 class="title"></h3>
+    </div>
+    <div class="modal-body">
+        <div class="content"></div>
+    </div>
+</div>
+<div id="logout" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="logout" aria-hidden="true">
+    <div class="modal-header">
+        <span class="title">Выход</span>
+    </div>
+    <div class="modal-body">
+        <p>Выполняется выход. Пожалуйста, подождите...</p>
+    </div>
+</div>
+<div id="login" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="true">
+    <div>
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <span class="title">Вход</span>
+        </div>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#home" data-toggle="tab">Учетная запись</a></li>
+            <li><a class="social-login-tab" href="#profile" data-toggle="tab">Социальные сети</a></li>
+        </ul>
+        <div class="modal-body">
+            <div class="tab-content">
+                <div class="tab-pane active" id="home">
+                    <div id="loginErrorMsg" class="text-error"></div>
+                    <div class="loginDiv">
+                        <form action="/ru/users/mode/login/">
+                            <div>
+                                <input id="login" class="login-input" name="login" tabindex="1001" placeholder="Логин или e-mail" type="text">
+                            </div>
+                            <div>
+                                <input id="password" class="login-input" name="password" tabindex="1002" placeholder="Пароль" type="password">
+                            </div>
+                            <a class="resetPassword">Забыли пароль?</a>
+                            <a class="submit-login btn" tabindex="1006" resetpass="Выслать пароль" login="Войти">Войти</a>
+                        </form>
+                    </div>
+                </div>
+                <div class="tab-pane" id="profile">
+                    <div id="loginErrorMsg" class="text-error"></div>
+                    <div class="socialLoginButtons">
+                        <div>
+                            <a id="sign_in_vk_btn" href="#sign_in_vk">
+                                <img src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/vk-large.jpg">
+                                <span>ВКонтакте</span>
+                            </a>
+                        </div>
+                        <div>
+                            <a id="sign_in_fb_btn" href="#sign_in_fb">
+                                <img class="pcfykmqlcrtplekulgcu" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/fb-large.jpg">
+                                <span>Facebook</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom"></div>
+    </div>
+</div>
+<div id="register" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="register" aria-hidden="true">
+    <div>
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <span class="title">Регистрация</span>
+        </div>
+        <div class="modal-body">
+            <div id="registerErrorMsg" class="text-error"></div>
+            <form action="/ru/users/mode/add/" class="register-form">
+                <label for="login">Логин</label>
+                <input id="login" class="login-input input" name="login" tabindex="1001" type="text">
+                <br>
+                <label for="email">Адрес электронной почты:</label>
+                <input id="email" class="login-input input" name="email" tabindex="1002" type="text">
+                <br>
+                <label for="password">Пароль:</label>
+                <input id="password" class="password masked input" name="password" tabindex="1003" type="password">
+                <input id="passwordVisible" class="password visible input" tabindex="1003" style="display:none" type="text">
+                <br>
+                <label for="showPassword">Показать пароль:</label>
+                <input id="showPassword" class="showPassword" tabindex="1004" value="1" type="checkbox">
+                <br>
+                <label for="clearField" style="display:none">&nbsp;</label>
+                <input id="clearField" class="login-input" name="clearField" tabindex="1005" type="text">
+                <label>&nbsp;</label>
+                <a class="submit-register btn" tabindex="1006">Зарегистрироваться</a>
+
+                <a class="social-login-no-register">Войти без регистрации через социальную сеть</a>
+            </form>
+        </div>
+        <div class="bottom"></div>
+    </div>
+</div>
+<div id="main">
+    <div class="top-banner"><!--may insert a banner later--></div>
+    <header class="b-head header">
+        <div class="bg">
+            <div class="bg-l"></div>
+            <div class="bg-c"></div>
+            <div class="bg-h"></div>
+            <div class="mover">
+                <div class="reg">
+                    <div class="descr">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="l-content b-center-header" id="b-center-header">
+            <div class="l-content-wrap">
+                <div class="col2 border"></div>
+                <div class="col140px">
+                    <div class="l-content">
+                        <div class="l-content-wrap">
+                            <div class="col4">
+                                <div class="logo">
+                                    <a href="http://www.developersonthe.net/"><img src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/logo.jpg" height="125" width="125"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col70">
+                    <div class="caption">
+                        <img src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/developersonthenet.png">
+                    </div>
+                </div>
+                <div class="col2 border"></div>
+                <div class="register-login">
+    <a href="#login" class="login-link" data-toggle="modal">Вход</a>
+    <a href="#register" class="register-link" data-toggle="modal">Регистрация</a>
+</div>
+
+            </div>
+        </div>
+        <div class="b-head-panel">
+            <div class="l-head-panel">
+                <div>
+                    <div class="colgroup">
+                        <div class="col col20px"></div>
+                        <div class="col col-auto"></div>
+                        <div class="col col2"></div>
+                        <div class="col col-160px"></div>
+                        <div class="col col20px"></div>
+                    </div>
+                    <div class="row">
+                        <div class="cell"></div>
+                        <div class="cell">
+                            <div class="b-head-menu">
+                                <ul>
+    		<li class="sel">
+			<div class="selection">
+				<a href="http://www.developersonthe.net/ru/posts/" rel="nofollow" title="В данном разделе Вы можете просмотреть все статей в порядке их публикации, а так же прочитать полный текст выбранной статьи и прокомментировать ее, либо проголосовать за/против нее">посты</a>
+			</div>
+		</li>
+    		<li>
+			<div class="selection">
+				<a href="http://www.developersonthe.net/ru/blogs/" rel="nofollow" title="В данном разделе Вы можете опубликовать свою статью в выбранном блоге, просмотреть список всех блогов, а так же список статей опубликованных в выбранном блоге">блоги</a>
+			</div>
+		</li>
+    		<li>
+			<div class="selection">
+				<a href="http://www.developersonthe.net/ru/qa/" rel="nofollow" title="В данном разделе Вы можете задать свой вопрос, просмотреть вопросы заданные пользователями сайта, ответить на уже заданный вопрос, либо проголосовать за/против него">q&amp;a</a>
+			</div>
+		</li>
+    		<li>
+			<div class="selection">
+				<a href="http://www.developersonthe.net/ru/tests/" rel="nofollow" title="В данном разделе Вы можете пройти предложенные на сайте тесты, а так же проголосовать за/против теста, после прохождения его ">тесты</a>
+			</div>
+		</li>
+    		<li>
+			<div class="selection">
+				<a href="http://www.developersonthe.net/ru/projects/" rel="nofollow" title="В данном разделе Вы можете создать свой проект, что позволит Вам использовать багтреккер, репозиторий и тому подобные возможности сервиса. Вы так же сможете просмотреть список всех открытых проектов участников сайта">проекты</a>
+			</div>
+		</li>
+    		<li>
+			<div class="selection">
+				<a href="http://www.developersonthe.net/ru/users/" rel="nofollow" title="В данном разделе Вы можете просмотреть список пользователей сервиса, просмотреть профиль пользователей, а так же отправить им сообщение по внутренней почте">пользователи</a>
+			</div>
+		</li>
+    		<li>
+			<div class="selection">
+				<a href="http://www.developersonthe.net/ru/books/" rel="nofollow" title="В данном разделе Вы можете подобрать литературу по разработке/тестированию программного обеспечения, стартапам и тому подобному, а так же прокомментировать предложенные книги">книги</a>
+			</div>
+		</li>
+    </ul>
+                            </div>
+                        </div>
+                        <div class="cell"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="search-div">
+            <form class="b-search" action="/ru/search/" method="get">
+                <input class="inp" results="5" id="txtGlobalSearch" placeholder="поиск по сайту" name="query" type="search">
+                <a class="btn">Искать!</a>
+            </form>
+        </div>
+    </header>
+    <div class="l-content">
+        <div class="l-content-wrap">
+            <div class="cell border" id="content-predecessor"></div>
+            <div class="col70">
+	<section class="b-content-page">
+		<div class="head">
+			<h1 class="page-title">
+				Взаимная блокировка(deadlock) в Java и методы борьбы с ней
+			</h1>
+		</div>
+	</section>
+	<br>
+	<div class="l-content">
+		<div class="l-content-wrap">
+			<div class="col50">
+				<section class="postContent">
+					<div class="postText">
+						При разработке многопоточных приложений часто возникает дилемма: 
+что важнее надежность или работоспособность приложения. Например, мы 
+используем синхронизацию для поточной безопасности(thread safety), при 
+этом в случаи, неверного порядка синхронизации, мы можем вызвать 
+взаимную блокировки. Так же, мы используем пулы потоков и семафоры, для 
+ограничения потребления ресурсов, при этом ошибка в таком дизайне может 
+привести к взаимной блокировке, вследствие недостатка ресурсов. В данной
+ статье мы поговорим о том, как избегать взаимной блокировки, а так же 
+других проблем в работоспособности приложения. Так же мы рассмотрим, как
+ может приложение быть написано таким образом, чтоб иметь возможность 
+восстановится в случаи взаимной блокировки.<br>Взаимная блокировка  – 
+это ситуация в которой, два или более процесса занимая некоторые 
+ресурсы, пытаются заполучить некоторые другие ресурсы, занятые другими 
+процессами и ни один из процессов не может занять необходимый им ресурс,
+ и соответственно освободить занимаемый. Данное определение слишком 
+общее, поэтому сложно для восприятия, для лучшего его понимания мы 
+рассмотрим типы взаимных блокировок на примерах.<br>
+                        <br>
+                        <br>
+						<br><br><br><br><br><br><h2>Взаимная блокировка порядка синхронизации</h2>
+<br>Рассмотрим следующую задачу: необходимо написать метод 
+осуществляющий транзакцию перевода некоторого количества денег с одного 
+счета на другой.  Решение может иметь следующий вид:<br><pre><code class="java"><span class="keyword">public</span> <span class="keyword">void</span> transferMoney(Account fromAccount, Account toAccount, Amount amount) <span class="keyword">throws</span> InsufficientFundsException {
+	<span class="keyword">synchronized</span> (fromAccount) {
+		<span class="keyword">synchronized</span> (toAccount) {
+			<span class="keyword">if</span> (fromAccount.getBalance().compareTo(amount) &lt; <span class="number">0</span>)
+				<span class="keyword">throw</span> <span class="keyword">new</span> InsufficientFundsException();
+			<span class="keyword">else</span> {
+				fromAccount.debit(amount);
+				toAccount.credit(amount);
+			}
+		}
+	}
+}</code></pre>
+<br><br>На первый взгляд, данный код синхронизирован вполне нормально, 
+мы имеем атомарную операцию проверки и изменения состояния 
+счета-источника и изменение счета-получателя. Но, при данной стратегии 
+синхронизации может возникнуть ситуация взаимной блокировки. Давайте 
+рассмотрим пример того, как это происходит. Необходимо произвести две 
+транзакции:  со счета A на счет B перевести x денег, а со счета B на 
+счет A – y. Зачастую эта ситуация не вызовет взаимной блокировки, 
+однако, при неудачном стечении обстоятельств, транзакция 1 займет 
+монитор счета A, транзакция 2 займет монитор счета B. Результат – 
+взаимная блокировка: транзакция 1 ждет, пока транзакция 2 освободит 
+монитор счета B, но для этого транзакция 2 должна получить доступ к 
+монитору A, занятому транзакцией 1. <br>Одна из больших проблем с 
+взаимными блокировками – что их нелегко найти при тестировании. Даже в 
+ситуации, описанной в примере, потоки могут не заблокироваться, то есть 
+данная ситуация не будет постоянно воспроизводится, что значительно 
+усложняет диагностику. В целом описанная проблема недетерминированности 
+является типичной для многопоточности (хотя от этого не легче). Потому, в
+ повышении качества многопоточных приложений важную роль играет code 
+review, поскольку он позволяет выявить ошибки, которые проблематично 
+воспроизвести при тестировании. Это, конечно же, не значит, что 
+приложение не надо тестировать, просто о code review тоже не надо 
+забывать.<br>Что нужно сделать, чтобы этот код не приводил к взаимной 
+блокировке? Данная блокировка вызвана тем, что синхронизация счетов 
+может происходить в разном порядке. Соответственно, если ввести 
+некоторый порядок на счетах (это некоторое правило, позволяющее сказать,
+ что счет A меньше чем счет B), то проблема будет устранена. Как это 
+сделать? Во-первых, если у счетов есть какой-то уникальный идентификатор
+ (например, номер счета) численный, строчный или еще какой-то с 
+естественным понятием порядка (строки можно сравнивать в <a href="http://ru.wikipedia.org/wiki/%D0%9B%D0%B5%D0%BA%D1%81%D0%B8%D0%BA%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B9_%D0%BF%D0%BE%D1%80%D1%8F%D0%B4%D0%BE%D0%BA" target="_blank" rel="nofollow">лексикографическом порядке</a>,
+ то можем считать, что нам повезло, и мы всегда можем сначала занимать 
+монитор меньшего счета, а потом большего (или наоборот). <br><pre><code class="java"><span class="keyword">private</span> <span class="keyword">void</span> doTransfer(<span class="keyword">final</span> Account fromAcct, <span class="keyword">final</span> Account toAcct, <span class="keyword">final</span> DollarAmount amount) <span class="keyword">throws</span> InsufficientFundsException {	
+	<span class="keyword">if</span> (fromAcct.getBalance().compareTo(amount) &lt; <span class="number">0</span>) 
+		<span class="keyword">throw</span> <span class="keyword">new</span> InsufficientFundsException();
+	<span class="keyword">else</span> {
+		fromAcct.debit(amount);
+		toAcct.credit(amount);
+	}
+}
+<span class="keyword">public</span> <span class="keyword">void</span> transferMoney(<span class="keyword">final</span> Account fromAcct, <span class="keyword">final</span> Account toAcct, <span class="keyword">final</span> DollarAmount amount) <span class="keyword">throws</span> InsufficientFundsException {
+	<span class="keyword">int</span> fromId= fromAcct.getId();
+	<span class="keyword">int</span> toId = fromAcct.getId();
+	<span class="keyword">if</span> (fromId &lt; toId) {
+		<span class="keyword">synchronized</span> (fromAcct) {
+			<span class="keyword">synchronized</span> (toAcct) {
+				doTransfer(fromAcct, toAcct, amount)}
+			}
+		}
+	} <span class="keyword">else</span>  {
+		<span class="keyword">synchronized</span> (toAcct) {
+			<span class="keyword">synchronized</span> (fromAcct) {
+				doTransfer(fromAcct, toAcct, amount)}
+			}
+		}
+	} 
+}</code></pre>
+<br>Второй вариант, если такого идентификатора у нас нет, то придется 
+его придумать самим. Мы можем в первом приближении сравнивать объекты по
+ хеш-коду. Скорее всего, они будут отличаться. Но что делать, если они 
+все же окажутся одинаковыми? Тогда придется добавить еще один объект для
+ синхронизации. Это может выглядеть несколько изощренным, но что 
+поделать. Да и к тому же, третий объект будет использоваться довольно 
+редко. Результат будет выглядеть следующим образом:<br><pre><code class="java"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Object tieLock = <span class="keyword">new</span> Object();
+<span class="keyword">private</span> <span class="keyword">void</span> doTransfer(<span class="keyword">final</span> Account fromAcct, <span class="keyword">final</span> Account toAcct, <span class="keyword">final</span> DollarAmount amount) <span class="keyword">throws</span> InsufficientFundsException {	
+	<span class="keyword">if</span> (fromAcct.getBalance().compareTo(amount) &lt; <span class="number">0</span>) 
+		<span class="keyword">throw</span> <span class="keyword">new</span> InsufficientFundsException();
+	<span class="keyword">else</span> {
+		fromAcct.debit(amount);
+		toAcct.credit(amount);
+	}
+}
+<span class="keyword">public</span> <span class="keyword">void</span> transferMoney(<span class="keyword">final</span> Account fromAcct, <span class="keyword">final</span> Account toAcct, <span class="keyword">final</span> DollarAmount amount) <span class="keyword">throws</span> InsufficientFundsException {
+	<span class="keyword">int</span> fromHash = System.identityHashCode(fromAcct);
+	<span class="keyword">int</span> toHash = System.identityHashCode(toAcct);
+	<span class="keyword">if</span> (fromHash &lt; toHash) {
+		<span class="keyword">synchronized</span> (fromAcct) {
+			<span class="keyword">synchronized</span> (toAcct) {
+				doTransfer(fromAcct, toAcct, amount);
+			}
+		}
+	} <span class="keyword">else</span> <span class="keyword">if</span> (fromHash &gt; toHash) {
+		<span class="keyword">synchronized</span> (toAcct) {
+			<span class="keyword">synchronized</span> (fromAcct) {
+				doTransfer(fromAcct, toAcct, amount);
+			}	
+		}
+	} <span class="keyword">else</span> {
+		<span class="keyword">synchronized</span> (tieLock) {
+			<span class="keyword">synchronized</span> (fromAcct) {
+				<span class="keyword">synchronized</span> (toAcct) {
+					doTransfer(fromAcct, toAcct, amount)
+				}
+			}
+		}
+	}
+}</code></pre>
+<br><h2>Взаимная блокировка между объектами</h2>
+<br>Описанные условия блокировки представляют наиболее простой по 
+диагностике случай взаимной блокировки. Зачастую в многопоточных 
+приложениях различные объекты пытаются получить доступ к одним и тем же 
+синхронизированным блокам. При этом может возникнуть взаимная 
+блокировка. Рассмотрим следующий пример:  приложение для диспетчера 
+полетов. Самолеты сообщают диспетчеру, когда они прибыли на место 
+назначения и запрашивают разрешение на посадку. Диспетчер хранит всю 
+информацию о самолетах, летящих в его направлении, и может строить их 
+положение на карте.<br><pre><code class="java"><span class="class"><span class="keyword">class</span> <span class="title">Plane</span> {</span>
+	<span class="keyword">private</span> Point location, destination;
+	<span class="keyword">private</span> <span class="keyword">final</span> Dispatcher dispatcher;
+
+	<span class="keyword">public</span> Plane(Dispatcher dispatcher) {
+		<span class="keyword">this</span>.dispatcher = dispatcher;
+	}
+	<span class="keyword">public</span> <span class="keyword">synchronized</span> Point getLocation() {
+		<span class="keyword">return</span> location;
+	}
+	<span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> setLocation(Point location) {
+		<span class="keyword">this</span>.location = location;
+		<span class="keyword">if</span> (location.equals(destination))
+		dispatcher.requestLanding(<span class="keyword">this</span>);
+	}
+}
+
+<span class="class"><span class="keyword">class</span> <span class="title">Dispatcher</span> {</span>
+	<span class="keyword">private</span> <span class="keyword">final</span> Set&lt;Plane&gt; planes;
+	<span class="keyword">private</span> <span class="keyword">final</span> Set&lt; Plane &gt; planesPendingLanding;
+
+	<span class="keyword">public</span> Dispatcher() {
+		planes = <span class="keyword">new</span> HashSet&lt;Plane&gt;();
+		planesPendingLanding = <span class="keyword">new</span> HashSet&lt;Plane&gt;();
+	}
+	<span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> requestLanding(Plane plane) {
+		planesPendingLanding.add(plane);
+	}
+	<span class="keyword">public</span> <span class="keyword">synchronized</span> Image getMap() {
+		Image image = <span class="keyword">new</span> Image();
+		<span class="keyword">for</span> (Plane plane : planes)
+			image.drawMarker(plane.getLocation());
+		<span class="keyword">return</span> image;
+	}
+}</code></pre>
+<br>Понять, что в этом код есть ошибка, которая может привести к 
+взаимной блокировке сложнее, чем в предыдущем. На первый взгляд, в нем 
+нет повторных синхронизаций, однако это не так. Вы, наверное, уже 
+заметили, что методы setLocation класса Plane и getMap класса 
+Dispatcher, являются синхронизированными и вызывают внутри себя 
+синхронизированные методы других классов. Это в целом плохая практика. О
+ том, как это можно исправить, речь пойдет в следующем разделе. В 
+результате, если самолет прибывает на место, в тот же момент, как кто-то
+ решает получить карту может возникнуть взаимная блокировка. То есть, 
+будут вызваны методы, getMap и setLocation, которые займут мониторы 
+экземпляров Dispatcher и Plane соответственно. Затем метод getMap 
+вызовет plane.getLocation (в частности для экземпляра Plane, который в 
+данный момент занят), который будет ждать освобождения монитора для 
+каждого из экземпляров Plane. В то же время в методе setLocation будет 
+вызван dispatcher.requestLanding, при этом монитор экземпляра Dispatcher
+ остается занят рисованием карты. Результат – взаимная блокировка.<br><h2>Открытые вызовы</h2>
+<br>С целью не допускать ситуаций вроде описанной в предыдущем разделе 
+рекомендуется использовать открытые вызовы к методам других объектов. То
+ есть, вызывать методы других объектов вне синхронизированного блока. 
+Если с применением принципа открытых вызовов переписать методы 
+setLocation и getMap возможность взаимной блокировки будет устранена. 
+Выглядеть это будет, например, так:<br><pre><code class="java"><span class="keyword">public</span> <span class="keyword">void</span> setLocation(Point location) {
+	<span class="keyword">boolean</span> reachedDestination;
+	<span class="keyword">synchronized</span>(<span class="keyword">this</span>){
+		<span class="keyword">this</span>.location = location;
+		reachedDestination = location.equals(destination);
+	}
+	<span class="keyword">if</span> (reachedDestination)
+		dispatcher.requestLanding(<span class="keyword">this</span>);
+}
+………………………………………………………………………………
+<span class="keyword">public</span> Image getMap() {
+	Set&lt;Plane&gt; copy;
+	<span class="keyword">synchronized</span>(<span class="keyword">this</span>){
+		copy = <span class="keyword">new</span> HashSet&lt;Plane&gt;( planes);
+	}
+	Image image = <span class="keyword">new</span> Image();
+	<span class="keyword">for</span> (Plane plane : copy)
+		image.drawMarker(plane.getLocation());
+	<span class="keyword">return</span> image;
+}</code></pre>
+<br><h2>Ресурсная взаимная блокировка</h2>
+<br>Взаимные блокировки могут возникать так же при попытке получить 
+доступ к некоторым ресурсам, которые может использовать одновременно 
+только один поток. Примером может служить пул соединений с базами 
+данных. Если некоторым потокам необходим доступ одновременно к двум 
+соединениям, и они получают этот доступ в различном порядке, это может 
+привести к взаимной блокировке.  Принципиально, такого рода блокировки 
+ни чем не отличаются от блокировок порядка синхронизации, кроме того, 
+что возникают не при попытке выполнить некоторый код, а при попытке 
+получить доступ к ресурсам.<br><h2>Как избегать взаимных блокировок?</h2>
+<br>Безусловно, если код написан без каких-либо ошибок (примеры которых 
+мы видели в предыдущих разделах), то взаимных блокировок в нем не будет.
+ Но кто может поручиться, что его код написан без ошибок? Безусловно, 
+тестирование помогает выявить значительную часть ошибок, но как мы уже 
+видели ранее, ошибки в многопоточном коде нелегко диагностировать и даже
+ после тестирования нельзя быть уверенным в отсутствии ситуаций взаимных
+ блокировок. Можем ли мы как-то перестраховаться от блокировок? Ответ – 
+да. Подобные техники применяются в движках баз данных, которым нередко 
+необходимо восстанавливаться после взаимных блокировок (связанных с 
+механизмом транзакций в БД). Интерфейс Lock и его реализации доступные в
+ пакете java.util.concurrent.locks позволяют попытаться занять монитор, 
+связанный с экземпляром данного класса методом tryLock (возвращает true,
+ если удалось занять монитор). Пусть у нас есть пара объектов 
+реализующих интерфейс Lock и нам необходимо занять их мониторы так, чтоб
+ избежать взаимной блокировки. Реализовать это можно так:<br><pre><code class="java"><span class="keyword">public</span> <span class="keyword">void</span> twoLocks(Lock A,  Lock B){
+	<span class="keyword">while</span>(<span class="keyword">true</span>){
+		<span class="keyword">if</span>(A.tryLock()){
+			<span class="keyword">if</span>(B.tryLock())
+			{
+				<span class="keyword">try</span>{
+					<span class="comment">//do something</span>
+				} <span class="keyword">finally</span>{
+					B.unlock();
+					A.unlock();
+				}
+			} <span class="keyword">else</span>{
+				A.unlock();
+			}
+		}
+	}
+}</code></pre>
+<br>Как видно в этой программе мы занимаем два монитора, при этом, 
+исключая возможность взаимной блокировки. Обратите внимание, блок try- 
+finally необходим, поскольку классы из пакета java.util.concurrent.locks
+ автоматически не освобождают монитор, и если в процессе выполнения 
+вашей задачи возникло какое-то исключение, то монитор зависнет в 
+заблокированном состоянии. <br><h2>Как диагностировать взаимные блокировки?</h2>
+<br>JVM позволяет диагностировать взаимные блокировки отображая их в 
+дампах потоков. Такие дампы включают информацию о том, в каком состоянии
+ находится поток. Если он заблокирован, то дамп содержит информацию о 
+мониторе, освобождения которого поток ожидает. Прежде чем вывести дамп 
+потоков JVM просматривает граф ожидаемых (занятых) мониторов, и  если 
+находит циклы – добавляет информацию о взаимной блокировке, указывая 
+участвующие мониторы и потоки.<br>Дамп потоков с взаимной блокировкой выглядит так:<br><pre><code class="xml">Found one Java-level deadlock:
+=============================
+"ApplicationServerThread":
+waiting to lock monitor 0x0f0d80cc (a MyDBConnection),
+which is held by "ApplicationServerThread"
+"ApplicationServerThread":
+waiting to lock monitor 0x0f0d8fed (a MyDBCallableStatement),
+which is held by "ApplicationServerThread"
+Java stack information for the threads listed above:
+"ApplicationServerThread":
+at MyDBConnection.remove_statement
+- waiting to lock <span class="tag">&lt;<span class="title">0x6f50f730</span>&gt;</span> (a MyDBConnection)
+at MyDBStatement.close
+- locked <span class="tag">&lt;<span class="title">0x604ffbb0</span>&gt;</span> (a MyDBCallableStatement)
+...
+"ApplicationServerThread":
+at MyDBCallableStatement.sendBatch
+- waiting to lock <span class="tag">&lt;<span class="title">0x604ffbb0</span>&gt;</span> (a MyDBCallableStatement)
+at MyDBConnection.commit
+- locked <span class="tag">&lt;<span class="title">0x6f50f730</span>&gt;</span> (a MyDBConnection)</code></pre>
+<br>Приведенный выше дамп явно показывает, что два потока, работающие с базой данных заблокировали друг друга. <br>Для
+ того чтоб диагностировать взаимные блокировки с помощью этой 
+особенности JVM необходимо разместить вызовы операции дампа потоков в 
+различных местах программы и провести тестирование приложения. Далее 
+следует проанализировать полученные логи. В случаи если в них будет 
+указано, что произошла взаимная блокировка, информация из дампа поможет 
+обнаружить условия ее возникновения.<br><br>В целом, следует не 
+допускать ситуаций, приведенных в примерах взаимных блокировок. В таком 
+случаи приложение, скорее всего, будет работать стабильно. Но не 
+забывайте о тестировании и код ревью. Это поможет выявить неполадки, 
+если они все же возникнут. В случаи, если вы разрабатываете систему, для
+ которой критично восстановление поле взаимных блокировок, можно 
+использовать метод, описанный в разделе «Как избегать взаимных 
+блокировок?». В этом случаи может так же оказаться полезным метод 
+lockInterruptibly интерфейса Lock из пакета java.util.concurrent.locks. 
+Он позволяет прервать поток занявший монитор этим методом(и таким 
+образом освободить монитор).<br>
+					</div>
+										                        <div class="item-tags">
+    Теги:
+        <a rel="nofollow" href="http://www.developersonthe.net/ru/search/mode/bytag/tag/java/">java</a>
+        <a rel="nofollow" href="http://www.developersonthe.net/ru/search/mode/bytag/tag/%D0%B2%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F+%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0/">взаимная блокировка</a>
+        <a rel="nofollow" href="http://www.developersonthe.net/ru/search/mode/bytag/tag/%D0%BC%D0%BD%D0%BE%D0%B3%D0%BE%D0%BF%D0%BE%D1%82%D0%BE%D1%87%D0%BD%D0%BE%D1%81%D1%82%D1%8C/">многопоточность</a>
+        <a rel="nofollow" href="http://www.developersonthe.net/ru/search/mode/bytag/tag/deadlock/">deadlock</a>
+        <a rel="nofollow" href="http://www.developersonthe.net/ru/search/mode/bytag/tag/%D0%B4%D0%B8%D0%B0%D0%B3%D0%BD%D0%BE%D1%81%D1%82%D0%B8%D0%BA%D0%B0/">диагностика</a>
+        <a rel="nofollow" href="http://www.developersonthe.net/ru/search/mode/bytag/tag/%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D1%80%D1%8B/">примеры</a>
+    </div>
+
+                    										<div class="widget post-controls">
+                                <a href="http://www.developersonthe.net/ru/users/user_id/4/" rel="nofollow">
+                        <span class="author_login">
+                        mingun
+        </span>
+    </a>
+
+						<div class="post-time">
+							<time class="date">10:19:26 16 Января 2013 (GMT 0)</time>
+						</div>
+                                                						    <div class="post-rate-wrapper">
+				<a class="rate_inc" entity_id="34"><img src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/plus.png" height="10px" width="10px"></a>
+				<span class="counter">2</span>
+				<a class="rate_dec" entity_id="34"><img src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/minus.png" height="10px" width="10px"></a>
+    </div>
+				<div class="post-rate-wrapper social-widgets">
+            <div class="post-rate-wrapper">
+                <div fb-iframe-plugin-query="app_id=463701690429309&amp;container_width=0&amp;height=28&amp;href=http%3A%2F%2Fwww.developersonthe.net%2Fru%2Fposts%2Fpost_id%2F34-Vzaimnaja-blokirovkadeadlock-v-Java-i-metody-borby-s-nej%2F&amp;layout=button_count&amp;locale=en_US&amp;sdk=joey&amp;show_faces=false&amp;width=90" fb-xfbml-state="rendered" class="fb-like fb_iframe_widget" data-href="http://www.developersonthe.net/ru/posts/post_id/34-Vzaimnaja-blokirovkadeadlock-v-Java-i-metody-borby-s-nej/" data-layout="button_count" data-width="90" data-height="28" data-show-faces="false" data-stream="false" data-header="false"><span style="vertical-align: top; width: 0px; height: 0px; overflow: hidden;"><iframe class="pcfykmqlcrtplekulgcu" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/like.html" style="border: medium none; visibility: visible; width: 0px; height: 0px;" title="fb:like Facebook Social Plugin" scrolling="no" allowfullscreen="true" allowtransparency="true" name="fbc6dd5b6f3678" frameborder="0" height="28px" width="90px"></iframe></span></div>
+            </div>
+            <div class="post-rate-wrapper">
+                <div style="height: 18px; width: 100px; background: transparent url(&quot;http://vk.com/images/upload.gif&quot;) no-repeat scroll center center; position: relative; clear: both;" id="vk_like_/ru/posts/post_id/34-Vzaimnaja-blokirovkadeadlock-v-Java-i-metody-borby-s-nej/"><iframe class="pcfykmqlcrtplekulgcu" style="overflow: hidden; height: 18px; width: 100px; z-index: 150;" id="vkwidget1" scrolling="no" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/widget_like.html" name="fXD11e74" frameborder="0" height="18" width="100%"></iframe></div>
+                <script type="text/javascript">
+                    initSocialWidgets.onVKLoadedHandlers.push(function(){
+                        VK.Widgets.Like("vk_like_/ru/posts/post_id/34-Vzaimnaja-blokirovkadeadlock-v-Java-i-metody-borby-s-nej/", {type: "mini", height:18}, VK.MD5("/ru/posts/post_id/34-Vzaimnaja-blokirovkadeadlock-v-Java-i-metody-borby-s-nej/"));
+                    });
+                </script>
+            </div>
+            <div class="post-rate-wrapper">
+                <a data-twitter-extracted-i1449079719587340976="true" href="https://twitter.com/share" class="twitter-share-button" data-size="medium">Tweet</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+            </div>
+            <div class="post-rate-wrapper">
+                <div id="___plusone_0" style="position: absolute; width: 450px; left: -10000px;"><iframe data-gapiattached="true" class="pcfykmqlcrtplekulgcu" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/fastbutton.html" name="I0_1449079720774" id="I0_1449079720774" vspace="0" tabindex="0" style="position:absolute;top:-10000px;width:450px;margin:0px;border-style:none" scrolling="no" marginwidth="0" marginheight="0" hspace="0" frameborder="0" width="100%"></iframe></div><div data-gapistub="true" data-onload="true" data-gapiscan="true" class="g-plusone" data-size="medium" data-href="http://developersonthe.net/ru/posts/post_id/34-Vzaimnaja-blokirovkadeadlock-v-Java-i-metody-borby-s-nej/"></div>
+            </div>
+	</div>
+
+	
+					</div>
+                                <div class="see-also">
+            <h3 class="see-also-title">Читайте также</h3>
+                            <ul class="see-also-list">
+                                    <li class="see-also-list-item">
+                        <a href="http://www.developersonthe.net/ru/posts/post_id/37-Ispolzovanie-Selenium-WebDriver-s-Java/">Использование Selenium WebDriver с Java</a>
+                    </li>
+                                </ul>
+                                        <ul class="see-also-list">
+                                    <li class="see-also-list-item">
+                        <a href="http://www.developersonthe.net/ru/qa/question_id/12-Vopros-po-ArrayList-v-Java/">Вопрос по ArrayList в Java</a>
+                    </li>
+                                </ul>
+                    </div>
+    
+                    <h3 class="see-also-title">Комментарии</h3>
+					<div class="b-forum-articles items b-article-topic-block comments">
+							
+	
+					</div>
+															                                        						Для того, чтоб оставлять комментарии <a rel="nofollow" href="#login" class="login-link" data-toggle="modal">войдите</a> или <a rel="nofollow" href="#register" class="register-link" data-toggle="modal">зарегистрируйтесь</a>.
+									</section>
+			</div>
+		</div>
+	</div>
+</div>
+            <div class="cell border"></div>
+            <div class="col18">
+                <div class="widgets">
+                                        <div class="widget">
+	<div class="widget-title">                         
+		ИТ-цитата
+	</div>
+	<div class="widget-entity">
+		<div>"Все что Вам нужно знать это пользовательский интерфейс."</div>
+		<div class="quoteAuthor" align="right">Джон Редфорд</div>
+	</div>
+</div>
+                                        <div class="widget">
+	<div class="widget-title">
+		Теги
+	</div>
+	<div class="widget-entity tag-cloud">
+				<a rel="nofollow" href="http://www.developersonthe.net/ru/search/mode/bytag/tag//" style="font-size:11px"></a>
+				<a rel="nofollow" href="http://www.developersonthe.net/ru/search/mode/bytag/tag/%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4%D1%8B/" style="font-size:20px">переводы</a>
+				<a rel="nofollow" href="http://www.developersonthe.net/ru/search/mode/bytag/tag/javascript/" style="font-size:24px">javascript</a>
+				<a rel="nofollow" href="http://www.developersonthe.net/ru/search/mode/bytag/tag/promise/" style="font-size:20px">promise</a>
+				<a rel="nofollow" href="http://www.developersonthe.net/ru/search/mode/bytag/tag/html5/" style="font-size:20px">html5</a>
+				<a rel="nofollow" href="http://www.developersonthe.net/ru/search/mode/bytag/tag/es6/" style="font-size:20px">es6</a>
+				<a rel="nofollow" href="http://www.developersonthe.net/ru/search/mode/bytag/tag/java/" style="font-size:22px">java</a>
+				<a rel="nofollow" href="http://www.developersonthe.net/ru/search/mode/bytag/tag/%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B0%20%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2/" style="font-size:16px">загрузка файлов</a>
+				<a rel="nofollow" href="http://www.developersonthe.net/ru/search/mode/bytag/tag/linux/" style="font-size:15px">linux</a>
+				<a rel="nofollow" href="http://www.developersonthe.net/ru/search/mode/bytag/tag/ajax/" style="font-size:16px">ajax</a>
+				<a rel="nofollow" href="http://www.developersonthe.net/ru/search/mode/bytag/tag/%D0%B2%D0%B5%D0%B1-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0/" style="font-size:15px">веб-разработка</a>
+				<a rel="nofollow" href="http://www.developersonthe.net/ru/search/mode/bytag/tag/c++/" style="font-size:15px">c++</a>
+				<a rel="nofollow" href="http://www.developersonthe.net/ru/search/mode/bytag/tag/%D0%BE%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8E/" style="font-size:15px">обучение программированию</a>
+				<a rel="nofollow" href="http://www.developersonthe.net/ru/search/mode/bytag/tag/%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5/" style="font-size:15px">данные</a>
+				<a rel="nofollow" href="http://www.developersonthe.net/ru/search/mode/bytag/tag/%D0%BE%D0%B1%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0%20%D0%BE%D1%88%D0%B8%D0%B1%D0%BE%D0%BA/" style="font-size:15px">обработка ошибок</a>
+				<a rel="nofollow" href="http://www.developersonthe.net/ru/search/mode/bytag/tag/developers%20on%20the%20net/" style="font-size:16px">developers on the net</a>
+				<a rel="nofollow" href="http://www.developersonthe.net/ru/search/mode/bytag/tag/%D0%B2%D0%B5%D0%B1/" style="font-size:19px">веб</a>
+				<a rel="nofollow" href="http://www.developersonthe.net/ru/search/mode/bytag/tag/selenium/" style="font-size:15px">selenium</a>
+				<a rel="nofollow" href="http://www.developersonthe.net/ru/search/mode/bytag/tag/webdriver/" style="font-size:15px">webdriver</a>
+				<a rel="nofollow" href="http://www.developersonthe.net/ru/search/mode/bytag/tag/php/" style="font-size:18px">php</a>
+				<a rel="nofollow" href="http://www.developersonthe.net/ru/search/mode/bytag/tag/seo/" style="font-size:15px">seo</a>
+				<a rel="nofollow" href="http://www.developersonthe.net/ru/search/mode/bytag/tag/%D0%BF%D1%80%D0%BE%D1%82%D0%BE%D1%82%D0%B8%D0%BF%D0%BD%D0%BE%D0%B5%20%D0%BD%D0%B0%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5/" style="font-size:15px">прототипное наследование</a>
+				<a rel="nofollow" href="http://www.developersonthe.net/ru/search/mode/bytag/tag/%D0%BE%D0%BE%D0%BF/" style="font-size:15px">ооп</a>
+				<a rel="nofollow" href="http://www.developersonthe.net/ru/search/mode/bytag/tag/%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%20%D0%B2%20%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%B5/" style="font-size:15px">работа в команде</a>
+				<a rel="nofollow" href="http://www.developersonthe.net/ru/search/mode/bytag/tag/%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BF%D0%B5%D1%80%D1%81%D0%BE%D0%BD%D0%B0%D0%BB%D0%BE%D0%BC/" style="font-size:15px">управление персоналом</a>
+				<a rel="nofollow" href="http://www.developersonthe.net/ru/search/mode/bytag/tag/%D1%8E%D0%BC%D0%BE%D1%80/" style="font-size:17px">юмор</a>
+				<a rel="nofollow" href="http://www.developersonthe.net/ru/search/mode/bytag/tag/%D1%81%D0%BC%D0%B5%D1%88%D0%BD%D1%8B%D0%B5%20%D0%BA%D0%B0%D1%80%D1%82%D0%B8%D0%BD%D0%BA%D0%B8/" style="font-size:15px">смешные картинки</a>
+				<a rel="nofollow" href="http://www.developersonthe.net/ru/search/mode/bytag/tag/%D0%BE%D0%B1%D0%B7%D0%BE%D1%80/" style="font-size:16px">обзор</a>
+				<a rel="nofollow" href="http://www.developersonthe.net/ru/search/mode/bytag/tag/%D1%80%D0%B5%D0%BB%D0%B8%D0%B7/" style="font-size:16px">релиз</a>
+				<a rel="nofollow" href="http://www.developersonthe.net/ru/search/mode/bytag/tag/css/" style="font-size:18px">css</a>
+				<a rel="nofollow" href="http://www.developersonthe.net/ru/search/mode/bytag/tag/jquery/" style="font-size:18px">jquery</a>
+				<a rel="nofollow" href="http://www.developersonthe.net/ru/search/mode/bytag/tag/web/" style="font-size:15px">web</a>
+				<a rel="nofollow" href="http://www.developersonthe.net/ru/search/mode/bytag/tag/extjs/" style="font-size:15px">extjs</a>
+		</div>
+</div>
+                                        <div class="widget" id="ad-widget" align="center">
+<script async="" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/adsbygoogle.js"></script>
+<!-- developersonthe.net ad -->
+<ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="ca-pub-7410623596867731" data-ad-slot="8038353932"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+                                        <div class="widget">
+	<div class="widget-title">
+		Популярные блоги
+	</div>
+			<div class="widget-entity">
+			<a rel="nofollow" href="http://www.developersonthe.net/ru/blogs/blog_id/6-JavaScript/">JavaScript</a>
+		</div>
+			<div class="widget-entity">
+			<a rel="nofollow" href="http://www.developersonthe.net/ru/blogs/blog_id/3-Veb-razrabotka/">Веб-разработка</a>
+		</div>
+			<div class="widget-entity">
+			<a rel="nofollow" href="http://www.developersonthe.net/ru/blogs/blog_id/20-Java/">Java</a>
+		</div>
+			<div class="widget-entity">
+			<a rel="nofollow" href="http://www.developersonthe.net/ru/blogs/blog_id/26-Umor/">Юмор</a>
+		</div>
+			<div class="widget-entity">
+			<a rel="nofollow" href="http://www.developersonthe.net/ru/blogs/blog_id/5-DevelopersOnThenet/">DevelopersOnThe.net</a>
+		</div>
+			<div class="widget-entity">
+			<a rel="nofollow" href="http://www.developersonthe.net/ru/blogs/blog_id/24-Obuchenie-programmirovaniu-s-nulja/">Обучение программированию с нуля</a>
+		</div>
+			<div class="widget-entity">
+			<a rel="nofollow" href="http://www.developersonthe.net/ru/blogs/blog_id/23-Komandnaja-rabota/">Командная работа</a>
+		</div>
+			<div class="widget-entity">
+			<a rel="nofollow" href="http://www.developersonthe.net/ru/blogs/blog_id/29-Linux/">Linux</a>
+		</div>
+			<div class="widget-entity">
+			<a rel="nofollow" href="http://www.developersonthe.net/ru/blogs/blog_id/27-Immigratcija-za-granitcu/">Иммиграция за границу</a>
+		</div>
+			<div class="widget-entity">
+			<a rel="nofollow" href="http://www.developersonthe.net/ru/blogs/blog_id/25-Poleznye-utility/">Полезные утилиты</a>
+		</div>
+	</div>
+                                        <div class="widget">
+	<div class="widget-title">
+		Тесты
+	</div>
+			<div class="widget-entity">
+			<a rel="nofollow" href="http://www.developersonthe.net/ru/tests/test_id/9-Bazovyj-test-po-SSS/mode/view/">Базовый тест по СSS</a>
+		</div>
+			<div class="widget-entity">
+			<a rel="nofollow" href="http://www.developersonthe.net/ru/tests/test_id/8-Test-po-JavaScript-dlja-professionalov/mode/view/">Тест по JavaScript для профессионалов</a>
+		</div>
+			<div class="widget-entity">
+			<a rel="nofollow" href="http://www.developersonthe.net/ru/tests/test_id/7-Bazovyj-test-po-XML/mode/view/">Базовый тест по XML</a>
+		</div>
+			<div class="widget-entity">
+			<a rel="nofollow" href="http://www.developersonthe.net/ru/tests/test_id/6-Test-po-XHTML/mode/view/">Тест по XHTML</a>
+		</div>
+			<div class="widget-entity">
+			<a rel="nofollow" href="http://www.developersonthe.net/ru/tests/test_id/5-Bazovyj-test-po-C/mode/view/">Базовый тест по C++</a>
+		</div>
+			<div class="widget-entity">
+			<a rel="nofollow" href="http://www.developersonthe.net/ru/tests/test_id/4-Test-po-JDBC/mode/view/">Тест по JDBC</a>
+		</div>
+			<div class="widget-entity">
+			<a rel="nofollow" href="http://www.developersonthe.net/ru/tests/test_id/3-Test-po-SQL/mode/view/">Тест по SQL</a>
+		</div>
+			<div class="widget-entity">
+			<a rel="nofollow" href="http://www.developersonthe.net/ru/tests/test_id/2-Test-po-ASPNET/mode/view/">Тест по ASP.NET</a>
+		</div>
+			<div class="widget-entity">
+			<a rel="nofollow" href="http://www.developersonthe.net/ru/tests/test_id/1-Test-po-Java-dlja-professionalov/mode/view/">Тест по Java для профессионалов</a>
+		</div>
+	</div>
+                                        <div class="widget">
+	<div class="widget-title">
+		Q&amp;A
+	</div>
+			<div class="widget-entity">
+			<a rel="nofollow" href="http://www.developersonthe.net/ru/qa/question_id/79-Ne-udaetsja-udalit-fajl-v-Java/">Не удается удалить файл в Java</a>
+		</div>
+			<div class="widget-entity">
+			<a rel="nofollow" href="http://www.developersonthe.net/ru/qa/question_id/78-Kak-v-Selenium-WebDriver-Java-mozhno-sdelat-apload-fajla-HTML5-Plupload/">Как в Selenium WebDriver  (Java) можно сделать аплоад файла (HTML5 + Plupload)?</a>
+		</div>
+			<div class="widget-entity">
+			<a rel="nofollow" href="http://www.developersonthe.net/ru/qa/question_id/77-Kak-v-Selenium-Webdriver-na-java-poluchit-element-raspolozhennyj-v-iframe/">Как в Selenium Webdriver на java получить элемент расположенный в iframe?</a>
+		</div>
+			<div class="widget-entity">
+			<a rel="nofollow" href="http://www.developersonthe.net/ru/qa/question_id/76-Ne-zapuskaetsja-IE-iz-Selenium-Webdriver-na-Java/">Не запускается IE из Selenium Webdriver на Java</a>
+		</div>
+			<div class="widget-entity">
+			<a rel="nofollow" href="http://www.developersonthe.net/ru/qa/question_id/75-Kak-skachat-jdk-na-CentOS/">Как скачать jdk на CentOS?</a>
+		</div>
+			<div class="widget-entity">
+			<a rel="nofollow" href="http://www.developersonthe.net/ru/qa/question_id/74-Kak-podpisatsja-na-sobytie-proihodjaschee-v-iframe/">Как подписаться на событие проиходящее в iframe?</a>
+		</div>
+			<div class="widget-entity">
+			<a rel="nofollow" href="http://www.developersonthe.net/ru/qa/question_id/73-Kak-prosmotret-spisok-fajlov-v-zip-arhive-Linux/">Как просмотреть список файлов в zip архиве Linux?</a>
+		</div>
+			<div class="widget-entity">
+			<a rel="nofollow" href="http://www.developersonthe.net/ru/qa/question_id/72-Kak-v-java-prochitat-vse-soderzhimoe-InputStream-v-stroku/">Как в java прочитать все содержимое InputStream в строку?</a>
+		</div>
+			<div class="widget-entity">
+			<a rel="nofollow" href="http://www.developersonthe.net/ru/qa/question_id/71-Kak-sdelat-chtob-shell-skript-vsegda-zapuskalsja-iz-pod-root-polzovatelja/">Как сделать, чтоб shell скрипт всегда запускался из под root-пользователя?</a>
+		</div>
+			<div class="widget-entity">
+			<a rel="nofollow" href="http://www.developersonthe.net/ru/qa/question_id/70-Kak-v-ExtJS-3-ubrat-krasnyj-ugolok-u-dobavlennoj-zapisi-v-EditorGridPanel/">Как в ExtJS 3 убрать красный уголок, у добавленной записи в EditorGridPanel?</a>
+		</div>
+	</div>
+                                    </div>
+            </div>
+            <div class="cell border"></div>
+        </div>
+    </div>
+</div>
+<div class="bottomPositioned">
+    <div class="l-content">
+        <div class="row">
+            <div class="cell border"></div>
+            <div class="col18">
+                <a href="http://www.developersonthe.net/ru/main/" rel="nofollow">О проекте</a>
+            </div>
+            <div class="col18">
+                <a href="http://www.developersonthe.net/ru/rules/" rel="nofollow">Правила</a>
+            </div>
+            <div class="col18">
+                <a href="http://www.developersonthe.net/ru/help/" rel="nofollow">Помощь</a>
+            </div>
+            <div class="col18">
+                <a href="http://www.developersonthe.net/ru/feedback/" rel="nofollow">Служба поддержки</a>
+            </div>
+            <div class="cell border"></div>
+        </div>
+    </div>
+    <footer class="b-footer">
+        <div class="l-content">
+            <div class="l-content-wrap">
+                <div class="col2"></div>
+                <div class="col18"></div>
+                <div class="col2"></div>
+                <div class="col76"></div>
+                <div class="col2"></div>
+            </div>
+        </div>
+        <div class="l-content">
+            <div class="l-content-wrap">
+                <div class="col2"></div>
+                <div class="col18">
+                    <table class="mini-logo">
+                        <tbody>
+                        <tr>
+                            <td>
+                                © 2011 <strong>Developers on the Net</strong>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="rates-buttons">
+                        <!--bigmir)net TOP 100-->
+                        <script type="text/javascript" language="javascript"><!--
+                            bmN = navigator, bmD = document, bmD.cookie = 'b=b', i = 0, bs = [], bm ={v:16926981,s:16926981,t:3,c:bmD.cookie?1:0,n:Math.round((Math.random()* 1000000)),w:0};
+                            for (var f = self; f != f.parent; f = f.parent)bm.w++;
+                            try{if(bmN.plugins&&bmN.mimeTypes.length&&(x=bmN.plugins['Shockwave Flash']))bm.m=parseInt(x.description.replace(/([a-zA-Z]|\s)+/,''));
+                                            else for(var f=3;f<20;f++)if(eval('new ActiveXObject("ShockwaveFlash.ShockwaveFlash.'+f+'")'))bm.m=f}catch(e)
+                            {;}
+                            try{bm.y=bmN.javaEnabled()?1:0}catch(e)
+                            {;}
+                            try{bmS=screen;bm.v^=bm.d=bmS.colorDepth||bmS.pixelDepth;bm.v^=bm.r=bmS.width}catch(e)
+                            {;}
+                            r = bmD.referrer.slice(7);
+                            if (r && r.split('/')[0] != window.location.host){bm.f=escape(r).slice(0,400);bm.v^=r.length}
+                                bm.v ^= window.location.href.length;
+                            for (var x in bm) if (/^[vstcnwmydrf]$/.test(x)) bs[i++] = x + bm[x];
+                            bmD.write('<a href="http://www.bigmir.net/" rel="nofollow" target="_blank" onClick="img=new Image();img.src="http://www.bigmir.net/?cl=16926981";"><img src="http://c.bigmir.net/?' + bs.join('&') + '"  width="88" height="31" border="0" alt="bigmir)net TOP 100" title="bigmir)net TOP 100"></a>');
+                            //-->
+                        </script><a href="http://www.bigmir.net/" rel="nofollow" target="_blank" onclick="img=new Image();img.src=" http:="" www.bigmir.net="" ?cl="16926981&quot;;&quot;"><img class="pcfykmqlcrtplekulgcu" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/a.png" alt="bigmir)net TOP 100" title="bigmir)net TOP 100" height="31" width="88" border="0"></a>
+                        <noscript>
+                            <a href="http://www.bigmir.net/" rel="nofollow" target="_blank"><img
+                                        src="http://c.bigmir.net/?v16926981&s16926981&t3" width="88" height="31"
+                                        alt="bigmir)net TOP 100" title="bigmir)net TOP 100" border="0"/></a>
+                        </noscript>
+                        <!--bigmir)net TOP 100-->
+                        <!-- Rating@Mail.ru counter -->
+                        <script type="text/javascript">//<![CDATA[
+                            var _tmr = _tmr || [];
+                            _tmr.push({id: "2391338", type: "pageView", start: (new Date()).getTime()});
+                            (function (d, w) {
+                                var ts = d.createElement("script");
+                                ts.type = "text/javascript";
+                                ts.async = true;
+                                ts.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//top-fwz1.mail.ru/js/code.js";
+                                var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
+                                if (w.opera == "[object Opera]") {
+                                    d.addEventListener("DOMContentLoaded", f, false);
+                                } else {
+                                    f();
+                                }
+                            })(document, window);
+                            //]]></script>
+                        <noscript>
+                            <div style="position:absolute;left:-10000px;">
+                                <img src="//top-fwz1.mail.ru/counter?id=2391338;js=na" style="border:0;" height="1"
+                                     width="1" alt="???????@Mail.ru"/>
+                            </div>
+                        </noscript>
+                        <!-- Rating@Mail.ru logo -->
+                        <a rel="nofollow" href="http://top.mail.ru/jump?from=2391338">
+                            <img class="pcfykmqlcrtplekulgcu" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/counter.gif" style="border:0;" alt="???????@Mail.ru" height="31" width="88"></a>
+                        <!-- //Rating@Mail.ru logo -->
+                        <!-- //Rating@Mail.ru counter -->
+                    </div>
+                </div>
+                <div class="col2"></div>
+                <div class="col50">
+                </div>
+                <div class="col2"></div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<iframe tabindex="-1" style="width: 1px; height: 1px; position: absolute; top: -100px;" src="%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%28deadlock%29%20%D0%B2%20Java%20%D0%B8%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%BE%D1%80%D1%8C%D0%B1%D1%8B%20%D1%81%20%D0%BD%D0%B5%D0%B9_files/postmessageRelay.html" id="oauth2relay339932213" name="oauth2relay339932213"></iframe></body></html>

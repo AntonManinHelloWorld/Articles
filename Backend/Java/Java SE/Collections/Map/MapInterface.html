@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 4.3.3.2 (Linux)"/>
+	<meta name="author" content="AntonManin "/>
+	<meta name="created" content="2015-12-03T10:40:36.315821092"/>
+	<meta name="changedby" content="AntonManin "/>
+	<meta name="changed" content="2015-12-03T10:44:05.442908729"/>
+	<style type="text/css">
+		@page { margin: 0.79in }
+		p { margin-bottom: 0.1in; line-height: 120% }
+		pre.cjk { font-family: "Nimbus Mono L", monospace }
+		a:link { so-language: zxx }
+	</style>
+</head>
+<body lang="en-US" dir="ltr">
+<p style="margin-bottom: 0in; line-height: 100%">Java.util.Map</p>
+<p style="margin-bottom: 0in; line-height: 100%"><br/>
+
+</p>
+<pre class="western" style="background: #ffffff"><font color="#000080"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><b>package </b></font></font></font><font color="#000000"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">java.util;</font></font></font>
+<font color="#000000"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><font color="#000080"><b>import </b></font>java.util.Collection;</font></font></font>
+<font color="#000000"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><font color="#000080"><b>import </b></font>java.util.Set;</font></font></font>
+
+<font color="#000000"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><font color="#000080"><b>public interface </b></font><span style="background: #e4e4ff">Map</span>&lt;K, V&gt; {</font></font></font>
+<font color="#000000">    <font color="#000080"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><b>int </b></font></font></font><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">size();</font></font></font>
+
+<font color="#000000">    <font color="#000080"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><b>boolean </b></font></font></font><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">isEmpty();</font></font></font>
+
+<font color="#000000">    <font color="#000080"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><b>boolean </b></font></font></font><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">containsKey(Object var1);</font></font></font>
+
+<font color="#000000">    <font color="#000080"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><b>boolean </b></font></font></font><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">containsValue(Object var1);</font></font></font>
+
+<font color="#000000">    <font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">V get(Object var1);</font></font></font>
+
+<font color="#000000">    <font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">V put(K var1, V var2);</font></font></font>
+
+<font color="#000000">    <font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">V remove(Object var1);</font></font></font>
+
+<font color="#000000">    <font color="#000080"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><b>void </b></font></font></font><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">putAll(</font></font><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><span style="background: #e4e4ff">Map</span></font></font><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">&lt;? </font></font><font color="#000080"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><b>extends </b></font></font></font><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">K, ? </font></font><font color="#000080"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><b>extends </b></font></font></font><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">V&gt; var1);</font></font></font>
+
+<font color="#000000">    <font color="#000080"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><b>void </b></font></font></font><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">clear();</font></font></font>
+
+<font color="#000000">    <font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">Set&lt;K&gt; keySet();</font></font></font>
+
+<font color="#000000">    <font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">Collection&lt;V&gt; values();</font></font></font>
+
+<font color="#000000">    <font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">Set&lt;</font></font><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><span style="background: #e4e4ff">Map</span></font></font><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">.Entry&lt;K, V&gt;&gt; entrySet();</font></font></font>
+
+<font color="#000000">    <font color="#000080"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><b>boolean </b></font></font></font><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">equals(Object var1);</font></font></font>
+
+<font color="#000000">    <font color="#000080"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><b>int </b></font></font></font><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">hashCode();</font></font></font>
+
+<font color="#000000">    <font color="#000080"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><b>public interface </b></font></font></font><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">Entry&lt;K, V&gt; {</font></font></font>
+<font color="#000000">        <font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">K getKey();</font></font></font>
+<font color="#000000">        <font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">V getValue();</font></font></font>
+<font color="#000000">        <font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">V setValue(V var1);</font></font></font>
+<font color="#000000">        <font color="#000080"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><b>boolean </b></font></font></font><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">equals(Object var1);</font></font></font>
+<font color="#000000">        <font color="#000080"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt"><b>int </b></font></font></font><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">hashCode();</font></font></font>
+<font color="#000000">    <font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">}</font></font></font>
+<font color="#000000"><font face="DejaVu Sans Mono"><font size="2" style="font-size: 9pt">}</font></font></font></pre><p style="margin-bottom: 0in; line-height: 100%">
+<br/>
+
+</p>
+</body>
+</html>

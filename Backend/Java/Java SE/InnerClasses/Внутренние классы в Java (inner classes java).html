@@ -1,0 +1,620 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <meta name="description" content="В Java вложенный класс - это класс, который объявлен внутри объявления другого класса. Вложенные классы делятся на статические (static) и нестатические (non-static). Собственно нестатические вложенные классы имеют и другое название - внутренние классы (inner classes)">
+    <meta name="Keywords" content="внутренние классы, вложенные классы, локальные классы, анонимные классы, внутренние классы в java">
+    
+    <link rel="image_src" href="http://www.quizful.net/res/img/logo.png">
+    <meta name="verify-v1" content="6KfOvLrGm4KgPJB+V2B+ELyBzxjG+LoVhKdUcFXetdc=">
+    <meta name="verify-v1" content="qYSVa9mzpQpfGqnpnzskiw2v73evzB42bGM/wcip0Hg=">
+    <meta name="y_key" content="29ad813d1559a2f3">
+    <meta name="google-site-verification" content="iBH4tJ3rxmGwMxXc6uL-qF4pRUbmBrSlRT_XQbw_4Vs">
+
+    <title>Внутренние классы в Java (inner classes java)</title>
+
+    <style>@import '/res/page.css?97';</style>
+    <script src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/widgets.js" id="twitter-wjs"></script><script type="text/javascript" src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/page.js"></script>
+    
+
+    <script>
+        //IE6 идет на$#%
+        if ('\v'=='v' && !window.XMLHttpRequest) window.location='/res/no-ie6.html';
+        jQuery(function() { pageInit(); });
+    </script>
+    <link rel="shortcut icon" href="http://www.quizful.net/res/favicon.ico">
+<style type="text/css">/* Chili -- java */
+.java__mlcom { color: #4040c2; }
+.java__com { color: green; }
+.java__string { color: teal; }
+.java__number { color: red; }
+.java__meta { color: red; }
+.java__keyword { color: navy; font-weight: bold; }</style><script src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/button.js" async="" charset="utf-8" type="text/javascript"></script></head>
+<body>
+
+    <div id="header">
+                <a id="logo" title="Онлайн тесты" href="http://www.quizful.net/"></a>
+
+        <div id="top-groups">
+    <iframe class="pcfykmqlcrtplekulgcu" src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/like.html" scrolling="no" style="border:none; overflow:hidden; height:21px; width:90px;" allowtransparency="true" frameborder="0"></iframe>
+</div>
+
+<div id="top-popups">
+    <div id="feedback-block">
+        <div class="feedback-block-button closed" onclick="toggleBlock(jQuery.event.fix(event), '#feedback-block'); return false;"></div>
+
+        <div class="content">
+            <div class="corners"><b></b><u></u><i></i></div>
+
+            <form id="feedback" action="">
+                <div class="errors hidden"></div>
+                <textarea id="feedback-text" name="text" class="form-control"></textarea>
+                                    <div class="captcha">
+                        <img class="captcha-img" src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/feedback.png" style="cursor:pointer;">
+                        <label for="feedback-code">Введите число</label>
+                        <input id="feedback-code" name="captcha" type="text">
+                    </div>
+                                <div class="buttons"><input value="Отправить" class="btn btn-primary btn-xs" type="button"></div>
+            </form>
+        </div>
+    </div>
+    
+</div>
+
+<script type="text/javascript">
+    new Feedback();
+    $(document).bind('click', handleClickOutside);
+
+    function handleClickOutside(e) {
+        var blocks = ['#feedback-block', '#invite-block'];
+        for (var id in blocks) {
+            var blockEl = jQuery(blocks[id] + " .content");
+
+            if (jQuery.find(blocks[id]).length > 0 && blockEl.attr('display') != 'none') {
+                if (jQuery(e.target).parents().index(jQuery(blocks[id])) == -1 && !jQuery(e.target).parent().hasClass('thanks')
+                        && jQuery(e.target).attr('id') != blocks[id].substring(1)) {
+
+//                    alert(jQuery(e.target).parents().map(function() { return this.tagName + " id=" + this.id; }).get().join());
+
+                    blockEl.slideUp(250);
+                    jQuery((blocks[id] + '-button').replace('#', '.')).removeClass('opened').addClass('closed');
+                }
+            }
+        }
+    }
+
+    function toggleBlock(e, block) {
+        if (jQuery(e.target).hasClass('opened')) {
+            jQuery(block + ' .content').slideUp(250);
+            jQuery(e.target).removeClass('opened').addClass('closed');
+        } else {
+            jQuery(e.target).removeClass('closed').addClass('opened');
+            jQuery(block + ' .content').slideDown(250);
+        }
+    }
+</script>
+
+        <ul id="navigation">
+                                    <li class="
+            first                         ">
+                <b></b><a href="http://www.quizful.net/test">Главная</a>
+                            </li>
+            <li class="sep"></li>
+                                                                        <li class="
+                                                                                                                                                                                                                                                                                                                ">
+                <a href="http://www.quizful.net/posts">Статьи</a>
+                            </li>
+            <li class="sep"></li>
+                                                                        <li class="last">
+                <a href="http://www.quizful.net/page/about">О проекте</a><b></b>
+                                    <ul class="sub">
+                                                <li style="display: none;" class="">
+                            <a href="http://www.quizful.net/page/about">описание</a>
+                        </li>
+                                                <li style="display: none;" class="">
+                            <a href="http://www.quizful.net/page/hall-of-fame">зал славы</a>
+                        </li>
+                                                <li style="display: none;" class="">
+                            <a href="http://www.quizful.net/page/certification-exams">сертификаты</a>
+                        </li>
+                                                <li style="display: none;" class="">
+                            <a href="http://www.quizful.net/faq">faq</a>
+                        </li>
+                                                <li style="display: none;" class="last"><b class="left"></b><b class="middle"></b><b class="right"></b></li>
+                    </ul>
+                            </li>
+            
+                                                        </ul>
+
+        <ul id="user-panel">
+            <li> <a href="http://www.quizful.net/LoginAction.loginForm" rel="nofollow">войти</a> </li>
+            <li class="separator"></li>
+                                    <li> <a href="http://www.quizful.net/LoginAction.registration" rel="nofollow">зарегистрироваться</a> </li>
+        </ul>
+
+    </div>
+    <div style="min-height: 471px;" id="content">
+        <div id="contributor"></div>
+        <div id="left">
+                        <div class="a-block">
+                <div class="corners"><s></s><b></b><u></u><i></i></div>
+                <div class="sides"><s></s><b></b><u></u><i></i></div>
+                <div class="content">
+                    <a data-twitter-extracted-i1449071898230886150="true" class="twitter-follow-button" href="https://twitter.com/quizful_com" data-show-count="false" data-size="large">
+Follow @Quizful</a>
+<br><br>
+Contribute to new <a href="http://quizful.com/contribute" target="_blank">Quizful</a> Help to translate Java. 
+<a href="http://quizful.com/contribute" style="padding-left: 25px" target="_blank"><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/contribute_logo1.png"></a>
+<br><br>
+Раздаем бесплатные Q! подробности в группе <a href="https://plus.google.com/communities/103078004820764559925" target="_blank">Quizful.Alpha-test</a>
+
+
+
+<script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+ 
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+ 
+  return t;
+}(document, "script", "twitter-wjs"));</script>
+                </div>
+            </div>
+            
+                            <div id="vips" class="sblock">
+    <div class="corners"><s></s><b></b><u></u><i></i></div>
+    <div class="title"><b>Партнеры</b></div>
+    <div class="content">
+        <table class="table" style="background-color: white;">
+                            <tbody><tr class="vip">
+                    <td class="content"><a href="http://skillbox.io/" target="_blank"><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/banner_prescreening.png" alt="Рекрутерам: Прескрининг кандидатов" border="0"></a></td>
+                    <td>
+                        <img title="" data-original-title="" style="vertical-align:middle; padding-right:5px; opacity: 0.5" alt="about" src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/help-tip.gif" data-tooltip="" data-title="Skillbox - инструмент для прескрининга IT специалистов" data-placement="right">
+                    </td>
+                </tr>
+                            <tr class="vip">
+                    <td class="content"><a href="http://cogniance.com/vacancies/?from=quizful" target="blank"><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/cogniance_logo_image.png" alt="Cogniance тесты работодателя" border="0"></a></td>
+                    <td>
+                        <img title="" data-original-title="" style="vertical-align:middle; padding-right:5px; opacity: 0.5" alt="about" src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/help-tip.gif" data-tooltip="" data-title="Cogniance  — компания, предоставляющая услуги в области проектирования, разработки, тестирования, внедрения и поддержки систем программного обеспечения на международном рынке." data-placement="right">
+                    </td>
+                </tr>
+                    </tbody></table>
+    </div>
+</div>
+            
+            <div id="contributors" class="sblock">
+    <div class="corners"><s></s><b></b><u></u><i></i></div>
+    <div class="title"><b>Топ контрибуторов</b></div>
+    <div class="content" id="contributors-content">
+        <select id="contributors-report">
+            <option value="day">За последние сутки</option>
+            <option selected="selected" value="month">За последний месяц</option>
+            <option value="all">За весь период</option>
+        </select>
+        <img style="display: none;" src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/loading.gif" id="contributors-loading-select" alt="loading" align="absmiddle">
+        <div id="contributors-table"><table class="data"><tbody><tr class="second"><td class="place">1.</td><td class="login">Doublecherry</td><td class="points">48.5&nbsp;Q</td></tr><tr class="first"><td class="place">2.</td><td class="login">kudryashov</td><td class="points">23.0&nbsp;Q</td></tr><tr class="second"><td class="place">3.</td><td class="login">ratushnyak_k</td><td class="points">18.5&nbsp;Q</td></tr><tr class="first"><td class="place">4.</td><td class="login"><a href="http://www.quizful.net/user/joker8999" rel="nofollow">joker8999</a></td><td class="points">15.0&nbsp;Q</td></tr><tr class="second"><td class="place">5.</td><td class="login">ChmilevFA</td><td class="points">10.0&nbsp;Q</td></tr><tr class="first"><td class="place">6.</td><td class="login">dimbesson</td><td class="points">10.0&nbsp;Q</td></tr><tr class="second"><td class="place">7.</td><td class="login">kavokivon</td><td class="points">10.0&nbsp;Q</td></tr><tr class="first"><td class="place">8.</td><td class="login">garrich</td><td class="points">9.5&nbsp;Q</td></tr><tr class="second"><td class="place">9.</td><td class="login"><a href="http://www.quizful.net/user/luna" rel="nofollow">luna</a></td><td class="points">8.5&nbsp;Q</td></tr><tr class="first"><td class="place">10.</td><td class="login"><a href="http://www.quizful.net/user/SirGate" rel="nofollow">SirGate</a></td><td class="points">8.5&nbsp;Q</td></tr></tbody></table><a class="contribute" href="http://www.quizful.net/page/contribute">Получение Q</a></div>
+        <div id="contribution-paging" class="paging">
+            <img style="display: none;" src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/loading.gif" alt="loading" id="contributors-loading" align="absmiddle">
+            <span style="color: gray; cursor: default;" class="arrow">←</span>
+            <span style="color: rgb(65, 159, 221); cursor: pointer;" class="arrow">→</span>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    if (!Cookie.get("reportType"))
+        Cookie.set("reportType", "month", 365);
+    $("#contributors-report").val(Cookie.get("reportType"));
+    new TopContributors();
+</script>
+
+            <div id="tips-block" class="sblock opened">
+    <div class="corners"><s></s><b></b><u></u><i></i></div>
+    <div class="title"><b>Знаете ли Вы, что</b></div>
+    <div class="content">
+        <p id="tips-text">В разделе "Статьи" можно найти обучающие статьи по информационным технологиям, а также узнать о новостях сервиса Quizful.</p>
+        <input id="tip-index" value="4" type="hidden">
+        <p class="link">
+            <img style="display: none;" src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/loading.gif" alt="Loading" id="tips-loading" align="absmiddle">
+            <span class="arrow">←</span>
+            <span class="arrow">→</span>
+        </p>
+    </div>
+</div>
+<script type="text/javascript"> new Tips(); </script>
+
+
+                        <div id="globalfeed" class="sblock">
+    <div class="corners"><s></s><b></b><u></u><i></i></div>
+    <div class="title"><b>Лента обновлений</b></div>
+    <div class="content">
+        <table>
+                            <tbody><tr><td>
+                    <a href="http://www.quizful.net/TestStoreAction.viewQuestion?question=UCCyg6QMl8KX#6810351683575137232">ссылка</a>
+                    <span>15:52:45</span>
+                    <div>
+                    Комментарий от youriver:<br>"подумал что подразумевается то что bean mock объявлен"...
+                </div></td></tr>
+                            <tr class="even"><td>
+                    <a href="http://www.quizful.net/TestStoreAction.viewQuestion?question=UzQ2Gpbsk0x9">ссылка</a>
+                    <span>15:15:04</span>
+                    <div>
+                    Добавлен вопрос в тест JavaScript - Средний уровень
+                </div></td></tr>
+                            <tr><td>
+                    <a href="http://www.quizful.net/TestStoreAction.viewQuestion?question=kjBFSQCol1wG#5876410040971344291">ссылка</a>
+                    <span>13:37:16</span>
+                    <div>
+                    Комментарий от ziko1975:<br>не верно сформулирован вопрос
+                </div></td></tr>
+                            <tr class="even"><td>
+                    <a href="http://www.quizful.net/TestStoreAction.viewQuestion?question=b3AmZiSaZsVm#2057693859858523989">ссылка</a>
+                    <span>13:21:06</span>
+                    <div>
+                    Комментарий от ziko1975:<br>хе, чуваки, а что не так с лоадером d onCreate()? И реа...
+                </div></td></tr>
+                            <tr><td>
+                    <a href="http://www.quizful.net/interview/qa/verification-and-validation#8030755800366149384">ссылка</a>
+                    <span>12:19:56</span>
+                    <div>
+                    Комментарий от DustyCat:<br>Можно ли считать продукт готовым, если он соответствует...
+                </div></td></tr>
+                    </tbody></table>
+    </div>
+</div>
+
+                        <div id="statistics" class="sblock">
+                <div class="corners"><s></s><b></b><u></u><i></i></div>
+                <div class="title"><b>Статистика</b></div>
+                <div class="content">
+                    <p>Тестов: 153, вопросов: 8401.
+                    Пройдено: 284782 / 1340047.</p>
+                </div>
+            </div>
+                    </div>
+        <div id="middle">
+            <div id="page-title-hr"></div>
+            <script type="text/javascript" src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/share.js" charset="windows-1251"></script>
+
+<h1 id="page-title" style="height:auto;">Внутренние классы в Java (inner classes java)</h1>
+        <div class="post">
+    <div id="post-info" class="rform">
+        <div class="corners"><s></s><b></b><u></u><i></i></div>
+        <div class="title">
+            <img class="head" src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/blank.gif" alt="head">
+            <img class="tail" src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/blank.gif" alt="tail">
+            <b>Статья</b>
+        </div>
+        <div class="content">
+            <table>
+                                <tbody><tr class="even category"><td colspan="2"><span>категория</span><br><a href="http://www.quizful.net/category/java">Java</a></td></tr>
+                                <tr><td>дата</td><td>15.05.2009</td></tr>
+                <tr class="even"><td>автор</td><td><a href="http://www.quizful.net/user/c0nst">c0nst</a></td></tr>
+                <tr><td>голосов</td><td id="votes">145</td></tr>
+            </tbody></table>
+        </div>
+    </div>
+
+    <div class="text" style="margin-right:260px;">
+        <style type="text/css">pre { background-color: #f5f5f5; padding: 10px; overflow: auto; border: 1px solid black; }</style>
+<p align="right"><em>На лицо ужасные, добрые внутри<br>(c) Бриллиантовая рука</em></p>
+<br>
+<p>Рекомендуемые ссылки:</p>
+<ul>
+<li><a href="http://books.google.com/books?id=mvzgNSmHEUAC&amp;dq=java+in+a+nutshell&amp;printsec=frontcover&amp;source=bn&amp;hl=en&amp;ei=dIPvScqWDISx_Aax1aS_Dw&amp;sa=X&amp;oi=book_result&amp;ct=result&amp;resnum=4#PPP1,M1">"Java in a Nutshell", David Flanagan</a></li>
+<li><a href="http://java.sun.com/docs/books/tutorial/java/javaOO/nested.html">Nested Classes, Java Tutorials</a></li>
+<li><a href="http://www.javenue.info/post/7">Анонимные классы в Java</a></li>
+<li><a href="http://www.quizful.net/test/java_se_midlevel">Тест Java - Средний уровень</a></li>
+<li><a href="http://www.quizful.net/test/scjp_3_java_6">Тест Sun Certified Programmer for Java 6 Platform</a></li>
+</ul>
+
+<p>Сначала немного о терминологии. В литературе по Java встречаются 
+такие термины, как "внутренние классы" (inner classes) и "вложенные 
+классы" (nested classes). Говорить мы будем о вложенных классах, для 
+которых inner классы являются подмножеством. Тем не менее часто под 
+внутренними классами подразумеваются все вложенные - вот такой вот 
+парадокс.</p>
+<p>Итак, вложенный класс - это класс, который объявлен внутри объявления другого класса. Например:</p>
+<pre class="chili"><code class="java"><span class="java__keyword">class</span>&nbsp;OuterClass&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;...&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">static</span>&nbsp;<span class="java__keyword">class</span>&nbsp;StaticNestedClass&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;...&nbsp;<br>}&nbsp;<br>&nbsp;<br></code></pre>
+<p>Вложенные классы делятся на статические (в примере выше StaticNestedClass - это именно он) и нестатические (non-static). Собственно нестатические вложенные классы имеют и другое название - внутренние классы (inner classes). Внешний класс (outer class) мы иногда будем называть еще обрамляющим классом.</p>
+
+<h2>Статические вложенные классы (static nested classes)</h2>
+<p>Статические вложенные классы, не имеют доступа к нестатическим полям и методам обрамляющего класса, что в некотором роде аналогично статическим методам, объявленным внутри класса. Доступ к нестатическим полям и методам может осуществляться только через ссылку на экземпляр обрамляющего класса. В этом плане static nested классы очень похожи на любые другие классы верхнего уровня.</p>
+<p>Кроме этого, static nested классы имеют доступ к любым статическим методам внешнего класса, в том числе и к приватным.</p>
+<p>Польза данных классов заключается в основном в логической группировке сущностей, в улучшении инкапсуляции, а также в экономии class-space.</p>
+<p>Давайте рассмотрим такой пример:</p>
+<pre class="chili"><code class="java"><span class="java__keyword">public</span>&nbsp;<span class="java__keyword">class</span>&nbsp;Question&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">private</span>&nbsp;Type&nbsp;type;&nbsp;<br>&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">public</span>&nbsp;Type&nbsp;getType()&nbsp;{&nbsp;<span class="java__keyword">return</span>&nbsp;type;&nbsp;}&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">public</span>&nbsp;<span class="java__keyword">void</span>&nbsp;setType(Type&nbsp;type)&nbsp;{&nbsp;<span class="java__keyword">this</span>.type&nbsp;=&nbsp;type;&nbsp;}&nbsp;<br>&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">public</span>&nbsp;<span class="java__keyword">static</span>&nbsp;<span class="java__keyword">enum</span>&nbsp;Type&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SINGLE_CHOICE,&nbsp;MULIT_CHOICE,&nbsp;TEXT&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<br>}&nbsp;<br>&nbsp;<br></code></pre>
+<p>В вопросе (класс Question) понятие "типа вопроса" (class Type) является очевидным. Альтернатива - создать класс верхнего уровня QuestionType, - будет менее выразительной, по крайней мере в контексте класса Question.</p>
+<p>Клиентский код будет выглядеть, например, так:</p>
+<pre class="chili"><code class="java">&nbsp;&nbsp;&nbsp;&nbsp;Question.Type&nbsp;type&nbsp;=&nbsp;question.getType();&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">if</span>&nbsp;(type&nbsp;==&nbsp;Question.Type.TEXT)&nbsp;{&nbsp;...&nbsp;}&nbsp;<br>&nbsp;<br></code></pre>
+<p>Вы наверное обратили внимание, что снаружи обращение к классу Type осуществляется через имя обрамляющего класса - Question.Type. Для фрагмента кода, приведенного в начале статьи, создание класса StaticNestedClass может быть осуществлено таким образом:</p>
+<pre class="chili"><code class="java">&nbsp;&nbsp;&nbsp;&nbsp;OuterClass.StaticNestedClass&nbsp;instance&nbsp;=&nbsp;<span class="java__keyword">new</span>&nbsp;OuterClass.StaticNestedClass();&nbsp;<br>&nbsp;<br></code></pre>
+<p>Еще одно интересное использование статических вложенных классов - тестирование приватных статических методов. Пример:</p>
+<pre class="chili"><code class="java"><span class="java__keyword">public</span>&nbsp;<span class="java__keyword">class</span>&nbsp;ClassToTest&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">private</span>&nbsp;<span class="java__keyword">static</span>&nbsp;<span class="java__keyword">void</span>&nbsp;internalMethod()&nbsp;{&nbsp;...&nbsp;}&nbsp;<br>&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">public</span>&nbsp;<span class="java__keyword">static</span>&nbsp;<span class="java__keyword">class</span>&nbsp;Test&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">public</span>&nbsp;<span class="java__keyword">void</span>&nbsp;testMethod()&nbsp;{&nbsp;...&nbsp;}&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<br>}&nbsp;<br>&nbsp;<br></code></pre>
+<p>Дело в том, что после компиляции данного кода мы получим 2 файла - ClassToTest.class и ClassToTest$Test.class. При чем класс ClassToTest никакой информации о вложенном классе иметь не будет (если не вызывать методы вложенного класса, а это для тестов нам и не надо), а потому скомпилированный ClassToTest$Test.class потом можно просто удалить билд скриптом.</p>
+
+<h2>Внутренние классы-члены (member inner classes)</h2>
+<p>Внутренние классы в Java делятся на такие три вида:</p>
+<ul>
+<li>внутренние классы-члены (member inner classes);</li>
+<li>локальные классы (local classes);</li>
+<li>анонимные классы (anonymous classes).</li>
+</ul>
+<p>Внутренние классы-члены ассоциируются не с самим внешним классом, а с его экземпляром. При этом они имеют доступ ко всем его полям и методам. Например:</p>
+<pre class="chili"><code class="java"><span class="java__keyword">public</span>&nbsp;<span class="java__keyword">class</span>&nbsp;Users&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;...&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">public</span>&nbsp;<span class="java__keyword">class</span>&nbsp;Query&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">private</span>&nbsp;Query()&nbsp;{&nbsp;...&nbsp;}&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">public</span>&nbsp;<span class="java__keyword">void</span>&nbsp;setLogin(String&nbsp;login)&nbsp;{&nbsp;...&nbsp;}&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">public</span>&nbsp;<span class="java__keyword">void</span>&nbsp;setCreationDate(Date&nbsp;date)&nbsp;{&nbsp;...&nbsp;}&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">public</span>&nbsp;List&lt;User&gt;&nbsp;list()&nbsp;{&nbsp;...&nbsp;}&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">public</span>&nbsp;User&nbsp;single()&nbsp;{&nbsp;...&nbsp;}&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<br>&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">public</span>&nbsp;Query&nbsp;createQuery()&nbsp;{&nbsp;<span class="java__keyword">return</span>&nbsp;<span class="java__keyword">new</span>&nbsp;Query();&nbsp;}&nbsp;<br>}&nbsp;<br>&nbsp;<br></code></pre>
+<p>В этом примере мы имеем внутренний класс Query, который предназначен для поиска пользователей по заданным параметрам. Класс Query может инкапсулировать в себе, например, работу с базой данных. При этом он имеет доступ к состоянию класса Users. Пример клиентского кода:</p>
+<pre class="chili"><code class="java">&nbsp;&nbsp;&nbsp;&nbsp;Users.Query&nbsp;query&nbsp;=&nbsp;users.createQuery();&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;query.setCreationDate(date);&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;List&lt;User&gt;&nbsp;users&nbsp;=&nbsp;query.list();&nbsp;<br>&nbsp;<br></code></pre>
+<p>Если бы конструктор класса Query был объявлен как public, создать экземпляр класса Query снаружи можно было бы только через инстанс обрамляющего класса:</p>
+<pre class="chili"><code class="java">&nbsp;&nbsp;&nbsp;&nbsp;Users&nbsp;users&nbsp;=&nbsp;<span class="java__keyword">new</span>&nbsp;Users();&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;Users.Query&nbsp;query&nbsp;=&nbsp;users.<span class="java__keyword">new</span>&nbsp;Query();&nbsp;<br>&nbsp;<br></code></pre>
+<p>Обращаю ваше внимание на то, что inner class не может иметь статических объявлений. Вместо этого можно объявить статические методы у обрамляющего класса. Кроме этого, внутри таких классов нельзя объявлять перечисления.</p>
+<p>Еще одна важная особенность - интерфейсы в Java не могут быть инстанциированы, соответственно объявить нестатический внутренний интерфейс нельзя, так как элементарно не будет объекта для ассоциации с экземпляром внешнего класса. Объявление вида:</p>
+<pre class="chili"><code class="java"><span class="java__keyword">public</span>&nbsp;<span class="java__keyword">class</span>&nbsp;OuterClass&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">public</span>&nbsp;<span class="java__keyword">interface</span>&nbsp;ImNonStaticInterface&nbsp;{&nbsp;...&nbsp;}&nbsp;<br>}&nbsp;<br>&nbsp;<br></code></pre>
+<p>на самом деле будет интерпретироваться так:</p>
+<pre><code>
+public class OuterClass {
+    public static interface ImNonStaticInterface { ... }
+}
+
+</code></pre>
+<p>то есть неявно будет добавлен модификатор static.</p>
+<p>Как было сказано выше, member inner class имеет доступ ко всем полям и методам обрамляющего класса. Давайте рассмотрим такой фрагмент кода:</p>
+<pre class="chili"><code class="java"><span class="java__keyword">public</span>&nbsp;<span class="java__keyword">class</span>&nbsp;OuterClass&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">public</span>&nbsp;<span class="java__keyword">void</span>&nbsp;method()&nbsp;{&nbsp;...&nbsp;}&nbsp;<br>&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">public</span>&nbsp;<span class="java__keyword">class</span>&nbsp;InnerClass&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">public</span>&nbsp;<span class="java__keyword">void</span>&nbsp;method()&nbsp;{&nbsp;...&nbsp;}&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">public</span>&nbsp;<span class="java__keyword">void</span>&nbsp;anotherMethod()&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;method();&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<br>}&nbsp;<br>&nbsp;<br></code></pre>
+<p>Вызов method() из anotherMethod обратится к методу класса InnerClass. Для обращения к методу обрамляющего класса необходимо использовать такую конструкцию - <code>OuterClass.this.method()</code>.
+
+</p><h2>Локальные классы (local inner classes)</h2>
+<p>Локальные классы (local classes) определяются в блоке Java кода. На практике чаще всего объявление происходит в методе некоторого другого класса. Хотя объявлять локальный класс можно внутри статических и нестатических блоков инициализации.</p>
+<p>Пример использования локального класса:</p>
+<pre class="chili"><code class="java"><span class="java__keyword">public</span>&nbsp;<span class="java__keyword">class</span>&nbsp;Handler&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">public</span>&nbsp;<span class="java__keyword">void</span>&nbsp;handle(String&nbsp;requestPath)&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">class</span>&nbsp;Path&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;List&lt;String&gt;&nbsp;parts&nbsp;=&nbsp;<span class="java__keyword">new</span>&nbsp;ArrayList&lt;String&gt;();&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String&nbsp;path&nbsp;=&nbsp;<span class="java__string">"/"</span>;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Path(String&nbsp;path)&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">if</span>&nbsp;(path&nbsp;==&nbsp;<span class="java__keyword">null</span>)&nbsp;<span class="java__keyword">return</span>;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">this</span>.path&nbsp;=&nbsp;path;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">for</span>&nbsp;(String&nbsp;s&nbsp;:&nbsp;path.split(<span class="java__string">"/"</span>))&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">if</span>&nbsp;(s.trim().length()&nbsp;&gt;&nbsp;<span class="java__number">0</span>)&nbsp;<span class="java__keyword">this</span>.parts.add(s);&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">int</span>&nbsp;size()&nbsp;{&nbsp;<span class="java__keyword">return</span>&nbsp;parts.size();&nbsp;}&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String&nbsp;get(<span class="java__keyword">int</span>&nbsp;i)&nbsp;{&nbsp;<span class="java__keyword">return</span>&nbsp;i&nbsp;&gt;&nbsp;<span class="java__keyword">this</span>.parts.size()&nbsp;-&nbsp;<span class="java__number">1</span>&nbsp;?&nbsp;<span class="java__keyword">null</span>&nbsp;:&nbsp;<span class="java__keyword">this</span>.parts.get(i);&nbsp;}&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">boolean</span>&nbsp;startsWith(String&nbsp;s)&nbsp;{&nbsp;<span class="java__keyword">return</span>&nbsp;path.startsWith(s);&nbsp;}&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<br>&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Path&nbsp;path&nbsp;=&nbsp;<span class="java__keyword">new</span>&nbsp;Path(requestPath);&nbsp;<br>&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">if</span>&nbsp;(path.startsWith(<span class="java__string">"/page"</span>))&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String&nbsp;pageId&nbsp;=&nbsp;path.get(<span class="java__number">1</span>);&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">if</span>&nbsp;(path.startsWith(<span class="java__string">"/post"</span>))&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String&nbsp;categoryId&nbsp;=&nbsp;path.get(<span class="java__number">1</span>);&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String&nbsp;postId&nbsp;=&nbsp;path.get(<span class="java__number">2</span>);&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<br>}&nbsp;<br>&nbsp;<br></code></pre>
+<p>Данный код с некоторыми изменениями взят из реального проекта и используется для обработки get запросов к веб-серверу. Он вводит новую абстракцию, с которой удобно работать в пределах метода и которая не нужна за его пределами.</p>
+<p>Как и member классы, локальные классы ассоциируются с экземпляром обрамляющего класса и имеют доступ к его полям и методам. Кроме этого, локальный класс может обращаться к локальным переменным и параметрам метода, если они объявлены с модификатором final.</p>
+<p>У локальных классов есть множество ограничений:</p>
+<ul>
+<li>они видны только в пределах блока, в котором объявлены;</li>
+<li>они не могут быть объявлены как private, public, protected или static;</li>
+<li>они не могут иметь внутри себя статических объявлений (полей, методов, классов); исключением являются константы (static final);</li>
+</ul>
+<p>Кстати, интерфейсы тоже нельзя объявлять локально по тем же причинам, по каким их нельзя объявлять внутренними.</p>
+
+<h2>Анонимные классы (anonymous inner classes)</h2>
+<p>Анонимные классы являются важным подспорьем в повседневной жизни Java-программистов. Анонимный класс (anonymous class) - это локальный класс без имени.</p>
+<p>Классический пример анонимного класса:</p>
+<pre><code>
+    new Thread(new Runnable() {
+        public void run() {
+            ...
+        }
+    }).start();
+
+</code></pre>
+<p>На основании анонимного класса создается поток и запускается с помощью метода start класса Thread. Синтаксис создания анонимного класса базируется на использовании оператора new с именем класса (интерфейса) и телом новосозданного анонимного класса.</p>
+<p>Основное ограничение при использовании анонимных классов - это невозможность описания конструктора, так как класс не имеет имени. Аргументы, указанные в скобках, автоматически используются для вызова конструктора базового класса с теми же параметрами. Вот пример:</p>
+<pre class="chili"><code class="java"><span class="java__keyword">class</span>&nbsp;Clazz&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;Clazz(<span class="java__keyword">int</span>&nbsp;param)&nbsp;{&nbsp;}&nbsp;<br>&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">public</span>&nbsp;<span class="java__keyword">static</span>&nbsp;<span class="java__keyword">void</span>&nbsp;main(String[]&nbsp;args)&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">new</span>&nbsp;Clazz(<span class="java__number">1</span>)&nbsp;{&nbsp;};&nbsp;<span class="java__com">//&nbsp;правильное&nbsp;создание&nbsp;анонимного&nbsp;класса</span>&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">new</span>&nbsp;Clazz()&nbsp;{&nbsp;};&nbsp;<span class="java__com">//&nbsp;неправильное&nbsp;создание&nbsp;анонимного&nbsp;класса</span>&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<br>}&nbsp;<br>&nbsp;<br></code></pre>
+<p>Так как анонимный класс является локальным классом, он имеет все те же ограничения, что и локальный класс.</p>
+<p>Использование анонимных классов оправдано во многих случаях, в частности когда:</p>
+<ul>
+<li>тело класса является очень коротким;</li>
+<li>нужен только один экземпляр класса;</li>
+<li>класс используется в месте его создания или сразу после него;</li>
+<li>имя класса не важно и не облегчает понимание кода.</li>
+</ul>
+<br>
+<p>Ну вот наверное и все. Остается только сказать, что использование с умом возможностей, которые предоставляют вложенные классы, сделают ваш код чище, красивее и понятнее.</p>
+<br>
+<p>---------</p>
+<p>Константин c0nst Чапюк, 23.04.2009</p>
+    </div>
+    <div class="vote" id="votePost">
+                <p>Если Вам понравилась статья, проголосуйте за нее</p>
+        <a id="showVoters" href="#">Голосов</a>: <span>145</span>
+        <button class="btn btn-default btn-xs">Голосовать</button> &nbsp;<img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/loading_002.gif" alt="loading..." style="display:none;" align="absmiddle">
+        <script type="text/javascript">
+                        $("#votePost button").click(function() {
+                location.replace("/LoginAction.forbidden");
+                return false;
+            });
+                    </script>
+            </div>
+    <script type="text/javascript">
+        $("#showVoters").on("click", function() {
+            var voters = $("#voters");
+            voters.stop(true, true);
+            voters.slideToggle();
+            voters.toggleClass("closed").toggleClass("opened");
+            return false;
+        });
+    </script>
+    <div id="voters" class="closed">
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/admin.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/admin">admin</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/patisonka.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/patisonka">patisonka</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/stalker.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/stalker">stalker</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/kukulya.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/kukulya">kukulya</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/breusov.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/breusov">breusov</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/kraka.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/kraka">kraka</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/doctorlife.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/doctorlife">doctorlife</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/alexis112.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/alexis112">alexis112</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/oleger.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/oleger">oleger</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/AlexF.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/AlexF">AlexF</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/izen.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/izen">izen</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/kuzvld.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/kuzvld">kuzvld</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/matias.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/matias">matias</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/lestat.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/lestat">lestat</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/faxitos.jpeg" height="24" align="absmiddle"> faxitos</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/fedind.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/fedind">fedind</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/generator.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/generator">generator</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/DodgeWP.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/DodgeWP">DodgeWP</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/onuchinart.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/onuchinart">onuchinart</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/kosolapiy.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/kosolapiy">kosolapiy</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/FAA.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/FAA">FAA</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/bu_ma_ga.gif" height="24" align="absmiddle"> bu_ma_ga</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/ShootDP.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/ShootDP">ShootDP</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/alon4ik.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/alon4ik">alon4ik</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/helsinki.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/helsinki">helsinki</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/ldkfa.jpeg" height="24" align="absmiddle"> ldkfa</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/abihle.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/abihle">abihle</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/scythiang.jpeg" height="24" align="absmiddle"> scythiang</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/grim.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/grim">grim</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/helpa.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/helpa">helpa</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/wisd.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/wisd">wisd</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/dreamnewq.jpeg" height="24" align="absmiddle"> dreamnewq</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/long.jpeg" height="24" align="absmiddle"> long</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/pkunilov.jpeg" height="24" align="absmiddle"> pkunilov</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/JinSem.jpeg" height="24" align="absmiddle"> JinSem</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/Nastiona.jpeg" height="24" align="absmiddle"> Nastiona</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/Alexander_1.jpeg" height="24" align="absmiddle"> Alexander_1</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/Saimon.jpeg" height="24" align="absmiddle"> Saimon</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/Citsym.jpeg" height="24" align="absmiddle"> Citsym</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/Taky.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/Taky">Taky</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/safonik.jpeg" height="24" align="absmiddle"> safonik</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/Lord.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/Lord">Lord</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/tempatel.jpeg" height="24" align="absmiddle"> tempatel</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/dlevshunov.jpeg" height="24" align="absmiddle"> dlevshunov</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/prostodenis.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/prostodenis">prostodenis</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/korvindest.jpeg" height="24" align="absmiddle"> korvindest</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/akhmetoff.jpeg" height="24" align="absmiddle"> akhmetoff</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/Mazhor1.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/Mazhor1">Mazhor1</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/milkomil.jpeg" height="24" align="absmiddle"> milkomil</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/Evmorov.png" height="24" align="absmiddle"> Evmorov</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/alex1395.jpeg" height="24" align="absmiddle"> alex1395</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/Skrakan.jpeg" height="24" align="absmiddle"> Skrakan</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/krieger_.jpeg" height="24" align="absmiddle"> krieger_</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/oleg_pr.jpeg" height="24" align="absmiddle"> oleg_pr</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/KateAlex.jpeg" height="24" align="absmiddle"> KateAlex</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/ViRuS.jpeg" height="24" align="absmiddle"> ViRuS</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/poncheg.jpeg" height="24" align="absmiddle"> poncheg</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/krab2424.jpeg" height="24" align="absmiddle"> krab2424</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/serdyk_alex.jpeg" height="24" align="absmiddle"> serdyk_alex</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/alexrav.jpeg" height="24" align="absmiddle"> alexrav</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/strange_bear.jpeg" height="24" align="absmiddle"> strange_bear</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/R2D2.jpeg" height="24" align="absmiddle"> R2D2</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/michalerain.jpeg" height="24" align="absmiddle"> michalerain</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/Elen_KL.jpeg" height="24" align="absmiddle"> Elen_KL</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/Evgenija.jpeg" height="24" align="absmiddle"> Evgenija</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/marmota.jpeg" height="24" align="absmiddle"> marmota</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/nasena_08.jpeg" height="24" align="absmiddle"> nasena_08</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/HelgaBogu.jpeg" height="24" align="absmiddle"> HelgaBogu</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/Authorized.jpeg" height="24" align="absmiddle"> Authorized</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/Kadavrius.jpeg" height="24" align="absmiddle"> Kadavrius</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/rds29.jpeg" height="24" align="absmiddle"> rds29</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/welcometo.jpeg" height="24" align="absmiddle"> welcometo</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/Riddler.jpeg" height="24" align="absmiddle"> Riddler</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/Karamba.jpeg" height="24" align="absmiddle"> Karamba</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/St1G.jpeg" height="24" align="absmiddle"> St1G</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/nick2003.jpeg" height="24" align="absmiddle"> nick2003</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/SerXio_82.jpeg" height="24" align="absmiddle"> SerXio_82</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/ama3onka.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/ama3onka">ama3onka</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/Maxanzh.jpeg" height="24" align="absmiddle"> Maxanzh</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/KirAA.jpeg" height="24" align="absmiddle"> KirAA</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/dgroup.jpeg" height="24" align="absmiddle"> dgroup</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/sergey_85.jpeg" height="24" align="absmiddle"> sergey_85</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/Romantic.jpeg" height="24" align="absmiddle"> Romantic</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/nixdorf2003.jpeg" height="24" align="absmiddle"> nixdorf2003</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/ShevcenkoArtem.png" height="24" align="absmiddle"> ShevcenkoArtem</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/Asdfgh.jpeg" height="24" align="absmiddle"> Asdfgh</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/epfl.jpeg" height="24" align="absmiddle"> epfl</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/activecs.jpeg" height="24" align="absmiddle"> activecs</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/SichikUA.jpeg" height="24" align="absmiddle"> SichikUA</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/VeLKerr.jpeg" height="24" align="absmiddle"> VeLKerr</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/lonely.jpeg" height="24" align="absmiddle"> lonely</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/heroin.jpeg" height="24" align="absmiddle"> heroin</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/Sebastian.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/Sebastian">Sebastian</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/Ericsson1.jpeg" height="24" align="absmiddle"> Ericsson1</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/D_S__.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/D_S__">D_S__</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/moreking.jpeg" height="24" align="absmiddle"> moreking</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/Delivior.jpeg" height="24" align="absmiddle"> Delivior</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/Figishe.jpeg" height="24" align="absmiddle"> Figishe</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/verysamf.jpeg" height="24" align="absmiddle"> verysamf</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/nick_kryloff.jpeg" height="24" align="absmiddle"> nick_kryloff</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/DanikG.jpeg" height="24" align="absmiddle"> DanikG</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/z84.jpeg" height="24" align="absmiddle"> z84</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/r_leha.jpeg" height="24" align="absmiddle"> r_leha</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/Darwind_.jpeg" height="24" align="absmiddle"> Darwind_</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/KseniaSevridova.jpeg" height="24" align="absmiddle"> KseniaSevridova</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/alexgiant.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/alexgiant">alexgiant</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/TeaWitch.jpeg" height="24" align="absmiddle"> TeaWitch</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/TheEvilsscream.jpeg" height="24" align="absmiddle"> TheEvilsscream</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/piggygoose.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/piggygoose">piggygoose</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/ralike_13.jpeg" height="24" align="absmiddle"> ralike_13</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/Ruzveld.jpeg" height="24" align="absmiddle"> Ruzveld</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/Giggs13.jpeg" height="24" align="absmiddle"> Giggs13</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/Pasha_Pasha.jpeg" height="24" align="absmiddle"> Pasha_Pasha</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/disoku.jpeg" height="24" align="absmiddle"> disoku</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/arsenius75.jpeg" height="24" align="absmiddle"> arsenius75</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/Ggekko.jpeg" height="24" align="absmiddle"> Ggekko</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/pristroistvo_ek.jpeg" height="24" align="absmiddle"> pristroistvo_ek</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/whak.jpeg" height="24" align="absmiddle"> whak</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/izakacman.jpeg" height="24" align="absmiddle"> izakacman</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/nklskr.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/nklskr">nklskr</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/Testikusik11.jpeg" height="24" align="absmiddle"> Testikusik11</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/edivaliev.jpeg" height="24" align="absmiddle"> edivaliev</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/desay.jpeg" height="24" align="absmiddle"> desay</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/KZ_Jumper.jpeg" height="24" align="absmiddle"> KZ_Jumper</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/SkunS.jpeg" height="24" align="absmiddle"> SkunS</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/LuxCore.png" height="24" align="absmiddle"> LuxCore</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/creed.jpeg" height="24" align="absmiddle"> creed</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/boohaky.jpeg" height="24" align="absmiddle"> boohaky</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/Richardiii.jpeg" height="24" align="absmiddle"> Richardiii</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/dtsuran.jpeg" height="24" align="absmiddle"> dtsuran</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/maks1m.jpeg" height="24" align="absmiddle"> maks1m</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/SamTan.jpeg" height="24" align="absmiddle"> SamTan</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/jacksolovey.jpeg" height="24" align="absmiddle"> jacksolovey</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/ronaldo173.jpeg" height="24" align="absmiddle"> ronaldo173</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/QuizfulClient.jpeg" height="24" align="absmiddle"> QuizfulClient</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/gggbrown.jpeg" height="24" align="absmiddle"> gggbrown</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/lyapizz.jpeg" height="24" align="absmiddle"> lyapizz</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/ma1m2.jpeg" height="24" align="absmiddle"> ma1m2</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/forest_dm.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/forest_dm">forest_dm</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/scrobot.jpeg" height="24" align="absmiddle"> scrobot</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/arisenUA.jpeg" height="24" align="absmiddle"> arisenUA</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/sikmak.jpeg" height="24" align="absmiddle"> sikmak</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/yagoo.jpeg" height="24" align="absmiddle"> yagoo</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/pyshankov.jpeg" height="24" align="absmiddle"> pyshankov</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/Nihlus.jpeg" height="24" align="absmiddle"> Nihlus</nobr>&nbsp;&nbsp;
+            </div>
+</div>
+<div style="margin-top:15px;" id="shareThis"></div>
+<div id="post-comments"><div class="comments"><div class="topic-panel" id="comments-top"><div class="total">Комментариев: 35</div><a class="order-link" href="">↑</a><a href="" class="refresh-link">обновить</a></div><div id="7568622179618644699" class="comment-block"><div class="head"><a href="#7568622179618644699" class="link">#</a><span class="author"><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/LuxCore.png" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;LuxCore</span><span class="created">27.01.2015 | 13:38:45</span></div><div class="text">Крутяцкая статья. С первого раза не осиливаю. Придётся ещё 2 раза читать.<br>Спасибо огромное автору и исправляющим очепятки :)</div><a href="" class="reply-link">ответить</a><div class="sub-comments"></div></div><div id="6285320128203228220" class="comment-block"><div class="head"><a href="#6285320128203228220" class="link">#</a><span class="author"><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/finberg.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;finberg</span><span class="created">13.12.2014 | 18:21:47</span></div><div class="text">Я честно говоря не понял: пишут, что обрамляющий класс не имеет доступа  к переменным и методам внутреннего. Набрал пример в эклипсе - можно обращаться и к методам и к переменным. Так имеет обрамлящий класс доступ к членнам внутреннего или нет?</div><a href="" class="reply-link">ответить</a><div class="sub-comments"><div id="5615308559293557788" class="comment-block"><div class="head"><a href="#5615308559293557788" class="link">#</a><span class="author"><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/Mugi4ok.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;Mugi4ok</span><span class="created">17.12.2014 | 17:34:01</span></div><div class="text">Вообще-то, если Вы говорите именно про внутренний класс, именуемый тут "внутренник класс-член" - то это абсолютно логично. Внутренний класс не может иметь статических полей и методов - это там написано чёрным по белому. Так к чему будет обращаться метод внешнего класса, если у внутреннего класса нет ничего статического? Могу лишь предположить, что Вы просто путаете понятия, так как к чему-либо в КЛАССЕ Вы можете обратиться лишь при условии статичности этого чего-либо, так как оно инициализируется при первом обращении к классу, вне зависимости от того, создан ли объект, а вот в ОБЪЕКТЕ обращайтесь ко всему, что позволяется спецификаторами доступа. То есть, обращаться к полям и методам внутреннего класса Вы можете лишь через объект этого класса. Так понятно? =)</div><a href="" class="reply-link">ответить</a><div class="sub-comments"><div id="5296210053037626996" class="comment-block"><div class="head"><a href="#5296210053037626996" class="link">#</a><span class="author"><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/finberg.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;finberg</span><span class="created">17.12.2014 | 19:02:06</span></div><div class="text">Честно говоря неочень.....может простеньки пример приведете?</div><a href="" class="reply-link">ответить</a><div class="sub-comments"><div id="8128086512715537627" class="comment-block"><div class="head"><a href="#8128086512715537627" class="link">#</a><span class="author"><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/Mugi4ok.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;Mugi4ok</span><span class="created">18.12.2014 | 11:28:54</span></div><div class="text">Хорошо. Возьмём пример:<br>class Outer {<br>   int i;<br>   void f() {<br>      ???<br>   }<br>   class Inner {<br>      int var;<br>      void g() {<br>         Outer.this.i++;<br>      }<br>      void h() {<br>         this.var++;<br>      }<br>   }<br>}<br><br>Надеюсь, форматирование не сломается. Выглядит логично, да? Во внутреннем класс Inner есть переменная и два метода: g() изменяет значение переменной внешнего класса, h() - внутреннего. Для того, чтобы использовать всё это мы должны сначала создать объект внешнего класса Outer, а, после этого, через "[объект Outer].new Inner" - и внутренний класс Inner. Объект внутреннего класса неотъемлемо связан с внешним, он существует исключительно для объекта внешнего класса. Теперь про методы. Особый интерес для нас вызывает метод g(). Конструкция "[Внешний класс].this" работает, потому что, как я уже говорил, объект внутреннего класса напрямую связан с объектом внешнего класса, а посему, он знает, как обращаться к этому объекту, что мы и делаем.</div><a href="" class="reply-link">ответить</a><div class="sub-comments"><div id="5188290614730725394" class="comment-block"><div class="head"><a href="#5188290614730725394" class="link">#</a><span class="author"><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/Mugi4ok.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;Mugi4ok</span><span class="created">18.12.2014 | 11:35:05</span></div><div class="text">Всё-таки сломалось форматирование. Продолжу тут. Так вот, это возможно, потому что существование объекта внутреннего класса невозможно при отсутствии объекта внешнего, компилятор это знает. А теперь рассмотрим метод f(), который я не описал. Этот метод может всё, что угодно делать с i, потому что есть гарантия, что эта переменная будет существовать, когда будет создан объект внешнего класса. А вот если мы захотим обратиться к элементу var внутреннего класса - компилятор нас пошлёт. Почему? Потому что у него нет никаких гарантий того, что этот объект будет создан к тому моменту, как клиент попытается использовать этот метод. Поэтому ПРЯМАЯ работа с элементами внутреннего класса невозможна - компилятор попросту не знает, как к нему обращаться, потому что есть риск, что мы просто не создадим этот объект. Обратиться к элементам внутреннего класса возможно лишь после создания его объекта. <br>Объяснятель из меня паршивый, но, я надеюсь, что теперь чуток понятнее.</div><a href="" class="reply-link">ответить</a><div class="sub-comments"><div id="737922927284452350" class="comment-block"><div class="head"><a href="#737922927284452350" class="link">#</a><span class="author"><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/finberg.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;finberg</span><span class="created">18.12.2014 | 11:49:12</span></div><div class="text">Спасибо, все понял. <br>Т.Е из тела внешнего класса через объект внутреннего класса можно получит доступ к полям и методам внутреннего, даже private, правильно?<br>ps вместо Outer.this.i++;  - можно просто i++.</div><a href="" class="reply-link">ответить</a><div class="sub-comments"><div id="878092946829267156" class="comment-block"><div class="head"><a href="#878092946829267156" class="link">#</a><span class="author"><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/Mugi4ok.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;Mugi4ok</span><span class="created">18.12.2014 | 13:38:35</span></div><div class="text">Именно так. <br>Внутренний класс является частью внешнего, а внутри класса спецификаторы доступа не имеют эффекта (корректнее будет сказать, что даже самый строгий private допускает использование элементов класса внутри класса, но я для простоты выражаюсь так). Следовательно, можно обращаться как из внутреннего к private-полям внешнего, так и наоборот.<br>P.S. Можно, разумеется. Просто я писал для наглядности, плюс, я предпочитаю такой стиль, лучше читается и лучше защищает от ошибок =)</div><a href="" class="reply-link">ответить</a><div class="sub-comments"><div id="7520576969434948035" class="comment-block"><div class="head"><a href="#7520576969434948035" class="link">#</a><span class="author"><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/finberg.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;finberg</span><span class="created">18.12.2014 | 18:00:47</span></div><div class="text">Спасибо!</div><a href="" class="reply-link">ответить</a><div class="sub-comments"></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div><div id="2670306314251512002" class="comment-block"><div class="head"><a href="#2670306314251512002" class="link">#</a><span class="author"><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/disoku.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;disoku</span><span class="created">18.11.2014 | 11:55:58</span></div><div class="text">годная статья</div><a href="" class="reply-link">ответить</a><div class="sub-comments"></div></div><div id="7929066150931359450" class="comment-block"><div class="head"><a href="#7929066150931359450" class="link">#</a><span class="author"><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/Mafeozo.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;Mafeozo</span><span class="created">08.08.2014 | 18:02:44</span></div><div class="text">спс за сторание.буду зубрить</div><a href="" class="reply-link">ответить</a><div class="sub-comments"></div></div><div id="3263051108032046903" class="comment-block"><div class="head"><a href="#3263051108032046903" class="link">#</a><span class="author"><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/QQred.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;QQred</span><span class="created">29.06.2014 | 13:18:39</span></div><div class="text">цитата: Как и member классы, локальные классы ассоциируются с экземпляром обрамляющего класса и имеют доступ к его полям и методам. Кроме этого, локальный класс может обращаться к локальным переменным и параметрам метода, если они объявлены с модификатором final.<br><br>Это справедливо ТОЛЬКО для случая если локальный класс объявлен внутри нестатического метода</div><a href="" class="reply-link">ответить</a><div class="sub-comments"><div id="292925295247060231" class="comment-block"><div class="head"><a href="#292925295247060231" class="link">#</a><span class="author"><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/ksp107.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;ksp107</span><span class="created">29.06.2014 | 17:43:53</span></div><div class="text">Следует уточнить:<br>Если локальный класс объявлен внутри статического метода или внутри блока статической инициализации, то он может обращаться только к статическим полям и методам обрамляющего класса.<br>Утверждение про локальные переменные и параметры метода с модификатором final верно вне зависимости от места объявления локального класса.</div><a href="" class="reply-link">ответить</a><div class="sub-comments"><div id="4623171006054435687" class="comment-block"><div class="head"><a href="#4623171006054435687" class="link">#</a><span class="author"><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/ksp107.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;ksp107</span><span class="created">29.06.2014 | 17:52:29</span></div><div class="text">Кроме того, в Java 8 появилось понятие effectively final переменной, т.е. переменной, значение которой задаётся однократно и не изменяется.<br>Так вот, из локального класса можно обращаться к effectively final переменым.<br>Получается так, как будто бы компилятор сам неявно добавляет модификатор final там, где можно.</div><a href="" class="reply-link">ответить</a><div class="sub-comments"></div></div></div></div></div></div><div id="6291469448867107738" class="comment-block"><div class="head"><a href="#6291469448867107738" class="link">#</a><span class="author"><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/SergeyS.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;SergeyS</span><span class="created">11.11.2013 | 13:55:02</span></div><div class="text">Взрыв мозга. Не чего непойму.</div><a href="" class="reply-link">ответить</a><div class="sub-comments"></div></div><div id="2513356956344742890" class="comment-block"><div class="head"><a href="#2513356956344742890" class="link">#</a><span class="author"><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/epfl.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;epfl</span><span class="created">18.08.2013 | 22:58:11</span></div><div class="text">благодарствую</div><a href="" class="reply-link">ответить</a><div class="sub-comments"></div></div><div id="8574650288474584253" class="comment-block"><div class="head"><a href="#8574650288474584253" class="link">#</a><span class="author"><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/musclexboy.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;musclexboy</span><span class="created">12.07.2013 | 16:30:48</span></div><div class="text">Господа, объясните, пожалуйста,<br>почему "inner class не может иметь статических объявлений. Вместо этого можно объявить статические методы у обрамляющего класса. Кроме этого, внутри таких классов нельзя объявлять перечисления"?</div><a href="" class="reply-link">ответить</a><div class="sub-comments"><div id="6907164609075224990" class="comment-block"><div class="head"><a href="#6907164609075224990" class="link">#</a><span class="author"><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/finberg.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;finberg</span><span class="created">13.12.2014 | 18:23:53</span></div><div class="text">inner class может иметь статические переменные с модификатором final. Статических методов  в нем быть не может.</div><a href="" class="reply-link">ответить</a><div class="sub-comments"></div></div></div></div><div id="4382747959699687028" class="comment-block"><div class="head"><a href="#4382747959699687028" class="link">#</a><span class="author"><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/xZ_.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;xZ_</span><span class="created">01.02.2013 | 15:17:03</span></div><div class="text">По фразе:<br>Еще одна важная особенность - интерфейсы в Java не могут быть инстанциированы, соответственно объявить нестатический внутренний интерфейс нельзя, так как элементарно не будет объекта для ассоциации с экземпляром внешнего класса.<br><br>На самом деле можно создать как статический, так и не статический вложенный интерфейс (хотя на самом деле они будут идентичны). Поэтому не совсем верно утверждать, что объявлять нестатический интерфейс нельзя</div><a href="" class="reply-link">ответить</a><div class="sub-comments"></div></div><div id="2710759521826822962" class="comment-block"><div class="head"><a href="#2710759521826822962" class="link">#</a><span class="author"><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/welcometo.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;welcometo</span><span class="created">16.11.2012 | 07:56:33</span></div><div class="text">Пересмотрите этот кусок текста, мозг сломал пока пытался вникнуть:<br><br><br>"Обращаю ваше внимание на то, что inner class не может иметь статических объявлений. Вместо этого можно объявить статические методы у обрамляющего класса. Кроме этого, внутри таких классов нельзя объявлять перечисления.<br><br><br>Еще одна важная особенность - интерфейсы в Java не могут быть инстанциированы, соответственно объявить нестатический внутренний интерфейс нельзя, так как элементарно не будет объекта для ассоциации с экземпляром внешнего класса. Объявление вида:"</div><a href="" class="reply-link">ответить</a><div class="sub-comments"><div id="8883039270463342235" class="comment-block"><div class="head"><a href="#8883039270463342235" class="link">#</a><span class="author"><img src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/welcometo.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;welcometo</span><span class="created">16.11.2012 | 07:57:28</span></div><div class="text">второй абзац</div><a href="" class="reply-link">ответить</a><div class="sub-comments"></div></div></div></div><div class="page-navigation"><a href="" class="current">1</a><a href="">2</a></div><form class="comment-form"><div class="title">Добавить комментарий</div><div style="display: none;" class="errors"></div><textarea></textarea><div class="buttons"><button>Отправить</button> </div></form></div></div>
+<style>@import '/comments/comments.css?1';</style>
+
+<script src="%D0%92%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B2%20Java%20%28inner%20classes%20java%29_files/comments.js"></script>
+<script>document.getElementById('post-comments').appendChild(new Comments.Panel('post/inner-classes-java', {onLoad:Markup}));</script>
+
+<script type="text/javascript">
+    ShareThis(jQuery("#shareThis"), window.location, jQuery("title").html(), jQuery('head meta[name=description]').attr('Content'));
+</script>
+            <br class="clear">
+        </div>
+        <br class="clear">
+    </div>
+
+    <div id="footer">
+        <b></b>
+        <a class="forteko" target="_blank" href="http://www.forteko.com/" title="Forteko"></a>
+        
+        <span class="social">
+            <a class="icon-twitter" target="_blank" rel="nofollow" href="http://www.twitter.com/quizful" title="Twitter"></a>
+            <a class="icon-facebook" target="_blank" rel="nofollow" href="http://www.facebook.com/Quizful" title="Facebook"></a>
+            <a class="icon-vkontakte" target="_blank" rel="nofollow" href="http://vkontakte.ru/club8978114" title="VKontakte"></a>
+            <span class="title">Наши представительства</span>
+        </span>
+    </div>
+    <script type="text/javascript">
+    if (window.location.host == 'www.quizful.net') {
+        var pageTracker = _gat._getTracker("UA-199293-2");
+        pageTracker._initData();
+        pageTracker._trackPageview();
+
+        $("#footer .group a").click(function() { pageTracker._trackPageview('/' + this.className); });
+    }
+    </script>
+
+
+</body></html>

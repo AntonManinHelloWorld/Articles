@@ -1,0 +1,1696 @@
+<!DOCTYPE html>
+<html dir="ltr" class="client-nojs" lang="ru"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8"><title>Глава 1 Thinking in Java 4th edition — WikiJava: Wiki of Java: викифицированные книги и статьи по Java</title>
+<meta name="generator" content="MediaWiki 1.22.2">
+<link rel="shortcut icon" href="http://wikijava.it-cache.net/favicon.ico">
+<link rel="search" type="application/opensearchdescription+xml" href="http://wikijava.it-cache.net/opensearch_desc.php" title="WikiJava: Wiki of Java: викифицированные книги и статьи по Java (ru)">
+<link rel="EditURI" type="application/rsd+xml" href="http://wikijava.it-cache.net/api.php@action=rsd">
+<link rel="copyright" href="http://www.gnu.org/copyleft/fdl.html">
+<link rel="alternate" type="application/atom+xml" title="WikiJava: Wiki of Java: викифицированные книги и статьи по Java&nbsp;— Atom-лента" href="http://wikijava.it-cache.net/index.php@title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F%253A%D0%A1%D0%B2%D0%B5%D0%B6%D0%B8%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8&amp;feed=atom">
+<link rel="stylesheet" href="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%201_files/style3.css">
+<meta name="ResourceLoaderDynamicStyles" content="">
+<style>a:lang(ar),a:lang(ckb),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}
+/* cache key: wjava2-wj_:resourceloader:filter:minify-css:7:32e7e505403c81fe0a24e297ef166436 */</style>
+
+<script src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%201_files/style1.css"></script><script src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%201_files/load.html"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Глава_1_Thinking_in_Java_4th_edition","wgTitle":"Глава 1 Thinking in Java 4th edition","wgCurRevisionId":242,"wgRevisionId":242,"wgArticleId":14,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Книги","Java"],"wgBreakFrames":false,"wgPageContentLanguage":"ru","wgPageContentModel":"wikitext","wgSeparatorTransformTable":[",\t."," \t,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"],"wgMonthNamesShort":["","янв","фев","мар","апр","май","июн","июл","авг","сен","окт","ноя","дек"],"wgRelevantPageName":"Глава_1_Thinking_in_Java_4th_edition","wgIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgVectorEnabledModules":{"collapsiblenav":true,"collapsibletabs":true,"editwarning":true,"expandablesearch":false,"footercleanup":false,"sectioneditlinks":false,"simplesearch":true,"experiments":true}});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function(){mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"vector-simplesearch":1,"watchcreations":0,"watchdefault":0,"watchdeletion":0,"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,
+"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"useeditwarning":1,"prefershttps":1,"language":"ru","variant-gan":"gan","variant-iu":"iu","variant-kk":"kk","variant-ku":"ku","variant-shi":"shi","variant-sr":"sr","variant-tg":"tg","variant-uz":"uz","variant-zh":"zh","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false,"variant":"ru"});},{},{});mw.loader.implement("user.tokens",function(){mw.user.tokens.set({"editToken":"+\\","patrolToken":false,"watchToken":false});},{},{});
+/* cache key: wjava2-wj_:resourceloader:filter:minify-js:7:07bb1f4d2452379e70abca47c4cde6d9 */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax","skins.vector.js"]);
+}</script>
+<style type="text/css">/*<![CDATA[*/
+.source-java5 {line-height: normal;}
+.source-java5 li, .source-java5 pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for java5
+ * CSS class: source-java5, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.java5.source-java5 .de1, .java5.source-java5 .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;font-family: monospace, monospace;}
+.java5.source-java5  {font-family:monospace;}
+.java5.source-java5 .imp {font-weight: bold; color: red;}
+.java5.source-java5 li, .java5.source-java5 .li1 {font-weight: normal; vertical-align:top;}
+.java5.source-java5 .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.java5.source-java5 .li2 {font-weight: bold; vertical-align:top;}
+.java5.source-java5 .kw1 {color: #000000;  font-weight: bold;}
+.java5.source-java5 .kw2 {color: #000000; font-weight: bold;}
+.java5.source-java5 .kw3 {color: #006600; font-weight: bold;}
+.java5.source-java5 .kw4 {color: #006600; font-weight: bold;}
+.java5.source-java5 .kw5 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw6 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw7 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw8 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw9 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw10 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw11 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw12 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw13 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw14 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw15 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw16 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw17 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw18 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw19 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw20 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw21 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw22 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw23 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw24 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw25 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw26 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw27 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw28 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw29 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw30 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw31 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw32 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw33 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw34 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw35 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw36 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw37 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw38 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw39 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw40 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw41 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw42 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw43 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw44 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw45 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw46 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw47 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw48 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw49 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw50 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw51 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw52 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw53 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw54 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw55 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw56 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw57 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw58 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw59 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw60 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw61 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw62 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw63 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw64 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw65 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw66 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw67 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw68 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw69 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw70 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw71 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw72 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw73 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw74 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw75 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw76 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw77 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw78 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw79 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw80 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw81 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw82 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw83 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw84 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw85 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw86 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw87 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw88 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw89 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw90 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw91 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw92 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw93 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw94 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw95 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw96 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw97 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw98 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw99 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw100 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw101 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw102 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw103 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw104 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw105 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw106 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw107 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw108 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw109 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw110 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw111 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw112 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw113 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw114 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw115 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw116 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw117 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw118 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw119 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw120 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw121 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw122 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw123 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw124 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw125 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw126 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw127 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw128 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw129 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw130 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw131 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw132 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw133 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw134 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw135 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw136 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw137 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw138 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw139 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw140 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw141 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw142 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw143 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw144 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw145 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw146 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw147 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw148 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw149 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw150 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw151 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw152 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw153 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw154 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw155 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw156 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw157 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw158 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw159 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw160 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw161 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw162 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw163 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw164 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw165 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw166 {color: #003399; font-weight: bold;}
+.java5.source-java5 .co1 {color: #666666; font-style: italic;}
+.java5.source-java5 .co2 {color: #006699;}
+.java5.source-java5 .co3 {color: #008000; font-style: italic; font-weight: bold;}
+.java5.source-java5 .coMULTI {color: #666666; font-style: italic;}
+.java5.source-java5 .es0 {color: #000099; font-weight: bold;}
+.java5.source-java5 .br0 {color: #009900;}
+.java5.source-java5 .sy0 {color: #339933;}
+.java5.source-java5 .st0 {color: #0000ff;}
+.java5.source-java5 .nu0 {color: #cc66cc;}
+.java5.source-java5 .me1 {color: #006633;}
+.java5.source-java5 .me2 {color: #006633;}
+.java5.source-java5 .ln-xtra, .java5.source-java5 li.ln-xtra, .java5.source-java5 div.ln-xtra {background-color: #ffc;}
+.java5.source-java5 span.xtra { display:block; }
+
+/*]]>*/
+</style><!--[if lt IE 7]><style type="text/css">body{behavior:url("/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Глава_1_Thinking_in_Java_4th_edition skin-vector action-view vector-animateLayout">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<div id="content" class="mw-body" role="main">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<h1 id="firstHeading" class="firstHeading" lang="ru"><span dir="auto">Глава 1 Thinking in Java 4th edition</span></h1>
+			<div id="bodyContent">
+								<div id="siteSub">Материал из WikiJava: Wiki of Java: викифицированные книги и статьи по Java</div>
+								<div id="contentSub"></div>
+												<div id="jump-to-nav" class="mw-jump">
+					Перейти к:					<a href="http://wikijava.it-cache.net/index.php@title=Glava_1_Thinking_in_Java_4th_edition.html#mw-navigation">навигация</a>, 					<a href="http://wikijava.it-cache.net/index.php@title=Glava_1_Thinking_in_Java_4th_edition.html#p-search">поиск</a>
+				</div>
+				<div id="mw-content-text" dir="ltr" class="mw-content-ltr" lang="ru"><p><br>
+</p>
+<table style="clear: right; margin-bottom: .5em; float: right; padding: .5em 0 .8em 1.4em; background: none; width: auto;" cellpadding="0" cellspacing="0">
+<tbody><tr>
+<td> <div id="toc" class="toc"><div id="toctitle"><h2>Содержание</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="http://wikijava.it-cache.net/index.php@title=Glava_1_Thinking_in_Java_4th_edition.html#.D0.92.D0.92.D0.95.D0.94.D0.95.D0.9D.D0.98.D0.95_.D0.92_.D0.9E.D0.91.D0.AA.D0.95.D0.9A.D0.A2.D0.AB"><span class="tocnumber">1</span> <span class="toctext"><b>ВВЕДЕНИЕ В ОБЪЕКТЫ</b></span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="http://wikijava.it-cache.net/index.php@title=Glava_1_Thinking_in_Java_4th_edition.html#.D0.A0.D0.B0.D0.B7.D0.B2.D0.B8.D1.82.D0.B8.D0.B5_.D0.B0.D0.B1.D1.81.D1.82.D1.80.D0.B0.D0.BA.D1.86.D0.B8.D0.B8"><span class="tocnumber">1.1</span> <span class="toctext"><b>Развитие абстракции</b></span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="http://wikijava.it-cache.net/index.php@title=Glava_1_Thinking_in_Java_4th_edition.html#.D0.9E.D0.B1.D1.8A.D0.B5.D0.BA.D1.82_.D0.B8.D0.BC.D0.B5.D0.B5.D1.82_.D0.B8.D0.BD.D1.82.D0.B5.D1.80.D1.84.D0.B5.D0.B9.D1.81"><span class="tocnumber">1.2</span> <span class="toctext"><b>Объект имеет интерфейс</b></span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="http://wikijava.it-cache.net/index.php@title=Glava_1_Thinking_in_Java_4th_edition.html#.D0.9E.D0.B1.D1.8A.D0.B5.D0.BA.D1.82_.D0.BF.D1.80.D0.B5.D0.B4.D0.BE.D1.81.D1.82.D0.B0.D0.B2.D0.BB.D1.8F.D0.B5.D1.82_.D1.83.D1.81.D0.BB.D1.83.D0.B3.D0.B8"><span class="tocnumber">1.3</span> <span class="toctext"><b>Объект предоставляет услуги</b></span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="http://wikijava.it-cache.net/index.php@title=Glava_1_Thinking_in_Java_4th_edition.html#.D0.A1.D0.BA.D1.80.D1.8B.D1.82.D0.B0.D1.8F_.D1.80.D0.B5.D0.B0.D0.BB.D0.B8.D0.B7.D0.B0.D1.86.D0.B8.D1.8F"><span class="tocnumber">1.4</span> <span class="toctext"><b>Скрытая реализация</b></span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="http://wikijava.it-cache.net/index.php@title=Glava_1_Thinking_in_Java_4th_edition.html#.D0.9F.D0.BE.D0.B2.D1.82.D0.BE.D1.80.D0.BD.D0.BE.D0.B5_.D0.B8.D1.81.D0.BF.D0.BE.D0.BB.D1.8C.D0.B7.D0.BE.D0.B2.D0.B0.D0.BD.D0.B8.D0.B5_.D1.80.D0.B5.D0.B0.D0.BB.D0.B8.D0.B7.D0.B0.D1.86.D0.B8.D0.B8"><span class="tocnumber">1.5</span> <span class="toctext"><b>Повторное использование реализации</b></span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="http://wikijava.it-cache.net/index.php@title=Glava_1_Thinking_in_Java_4th_edition.html#.D0.9D.D0.B0.D1.81.D0.BB.D0.B5.D0.B4.D0.BE.D0.B2.D0.B0.D0.BD.D0.B8.D0.B5"><span class="tocnumber">1.6</span> <span class="toctext"><b>Наследование</b></span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="http://wikijava.it-cache.net/index.php@title=Glava_1_Thinking_in_Java_4th_edition.html#.D0.9E.D1.82.D0.BD.D0.BE.D1.88.D0.B5.D0.BD.D0.B8.D0.B5_.C2.AB.D1.8F.D0.B2.D0.BB.D1.8F.D0.B5.D1.82.D1.81.D1.8F.C2.BB_.D0.B2_.D1.81.D1.80.D0.B0.D0.B2.D0.BD.D0.B5.D0.BD.D0.B8.D0.B8_.D1.81_.C2.AB.D0.BF.D0.BE.D1.85.D0.BE.D0.B6.D0.B5.C2.BB"><span class="tocnumber">1.7</span> <span class="toctext"><b>Отношение «является» в сравнении с «похоже»</b></span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="http://wikijava.it-cache.net/index.php@title=Glava_1_Thinking_in_Java_4th_edition.html#.D0.92.D0.B7.D0.B0.D0.B8.D0.BC.D0.BE.D0.B7.D0.B0.D0.BC.D0.B5.D0.BD.D1.8F.D0.B5.D0.BC.D1.8B.D0.B5_.D0.BE.D0.B1.D1.8A.D0.B5.D0.BA.D1.82.D1.8B_.D0.B8_.D0.BF.D0.BE.D0.BB.D0.B8.D0.BC.D0.BE.D1.80.D1.84.D0.B8.D0.B7.D0.BC"><span class="tocnumber">1.8</span> <span class="toctext"><b>Взаимозаменяемые объекты и полиморфизм</b></span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="http://wikijava.it-cache.net/index.php@title=Glava_1_Thinking_in_Java_4th_edition.html#.D0.9E.D0.B4.D0.BD.D0.BE.D0.BA.D0.BE.D1.80.D0.BD.D0.B5.D0.B2.D0.B0.D1.8F_.D0.B8.D0.B5.D1.80.D0.B0.D1.80.D1.85.D0.B8.D1.8F"><span class="tocnumber">1.9</span> <span class="toctext"><b>Однокорневая иерархия</b></span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="http://wikijava.it-cache.net/index.php@title=Glava_1_Thinking_in_Java_4th_edition.html#.D0.9A.D0.BE.D0.BD.D1.82.D0.B5.D0.B9.D0.BD.D0.B5.D1.80.D1.8B"><span class="tocnumber">1.10</span> <span class="toctext"><b>Контейнеры</b></span></a></li>
+<li class="toclevel-2 tocsection-12"><a href="http://wikijava.it-cache.net/index.php@title=Glava_1_Thinking_in_Java_4th_edition.html#.D0.9F.D0.B0.D1.80.D0.B0.D0.BC.D0.B5.D1.82.D1.80.D0.B8.D0.B7.D0.BE.D0.B2.D0.B0.D0.BD.D0.BD.D1.8B.D0.B5_.D1.82.D0.B8.D0.BF.D1.8B_.28generics.29"><span class="tocnumber">1.11</span> <span class="toctext"><b>Параметризованные типы (generics)</b></span></a></li>
+<li class="toclevel-2 tocsection-13"><a href="http://wikijava.it-cache.net/index.php@title=Glava_1_Thinking_in_Java_4th_edition.html#.D0.A1.D0.BE.D0.B7.D0.B4.D0.B0.D0.BD.D0.B8.D0.B5.2C_.D0.B8.D1.81.D0.BF.D0.BE.D0.BB.D1.8C.D0.B7.D0.BE.D0.B2.D0.B0.D0.BD.D0.B8.D0.B5_.D0.BE.D0.B1.D1.8A.D0.B5.D0.BA.D1.82.D0.BE.D0.B2_.D0.B8_.D0.B2.D1.80.D0.B5.D0.BC.D1.8F_.D0.B8.D1.85_.D0.B6.D0.B8.D0.B7.D0.BD.D0.B8"><span class="tocnumber">1.12</span> <span class="toctext"><b>Создание, использование объектов и время их жизни</b></span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="http://wikijava.it-cache.net/index.php@title=Glava_1_Thinking_in_Java_4th_edition.html#.D0.9E.D0.B1.D1.80.D0.B0.D0.B1.D0.BE.D1.82.D0.BA.D0.B0_.D0.B8.D1.81.D0.BA.D0.BB.D1.8E.D1.87.D0.B5.D0.BD.D0.B8.D0.B9:_.D0.B1.D0.BE.D1.80.D1.8C.D0.B1.D0.B0_.D1.81_.D0.BE.D1.88.D0.B8.D0.B1.D0.BA.D0.B0.D0.BC.D0.B8"><span class="tocnumber">1.13</span> <span class="toctext"><b>Обработка исключений: борьба с ошибками</b></span></a></li>
+<li class="toclevel-2 tocsection-15"><a href="http://wikijava.it-cache.net/index.php@title=Glava_1_Thinking_in_Java_4th_edition.html#.D0.9F.D0.B0.D1.80.D0.B0.D0.BB.D0.BB.D0.B5.D0.BB.D1.8C.D0.BD.D0.BE.D0.B5_.D0.BF.D1.80.D0.BE.D0.B3.D1.80.D0.B0.D0.BC.D0.BC.D0.B8.D1.80.D0.BE.D0.B2.D0.B0.D0.BD.D0.B8.D0.B5"><span class="tocnumber">1.14</span> <span class="toctext"><b>Параллельное программирование</b></span></a></li>
+<li class="toclevel-2 tocsection-16"><a href="http://wikijava.it-cache.net/index.php@title=Glava_1_Thinking_in_Java_4th_edition.html#Java_.D0.B8_.D0.98.D0.BD.D1.82.D0.B5.D1.80.D0.BD.D0.B5.D1.82"><span class="tocnumber">1.15</span> <span class="toctext"><b><i>Java</i> и Интернет</b></span></a>
+<ul>
+<li class="toclevel-3 tocsection-17"><a href="http://wikijava.it-cache.net/index.php@title=Glava_1_Thinking_in_Java_4th_edition.html#.D0.A7.D1.82.D0.BE_.D1.82.D0.B0.D0.BA.D0.BE.D0.B5_.D0.92.D0.B5.D0.B1.3F"><span class="tocnumber">1.15.1</span> <span class="toctext">Что такое Веб?</span></a></li>
+<li class="toclevel-3 tocsection-18"><a href="http://wikijava.it-cache.net/index.php@title=Glava_1_Thinking_in_Java_4th_edition.html#.D0.92.D1.8B.D1.87.D0.B8.D1.81.D0.BB.D0.B5.D0.BD.D0.B8.D1.8F_.C2.AB.D0.BA.D0.BB.D0.B8.D0.B5.D0.BD.D1.82.2F.D1.81.D0.B5.D1.80.D0.B2.D0.B5.D1.80.C2.BB"><span class="tocnumber">1.15.2</span> <span class="toctext">Вычисления «клиент/сервер»</span></a></li>
+<li class="toclevel-3 tocsection-19"><a href="http://wikijava.it-cache.net/index.php@title=Glava_1_Thinking_in_Java_4th_edition.html#.D0.92.D0.B5.D0.B1_.D0.BA.D0.B0.D0.BA_.D0.B3.D0.B8.D0.B3.D0.B0.D0.BD.D1.82.D1.81.D0.BA.D0.B8.D0.B9_.D1.81.D0.B5.D1.80.D0.B2.D0.B5.D1.80"><span class="tocnumber">1.15.3</span> <span class="toctext">Веб как гигантский сервер</span></a></li>
+<li class="toclevel-3 tocsection-20"><a href="http://wikijava.it-cache.net/index.php@title=Glava_1_Thinking_in_Java_4th_edition.html#.D0.9F.D1.80.D0.BE.D0.B3.D1.80.D0.B0.D0.BC.D0.BC.D0.B8.D1.80.D0.BE.D0.B2.D0.B0.D0.BD.D0.B8.D0.B5_.D0.BD.D0.B0_.D1.81.D1.82.D0.BE.D1.80.D0.BE.D0.BD.D0.B5_.D0.BA.D0.BB.D0.B8.D0.B5.D0.BD.D1.82.D0.B0"><span class="tocnumber">1.15.4</span> <span class="toctext">Программирование на стороне клиента</span></a></li>
+<li class="toclevel-3 tocsection-21"><a href="http://wikijava.it-cache.net/index.php@title=Glava_1_Thinking_in_Java_4th_edition.html#.D0.9C.D0.BE.D0.B4.D1.83.D0.BB.D0.B8_.D1.80.D0.B0.D1.81.D1.88.D0.B8.D1.80.D0.B5.D0.BD.D0.B8.D1.8F"><span class="tocnumber">1.15.5</span> <span class="toctext">Модули расширения</span></a></li>
+<li class="toclevel-3 tocsection-22"><a href="http://wikijava.it-cache.net/index.php@title=Glava_1_Thinking_in_Java_4th_edition.html#.D0.AF.D0.B7.D1.8B.D0.BA.D0.B8_.D1.81.D1.86.D0.B5.D0.BD.D0.B0.D1.80.D0.B8.D0.B5.D0.B2"><span class="tocnumber">1.15.6</span> <span class="toctext">Языки сценариев</span></a></li>
+<li class="toclevel-3 tocsection-23"><a href="http://wikijava.it-cache.net/index.php@title=Glava_1_Thinking_in_Java_4th_edition.html#Java"><span class="tocnumber">1.15.7</span> <span class="toctext"><i>Java</i></span></a></li>
+<li class="toclevel-3 tocsection-24"><a href="http://wikijava.it-cache.net/index.php@title=Glava_1_Thinking_in_Java_4th_edition.html#.D0.90.D0.BB.D1.8C.D1.82.D0.B5.D1.80.D0.BD.D0.B0.D1.82.D0.B8.D0.B2.D1.8B"><span class="tocnumber">1.15.8</span> <span class="toctext">Альтернативы</span></a></li>
+<li class="toclevel-3 tocsection-25"><a href="http://wikijava.it-cache.net/index.php@title=Glava_1_Thinking_in_Java_4th_edition.html#.NET_.D0.B8_.D0.A1.23"><span class="tocnumber">1.15.9</span> <span class="toctext">.NET и С#</span></a></li>
+<li class="toclevel-3 tocsection-26"><a href="http://wikijava.it-cache.net/index.php@title=Glava_1_Thinking_in_Java_4th_edition.html#.D0.98.D0.BD.D1.82.D0.B5.D1.80.D0.BD.D0.B5.D1.82_.D0.B8_.D0.B8.D0.BD.D1.82.D1.80.D0.B0.D1.81.D0.B5.D1.82.D1.8C"><span class="tocnumber">1.15.10</span> <span class="toctext">Интернет и интрасеть</span></a></li>
+<li class="toclevel-3 tocsection-27"><a href="http://wikijava.it-cache.net/index.php@title=Glava_1_Thinking_in_Java_4th_edition.html#.D0.9F.D1.80.D0.BE.D0.B3.D1.80.D0.B0.D0.BC.D0.BC.D0.B8.D1.80.D0.BE.D0.B2.D0.B0.D0.BD.D0.B8.D0.B5_.D0.BD.D0.B0_.D1.81.D1.82.D0.BE.D1.80.D0.BE.D0.BD.D0.B5_.D1.81.D0.B5.D1.80.D0.B2.D0.B5.D1.80.D0.B0"><span class="tocnumber">1.15.11</span> <span class="toctext">Программирование на стороне сервера</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-28"><a href="http://wikijava.it-cache.net/index.php@title=Glava_1_Thinking_in_Java_4th_edition.html#.D0.A0.D0.B5.D0.B7.D1.8E.D0.BC.D0.B5"><span class="tocnumber">1.16</span> <span class="toctext"><b>Резюме</b></span></a></li>
+<li class="toclevel-2 tocsection-29"><a href="http://wikijava.it-cache.net/index.php@title=Glava_1_Thinking_in_Java_4th_edition.html#.D0.9F.D1.80.D0.B8.D0.BC.D0.B5.D1.87.D0.B0.D0.BD.D0.B8.D1.8F"><span class="tocnumber">1.17</span> <span class="toctext"><b>Примечания</b></span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+</td></tr></tbody></table>
+<h1><span class="mw-headline" id=".D0.92.D0.92.D0.95.D0.94.D0.95.D0.9D.D0.98.D0.95_.D0.92_.D0.9E.D0.91.D0.AA.D0.95.D0.9A.D0.A2.D0.AB"><b>ВВЕДЕНИЕ В ОБЪЕКТЫ</b></span></h1>
+<p>Возникновением компьютерной революции мы обязаны машине. Поэтому наши языки программирования стараются быть ближе к этой машине.
+</p><p>Но в то же время компьютеры не столько механизмы, сколько 
+средства усиления мысли («велосипеды для ума», как любил говорить Стив 
+Джобс), и еще одно средство самовыражения. В результате инструменты 
+программирования все меньше склоняются к машинам и все больше тяготеют к
+ нашим умам, также как и к другим формам выражения человеческих 
+устремлений, как-то: литература, живопись, скульптура, анимация и 
+кинематограф. Объектно-ориентированное программирование (ООП) — часть 
+превращения компьютера в средство самовыражения.
+</p><p>Эта глава познакомит вас с основами ООП, включая рассмотрение 
+основных методов разработки программ. Она, и книга вообще, подразумевает
+ наличие у вас опыта программирования на процедурном языке, не 
+обязательно <i>C</i>. 
+</p><p>Настоящая глава содержит подготовительный и дополнительный 
+материалы. Многие читатели предпочитают сначала представить себе общую 
+картину, а уже потом разбираться в тонкостях ООП. Поэтому многие идеи в 
+данной главе служат тому, чтобы дать вам цельное представление об ООП. 
+Однако многие люди не воспринимают общей идеи до тех пор, пока не увидят
+ конкретно, как все работает; такие люди нередко вязнут в общих словах, 
+не имея перед собой примеров. Если вы принадлежите к последним и горите 
+желанием приступить к основам языка, можете сразу перейти к следующей 
+главе — пропуск этой не будет препятствием для написания программ или 
+изучения языка. И все же чуть позже вам стоит вернуться к этой главе, 
+чтобы расширить свой кругозор и понять, почему так важны объекты и какое
+ место они занимают при проектировании программ.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id=".D0.A0.D0.B0.D0.B7.D0.B2.D0.B8.D1.82.D0.B8.D0.B5_.D0.B0.D0.B1.D1.81.D1.82.D1.80.D0.B0.D0.BA.D1.86.D0.B8.D0.B8"><b>Развитие абстракции</b></span></h2>
+<p>Все языки программирования построены на абстракции. Возможно, 
+трудность решаемых задач напрямую зависит от типа и качества абстракции.
+ Под словом «тип» я имею в виду: «Что конкретно мы абстрагируем?» Язык 
+ассемблера есть небольшая абстракция от компьютера, на базе которого он 
+работает. Многие так называемые «командные» языки, созданные вслед за 
+ним (такие, как <i>Fortran, BASIC</i> и <i>C</i>), представляли собой 
+абстракции следующего уровня. Эти языки обладали значительным 
+преимуществом по сравнению с ассемблером, но их основная абстракция 
+по-прежнему заставляет думать вас о структуре компьютера, а не о 
+решаемой задаче. Программист должен установить связь между моделью 
+машины (в «пространстве решения», которое представляет место, где 
+реализуется решение, — например, компьютер) и моделью задачи, которую и 
+нужно решать (в «пространстве задачи», которое является местом 
+существования задачи — например, прикладной областью). Для установления 
+связи требуются усилия, оторванные от собственно языка программирования;
+ в результате появляются программы, которые трудно писать и тяжело 
+поддерживать. Мало того, это еще создало целую отрасль «методологий 
+программирования».
+</p><p>Альтернативой моделированию машины является моделирование решаемой задачи. Ранние языки, подобные <i>LISP</i> и <i>APL</i>,
+ выбирали особый подход к моделированию окружающего мира («Все задачи 
+решаются списками» или «Алгоритмы решают все» соответственно). <i>PROLOG</i>
+ трактует все проблемы как цепочки решений. Были созданы языки для 
+программирования, основанного на системе ограничений, и специальные 
+языки, в которых программирование осуществлялось посредством манипуляций
+ с графическими конструкциями (область применения последних оказалась 
+слишком узкой). Каждый из этих подходов хорош в определенной области 
+решаемых задач, но стоит выйти из этой сферы, как использовать их 
+становится затруднительно.
+</p><p>Объектный подход делает шаг вперед, предоставляя программисту 
+средства для представления задачи в ее пространстве. Такой подход имеет 
+достаточно общий характер и не накладывает ограничений на тип решаемой 
+проблемы. Элементы пространства задачи и их представления в пространстве
+ решения называются «объектами». (Вероятно, вам понадобятся и другие 
+объекты, не имеющие аналогов в пространстве задачи.) Идея состоит в том,
+ что программа может адаптироваться к специфике задачи посредством 
+создания новых типов объектов так, что во время чтения кода, решающего 
+задачу, вы одновременно видите слова, ее описывающие. Это более гибкая и
+ мощная абстракция, превосходящая по своим возможностям все, что 
+существовало ранее&lt;ref&gt;Некоторые разработчики языков считают, что 
+само по себе объектно-ориентированное программирование не является 
+достаточным для решения всех задач программирования, и выступают за 
+сочетание различных парадигм программирования в одном языке. Такие языки
+ называют <i>мультипарадигма́льными</i> (multiparadigm). Смотрите книгу 
+Тимоти Бадда Multiparadigm Programming in Leda (Addison-Wesley, 
+1995).&lt;/ref&gt;. Таким образом, ООП позволяет описать задачу в 
+контексте самой задачи, а не в контексте компьютера, на котором будет 
+исполнено решение. Впрочем, связь с компьютером все же сохранилась. 
+Каждый объект похож на маленький компьютер; у него есть состояние и 
+операции, которые он позволяет проводить. Такая аналогия неплохо 
+сочетается с внешним миром, который есть «реальность, данная нам в 
+объектах», имеющих характеристики и поведение.
+</p><p>Алан Кей подвел итог и вывел пять основных черт языка <i>Smalltalk</i> — первого удачного объектно-ориентированного языка, одного из предшественников <i>Java</i>. Эти характеристики представляют «чистый», академический подход к объектно-ориентированному программированию:
+</p>
+<hr>
+<ul>
+<li><span style="color:#800000">Все является объектом. Представляйте 
+себе объект как усовершенствованную переменную; он хранит данные, но вы 
+можете «обращаться с запросами» к объекту, требуя у него выполнить 
+операции над собой. Теоретически абсолютно  любой компонент решаемой 
+задачи (собака, здание, услуга и т. п.) может быть представлен в виде 
+объекта.
+</span></li>
+</ul>
+<ul>
+<li><span style="color:#800000">Программа — это группа объектов, 
+указывающих друг другу, что делать, посредством сообщений. Чтобы 
+обратиться  с запросом к объекту, вы «посылаете ему сообщение». Более 
+наглядно можно представить сообщение как вызов метода, принадлежащего 
+определенному объекту.</span>
+</li>
+</ul>
+<ul>
+<li><span style="color:#800000">Каждый объект имеет собственную 
+«память», состоящую из других объектов. Иными словами, вы создаете новый
+ объект с помощью встраивания в него уже существующих объектов. Таким 
+образом, можно сконструировать сколь угодно сложную программу, скрыв 
+общую сложность за простотой отдельных объектов.
+</span></li>
+</ul>
+<p>
+</p>
+<ul>
+<li><span style="color:#800000"> У каждого объекта есть тип. В других 
+терминах, каждый объект является экземпляром класса, где «класс» 
+является аналогом слова «тип». Важнейшее отличие классов друг от друга 
+как раз и заключается в ответе на вопрос: «Какие сообщения можно 
+посылать объекту?»</span>
+</li>
+</ul>
+<ul>
+<li><span style="color:#800000">Все объекты определенного типа могут 
+получать одинаковые сообщения. Как мы вскоре убедимся, это очень важное 
+обстоятельство. Так как объект типа «круг» также является объектом типа 
+«фигура», справедливо утверждение, что  «круг» заведомо способен 
+принимать сообщения для «фигуры». А это значит, что можно писать код для
+ фигур и быть  уверенным в том, что он подойдет для всего, что попадает 
+под понятие фигуры. Взаимозаменяемость представляет  одно из самых 
+мощных понятий ООП.</span>
+</li>
+</ul>
+<hr>
+<p>Буч предложил еще более лаконичное описание объекта:
+</p><p><i>Объект обладает состоянием, поведением и индивидуальностью</i>.
+</p><p>Суть сказанного в том, что объект может иметь в своем 
+распоряжении внутренние данные (которые и есть состояние объекта), 
+методы (которые определяют поведение), и каждый объект можно уникальным 
+образом отличить от любого другого объекта — говоря более конкретно, 
+каждый объект обладает уникальным адресом в памяти&lt;ref&gt;Это верно с
+ некоторыми ограничениями, поскольку объекты могут реально существовать 
+на других машинах и в различных адресных пространствах, и также могут 
+храниться на диске. В этих случаях, индивидуальность объекта должна 
+определяться чем-то иным, чем адресом памяти.&lt;/ref&gt;.
+</p>
+<h2><span class="mw-headline" id=".D0.9E.D0.B1.D1.8A.D0.B5.D0.BA.D1.82_.D0.B8.D0.BC.D0.B5.D0.B5.D1.82_.D0.B8.D0.BD.D1.82.D0.B5.D1.80.D1.84.D0.B5.D0.B9.D1.81"><b>Объект имеет интерфейс</b></span></h2>
+<p>Вероятно, Аристотель был первым, кто внимательно изучил понятие типа;
+ он говорил о «классе рыб и классе птиц». Концепция, что все объекты, 
+будучи уникальными, в то же время являются частью класса объектов со 
+сходными ха­рактеристиками и поведением, была использована в первом 
+объектно-ориентированном языке Simula-67, с введением фундаментального 
+ключевого слова <i><b>class</b></i>, которое вводило новый тип в программу.
+</p><p>Язык <i>Simula</i>, как подразумевает его имя, был создан для 
+развития и моделирования ситуаций, подобных классической задаче 
+«банковский кассир». У вас есть группы кассиров, клиентов, счетов, 
+платежей и денежных единиц — много «объектов». Объекты, идентичные во 
+всем, кроме внутреннего состояния во время работы программы, 
+группируются в «классы объектов». Отсюда и пришло ключевое слово <i><b>class</b></i>.
+ Создание абстрактных типов данных есть фундаментальное понятие во всем 
+объектно-ориентированном программировании. Абстрактные типы данных 
+действуют почти так же, как и встроенные типы: вы можете создавать 
+переменные типов (называемые объектами или экземплярами в терминах ООП) и
+ манипулировать ими (что называется посылкой сообщений или запросом; вы 
+производите запрос, и объект решает, что с ним делать). Члены (элементы)
+ каждого класса обладают сходством: у каждого счета имеется баланс, 
+каждый кассир принимает депозиты, и т. п. В то же время все члены 
+отличаются внутренним состоянием: у каждого счета баланс индивидуален, 
+каждый кассир имеет человеческое имя. Поэтому все кассиры, заказчики, 
+счета, переводы и прочее могут быть представлены уникальными сущностями 
+внутри компьютерной программы. Это и есть суть объекта, и каждый объект 
+принадлежит к определенному классу, который определяет его 
+характеристики и поведение.
+</p><p>Таким образом, хотя мы реально создаем в объектных языках новые 
+типы данных, фактически все эти языки используют ключевое слово «класс».
+ Когда видите слово «тип», думайте «класс», и 
+наоборот&lt;ref&gt;Некоторые люди различают эти два понятия, указывая, 
+что тип определяет интерфейс, а класс — это конкретная реализация 
+интерфейса.&lt;/ref&gt;.
+</p><p>Поскольку класс определяет набор объектов с идентичными 
+характеристиками (элементы данных) и поведением (функциональность), 
+класс на самом деле является типом данных, потому что, например, число с
+ плавающей запятой тоже имеет ряд характеристик и особенности поведения.
+ Разница состоит в том, что программист определяет класс для 
+представления некоторого аспекта задачи, вместо использования уже 
+существующего типа, представляющего единицу хранения данных в машине. Вы
+ расширяете язык программирования, добавляя новые типы данных, 
+соответствующие вашим потребностям. Система программирования 
+благосклонна к новым классам и уделяет им точно такое же внимание, как и
+ встроенным типам.
+</p><p>Объектно-ориентированный подход не ограничен построением моделей.
+ Согласитесь вы или нет, что любая программа является моделью 
+разрабатываемой вами системы, использование ООП-технологии легко сводит 
+большой комплекс задач к простому решению.
+</p><p>После определения нового класса вы можете создать любое 
+количество объектов этого класса, а затем манипулировать ими так, как 
+будто они представляют собой элементы решаемой задачи. На самом деле 
+одной из основных трудностей в ООП является установление однозначного 
+соответствия между объектами пространства задачи и объектами 
+пространства решения.
+</p><p>Но как заставить объект выполнять нужные вам действия? Должен 
+существовать механизм передачи запроса к объекту на выполнение 
+некоторого действия — завершения транзакции, рисования на экране и т. д.
+ Каждый объект умеет выполнять только определенный круг запросов. 
+Запросы, которые вы можете посылать объекту, определяются его 
+интерфейсом, причем интерфейс объекта определяется его типом. Простейшим
+ примером может стать электрическая лампочка:
+</p><p><a href="http://wikijava.org.ua/index.php?title=%D0%A4%D0%B0%D0%B9%D0%BB:P0021.png" class="image"><img alt="P0021.png" src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%201_files/P0021.png" height="164" width="314"></a>
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> Light lt = <span class="kw2">new</span> Light<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+ lt.<span class="me1">on</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span></pre></div></div>
+<p>Интерфейс определяет, какие запросы вы вправе делать к определенному 
+объекту. Однако где-то должен существовать и код, выполняющий запросы. 
+Этот код, наряду со скрытыми данными, составляет реализацию. С точки 
+зрения процедурного программирования происходящее не так уж сложно. Тип 
+содержит метод для каждого возможного запроса, и при получении 
+определенного запроса вызывается нужный метод. Процесс обычно 
+объединяется в одно целое: и «отправка сообщения» (передача запроса) 
+объекту, и его обработка объектом (выполнение кода).
+</p><p>В данном примере существует тип (класс) с именем <i><b>Light</b></i> (лампа), конкретный объект типа <i><b>Light</b></i> с именем <i><b>It</b></i>, и класс поддерживает различные запросы к объекту <i><b>Light</b></i>: выключить лампочку, включить, сделать ярче или притушить. Вы создаете объект <i><b>Light</b></i>, определяя «ссылку» на него (<i><b>It</b></i>) и вызывая оператор <i><b>new</b></i>
+ для создания нового экземпляра этого типа. Чтобы послать сообщение 
+объекту, следует указать имя объекта и связать его с нужным запросом 
+знаком точки. С точки зрения пользователя заранее определенного класса, 
+этого вполне достаточно для того, чтобы оперировать его объектами.
+</p><p>Диаграмма, показанная выше, следует формату <i>UML (Unified Modeling Language)</i>.
+ Каждый класс представлен прямоугольником, все описываемые поля данных 
+помещены в средней его части, а методы (функции объекта, которому вы 
+посылаете сообщения) перечисляются в нижней части прямоугольника.
+</p><p>Часто на диаграммах <i>UML</i> показываются только имя класса и 
+открытые методы, а средняя часть отсутствует. Если же вас интересует 
+только имя класса, то можете пропустить и нижнюю часть.
+</p>
+<h2><span class="mw-headline" id=".D0.9E.D0.B1.D1.8A.D0.B5.D0.BA.D1.82_.D0.BF.D1.80.D0.B5.D0.B4.D0.BE.D1.81.D1.82.D0.B0.D0.B2.D0.BB.D1.8F.D0.B5.D1.82_.D1.83.D1.81.D0.BB.D1.83.D0.B3.D0.B8"><b>Объект предоставляет услуги</b></span></h2>
+<p>В тот момент, когда вы пытаетесь разработать или понять структуру 
+программы, часто бывает полезно представить объекты в качестве 
+«поставщиков услуг». Ваша программа оказывает услуги пользователю, и 
+делает она это посредством услуг, предоставляемых другими объектами. 
+Ваша цель — произвести (а еще лучше отыскать в библиотеках классов) тот 
+набор объектов, который будет оптимальным для решения вашей задачи.
+</p><p>Для начала спросите себя: «если бы я мог по волшебству вынимать 
+объекты из шляпы, какие бы из них смогли решить мою задачу прямо 
+сейчас?» Предположим, что вы разрабатываете бухгалтерскую программу. 
+Можно представить себе набор объектов, предоставляющих стандартные окна 
+для ввода бухгалтерской информации, еще один набор объектов, выполняющих
+ бухгалтерские расчеты, объект, ведающий распечаткой чеков и счетов на 
+всевозможных принтерах. Возможно, некоторые из таких объектов уже 
+существуют, а для других объектов стоит выяснить, как они могли бы 
+выглядеть. Какие услуги могли бы предоставлять те объекты, и какие 
+объекты понадобились бы им для выполнения своей работы? Если вы будете 
+продолжать в том же духе, то рано или поздно скажете: «Этот объект 
+достаточно прост, так что можно сесть и записать его», или «Наверняка 
+такой объект уже существует». Это разумный способ распределить решение 
+задачи на отдельные объекты.
+</p><p>Представление объекта в качестве поставщика услуг обладает дополнительным преимуществом: оно помогает улучшить связуемостъ (<i>cohesiveness</i>)
+ объекта. Хорошая связуемостъ — важнейшее качество программного 
+продукта: она озна­чает, что различные аспекты программного компонента 
+(такого как объект, хотя сказанное также может относиться к методу или к
+ библиотеке объектов) хорошо «стыкуются» друг с другом. Одной из 
+типичных ошибок, допускаемых при проектировании объекта, является 
+перенасыщение его большим количеством свойств и возможностей. Например, 
+при разработке модуля, ведающего распечаткой чеков, вы можете захотеть, 
+чтобы он «знал» все о форматировании и печати. 
+</p><p>Если подумать, скорее всего, вы придете к выводу, что для одного 
+объекта этого слишком много, и перейдете к трем или более объектам. Один
+ объект будет представлять собой каталог всех возможных форм чеков, и 
+его можно будет запросить о том, как следует распечатать чек. Другой 
+объект или набор объектов станут отвечать за обобщенный интерфейс 
+печати, «знающий» все о различных типах принтеров (но ничего не 
+«понимающий» в бухгалтерии — такой объект лучше купить, чем 
+разрабатывать самому). Наконец, третий объект просто будет пользоваться 
+услугами описанных объектов, для того чтобы выполнить задачу. Таким 
+образом, каждый объект представляет собой связанный набор предлагаемых 
+им услуг. В хорошо спланированном объектно-ориентированном проекте 
+каждый объект хорошо справляется с одной конкретной задачей, не пытаясь 
+при этом сделать больше нужного. Как было показано, это не только 
+позволяет определить, какие объекты стоит приобрести (объект с 
+интерфейсом печати), но также дает возможность получить в итоге объект, 
+который затем можно использовать где-то еще (каталог чеков).
+</p><p>Представление объектов в качестве поставщиков услуг значительно 
+упрощает задачу. Оно полезно не только во время разработки, но и когда 
+кто-либо попытается понять ваш код или повторно использовать объект — 
+тогда он сможет адекватно оценить объект по уровню предоставляемого 
+сервиса, и это значительно упростит интеграцию последнего в другой 
+проект.
+</p>
+<h2><span class="mw-headline" id=".D0.A1.D0.BA.D1.80.D1.8B.D1.82.D0.B0.D1.8F_.D1.80.D0.B5.D0.B0.D0.BB.D0.B8.D0.B7.D0.B0.D1.86.D0.B8.D1.8F"><b>Скрытая реализация</b></span></h2>
+<p>Программистов полезно разбить на <i>создателей классов</i> (те, кто создает новые типы данных) и <i>программистов-клиентов</i>&lt;ref&gt;Признателен
+ за этот термин другу Скотту Мейерсу.&lt;/ref&gt; (потребители классов, 
+использующие типы данных в своих приложениях). Цель вторых — собрать как
+ можно больше классов, чтобы заниматься быстрой разработкой программ. 
+Цель создателя класса — построить класс, открывающий только то, что 
+необходимо программисту-клиенту, и прячущий все остальное. Почему? 
+Программист-клиент не сможет получить доступ к скрытым частям, а значит,
+ создатель классов оставляет за собой возможность произвольно их 
+изменять, не опасаясь, что это кому-то повредит. «Потаенная» часть 
+обычно и самая «хрупкая» часть объекта, которую легко может испортить 
+неосторожный или несведущий программист-клиент, поэтому сокрытие 
+реализации сокращает количество ошибок в программах.
+</p><p>В любых отношениях важно иметь какие-либо границы, не 
+переступаемые никем из участников. Создавая библиотеку, вы 
+устанавливаете отношения с программистом-клиентом. Он является таким же 
+программистом, как и вы, но будет использовать вашу библиотеку для 
+создания приложения (а может быть, библиотеки более высокого уровня). 
+Если предоставить доступ ко всем членам класса кому угодно, 
+программист-клиент сможет сделать с классом все, что ему 
+заблагорассудится, и вы никак не сможете заставить его «играть по 
+правилам». Даже если вам впоследствии понадобится ограничить доступ к 
+определенным членам вашего класса, без механизма контроля доступа это 
+осуществить невозможно. Все строение класса открыто для всех желающих.
+</p><p>Таким образом, первой причиной для ограничения доступа является 
+необходимость уберечь «хрупкие» детали от программиста-клиента — части 
+внутренней «кухни», не являющиеся составляющими интерфейса, при помощи 
+которого пользователи решают свои задачи. На самом деле это полезно и 
+пользователям — они сразу увидят, что для них важно, а что они могут 
+игнорировать.
+</p><p>Вторая причина появления ограничения доступа — стремление 
+позволить разработчику библиотеки изменить внутренние механизмы класса, 
+не беспокоясь о том, как это отразится на программисте-клиенте. 
+Например, вы можете реализовать определенный класс «на скорую руку», 
+чтобы ускорить разработку программы, а затем переписать его, чтобы 
+повысить скорость работы. Если вы правильно разделили и защитили 
+интерфейс и реализацию, сделать это будет совсем несложно.
+</p><p><i>Java</i> использует три явных ключевых слова, характеризующих уровень доступа: <i><b>public, private</b></i> и <i><b>protected</b></i>.
+ Их предназначение и употребление очень просты. Эти спецификаторы 
+доступа определяют, кто имеет право использовать следующие за ними 
+определения. Слово <i><b>public</b></i> означает, что последующие определения доступны всем. Наоборот, слово <i><b>private</b></i> значит, что следующие за ним предложения доступны только создателю типа, внутри его методов. Термин <i><b>private</b></i> — «крепостная стена» между вами и программистом-клиентом. Если кто-то попытается использовать <i><b>private</b></i>-члены, он будет остановлен ошибкой компиляции. Спецификатор <i><b>protected</b></i> действует схоже с <i><b>private</b></i>, за одним исключением — производные классы имеют доступ к членам, помеченным <i><b>protected</b></i>, но не имеют доступа к <i><b>private</b></i>-членам (наследование мы вскоре рассмотрим).
+</p><p>В <i>Java</i> также есть доступ «по умолчанию», используемый при 
+отсутствии какого-либо из перечисленных спецификаторов. Он также иногда 
+называется доступом в пределах пакета (<i>package access</i>), поскольку
+ классы могут использовать дружественные члены других классов из своего 
+пакета, но за его пределами те же дружественные члены приобретают статус
+ <i><b>private</b></i>.
+</p>
+<h2><span class="mw-headline" id=".D0.9F.D0.BE.D0.B2.D1.82.D0.BE.D1.80.D0.BD.D0.BE.D0.B5_.D0.B8.D1.81.D0.BF.D0.BE.D0.BB.D1.8C.D0.B7.D0.BE.D0.B2.D0.B0.D0.BD.D0.B8.D0.B5_.D1.80.D0.B5.D0.B0.D0.BB.D0.B8.D0.B7.D0.B0.D1.86.D0.B8.D0.B8"><b>Повторное использование реализации</b></span></h2>
+<p>Созданный и протестированный класс должен (в идеале) представлять 
+собой полезный блок кода. Однако оказывается, что добиться этой цели 
+гораздо труднее, чем многие полагают; для разработки повторно 
+используемых объектов требуется опыт и понимание сути дела. Но как 
+только у вас получится хорошая конструкция, она будет просто 
+напрашиваться на внедрение в другие программы. Многократное 
+использование кода — одно из самых впечатляющих преимуществ 
+объектно-ориентированных языков.
+</p><p>Проще всего использовать класс повторно, непосредственно создавая
+ его объект, но вы можете также поместить объект этого класса внутрь 
+нового класса. Мы называем это внедрением объекта (создание 
+объекта-члена). Новый класс может содержать любое ко­личество объектов 
+других типов, в любом сочетании, которое необходимо для достижения 
+необходимой функциональности. Так как мы составляем новый класс из уже 
+существующих классов, этот способ называется <i>композицией</i> (если композиция выполняется динамически, она обычно именуется <i>агрегацией</i>). Композицию часто называют отношением типа «имеет» (<i>has-a</i>), как, например, в предложении «У автомобиля есть двигатель».
+</p><p><a href="http://wikijava.org.ua/index.php?title=%D0%A4%D0%B0%D0%B9%D0%BB:P0024.png" class="image"><img alt="P0024.png" src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%201_files/P0024.png" height="69" width="284"></a>
+</p><p>(На UML-диаграммах композиция обозначается закрашенным ромбом, 
+показывающим, например, что существует только один автомобиль. Я обычно 
+использую более общую форму отношений: только линии, без ромба, что 
+означает ассоциацию (связь).&lt;ref&gt;Этого обычно достаточно для 
+большинства диаграмм, где для вас не существенна разница между 
+композицией или агрегацией.&lt;/ref&gt;)
+</p><p>Композиция — очень гибкий инструмент. Объекты-члены вашего нового класса обычно объявляются закрытыми (<i><b>private</b></i>),
+ что делает их недоступными для программистов-клиентов, использующих 
+класс. Это позволяет вносить изменения в эти объекты-члены без 
+модификации уже существующего клиентского кода. Вы можете также изменять
+ эти члены во время исполнения программы, чтобы динамически управлять 
+поведением вашей программы. Наследование, описанное ниже, не имеет такой
+ гибкости, так как компилятор накладывает определенные ограничения на 
+классы, созданные с применением наследования.
+</p><p>Наследование играет важную роль в объектно-ориентированном 
+программировании, поэтому на нем часто акцентируется повышенное 
+внимание, и новичок может подумать, что наследование должно применяться 
+повсюду. А это чревато созданием неуклюжих и излишне сложных решений. 
+Вместо этого при создании новых классов прежде всего следует оценить 
+возможность композиции, так как она проще и гибче. Если вы возьмете на 
+вооружение рекомендуемый подход, ваши программные конструкции станут 
+гораздо яснее. А по мере накопления практического опыта понять, где 
+следует применять наследование, не составит труда.
+</p>
+<h2><span class="mw-headline" id=".D0.9D.D0.B0.D1.81.D0.BB.D0.B5.D0.B4.D0.BE.D0.B2.D0.B0.D0.BD.D0.B8.D0.B5"><b>Наследование</b></span></h2>
+<p>Сама по себе идея объекта крайне удобна. Объект позволяет совмещать 
+данные и функциональность на концептуальном уровне, то есть вы можете 
+представлять нужное понятие из пространства-задачи вместо того, чтобы 
+его конкретизировать используя диалект машины. Эти концепции и образуют 
+фундаментальные единицы языка программирования, описываемые с помощью 
+ключевого слова class.
+</p><p>Но согласитесь, было бы обидно создавать какой-то класс, а потом 
+проделывать всю работу заново для похожего класса. Гораздо рациональнее 
+взять готовый класс, «клонировать» его, а затем внести добавления и 
+обновления в полученный клон. Это именно то, что вы получаете в 
+результате наследования, с одним исключением — если изначальный класс 
+(называемый также базовым* классом, суперклассом или родительским 
+классом) изменяется, то все изменения отражаются и на его «клоне» 
+(называемом производным классом, унаследованным классом, подклассом или 
+дочерним классом).
+</p><p><a href="http://wikijava.org.ua/index.php?title=%D0%A4%D0%B0%D0%B9%D0%BB:P0025.png" class="image"><img alt="P0025.png" src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%201_files/P0025.png" height="149" width="125"></a>
+</p><p>(Стрелка (пустой треугольник) на UML-диаграмме направлена от 
+производного класса к базовому классу. Как вы вскоре увидите, может быть
+ и больше одного производного класса.)
+</p><p>Тип определяет не только свойства группы объектов; он также 
+связан с другими типами. Два типа могут иметь общие черты и поведение, 
+но различаться количеством характеристик, а также способностью 
+обработать большее число сообщений (или обработать их по-другому). Для 
+выражения этой общности типов при наследовании используется понятие 
+базовых и производных типов. Базовый тип содержит все характеристики и 
+действия, общие для всех типов, производных от него. Вы создаете базовый
+ тип, чтобы представить основу своего представления о каких-то объектах в
+ вашей системе. От базового типа порождаются другие типы, выражающие 
+другие реализации этой сущности.
+</p><p>Например, машина по переработке мусора сортирует отходы. Базовым 
+типом будет «мусор», и каждая частица мусора имеет вес, стоимость и т. 
+п., и может быть раздроблена, расплавлена или разложена. Отталкиваясь от
+ этого, наследуются более определенные виды мусора, имеющие 
+дополнительные характеристики (бутылка имеет цвет) или черты поведения 
+(алюминиевую банку можно смять, стальная банка притягивается магнитом). 
+Вдобавок, некоторые черты поведения могут различаться (стоимость бумаги 
+зависит от ее типа и состояния). Наследование позволяет составить 
+иерархию типов, описывающую решаемую задачу в контексте ее типов.
+</p><p>Второй пример — классический пример с геометрическими фигурами. 
+Базовым типом здесь является «фигура», и каждая фигура имеет размер, 
+цвет, расположение и т. п. Каждую фигуру можно нарисовать, стереть, 
+переместить, закрасить и т. д. Далее производятся (наследуются) 
+конкретные разновидности фигур: окружность, квадрат, треугольник и т. 
+п., каждая из которых имеет свои дополнительные характеристики и черты 
+поведения. Например, для некоторых фигур поддерживается операция 
+зеркального отображения. Отдельные черты поведения могут различаться, 
+как в случае вычисления площади фигуры. Иерархия типов воплощает как 
+схожие, так и различные свойства фигур.
+</p><p><a href="http://wikijava.org.ua/index.php?title=%D0%A4%D0%B0%D0%B9%D0%BB:P0026.png" class="image"><img alt="P0026.png" src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%201_files/P0026.png" height="261" width="338"></a>
+</p><p>Приведение решения к понятиям, использованным в примере, 
+чрезвычайно удобно, потому что вам не потребуется множество 
+промежуточных моделей, связывающих описание решения с описанием задачи. 
+При работе с объектами первичной моделью становится иерархия типов, так 
+что вы переходите от описания системы в реальном мире прямо к описанию 
+системы в программном коде. На самом деле одна из трудностей в 
+объектно-ориентированном планировании состоит в том, что уж очень просто
+ вы проходите от начала задачи до конца решения. Разум, натренированный 
+на сложные решения, часто заходит в тупик при использовании простых 
+подходов.
+</p><p>Используя наследование от существующего типа, вы создаете новый 
+тип. Этот новый тип не только содержит все члены существующего типа 
+(хотя члены, помеченные как <i><b>private</b></i>, скрыты и недоступны),
+ но и, что еще важнее, повторяет интерфейс базового класса. Значит, все 
+сообщения, которые вы могли посылать базовому классу, вы также вправе 
+посылать и производному классу. А так как мы различаем типы классов по 
+совокупности сообщений, которые можем им посылать, это означает, что 
+производный класс <i>является частным случаем базового класса</i>. В 
+предыдущем примере «окружность есть фигура». Эквивалентность типов, 
+достигаемая при наследовании, является одним из основополагающих условий
+ понимания смысла объектно-ориентированного программирования.
+</p><p>Так как и базовый, и производный классы имеют одинаковый основной
+ интерфейс, должна существовать и реализация для этого интерфейса. 
+Другими словами, где-то должен быть код, выполняемый при получении 
+объектом определенного сообщения. Если вы просто унаследовали класс и 
+больше не предпринимали никаких действий, методы из интерфейса базового 
+класса перейдут в производный класс без изменений. Это значит, что 
+объекты производного класса не только однотипны, но и обладают 
+одинаковым поведением, а при этом само наследование теряет смысл.
+</p><p>Существует два способа изменения нового класса по сравнению с 
+базовым классом. Первый достаточно очевиден: в производный класс 
+добавляются совершенно новые методы. Они уже не являются частью 
+интерфейса базового класса. Видимо, базовый класс не делал всего, что 
+требовалось в данной задаче, так что вы добавили несколько методов. 
+Впрочем, такой простой и примитивный подход к наследованию иногда 
+оказывается идеальным решением проблемы. Однако надо внимательно 
+рассмотреть то, что базовый класс может также нуждаться в этих 
+добавленных методах. Процесс выявления закономерностей и пересмотра 
+архитектуры является повседневным делом в объектно-ориентированном 
+программировании.
+</p><p><a href="http://wikijava.org.ua/index.php?title=%D0%A4%D0%B0%D0%B9%D0%BB:P0027.png" class="image"><img alt="P0027.png" src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%201_files/P0027.png" height="296" width="364"></a>
+</p><p>Хотя наследование иногда наводит на мысль, что интерфейс будет дополнен новыми методами (особенно в <i>Java</i>, где наследование обозначается ключевым словом <i><b>extends</b></i>, то есть «расширять»), это совсем не обязательно. Второй, более важный способ модификации класса заключается в <i>изменении</i> поведения уже существующих методов базового класса. Это называется переопределением (или замещением) метода.
+</p><p><a href="http://wikijava.org.ua/index.php?title=%D0%A4%D0%B0%D0%B9%D0%BB:P0028.png" class="image"><img alt="P0028.png" src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%201_files/P0028.png" height="296" width="350"></a>
+</p><p>Для замещения метода нужно просто создать новое определение этого
+ метода в производном классе. Вы как бы говорите: «Я использую тот же 
+метод интерфейса, но хочу, чтобы он выполнял другие действия для моего 
+нового типа».
+</p>
+<h2><span class="mw-headline" id=".D0.9E.D1.82.D0.BD.D0.BE.D1.88.D0.B5.D0.BD.D0.B8.D0.B5_.C2.AB.D1.8F.D0.B2.D0.BB.D1.8F.D0.B5.D1.82.D1.81.D1.8F.C2.BB_.D0.B2_.D1.81.D1.80.D0.B0.D0.B2.D0.BD.D0.B5.D0.BD.D0.B8.D0.B8_.D1.81_.C2.AB.D0.BF.D0.BE.D1.85.D0.BE.D0.B6.D0.B5.C2.BB"><b>Отношение «является» в сравнении с «похоже»</b></span></h2>
+<p>При использовании наследования встает очевидный вопрос: следует ли при наследовании переопределять методы <i>только</i>
+ базового класса (и не добавлять новые методы, не существующие в базовом
+ классе)? Это означало бы, что производный класс будет точно такого же 
+типа, как и базовый класс, так как они имеют одинаковый интерфейс. В 
+результате вы можете свободно заменять объекты базового класса объектами
+ производных классов. Можно говорить о полной замене, и это часто 
+называется <i>принципом замещения</i>. В определенном смысле это способ 
+наследования идеален. Подобный способ взаимосвязи базового и 
+производного классов часто называют связью <i>«является тем-то»</i>, 
+поскольку можно сказать «круг есть фигура». Чтобы определить, насколько 
+уместным будет наследование, достаточно проверить, существует ли 
+отношение «является» между классами и насколько оно оправданно.
+</p><p>В иных случаях интерфейс производного класса дополняется новыми 
+элементами, что приводит к его расширению. Новый тип все еще может 
+применяться вместо базового, но теперь эта замена не идеальна, потому 
+что новые методы не доступны из базового типа. Подобная связь 
+описывается выражением «похоже на» (это мой термин); новый тип содержит 
+интерфейс старого типа, но также включает в себя и новые методы, и 
+нельзя сказать, что эти типы абсолютно одинаковы. Для примера возьмем 
+кондиционер.
+</p><p>Предположим, что ваш дом снабжен всем необходимым оборудованием 
+для контроля процесса охлаждения. Представим теперь, что кондиционер 
+сломался и вы заменили его обогревателем, способным как нагревать, так и
+ охлаждать. Обогреватель «похож на» кондиционер, но он способен и на 
+большее. Так как система управления вашего дома способна контролировать 
+только охлаждение, она ограничена в коммуникациях с охлаждающей частью 
+нового объекта. Интерфейс нового объекта был расширен, а существующая 
+система ничего не признает, кроме оригинального интерфейса.
+</p><p><a href="http://wikijava.org.ua/index.php?title=%D0%A4%D0%B0%D0%B9%D0%BB:P0029.png" class="image"><img alt="P0029.png" src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%201_files/P0029.png" height="220" width="417"></a>
+</p><p>Конечно, при виде этой иерархии становится ясно, что базовый 
+класс «охлаждающая система» недостаточно гибок; его следует 
+переименовать в «систему контроля температуры» так, чтобы он включал и 
+нагрев, — и после этого заработает принцип замещения. Тем не менее эта 
+диаграмма представляет пример того, что может произойти в реальности.
+</p><p>После знакомства с принципом замещения может возникнуть 
+впечатление, что этот подход (полная замена) — единственный способ 
+разработки. Вообще говоря, если ваши иерархии типов так работают, это 
+действительно хорошо. Но в неко­торых ситуациях совершенно необходимо 
+добавлять новые методы к интерфейсу производного класса. При 
+внимательном анализе оба случая представляются достаточно очевидными.
+</p>
+<h2><span class="mw-headline" id=".D0.92.D0.B7.D0.B0.D0.B8.D0.BC.D0.BE.D0.B7.D0.B0.D0.BC.D0.B5.D0.BD.D1.8F.D0.B5.D0.BC.D1.8B.D0.B5_.D0.BE.D0.B1.D1.8A.D0.B5.D0.BA.D1.82.D1.8B_.D0.B8_.D0.BF.D0.BE.D0.BB.D0.B8.D0.BC.D0.BE.D1.80.D1.84.D0.B8.D0.B7.D0.BC"><b>Взаимозаменяемые объекты и полиморфизм</b></span></h2>
+<p>При использовании иерархий типов часто приходится обращаться с 
+объектом определенного типа как с базовым типом. Это позволяет писать 
+код, не зависящий от конкретных типов. Так, в примере с фигурами методы 
+манипулируют просто фигурами, не обращая внимания на то, являются ли они
+ окружностями, прямоугольниками, треугольниками или некоторыми еще даже 
+не определенными фигурами. Все фигуры могут быть нарисованы, стерты и 
+перемещены, а методы просто посылают сообщения объекту «фигура»; им 
+безразлично, как объект обойдется с этим сообщением.
+</p><p>Подобный код не зависит от добавления новых типов, а добавление 
+новых типов является наиболее распространенным способом расширения 
+объектно-ориентированных программ для обработки новых ситуаций. 
+Например, вы можете создать новый подкласс фигуры (пятиугольник), и это 
+не приведет к изменению методов, работающих только с обобщенными 
+фигурами. Возможность простого расширения программы введением новых 
+производных типов очень важна, потому что она заметно улучшает 
+архитектуру программы, в то же время снижая стоимость поддержки 
+программного обеспечения.
+</p><p>Однако при попытке обращения к объектам производных типов как к 
+базовым типам (окружности как фигуре, велосипеду как средству 
+передвижения, баклану как птице и т. п.) возникает одна проблема. Если 
+метод собирается приказать обобщенной фигуре нарисовать себя, или 
+средству передвижения следовать по определенному курсу, или птице 
+полететь, компилятор не может точно знать, какая именно часть кода 
+выполнится. В этом все дело — когда посылается сообщение, программист и 
+не хочет знать, какой код выполняется; метод прорисовки с одинаковым 
+успехом может применяться и к окружности, и к прямоугольнику, и к 
+треугольнику, а объект выполнит верный код, зависящий от его 
+характерного типа.
+</p><p>Если вам не нужно знать, какой именно фрагмент кода выполняется, 
+то, когда вы добавляете новый подтип, код его реализации может быть 
+различным, не требуя изменений в методе, из которого он был вызван. Если
+ компилятор не обладает информацией, какой именно код следует выполнить,
+ что же он делает? 
+</p><p>В следующем примере объект <i><b>BirdController</b></i> (управление птицей) может работать только с обобщенными объектами <i><b>Bird</b></i> (птица), не зная точного их типа. С точки зрения <i><b>BirdController</b></i> это удобно, поскольку для него не придется писать специальный код проверки типа используемого объекта <i><b>Bird</b></i>,
+ для обработки какого-то особого поведения. Как же все-таки происходит, 
+что при вызове метода move(), без указания точного типа <i><b>Bird</b></i>, исполняется верное действие — объект <i><b>Goose</b></i> (гусь) бежит, летит или плывет, а объект <i><b>Penguin</b></i> (пингвин) бежит или плывет?
+</p><p><a href="http://wikijava.org.ua/index.php?title=%D0%A4%D0%B0%D0%B9%D0%BB:P0030.png" class="image"><img alt="P0030.png" src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%201_files/P0030.png" height="234" width="446"></a>
+</p><p>Ответ объясняется главной особенностью объектно-ориентированного 
+программирования: компилятор не может вызывать такие функции 
+традиционным способом. При вызовах функций, созданных не 
+ООП-компилятором, используется <i>раннее связывание</i> — многие не 
+знают этого термина просто потому, что не представляют себе другого 
+варианта. При раннем связывании компилятор генерирует вызов функции с 
+указанным именем, а компоновщик привязывает этот вызов к абсолютному 
+адресу кода, который необходимо выполнить. В ООП программа не в 
+состоянии определить адрес кода до времени исполнения, поэтому при 
+отправке сообщения объекту должен срабатывать иной механизм.
+</p><p>Для решения этой задачи, языки объектно-ориентированного программирования используют концепцию <i>позднего связывания</i>.
+ Когда вы посылаете сообщение объекту, вызываемый код неизвестен вплоть 
+до времени исполнения. Компилятор лишь убеждается в том, что метод 
+существует, проверяет типы для его параметров и возвращаемого значения, 
+но не имеет представления, какой именно код будет исполняться.
+</p><p>Для осуществления позднего связывания, <i>Java</i> вместо 
+абсолютного вызова использует специальные фрагменты кода. Этот код 
+вычисляет адрес тела метода на основе информации, хранящейся в объекте 
+(процесс очень подробно описан в главе 7, посвящённой полиморфизму). 
+Таким образом, каждый объект может вести себя различно, в зависимости от
+ содержимого этого специального фрагмента кода. Когда вы посылаете 
+сообщение, объект фактически сам решает, что же с ним делать.
+</p><p>В некоторых языках необходимо явно указать, что для метода должен использоваться гибкий механизм позднего связывания (в <i>C++</i> для этого предусмотрено ключевое слово <i>virtual</i>). В этих языках методы по умолчанию компонуются не динамически. В <i>Java</i>
+ позднее связывание производится по умолчанию, и вам не нужно помнить о 
+необходимости добавления каких-либо ключевых слов для обеспечения 
+полиморфизма.
+</p><p>Вспомним о примере с фигурами. Семейство классов (основанных на 
+одинаковом интерфейсе) было показано на диаграмме чуть раньше в этой 
+главе. Для демонстрации полиморфизма мы напишем фрагмент кода, который 
+игнорирует характерные особенности типов и работает только с базовым 
+классом. Этот код отделен от специфики типов, поэтому его проще писать и
+ понимать. И если новый тип (например, шестиугольник) будет добавлен 
+посредством наследования, то написанный вами код для нового типа фигуры,
+ будет работать так же хорошо, как код уже существующих типов. Таким 
+образом, программа становится расширяемой.
+</p><p>Допустим, вы написали на <i>Java</i> следующий метод (вскоре вы узнаете, как это делать):
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> <span class="kw3">void</span> doSomething<span class="br0">(</span><span class="kw6">Shape</span> shape<span class="br0">)</span> <span class="br0">{</span>
+    shape.<span class="me1">erase</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span> <span class="co1">// стереть</span>
+    <span class="co1">//...</span>
+    shape.<span class="me1">draw</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span> <span class="co1">// нарисовать</span>
+ <span class="br0">}</span></pre></div></div>
+<p><br>
+Метод работает с обобщенной фигурой (<i><b>Shape</b></i>), то есть не зависит от конкретного типа объекта, который рисуется или стирается. Теперь мы используем вызов метода <i><b>doSomething()</b></i> в другой части программы:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> Circle circle = <span class="kw2">new</span> Circle<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>       <span class="co1">// окружность </span>
+ Triangle triangle = <span class="kw2">new</span> Triangle<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span> <span class="co1">// треугольник </span>
+ <span class="kw99">Line</span> line = <span class="kw2">new</span> <span class="kw99">Line</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>             <span class="co1">// линия </span>
+   doSomething<span class="br0">(</span>circle<span class="br0">)</span><span class="sy0">;</span> 
+   doSomething<span class="br0">(</span>triangle<span class="br0">)</span><span class="sy0">;</span> 
+   doSomething<span class="br0">(</span>line<span class="br0">)</span><span class="sy0">;</span></pre></div></div>
+<p><br>
+Вызовы метода <i><b>doSomething()</b></i> автоматически работают правильно, вне зависимости от фактического типа объекта. 
+</p><p>На самом деле это довольно важный факт. Рассмотрим строку:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> doSomething<span class="br0">(</span>circle<span class="br0">)</span><span class="sy0">;</span></pre></div></div>
+<p><br>
+Здесь происходит следующее: методу, ожидающему объект <i><b>Shape</b></i>, передается объект «окружность» (<i><b>Circle</b></i>). Так как окружность (<i><b>Circle</b></i>) одновременно является фигурой (<i><b>Shape</b></i>), то метод <i><b>doSomething()</b></i> и обращается с ней, как с фигурой. Другими словами, любое сообщение, которое метод может послать <i><b>Shape</b></i>, также принимается и <i><b>Circle</b></i>. Это действие совершенно безопасно и настолько же логично.
+</p><p>Мы называем этот процесс обращения с производным типом как с базовым <i>восходящим преобразованием типов</i>. Слово <i>преобразование</i> означает, что объект трактуется как принадлежащий к другому типу, а <i>восходящее</i>
+ оно потому, что на диаграммах наследования, базовые классы обычно 
+располагаются вверху, а производные классы располагаются внизу «веером».
+ Значит, преобразование к базовому типу — это движение по диаграмме 
+вверх, и поэтому оно «восходящее».
+</p><p><a href="http://wikijava.org.ua/index.php?title=%D0%A4%D0%B0%D0%B9%D0%BB:P0032.png" class="image"><img alt="P0032.png" src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%201_files/P0032.png" height="179" width="362"></a> 
+</p><p>Объектно-ориентированная программа почти всегда содержит 
+восходящее преобразование, потому что именно так вы избавляетесь от 
+необходимости знать точный тип объекта, с которым работаете. Посмотрите 
+на тело метода <i><b>doSomething()</b></i>:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> shape.<span class="me1">erase</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+ <span class="co1">// ...</span>
+ shape.<span class="me1">draw</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span></pre></div></div>
+<p><br>
+Заметьте, что здесь не сказано «если ты объект <i><b>Circle</b></i>, делай это, а если ты объект <i><b>Square</b></i>, делай то-то и то-то». Такой код с отдельными действиями для каждого возможного типа <i><b>Shape</b></i> будет путаным, и его придется менять каждый раз при добавлении нового подтипа <i><b>Shape</b></i>.
+ А так, вы просто говорите: «Ты фигура, и я знаю, что ты способна 
+нарисовать и стереть себя, ну так и делай это, а о деталях позаботься 
+сама».
+</p><p>В коде метода <i><b>doSomething()</b></i> интересно то, что все само собой получается правильно. При вызове <i><b>draw()</b></i> для объекта <i><b>Circle</b></i> исполняется другой код, а не тот, что отрабатывает при вызове <i><b>draw()</b></i> для объектов <i><b>Square</b></i> или <i><b>Line</b></i>, а когда <i><b>draw()</b></i> применяется для неизвестной фигуры <i><b>Shape</b></i>, правильное поведение обеспечивается использованием реального типа <i><b>Shape</b></i>. Это в высшей степени интересно, потому что, как было замечено чуть ранее, когда компилятор генерирует код <i><b>doSomething()</b></i>, он не знает точно, с какими типами он работает. Соответственно, можно было бы ожидать вызова версий методов <i><b>draw()</b></i> и <i><b>erase()</b></i> из базового класса <i><b>Shape</b></i>, а не их вариантов из конкретных классов <i><b>Circle</b></i>, <i><b>Square</b></i> или <i><b>Line</b></i>.
+ И тем не менее все работает правильно благодаря полиморфизму. 
+Компилятор и система исполнения берут на себя все подробности; все, что 
+вам нужно знать, — что это произойдёт... и, что еще важнее, как 
+создавать программы, используя такой подход. Когда вы посылаете 
+сообщение объекту, объект выберет правильный вариант поведения используя
+ восходящее преобразование.
+</p>
+<h2><span class="mw-headline" id=".D0.9E.D0.B4.D0.BD.D0.BE.D0.BA.D0.BE.D1.80.D0.BD.D0.B5.D0.B2.D0.B0.D1.8F_.D0.B8.D0.B5.D1.80.D0.B0.D1.80.D1.85.D0.B8.D1.8F"><b>Однокорневая иерархия</b></span></h2>
+<p>Вскоре после появления, <i>C++</i> стал активно обсуждаться вопрос из ООП — должны ли все классы обязательно быть унаследованы от единого базового класса? В <i>Java</i> (как практически во всех других ООП-языках, кроме <i>C++</i>) на этот вопрос был дан положительный ответ. В основе всей иерархии типов лежит единый базовый класс <i><b>Object</b></i>. Оказалось, что однокорневая иерархия имеет множество преимуществ.
+</p><p>Все объекты в однокорневой иерархии имеют некий общий интерфейс, 
+так что по большому счету все они могут рассматриваться как один 
+основополагающий тип. В <i>C++</i> был выбран другой вариант — общего 
+предка в этом языке не существует. С точки зрения совместимости со 
+старым кодом эта модель лучше соответствует традициям <i>C</i>, и можно 
+подумать, что она менее ограничена. Но как только возникнет 
+необходимость в полноценном объектно-ориентированном программировании, 
+вам придется создавать собственную иерархию классов, чтобы получить те 
+же преимущества, что встроены в другие ООП-языки. Да и в любой новой 
+библиотеке классов вам может встретиться какой-нибудь несовместимый 
+интерфейс. Включение этих новых интерфейсов в архитектуру вашей 
+программы потребует лишних усилий (и возможно, множественного 
+наследования). Стоит ли дополнительная «гибкость» <i>C++</i> подобных издержек? Если вам это нужно (например, при больших вложениях в разработку кода <i>C</i>), то в проигрыше вы не останетесь. Если же разработка начинается «с нуля», подход <i>Java</i> выглядит более продуктивным.
+</p><p>Все объекты из однокорневой иерархии гарантированно обладают 
+некоторой общей функциональностью. Вы знаете, что с любым объектом в 
+системе можно провести определенные основные операции. Все объекты легко
+ создаются в динамической «куче», а передача аргументов сильно 
+упрощается.
+</p><p>Однокорневая иерархия позволяет гораздо проще реализовать уборку мусора — одно из важнейших усовершенствований <i>Java</i> по сравнению с <i>C++</i>.
+ Так как информация о типе во время исполнения гарантированно 
+присутствует в любом из объектов, в системе никогда не появится объект, 
+тип которого не удастся определить. Это особенно важно при выполнении 
+системных операций, таких как обработка исключений, и для обеспечения 
+большей гибкости программирования.
+</p>
+<h2><span class="mw-headline" id=".D0.9A.D0.BE.D0.BD.D1.82.D0.B5.D0.B9.D0.BD.D0.B5.D1.80.D1.8B"><b>Контейнеры</b></span></h2>
+<p>Часто бывает заранее неизвестно, сколько объектов потребуется для 
+решения определенной задачи и как долго они будут существовать. Также 
+непонятно, как хранить такие объекты. Сколько памяти следует выделить 
+для хранения этих объектов? Неизвестно, так как эта информация станет 
+доступна только во время работы программы.
+</p><p>Многие проблемы в объектно-ориентированном программировании 
+решаются простым действием: вы создаете еще один тип объекта. Новый тип 
+объекта, решающий эту конкретную задачу, содержит ссылки на другие 
+объекты. Конечно, эту роль могут исполнить и массивы, поддерживаемые в 
+большинстве языков. Однако новый объект, обычно называемый <i>контейнером</i> (или же коллекцией, но в <i>Java</i>
+ этот термин используется в другом смысле), будет по необходимости 
+расширяться, чтобы вместить все, что вы в него положите. Поэтому вам не 
+нужно будет знать загодя, на сколько объектов рассчитана емкость 
+контейнера. Просто создайте контейнер, а он уже позаботится о 
+подробностях.
+</p><p>К счастью, хороший ООП-язык поставляется с набором готовых контейнеров. В <i>C++</i> это часть стандартной библиотеки <i>C++</i>, иногда называемая библиотекой стандартных шаблонов <i>(Standard Template Library, STL)</i>. <i>Smalltalk</i> поставляется с очень широким набором контейнеров. <i>Java</i>
+ также содержит контейнеры в своей стандартной библиотеке. Для некоторых
+ библиотек считается, что достаточно иметь один единый контейнер для 
+всех нужд, но в других (например, в <i>Java</i>) предусмотрены различные контейнеры на все случаи жизни: несколько различных типов списков <i><b>List</b></i> (для хранения последовательностей элементов), карты <i><b>Map</b></i> (известные также как ассоциативные массивы, позволяют связывать объекты с другими объектами), а также множества <i><b>Set</b></i>
+ (обеспечивающие уникальность значений для каждого типа). Контейнерные 
+библиотеки также могут содержать очереди, деревья, стеки и т. п.
+</p><p>С позиций проектирования, все, что вам действительно необходимо, —
+ это контейнер, способный решить вашу задачу. Если один вид контейнера 
+отвечает всем потребностям, нет основания использовать другие виды. 
+Существует две причины, по которым вам приходится выбирать из имеющихся 
+контейнеров. Во-первых, контейнеры предоставляют различные интерфейсы и 
+возможности взаимодействия. Поведение и интерфейс стека отличаются от 
+поведения и интерфейса очереди, которая ведет себя по-иному, чем 
+множество или список. Один из этих контейнеров способен обеспечить более
+ эффективное решение вашей задачи в сравнении с остальными. Во-вторых, 
+разные контейнеры по-разному выполняют одинаковые операции. Лучший 
+пример — это <i><b>ArrayList</b></i> и <i><b>LinkedList</b></i>. Оба 
+представляют собой простые последовательности, которые могут иметь 
+идентичные интерфейсы и черты поведения. Но некоторые операции 
+значительно отличаются по времени исполнения. Скажем, время выборки 
+произвольного элемента в <i><b>ArrayList</b></i> всегда остается неизменным вне зависимости от того, какой именно элемент выбирается. Однако в <i><b>LinkedList</b></i>
+ невыгодно работать с произвольным доступом — чем дальше по списку 
+находится элемент, тем большую задержку вызывает его поиск. С другой 
+стороны, если потребуется вставить элемент в середину списка, <i><b>LinkedList</b></i> сделает это быстрее чем <i><b>ArrayList</b></i>.
+ Эти и другие операции имеют разную эффективность, зависящую от 
+внутренней структуры контейнера. На стадии планирования программы вы 
+можете выбрать список <i><b>LinkedList</b></i>, а потом, в процессе оптимизации, переключиться на <i><b>ArrayList</b></i>. Благодаря абстрактному характеру интерфейса <i><b>List</b></i> такой переход потребует минимальных изменений в коде.
+</p>
+<h2><span class="mw-headline" id=".D0.9F.D0.B0.D1.80.D0.B0.D0.BC.D0.B5.D1.82.D1.80.D0.B8.D0.B7.D0.BE.D0.B2.D0.B0.D0.BD.D0.BD.D1.8B.D0.B5_.D1.82.D0.B8.D0.BF.D1.8B_.28generics.29"><b>Параметризованные типы (generics)</b></span></h2>
+<p>До выхода <i>Java</i> <i>SE5</i> в контейнерах могли храниться только данные <i><b>Object</b></i> — единственного универсального типа <i>Java</i>. Однокорневая иерархия означает, что любой объект может рассматриваться как <i><b>Object</b></i>, поэтому контейнер с элементами <i><b>Object</b></i> подойдет для хранения любых объектов&lt;ref&gt;Примитивные типы храниться в контейнерах не могут, но благодаря механизму <i>автоматической упаковки</i> (autoboxing) <i>Java SE5</i> это ограничение несущественно. Далее в книге эта тема будет рассмотрена более подробно.&lt;/ref&gt;.
+</p><p>При работе с таким контейнером вы просто помещаете в него ссылки 
+на объекты, а позднее извлекаете их. Но если контейнер способен хранить 
+только <i><b>Object</b></i>, то при помещении в него ссылки на объект другого типа происходит преоб­разование к <i><b>Object</b></i>, то есть утрата «индивидуальности» объекта. При выборке его обратно вы получаете ссылку на <i><b>Object</b></i>,
+ а не ссылку на тип, который был помещен в контейнер. Как же 
+преобразовать ее к конкретному типу объекта, помещенного в контейнер?
+</p><p>Задача решается тем же преобразованием типов, но на этот раз вы 
+не используете восходящее преобразование (вверх по иерархии наследования
+ к базовому типу). Теперь вы используете способ преобразования вниз по 
+иерархии наследования (к дочернему типу). Данный способ называется <i>нисходящим преобразованием</i>.
+ В случае восходящего преобразования известно, что окружность есть 
+фигура, поэтому преобразование заведомо безопасно, но при обратном 
+преобразовании (к дочернему типу), невозможно заранее сказать, 
+представляет ли экземпляр <i><b>Object</b></i> объект <i><b>Circle</b></i> или <i><b>Shape</b></i>, поэтому нисходящее преобразование безопасно только в том случае, если вам точно известен тип объекта.
+</p><p>Впрочем, опасность не столь уж велика — при нисходящем 
+преобразовании к неверному типу произойдет ошибка времени исполнения, 
+называемая <i>исключением</i> (см. далее). Но при извлечении ссылок на 
+объекты из контейнера необходимо каким-то образом запоминать фактический
+ тип их объектов, чтобы выполнить верное нисходящее преобразование.
+</p><p>Нисходящее преобразование и проверки типа во время исполнения 
+требуют дополнительного времени и лишних усилий от программиста. А может
+ быть, можно каким-то образом создать контейнер, знающий тип хранимых 
+объектов, и таким образом устраняющий необходимость преобразования типов
+ и потенциальные ошибки? Решение называют механизмом <i>параметризации типа</i>.
+ Параметризованные типы представляют собой классы, которые компилятор 
+может автоматически адаптировать для работы с определенными типами. 
+Например, компилятор может настроить параметризованный контейнер на 
+хранение и извлечение только фигур (<i><b>Shape</b></i>).
+</p><p>Одним из важнейших изменений <i>Java</i> <i>SE5</i> является поддержка параметризованных типов (<i>generics</i>). Параметризованные типы легко узнать по угловым скобкам, в которые заключаются имена типов-параметров; например, контейнер <i><b>ArrayList</b></i>, предназначенный для хранения объектов <i><b>Shape</b></i>, создается следующим образом:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> <span class="kw46">ArrayList</span><span class="sy0">&lt;</span><span class="kw6">Shape</span><span class="sy0">&gt;</span> shapes = <span class="kw2">new</span> <span class="kw46">ArrayList</span><span class="sy0">&lt;</span><span class="kw6">Shape</span><span class="sy0">&gt;</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span></pre></div></div>
+<p>Многие стандартные библиотечные компоненты также были изменены для 
+использования обобщенных типов. Как вы вскоре увидите, обобщенные типы 
+встречаются во многих примерах программ этой книги.
+</p>
+<h2><span class="mw-headline" id=".D0.A1.D0.BE.D0.B7.D0.B4.D0.B0.D0.BD.D0.B8.D0.B5.2C_.D0.B8.D1.81.D0.BF.D0.BE.D0.BB.D1.8C.D0.B7.D0.BE.D0.B2.D0.B0.D0.BD.D0.B8.D0.B5_.D0.BE.D0.B1.D1.8A.D0.B5.D0.BA.D1.82.D0.BE.D0.B2_.D0.B8_.D0.B2.D1.80.D0.B5.D0.BC.D1.8F_.D0.B8.D1.85_.D0.B6.D0.B8.D0.B7.D0.BD.D0.B8"><b>Создание, использование объектов и время их жизни</b></span></h2>
+<p>Один из важнейших аспектов работы с объектами — организация их 
+создания и уничтожения. Для существования каждого объекта требуются 
+некоторые ресурсы, прежде всего память. Когда объект становится не 
+нужен, он должен быть уничтожен, чтобы занимаемые им ресурсы стали 
+доступны другим. В простых ситуациях задача не кажется сложной: вы 
+создаете объект, используете его, пока требуется, а затем уничтожаете. 
+Однако на практике часто встречаются и более сложные ситуации.
+</p><p>Допустим, например, что вы разрабатываете систему для управления 
+движением авиатранспорта. (Эта же модель пригодна и для управления 
+движением тары на складе, или для системы видеопроката, или в питомнике 
+для бродячих животных.) Сначала все кажется просто: создается контейнер 
+для самолетов, затем строится новый самолет, который помещается в 
+контейнер определенной зоны регулировки воздушного движения. Что 
+касается освобождения ресурсов, соответствующий объект просто 
+уничтожается при выходе самолета из зоны слежения.
+</p><p>Но возможно, существует и другая система регистрации самолетов, и
+ эти данные не требуют такого пристального внимания, как главная функция
+ управления. Может быть, это записи о планах полетов всех малых 
+самолетов, покидающих аэропорт. Так появляется второй контейнер для 
+малых самолетов; каждый раз, когда в системе создается новый объект 
+самолета, он также включается и во второй контейнер, если самолет 
+является малым. Далее некий фоновый процесс работает с объектами в этом 
+контейнере в моменты минимальной занятости.
+</p><p>Теперь задача усложняется: как узнать, когда нужно удалять 
+объекты? Даже если вы закончили работу с объектом, возможно, с ним 
+продолжает взаимодействовать другая система. Этот же вопрос возникает и в
+ ряде других ситуаций, и в программных системах, где необходимо явно 
+удалять объекты после завершения работы с ними (например, в <i>C++</i>), он становится достаточно сложным.
+</p><p>Где хранятся данные объекта и как определяется время его жизни? В <i>C++</i>
+ на первое место ставится эффективность, поэтому программисту 
+предоставляется выбор. Для достижения максимальной скорости исполнения 
+место хранения и время жизни могут определяться во время написания 
+программы. В этом случае объекты помещаются в стек (такие переменные 
+называются <i>автоматическими</i>) или в область статического хранилища.
+ Таким образом, основным фактором является скорость создания и 
+уничтожения объектов, и это может быть неоценимо в некоторых ситуациях. 
+Однако при этом приходится жертвовать гибкостью, так как количество 
+объектов, время их жизни и типы должны быть точно известны на стадии 
+разработки программы. При решении задач более широкого профиля — 
+разработки систем автоматизированного проектирования 
+(<i>CAD</i>), складского учета или управления воздушным движением — этот подход может оказаться чересчур ограниченным.
+</p><p>Второй путь — динамическое создание объектов в области памяти, называемой «кучей» (<i>heap</i>).
+ В таком случае количество объектов, их точные типы и время жизни 
+остаются неизвестными до момента запуска программы. Все это определяется
+ «на ходу» во время работы программы. Если вам понадобится новый объект,
+ вы просто создаете его в «куче» тогда, когда потребуется. Так как 
+управление кучей осуществляется динамически, во время исполнения 
+программы на выделение памяти из кучи требуется гораздо больше времени, 
+чем при выделении памяти в стеке. (Для выделения памяти в стеке 
+достаточно всего одной машинной инструкции, сдвигающей указатель стека 
+вниз, а освобождение осуществляется перемещением этого указателя вверх. 
+Время, требуемое на выделение памяти в куче, зависит от структуры 
+хранилища.)
+</p><p>При использовании динамического подхода подразумевается, что 
+объекты большие и сложные, таким образом, дополнительные затраты времени
+ на выделение и освобождение памяти не окажут заметного влияния на 
+процесс их создания. Потом, дополнительная гибкость очень важна для 
+решения основных задач программирования.
+</p><p>В <i>Java</i> используется исключительно второй 
+подход&lt;ref&gt;Примитивные типы, о которых речь пойдёт далее, являются
+ особым случаем.&lt;/ref&gt;. Каждый раз при создании объекта 
+используется ключевое слово <i><b>new</b></i> для построения динамического экземпляра.
+</p><p>Впрочем, есть и другой фактор, а именно время жизни объекта. В 
+языках, поддерживающих создание объектов в стеке, компилятор определяет,
+ как долго используется объект, и может автоматически уничтожить его. 
+Однако при создании объекта в куче компилятор не имеет представления о 
+сроках жизни объекта. В языках, подобных <i>C++</i>, уничтожение объекта
+ должно быть явно оформлено в программе; если этого не сделать, 
+возникает утечка памяти (обычная проблема в программах <i>C++</i>). В <i>Java</i> существует механизм, называемый <i>сборкой мусора</i>;
+ он автоматически определяет, когда объект перестает использоваться, и 
+уничтожает его. Сборщик мусора очень удобен, потому что он избавляет 
+программиста от лишних хлопот. Что еще важнее, сборщик мусора дает 
+гораздо большую уверенность в том, что в вашу программу не закралась 
+коварная проблема утечки памяти (которая «поставила на колени» не один 
+проект на языке <i>C++</i>).
+</p><p>В <i>Java</i> сборщик мусора спроектирован так, чтобы он мог 
+самостоятельно решать проблему освобождения памяти (это не касается 
+других аспектов завершения жизни объекта). Сборщик мусора «знает», когда
+ объект перестает ис­пользоваться, и применяет свои знания для 
+автоматического освобождения памяти. Благодаря этому факту (вместе с 
+тем, что все объекты наследуются от единого базового класса <i><b>Object</b></i> и создаются только в куче) программирование на <i>Java</i> гораздо проще, чем программирование на <i>C++</i>. Разработчику приходится принимать меньше решений и преодолевать меньше препятствий.
+</p>
+<h2><span class="mw-headline" id=".D0.9E.D0.B1.D1.80.D0.B0.D0.B1.D0.BE.D1.82.D0.BA.D0.B0_.D0.B8.D1.81.D0.BA.D0.BB.D1.8E.D1.87.D0.B5.D0.BD.D0.B8.D0.B9:_.D0.B1.D0.BE.D1.80.D1.8C.D0.B1.D0.B0_.D1.81_.D0.BE.D1.88.D0.B8.D0.B1.D0.BA.D0.B0.D0.BC.D0.B8"><b>Обработка исключений: борьба с ошибками</b></span></h2>
+<p>С первых дней существования языков программирования обработка ошибок 
+была одним из самых каверзных вопросов. Разработать хороший механизм 
+обработки ошибок очень трудно, поэтому многие языки попросту игнорируют 
+эту проблему, оставляя ее разработчикам программных библиотек. Последние
+ предоставляют половинчатые решения, которые работают во многих 
+ситуациях, но которые часто можно попросту обойти (как правило, просто 
+не обращая на них внимания). Главная проблема многих механизмов 
+обработки исключений состоит в том, что они полагаются на добросовестное
+ соблюдение программистом правил, выполнение которых не обеспечивается 
+языком. Если программист проявит невнимательность — а это часто 
+происходит при спешке в работе — он может легко забыть об этих 
+механизмах.
+</p><p>Механизм обработки исключений встраивает обработку ошибок прямо в
+ язык программирования или даже в операционную систему. Исключение 
+представляет собой объект, генерируемый на месте возникновении ошибки, 
+который затем может быть «перехвачен» подходящим обработчиком 
+исключений, предназначенным для ошибок определенного типа. Обработка 
+исключений словно определяет параллельный путь выполнения программы, 
+вступающий в силу, когда что-то идет не по плану. И так как она 
+определяет отдельный путь исполнения, код обработки ошибок не 
+смешивается с обычным кодом. Это упрощает написание программ, поскольку 
+вам не приходится постоянно проверять возможные ошибки. Вдобавок 
+исключение не похоже на числовой код ошибки, возвращаемый методом, или 
+на флаг, устанавливаемый в случае проблемной ситуации, — последние могут
+ быть проигнорированы. Исключение не может быть проигнорировано, оно 
+гарантировано будет где-то обработано. Наконец, исключения дают 
+возможность восстановить нормальную работу программы после неверной 
+операции. Вместо того, чтобы просто завершить программу, можно исправить
+ ситуацию и продолжить ее выполнение; тем самым повышается надежность 
+программы.
+</p><p>Механизм обработки исключений в <i>Java</i> выделяется среди 
+остальных языков, потому что он был встроен в язык с самого начала, и 
+разработчик обязан его использовать. Это единственно-приемлемый способ 
+сообщения об ошибках. Если вы не напишете кода для подобающей обработки 
+исключений, вы получите сообщение об ошибке во время компиляции. 
+Подобный последовательный подход иногда заметно упрощает обработку 
+ошибок.
+</p><p>Стоит отметить, что обработка исключений не является особенностью
+ объектно-ориентированного языка, хотя в этих языках исключение обычно 
+представлено объектом. Такой механизм существовал и до возникновения 
+объектно-ориентированных языков.
+</p>
+<h2><span class="mw-headline" id=".D0.9F.D0.B0.D1.80.D0.B0.D0.BB.D0.BB.D0.B5.D0.BB.D1.8C.D0.BD.D0.BE.D0.B5_.D0.BF.D1.80.D0.BE.D0.B3.D1.80.D0.B0.D0.BC.D0.BC.D0.B8.D1.80.D0.BE.D0.B2.D0.B0.D0.BD.D0.B8.D0.B5"><b>Параллельное программирование</b></span></h2>
+<p>Одной из фундаментальных концепций программирования является идея 
+выполнения нескольких операций одновременно. Многие задачи требуют, 
+чтобы программа прервала свою текущую работу, решила какую-то другую 
+задачу, а затем вернулась в основной процесс. Проблема решалась разными 
+способами.
+На первых порах программисты, знающие машинную архитектуру, писали 
+процедуры обработки прерываний, то есть приостановка основного процесса 
+выполнялась на аппаратном уровне. Такое решение работало неплохо, но оно
+ было сложным и немобильным, что значительно усложняло перенос подобных 
+программ на новые типы компьютеров.
+</p><p>Иногда прерывания действительно необходимы для обработки операций
+ задач, критичных по времени, но существует целый класс задач, где 
+просто нужно разбить задачу на несколько раздельно выполняемых частей 
+так, чтобы программа быстрее реагировала на внешние воздействия. Эти 
+раздельно выполняемые части программы называются <i>потоками</i>, а весь принцип получил название <i>параллелизма</i> (concurrency), или <i>параллельных вычислений</i>.
+ Часто встречающийся пример параллелизма — пользовательский интерфейс. В
+ программе, разбитой на потоки, пользователь может нажать кнопку и 
+получить быстрый ответ, не ожидая, пока программа завершит текущую 
+операцию.
+</p><p>Обычно потоки всего лишь определяют способ распределения времени 
+одного процессора. Но если операционная система поддерживает несколько 
+процессоров, каждый поток может быть назначен на отдельный процессор; 
+так достигается настоящий параллелизм. Одно из удобных свойств 
+параллелизма, на уровне языка, состоит в том, что программисту не нужно 
+знать, один процессор в системе или несколько. Программа логически 
+разделяется на потоки, и если машина имеет больше одного процессора, она
+ исполняется быстрее, без каких-либо специальных настроек.
+</p><p>Все это создает впечатление, что потоки использовать очень легко.
+ Но тут кроется подвох: совместно используемые ресурсы. Если несколько 
+потоков пытаются одновременно получить доступ к одному ресурсу, 
+возникают проблемы. Например, два процесса не могут одновременно 
+посылать информацию на принтер. Для предотвращения конфликта совместные 
+ресурсы (такие как принтер) должны блокироваться во время использования.
+ Поток блокирует ресурс, завершает свою операцию, а затем снимает 
+блокировку для того, чтобы кто-то еще смог получить доступ к ресурсу.
+</p><p>Поддержка параллелизма встроена в язык <i>Java</i>, а с выходом <i>Java</i> <i>SE5</i> к ней добавилась значительная поддержка на уровне библиотек.
+</p>
+<h2><span class="mw-headline" id="Java_.D0.B8_.D0.98.D0.BD.D1.82.D0.B5.D1.80.D0.BD.D0.B5.D1.82"><b><i>Java</i> и Интернет</b></span></h2>
+<p>Если <i>Java</i> представляет собой очередной язык программирования, 
+возникает вопрос: чем же он так важен и почему он преподносится как 
+революционный шаг в разработке программ? С точки зрения традиционных 
+задач программирования ответ очевиден не сразу. Хотя язык <i>Java</i> пригодится и при построении автономных приложений, самым важным его применением было и остается программирование для сети <i>World Wide Web</i>.
+</p>
+<h3><span class="mw-headline" id=".D0.A7.D1.82.D0.BE_.D1.82.D0.B0.D0.BA.D0.BE.D0.B5_.D0.92.D0.B5.D0.B1.3F">Что такое Веб?</span></h3>
+<p>На первый взгляд Веб выглядит довольно загадочно из-за обилия 
+новомодных терминов вроде «серфинга», «присутствия» и «домашних 
+страниц». Чтобы понять, что же это такое, полезно представить себе 
+картину в целом — но сначала необходимо разобраться во взаимодействии 
+клиент/серверных систем, которые представляют собой одну из самых 
+сложных задач компьютерных вычислений.
+</p>
+<h3><span class="mw-headline" id=".D0.92.D1.8B.D1.87.D0.B8.D1.81.D0.BB.D0.B5.D0.BD.D0.B8.D1.8F_.C2.AB.D0.BA.D0.BB.D0.B8.D0.B5.D0.BD.D1.82.2F.D1.81.D0.B5.D1.80.D0.B2.D0.B5.D1.80.C2.BB">Вычисления «клиент/сервер»</span></h3>
+<p>Основная идея клиент/серверных систем состоит в том, что у вас 
+существует централизованное хранилище информации — обычно в форме базы 
+данных — и эта информация доставляется по запросам каких-либо групп 
+людей или компьютеров. В системе клиент/сервер ключевая роль отводится 
+централизованному хранилищу информации, которое обычно позволяет 
+изменять данные так, что эти изменения распространятся пользователям 
+информации. Все вместе: хранилище информации, программное обеспечение, 
+распространяющее информацию, и компьютер(ы), на котором хранятся 
+программное обеспечение и данные — называется сервером. Программное 
+обеспечение на машине пользователя, которое устанавливает связь с 
+сервером, получает информацию, обрабатывает ее и затем отображает 
+соответствующим образом, называется клиентом.
+</p><p>Таким образом, основная концепция клиент/серверных вычислений не 
+так уж сложна. Проблемы возникают из-за того, что один сервер пытается 
+обслуживать многих клиентов одновременно. Обычно для решения 
+привлекается система управления базой данных, и разработчик пытается 
+«оптимизировать» структуру данных, распределяя их по таблицам. 
+Дополнительно система часто дает возможность клиенту добавлять новую 
+информацию на сервер. А это значит, что новая информация клиента должна 
+быть защищена от потери во время сохранения в базе данных, а также от 
+возможности ее перезаписи данными другого клиента. (Это называется 
+обработкой транзакций.) При изменении клиентского программного 
+обеспечения необходимо не только скомпилировать и протестировать его, но
+ и установить на клиентских машинах, что может обойтись гораздо сложнее и
+ дороже, чем можно представить. Особенно сложно организовать поддержку 
+множества различных операционных систем и компьютерных архитектур. 
+Наконец, необходимо учитывать важнейший фактор производительности: к 
+серверу одновременно могут поступать сотни запросов, и малейшая задержка
+ грозит серьезными последствиями. Для уменьшения задержки программисты 
+стараются распределить вычисления, зачастую даже проводя их на 
+клиентской машине, а иногда и переводя на дополнительные серверные 
+машины, используя так называемое <i>связующее программное обеспечение</i> (<i>middleware</i>). (Программы-посредники также упрощают сопровождение программ.)
+</p><p>Простая идея распространения информации между людьми имеет 
+столько уровней сложности в своей реализации, что в целом ее решение 
+кажется недостижимым. И все-таки она жизненно необходима: примерно 
+половина всех задач программирования основана именно на ней. Она 
+задействована в решении разнообразных проблем: от обслуживания заказов и
+ операций по кредитным карточкам до распространения всевозможных данных —
+ научных, правительственных, котировок акций... список можно продолжать 
+до бесконечности. В прошлом для каждой новой задачи приходилось 
+создавать отдельное решение. Эти решения непросто создавать, еще труднее
+ ими пользоваться, и пользователю приходилось изучать новый интерфейс с 
+каждой новой программой. Задача клиент/серверных вычислений нуждается в 
+более широком подходе.
+</p>
+<h3><span class="mw-headline" id=".D0.92.D0.B5.D0.B1_.D0.BA.D0.B0.D0.BA_.D0.B3.D0.B8.D0.B3.D0.B0.D0.BD.D1.82.D1.81.D0.BA.D0.B8.D0.B9_.D1.81.D0.B5.D1.80.D0.B2.D0.B5.D1.80">Веб как гигантский сервер</span></h3>
+<p>Фактически веб представляет собой одну огромную систему 
+«клиент/сервер». Впрочем, это еще не все: в единой сети одновременно 
+сосуществуют все серверы и клиенты. Впрочем, этот факт вас не должен 
+интересовать, поскольку обычно вы соединяетесь и взаимодействуете только
+ с одним сервером (даже если его приходится разыскивать по всему миру).
+</p><p>На первых порах использовался простой однонаправленный обмен 
+информацией. Вы делали запрос к серверу, он отсылал вам файл, который 
+обрабатывала для вас ваша программа просмотра (то есть клиент). Но 
+вскоре простого получения статических страниц с сервера стало 
+недостаточно. Пользователи хотели использовать все возможности системы 
+«клиент/сервер», отсылать информацию от клиента к серверу, чтобы, 
+например, просматривать базу данных сервера, добавлять новую информацию 
+на сервер или делать заказы (что требовало особых мер безопасности). Эти
+ изменения мы постоянно наблюдаем в процессе развития веб.
+</p><p>Средства просмотра веб (браузеры) стали большим шагом вперед: они
+ ввели понятие информации, которая одинаково отображается на любых типах
+ компьютеров. Впрочем, первые браузеры были все же примитивны и быстро 
+перестали соответствовать предъявляемым требованиям. Они оказались не 
+особенно интерактивны и тормозили работу как серверов, так и Интернета в
+ целом — при любом действии, требующем программирования, приходилось 
+посылать информацию серверу и ждать, когда он ее обработает. Иногда 
+приходилось ждать несколько минут только для того, чтобы узнать, что вы 
+пропустили в запросе одну букву. Так как браузер представлял собой 
+только средство просмотра, он не мог выполнить даже простейших 
+программных задач. (С другой стороны, это гарантировало безопасность — 
+пользователь был огражден от запуска программ, содержащих вирусы или 
+ошибки.)
+</p><p>Для решения этих задач предпринимались разные подходы. Для начала
+ были улучшены стандарты отображения графики, чтобы браузеры могли 
+отображать анимацию и видео. Остальные задачи требовали появления 
+возможности запуска программ на машине клиента, внутри браузера. Это 
+было названо программированием на стороне клиента.
+</p>
+<h3><span class="mw-headline" id=".D0.9F.D1.80.D0.BE.D0.B3.D1.80.D0.B0.D0.BC.D0.BC.D0.B8.D1.80.D0.BE.D0.B2.D0.B0.D0.BD.D0.B8.D0.B5_.D0.BD.D0.B0_.D1.81.D1.82.D0.BE.D1.80.D0.BE.D0.BD.D0.B5_.D0.BA.D0.BB.D0.B8.D0.B5.D0.BD.D1.82.D0.B0">Программирование на стороне клиента</span></h3>
+<p>Изначально система взаимодействия «сервер-браузер» разрабатывалась 
+для интерактивного содержимого, но поддержка этой интерактивности была 
+полностью возложена на сервер. Сервер генерировал статические страницы 
+для браузера клиента, который их просто обрабатывал и показывал. 
+Стандарт <i>HTML</i> поддерживает простейшие средства ввода данных: 
+текстовые поля, переключатели, флажки, списки и раскрывающиеся списки, 
+вместе с кнопками, которые могут выполнить только два действия: сброс 
+данных формы и ее отправку серверу. Отправленная информация 
+обрабатывается интерфейсом <i>CGI (Common Gateway Interface)</i>, поддерживаемым всеми веб-серверами. Текст запроса указывает <i>CGI</i>,
+ как именно следует поступить с данными. Чаще всего по запросу 
+запускается программа из каталога cgi-bin на сервере. (В строке с 
+адресом страницы в браузере, после отправки данных формы, иногда можно 
+разглядеть в мешанине символов подстроку <i>cgi-bin</i>.) Такие программы можно написать почти на всех языках. Обычно используется <i>Perl</i>,
+ так как он ориентирован на обработку текста, а также является 
+интерпретируемым языком, соответственно, может быть использован на любом
+ сервере, независимо от типа процессора или операционной системы. 
+Впрочем, язык <i>Python</i> (мой любимый язык — зайдите на <i>www.Python.org</i>) постепенно отвоевывает у него «территорию» благодаря своей мощи и простоте.
+</p><p>Многие мощные веб-серверы сегодня функционируют целиком на основе <i>CGI</i>; в принципе, эта технология позволяет решать почти любые задачи. Однако веб-серверы, построенные на <i>CGI</i>-программах, тяжело обслуживать, и на них существуют проблемы со скоростью отклика. Время отклика <i>CGI</i>-программы зависит от количества посылаемой информации, а также от загрузки сервера и сети. (Из-за всего упомянутого запуск <i>CGI</i>-программы
+ может занять продолжительное время). Первые проектировщики веб не 
+предвидели, как быстро истощатся ресурсы системы при ее использовании в 
+различных приложениях. Например, выводить графики в реальном времени в 
+ней почти невозможно, так как при любом изменении ситуации необходимо 
+построить новый GIF- файл и передать его клиенту. Без сомнения, у вас 
+есть собственный горький опыт — например, полученный при простой посылке
+ данных формы. Вы нажимаете кнопку для отправки информации; сервер 
+запускает <i>CGI</i>-программу, которая обнаруживает ошибку, формирует <i>HTML</i>-страницу,
+ сообщающую вам об этом, а затем отсылает эту страницу в вашу сторону; 
+вам приходится набирать данные заново и повторять попытку. Это не только
+ медленно, это попросту неэлегантно.
+</p><p>Проблема решается программированием на стороне клиента. Как 
+правило, браузеры работают на мощных компьютерах, способных решать 
+широкий диапазон задач, а при стандартном подходе на базе <i>HTML</i> 
+компьютер просто ожидает, когда ему подадут следующую страницу. При 
+клиентском программировании браузеру поручается вся работа, которую он 
+способен выполнить, а для пользователя это оборачивается более быстрой 
+работой в сети и улучшенной интерактивностью.
+</p><p>Впрочем, обсуждение клиентского программирования мало чем 
+отличается от дискуссий о программировании в целом. Условия все те же, 
+но платформы разные: браузер напоминает сильно усеченную операционную 
+систему. В любом случае приходится программировать, поэтому 
+программирование на стороне клиента порождает головокружительное 
+количество проблем и решений. В завершение этого раздела приводится 
+обзор некоторых проблем и подходов, свойственных программированию на 
+стороне клиента.
+</p>
+<h3><span class="mw-headline" id=".D0.9C.D0.BE.D0.B4.D1.83.D0.BB.D0.B8_.D1.80.D0.B0.D1.81.D1.88.D0.B8.D1.80.D0.B5.D0.BD.D0.B8.D1.8F">Модули расширения</span></h3>
+<p>Одним из самых важнейших направлений в клиентском программировании стала разработка модулей расширения (<i>plug-ins</i>).
+ Этот подход позволяет программисту добавить к браузеру новые функции, 
+загрузив небольшую программу, которая встраивается в браузер. Фактически
+ с этого момента браузер обзаводится новой функциональностью. (Модуль 
+расширения загружается только один раз.) Подключаемые модули позволили 
+оснастить браузеры рядом быстрых и мощных нововведений, но написание 
+такого модуля — совсем непростая задача, и вряд ли каждый раз при 
+создании какого-то нового сайта вы захотите создавать расширения. 
+Ценность модулей расширения для клиентского программирования состоит в 
+том, что они позволяют опытному программисту дополнить браузер новыми 
+возможностями, не спрашивая разрешения у его создателя. Таким образом, 
+модули расширения предоставляют «черный ход» для интеграции новых языков
+ программирования на стороне клиента (хотя и не все языки реализованы в 
+таких модулях).
+</p>
+<h3><span class="mw-headline" id=".D0.AF.D0.B7.D1.8B.D0.BA.D0.B8_.D1.81.D1.86.D0.B5.D0.BD.D0.B0.D1.80.D0.B8.D0.B5.D0.B2">Языки сценариев</span></h3>
+<p>Разработка модулей расширения привела к появлению множества языков 
+для написания сценариев. Используя язык сценария, вы встраиваете 
+клиентскую программу прямо в <i>HTML</i>-страницу, а модуль, 
+обрабатывающий данный язык, автоматически активизируется при ее 
+просмотре. Языки сценария обычно довольно просты для изучения; в 
+сущности, сценарный код представляет собой текст, входящий в состав <i>HTML</i>-страницы,
+ поэтому он загружается очень быстро, как часть одного запроса к серверу
+ во время получения страницы. Расплачиваться за это приходится тем, что 
+любой в силах просмотреть (и украсть) ваш код. Впрочем, вряд ли вы 
+будете писать что-либо заслуживающее подражания и утонченное на языках 
+сценариев, поэтому проблема копирования кода не так уж страшна.
+</p><p>Языком сценариев, который поддерживается практически любым браузером без установки дополнительных модулей, является <i>JavaScript</i> (имеющий весьма мало общего с <i>Java</i>; имя было использовано в целях «урвать» кусочек успеха <i>Java</i> на рынке). К сожалению, исходные реализации <i>JavaScript</i> в разных браузерах довольно сильно отличались друг от друга и даже между разными версиями одного браузера. Стандартизация <i>JavaScript</i> в форме <i>ECMAScript</i> была полезна, но потребовалось время, чтобы ее поддержка появилась во всех браузерах (вдобавок компания <i>Microsoft</i> активно продвигала собственный язык <i>VBScript</i>, отдаленно напоминавший <i>JavaScript</i>). В общем случае разработчику приходится ограничиваться минимумом возможностей <i>JavaScript</i>, чтобы код гарантированно работал во всех браузерах. Что касается обработки ошибок и отладки кода <i>JavaScript</i>,
+ то занятие это в лучшем случае непростое. Лишь недавно разработчикам 
+удалось создать действительно сложную систему, написанную на <i>JavaScript</i> (компания <i>Google</i>, служба <i>GMail</i>), и это потребовало высочайшего энтузиазма и опыта.
+</p><p>Это показывает, что языки сценариев, используемые в браузерах, 
+были предназначены для решения круга определенных задач, в основном для 
+создания более насыщенного и интерактивного графического 
+пользовательского интерфейса (<i>GUI</i>). Однако язык сценариев может 
+быть использован для решения 80&nbsp;% задач клиентского 
+программирования. Ваша задача может как раз входить в эти 80&nbsp;%. 
+Поскольку языки сценариев позволяют легко и быстро создавать программный
+ код, вам стоит сначала рассмотреть именно такой язык, перед тем как 
+переходить к более сложным технологическим решениям вроде <i>Java</i>.
+</p>
+<h3><span class="mw-headline" id="Java"><i>Java</i></span></h3>
+<p>Если языки сценариев берут на себя 80&nbsp;% задач клиентского 
+программирования, кому же тогда «по зубам» остальные 20&nbsp;%? Для них 
+наиболее популярным решением сегодня является <i>Java</i>. Это не только
+ мощный язык программирования, разработанный с учетом вопросов 
+безопасности, платформенной совместимости и интернационализации, но 
+также постоянно совершенствуемый инструмент, дополняемый новыми 
+возможностями и библиотеками, которые элегантно вписываются в решение 
+традиционно сложных задач программирования: многозадачности, доступа к 
+базам данных, сетевого программирования и распределенных вычислений. 
+Клиентское программирование на <i>Java</i> сводится к разработке апплетов, а также к использованию пакета <i>Java Web Start</i>.
+</p><p>Апплет — мини-программа, которая может исполняться только внутри 
+браузера. Апплеты автоматически загружаются в составе веб-страницы (так 
+же, как загружается, например, графика). Когда апплет активизируется, он
+ выполняет программу. Это одно из преимуществ апплета — он позволяет 
+автоматически распространять программы для клиентов с сервера именно 
+тогда, когда пользователю понадобятся эти программы, и не раньше. 
+Пользователь получает самую свежую версию клиентской программы, без 
+всяких проблем и трудностей, связанных с переустановкой. В соответствии с
+ идеологией <i>Java</i>, программист создает только одну программу, 
+которая автоматически работает на всех компьютерах, где имеются браузеры
+ со встроенным интерпретатором <i>Java</i>. (Это верно практически для всех компьютеров.) Так как <i>Java</i>
+ является полноценным языком программирования, как можно большая часть 
+работы должна выполняться на стороне клиента перед обращением к серверу 
+(или после него). Например, вам не понадобится пересылать запрос по 
+Интернету, чтобы узнать, что в полученных данных или каких-то параметрах
+ была ошибка, а компьютер клиента сможет быстро начертить какой-либо 
+график, не ожидая, пока это сделает сервер и отошлет обратно файл с 
+изображением. Такая схема не только обеспечивает мгновенный выигрыш в 
+скорости и отзывчивости, но также снижает загрузку основного сетевого 
+транспорта и серверов, предотвращая замедление работы с Интернетом в 
+целом.
+</p>
+<h3><span class="mw-headline" id=".D0.90.D0.BB.D1.8C.D1.82.D0.B5.D1.80.D0.BD.D0.B0.D1.82.D0.B8.D0.B2.D1.8B">Альтернативы</span></h3>
+<p>Честно говоря, апплеты <i>Java</i> не оправдали начальных восторгов. При первом появлении <i>Java</i>
+ все относились к апплетам с большим энтузиазмом, потому что они делали 
+возможным серьезное программирование на стороне клиента, повышали 
+скорость отклика и снижали загрузку канала для Интернет-приложений. 
+Апплетам предрекали большое будущее.
+</p><p>И действительно, в веб можно встретить ряд очень интересных 
+апплетов. И все же массовый переход на апплеты так и не состоялся. 
+Вероятно, главная проблема заключалась в том, что загрузка 
+10-мегабайтного пакета для установки среды <i>Java Runtime Environment (JRE)</i> слишком пугала рядового пользователя. Тот факт, что компания <i>Microsoft</i> не стала включать <i>JRE</i> в поставку <i>Internet Explorer</i>, окончательно решил судьбу апплетов. Как бы то ни было, апплеты <i>Java</i> так и не получили широкого применения.
+</p><p>Впрочем, апплеты и приложения <i>Java Web Start</i> в некоторых 
+ситуациях приносят большую пользу. Если конфигурация компьютеров 
+конечных пользователей находится под контролем (например, в 
+организациях), применение этих технологий для распространения и 
+обновления клиентских приложений вполне оправдано; оно экономит немало 
+времени, труда и денег (особенно при частых обновлениях).
+</p>
+<h3><span class="mw-headline" id=".NET_.D0.B8_.D0.A1.23">.NET и С#</span></h3>
+<p>Некоторое время основным соперником <i>Java</i>-апплетов считались компоненты <i>ActiveX</i> от компании <i>Microsoft</i>, хотя они и требовали для своей работы наличия на машине клиента <i>Windows</i>. Теперь <i>Microsoft</i> противопоставила <i>Java</i> полноценных конкурентов: это платформа <i>.NET</i> и язык программирования <i>С#</i>. Платформа <i>.NET</i> представляет собой примерно то же самое, что и виртуальная машина <i>Java</i> (JVM) и библиотеки <i>Java</i>, а язык <i>С#</i> имеет явное сходство с языком <i>Java</i>.
+ Вне всяких сомнений, это лучшее, что создала компания Microsoft в 
+области языков и сред программирования. Конечно, разработчики из <i>Microsoft</i> имели некоторое преимущество; они видели, что в <i>Java</i>
+ удалось, а что нет, и могли отталкиваться от этих фактов, но результат 
+получился вполне достойным. Впервые с момента своего рождения у <i>Java</i> появился реальный соперник. Разработчикам из <i>Sun</i> пришлось как следует взглянуть на <i>С#</i>,
+ выяснить, по каким причинам программисты могут захотеть перейти на этот
+ язык, и приложить максимум усилий для серьезного улучшения <i>Java</i> в <i>Java</i> <i>SE5</i>.
+</p><p>В данный момент основные сомнения вызывает вопрос о том, разрешит ли Microsoft полностью переносить <i>.NET</i> на другие платформы. В <i>Microsoft</i> утверждают, что никакой проблемы в этом нет, и проект <i>Mono (<a rel="nofollow" class="external text" href="http://www.go-mono.com/">www.go-mono.com</a>)</i> предоставляет частичную реализацию <i>.NET</i> для <i>Linux</i>. Впрочем, раз реализация эта неполная, то, пока <i>Microsoft</i> не решит выкинуть из нее какую-либо часть, делать ставку на <i>.NET</i> как на межплатформенную технологию еще рано.
+</p>
+<h3><span class="mw-headline" id=".D0.98.D0.BD.D1.82.D0.B5.D1.80.D0.BD.D0.B5.D1.82_.D0.B8_.D0.B8.D0.BD.D1.82.D1.80.D0.B0.D1.81.D0.B5.D1.82.D1.8C">Интернет и интрасеть</span></h3>
+<p>Веб предоставляет решение наиболее общего характера для 
+клиент/серверных задач, так что имеет смысл использовать ту же 
+технологию для решения задач в частных случаях; в особенности это 
+касается классического клиент/серверного взаимодействия внутри компании.
+ При традиционном подходе «клиент/сервер» возникают проблемы с 
+различиями в типах клиентских компьютеров, к ним добавляется трудность 
+установки новых программ для клиентов; обе проблемы решаются браузерами и
+ программированием на стороне клиента. Когда технология веб используется
+ для формирования информационной сети внутри компании, такая сеть 
+называется интрасетью. Интрасети предоставляют гораздо большую 
+безопасность в сравнении с Интернетом, потому что вы можете физически 
+контролировать доступ к серверам вашей компании. Что касается обучения, 
+человеку, понимающему концепцию браузера, гораздо легче разобраться в 
+разных страницах и апплетах, так что время освоения новых систем 
+сокращается.
+</p><p>Проблема безопасности подводит нас к одному из направлений, 
+которое автоматически возникает в клиентском программировании. Если ваша
+ программа исполняется в Интернете, то вы не знаете, на какой платформе 
+ей предстоит ра­ботать. Приходится проявлять особую осторожность, чтобы 
+избежать распространения некорректного кода. Здесь нужны 
+межплатформенные и безопасные решения, наподобие <i>Java</i> или языка сценариев.
+</p><p>В интрасетях действуют другие ограничения. Довольно часто все машины сети работают на платформе <i>Intel/Windows</i>.
+ В интрасети вы отвечаете за качество своего кода и можете устранять 
+ошибки по мере их обнаружения. Вдобавок, у вас уже может накопиться 
+коллекция решений, которые проверены на прочность в более традиционных 
+клиент/серверных системах, в то время как новые программы придется 
+вручную устанавливать на машину клиента при каждом обновлении. Время, 
+затрачиваемое на обновления, является самым веским доводом в пользу 
+браузерных технологий, где обновления осуществляются невидимо и 
+автоматически (то же позволяет сделать <i>Java Web Start</i>). Если вы 
+участвуете в обслуживании интрасети, благоразумнее всего использовать 
+тот путь, который позволит привлечь уже имеющиеся наработки, не 
+переписывая программы на новых языках.
+</p><p>Сталкиваясь с объемом задач клиентского программирования, 
+способным поставить в тупик любого проектировщика, лучше всего оценить 
+их с позиций соотношения «затраты/прибыли». Рассмотрите ограничения 
+вашей задачи и попробуйте представить кратчайший способ ее решения. Так 
+как клиентское программирование все же остается программированием, 
+всегда актуальны технологии разработки, обещающие наиболее быстрое 
+решение. Такая активная позиция даст вам возможность подготовиться к 
+неизбежным проблемам разработки программ.
+</p>
+<h3><span class="mw-headline" id=".D0.9F.D1.80.D0.BE.D0.B3.D1.80.D0.B0.D0.BC.D0.BC.D0.B8.D1.80.D0.BE.D0.B2.D0.B0.D0.BD.D0.B8.D0.B5_.D0.BD.D0.B0_.D1.81.D1.82.D0.BE.D1.80.D0.BE.D0.BD.D0.B5_.D1.81.D0.B5.D1.80.D0.B2.D0.B5.D1.80.D0.B0">Программирование на стороне сервера</span></h3>
+<p>Наше обсуждение обошло стороной тему серверного программирования, которое, как считают многие, является самой сильной стороной <i>Java</i>.
+ Что происходит, когда вы посылаете запрос серверу? Чаще всего запрос 
+сводится к простому требованию «отправьте мне этот файл». Браузер затем 
+обрабатывает файл подходящим образом: как <i>HTML</i>-страницу, как изображение, как <i>Java</i>-апплет, как сценарий и т. п.
+</p><p>Более сложный запрос к серверу обычно связан с обращением к базе 
+данных. В самом распространном случае делается запрос на сложный поиск в
+ базе данных, результаты которого сервер затем преобразует в <i>HTML</i>-страницу и посылает вам. (Конечно, если клиент способен производить какие-то действия с помощью <i>Java</i>
+ или языка сценариев, данные могут быть обработаны и у него, что будет 
+быстрее и снизит загрузку сервера.) А может быть, вам понадобится 
+зарегистрироваться в базе данных при присоединении к какой-то группе, 
+или оформить заказ, что потребует изменений в базе данных. Подобные 
+запросы должны обрабатываться неким кодом на сервере; в целом это и 
+называется серверным программированием. Традиционно программирование на 
+сервере осуществлялось на <i>Perl, Python,</i>  <i>C++</i> или другом языке, позволяющем создавать программы <i>CGI</i>, но появляются и более интересные варианты. К их числу относятся и основанные на <i>Java</i> веб-серверы, позволяющие заниматься серверным программированием на <i>Java</i> с помощью так называемых сервлетов. Сервлеты и их детища, <i>JSPs</i>, составляют две основные причины для перехода компаний по разработке веб-содержимого на <i>Java</i>, в главном из-за того, что они решают проблемы несовместимости различных браузеров.
+</p><p>Несмотря на все разговоры о <i>Java</i> как языке Интернет-программирования, <i>Java</i>
+ в действительности является полноценным языком программирования, 
+способным решать практически все задачи, решаемые на других языках. 
+Преимущества <i>Java</i> не ограничиваются хорошей переносимостью: это и
+ пригодность к решению задач программирования, и устойчивость к ошибкам,
+ и большая стандартная библиотека, и многочисленные разработки сторонних
+ фирм — как существующие, так и постоянно появляющиеся.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id=".D0.A0.D0.B5.D0.B7.D1.8E.D0.BC.D0.B5"><b>Резюме</b></span></h2>
+<p>Вы знаете, как выглядит процедурная программа: определения данных и 
+вызовы функций. Чтобы выяснить предназначение такой программы, 
+необходимо приложить усилие, просматривая функции и создавая в уме общую
+ картину. Именно из-за этого создание таких программ требует 
+использования промежуточных средств — сами по себе они больше 
+ориентированы на компьютер, а не на решаемую задачу.
+</p><p>Так как ООП добавляет много новых понятий к тем, что уже имеются в процедурных языках, естественно будет предположить, что код <i>Java</i>
+ будет гораздо сложнее, чем аналогичный метод на процедурном языке. Но 
+здесь вас ждет приятный сюрприз: хорошо написанную программу на <i>Java</i>
+ обычно гораздо легче понять, чем ее процедурный аналог. Все, что вы 
+видите, — это определения объектов, представляющих понятия пространства 
+решения (а не понятия компьютерной реализации), и сообщения, посылаемые 
+этим объектам, которые представляют действия в этом пространстве. Одно 
+из преимуществ ООП как раз и состоит в том, что хорошо спроектированную 
+программу можно понять, просто проглядывая исходные тексты. К тому же 
+обычно приходится писать гораздо меньше кода, поскольку многие задачи с 
+легкостью решаются уже существующими библиотеками классов.
+</p><p>Объектно-ориентированное программирование и язык <i>Java</i> подходят не для всех. Очень важно сначала выяснить свои потребности, чтобы решить, удовлетворит ли вас переход на <i>Java</i>
+ или лучше остановить свой выбор на другой системе программирования (в 
+том числе и на той, что вы сейчас используете). Если вы знаете, что в 
+обозримом будущем вы столкнетесь с весьма специфическими потребностями 
+или в вашей работе будут действовать ограничения, с которыми <i>Java</i> не справляется, лучше рассмотреть другие возможности (в особенности я рекомендую присмотреться к языку <i>Python, <a rel="nofollow" class="external free" href="http://www.python.org/">http://www.Python.org</a></i>). Выбирая <i>Java</i>, необходимо понимать, какие еще доступны варианты и почему вы выбрали именно этот путь.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id=".D0.9F.D1.80.D0.B8.D0.BC.D0.B5.D1.87.D0.B0.D0.BD.D0.B8.D1.8F"><b>Примечания</b></span></h2>
+<hr>
+<p><a href="http://wikijava.it-cache.net/index.php" title="Thinking in Java 4th edition">назад в Оглавление</a>
+</p>
+<hr>
+<!--<p><a href="index.php@title=Файл%253AWikijava.org.ua-1px.png.html" class="image"><img alt="Wikijava.org.ua-1px.png" src="images/0/0a/Wikijava.org.ua-1px.png" width="1" height="1" /></a>-->
+
+<!--&lt;!&ndash; Поместите этот тег туда, где должна отображаться кнопка +1. &ndash;&gt;-->
+<!--<g:plusone size="small" annotation="inline"></g:plusone>-->
+
+<!--&lt;!&ndash; Поместите этот вызов функции отображения в соответствующее место. &ndash;&gt;-->
+<!--<script type="text/javascript">-->
+  <!--(function() {-->
+    <!--var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;-->
+    <!--po.src = 'https://apis.google.com/js/plusone.js';-->
+    <!--var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);-->
+  <!--})();-->
+<!--</script>-->
+<!--&#160;&#160;&lt;!&ndash; AddThis Button BEGIN &ndash;&gt;<div class="addthis_toolbox addthis_default_style "><a class="addthis_button_preferred_1"></a><a class="addthis_button_preferred_2"></a><a class="addthis_button_preferred_3"></a><a class="addthis_button_preferred_4"></a><a class="addthis_button_preferred_5"></a><a class="addthis_button_preferred_6"></a><a class="addthis_button_preferred_7"></a><a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a></div><script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f36b02502c8607a"></script>&lt;!&ndash; AddThis Button END &ndash;&gt;-->
+
+<!--<br>-->
+<!--Реклама<br>-->
+<!--&lt;!&ndash;www.people-group.net&ndash;&gt;-->
+<!--<script async src="http://ads.people-group.net/142062/3/2/1/" onload="InitAipg_14206200030002(this)"></script>-->
+<!--&lt;!&ndash;www.people-group.net&ndash;&gt;-->
+<!--</span>-->
+<!--</p>-->
+<!-- 
+NewPP limit report
+CPU time usage: 0.680 seconds
+Real time usage: 0.696 seconds
+Preprocessor visited node count: 201/1000000
+Preprocessor generated node count: 370/1000000
+Post‐expand include size: 568/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 4/40
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key wjava2-wj_:pcache:idhash:14-0!*!0!!ru!2!* and timestamp 20140812131632
+ -->
+</div>								<div class="printfooter">
+				Источник — «<a href="http://wikijava.org.ua/index.php?title=Glava_1_Thinking_in_Java_4th_edition&amp;oldid=242">http://wikijava.org.ua/index.php?title=Глава_1_Thinking_in_Java_4th_edition&amp;oldid=242</a>»				</div>
+                                <div id="catlinks" class="catlinks"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%9A%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D0%B8" title="Служебная:Категории">Категории</a>: <ul><li><a href="http://wikijava.org.ua/index.php?title=%D0%9A%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D1%8F:%D0%9A%D0%BD%D0%B8%D0%B3%D0%B8" title="Категория:Книги">Книги</a></li><li><a href="http://wikijava.org.ua/index.php?title=%D0%9A%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D1%8F:Java" title="Категория:Java">Java</a></li></ul></div></div>												<div class="visualClear"></div>
+            </div>
+		</div>
+		<div id="mw-navigation">
+			<h2>Навигация</h2>
+			<div id="mw-head">
+				<div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
+	<h3 id="p-personal-label">Персональные инструменты</h3>
+	<ul>
+<li id="pt-login"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%92%D1%85%D0%BE%D0%B4&amp;returnto=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0+1+Thinking+in+Java+4th+edition" title="Здесь можно зарегистрироваться в системе, но это необязательно. [o]" accesskey="o">Представиться системе</a></li>	</ul>
+</div>
+				<div id="left-navigation">
+					<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
+	<h3 id="p-namespaces-label">Пространства имён</h3>
+	<ul>
+					<!--<li  id="ca-nstab-main" class="selected"><span><a href="index.php@title=Glava_1_Thinking_in_Java_4th_edition.html"  title="Просмотр основной страницы [c]" accesskey="c">Статья</a></span></li>-->
+					<!--<li  id="ca-talk" class="new"><span><a href="http://wikijava.org.ua/index.php?title=%D0%9E%D0%B1%D1%81%D1%83%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5:%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_1_Thinking_in_Java_4th_edition&amp;action=edit&amp;redlink=1"  title="Обсуждение основной страницы [t]" accesskey="t">Обсуждение</a></span></li>-->
+			</ul>
+</div>
+<div id="p-variants" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-variants-label">
+	<h3 id="mw-vector-current-variant">
+		</h3>
+	<h3 id="p-variants-label"><span>Варианты</span><a href="http://wikijava.it-cache.net/index.php@title=Glava_1_Thinking_in_Java_4th_edition.html#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+				</div>
+				<div id="right-navigation">
+					<div id="p-views" role="navigation" class="vectorTabs" aria-labelledby="p-views-label">
+	<h3 id="p-views-label">Просмотры</h3>
+	<ul>
+					<!--<li id="ca-view" class="selected"><span><a href="index.php@title=Glava_1_Thinking_in_Java_4th_edition.html" >Читать</a></span></li>-->
+					<!--<li id="ca-viewsource"><span><a href="http://wikijava.org.ua/index.php?title=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_1_Thinking_in_Java_4th_edition&amp;action=edit"  title="Эта страница защищена от изменений, но вы можете посмотреть и скопировать её исходный текст [e]" accesskey="e">Просмотр</a></span></li>-->
+					<!--<li id="ca-history" class="collapsible"><span><a href="http://wikijava.org.ua/index.php?title=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_1_Thinking_in_Java_4th_edition&amp;action=history"  title="Журнал изменений страницы [h]" accesskey="h">История</a></span></li>-->
+			</ul>
+</div>
+<div id="p-cactions" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-cactions-label">
+	<h3 id="p-cactions-label"><span>Действия</span><a href="http://wikijava.it-cache.net/index.php@title=Glava_1_Thinking_in_Java_4th_edition.html#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+<div id="p-search" role="search">
+	<h3><label for="searchInput">Поиск</label></h3>
+	<form action="http://wikijava.org.ua/index.php" id="searchform">
+				<div id="simpleSearch">
+						<input name="search" placeholder="Поиск" title="Искать в WikiJava: Wiki of Java: викифицированные книги и статьи по Java [f]" accesskey="f" id="searchInput">						<button type="submit" name="button" title="Найти страницы, содержащие указанный текст" id="searchButton"><img src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%201_files/search-ltr.asc" alt="Найти" height="13" width="12"></button>								<input name="title" value="Служебная:Поиск" type="hidden">
+		</div>
+	</form>
+</div>
+				</div>
+			</div>
+			<div id="mw-panel">
+					<!--<div id="p-logo" role="banner"><a style="background-image: url(/skins/common/images/wikijava.png);" href="index.php@title=Заглавная_страница.html"  title="Перейти на заглавную страницу"></a></div>-->
+				<div class="portal" role="navigation" id="p-navigation" aria-labelledby="p-navigation-label">
+	<h3 id="p-navigation-label">Навигация</h3>
+	<div class="body">
+        <ul>
+            <li id="n-mainpage-description"><a href="http://wikijava.org.ua/index.php?title=%D0%97%D0%B0%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F_%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0" title="Перейти на заглавную страницу [z]" accesskey="z">Заглавная страница</a></li>
+            <li id="n-recentchanges"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%B2%D0%B5%D0%B6%D0%B8%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8" title="Список последних изменений [r]" accesskey="r">Свежие правки</a></li>
+            <li id="n-.D0.9A.D0.BD.D0.B8.D0.B3.D0.B8-Java"><a href="http://wikijava.org.ua/index.php?title=%D0%9A%D0%BD%D0%B8%D0%B3%D0%B8_Java">Книги Java</a></li>
+            <li id="n-.D0.A1.D1.82.D0.B0.D1.82.D1.8C.D0.B8-Java"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D1%82%D0%B0%D1%82%D1%8C%D0%B8_Java">Статьи Java</a></li>
+            <li id="n-Java-.D0.BF.D0.BE.D1.80.D1.82.D0.B0.D0.BB"><a href="http://wikijava.org.ua/index.php?title=Java-portal">Java портал</a></li>
+            <li id="n-help"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B0:%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5" title="Место, где можно получить справку">Справка</a></li>
+            <li id="n-.D0.A1.D1.82.D0.B0.D1.82.D0.B8.D1.81.D1.82.D0.B8.D0.BA.D0.B0"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%81%D1%82%D0%B8%D0%BA%D0%B0">Статистика</a></li>
+        </ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id="p-tb" aria-labelledby="p-tb-label">
+	<h3 id="p-tb-label">Инструменты</h3>
+	<div class="body">
+        <ul>
+            <li id="t-whatlinkshere"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D1%81%D1%8B%D0%BB%D0%BA%D0%B8_%D1%81%D1%8E%D0%B4%D0%B0/%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%81%D1%82%D0%B8%D0%BA%D0%B0" title="Список всех страниц, ссылающихся на данную [j]" accesskey="j">Ссылки сюда</a></li>
+            <li id="t-recentchangeslinked"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%B2%D1%8F%D0%B7%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8/%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%81%D1%82%D0%B8%D0%BA%D0%B0" title="Последние изменения в страницах, на которые ссылается эта страница [k]" accesskey="k">Связанные правки</a></li>
+            <li id="t-specialpages"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%BF%D0%B5%D1%86%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D1%8B" title="Список служебных страниц [q]" accesskey="q">Спецстраницы</a></li>
+            <li id="t-print"><a href="http://wikijava.org.ua/index.php?title=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_1_Thinking_in_Java_4th_edition&amp;printable=yes" rel="alternate" title="Версия этой страницы для печати [p]" accesskey="p">Версия для печати</a></li>
+            <li id="t-permalink"><a href="http://wikijava.org.ua/index.php?title=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_1_Thinking_in_Java_4th_edition&amp;oldid=242" title="Постоянная ссылка на эту версию страницы">Постоянная ссылка</a></li>
+            <li id="t-info"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%81%D1%82%D0%B8%D0%BA%D0%B0&amp;action=info">Сведения о странице</a></li>
+        </ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id="p-.D0.94.D1.80.D1.83.D0.B3.D0.B8.D0.B5_.D0.BF.D1.80.D0.BE.D0.B5.D0.BA.D1.82.D1.8B" aria-labelledby="p-.D0.94.D1.80.D1.83.D0.B3.D0.B8.D0.B5_.D0.BF.D1.80.D0.BE.D0.B5.D0.BA.D1.82.D1.8B-label">
+	<h3 id="p-.D0.94.D1.80.D1.83.D0.B3.D0.B8.D0.B5_.D0.BF.D1.80.D0.BE.D0.B5.D0.BA.D1.82.D1.8B-label">Другие проекты</h3>
+	<div class="body">
+		<ul>
+			<li id="n-rastafara.com.ua"><a href="http://rastafara.com.ua/" rel="nofollow">rastafara.com.ua</a></li>
+			<li id="n-rastafara-blog"><a href="http://sergey-rastafara.blogspot.com/" rel="nofollow">rastafara blog</a></li>
+			<li id="n-rastaban"><a href="http://rastaban.com.ua/" rel="nofollow">rastaban</a></li>
+		</ul>
+	</div>
+</div>
+			</div>
+		</div>
+		<div id="footer" role="contentinfo">
+							<ul id="footer-info">
+											<li id="footer-info-lastmod"> Последнее изменение этой страницы: 23:06, 5 мая 2014.</li>
+											<li id="footer-info-viewcount">К этой странице обращались 70&nbsp;148 раза.</li>
+											<li id="footer-info-copyright">Содержимое доступно по лицензии <a class="external" rel="nofollow" href="http://www.gnu.org/copyleft/fdl.html">GNU Free Documentation License 1.3 или более поздняя</a> (если не указано иное).</li>
+									</ul>
+							<ul id="footer-places">
+											<li id="footer-places-privacy"><a href="http://wikijava.org.ua/index.php?title=WikiJava:_Wiki_of_Java:_%D0%B2%D0%B8%D0%BA%D0%B8%D1%84%D0%B8%D1%86%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5_%D0%BA%D0%BD%D0%B8%D0%B3%D0%B8_%D0%B8_%D1%81%D1%82%D0%B0%D1%82%D1%8C%D0%B8_%D0%BF%D0%BE_Java:%D0%9F%D0%BE%D0%BB%D0%B8%D1%82%D0%B8%D0%BA%D0%B0_%D0%BA%D0%BE%D0%BD%D1%84%D0%B8%D0%B4%D0%B5%D0%BD%D1%86%D0%B8%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D0%B8" title="WikiJava: Wiki of Java: викифицированные книги и статьи по Java:Политика конфиденциальности">Политика конфиденциальности</a></li>
+											<li id="footer-places-about"><a href="http://wikijava.org.ua/index.php?title=WikiJava:_Wiki_of_Java:_%D0%B2%D0%B8%D0%BA%D0%B8%D1%84%D0%B8%D1%86%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5_%D0%BA%D0%BD%D0%B8%D0%B3%D0%B8_%D0%B8_%D1%81%D1%82%D0%B0%D1%82%D1%8C%D0%B8_%D0%BF%D0%BE_Java:%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5" title="WikiJava: Wiki of Java: викифицированные книги и статьи по Java:Описание">Описание WikiJava: Wiki of Java: викифицированные книги и статьи по Java</a></li>
+											<li id="footer-places-disclaimer"><a href="http://wikijava.org.ua/index.php?title=WikiJava:_Wiki_of_Java:_%D0%B2%D0%B8%D0%BA%D0%B8%D1%84%D0%B8%D1%86%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5_%D0%BA%D0%BD%D0%B8%D0%B3%D0%B8_%D0%B8_%D1%81%D1%82%D0%B0%D1%82%D1%8C%D0%B8_%D0%BF%D0%BE_Java:%D0%9E%D1%82%D0%BA%D0%B0%D0%B7_%D0%BE%D1%82_%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D0%BE%D1%81%D1%82%D0%B8" title="WikiJava: Wiki of Java: викифицированные книги и статьи по Java:Отказ от ответственности">Отказ от ответственности</a></li>
+									</ul>
+										<ul id="footer-icons" class="noprint">
+					<li id="footer-copyrightico">
+						<a href="http://www.gnu.org/copyleft/fdl.html"><img src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%201_files/gnu-fdl.png" alt="GNU Free Documentation License 1.3 или более поздняя" height="31" width="88"></a>
+					</li>
+					<li id="footer-poweredbyico">
+						<a href="http://www.mediawiki.org/"><img src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%201_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" height="31" width="88"></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<script>/*<![CDATA[*/window.jQuery && jQuery.ready();/*]]>*/</script><script>if(window.mw){
+mw.loader.state({"site":"loading","user":"ready","user.groups":"ready"});
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.action.view.postEdit","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest","ext.vector.collapsibleNav","ext.vector.collapsibleTabs","ext.vector.editWarning","ext.vector.simpleSearch","skins.vector.collapsibleNav"],null,true);
+}</script>
+<script>if(window.mw){
+mw.loader.state({"site":"ready"});
+}</script>
+<!-- Served in 0.224 secs. -->
+	
+
+</body></html>

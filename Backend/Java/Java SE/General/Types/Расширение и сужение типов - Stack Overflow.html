@@ -1,0 +1,1427 @@
+<!DOCTYPE html>
+<html itemscope="" itemtype="http://schema.org/QAPage"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<title>наследование - Расширение и сужение типов - Stack Overflow на русском</title>
+    <link rel="shortcut icon" href="http://cdn.sstatic.net/ru/img/favicon.ico?v=b95a7516ec95">
+    <link rel="apple-touch-icon image_src" href="http://cdn.sstatic.net/ru/img/apple-touch-icon.png?v=8e08c87f9e75">
+    <link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow на русском" href="http://ru.stackoverflow.com/opensearch.xml">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@ruStackOverflow">
+    <meta name="twitter:domain" content="ru.stackoverflow.com">
+    <meta property="og:type" content="website">    
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="http://cdn.sstatic.net/ru/img/apple-touch-icon@2.png?v=bc20db47c743&amp;a">
+    <meta name="twitter:title" property="og:title" itemprop="title name" content="Расширение и сужение типов">
+    <meta name="twitter:description" property="og:description" itemprop="description" content="Допутим у меня есть иреархия классов.
+Во главе иерархии стоит класс А, за ним B, C и тд. Наследуются друг от друга.
+Уместно ли будет делать такое?
+A obj = new B();          //(Расширение)
+B obj = new ">
+    <meta property="og:url" content="http://ru.stackoverflow.com/questions/166875/%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B8-%D1%81%D1%83%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5-%D1%82%D0%B8%D0%BF%D0%BE%D0%B2">
+    <link rel="canonical" href="http://ru.stackoverflow.com/questions/166875/%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B8-%D1%81%D1%83%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5-%D1%82%D0%B8%D0%BF%D0%BE%D0%B2">
+
+    
+    
+    <script src="%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B8%20%D1%81%D1%83%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B8%D0%BF%D0%BE%D0%B2%20-%20Stack%20Overflow_files/watch.js" async="" type="text/javascript"></script><script src="%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B8%20%D1%81%D1%83%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B8%D0%BF%D0%BE%D0%B2%20-%20Stack%20Overflow_files/quant.js" async=""></script><script src="%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B8%20%D1%81%D1%83%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B8%D0%BF%D0%BE%D0%B2%20-%20Stack%20Overflow_files/beacon.js" async=""></script><script src="%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B8%20%D1%81%D1%83%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B8%D0%BF%D0%BE%D0%B2%20-%20Stack%20Overflow_files/analytics.js" async=""></script><script src="%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B8%20%D1%81%D1%83%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B8%D0%BF%D0%BE%D0%B2%20-%20Stack%20Overflow_files/ados_002.js" async="" type="text/javascript"></script><script src="%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B8%20%D1%81%D1%83%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B8%D0%BF%D0%BE%D0%B2%20-%20Stack%20Overflow_files/ados.js" async="" type="text/javascript"></script><script src="%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B8%20%D1%81%D1%83%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B8%D0%BF%D0%BE%D0%B2%20-%20Stack%20Overflow_files/jquery.js"></script>
+    <script src="%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B8%20%D1%81%D1%83%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B8%D0%BF%D0%BE%D0%B2%20-%20Stack%20Overflow_files/stub.js"></script>
+    <link rel="stylesheet" type="text/css" href="%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B8%20%D1%81%D1%83%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B8%D0%BF%D0%BE%D0%B2%20-%20Stack%20Overflow_files/all.css">
+
+            <link rel="alternate" type="application/atom+xml" title="Лента для вопроса 'Расширение и сужение типов'" href="http://ru.stackoverflow.com/feeds/question/166875">
+            <meta name="twitter:app:country" content="US">
+            <meta name="twitter:app:name:iphone" content="Stack Exchange iOS">
+            <meta name="twitter:app:id:iphone" content="871299723">
+            <meta name="twitter:app:url:iphone" content="se-zaphod://ru.stackoverflow.com/questions/166875/%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B8-%D1%81%D1%83%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5-%D1%82%D0%B8%D0%BF%D0%BE%D0%B2">
+            <meta name="twitter:app:name:ipad" content="Stack Exchange iOS">
+            <meta name="twitter:app:id:ipad" content="871299723">
+            <meta name="twitter:app:url:ipad" content="se-zaphod://ru.stackoverflow.com/questions/166875/%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B8-%D1%81%D1%83%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5-%D1%82%D0%B8%D0%BF%D0%BE%D0%B2">
+            <meta name="twitter:app:name:googleplay" content="Stack Exchange Android">
+            <meta name="twitter:app:url:googleplay" content="http://ru.stackoverflow.com/questions/166875/%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B8-%D1%81%D1%83%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5-%D1%82%D0%B8%D0%BF%D0%BE%D0%B2">
+            <meta name="twitter:app:id:googleplay" content="com.stackexchange.marvin">
+        <script>
+        
+            StackExchange.ready(function () {
+                    
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.initSnippetRenderer();
+                    });
+                    
+
+                StackExchange.using("postValidation", function () {
+                    StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+                });
+
+                
+                StackExchange.question.init({showAnswerHelp:true,totalCommentCount:1,shownCommentCount:1,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:166875});
+
+                styleCode();
+
+                    StackExchange.realtime.subscribeToQuestion('609', '166875');
+                                                                    StackExchange.using("gps", function () { StackExchange.gps.trackOutboundClicks('#content', '.post-text'); });
+
+            });
+        </script>
+
+
+    <script>
+        StackExchange.ready(function () {
+            StackExchange.realtime.init('wss://qa.sockets.stackexchange.com,ws://qa.sockets.stackexchange.com');
+            StackExchange.realtime.subscribeToReputationNotifications('609');
+                StackExchange.realtime.subscribeToTopBarNotifications('609');
+        });
+    </script>
+    <script>
+        StackExchange.init({"locale":"ru","stackAuthUrl":"https://stackauth.com","serverTime":1449058887,"networkMetaHostname":"meta.stackexchange.com","routeName":"Questions/Show","styleCode":true,"enableUserHovercards":true,"snippets":{"enabled":true,"domain":"stacksnippets.net"},"site":{"name":"Stack Overflow на русском","description":"Q&A for программистов","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdsB7sSAAAAAAzjgEF_Hd8vXv-C42sa_KyofaGR","recaptchaAudioLang":"en","enableNewTagCreationWarning":false,"insertSpaceAfterNameTabCompletion":false,"id":609,"nonAsciiTags":true,"enableSocialMediaInSharePopup":true},"user":{"fkey":"403aacb6ad65e2352d636eae87907085","rep":0,"isAnonymous":true,"isAnonymousNetworkWide":true},"realtime":{"newest":true,"active":true,"tagged":true}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.ru.js":"0749883981e7","js/moderator.ru.js":"c09e03fcfde7","js/full-anon.ru.js":"075f4bfb8b30","js/full.ru.js":"6af12b9a7773","js/wmd.ru.js":"ab469bf541fd","js/third-party/jquery.autocomplete.min.js":"e5f01e97f7c3","js/third-party/jquery.autocomplete.min.ru.js":"","js/mobile.ru.js":"32497c6729a0","js/help.ru.js":"bf033c3125f3","js/tageditor.ru.js":"89c7bbc14e60","js/tageditornew.ru.js":"397a8299dfae","js/inline-tag-editing.ru.js":"ba42b8defcec","js/revisions.ru.js":"1accae9157b8","js/review.ru.js":"62a5b5362207","js/tagsuggestions.ru.js":"3215339dff10","js/post-validation.ru.js":"f9c18b8b5e72","js/explore-qlist.ru.js":"e71f14781288","js/events.ru.js":"a6cabbec2ca9","js/keyboard-shortcuts.ru.js":"2672492464fd","js/external-editor.ru.js":"cf58cc6630ef","js/external-editor.ru.js":"cf58cc6630ef","js/snippet-javascript.ru.js":"a3ffd3ea380d","js/snippet-javascript-codemirror.ru.js":"14e45acc6a12"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </script>
+    
+        <script>
+            StackExchange.ready(function () {
+                $('#nav-tour').click(function () {
+                    StackExchange.using("gps", function() {
+                        StackExchange.gps.track("aboutpage.click", { aboutclick_location: "headermain" }, true);
+                    });
+                });
+            });
+        </script>
+    
+    
+<script src="%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B8%20%D1%81%D1%83%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B8%D0%BF%D0%BE%D0%B2%20-%20Stack%20Overflow_files/full-anon.js" async=""></script><script src="%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B8%20%D1%81%D1%83%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B8%D0%BF%D0%BE%D0%B2%20-%20Stack%20Overflow_files/adFeedback.js" type="text/javascript"></script><link href="%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B8%20%D1%81%D1%83%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B8%D0%BF%D0%BE%D0%B2%20-%20Stack%20Overflow_files/adFeedback.css" rel="stylesheet"><script src="%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B8%20%D1%81%D1%83%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B8%D0%BF%D0%BE%D0%B2%20-%20Stack%20Overflow_files/snippet-javascript.js" async=""></script><script src="%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B8%20%D1%81%D1%83%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B8%D0%BF%D0%BE%D0%B2%20-%20Stack%20Overflow_files/post-validation.js" async=""></script><script src="%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B8%20%D1%81%D1%83%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B8%D0%BF%D0%BE%D0%B2%20-%20Stack%20Overflow_files/prettify-full.js" async=""></script><script src="%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B8%20%D1%81%D1%83%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B8%D0%BF%D0%BE%D0%B2%20-%20Stack%20Overflow_files/external-editor.js" async=""></script></head>
+<body class="question-page new-topbar">
+    <noscript><div id="noscript-padding"></div></noscript>
+    <div id="notify-container"></div>
+    <div id="overlay-header"></div>
+    <div id="custom-header"></div>
+
+
+
+
+
+<div class="topbar">
+    <div class="topbar-wrapper">
+
+        <div class="js-topbar-dialog-corral">
+
+
+<div class="topbar-dialog siteSwitcher-dialog dno">
+    <div class="header">
+        <h3><a href="http://ru.stackoverflow.com/">текущее сообщество</a></h3>
+    </div>
+    <div class="modal-content current-site-container">
+        <ul class="current-site">
+                <li>
+                        <div class="related-links">
+                    <a href="http://chat.stackexchange.com/" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:6 })">чат</a>
+            </div>
+
+
+
+
+    <a href="http://ru.stackoverflow.com/" class="current-site-link site-link js-gps-track" data-id="609" data-gps-track="
+        site_switcher.click({ item_type:3 })">
+        <div class="site-icon favicon favicon-ru" title="Stack Overflow на русском"></div>
+        Stack Overflow на русском
+    </a>
+
+                </li>
+                <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    
+
+
+
+    <a href="http://meta.ru.stackoverflow.com/" class="site-link js-gps-track" data-id="610" data-gps-track="
+            site.switch({ target_site:610, item_type:3 }),
+        site_switcher.click({ item_type:4 })">
+        <div class="site-icon favicon favicon-rumeta" title="Stack Overflow на русском Meta"></div>
+        Stack Overflow на русском Meta
+    </a>
+
+                </li>
+                    </ul>
+    </div>
+    
+    <div class="header" id="your-communities-header">
+        <h3>
+Ваши сообщества        </h3>
+            
+    </div>
+    <div class="modal-content" id="your-communities-section">
+            
+            <div class="call-to-login">
+Чтобы изменить список, <a href="https://ru.stackoverflow.com/users/signup?ssrc=site_switcher&amp;returnurl=http%3a%2f%2fru.stackoverflow.com%2fquestions%2f166875%2f%25d0%25a0%25d0%25b0%25d1%2581%25d1%2588%25d0%25b8%25d1%2580%25d0%25b5%25d0%25bd%25d0%25b8%25d0%25b5-%25d0%25b8-%25d1%2581%25d1%2583%25d0%25b6%25d0%25b5%25d0%25bd%25d0%25b8%25d0%25b5-%25d1%2582%25d0%25b8%25d0%25bf%25d0%25be%25d0%25b2" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:10 })">зарегистрируйтесь</a> или <a href="https://ru.stackoverflow.com/users/login?ssrc=site_switcher&amp;returnurl=http%3a%2f%2fru.stackoverflow.com%2fquestions%2f166875%2f%25d0%25a0%25d0%25b0%25d1%2581%25d1%2588%25d0%25b8%25d1%2580%25d0%25b5%25d0%25bd%25d0%25b8%25d0%25b5-%25d0%25b8-%25d1%2581%25d1%2583%25d0%25b6%25d0%25b5%25d0%25bd%25d0%25b8%25d0%25b5-%25d1%2582%25d0%25b8%25d0%25bf%25d0%25be%25d0%25b2" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:11 })">войдите</a>.
+            </div>
+    </div>
+    
+    <div class="header">
+        <h3><a href="http://stackexchange.com/sites">другие сообщества stack exchange</a></h3>
+        <a href="http://blog.stackoverflow.com/" class="fr">company blog</a>
+    </div>
+    <div class="modal-content">
+            <div class="child-content"></div>
+    </div>
+</div>
+        </div>
+
+        <div class="network-items">
+
+            <a href="http://stackexchange.com/" class="topbar-icon icon-site-switcher yes-hover js-site-switcher-button js-gps-track" data-gps-track="site_switcher.show" title="Список всех 150 сайтов Stack Exchange">
+                <span class="hidden-text">Stack Exchange</span>
+            </a>
+
+    <a href="#" class="topbar-icon icon-inbox yes-hover js-inbox-button" title="Recent inbox messages">
+        <span class="hidden-text">входящие сообщения</span>
+        <span class="unread-count" style="display:none"></span>
+    </a>
+    <a href="#" class="topbar-icon icon-achievements yes-hover js-achievements-button" data-unread-class="" title="Recent achievements: reputation, badges, and privileges earned">
+        <span class="hidden-text">Репутация и знаки</span>
+        <span class="unread-count" style="display:none">
+            
+        </span>
+    </a>
+        </div>
+
+        <div class="topbar-links">
+
+                <div class="links-container">
+                <span class="topbar-menu-links">
+                                    <a href="https://ru.stackoverflow.com/users/signup?ssrc=head&amp;returnurl=http%3a%2f%2fru.stackoverflow.com%2fquestions%2f166875%2f%25d0%25a0%25d0%25b0%25d1%2581%25d1%2588%25d0%25b8%25d1%2580%25d0%25b5%25d0%25bd%25d0%25b8%25d0%25b5-%25d0%25b8-%25d1%2581%25d1%2583%25d0%25b6%25d0%25b5%25d0%25bd%25d0%25b8%25d0%25b5-%25d1%2582%25d0%25b8%25d0%25bf%25d0%25be%25d0%25b2" class="login-link">регистрация</a>
+                                <a href="https://ru.stackoverflow.com/users/login?ssrc=head&amp;returnurl=http%3a%2f%2fru.stackoverflow.com%2fquestions%2f166875%2f%25d0%25a0%25d0%25b0%25d1%2581%25d1%2588%25d0%25b8%25d1%2580%25d0%25b5%25d0%25bd%25d0%25b8%25d0%25b5-%25d0%25b8-%25d1%2581%25d1%2583%25d0%25b6%25d0%25b5%25d0%25bd%25d0%25b8%25d0%25b5-%25d1%2582%25d0%25b8%25d0%25bf%25d0%25be%25d0%25b2" class="login-link">вход</a>
+
+                        <a href="http://ru.stackoverflow.com/tour">тур</a>
+                            <a href="#" class="icon-help js-help-button" title="Справка и прочие ресурсы">
+        справка
+        <span class="triangle"></span>
+    </a>
+    <div class="topbar-dialog help-dialog js-help-dialog dno">
+        <div class="modal-content">
+            <ul>
+                                    <li>
+                        <a href="http://ru.stackoverflow.com/tour" class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })">
+                            Тур
+                            <span class="item-summary">
+                                Начните с этой страницы, чтобы быстро ознакомиться с сайтом
+                            </span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="http://ru.stackoverflow.com/help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })">
+                        Справка
+                        <span class="item-summary">
+                            Подробные ответы на любые возможные вопросы
+                        </span>
+                    </a>
+                </li>
+                    <li>
+                        <a href="http://meta.ru.stackoverflow.com/" class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })">
+                            Мета
+                            <span class="item-summary">
+                                Обсудить принципы работы и политику сайта
+                            </span>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+
+                    </span>
+                </div>
+
+            <div class="search-container">
+                <form id="search" action="/search" method="get" autocomplete="off">
+                    <input name="q" placeholder="поиск" tabindex="1" autocomplete="off" maxlength="240" type="text">
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+    <script>
+        StackExchange.ready(function() { StackExchange.topbar.init(); });
+    </script>
+
+    <div class="container">
+        <div id="header">
+            <br class="cbt">
+            <div id="hlogo">
+                <a href="http://ru.stackoverflow.com/">
+                    Stack Overflow на русском
+                        <span class="beta-title">бета</span>
+                </a>
+            </div>
+            <div id="hmenus">
+                <div class="nav mainnavs">
+                    <ul>
+                        <li class="youarehere"><a id="nav-questions" href="http://ru.stackoverflow.com/questions">Вопросы</a></li>
+                        <li><a id="nav-tags" href="http://ru.stackoverflow.com/tags">Метки</a></li>
+                        <li><a id="nav-users" href="http://ru.stackoverflow.com/users">Участники</a></li>
+                        <li><a id="nav-badges" href="http://ru.stackoverflow.com/help/badges">Знаки</a></li>
+                                                                        <li><a id="nav-unanswered" href="http://ru.stackoverflow.com/unanswered">Без ответа</a></li>
+                    </ul>
+                </div>
+                <div class="nav askquestion">
+                    <ul>
+                        <li>
+                            <a id="nav-askquestion" href="http://ru.stackoverflow.com/questions/ask">Задать вопрос</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+
+
+
+        <div id="content" class="snippet-hidden">
+            
+
+<div itemscope="" itemtype="http://schema.org/Question">
+    <link itemprop="image" href="http://cdn.sstatic.net/ru/img/apple-touch-icon.png?v=8e08c87f9e75">
+			<!--googleoff: all-->
+
+<div id="herobox-mini">
+    <div id="hero-content">
+        <span id="controls">
+                <a href="http://ru.stackoverflow.com/users/signup?ssrc=hero&amp;returnurl=http%3a%2f%2fru.stackoverflow.com%2fquestions%2f166875%2f%25d0%25a0%25d0%25b0%25d1%2581%25d1%2588%25d0%25b8%25d1%2580%25d0%25b5%25d0%25bd%25d0%25b8%25d0%25b5-%25d0%25b8-%25d1%2581%25d1%2583%25d0%25b6%25d0%25b5%25d0%25bd%25d0%25b8%25d0%25b5-%25d1%2582%25d0%25b8%25d0%25bf%25d0%25be%25d0%25b2" id="tell-me-more" class="button">Регистрация</a>
+            <span id="close"><a title="скрыть">×</a></span>
+        </span>
+        <div id="blurb">
+            Stack Overflow на русском — сайт вопросов и ответов для программистов. Совершенно бесплатный и без регистрации.  
+        </div>        
+    </div>
+    <script>
+        StackExchange.ready(function() {
+            var clickSource = $("body").attr("class") + '-mini';
+            var location = 0;
+            if ($("body").hasClass("questions-page")) {
+                clickSource = 'questionpagemini';
+                location = 2;
+            } else if ($("body").hasClass("question-page")) {
+                clickSource = 'questionpagemini';
+                location = 2;
+            } else if ($("body").hasClass("home-page")) {
+                clickSource = 'homepagemini';
+                location = 4;
+            }
+
+            $('#tell-me-more').click(function () {
+                StackExchange.using("gps", function () {
+                    StackExchange.gps.track("hero.action", { hero_action_type: 'cta', location: location }, true);
+                });
+            });
+            $('#herobox-mini #close').click(function () {
+                StackExchange.using("gps", function () {
+                    StackExchange.gps.track("hero.action", { hero_action_type: "close", location: location }, true);
+                });
+                $.cookie("hero", "none", { path: "/", expires: 365 });
+                var $hero = $("#herobox-mini");
+                $hero.slideUp('fast', function () { $hero.remove(); });
+                return false;
+            });
+        });
+    </script>
+</div>
+			<!--googleon: all-->
+			<div id="question-header">
+                <h1 itemprop="name"><a href="http://ru.stackoverflow.com/questions/166875/%d0%a0%d0%b0%d1%81%d1%88%d0%b8%d1%80%d0%b5%d0%bd%d0%b8%d0%b5-%d0%b8-%d1%81%d1%83%d0%b6%d0%b5%d0%bd%d0%b8%d0%b5-%d1%82%d0%b8%d0%bf%d0%be%d0%b2" class="question-hyperlink">Расширение и сужение типов</a></h1>
+		</div>
+			<div id="mainbar">
+
+			
+
+<div class="question" data-questionid="166875" id="question">
+
+    <script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,0,"adzerk396137740",4).enableDynamicSiteSelection().setZone(29); });
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk396137740"><div style="background-image: url( data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw== ); width: 1px; height: 1px; display:none;"></div><img class="pcfykmqlcrtplekulgcu" src="%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B8%20%D1%81%D1%83%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B8%D0%BF%D0%BE%D0%B2%20-%20Stack%20Overflow_files/i.gif" style="position:absolute;" height="0px" width="0px" border="0"></div>    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="166875" type="hidden">
+        <a class="vote-up-off" title="Данный вопрос отражает стремление разобраться; он понятен и несет пользу">голос за</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">0</span>
+        <a class="vote-down-off" title="Данный вопрос не отражает стремления разобраться; он непонятен или не несет пользы">голос против</a>
+
+        <a class="star-off" href="#" title="Добавить в или убрать из избранного этот вопрос (нажмите повторно, чтобы отменить)">избранное</a>
+        <div class="favoritecount"><b>2</b></div>
+
+
+</div>
+
+            </td>
+            
+<td class="postcell">
+<div>
+    <div class="post-text" itemprop="text">
+
+<p>Допутим у меня есть иреархия классов.<br>
+Во главе иерархии стоит класс А, за ним B, C и тд. Наследуются друг от друга.<br>
+Уместно ли будет делать такое?</p>
+<pre style="" class="default prettyprint prettyprinted"><code><span class="pln">A obj </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> B</span><span class="pun">();</span><span class="pln">          </span><span class="com">//(Расширение)</span><span class="pln">
+B obj </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> A</span><span class="pun">();</span><span class="pln">          </span><span class="com">//(Сужение)</span></code></pre>    </div>
+    <div class="post-taglist">
+        <a href="http://ru.stackoverflow.com/questions/tagged/%d0%bd%d0%b0%d1%81%d0%bb%d0%b5%d0%b4%d0%be%d0%b2%d0%b0%d0%bd%d0%b8%d0%b5" class="post-tag js-gps-track" title="показать вопросы с меткой «наследование»" rel="tag">наследование</a> <a href="http://ru.stackoverflow.com/questions/tagged/java" class="post-tag js-gps-track" title="показать вопросы с меткой «java»" rel="tag">java</a> 
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://ru.stackoverflow.com/q/166875" title="короткая постоянная ссылка на этот вопрос" class="short-link" id="link-post-166875">поделиться</a><span class="lsep">|</span><a href="http://ru.stackoverflow.com/posts/166875/edit" class="suggest-edit-post" title="">улучшить этот вопрос</a></div>        
+    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://ru.stackoverflow.com/posts/166875/revisions" title="показать все правки данного сообщения">изменен <span title="2012-11-23 14:12:21Z" class="relativetime">23 ноя '12 в 14:12</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://ru.stackoverflow.com/users/7905/deleted"><div class="gravatar-wrapper-32"><img src="%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B8%20%D1%81%D1%83%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B8%D0%BF%D0%BE%D0%B2%20-%20Stack%20Overflow_files/72178991c1f8582649436a9c0ad38f72.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://ru.stackoverflow.com/users/7905/deleted">Deleted</a><br>
+        <span class="reputation-score" title="уровень репутации " dir="ltr">348</span><span title="1 золотой знак"><span class="badge1"></span><span class="badgecount">1</span></span><span title="4&nbsp;серебряных знака"><span class="badge2"></span><span class="badgecount">4</span></span><span title="13 бронзовых знаков"><span class="badge3"></span><span class="badgecount">13</span></span>
+    </div>
+</div>    </td>
+    <td class="post-signature owner">
+        <div class="user-info ">
+    <div class="user-action-time">
+        задан <span title="2012-11-22 20:44:40Z" class="relativetime">22 ноя '12 в 20:44</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://ru.stackoverflow.com/users/10388/alex91"><div class="gravatar-wrapper-32"><img src="%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B8%20%D1%81%D1%83%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B8%D0%BF%D0%BE%D0%B2%20-%20Stack%20Overflow_files/e0466e8c3f70bb92563db1ea52cfe76a.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://ru.stackoverflow.com/users/10388/alex91">alex91</a><br>
+        <span class="reputation-score" title="уровень репутации " dir="ltr">835</span><span title="8 серебряных знаков"><span class="badge2"></span><span class="badgecount">8</span></span><span title="38 бронзовых знаков"><span class="badge3"></span><span class="badgecount">38</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</div>
+</td>
+        </tr>
+                
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-166875" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-166961" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Расширение - да, сужение - нет.</span>
+                    –&nbsp;<a href="http://ru.stackoverflow.com/users/1984/nofate" title="17719 баллов репутации" class="comment-user">Nofate<span class="mod-flair" title="moderator">♦</span></a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment166961_166875"><span title="2012-11-23 07:36:26Z" class="relativetime-clean">23 ноя '12 в 7:36</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-166875" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Используйте комментарии для запроса дополнительной информации или предложения улучшений. Избегайте публикации ответа на вопросы в комментариях.">добавить комментарий</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="разверните, чтобы увидеть все комментарии к сообщению" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>        </tbody></table>
+</div>
+
+			<div id="answers">
+
+				<a name="tab-top"></a>
+				<div id="answers-header">
+					<div class="subheader answers-subheader">
+						<h2>
+								2 ответа
+                                <span style="display:none;" itemprop="answerCount">2</span>
+						</h2>
+						<div>
+							<div id="tabs">
+        <a href="http://ru.stackoverflow.com/questions/166875/%d0%a0%d0%b0%d1%81%d1%88%d0%b8%d1%80%d0%b5%d0%bd%d0%b8%d0%b5-%d0%b8-%d1%81%d1%83%d0%b6%d0%b5%d0%bd%d0%b8%d0%b5-%d1%82%d0%b8%d0%bf%d0%be%d0%b2?answertab=active#tab-top" data-nav-xhref="" title="Сначала недавно обновленные ответы" data-value="active">текущие</a>
+        <a href="http://ru.stackoverflow.com/questions/166875/%d0%a0%d0%b0%d1%81%d1%88%d0%b8%d1%80%d0%b5%d0%bd%d0%b8%d0%b5-%d0%b8-%d1%81%d1%83%d0%b6%d0%b5%d0%bd%d0%b8%d0%b5-%d1%82%d0%b8%d0%bf%d0%be%d0%b2?answertab=oldest#tab-top" data-nav-xhref="" title="Ответы отображаются в порядке их публикации" data-value="oldest">старые</a>
+        <a class="youarehere" href="http://ru.stackoverflow.com/questions/166875/%d0%a0%d0%b0%d1%81%d1%88%d0%b8%d1%80%d0%b5%d0%bd%d0%b8%d0%b5-%d0%b8-%d1%81%d1%83%d0%b6%d0%b5%d0%bd%d0%b8%d0%b5-%d1%82%d0%b8%d0%bf%d0%be%d0%b2?answertab=votes#tab-top" data-nav-xhref="" title="Сначала ответы с наивысшим рейтингом" data-value="votes">голоса</a>
+</div>
+						</div>
+					</div>    
+				</div>    
+
+
+
+
+  
+<a name="166905"></a>
+<div id="answer-166905" class="answer accepted-answer" data-answerid="166905" itemscope="" itemtype="http://schema.org/Answer" itemprop="acceptedAnswer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="166905" type="hidden">
+        <a class="vote-up-off" title="Ответ полезен">голос за</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">5</span>
+        <a class="vote-down-off" title="Данный ответ не является полезным">голос против</a>
+
+
+
+        <span class="vote-accepted-on load-accepted-answer-date" title="загружается, когда ответ был принят…">принят</span>
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Наследнику предка присваивать нельзя. Только если Вы предку 
+(указателю на объект-предок) заранее присвоили указатель на 
+объект-потомок, то обратное присваивание выполнять можно.</p>
+<p><strong>UPD</strong></p>
+<pre style="" class="default prettyprint prettyprinted"><code><span class="pln">    </span><span class="kwd">class</span><span class="pln"> A </span><span class="pun">{</span><span class="pln">
+        </span><span class="pun">...</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+    </span><span class="kwd">class</span><span class="pln"> B </span><span class="kwd">extends</span><span class="pln"> A </span><span class="pun">{</span><span class="pln">
+       </span><span class="pun">...</span><span class="pln"> 
+    </span><span class="pun">}</span><span class="pln">
+   </span><span class="pun">...</span><span class="pln">
+    B b </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> B</span><span class="pun">();</span><span class="pln">
+    A a </span><span class="pun">=</span><span class="pln"> b</span><span class="pun">;</span><span class="pln">       </span><span class="com">// можно</span><span class="pln">
+    B c </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="pln">B</span><span class="pun">)</span><span class="pln"> a</span><span class="pun">;</span><span class="pln">   </span><span class="com">// можно</span><span class="pln">
+    A a1 </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> A</span><span class="pun">();</span><span class="pln">
+    B b1 </span><span class="pun">=</span><span class="pln"> a1</span><span class="pun">;</span><span class="pln">      </span><span class="com">// низзя</span></code></pre>    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://ru.stackoverflow.com/a/166905" title="короткая постоянная ссылка на этот ответ" class="short-link" id="link-post-166905">поделиться</a><span class="lsep">|</span><a href="http://ru.stackoverflow.com/posts/166905/edit" class="suggest-edit-post" title="">улучшить этот ответ</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://ru.stackoverflow.com/posts/166905/revisions" title="показать все правки данного сообщения">изменен <span title="2012-11-24 10:17:19Z" class="relativetime">24 ноя '12 в 10:17</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        отвечен <span title="2012-11-23 03:07:32Z" class="relativetime">23 ноя '12 в 3:07</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://ru.stackoverflow.com/users/352/alexlz"><div class="gravatar-wrapper-32"><img src="%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B8%20%D1%81%D1%83%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B8%D0%BF%D0%BE%D0%B2%20-%20Stack%20Overflow_files/cf5d6bda67a37c8090527720ad765653.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://ru.stackoverflow.com/users/352/alexlz">alexlz</a><br>
+        <span class="reputation-score" title="уровень репутации " dir="ltr">6,430</span><span title="5 серебряных знаков"><span class="badge2"></span><span class="badgecount">5</span></span><span title="11 бронзовых знаков"><span class="badge3"></span><span class="badgecount">11</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-166905" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-167132" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">лучше б вы на примере кода показали что можно а что нет, так понятнее будет</span>
+                    –&nbsp;<a href="http://ru.stackoverflow.com/users/1810/jmu" title="4963 балла репутации" class="comment-user">jmu</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment167132_166905"><span title="2012-11-23 16:42:59Z" class="relativetime-clean">23 ноя '12 в 16:42</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-167264" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">сужение низя</span>
+                    –&nbsp;<a href="http://ru.stackoverflow.com/users/532/vladimir-gordeev" title="3956 баллов репутации" class="comment-user">Vladimir Gordeev</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment167264_166905"><span title="2012-11-24 09:44:19Z" class="relativetime-clean">24 ноя '12 в 9:44</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-167271" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@jmu дополнил ответ</span>
+                    –&nbsp;<a href="http://ru.stackoverflow.com/users/352/alexlz" title="6430 баллов репутации" class="comment-user">alexlz</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment167271_166905"><span title="2012-11-24 10:17:52Z" class="relativetime-clean">24 ноя '12 в 10:17</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-166905" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Используйте комментарии для запроса дополнительной информации или предложения улучшений. Избегайте комментариев в стиле «+1» или «Спасибо».">добавить комментарий</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="разверните, чтобы увидеть все комментарии к сообщению" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+<script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,0,"adzerk1273708860",4).enableDynamicSiteSelection().setZone(30); });
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk1273708860"><div style="background-image: url( data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw== ); width: 1px; height: 1px; display:none;"></div><img class="pcfykmqlcrtplekulgcu" src="%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B8%20%D1%81%D1%83%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B8%D0%BF%D0%BE%D0%B2%20-%20Stack%20Overflow_files/i_002.gif" style="position:absolute;" height="0px" width="0px" border="0"></div>
+  
+<a name="167311"></a>
+<div style="" id="answer-167311" class="answer" data-answerid="167311" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="167311" type="hidden">
+        <a class="vote-up-off" title="Ответ полезен">голос за</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">3</span>
+        <a class="vote-down-off" title="Данный ответ не является полезным">голос против</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Думайте по-другому. Расширение-сужение -- слишком абстрактно.</p>
+<p>Производный тип -- это всегда более конкретный вариант базового. 
+Пускай вместо базового типа будет "Рыба", а вместо производного -- 
+"Селёдка".</p>
+<p>Тогда совершенно очевидно, что писать</p>
+<pre style="" class="default prettyprint prettyprinted"><code><span class="pun">Рыба</span><span class="pln"> </span><span class="pun">р</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="pun">Селёдка();</span></code></pre>
+<p>можно: ваша <code>р</code> -- рыба, например, селёдка, почему бы и нет.</p>
+<p>Но писать наоборот:</p>
+<pre style="" class="default prettyprint prettyprinted"><code><span class="pun">Селёдка</span><span class="pln"> </span><span class="pun">с</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="pun">Рыба();</span></code></pre>
+<p>нельзя: рыба ведь не обязательно селёдка, правда?</p>
+<p>Можно использовать преобразование типов:</p>
+<pre style="" class="default prettyprint prettyprinted"><code><span class="com">// у вас есть какая-то рыба</span><span class="pln">
+</span><span class="pun">Рыба</span><span class="pln"> </span><span class="pun">р;</span><span class="pln">
+</span><span class="com">// тут много кода</span><span class="pln">
+</span><span class="com">// а здесь вы точно знаете, что ваша рыба на самом деле селёдка</span><span class="pln">
+</span><span class="com">// тогда можно использовать приведение типов</span><span class="pln">
+</span><span class="pun">Селёдка</span><span class="pln"> </span><span class="pun">с</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(Селёдка)р;</span><span class="pln">
+</span><span class="com">// но если вы ошиблись, и в прошлой строке рыба была на самом деле</span><span class="pln">
+</span><span class="com">// акулой, вы получите exception</span></code></pre>
+<p>Как проверить, рыба ли ваша селёдка? Этого не нужно: <code>Селёдка</code> наследник <code>Рыбы</code>, то есть каждая <code>Селёдка</code> обязательно <code>Рыба</code>.</p>
+<p>Как проверить, селёдка ли ваша рыба? Очень просто:</p>
+<pre style="" class="default prettyprint prettyprinted"><code><span class="pun">Рыба</span><span class="pln"> </span><span class="pun">р;</span><span class="pln">
+</span><span class="com">// много кода</span><span class="pln">
+</span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(р</span><span class="pln"> </span><span class="kwd">instanceof</span><span class="pln"> </span><span class="pun">Селёдка)</span><span class="pln">
+</span><span class="pun">{</span><span class="pln">
+    </span><span class="com">// о, оказывается, наша рыба -- селёдка!</span><span class="pln">
+    </span><span class="pun">Селёдка</span><span class="pln"> </span><span class="pun">с</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(Селёдка)р;</span><span class="pln"> </span><span class="com">// здесь исключения не будет</span><span class="pln">
+</span><span class="pun">}</span></code></pre>    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://ru.stackoverflow.com/a/167311" title="короткая постоянная ссылка на этот ответ" class="short-link" id="link-post-167311">поделиться</a><span class="lsep">|</span><a href="http://ru.stackoverflow.com/posts/167311/edit" class="suggest-edit-post" title="">улучшить этот ответ</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://ru.stackoverflow.com/posts/167311/revisions" title="показать все правки данного сообщения">изменен <span title="2012-11-24 13:56:31Z" class="relativetime">24 ноя '12 в 13:56</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        отвечен <span title="2012-11-24 13:55:20Z" class="relativetime">24 ноя '12 в 13:55</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://ru.stackoverflow.com/users/10105/vladd"><div class="gravatar-wrapper-32"><img src="%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B8%20%D1%81%D1%83%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B8%D0%BF%D0%BE%D0%B2%20-%20Stack%20Overflow_files/f81585f940e68c3bab934cc6f59c901e.jpeg" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://ru.stackoverflow.com/users/10105/vladd">VladD</a><br>
+        <span class="reputation-score" title="уровень репутации 65718" dir="ltr">65.7k</span><span title="5 золотых знаков"><span class="badge1"></span><span class="badgecount">5</span></span><span title="55 серебряных знаков"><span class="badge2"></span><span class="badgecount">55</span></span><span title="118 бронзовых знаков"><span class="badge3"></span><span class="badgecount">118</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-167311" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-167341" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@VladD Я лучше сдамся. А то 
+лезть в определения... Лениво. По моему убеждению (может не совпадать с 
+чем угодно) строгая статическая типизация не требует проверки типов во 
+время выполнения. Возможно с точки зрения науки я не прав. Вполне 
+допускаю.  Да, и спасибо за демонстрацию того, что java-compiler кушает 
+идентификаторы из русских букв. Не знал.</span>
+                    –&nbsp;<a href="http://ru.stackoverflow.com/users/352/alexlz" title="6430 баллов репутации" class="comment-user">alexlz</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment167341_167311"><span title="2012-11-24 15:28:00Z" class="relativetime-clean">24 ноя '12 в 15:28</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-167347" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@alexlz: Я вовсе не хотел 
+"победить" вас, просто мне самому такие вопросы интересны. И интересно 
+ваше мнение по поводу строгой типизации. Не сочтите уточняющие вопросы 
+за придирки. Как мне кажется, единого понимания строгой типизации не 
+существует. Вот, например, мнение Эрика Липперта, одного из архитекторов
+ C#: <a href="http://blogs.msdn.com/b/ericlippert/archive/2012/10/15/is-c-a-strongly-typed-or-a-weakly-typed-language.aspx" rel="nofollow">blogs.msdn.com/b/ericlippert/archive/2012/10/15/…</a></span>
+                    –&nbsp;<a href="http://ru.stackoverflow.com/users/10105/vladd" title="65718 баллов репутации" class="comment-user">VladD</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment167347_167311"><span title="2012-11-24 16:22:59Z" class="relativetime-clean">24 ноя '12 в 16:22</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-167349" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="количество голосов «полезный комментарий»" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@alexlz: Возвращаясь к теме 
+дискуссии, мне кажется, что в хорошо написанной программе процент 
+даун-кастов, instanceof, dynamic_cast&lt;&gt;  и тому подобного должен 
+быть очень мал как по объёму кода, так и по количеству выполнений за 
+время пробега программы. Злоупотребление такими конструкциями обычно 
+означает неправильную архитектуру проекта.</span>
+                    –&nbsp;<a href="http://ru.stackoverflow.com/users/10105/vladd" title="65718 баллов репутации" class="comment-user">VladD</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment167349_167311"><span title="2012-11-24 16:27:28Z" class="relativetime-clean">24 ноя '12 в 16:27</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-167351" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@VladD извинения излишни, 
+меня моя неграмотность не сильно беспокоит. Да и тема-то непростая. А 
+насчёт ап-кастов/даун-кастов, так библиотеки контейнерных классов без 
+них как будут работать? (В C++ это ушло в тень после введения 
+шаблов-templates, а когда-то тоже цвело пышным цветом).</span>
+                    –&nbsp;<a href="http://ru.stackoverflow.com/users/352/alexlz" title="6430 баллов репутации" class="comment-user">alexlz</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment167351_167311"><span title="2012-11-24 16:38:43Z" class="relativetime-clean">24 ноя '12 в 16:38</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-167355" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@alexlz: с шаблонами и правда
+ даун-касты не нужны. В Джаве генерики реализованы так, что в рантайме 
+контейнеры содержат просто ссылки на Object, даун-касты вставляются 
+компилятором, отчего производительность не выигрывает. В C#, в отличие 
+от Джавы, генерики сделаны правильно, и содержат настоящие ссылки на 
+объекты правильного типа, так что даун-касты не нужны. То же и в C++, 
+поскольку каждая инстанциация шаблона компилируется отдельно. То есть, 
+для контейнеров даун-касты не нужны, если язык это позволяет. Джава в 
+этом смысле проигрывает как Шарпу, так и C++, в ней без даун-кастов не 
+обойтись.</span>
+                    –&nbsp;<a href="http://ru.stackoverflow.com/users/10105/vladd" title="65718 баллов репутации" class="comment-user">VladD</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment167355_167311"><span title="2012-11-24 16:53:13Z" class="relativetime-clean">24 ноя '12 в 16:53</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-167311" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Используйте комментарии для запроса дополнительной информации или предложения улучшений. Избегайте комментариев в стиле «+1» или «Спасибо».">добавить комментарий</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="разверните, чтобы увидеть все комментарии к сообщению" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+									<a name="new-answer"></a>
+						<form id="post-form" action="/questions/166875/answer/submit" method="post" class="post-form">
+						    <input id="post-id" value="166875" type="hidden">
+                            <input id="qualityBanWarningShown" name="qualityBanWarningShown" value="false" type="hidden">
+                            <input name="referrer" value="http://info.javarush.ru/JavaRush_lectures_discussion/2013/06/18/lecture-10.html" type="hidden">
+							<h2 class="space">Ваш ответ</h2>
+
+
+            <script>
+            StackExchange.ifUsing("editor", function () {
+                StackExchange.using("externalEditor", function () {
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.init();
+                    });
+                });
+            }, "code-snippets");
+        </script>
+    
+
+<script>
+    StackExchange.ready(function() {
+        initTagRenderer("".split(" "), "".split(" "));
+       
+        StackExchange.using("externalEditor", function() {
+                // Have to fire editor after snippets, if snippets enabled
+                if (StackExchange.options.snippets.enabled) {
+                    StackExchange.using("snippets", function() {
+                        createEditor();
+                    });
+                }
+                else {
+                    createEditor();
+                }
+            });
+
+            function createEditor() {
+                prepareEditor({
+                    heartbeatType: 'answer',
+                convertImagesToLinks: false,
+                reputationToPostImages: null,
+                bindNavPrevention: true,
+                postfix: "",
+                    onDemand: true,
+                    discardSelector: ".discard-answer"
+                    ,immediatelyShowMarkdownHelp:true
+                    });
+                
+
+        }
+    });  
+</script>
+
+
+<div id="post-editor" class="post-editor js-post-editor">
+
+    <div style="position: relative;">     
+        <div class="wmd-container">
+            <div id="wmd-button-bar" class="wmd-button-bar"><ul id="wmd-button-row" class="wmd-button-row"><li style="left: 0px;" class="wmd-button" id="wmd-bold-button"><span style="background-position: 0px -20px;"></span></li><li style="left: 25px;" class="wmd-button" id="wmd-italic-button"><span style="background-position: -20px -20px;"></span></li><li style="left: 50px;" class="wmd-spacer" id="wmd-spacer1"><span style="background-position: -40px -20px;"></span></li><li style="left: 75px;" class="wmd-button" id="wmd-link-button"><span style="background-position: -40px -20px;"></span></li><li style="left: 100px;" class="wmd-button" id="wmd-quote-button"><span style="background-position: -60px -20px;"></span></li><li style="left: 125px;" class="wmd-button" id="wmd-code-button"><span style="background-position: -80px -20px;"></span></li><li style="left: 150px;" class="wmd-button" id="wmd-image-button"><span style="background-position: -100px -20px;"></span></li><li style="left: 175px;" class="wmd-spacer" id="wmd-spacer2"><span style="background-position: -120px -20px;"></span></li><li style="left: 200px;" class="wmd-button" id="wmd-olist-button"><span style="background-position: -120px -20px;"></span></li><li style="left: 225px;" class="wmd-button" id="wmd-ulist-button"><span style="background-position: -140px -20px;"></span></li><li style="left: 250px;" class="wmd-button" id="wmd-heading-button"><span style="background-position: -160px -20px;"></span></li><li style="left: 275px;" class="wmd-button" id="wmd-hr-button"><span style="background-position: -180px -20px;"></span></li><li style="left: 300px;" class="wmd-spacer" id="wmd-spacer3"><span style="background-position: -200px -20px;"></span></li><li style="left: 325px;" class="wmd-button" id="wmd-undo-button"><span style="background-position: -200px -20px;"></span></li><li style="left: 350px;" class="wmd-button" id="wmd-redo-button"><span style="background-position: -220px -20px;"></span></li></ul></div>
+            <textarea id="wmd-input" class="wmd-input" name="post-text" cols="92" rows="15" tabindex="101" data-min-length=""></textarea>
+        </div>
+    </div>
+
+    <div class="fl" style="margin-top: 8px; height:24px;">&nbsp;</div>
+    <div id="draft-saved" class="draft-saved community-option fl" style="margin-top: 8px; height:24px; display:none;">черновик сохранен</div>
+
+    <div id="draft-discarded" class="draft-discarded community-option fl" style="margin-top: 8px; height:24px; display:none;">черновик удален</div>
+
+
+
+    <div id="wmd-preview" class="wmd-preview"></div>
+    <div></div>
+    <div class="edit-block">
+        <input id="fkey" name="fkey" value="403aacb6ad65e2352d636eae87907085" type="hidden">
+        <input id="author" name="author" type="text">
+    </div>
+
+
+
+</div>
+							<div style="position: relative;">
+								
+								            <div class="form-item new-post-login">
+        
+                <div class="new-login-form">
+                    <div class="new-login-left">
+                        <h3>Зарегистрируйтесь или <a id="login-link" href="http://ru.stackoverflow.com/users/login?ssrc=question_page&amp;returnurl=http%3a%2f%2fru.stackoverflow.com%2fquestions%2f166875%2f%25d0%25a0%25d0%25b0%25d1%2581%25d1%2588%25d0%25b8%25d1%2580%25d0%25b5%25d0%25bd%25d0%25b8%25d0%25b5-%25d0%25b8-%25d1%2581%25d1%2583%25d0%25b6%25d0%25b5%25d0%25bd%25d0%25b8%25d0%25b5-%25d1%2582%25d0%25b8%25d0%25bf%25d0%25be%25d0%25b2%23new-answer">войдите</a></h3>
+                        <script>
+                            StackExchange.ready(function () {
+                                StackExchange.helpers.onClickDraftSave('#login-link');
+                            });
+                        </script>
+                        <div class="preferred-login google-login">
+                            <p><span class="icon"></span><span>Регистрация через Google</span></p>
+                        </div>
+                        <div class="preferred-login facebook-login">
+                            <p><span class="icon"></span><span>Регистрация через Facebook</span></p>
+                        </div>
+                        <div class="preferred-login stackexchange-login">
+                            <p><span class="icon"></span><span>Sign up using Email and Password</span></p>
+                        </div>
+                    </div>
+                    <input name="manual-openid" class="manual-openid" type="hidden">
+                    <input name="use-facebook" class="use-facebook" value="false" type="hidden">
+                    <input name="use-google" class="use-google" value="false" type="hidden">
+                    <input class="submit-openid" value="Submit" style="display:none" type="button">
+                    <div class="new-login-right">
+                                <h3>Отправить анонимно</h3>
+    <div class="form-item">
+        <table>
+        <tbody><tr>
+                    <td class="vm">
+                <div>
+                    <label for="display-name">Имя</label>
+                    <input id="display-name" name="display-name" size="30" maxlength="30" tabindex="105" type="text">
+                </div>
+                <div>
+                    <label for="m-address">Почта</label>
+                    <input id="m-address" name="m-address" size="30" maxlength="100" tabindex="106" placeholder="обязательна, не будет видна другим" type="email">
+                </div>
+            </td>
+        </tr>
+        </tbody></table>
+    </div>
+
+                    </div>
+                </div>
+            </div>
+            <script>
+                StackExchange.ready(
+                    function () {
+                        StackExchange.openid.initPostLogin('.new-post-login', 'http%3a%2f%2fru.stackoverflow.com%2fquestions%2f166875%2f%25d0%25a0%25d0%25b0%25d1%2581%25d1%2588%25d0%25b8%25d1%2580%25d0%25b5%25d0%25bd%25d0%25b8%25d0%25b5-%25d0%25b8-%25d1%2581%25d1%2583%25d0%25b6%25d0%25b5%25d0%25bd%25d0%25b8%25d0%25b5-%25d1%2582%25d0%25b8%25d0%25bf%25d0%25be%25d0%25b2%23new-answer', 'question_page');
+                    }
+                );
+            </script>
+            <noscript>
+                        <h3>Отправить анонимно</h3>
+    <div class="form-item">
+        <table>
+        <tr>
+                    <td class="vm">
+                <div>
+                    <label for="display-name">Имя</label>
+                    <input id="display-name" name="display-name" type="text" size="30" maxlength="30" value="" tabindex="105">
+                </div>
+                <div>
+                    <label for="m-address">Почта</label>
+                    <input id="m-address" name="m-address" type="email" size="30" maxlength="100" value="" tabindex="106" placeholder="обязательна, не будет видна другим" />
+                </div>
+            </td>
+        </tr>
+        </table>
+    </div>
+
+            </noscript>
+
+							</div>
+           
+															<div class="form-submit cbt">
+									<input id="submit-button" value="Отправьте ваш ответ" tabindex="110" type="submit">
+									<a href="#" class="discard-answer dno">отменить</a>
+
+<p class="privacy-policy-agreement">
+Публикуя ответ вы принимаете условия <a href="http://stackexchange.com/legal/privacy-policy" target="_blank">политики конфиденциальности</a> и <a href="http://stackexchange.com/legal/terms-of-service" target="_blank">соглашение</a>.</p>
+<input name="legalLinksShown" value="1" type="hidden">								</div>
+						</form>
+
+
+
+						<h2 class="bottom-notice" data-loc="1">
+Все еще ищете ответ?							Ознакомьтесь с другими вопросами по метке <a href="http://ru.stackoverflow.com/questions/tagged/%d0%bd%d0%b0%d1%81%d0%bb%d0%b5%d0%b4%d0%be%d0%b2%d0%b0%d0%bd%d0%b8%d0%b5" class="post-tag" title="показать вопросы с меткой «наследование»" rel="tag">наследование</a> <a href="http://ru.stackoverflow.com/questions/tagged/java" class="post-tag" title="показать вопросы с меткой «java»" rel="tag">java</a>  или <a href="http://ru.stackoverflow.com/questions/ask">задайте Ваш вопрос</a>.						</h2>
+			</div>
+		</div>
+				<div id="sidebar" class="show-votes">
+						    <div class="module question-stats">
+			        <table id="qinfo">
+			            <tbody><tr>
+			                <td>
+			                    <p class="label-key">задан</p>
+			                </td>
+			                <td style="padding-left: 10px">
+			                    <p class="label-key" title="2012-11-22 20:44:40Z"><b>3 года назад</b></p>
+			                </td>
+			            </tr>
+			            <tr>
+			                <td>
+			                    <p class="label-key">просмотрен</p>
+			                </td>
+
+			                <td style="padding-left: 10px">
+			                    <p class="label-key">
+			                        <b>6062 раза</b>
+			                    </p>
+			                </td>
+			            </tr>
+			                <tr>
+			                    <td>
+			                        <p class="label-key">обновлен</p>
+			                    </td>
+			                    <td style="padding-left: 10px">
+			                        <p class="label-key"><b><a href="http://ru.stackoverflow.com/questions/166875/%d0%a0%d0%b0%d1%81%d1%88%d0%b8%d1%80%d0%b5%d0%bd%d0%b8%d0%b5-%d0%b8-%d1%81%d1%83%d0%b6%d0%b5%d0%bd%d0%b8%d0%b5-%d1%82%d0%b8%d0%bf%d0%be%d0%b2?lastactivity" class="lastactivity-link" title="2012-11-23 14:12:21Z">3 года назад</a></b></p>
+			                    </td>
+			                </tr>
+			        </tbody></table>
+			    </div>
+						
+			<script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,0,"adzerk1797948801",17).enableDynamicSiteSelection().setZone(56016); });
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk1797948801"><div style="background-image: url( data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw== ); width: 1px; height: 1px; display:none;"></div><img class="pcfykmqlcrtplekulgcu" src="%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B8%20%D1%81%D1%83%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B8%D0%BF%D0%BE%D0%B2%20-%20Stack%20Overflow_files/i_003.gif" style="position:absolute;" height="0px" width="0px" border="0"></div>
+			  
+    
+            
+
+				<div class="module sidebar-related">
+					<h4 id="h-related">Похожие</h4>
+                    <div class="related js-gps-related-questions" data-tracker="rq=1">
+                        <div class="spacer js-gps-track">
+<a href="http://ru.stackoverflow.com/q/9897?rq=1" title="Количество голосов («за» — «против»)">
+    <div class="answer-votes answered-accepted default">2
+    </div>
+</a><a href="http://ru.stackoverflow.com/questions/9897/%d0%94%d0%b6%d0%b5%d0%bd%d0%b5%d1%80%d0%b8%d0%ba%d0%b8-%d0%b8-%d1%81%d0%b2%d1%8f%d0%b7%d1%8c-%d1%82%d0%b8%d0%bf%d0%be%d0%b2?rq=1" class="question-hyperlink">Дженерики и связь типов</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://ru.stackoverflow.com/q/159393?rq=1" title="Количество голосов («за» — «против»)">
+    <div class="answer-votes default">-1
+    </div>
+</a><a href="http://ru.stackoverflow.com/questions/159393/%d0%98%d1%81%d0%bf%d0%be%d0%bb%d1%8c%d0%b7%d0%be%d0%b2%d0%b0%d0%bd%d0%b8%d0%b5-enum-%d0%be%d1%88%d0%b8%d0%b1%d0%ba%d0%b0-%d1%82%d0%b8%d0%bf%d0%be%d0%b2?rq=1" class="question-hyperlink">Использование enum: ошибка типов</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://ru.stackoverflow.com/q/193883?rq=1" title="Количество голосов («за» — «против»)">
+    <div class="answer-votes answered-accepted default">-1
+    </div>
+</a><a href="http://ru.stackoverflow.com/questions/193883/%d0%9f%d1%80%d0%b8%d1%87%d0%b8%d0%bd%d0%b0-%d0%bd%d0%b5%d1%81%d0%be%d0%b2%d0%bc%d0%b5%d1%81%d1%82%d0%b8%d0%bc%d0%be%d1%81%d1%82%d0%b8-%d1%82%d0%b8%d0%bf%d0%be%d0%b2?rq=1" class="question-hyperlink">Причина несовместимости типов</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://ru.stackoverflow.com/q/252474?rq=1" title="Количество голосов («за» — «против»)">
+    <div class="answer-votes answered-accepted default">1
+    </div>
+</a><a href="http://ru.stackoverflow.com/questions/252474/%d0%a3%d0%bf%d0%b0%d0%ba%d0%be%d0%b2%d0%ba%d0%b0-%d0%b8-%d1%80%d0%b0%d1%81%d0%bf%d0%b0%d0%ba%d0%be%d0%b2%d0%ba%d0%b0-%d1%82%d0%b8%d0%bf%d0%be%d0%b2?rq=1" class="question-hyperlink">Упаковка и распаковка типов</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://ru.stackoverflow.com/q/271985?rq=1" title="Количество голосов («за» — «против»)">
+    <div class="answer-votes answered-accepted default">0
+    </div>
+</a><a href="http://ru.stackoverflow.com/questions/271985/%d0%af%d0%b2%d0%bd%d0%be%d0%b5-%d0%bf%d1%80%d0%b8%d0%b2%d0%b5%d0%b4%d0%b5%d0%bd%d0%b8%d0%b5-%d1%82%d0%b8%d0%bf%d0%be%d0%b2?rq=1" class="question-hyperlink">Явное приведение типов</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://ru.stackoverflow.com/q/312412?rq=1" title="Количество голосов («за» — «против»)">
+    <div class="answer-votes default">0
+    </div>
+</a><a href="http://ru.stackoverflow.com/questions/312412/%d0%9f%d1%80%d0%b8%d0%b2%d0%b5%d0%b4%d0%b5%d0%bd%d0%b8%d0%b5-%d1%82%d0%b8%d0%bf%d0%be%d0%b2?rq=1" class="question-hyperlink">Приведение типов</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://ru.stackoverflow.com/q/326808?rq=1" title="Количество голосов («за» — «против»)">
+    <div class="answer-votes answered-accepted default">1
+    </div>
+</a><a href="http://ru.stackoverflow.com/questions/326808/%d0%9a%d0%be%d0%b2%d0%b0%d1%80%d0%b8%d0%b0%d0%bd%d1%82%d0%bd%d0%be%d1%81%d1%82%d1%8c-%d0%b2%d0%be%d0%b7%d0%b2%d1%80%d0%b0%d1%89%d0%b0%d0%b5%d0%bc%d1%8b%d1%85-%d1%82%d0%b8%d0%bf%d0%be%d0%b2?rq=1" class="question-hyperlink">Ковариантность возвращаемых типов</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://ru.stackoverflow.com/q/381315?rq=1" title="Количество голосов («за» — «против»)">
+    <div class="answer-votes default">0
+    </div>
+</a><a href="http://ru.stackoverflow.com/questions/381315/%d0%a0%d0%b0%d1%81%d1%88%d0%b8%d1%80%d0%b5%d0%bd%d0%b8%d0%b5-%d1%82%d0%b8%d0%bf%d0%be%d0%b2-%d0%bd%d0%b0-java?rq=1" class="question-hyperlink">Расширение типов на Java</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://ru.stackoverflow.com/q/452507?rq=1" title="Количество голосов («за» — «против»)">
+    <div class="answer-votes answered-accepted default">0
+    </div>
+</a><a href="http://ru.stackoverflow.com/questions/452507/%d0%9f%d1%80%d0%b8%d0%b2%d0%b5%d0%b4%d0%b5%d0%bd%d0%b8%d0%b5-%d1%82%d0%b8%d0%bf%d0%be%d0%b2-java?rq=1" class="question-hyperlink">Приведение типов Java</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://ru.stackoverflow.com/q/468589?rq=1" title="Количество голосов («за» — «против»)">
+    <div class="answer-votes answered-accepted default">0
+    </div>
+</a><a href="http://ru.stackoverflow.com/questions/468589/%d0%92%d0%be%d0%bf%d1%80%d0%be%d1%81-%d0%be-%d0%bf%d1%80%d0%b8%d0%b2%d0%b5%d0%b4%d0%b5%d0%bd%d0%b8%d0%b8-%d1%82%d0%b8%d0%bf%d0%be%d0%b2?rq=1" class="question-hyperlink">Вопрос о приведении типов</a>
+</div>
+
+                    </div>
+				</div>
+            
+
+		</div>
+	
+<div id="feed-link">
+    <div id="feed-link-text">
+        <a href="http://ru.stackoverflow.com/feeds/question/166875" title="лента для данного вопроса и его ответов">
+            <span class="feed-icon"></span>лента вопросов
+        </a>
+    </div>
+</div>	<script>
+StackExchange.ready(function(){$.get('/posts/166875/ivc/2d54');});
+</script>
+<noscript>
+    <div><img src="/posts/166875/ivc/2d54" class="dno" alt="" width="0" height="0"></div>
+</noscript><div style="display:none" id="prettify-lang">default</div></div>
+
+
+        </div>
+    </div>
+    <div id="footer" class="categories">
+        <div class="footerwrap">
+            <div id="footer-menu">
+                <div class="top-footer-links">
+                        <a href="http://ru.stackoverflow.com/tour">тур</a>
+                    <a href="http://ru.stackoverflow.com/help">справка</a>
+                    <a href="http://blog.stackoverflow.com/?blb=1">дневник</a>
+                        <a href="http://chat.stackexchange.com/">чат</a>
+                    <a href="http://data.stackexchange.com/">данные</a>
+                    <a href="http://stackexchange.com/legal">соглашение</a>
+                    <a href="http://stackexchange.com/legal/privacy-policy">политика конфиденциальности</a>
+                    <a href="http://stackexchange.com/work-here">вакансии</a>
+                    <a href="http://stackexchange.com/mediakit">для рекламодателей</a>
+
+                    <a onclick='StackExchange.switchMobile("on")'>мобильная версия</a>
+                    <b><a href="http://ru.stackoverflow.com/contact">связаться с нами</a></b>
+                        <b><a href="http://meta.ru.stackoverflow.com/">оставить отзыв</a></b>
+                    
+                </div>
+                <div id="footer-sites">
+                    <table>
+    <tbody><tr>
+            <th colspan="3">
+                Technology
+            </th>
+            <th>
+                Life / Arts
+            </th>
+            <th>
+                Culture / Recreation
+            </th>
+            <th>
+                Science
+            </th>
+            <th>
+                Other
+            </th>
+    </tr>
+    <tr>
+            <td>
+                <ol>
+                        <li><a href="http://stackoverflow.com/" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                        <li><a href="http://serverfault.com/" title="system and network administrators">Server Fault</a></li>
+                        <li><a href="http://superuser.com/" title="computer enthusiasts and power users">Super User</a></li>
+                        <li><a href="http://webapps.stackexchange.com/" title="power users of web applications">Web Applications</a></li>
+                        <li><a href="http://askubuntu.com/" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                        <li><a href="http://webmasters.stackexchange.com/" title="pro webmasters">Webmasters</a></li>
+                        <li><a href="http://gamedev.stackexchange.com/" title="professional and independent game developers">Game Development</a></li>
+                        <li><a href="http://tex.stackexchange.com/" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://programmers.stackexchange.com/" title="professional programmers interested in conceptual questions about software development">Programmers</a></li>
+                        <li><a href="http://unix.stackexchange.com/" title="users of Linux, FreeBSD and other Un*x-like operating systems">Unix &amp; Linux</a></li>
+                        <li><a href="http://apple.stackexchange.com/" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+                        <li><a href="http://wordpress.stackexchange.com/" title="WordPress developers and administrators">WordPress Development</a></li>
+                        <li><a href="http://gis.stackexchange.com/" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+                        <li><a href="http://electronics.stackexchange.com/" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+                        <li><a href="http://android.stackexchange.com/" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+                        <li><a href="http://security.stackexchange.com/" title="information security professionals">Information Security</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://dba.stackexchange.com/" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+                        <li><a href="http://drupal.stackexchange.com/" title="Drupal developers and administrators">Drupal Answers</a></li>
+                        <li><a href="http://sharepoint.stackexchange.com/" title="SharePoint enthusiasts">SharePoint</a></li>
+                        <li><a href="http://ux.stackexchange.com/" title="user experience researchers and experts">User Experience</a></li>
+                        <li><a href="http://mathematica.stackexchange.com/" title="users of Mathematica">Mathematica</a></li>
+                        <li><a href="http://salesforce.stackexchange.com/" title="Salesforce administrators, implementation experts, developers and anybody in-between">Salesforce</a></li>
+                        <li><a href="http://expressionengine.stackexchange.com/" title="administrators, end users, developers and designers for ExpressionEngine® CMS">ExpressionEngine® Answers</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#technology" class="more">
+                                more (13)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://photo.stackexchange.com/" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                        <li><a href="http://scifi.stackexchange.com/" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                        <li><a href="http://graphicdesign.stackexchange.com/" title="Graphic Design professionals, students, and enthusiasts">Graphic Design</a></li>
+                        <li><a href="http://movies.stackexchange.com/" title="movie and tv enthusiasts">Movies &amp; TV</a></li>
+                        <li><a href="http://cooking.stackexchange.com/" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                        <li><a href="http://diy.stackexchange.com/" title="contractors and serious DIYers">Home Improvement</a></li>
+                        <li><a href="http://money.stackexchange.com/" title="people who want to be financially literate">Personal Finance &amp; Money</a></li>
+                        <li><a href="http://academia.stackexchange.com/" title="academics and those enrolled in higher education">Academia</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#lifearts" class="more">
+                                more (9)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://english.stackexchange.com/" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                        <li><a href="http://skeptics.stackexchange.com/" title="scientific skepticism">Skeptics</a></li>
+                        <li><a href="http://judaism.stackexchange.com/" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                        <li><a href="http://travel.stackexchange.com/" title="road warriors and seasoned travelers">Travel</a></li>
+                        <li><a href="http://christianity.stackexchange.com/" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                        <li><a href="http://gaming.stackexchange.com/" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+                        <li><a href="http://bicycles.stackexchange.com/" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+                        <li><a href="http://rpg.stackexchange.com/" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#culturerecreation" class="more">
+                                more (21)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://math.stackexchange.com/" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                        <li><a href="http://stats.stackexchange.com/" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                        <li><a href="http://cstheory.stackexchange.com/" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                        <li><a href="http://physics.stackexchange.com/" title="active researchers, academics and students of physics">Physics</a></li>
+                        <li><a href="http://mathoverflow.net/" title="professional mathematicians">MathOverflow</a></li>
+                        <li><a href="http://chemistry.stackexchange.com/" title="scientists, academics, teachers and students">Chemistry</a></li>
+                        <li><a href="http://biology.stackexchange.com/" title="biology researchers, academics, and students">Biology</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#science" class="more">
+                                more (5)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://stackapps.com/" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                        <li><a href="http://meta.stackexchange.com/" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Exchange</a></li>
+                        <li><a href="http://area51.stackexchange.com/" title="proposing new sites in the Stack Exchange network">Area 51</a></li>
+                        <li><a href="http://careers.stackoverflow.com/">Stack Overflow Careers</a></li>
+                    
+                </ol>
+            </td>
+    </tr>
+</tbody></table>
+                </div>
+            </div>
+
+            <div id="copyright">
+                дизайн сайта/логотип © 2015 Stack Exchange Inc; пользовательский контент попадает под действие лицензии <a href="http://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc by-sa 3.0</a> с указанием <a href="http://blog.stackoverflow.com/2009/06/attribution-required/" rel="license">ссылки на источник</a>
+            </div>
+            <div id="svnrev">
+                rev 2015.12.1.3044
+            </div>
+            
+        </div>
+    </div>
+    <noscript>
+        <div id="noscript-warning">Stack Overflow на русском лучше работает с включенным JavaScript<img src="http://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"></div>
+    </noscript>
+<script>var p = "http", d = "static"; if (document.location.protocol == "https:") { p += "s"; d = "engine"; } var z = document.createElement("script"); z.type = "text/javascript"; z.async = true; z.src = p + "://" + d + ".adzerk.net/ados.js"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(z, s);</script>
+<script>
+    var ados = ados || {};
+    ados.run = ados.run || [];
+    ados.run.push(function () { ados_setKeywords('%d0%bd%d0%b0%d1%81%d0%bb%d0%b5%d0%b4%d0%be%d0%b2%d0%b0%d0%bd%d0%b8%d0%b5,java,x-host-ru.stackoverflow.com');; ados_load(); });         
+</script>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-5620270-49');
+                        ga('set', 'dimension2', '|наследование|java|');         ga('send', 'pageview');
+        var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+        (function () {
+            var ssl='https:'==document.location.protocol,
+                s=document.getElementsByTagName('script')[0],
+                qc=document.createElement('script');
+            qc.async=true;
+            qc.src=(ssl?'https://secure':'http://edge')+'.quantserve.com/quant.js';
+            s.parentNode.insertBefore(qc, s);
+            var sc=document.createElement('script');
+            sc.async=true;
+            sc.src=(ssl?'https://sb':'http://b') + '.scorecardresearch.com/beacon.js';
+            s.parentNode.insertBefore(sc, s);
+        })();
+        _comscore.push({ c1: "2", c2: "17440561" });
+        _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+    </script>
+    <script type="text/javascript">
+            (function (d, w, c) {
+                (w[c] = w[c] || []).push(function() {
+                    try {
+                        w.yaCounter31923236 = new Ya.Metrika({
+                            id:31923236,
+                            clickmap:true,
+                            trackLinks:true,
+                            accurateTrackBounce:true
+                        });
+                    } catch(e) { }
+                });
+
+                var n = d.getElementsByTagName("script")[0],
+                    s = d.createElement("script"),
+                    f = function () { n.parentNode.insertBefore(s, n); };
+                s.type = "text/javascript";
+                s.async = true;
+                s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+                if (w.opera == "[object Opera]") {
+                    d.addEventListener("DOMContentLoaded", f, false);
+                } else { f(); }
+            })(document, window, "yandex_metrika_callbacks");
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/31923236" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+            
+    
+</body></html>

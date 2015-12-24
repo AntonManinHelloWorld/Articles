@@ -1,0 +1,47 @@
+﻿An enum type must not be declared abstract, or a compile-time error
+occurs.
+
+It is a compile-time error for an enum type E to have an abstract method m as a
+member unless E has one or more enum constants, and all of E's enum constants
+have class bodies that provide concrete implementations of m.
+
+It is a compile-time error to explicitly declare an enum type to be final.
+
+Nested enum types are implicitly static. It is permissible to explicitly declare a nested enum type to be static. This implies that it is impossible to define a local enum, or to define an enum in an inner class.
+
+The direct superclass of an enum type named E is Enum<E>.
+An enum type has no instances other than those defined by its enum constants. It
+is a compile-time error to attempt to explicitly instantiate an enum type.
+The final clone method in Enum ensures that enum constants can never be cloned, and the special treatment by the serialization mechanism ensures that duplicate instances are never created as a result of deserialization. Reflective instantiation of enum types is prohibited.
+Together, these four things ensure that no instances of an enum type exist beyond those defined by the enum constants.
+
+An enum constant may be followed by arguments, which are passed to the
+constructor of the enum type when the constant is created during class initialization as described later in this section. The constructor to be invoked is chosen using the normal overloading rules. If the arguments are omitted, an empty argument list is assumed.
+
+The optional class body of an enum constant implicitly defines an anonymous class declaration that extends the immediately enclosing enum type. The class
+body is governed by the usual rules of anonymous classes; in particular it cannot contain any constructors. Instance methods declared in these class bodies may be invoked outside the enclosing enum type only if they override accessible methods in the enclosing enum type.
+
+It is a compile-time error for the class body of an enum constant to declare an
+abstract method.
+
+Because there is only one instance of each enum constant, it is permissible to use the == operator in place of the equals method when comparing two object references if it is known that at least one of them refers to an enum constant.
+The equals method in Enum is a final method that merely invokes super.equals on
+its argument and returns the result, thus performing an identity comparison.
+
+java.util.EnumSet contains a rich family of static factories, so this technique can be generalized to work with non-contiguous subsets as well as subranges. At first glance, it might appear wasteful to generate a java.util.EnumSet object for a single iteration, but they are so cheap that this is the recommended idiom for iteration over a subrange.
+
+Enum type cannot contain methods that conflict with the automatically generated
+methods ( values() and valueOf(String) ) or methods that override the final methods in Enum ( equals(Object) , hashCode() , clone() , compareTo(Object) , name(), ordinal() , and getDeclaringClass() ).
+
+It is a compile-time error to reference a static field of an enum type that is
+not a constant variable (§4.12.4) from constructors, instance initializer blocks, or instance variable initializer expressions of that type.
+	enum Color {
+		RED, GREEN, BLUE;
+
+		static final Map<String,Color> colorMap=new HashMap<String,Color>();
+		Color() { colorMap.put(toString(), this); }
+}
+Static initialization of this enum type would throw a NullPointerException because the static variable colorMap is uninitialized when the constructors for the enum constants run.
+
+The constructor for an enum type must be package-private or private access. It automatically creates the constants that are defined at the beginning of the enum body. You cannot invoke an enum constructor yourself. 
+

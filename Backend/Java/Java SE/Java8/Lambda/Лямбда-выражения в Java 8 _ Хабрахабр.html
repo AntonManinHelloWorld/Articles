@@ -1,0 +1,3098 @@
+<!DOCTYPE html>
+<html><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta content="width=1024" name="viewport">
+
+    
+
+    <title>Лямбда-выражения в Java 8 / Хабрахабр</title>
+
+      <meta name="description" content="В новой версии Java 8 наконец-то появились долгожданные лямбда-выражения. Возможно, это самая важная новая возможность последней версии; они позволяют писать быстрее и делают код более ясным, а...">
+
+      <meta name="keywords" content="Java, лямбда-выражения, лямбда-исчисление, лямбда-функция, java 8, замыкания">
+
+      <meta property="fb:app_id" content="444736788986613"> 
+<meta property="og:type" content="article"> 
+<meta property="og:url" content="http://habrahabr.ru/post/224593/"> 
+<meta property="og:title" content="Лямбда-выражения в Java 8">
+	
+	<meta property="og:image" content="http://habrahabr.ru/i/habralogo.jpg">
+	<link rel="image_src" href="http://habrahabr.ru/i/habralogo.jpg">
+<meta property="og:description" content="В новой версии Java 8 наконец-то появились долгожданные лямбда-выражения. Возможно, это самая важная новая возможность последней версии; они позволяют писать...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@habrahabr">
+  <meta property="al:android:url" content="habrahabr://post/224593">
+<meta property="al:android:app_name" content="Habrahabr">
+<meta property="al:android:package" content="ru.habrahabr">
+<meta property="al:windows_phone:url" content="habrahabr://post/224593">
+<meta property="al:windows_phone:app_name" content="Habrahabr">
+<meta property="al:windows_phone:app_id" content="460a6bd6-8955-470f-935e-9ea1726a6060">
+  <link rel="canonical" href="http://habrahabr.ru/post/224593/">
+  <link rel="alternate" media="only screen and (max-width: 640px)" href="http://m.habrahabr.ru/post/224593/">
+
+
+
+      <link href="%D0%9B%D1%8F%D0%BC%D0%B1%D0%B4%D0%B0-%D0%B2%D1%8B%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%208%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/post_common_css.css" rel="stylesheet" media="all">
+  <link href="%D0%9B%D1%8F%D0%BC%D0%B1%D0%B4%D0%B0-%D0%B2%D1%8B%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%208%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/all.css" rel="stylesheet" media="all">
+
+    <link href="%D0%9B%D1%8F%D0%BC%D0%B1%D0%B4%D0%B0-%D0%B2%D1%8B%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%208%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/global_main.css" rel="stylesheet" media="all">
+
+    <script src="%D0%9B%D1%8F%D0%BC%D0%B1%D0%B4%D0%B0-%D0%B2%D1%8B%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%208%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/watch.js" async="" type="text/javascript"></script><script src="%D0%9B%D1%8F%D0%BC%D0%B1%D0%B4%D0%B0-%D0%B2%D1%8B%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%208%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/analytics.js" async=""></script><script type="text/javascript" src="%D0%9B%D1%8F%D0%BC%D0%B1%D0%B4%D0%B0-%D0%B2%D1%8B%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%208%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/global_main.js"></script>
+      <script type="text/javascript" src="%D0%9B%D1%8F%D0%BC%D0%B1%D0%B4%D0%B0-%D0%B2%D1%8B%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%208%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/post_common_js.js"></script>
+  <script type="text/javascript" src="%D0%9B%D1%8F%D0%BC%D0%B1%D0%B4%D0%B0-%D0%B2%D1%8B%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%208%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/all.js"></script>
+
+
+    
+    
+
+    <meta name="yandex-verification" content="67d46b975fa41645">
+    
+    <meta content="Хабрахабр" name="apple-mobile-web-app-title">
+<link href="http://habrahabr.ru/images/apple-touch-icon_142x142.png" rel="apple-touch-icon" type="image/png">
+
+      
+      <script>
+        var N = 5;
+        var ar_duo1 = Math.floor(Math.random()*N+1);
+      </script>
+      <script type="text/javascript" src="%D0%9B%D1%8F%D0%BC%D0%B1%D0%B4%D0%B0-%D0%B2%D1%8B%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%208%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/adriver.js"></script>
+
+    <link title="Хабрахабр / Комментарии к публикации «Лямбда-выражения в Java 8»" type="application/rss+xml" rel="alternate" href="http://habrahabr.ru/rss/post/224593/">
+
+    <script src="%D0%9B%D1%8F%D0%BC%D0%B1%D0%B4%D0%B0-%D0%B2%D1%8B%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%208%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/advertising.js"></script>
+
+<script type="text/javascript">
+
+  if (typeof adriver == 'undefined')
+  {
+    var adb1 = 'yes';
+  }
+
+  var user_type = "guest";
+
+  var page_type = "publish_ugc";
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-726094-1',  'auto');
+  ga('create', 'UA-726094-24', 'auto', {'name': 'HGM'});
+
+  ga('require', 'displayfeatures');
+  ga('set', 'dimension1', user_type); // user type - guest/readonly/habrauser
+
+
+  ga('set', 'dimension4', adb1);
+
+  ga('set', 'dimension5', page_type);
+
+
+  if(typeof removeUtms === 'undefined') {
+    removeUtms = function(){};
+  }
+
+  ga('HGM.set', 'dimension1', user_type);
+  ga('HGM.set', 'dimension2', "habrahabr");
+  ga('HGM.send', 'pageview');
+
+  ga('send', 'pageview', { 'hitCallback': removeUtms });
+
+
+</script>
+
+
+  </head>
+
+  <body><style type="text/css">#navbar .nav_panel .tab.tab_print:hover path,#navbar .nav_panel .tab.tab_print:hover text { fill: #00aae7; } </style>
+    <div id="TMpanel">
+  <div class="container">
+    <div class="bmenu">
+      <a href="http://tmfeed.ru/?utm_source=tm_habrahabr&amp;utm_medium=tm_top_panel&amp;utm_campaign=tm_promo">TM Feed</a>
+      <a href="http://habrahabr.ru/?utm_source=tm_habrahabr&amp;utm_medium=tm_top_panel&amp;utm_campaign=tm_promo" class="current">Хабрахабр</a>
+      <a href="http://megamozg.ru/?utm_source=tm_habrahabr&amp;utm_medium=tm_top_panel&amp;utm_campaign=tm_promo">Мегамозг</a>
+      <a href="http://geektimes.ru/?utm_source=tm_habrahabr&amp;utm_medium=tm_top_panel&amp;utm_campaign=tm_promo">Geektimes</a>
+      <a href="https://toster.ru/?utm_source=tm_habrahabr&amp;utm_medium=tm_top_panel&amp;utm_campaign=tm_promo">Тостер</a>
+      <a href="https://moikrug.ru/?utm_source=tm_habrahabr&amp;utm_medium=tm_top_panel&amp;utm_campaign=tm_promo">Мой круг</a>
+      <a href="http://freelansim.ru/?utm_source=habrahabr&amp;utm_medium=referral&amp;utm_campaign=mainpage&amp;utm_content=head_link">Фрилансим</a>
+    </div>
+      <div class="bmenu_inner" style="display:inline-block!important;visibility:visible!important;">
+        <span class="bmenu__label">Спецпроекты:</span>
+        <span class="bmenu slink"><a href="http://bit.ly/1PxXAEs" target="_blank" style="color: red">Испытайте облачные решения</a><a href="http://bit.ly/1N8v4ak" target="_blank" style="color: #0377d4">Visa Paywave</a><a href="http://bit.ly/1MwEw3q" target="_blank" style="color: green">Облачные скидки</a></span>
+        <span id="adriver_banner_465568687"></span>
+      </div>
+  </div>
+</div>
+
+    <div id="layout">
+      <div id="navbar_overlay" class="hidden"></div>
+<div style="bottom: 29px;" id="navbar">
+    <div class="nav_panel">
+        <a href="http://habrahabr.ru/" class="logo"></a>
+
+            <a href="http://habrahabr.ru/posts/" class="tab tab_menu" data-tab="menu_tab" title="Меню"><span class="g-icon g-icon-burger"></span></a>
+            <a href="https://habrahabr.ru/auth/login/" class="tab tab_login" id="login" title="Войти"><span class="g-icon g-icon-lock"></span></a>
+
+          <span class="tab tab_wrapper">
+            <a href="http://special.habrahabr.ru/advertising/" class="label">Реклама</a>
+            <a href="http://ad.adriver.ru/cgi-bin/click.cgi?sid=1&amp;ad=550164&amp;bt=21&amp;pid=2164802&amp;bid=4175006&amp;bn=4175006&amp;rnd=1748271976" class="tab tab_print js-tab_print" id="print_tab" target="_blank" data-post-id="224593"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 71 71" style="enable-background:new 0 0 71 71;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#C0C0C0;}
+</style>
+<path class="st0" d="M24.6,31.2c-3,0-5.5-2.5-5.5-5.5c0-10.2,8.3-18.5,18.5-18.5c3.3,0,6.5,0.9,9.3,2.5c2.6,1.5,3.5,4.9,2,7.5
+	c-1,1.7-2.8,2.7-4.8,2.7c-1,0-1.9-0.3-2.8-0.7c-1.1-0.7-2.4-1-3.7-1c-4.1,0-7.5,3.4-7.5,7.5C30.1,28.7,27.6,31.2,24.6,31.2
+	 M37.6,8.3c-9.6,0-17.4,7.8-17.4,17.4c0,2.4,2,4.4,4.4,4.4c2.4,0,4.4-2,4.4-4.4c0-4.8,3.9-8.6,8.6-8.6c1.5,0,3,0.4,4.3,1.2
+	c0.7,0.4,1.4,0.6,2.2,0.6c1.6,0,3-0.8,3.8-2.2c1.2-2.1,0.5-4.8-1.6-6C43.7,9.1,40.6,8.3,37.6,8.3"></path>
+<path class="st0" d="M37.6,44.2c-10.2,0-18.5-8.3-18.5-18.5c0-3,2.5-5.5,5.5-5.5c3,0,5.5,2.5,5.5,5.5c0,4.1,3.4,7.5,7.5,7.5
+	c1.3,0,2.6-0.3,3.7-1c0.8-0.5,1.8-0.7,2.8-0.7c2,0,3.8,1.1,4.8,2.7c1.5,2.6,0.6,6-2,7.5C44.1,43.3,40.8,44.2,37.6,44.2 M24.6,21.3
+	c-2.4,0-4.4,2-4.4,4.4C20.2,35.2,28,43,37.6,43c3.1,0,6.1-0.8,8.7-2.3c2.1-1.2,2.8-3.9,1.6-6c-0.8-1.3-2.2-2.2-3.8-2.2
+	c-0.8,0-1.5,0.2-2.2,0.6c-1.3,0.8-2.8,1.2-4.3,1.2c-4.8,0-8.6-3.9-8.6-8.6C29,23.3,27,21.3,24.6,21.3"></path>
+<path class="st0" d="M24.6,31.2c-3,0-5.5-2.5-5.5-5.5c0-3,2.5-5.5,5.5-5.5c3,0,5.5,2.5,5.5,5.5C30.1,28.7,27.6,31.2,24.6,31.2
+	 M24.6,21.3c-2.4,0-4.4,2-4.4,4.4c0,2.4,2,4.4,4.4,4.4c2.4,0,4.4-2,4.4-4.4C29,23.3,27,21.3,24.6,21.3"></path>
+<path class="st0" d="M44.1,19.9c-3,0-5.5-2.5-5.5-5.5c0-3,2.5-5.5,5.5-5.5c3,0,5.5,2.5,5.5,5.5C49.6,17.4,47.1,19.9,44.1,19.9
+	 M44.1,10.1c-2.4,0-4.4,2-4.4,4.4c0,2.4,2,4.4,4.4,4.4s4.4-2,4.4-4.4C48.5,12,46.5,10.1,44.1,10.1"></path>
+<path class="st0" d="M44.1,42.4c-3,0-5.5-2.5-5.5-5.5c0-3,2.5-5.5,5.5-5.5c3,0,5.5,2.5,5.5,5.5C49.6,40,47.1,42.4,44.1,42.4
+	 M44.1,32.6c-2.4,0-4.4,2-4.4,4.4c0,2.4,2,4.4,4.4,4.4s4.4-2,4.4-4.4C48.5,34.5,46.5,32.6,44.1,32.6"></path>
+<path class="st0" d="M10.1,56.5c0-3.6,1-6.3,3.5-6.3c1.8,0,2.4,1.4,2.8,2.6L15,53.4c-0.3-0.9-0.6-1.5-1.3-1.5c-1.2,0-1.6,2-1.6,4.6
+	s0.4,4.6,1.6,4.6c0.8,0,1.1-0.8,1.3-1.8l1.6,0.6c-0.3,1.4-1,2.9-2.9,2.9C11.2,62.7,10.1,60,10.1,56.5z"></path>
+<path class="st0" d="M22.2,62.5L21.8,60h-2.4L19,62.5h-2l2.5-12.2h2.2l2.5,12.2H22.2z M20.6,52.5l-1,5.8h2L20.6,52.5z"></path>
+<path class="st0" d="M29.5,62.5l-1.4-4.7h-0.9v4.7h-1.9V50.4h3c1.8,0,3.1,1.5,3.1,3.7c0,2.1-0.9,3-1.6,3.4l1.7,5.1H29.5z M29.5,54.1
+	c0-1.2-0.5-2.1-1.4-2.1h-0.9v4.2H28C29,56.2,29.5,55.3,29.5,54.1z"></path>
+<path class="st0" d="M37.5,62.5L37.1,60h-2.4l-0.4,2.5h-2l2.5-12.2H37l2.5,12.2H37.5z M35.9,52.5l-1,5.8h2L35.9,52.5z"></path>
+<path class="st0" d="M41.8,62.5l-2.5-12.2h2l1.6,9.7l1.6-9.7h2L44,62.5H41.8z"></path>
+<path class="st0" d="M51.5,62.5L51.1,60h-2.4l-0.4,2.5h-2l2.5-12.2H51l2.5,12.2H51.5z M49.9,52.5l-1,5.8h2L49.9,52.5z"></path>
+<path class="st0" d="M59.2,62.5l-2.7-7v7h-1.9V50.4h1.9l2.6,6.8v-6.8H61v12.2H59.2z"></path>
+</svg></a>
+          </span>
+
+        <a href="#" class="scroll_to_up hidden scroll_to_up_for_guest" id="scroll_to_top" title="Наверх"></a>
+    </div>
+
+    <div class="nav_tabs_content ">
+        <div class="nav_tab hidden" id="menu_tab">
+            <div class="title">Разделы</div>
+            <form action="/search/" method="get" class="global_search_form">
+                <div>
+                    <input name="q" placeholder="Поиск" type="text">
+                </div>
+            </form>
+            <div class="menu">
+                <a href="http://habrahabr.ru/posts/top/">Публикации</a>
+                <a href="http://habrahabr.ru/hubs/">Хабы</a>
+                <a href="http://habrahabr.ru/companies/">Компании</a>
+                <a href="http://habrahabr.ru/users/">Пользователи</a>
+                <a href="http://habrahabr.ru/sandbox/">Песочница</a>
+                <div class="line"></div>
+                <a href="http://toster.ru/" class="new_window">Q&amp;A</a>
+                <a href="https://moikrug.ru/?utm_source=tm_habrahabr&amp;utm_medium=tm_left_menu&amp;utm_campaign=tm_promo" class="new_window">Вакансии</a>
+            </div>
+
+              
+                  <div class="line"></div>
+                  <div class="title">Спецпроекты</div>
+                  <div class="menu">
+                <a href="http://bit.ly/1KGwmEH" target="_blank">$ 27000 в виде хостинг</a>
+                
+                <a href="http://bit.ly/1QKAScp" target="_blank">Соберите свой стартап</a>
+                
+                <a href="http://bit.ly/1YgboF0" target="_blank">Лучше плати смартфоном</a>
+                </div>
+        </div>
+
+
+    </div>
+</div>
+
+      <div class="inner">
+
+        <script type="text/javascript">
+
+    $(document).on('click', '.adb-close', function(){
+        $('.lain_13_what_are_you_doing').animate({ 'height': 0 });
+
+        createCookie('adb-p', '1', 1);
+    });
+
+    function readCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0;i < ca.length;i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1,c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        }
+        return null;
+    }
+
+    $(document).ready(function(){
+        if (adb1 == 'yes' && !readCookie('adb-p'))
+        {
+            $('.lain_13_what_are_you_doing').show();
+        }
+    });
+</script>
+<div class="lain_13_what_are_you_doing" style="display: block;">
+    <div class="adb-text">
+        Привет, Хабрапользователь. Кажется, ты используешь AdBlock. Хабрахабр <br>
+        развивается и существует за счет доходов от рекламы. Добавь нас в исключения.
+    </div>
+    <a class="adb-btn" href="http://habrahabr.ru/adblock/">открытое письмо</a>
+    <a class="adb-btn" href="http://habrahabr.ru/adblock/?how=1">как отключить</a>
+    <div class="adb-close"></div>
+</div>
+
+
+
+        
+
+          <div class="profile-header">
+
+  <div class="profile-header__summary author-info author-info_profile ">
+    <a href="http://habrahabr.ru/users/WildCat2013" class="author-info__image">
+        <span class="user-pic_default user-pic_default_47 user-pic_lilac"></span>
+
+    </a>
+
+    <div class="author-info__desc">
+      <div class="author-info__username">
+        
+        <a href="http://habrahabr.ru/users/WildCat2013" class="author-info__nickname">@WildCat2013</a>
+        
+      </div>
+        <div class="author-info__specialization">
+          Пользователь
+        </div>
+    </div>
+  </div>
+
+    <div class="profile-header__stats">
+
+      <div class="karma__widjet voting-wjt js-karma  ">
+
+        <div class="voting-wjt__counter js-karma-mark voting-wjt__counter_positive " title="27 голосов">
+          <div class="voting-wjt__counter-score js-karma_num">19,0</div>
+          <div class="voting-wjt__label">карма</div>
+        </div>
+
+      </div>
+
+      <div class="user-rating" title="Рейтинг пользователя">
+        <div class="user-rating__value">0,0</div>
+        <div class="user-rating__label">рейтинг</div>
+      </div>
+
+    </div>
+
+
+</div>
+
+  <div class="column-wrapper">
+    <div class="content_left">
+        <div class="tabs">
+    <ul class="tabs-menu tabs-menu_habrahabr">
+          <li class="tabs-menu__item tabs-menu__item_user-profile tabs-menu__item_inline">
+            <a href="http://habrahabr.ru/users/WildCat2013/" class="tab-item tab-item_stacked ">
+              <span class="tab-item__value stats">
+                <span class="stats__counters stats__counters_big">
+                  <strong class="counter"></strong>
+                </span>
+                <span class="stats__value">Профиль</span>
+            </span></a>
+          </li>
+          <li class="tabs-menu__item tabs-menu__item_user-profile tabs-menu__item_inline">
+            <a href="http://habrahabr.ru/users/WildCat2013/topics/" class="tab-item tab-item_stacked tab-item_current">
+              <span class="tab-item__value stats">
+                <span class="stats__counters stats__counters_big">
+                  <strong class="counter">5</strong>
+                </span>
+                <span class="stats__value">Публикации</span>
+            </span></a>
+          </li>
+          <li class="tabs-menu__item tabs-menu__item_user-profile tabs-menu__item_inline">
+            <a href="http://habrahabr.ru/users/WildCat2013/comments/" class="tab-item tab-item_stacked ">
+              <span class="tab-item__value stats">
+                <span class="stats__counters stats__counters_big">
+                  <strong class="counter">1</strong>
+                </span>
+                <span class="stats__value">Комментарии</span>
+            </span></a>
+          </li>
+          <li class="tabs-menu__item tabs-menu__item_user-profile tabs-menu__item_inline">
+            <a href="http://habrahabr.ru/users/WildCat2013/favorites/" class="tab-item tab-item_stacked ">
+              <span class="tab-item__value stats">
+                <span class="stats__counters stats__counters_big">
+                  <strong class="counter">0</strong>
+                </span>
+                <span class="stats__value">Избранное</span>
+            </span></a>
+          </li>
+          <li class="tabs-menu__item tabs-menu__item_user-profile tabs-menu__item_inline">
+            <a href="http://habrahabr.ru/users/WildCat2013/subscription/followers/" class="tab-item tab-item_stacked ">
+              <span class="tab-item__value stats">
+                <span class="stats__counters stats__counters_big">
+                  <strong class="counter">9</strong>
+                </span>
+                <span class="stats__value">Подписчики</span>
+            </span></a>
+          </li>
+    </ul>
+
+  </div>
+
+
+      <div class="post_show">
+        
+
+  <div class="post shortcuts_item" id="post_224593">
+    <div class="published">29 мая 2014 в 21:15</div>
+    <h1 class="title">
+      
+
+        <span class="post_title">Лямбда-выражения в Java 8</span>
+
+      
+
+      
+
+    </h1>
+
+      <div class="hubs">
+      <a href="http://habrahabr.ru/hub/development/" class="hub " title="Вы не подписаны на этот хаб">Разработка</a><span class="profiled_hub" title="Профильный хаб">*</span>, 
+      <a href="http://habrahabr.ru/hub/java/" class="hub " title="Вы не подписаны на этот хаб">JAVA</a><span class="profiled_hub" title="Профильный хаб">*</span>, 
+      <a href="http://habrahabr.ru/hub/programming/" class="hub " title="Вы не подписаны на этот хаб">Программирование</a><span class="profiled_hub" title="Профильный хаб">*</span>
+  </div>
+
+
+    <div class="content html_format">
+      В новой версии Java 8 наконец-то появились долгожданные 
+лямбда-выражения. Возможно, это самая важная новая возможность последней
+ версии; они позволяют писать быстрее и делают код более ясным, а также 
+открывают дверь в мир функционального программирования. В этой статье я 
+расскажу, как это работает.<br>
+<br>
+Java задумывалась как объектно-ориентированный язык в 90-е годы, когда 
+объектно-ориентированное программирование было главной парадигмой в 
+разработке приложений. Задолго до этого было объектно-ориентированное 
+программирование, были функциональные языки программирования, такие, как
+ Lisp и Scheme, но их преимущества не были оценены за пределами 
+академической среды. В последнее время функциональное программирование 
+сильно выросло в значимости, потому что оно хорошо подходит для 
+параллельного программирования и программирования, основанного на 
+событиях («reactive»). Это не значит, что объектная ориентированность – 
+плохо. Наоборот, вместо этого, выигрышная стратегия – смешивать 
+объектно-ориентированное программирование и функциональное. Это имеет 
+смысл, даже если вам не нужна параллельность. Например, библиотеки 
+коллекций могут получить мощное API, если язык имеет удобный синтаксис 
+для функциональных выражений.<br>
+<br>
+Главным улучшением в Java 8 является добавление поддержки функциональных
+ программных конструкций к его объектно-ориентированной основе. <a name="habracut"></a>В
+ этой статье я продемонстрирую основной синтаксис и как использовать его
+ в нескольких важных контекстах. Ключевые моменты понятия лямбды:<br>
+<br>
+<ul>
+<li>Лямбда-выражение является блоком кода с параметрами. </li>
+<li>Используйте лямбда-выражение, когда хотите выполнить блок кода в более поздний момент времени.</li>
+<li>Лямбда-выражения могут быть преобразованы в функциональные интерфейсы. </li>
+<li>Лямбда-выражения имеют доступ к final переменным из охватывающей области видимости. </li>
+<li>Ссылки на метод и конструктор ссылаются на методы или конструкторы без их вызова. </li>
+<li>Теперь вы можете добавить методы по умолчанию и статические методы к интерфейсам, которые обеспечивают конкретные реализации. </li>
+<li>Вы должны разрешать любые конфликты между методами по умолчанию из нескольких интерфейсов.</li>
+</ul><br>
+<h4>Зачем нужны лямбды?</h4><br>
+Лямбда-выражение представляет собой блок кода, который можно передать в 
+другое место, поэтому он может быть выполнен позже, один или несколько 
+раз. Прежде чем углубляться в синтаксис (и любопытное название), давайте
+ сделаем шаг назад и увидим, где вы использовали аналогичные блоки кода в
+ Java до этого. <br>
+<br>
+Если вы хотите выполнить действия в отдельном потоке, вы помещаете их в метод <code>run</code> из <code>Runnable</code>, вот так:<br>
+<pre><code class="java hljs"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyRunner</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Runnable</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">1000</span>; i++)
+           doWork();
+        }
+        ...
+}
+</code></pre><br>
+Затем, когда вы хотите выполнить этот код, вы создаете экземпляр класса <code>MyRunner</code>. Вы можете поместить экземпляр в пул потоков, или поступить проще и запустить новый поток:<br>
+<pre><code class="java hljs">MyRunner r = <span class="hljs-keyword">new</span> MyRunner();
+<span class="hljs-keyword">new</span> Thread(r).start();
+</code></pre><br>
+Ключевым моментом является то, что метод <code>run</code> содержит код, который нужно выполнить в отдельном потоке.<br>
+<br>
+Рассмотрим сортировку с использованием пользовательского компаратора. 
+Если вы хотите отсортировать строки по длине, а не по умолчанию, вы 
+можете передать объект <code>Comparator</code> в метод <code>sort</code>:<br>
+<pre><code class="java hljs"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LengthStringComparator</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Comparator</span>&lt;<span class="hljs-title">String</span>&gt; </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">compare</span><span class="hljs-params">(String firstStr, String secondStr)</span> </span>{
+        <span class="hljs-keyword">return</span> Integer.compare(firstStr.length(),secondStr.length());
+    }
+}
+   
+Arrays.sort(strings, <span class="hljs-keyword">new</span> LengthStringComparator ());
+</code></pre><br>
+Метод <code>sort</code> все так же вызывает метод <code>compare</code>, переставляя элементы, если они стоят не по порядку, пока массив не будет отсортирован. Вы предоставляете методу <code>sort</code>
+ фрагмент кода, необходимый для сравнения элементов, и этот код 
+встраивается в остальную часть логики сортировки, которую вам, вероятно,
+ не нужно переопределять. Обратите внимание, что вызов <code>Integer.compare (х, у)</code>
+ возвращает ноль, если х и у равны, отрицательное число, если х &lt; у, и
+ положительное число, если х &gt; у. Этот статический метод был добавлен
+ в Java 7. Вы не должны вычислять х – y, чтобы сравнивать х и у, потому 
+что расчет может вызвать переполнение для больших операндов 
+противоположного знака.<br>
+<br>
+В качестве другого примера отложенного выполнения рассмотрим коллбэк для
+ кнопки. Вы помещаете действие обратного вызова в метод класса, 
+реализующего интерфейс слушателя, создаете экземпляр, и регистрируете 
+экземпляр. Это настолько распространенный сценарий, что многие 
+программисты используют синтаксис «анонимный экземпляр анонимного 
+класса»:<br>
+<pre><code class="java hljs">button.setOnAction(<span class="hljs-keyword">new</span> EventHandler&lt;ActionEvent&gt;() {
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handle</span><span class="hljs-params">(ActionEvent event)</span> </span>{
+        System.out.println(<span class="hljs-string">"The button has been clicked!"</span>);
+    }
+});
+</code></pre><br>
+Здесь важен код внутри метода <code>handle</code>. Этот код выполняется всякий раз, когда нажимается кнопка.<br>
+<br>
+Поскольку Java 8 позиционирует JavaFX в качестве преемника 
+инструментария Swing GUI, я использую JavaFX в этих примерах. Детали не 
+имеют значения. В каждой библиотеке пользовательского интерфейса, будь 
+то Swing, JavaFX или Android, вы передаете кнопке некоторый код, который
+ вы хотите запустить, когда кнопка нажата.<br>
+<br>
+Во всех трех примерах вы видели один и тот же подход. Блок кода кому-то 
+передавался — пулу потоков, методу сортировки или кнопке. Этот код 
+вызывался некоторое время спустя.<br>
+<br>
+До сих пор передача кода не была простой в Java. Вы не могли просто 
+передать блоки кода куда угодно. Java является объектно-ориентированным 
+языком, так что вы должны были создать объект, принадлежащий к классу, у
+ которого есть метод с нужным кодом.<br>
+В других языках можно работать с блоками кода непосредственно. 
+Проектировщики Java сопротивлялись добавлению этой функции в течение 
+длительного времени. В конце концов, большая сила Java в ее простоте и 
+последовательности. Язык может стать крайне беспорядочным, если будет 
+включать в себя все функции, которые дают чуть более краткий код. Тем не
+ менее, в тех других языках, это не просто легче порождать поток или 
+зарегистрировать обработчик кнопки щелчка; многие их API проще, более 
+последовательны и мощные. В Java, можно было бы написать подобные 
+интерфейсы, которые принимают объекты классов, реализующих определенную 
+функцию, но такие API было бы неудобно использовать.<br>
+<br>
+В последнее время вопрос был не в том, расширять Java для 
+функционального программирования или нет, а как это сделать. 
+Потребовалось несколько лет экспериментов, прежде чем выяснилось, что 
+это хорошо подходит для Java. В следующем разделе вы увидите, как можно 
+работать с блоками кода в Java 8.<br>
+<br>
+<h4>Синтаксис лямбда-выражений</h4> <br>
+Рассмотрим предыдущий пример сортировки еще раз. Мы передаем код, который проверяет, какая строка короче. Мы вычисляем<br>
+<pre><code class="java hljs">Integer.compare(firstStr.length(), secondStr.length())
+</code></pre><br>
+Что такое <code>firstStr</code> и <code>secondStr</code>? Они оба строки! Java является строго типизированным языком, и мы должны указать типы:<br>
+<pre><code class="java hljs">(String firstStr, String secondStr)
+     -&gt; Integer.compare(firstStr.length(),secondStr.length())
+</code></pre><br>
+<br>
+Вы только что видели ваше первое лямбда-выражение! Такое выражение 
+является просто блоком кода вместе со спецификацией любых переменных, 
+которые должны быть переданы в код.<br>
+<br>
+Почему такое название? Много лет назад, когда еще не было никаких 
+компьютеров, логик Алонзо Чёрч хотел формализовать, что значит для 
+математической функции быть эффективно вычисляемой. (Любопытно, что есть
+ функции, которые, как известно, существуют, но никто не знает, как 
+вычислить их значения.) Он использовал греческую букву лямбда (λ), чтобы
+ отметить параметры. Если бы он знал о Java API, он написал бы что-то не
+ сильно похожее на то, что вы видели, скорее всего.<br>
+<br>
+Почему буква λ? Разве Чёрч использовал все буквы алфавита? На самом 
+деле, почтенный труд Principia Mathematica использует символ ˆ для 
+обозначения свободных переменных, которые вдохновили Чёрча использовать 
+заглавную лямбда (Λ) для параметров. Но, в конце концов, он переключился
+ на строчной вариант буквы. С тех пор, выражение с переменными 
+параметрами было названо «лямбда-выражение».<br>
+<br>
+Вы только что видели одну форму лямбда-выражений в Java: параметры, 
+стрелку -&gt; и выражение. Если код выполняет вычисление, которое не 
+вписывается в одно выражение, запишите его так же, как вы бы написали 
+метод: заключенный в {} и с явными выражениями <code>return</code>. Например,<br>
+<pre><code class="java hljs">(String firstStr, String secondStr) -&gt; {
+    <span class="hljs-keyword">if</span> (firstStr.length() &lt; secondStr.length()) <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (firstStr.length() &gt; secondStr.length()) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre><br>
+Если лямбда-выражение не имеет параметров, вы все равно ставите пустые скобки, так же, как с методом без параметров:<br>
+<pre><code class="java hljs">() -&gt; { <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">1000</span>; i++) doWork(); }
+</code></pre><br>
+Если типы параметров лямбда-выражения можно вывести, можно опустить их. Например,<br>
+<pre><code class="java hljs">Comparator&lt;String&gt; comp
+    = (firstStr, secondStr) <span class="hljs-comment">// Same as (String firstStr, String secondStr)</span>
+        -&gt; Integer.compare(firstStr.length(),secondStr.length());
+</code></pre><br>
+Здесь компилятор может сделать вывод, что <code>firstStr</code> и <code>secondStr</code>
+ должны быть строками, потому что лямбда-выражение присваивается 
+компаратору строк. (Мы посмотрим на это присваивание повнимательнее 
+позже.) <br>
+<br>
+Если метод имеет один параметр выводимого типа, вы можете даже опустить скобки:<br>
+<pre><code class="java hljs">EventHandler&lt;ActionEvent&gt; listener = event -&gt;
+    System.out.println(<span class="hljs-string">"The button has been clicked!"</span>);
+        <span class="hljs-comment">// Instead of (event) -&gt; or (ActionEvent event) -&gt;</span>
+</code></pre><br>
+<br>
+Вы можете добавить аннотации или модификатор <code>final</code> к параметрам лямбды таким же образом, как и для параметров метода:<br>
+<pre><code class="java hljs">(<span class="hljs-keyword">final</span> String var) -&gt; ...
+(<span class="hljs-annotation">@NonNull</span> String var) -&gt; ...
+</code></pre><br>
+Вы никогда не указываете тип результата лямбда-выражения. Это всегда выясняется из контекста. Например, выражение<br>
+<pre><code class="java hljs">(String firstStr, String secondStr) -&gt; Integer.compare(firstStr.length(), secondStr.length())
+</code></pre><br>
+может быть использовано в контексте, где ожидается результат типа <code>int</code>. <br>
+<br>
+Обратите внимание, что лямбда-выражение не может возвращать значение в каких-то ветках, а в других не возвращать. Например, <code>(int x) -&gt; { if (x &lt;= 1) return -1; }</code> является недопустимым.<br>
+<br>
+<h4>Функциональные интерфейсы</h4><br>
+Как мы уже обсуждали, в Java есть много существующих интерфейсов, которые инкапсулируют блоки кода, такие, как <code>Runnable</code> или <code>Comparator</code>. Лямбда-выражения имеют обратную совместимость с этими интерфейсами.<br>
+<br>
+Вы можете поставить лямбда-выражение всякий раз, когда ожидается объект 
+интерфейса с одним абстрактным методом. Такой интерфейс называется 
+функциональным интерфейсом.<br>
+<br>
+Вы можете удивиться, почему функциональный интерфейс должен иметь 
+единственный абстрактный метод. Разве не все методы в интерфейсе 
+абстрактные? На самом деле, всегда было возможно для интерфейса 
+переопределить методы класса <code>Object</code>, например, <code>toString</code> или <code>clone</code>, и эти объявления не делают методы абстрактными. (Некоторые интерфейсы в Java API переопределяют методы <code>Object</code>,
+ чтобы присоединить javadoc-комментарии. Посмотрите Comparator API для 
+примера.) Что еще более важно, как вы вскоре увидите, в Java 8 
+интерфейсы могут объявлять неабстрактные методы.<br>
+<br>
+Чтобы продемонстрировать преобразование в функциональный интерфейс, рассмотрим метод <code>Arrays.sort</code>. Его второй параметр требуется экземпляр <code>Comparator</code>, интерфейса с единственным методом. Просто предоставьте лямбду:<br>
+<pre><code class="java hljs">Arrays.sort(strs,
+    (firstStr, secondStr) -&gt; Integer.compare(firstStr.length(), secondStr.length()));
+</code></pre><br>
+За кулисами, метод <code>Arrays.sort</code> получает объект некоторого класса, реализующего <code>Comparator &lt;String&gt;</code>. Вызов метода <code>compare</code>
+ на этом объекте выполняет тело лямбда-выражения. Управление этими 
+объектами и классами полностью зависит от реализации, и это может быть 
+что-то гораздо более эффективное, чем использование традиционных 
+внутренних классов. Лучше всего думать о лямбда-выражении как о функции,
+ а не об объекте, и признать, что он может быть передан функциональному 
+интерфейсу. <br>
+<br>
+Это преобразование в интерфейсы – это то, что делает лямбда-выражения 
+настолько мощными. Синтаксис короткий и простой. Вот еще один пример:<br>
+<pre><code class="java hljs">button.setOnAction(event -&gt;
+    System.out.println(<span class="hljs-string">"The button has been clicked!"</span>));
+</code></pre><br>
+Этот код очень легко читать. <br>
+<br>
+В самом деле, преобразование в функциональный интерфейс — это 
+единственное, что вы можете сделать с лямбда-выражением в Java. В других
+ языках программирования, которые поддерживают функциональные литералы, 
+можно объявить типы функций, таких как <code>(String, String) -&gt; int</code>,
+ объявлять переменные этих типов, и использовать переменные для 
+сохранения функциональных выражений. В Java вы не можете даже присвоить 
+лямбда-выражение переменной типа <code>Object</code>, потому <code>Object</code>
+ не является функциональным интерфейсом. Проектировщики Java решили 
+строго придерживаться знакомой концепции интерфейсов, а не добавлять 
+типы функций в язык.<br>
+<br>
+Java API определяет несколько универсальных функциональных интерфейсов в пакете java.util.function. Один из интерфейсов, <code>BiFunction &lt;T, U, R&gt;</code>,
+ описывает функции с типами Т и U и типом возвращаемого значения R. Вы 
+можете сохранить вашу лямбду сравнения строк в переменной этого типа:<br>
+<pre><code class="java hljs">BiFunction&lt;String, String, Integer&gt; compareFunc
+    = (firstStr, secondStr) -&gt; Integer.compare(firstStr.length(), secondStr.length());
+</code></pre><br>
+Тем не менее, это не поможет вам с сортировкой. Не существует метода <code>Arrays.sort</code>, который принимает <code>BiFunction</code>.
+ Если вы использовали функциональный язык программирования и прежде, вы 
+можете найти это любопытным. Но для Java программистов это довольно 
+естественно. Такой интерфейс, как <code>Comparator</code>, имеет 
+конкретную цель, а не просто метод с заданным параметром и возвращаемым 
+типом. Java 8 сохраняет этот стиль. Если вы хотите сделать что-то с 
+лямбда-выражениями, вы все еще должны понимать назначение этого 
+выражения, и иметь конкретный функциональный интерфейс для этого.<br>
+<br>
+Интерфейсы из java.util.function используются в нескольких Java 8 
+интерфейсах API, и вы, вероятно, увидите их в других местах в будущем. 
+Но имейте в виду, что вы можете одинаково хорошо преобразовать 
+лямбда-выражение в функциональный интерфейс, который является частью 
+любого API, который вы используете сегодня. Кроме того, вы можете 
+пометить любой функциональный интерфейс с помощью аннотации <code>@FunctionalInterface</code>.
+ Это имеет два преимущества. Компилятор проверяет, что аннотированная 
+сущность представляет собой интерфейс с одним абстрактным методом. И 
+страница Javadoc включает в себя утверждение, что ваш интерфейс является
+ функциональным интерфейсом. Вы не обязаны использовать аннотацию. Любой
+ интерфейс с одним абстрактным методом является, по определению, 
+функциональным интерфейсом. Но использование аннотации <code>@FunctionalInterface</code> — это хорошая идея.<br>
+<br>
+Наконец, заметим, что checked исключения могут возникнуть при 
+преобразовании лямбды в экземпляр функционального интерфейса. Если тело 
+лямбда-выражения может бросить checked исключение, это исключение должно
+ быть объявлено в абстрактном методе целевого интерфейса. Например, 
+следующее было бы ошибкой:<br>
+<pre><code class="java hljs">Runnable sleepingRunner = () -&gt; { System.out.println(<span class="hljs-string">"…"</span>); Thread.sleep(<span class="hljs-number">1000</span>); };
+    <span class="hljs-comment">// Error: Thread.sleep can throw a checkedInterruptedException</span>
+</code></pre><br>
+Поскольку <code>Runnable.run</code> не может бросить исключение, это 
+присваивание является некорректным. Чтобы исправить ошибку, у вас есть 
+два варианта. Вы можете поймать исключение в теле лямбда-выражения. Или 
+вы можете присвоить лямбду интерфейсу, один абстрактный метод которого 
+может бросить исключение. Например, метод <code>call</code> из интерфейса <code>Callable</code> может бросить любое исключение. Таким образом, вы можете присвоить лямбду <code>Callable&lt;Void&gt;</code> (если добавить <code>return null</code>).<br>
+<br>
+<h4>Ссылки на методы</h4><br>
+Иногда уже есть метод, который осуществляет именно те действия, которые 
+вы хотели бы передать в другое место. Например, предположим, что вы 
+просто хотите распечатать объект события <code>event</code>, когда кнопка нажата. Конечно, вы могли бы вызвать<br>
+<pre><code class="java hljs">button.setOnAction(event -&gt; System.out.println(event));
+</code></pre><br>
+Было бы лучше, если бы вы могли просто передать метод <code>println</code> в метод <code>setOnAction</code>. Примерно так:<br>
+<pre><code class="java hljs">button.setOnAction(System.out::println);
+</code></pre><br>
+Выражение <code>System.out::println</code> является ссылкой на метод, который эквивалентен лямбда-выражению <code>x -&gt; System.out.println(x)</code>. <br>
+<br>
+В качестве другого примера, предположим, что вы хотите отсортировать 
+строки независимо от регистра букв. Вы можете написать такой код:<br>
+<pre><code class="java hljs">Arrays.sort(strs, String::compareToIgnoreCase)
+</code></pre><br>
+Как вы можете видеть из этих примеров оператор :: отделяет имя метода от имени объекта или класса. Есть три основных варианта:<br>
+<br>
+<ul>
+<li>object::instanceMethod</li>
+<li>Class::staticMethod</li>
+<li>Class::instanceMethod</li>
+</ul><br>
+<br>
+В первых двух случаях ссылка на метод эквивалентна лямбда-выражению, 
+которое предоставляет параметры метода. Как уже упоминалось, <code>System.out::println</code> эквивалентно <code>x -&gt; System.out.println(x)</code>. Точно так же, <code>Math::pow</code> эквивалентно <code>(x, y) -&gt; Math.pow(x, y)</code>. В третьем случае первый параметр становится целевым объектом метода. Например, <code>String::compareToIgnoreCase</code> — это то же самое, что и <code>(x, y) -&gt; x.compareToIgnoreCase(y)</code>.<br>
+<br>
+При наличии нескольких перегруженных методов с тем же именем компилятор 
+попытается найти из контекста, какой вы имеете в виду. Например, есть 
+два варианта метода <code>Math.max</code>, один для <code>int</code> и один для <code>double</code>. Какой из них будет вызван, зависит от параметров метода функционального интерфейса, к которому <code>Math.max</code>
+ преобразуется. Так же, как и лямбда-выражения, ссылки на методы не 
+живут в изоляции. Они всегда преобразуются в экземпляры функциональных 
+интерфейсов.<br>
+<br>
+Вы можете захватить параметр <code>this</code> в ссылке на метод. Например, <code>this::equals</code> – это то же, что и <code>x -&gt; this.equals(x)</code>. Можно также использовать <code>super</code>. Выражение <code>super::instanceMethod</code> использует <code>this</code> в качестве цели и вызывает версию данного метода суперкласса. Вот искусственный пример, который демонстрирует механизм:<br>
+<pre><code class="java hljs"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Speaker</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">speak</span><span class="hljs-params">()</span> </span>{
+        System.out.println(<span class="hljs-string">"Hello, world!"</span>);
+    }
+}
+   
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ConcurrentSpeaker</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Speaker</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">speak</span><span class="hljs-params">()</span> </span>{
+        Thread t = <span class="hljs-keyword">new</span> Thread(<span class="hljs-keyword">super</span>::speak);
+            t.start();
+        }
+}
+</code></pre><br>
+При запуске потока вызывается его <code>Runnable</code>, и <code>super::speak</code> выполняется, вызывая <code>speak</code> суперкласса. (Обратите внимание, что во внутреннем классе вы можете захватить эту ссылку из класса приложения, как <code>EnclosingClass.this::method</code> или <code>EnclosingClass.super::method</code>.) <br>
+<br>
+<h4>Ссылки на конструктор</h4><br>
+Ссылки на конструктор такие же, как ссылки на метод, за исключением того, что именем метода является <code>new</code>. Например, <code>Button::new</code> является ссылкой на конструктор класса <code>Button</code>.
+ На какой именно конструктор? Это зависит от контекста. Предположим, у 
+вас есть список строк. Затем, вы можете превратить его в массив кнопок, 
+путем вызова конструктора для каждой из строк, с помощью следующего 
+вызова:<br>
+<pre><code class="java hljs">List&lt;String&gt; strs = ...;
+Stream&lt;Button&gt; stream = strs.stream().map(Button::<span class="hljs-keyword">new</span>);
+List&lt;Button&gt; buttons = stream.collect(Collectors.toList());
+</code></pre><br>
+Подробная информация о <code>stream</code>, <code>map</code> и методах <code>collect</code> выходит за рамки этой статьи. На данный момент, важно то, что метод <code>map</code> вызывает конструктор <code>Button(String)</code> для каждого элемента списка. Есть несколько конструкторов <code>Button</code>,
+ но компилятор выбирает тот, что с параметром строкового типа, потому 
+что из контекста ясно, что конструктор вызывается со строкой.<br>
+<br>
+Вы можете сформировать ссылки на конструкторы с типом массивов. Например, <code>int[]::new</code> является ссылкой на конструктор с одним параметром: длиной массива. Это равносильно лямбда-выражению <code>x -&gt; new int[x]</code>. <br>
+<br>
+Ссылки на конструкторы массива полезны для преодоления ограничений Java.
+ Невозможно создать массив универсального типа T. Выражение <code>new T[n]</code> является ошибкой, так как оно будет заменено <code>new Object[n]</code>. Это является проблемой для авторов библиотек. Например, предположим, мы хотим иметь массив кнопок. Интерфейс <code>Stream</code> имеет метод <code>toArray</code>, возвращающее массив <code>Object</code>:<br>
+<pre><code class="java hljs">Object[] buttons = stream.toArray();
+</code></pre><br>
+Но это неудовлетворительно. Пользователь хочет массив кнопок, а не 
+объектов. Библиотека потоков решает эту проблему за счет ссылок на 
+конструкторы. Передайте <code>Button[]::new</code> методу <code>toArray</code>:<br>
+<pre><code class="java hljs">Button[] buttons = stream.toArray(Button[]::<span class="hljs-keyword">new</span>);
+</code></pre><br>
+Метод <code>toArray</code> вызывает этот конструктор для получения массива нужного типа. Затем он заполняет и возвращает массив.<br>
+<br>
+<h4>Область действия переменной</h4> <br>
+Часто вы хотели бы иметь возможность получить доступ к переменным из 
+охватывающего метода или класса в лямбда-выражении. Рассмотрим следующий
+ пример:<br>
+<pre><code class="java hljs"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">repeatText</span><span class="hljs-params">(String text, <span class="hljs-keyword">int</span> count)</span> </span>{
+     Runnable r = () -&gt; {
+         <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; count; i++) {
+             System.out.println(text);
+             Thread.yield();
+         }
+    };
+    <span class="hljs-keyword">new</span> Thread(r).start();
+}
+</code></pre><br>
+Рассмотрим вызов:<br>
+<pre><code class="java hljs">repeatText(<span class="hljs-string">"Hi!"</span>, <span class="hljs-number">2000</span>); <span class="hljs-comment">// Prints Hi 2000 times in a separate thread</span>
+</code></pre><br>
+Теперь посмотрим на переменные <code>count</code> и <code>text</code> 
+внутри лямбда-выражения. Обратите внимание, что эти переменные не 
+определены в лямбда-выражении. Вместо этого, они являются параметрами 
+метода <code>repeatText</code>.<br>
+<br>
+Если подумать хорошенько, то не очевидно, что здесь происходит. Код лямбда-выражения может выполниться гораздо позже вызова <code>repeatText</code> и переменные параметров уже будут потеряны. Как же переменные <code>text</code> и <code>count</code> остаются доступными?<br>
+<br>
+Чтобы понять, что происходит, мы должны уточнить наши представления о лямбда-выражениях. Лямбда-выражение имеет три компонента:<br>
+<br>
+<ul>
+<li>Блок кода</li>
+<li>Параметры</li>
+<li>Значения для свободных переменных; то есть, переменных, которые не являются параметрами и не определены в коде</li>
+</ul><br>
+В нашем примере лямбда-выражение имеет две свободных переменных, <code>text</code> и <code>count</code>.
+ Структура данных, представляющая лямбда-выражение, должна сохранять 
+значения для этих переменных, в нашем случае, «Hi!» и 2000. Будем 
+говорить, что эти значения были захвачены лямбда-выражением. (Это деталь
+ реализации, как это делается. Например, можно преобразовать 
+лямбда-выражение в объект с одним методом, так что значения свободных 
+переменных копируются в переменные экземпляра этого объекта.)<br>
+<br>
+Техническим термином для блока кода вместе со значениями свободных 
+переменных является замыкание. Если кто-то злорадствует, что их язык 
+поддерживает замыкания, будьте уверены, что Java также их поддерживает. В
+ Java лямбда-выражения являются замыканиями. На самом деле, внутренние 
+классы были замыканиями все это время. Java 8 предоставляет нам 
+замыкания с привлекательным синтаксисом.<br>
+<br>
+Как вы видели, лямбда-выражение может захватить значение переменной в 
+охватывающей области. В Java, чтобы убедиться, что захватили значение 
+корректно, есть важное ограничение. В лямбда-выражении можно ссылаться 
+только на переменные, значения которых не меняются. Например, следующий 
+код является неправильным:<br>
+<pre><code class="java hljs"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">repeatText</span><span class="hljs-params">(String text, <span class="hljs-keyword">int</span> count)</span> </span>{
+    Runnable r = () -&gt; {
+        <span class="hljs-keyword">while</span> (count &gt; <span class="hljs-number">0</span>) {
+            count--; <span class="hljs-comment">// Error: Can't mutate captured variable</span>
+            System.out.println(text);
+            Thread.yield();
+       }
+    };
+    <span class="hljs-keyword">new</span> Thread(r).start();
+}
+</code></pre><br>
+Существует причина для этого ограничения. Изменяющиеся переменные в 
+лямбда-выражениях не потокобезопасны. Рассмотрим последовательность 
+параллельных задач, каждая из которых обновляет общий счетчик.<br>
+<pre><code class="java hljs"><span class="hljs-keyword">int</span> matchCount = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">for</span> (Path p : files)
+    <span class="hljs-keyword">new</span> Thread(() -&gt; { <span class="hljs-keyword">if</span> (p has some property) matchCount++; }).start();
+    <span class="hljs-comment">// Illegal to mutate matchCount</span>
+</code></pre><br>
+Если бы этот код был правомерным, это было бы не слишком хорошо. Приращение <code>matchCount++</code> неатомарно, и нет никакого способа узнать, что произойдет, если несколько потоков выполнят этот код одновременно. <br>
+<br>
+Внутренние классы могут также захватывать значения из охватывающей 
+области. До Java 8 внутренние классы могли иметь доступ только к 
+локальным <code>final</code> переменным. Это правило теперь ослаблено 
+для соответствия правилу для лямбда-выражений. Внутренний класс может 
+получить доступ к любой эффективно <code>final</code> локальной переменной; то есть, к любой переменной, значение которой не изменяется. <br>
+<br>
+Не рассчитывайте, что компилятор выявит все параллельные ошибки доступа.
+ Запрет на модификацию имеет место только для локальных переменных. Если
+ <code>matchCount</code> – переменная экземпляра или статическая 
+переменная из охватывающего класса, то никакой ошибки не будет, хотя 
+результат так же не определен.<br>
+<br>
+Кроме того, совершенно законно изменять разделяемый объект, хоть это и не очень надежно. Например,<br>
+<pre><code class="java hljs">List&lt;Path&gt; matchedObjs = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+<span class="hljs-keyword">for</span> (Path p : files)
+    <span class="hljs-keyword">new</span> Thread(() -&gt; { <span class="hljs-keyword">if</span> (p has some property) matchedObjs.add(p); }).start();
+    <span class="hljs-comment">// Legal to mutate matchedObjs, but unsafe</span>
+</code></pre><br>
+Обратите внимание, что переменная <code>matchedObjs</code> эффективно <code>final</code>. (Эффективно <code>final</code> переменная является переменной, которой никогда не присваивается новое значение после ее инициализации.) В нашем случае <code>matchedObjs</code> всегда ссылается на один и тот же объект <code>ArrayList</code>. Однако объект изменяется, и это не потокобезопасно. Если несколько потоков вызовут метод <code>add</code>, результат может быть непредсказуемым. <br>
+<br>
+Существуют безопасные механизмы подсчета и сбора значений одновременно. 
+Вы можете использовать потоки для сбора значений с определенными 
+свойствами. В других ситуациях вы можете использовать потокобезопасные 
+счетчики и коллекции.<br>
+<br>
+Как и с внутренними классами, есть обходное решение, которое позволяет 
+лямбда-выражению обновить счетчик в локальной охватывающей области 
+видимости. Используйте массив длиной 1, вроде этого:<br>
+<pre><code class="java hljs"><span class="hljs-keyword">int</span>[] counts = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">1</span>];
+button.setOnAction(event -&gt; counts[<span class="hljs-number">0</span>]++);
+</code></pre><br>
+Конечно, такой код не потокобезопасный. Для обратного вызова кнопки это 
+не имеет значения, но в целом, вы должны подумать дважды, прежде чем 
+использовать этот трюк. <br>
+<br>
+Тело лямбда-выражения имеет ту же область видимости, что и вложенный 
+блок. Здесь применяются те же самые правила для конфликтов имен. Нельзя 
+объявить параметр или локальную переменную в лямбде, которые имеют то же
+ имя, что и локальная переменная.<br>
+<pre><code class="java hljs">Path first = Paths.get(<span class="hljs-string">"/usr/local"</span>);
+Comparator&lt;String&gt; comp =
+    (first, second) -&gt; Integer.compare(first.length(), second.length());
+    <span class="hljs-comment">// Error: Variable first already defined</span>
+</code></pre><br>
+Внутри метода вы не можете иметь две локальные переменные с тем же 
+именем. Таким образом, вы не можете объявить такие переменные также и в 
+лямбда-выражении. При использовании ключевого слова <code>this</code> в лямбда-выражении вы ссылаетесь на параметр <code>this</code> метода, который создает лямбду. Рассмотрим, например, следующий код<br>
+<pre><code class="java hljs"><span class="hljs-function"><span class="hljs-keyword">public</span> class <span class="hljs-title">Application</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doWork</span><span class="hljs-params">()</span> </span>{
+        Runnable r = () -&gt; { ...; System.out.println(<span class="hljs-keyword">this</span>.toString()); ... };
+        ...
+    }
+}
+</code></pre><br>
+Выражение <code>this.toString()</code> вызывает метод <code>toString</code> объекта <code>Application</code>, а не экземпляра <code>Runnable</code>. Нет ничего особенного в использовании <code>this</code> в лямбда-выражении. Область видимости лямбда-выражения вложена внутрь метода <code>doWork</code>, и <code>this</code> имеет такое же значение в любой точке этого метода.<br>
+<br>
+<h4>Методы по умолчанию</h4> <br>
+Многие языки программирования интегрируют функциональные выражения с их 
+библиотеками коллекций. Это часто приводит к коду, который короче и 
+проще для понимания, чем эквивалент, использующий циклы. Например, 
+рассмотрим цикл:<br>
+<pre><code class="java hljs"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; strList.size(); i++)
+    System.out.println(strList.get(i));
+</code></pre><br>
+Существует лучший способ. Авторы библиотеки могут предоставить метод <code>forEach</code>, который применяет функцию к каждому элементу. Тогда вы можете просто вызвать<br>
+<pre><code class="java hljs">strList.forEach(System.out::println);
+</code></pre><br>
+Это нормально, если библиотека коллекций была разработана с нуля. Но 
+библиотека коллекций Java была разработана много лет назад, и есть 
+проблема. Если интерфейс <code>Collection</code> получает новые методы, такие как <code>forEach</code>, то каждая программа, которая определяет свой собственный класс, реализующий <code>Collection</code>, сломается, пока тоже не реализует этот метод. Это просто недопустимо в Java.<br>
+<br>
+Проектировщики Java решили эту проблему раз и навсегда, позволив 
+создавать методы интерфейса с конкретной реализацией (так называемые 
+методы по умолчанию). Эти методы могут быть безопасно добавлены к 
+существующим интерфейсам. В этом разделе мы рассмотрим методы по 
+умолчанию в деталях. В Java 8 метод <code>forEach</code> был добавлен к интерфейсу <code>Iterable</code>, суперинтерфейсу <code>Collection</code>, используя механизм, который я опишу здесь. <br>
+<br>
+Рассмотрим такой интерфейс:<br>
+<pre><code class="java hljs"><span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Person</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">long</span> <span class="hljs-title">getId</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">default</span> String <span class="hljs-title">getFirstName</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> <span class="hljs-string">"Jack"</span>; }
+}
+</code></pre><br>
+Интерфейс имеет два метода: <code>getId</code>, это абстрактный метод, и метод по умолчанию <code>getFirstName</code>. Конкретный класс, реализующий интерфейс <code>Person</code>, должен, конечно, предоставить реализацию <code>getId</code>, но он может выбрать, оставить реализацию <code>getFirstName</code> или переопределить ее.<br>
+<br>
+Методы по умолчанию кладут конец классическому паттерну предоставления 
+интерфейса и абстрактного класса, который реализует все или почти все из
+ его методов, такие, как <code>Collection/AbstractCollection</code> или <code>WindowListener/WindowAdapter</code>. Теперь вы можете просто реализовать методы в интерфейсе.<br>
+Что произойдет, если точно такой же метод определен как метод по 
+умолчанию в одном интерфейсе, а затем снова в качестве метода 
+суперкласса или другого интерфейса? Языки типа Скала и C++ имеют сложные
+ правила разрешения таких неоднозначностей. К счастью, правила в Java 
+гораздо проще. Вот они:<br>
+<br>
+<ol>
+<li>Родительские классы выиграют. Если суперкласс предоставляет 
+конкретный метод, методы по умолчанию с тем же именем и типами 
+параметров просто игнорируются.</li>
+<li>Интерфейсы сталкиваются. Если супер интерфейс предоставляет метод по
+ умолчанию, а другой интерфейс поставляет метод с тем же именем и типами
+ параметров (по умолчанию или нет), то вы должны разрешить конфликт 
+путем переопределения этого метода.</li>
+</ol><br>
+Давайте посмотрим на второе правило. Рассмотрим еще один интерфейс с методом <code>getFirstName</code>:<br>
+<pre><code class="java hljs"><span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Naming</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">default</span> String <span class="hljs-title">getFirstName</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> getClass().getName() + <span class="hljs-string">"_"</span> + hashCode(); }
+}
+</code></pre><br>
+Что произойдет, если вы создадите класс, реализующий оба?<br>
+<pre><code class="java hljs"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Student</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Person</span>, <span class="hljs-title">Naming</span> </span>{
+    ...
+}
+</code></pre><br>
+Класс наследует две противоречивые версии метода <code>getFirstName</code>, предоставляемые интерфейсами <code>Person</code> и <code>Naming</code>.
+ Вместо выбора того или другого метода, компилятор Java сообщает об 
+ошибке и оставляет программисту разрешение неоднозначности. Просто 
+предоставьте метод <code>getFirstName</code> в классе <code>Student</code>. В этом методе вы можете выбрать один из двух конфликтующих методов, как показано ниже:<br>
+<pre><code class="java hljs"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Student</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Person</span>, <span class="hljs-title">Naming</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getFirstName</span><span class="hljs-params">()</span> </span>{ returnPerson.<span class="hljs-keyword">super</span>.getFirstName(); }
+        ...
+}
+</code></pre><br>
+Теперь предположим, что <code>Naming</code> интерфейс не содержит реализацию по умолчанию для <code>getFirstName</code>:<br>
+<pre><code class="java hljs"><span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Naming</span> </span>{
+    <span class="hljs-function">String <span class="hljs-title">getFirstName</span><span class="hljs-params">()</span></span>;
+}
+</code></pre><br>
+Может ли класс <code>Student</code> унаследовать метод по умолчанию из интерфейса <code>Person</code>?
+ Это могло бы быть разумным, но проектировщики Java приняли решение в 
+пользу единообразия. Это не имеет значения, как два интерфейсы 
+конфликтуют. Если хотя бы один интерфейс обеспечивает реализацию, 
+компилятор сообщает об ошибке, и программист должен устранить 
+неоднозначность. <br>
+<br>
+Если ни один интерфейс не обеспечивает реализацию по умолчанию для 
+общего метода, то мы находимся в пре-Java 8 ситуации и нет никакого 
+конфликта. У класса реализации есть две возможности: реализовать метод 
+или оставить его нереализованным. В последнем случае класс сам является 
+абстрактным.<br>
+<br>
+Мы только что обсудили конфликты имен между двумя интерфейсами. Теперь 
+рассмотрим класс, расширяющий суперкласс и реализующий интерфейс, 
+наследуя тот же метод от обоих. Например, предположим, что <code>Person</code> является классом и <code>Student</code> определяется как:<br>
+<pre><code class="java hljs"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Student</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Person</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Naming</span> </span>{ ... }
+</code></pre><br>
+В этом случае только метод суперкласса имеет значение, и любой метод по 
+умолчанию из интерфейса просто игнорируется. В нашем примере <code>Student</code> наследует метод <code>getFirstName</code> от <code>Person</code>, и нет никакой разницы, обеспечивает ли интерфейс <code>Naming</code> реализацию по умолчанию для <code>getFirstName</code>
+ или нет. Это правило «класс побеждает» в действии. Правило «класс 
+побеждает» обеспечивает совместимость с Java 7. Если вы добавляете 
+методы по умолчанию к интерфейсу, это не имеет никакого влияния на код, 
+который работал до того, как появились методы по умолчанию. Но имейте в 
+виду: вы не имеете права создавать метод по умолчанию, который 
+переопределяет один из методов класса <code>Object</code>. Например, вы не можете определить метод по умолчанию для <code>toString</code> или <code>equals</code>, хотя это могло бы быть удобным для таких интерфейсов, как <code>List</code>. Как следствие правила о победе классов, такой метод никогда не может выиграть у <code>Object.toString</code> или <code>Object.equals</code>.<br>
+<br>
+<h4>Заключение</h4><br>
+В этой статье были описаны лямбда-выражения в качестве единого 
+крупнейшего обновления в модели программирования, когда-либо бывшего в 
+Java, — большего, чем даже дженерики. А почему нет? Это открывает 
+программисту Java возможности, которых ему не хватало по сравнению с 
+другими функциональными языками программирования. Наряду с другими 
+фичами, такими, как методы по умолчанию, лямбды могут быть использованы 
+для написания действительно хорошего кода. Надеюсь, эта статья дала 
+представление о то, что для нас приготовили в Java 8.
+
+      
+      <div class="clear"></div>
+    </div>
+
+    
+  <ul class="tags icon_tag">
+      <li>
+        <a href="http://habrahabr.ru/search/?q=%5BJava%5D&amp;target_type=posts" rel="tag">Java</a>
+      </li>
+      <li>, 
+        <a href="http://habrahabr.ru/search/?q=%5B%D0%BB%D1%8F%D0%BC%D0%B1%D0%B4%D0%B0-%D0%B2%D1%8B%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%5D&amp;target_type=posts" rel="tag">лямбда-выражения</a>
+      </li>
+      <li>, 
+        <a href="http://habrahabr.ru/search/?q=%5B%D0%BB%D1%8F%D0%BC%D0%B1%D0%B4%D0%B0-%D0%B8%D1%81%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%5D&amp;target_type=posts" rel="tag">лямбда-исчисление</a>
+      </li>
+      <li>, 
+        <a href="http://habrahabr.ru/search/?q=%5B%D0%BB%D1%8F%D0%BC%D0%B1%D0%B4%D0%B0-%D1%84%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D1%8F%5D&amp;target_type=posts" rel="tag">лямбда-функция</a>
+      </li>
+      <li>, 
+        <a href="http://habrahabr.ru/search/?q=%5Bjava%208%5D&amp;target_type=posts" rel="tag">java 8</a>
+      </li>
+      <li>, 
+        <a href="http://habrahabr.ru/search/?q=%5B%D0%B7%D0%B0%D0%BC%D1%8B%D0%BA%D0%B0%D0%BD%D0%B8%D1%8F%5D&amp;target_type=posts" rel="tag">замыкания</a>
+      </li>
+  </ul>
+
+
+      <div class="infopanel_wrapper">
+    <ul class="postinfo-panel postinfo-panel_post" id="infopanel_post_224593">
+
+          <li class="postinfo-panel__item">
+            <div class="voting-wjt voting-wjt_infopanel js-voting  ">
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи.">
+                  <span>↑</span>
+                </button>
+
+              <div class="voting-wjt__counter voting-wjt__counter_positive  js-mark">
+                  <span class="voting-wjt__counter-score js-score" title="Общий рейтинг 60: ↑51 и ↓9">+42</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи.">
+                  <span>↓</span>
+                </button>
+
+            </div>
+          </li>
+
+      <li class="postinfo-panel__item">
+        <div class="views-count_post" title="Просмотры публикации">76,6к</div>
+      </li>
+
+      <li class="postinfo-panel__item">
+        <div class="favorite-wjt favorite">
+            <button type="button" disabled="disabled" class="favorite-wjt__button favorite-wjt__button_disabled" onclick="return false;" title="Только зарегистрированные пользователи могут добавлять публикации в избранное">
+              <span>Добавить в избранное</span>
+            </button>
+          <span class="favorite-wjt__counter js-favs_count" title="Количество пользователей, добавивших публикацию в избранное">491</span>
+        </div>
+      </li>
+
+
+
+
+      <!-- шеринг в соцсети -->
+        <li class="postinfo-panel__item postinfo-panel__item_socials  postinfo-panel__item_socials_right ">
+          <ul class="post-share">
+            <li class="post-share__item">
+              <a href="http://twitter.com/intent/tweet?text=%D0%9B%D1%8F%D0%BC%D0%B1%D0%B4%D0%B0-%D0%B2%D1%8B%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F+%D0%B2+Java+8+http://habr.ru/p/224593/+via+%40habrahabr+%23habr" class="post-share__item-link twitter" title="Опубликовать ссылку в Twitter" target="_blank"></a>
+            </li>
+            <li class="post-share__item">
+              <a href="https://vk.com/share.php?url=http://habrahabr.ru/post/224593/" class="post-share__item-link vkontakte" title="Опубликовать ссылку во ВКонтакте" onclick="window.open(this.href, 'Опубликовать ссылку во Вконтакте', 'width=800,height=300'); return false"></a>
+            </li>
+            <li class="post-share__item">
+              <a href="https://www.facebook.com/sharer/sharer.php?u=http://habrahabr.ru/post/224593/" class="post-share__item-link facebook" title="Опубликовать ссылку в Facebook" onclick="window.open(this.href, 'Опубликовать ссылку в Facebook', 'width=640,height=436,toolbar=0,status=0'); return false"></a>
+            </li>
+            <li class="post-share__item">
+              <a href="https://getpocket.com/edit?url=http://habrahabr.ru/post/224593/" target="_blank" class="post-share__item-link pocket" title="Добавить ссылку в Pocket"></a>
+            </li>
+          </ul>
+        </li>
+
+      <!-- кнопка пожаловаться -->
+    </ul>
+  </div>
+
+
+        
+
+  <div class="author-info ">
+    <a href="http://habrahabr.ru/users/WildCat2013" class="author-info__image">
+        <span class="user-pic_default user-pic_default_47 user-pic_lilac"></span>
+    </a>
+
+    <div class="author-info__desc">
+      <div class="author-info__username">
+        <a href="http://habrahabr.ru/users/WildCat2013" class="author-info__nickname">@WildCat2013</a>
+
+        <div class="karma__widjet voting-wjt voting-wjt_small js-karma  " title="Карма пользователя">
+
+
+          <div class="voting-wjt__counter voting-wjt__counter_positive">
+            <span class="voting-wjt__label">карма</span>
+            <span class="voting-wjt__counter-score js-karma_num">19,0</span>
+          </div>
+
+        </div>
+
+        <div class="user-rating" title="Рейтинг пользователя">
+          <span class="user-rating__label">рейтинг</span>
+          <span class="user-rating__value">0,0</span>
+        </div>
+
+      </div>
+
+
+    </div>
+  </div>
+
+
+  </div>
+
+      </div>
+      <div class="privet" style="margin-top: 15px">
+<!--  AdRiver code START. Type:AjaxJS Site: habrahabr PZ: 0 BN: 13 -->
+<div class="html_banner" id="adriver_banner_883932549"></div>
+<a href="http://special.habrahabr.ru/advertising/" class="firskill__label">Реклама</a>
+
+<script type="text/javascript">
+    function show_inner_banner_block300(name, url){
+        if( typeof(name) !== 'undefined'){
+            if ($('.tabs').width() >= 620) { // блок расчитан на >= 620 пикселей
+                $('#adriver_banner_883932549').html('<iframe src="http://special.habrahabr.ru/api/htmlblock/'+name+'/?iframe&url='+encodeURIComponent(url)+'" width="100%" height="250"></iframe>')
+            }
+        }
+    }
+
+  $(function(){
+    var check_scroll_position = function() {
+      var height = $(window).height();
+      var scrollTop = $(window).scrollTop();
+      var scrollBottom = $(window).scrollTop() + height;
+      var blockTop = $('#adriver_banner_883932549').position().top;
+      var show = scrollTop < blockTop && blockTop < scrollBottom;
+
+      if( show ){
+        $( window ).off('scroll', check_scroll_position);
+        $( window ).trigger('show_bn3');
+      }
+    };
+
+
+    $( window ).on('show_bn3', function(){
+      var keyword = '';
+      if (typeof crtg_content !== 'undefined' && crtg_content) { keyword = crtg_content; }
+      var custom = { 4:ar_duo1 };
+        custom[1] = 'development';
+        custom[2] = 'java';
+        custom[3] = 'programming';
+      if ( typeof(adriver) !== 'undefined' ){
+          new adriver("adriver_banner_883932549", {sid:176776, bt:52, bn:13, custom: custom, keyword: keyword});
+      } else {
+          var adCls = makeAdClass();
+          $('.privet').attr('class', adCls).removeClass('privet');
+          $('.' + adCls).css({ 'margin-top' : '20px' }).html('<iframe src="http://habrahabr.ru/hauusbx/al/habrahabr/" width="100%" height="70" style="display: block !important;visibility: visible !important;"></iframe>');
+          if (typeof ga === 'function') { ga('HGM.send', 'event', 'anti_adblk', 'under_post',  'habrahabr'); }
+      }
+
+    });
+
+    $( window ).on('scroll', check_scroll_position);
+  });
+</script>
+
+<!--  AdRiver code END  -->
+</div>
+
+        
+
+    <div class="similar-posts">
+      <h2 class="similar-posts__title">Похожие публикации</h2>
+
+      <ul class="content-list content-list_posts">
+          <li class="content-list__item">
+            <div class="post-preview">
+              <div class="post-preview__rating">+6</div>
+              <div class="post-preview__desc">
+                <a class="post-preview__link" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'similar_posts', 'common'); }" href="http://habrahabr.ru/post/270269/">Высоконагруженное приложение на java</a>
+                <span class="post-preview__attrs inline-list inline-list_attrs">
+                  <span class="inline-list__item views-count">13,2к</span>
+                  <span class="inline-list__item favorites-count">108</span>
+                  <span class="inline-list__item comments-count">35</span>
+                </span>
+              </div>
+            </div>
+          </li>
+          <li class="content-list__item">
+            <div class="post-preview">
+              <div class="post-preview__rating">+64</div>
+              <div class="post-preview__desc">
+                <a class="post-preview__link" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'similar_posts', 'common'); }" href="http://habrahabr.ru/post/65798/">Лямбда выражения теперь и в С++</a>
+                <span class="post-preview__attrs inline-list inline-list_attrs">
+                  <span class="inline-list__item views-count">21,7к</span>
+                  <span class="inline-list__item favorites-count">101</span>
+                  <span class="inline-list__item comments-count">142</span>
+                </span>
+              </div>
+            </div>
+          </li>
+          <li class="content-list__item">
+            <div class="post-preview">
+              <div class="post-preview__rating">+17</div>
+              <div class="post-preview__desc">
+                <a class="post-preview__link" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'similar_posts', 'common'); }" href="http://habrahabr.ru/post/51565/">Лямбды</a>
+                <span class="post-preview__attrs inline-list inline-list_attrs">
+                  <span class="inline-list__item views-count">1,5к</span>
+                  <span class="inline-list__item favorites-count">18</span>
+                  <span class="inline-list__item comments-count">9</span>
+                </span>
+              </div>
+            </div>
+          </li>
+      </ul>
+    </div>
+
+
+    </div>
+
+    <div class="sidebar_right">
+          <div style="display: block ! important; visibility: visible ! important;" class="zUcMI"><a href="http://bit.ly/21ugsIr" target="_blank" style="width: 300px; height: 500px; background: transparent url(&quot;https://habrastorage.org/files/ac2/b3f/f96/ac2b3ff9662845f191d918291b14effb.png&quot;) repeat scroll 0% 0%; display: block ! important; visibility: visible ! important; margin-bottom: 20px;"></a>
+  </div>
+
+
+        
+
+  <div class="live-broadcast live-broadcast_habrahabr daily_best_posts">
+    <h2 class="live-broadcast__title">Самое читаемое</h2>
+    <div class="live-broadcast__tabs tabs" id="broadcast_tabs_posts">
+      <ul class="tabs__menu tabs__menu_posts menu menu_inline">
+        <li class="menu__item active"><a href="#broadcast_posts_now" class="menu__item-tab">Сейчас</a></li>
+        <li class="menu__item"><a href="#broadcast_posts_week" class="menu__item-tab">Неделя</a></li>
+        <li class="menu__item"><a href="#broadcast_posts_month" class="menu__item-tab">Месяц</a></li>
+      </ul>
+
+        <div style="display: block;" class="tabs__content" id="broadcast_posts_now">
+            <ul class="content-list content-list_comments">
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/272099/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'post'); }" class="content-list__item-link">PHP 7.0.0</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/272099#comments/" class="content-list__item-counter icon_comments">43</a>
+                </li>
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/272007/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'post'); }" class="content-list__item-link">NextCastle Party 2015: как я свою игру показывал</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/272007#comments/" class="content-list__item-counter icon_comments">3</a>
+                </li>
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/272115/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'post'); }" class="content-list__item-link">«Страшные» абстракции Haskell без математики и без кода (почти). Часть I</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/272115#comments/" class="content-list__item-counter icon_comments">5</a>
+                </li>
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/272013/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'post'); }" class="content-list__item-link">Как я много раз не бросил разработку своей второй игры</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/272013#comments/" class="content-list__item-counter icon_comments">25</a>
+                </li>
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/272095/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'post'); }" class="content-list__item-link">Корпоративное использование Android 5.0: рекомендации по безопасности</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/272095#comments/" class="content-list__item-counter icon_comments">6</a>
+                </li>
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/272093/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'post'); }" class="content-list__item-link">Сетевое оборудование под угрозой? Давайте разбираться…</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/272093#comments/" class="content-list__item-counter icon_comments">6</a>
+                </li>
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/272051/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'post'); }" class="content-list__item-link">Хотите интегрировать Telegram в Redmine? Есть решение</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/272051#comments/" class="content-list__item-counter icon_comments">0</a>
+                </li>
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/272071/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'post'); }" class="content-list__item-link">Как общаются жители разных городов</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/272071#comments/" class="content-list__item-counter icon_comments">13</a>
+                </li>
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/272063/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'post'); }" class="content-list__item-link">Применение модулей LRDIMM в высокопроизводительных серверах</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/272063#comments/" class="content-list__item-counter icon_comments">11</a>
+                </li>
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/272041/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'post'); }" class="content-list__item-link">Архитектура и технологические подходы к обработке BigData на примере «1С-Битрикс BigData: Персонализация»</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/272041#comments/" class="content-list__item-counter icon_comments">0</a>
+                </li>
+            </ul>
+        </div>
+        <div style="display: none;" class="tabs__content" id="broadcast_posts_week">
+            <ul class="content-list content-list_comments">
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/271773/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'post'); }" class="content-list__item-link">Найди коррупционера. Анализ данных чиновников из проектов Канцелярской сотни (с примерами на R)</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/271773#comments/" class="content-list__item-counter icon_comments">143</a>
+                </li>
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/271931/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'post'); }" class="content-list__item-link">Как происходит рендеринг кадра в GTA V</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/271931#comments/" class="content-list__item-counter icon_comments">40</a>
+                </li>
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/271887/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'post'); }" class="content-list__item-link">«IT — это достаточно бедная индустрия» — интервью с Дмитрием Нестеруком из JetBrains</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/271887#comments/" class="content-list__item-counter icon_comments">183</a>
+                </li>
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/271621/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'post'); }" class="content-list__item-link">Про программистов</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/271621#comments/" class="content-list__item-counter icon_comments">75</a>
+                </li>
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/271815/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'post'); }" class="content-list__item-link">Сегодняшний мир — это amd64, armv7 и aarch64. Всё остальное мертво, Джим</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/271815#comments/" class="content-list__item-counter icon_comments">114</a>
+                </li>
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/271889/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'post'); }" class="content-list__item-link">sin 1° на калькуляторе</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/271889#comments/" class="content-list__item-counter icon_comments">41</a>
+                </li>
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/271859/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'post'); }" class="content-list__item-link">Утечка 191 000 адресов электронной почты из резюме Авито</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/271859#comments/" class="content-list__item-counter icon_comments">28</a>
+                </li>
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/271803/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'post'); }" class="content-list__item-link">Исповедь Google-спамера</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/271803#comments/" class="content-list__item-counter icon_comments">23</a>
+                </li>
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/271829/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'post'); }" class="content-list__item-link">Как мы себя заново писали, или как потерять исходники и не подать виду</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/271829#comments/" class="content-list__item-counter icon_comments">32</a>
+                </li>
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/271725/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'post'); }" class="content-list__item-link">Яндекс анонсирует собственную технологию прогнозирования погоды Метеум. С точностью до дома</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/271725#comments/" class="content-list__item-counter icon_comments">113</a>
+                </li>
+            </ul>
+        </div>
+        <div style="display: none;" class="tabs__content" id="broadcast_posts_month">
+            <ul class="content-list content-list_comments">
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/271279/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'post'); }" class="content-list__item-link">400 потрясающих бесплатных сервисов</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/271279#comments/" class="content-list__item-counter icon_comments">33</a>
+                </li>
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/270589/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'post'); }" class="content-list__item-link">Более 350 бесплатных инструментов для разработчиков</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/270589#comments/" class="content-list__item-counter icon_comments">37</a>
+                </li>
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/271165/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'post'); }" class="content-list__item-link">Как вести секретную переписку в мире, где за вами постоянно следят: методы Эдварда Сноудена. Часть 1</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/271165#comments/" class="content-list__item-counter icon_comments">23</a>
+                </li>
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/270599/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'post'); }" class="content-list__item-link">Червь, который изменил Интернет</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/270599#comments/" class="content-list__item-counter icon_comments">36</a>
+                </li>
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/271211/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'post'); }" class="content-list__item-link">Хакеры изобрели новую схему воровства денег, украв 250 млн. рублей</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/271211#comments/" class="content-list__item-counter icon_comments">94</a>
+                </li>
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/271407/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'post'); }" class="content-list__item-link">Анализ резюме с HeadHunter. Кто сколько зарабатывает и в каких отраслях работает</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/271407#comments/" class="content-list__item-counter icon_comments">65</a>
+                </li>
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/271297/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'post'); }" class="content-list__item-link">Типичные грабли на пути программиста от Junior'а к Senior'у</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/271297#comments/" class="content-list__item-counter icon_comments">70</a>
+                </li>
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/269829/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'post'); }" class="content-list__item-link">10 относительно честных способов взломать почту</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/269829#comments/" class="content-list__item-counter icon_comments">43</a>
+                </li>
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/271773/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'post'); }" class="content-list__item-link">Найди коррупционера. Анализ данных чиновников из проектов Канцелярской сотни (с примерами на R)</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/271773#comments/" class="content-list__item-counter icon_comments">143</a>
+                </li>
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/270537/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'post'); }" class="content-list__item-link">Как я стал андроид-разработчиком без профильного образования, попутно мешая бетон</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/270537#comments/" class="content-list__item-counter icon_comments">60</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+  </div>
+
+        
+<div class="block similar_questions">
+  <div class="title">Вопросы по теме</div>
+  <ul class="content-list content-list_comments">
+      <li class="content-list__item">
+        <a href="http://toster.ru/q/271448" class="content-list__item-link" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo" target="_blank">Есть ли аналог TestCase из C# в Java?</a>&nbsp;&nbsp;<a href="http://toster.ru/q/271448#answers" class="content-list__item-counter icon_answers" target="_blank">1</a>
+      </li>
+      <li class="content-list__item">
+        <a href="http://toster.ru/q/271394" class="content-list__item-link" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo" target="_blank">Каков процесс инициализации bean?</a>&nbsp;&nbsp;<a href="http://toster.ru/q/271394#answers" class="content-list__item-counter icon_answers" target="_blank">1</a>
+      </li>
+      <li class="content-list__item">
+        <a href="http://toster.ru/q/271391" class="content-list__item-link" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo" target="_blank">Книгу по APIs Andtoid SDK на русском?</a>&nbsp;&nbsp;<a href="http://toster.ru/q/271391#answers" class="content-list__item-counter icon_answers" target="_blank">3</a>
+      </li>
+      <li class="content-list__item">
+        <a href="http://toster.ru/q/271336" class="content-list__item-link" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo" target="_blank">Как расположить элементы в java?</a>&nbsp;&nbsp;<a href="http://toster.ru/q/271336#answers" class="content-list__item-counter icon_answers" target="_blank">3</a>
+      </li>
+      <li class="content-list__item">
+        <a href="http://toster.ru/q/271312" class="content-list__item-link" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo" target="_blank">Как сделать удаленную БД для приложения Андроид?</a>&nbsp;&nbsp;<a href="http://toster.ru/q/271312#answers" class="content-list__item-counter icon_answers" target="_blank">2</a>
+      </li>
+  </ul>
+</div>
+
+
+        <div style="display: block ! important; visibility: visible ! important;" class="GkOzx"><a href="http://bit.ly/1Xk0CNK" target="_blank" style="width: 300px; height: 500px; background: transparent url(&quot;https://habrastorage.org/files/6ba/945/940/6ba94594029b419ba025e7f61d5198f2.png&quot;) repeat scroll 0% 0%; display: block ! important; visibility: visible ! important; margin-bottom: 20px;"></a>
+
+</div>
+
+
+        
+        
+        
+    </div>
+  </div>
+
+  <div class="column-wrapper column-wrapper_comments">
+    <div class="content_left">
+            <div class="comments_list " id="comments">
+
+        <h2 class="title ">Комментарии (<span id="comments_count">24</span>)
+            
+
+        </h2>
+
+        
+
+              <div class="comment_item" id="comment_7639369">
+  
+    <span class="parent_id" data-parent_id="0"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  " rel="7639369">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/zserge/" class="comment-item__avatar">
+              <span class="comment-item__avatar-img_default user-pic_blue"></span>
+          </a>
+          <a href="http://habrahabr.ru/users/zserge/" class="comment-item__username">zserge</a>
+          <time class="comment-item__time_published">29 мая 2014 в 22:55</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_7639369" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_7639369" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark voting-wjt__counter_positive ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 3: ↑2 и ↓1">+1</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          Хотелось бы еще добавить, что использовать лямбды можно не только в Java 8 благодаря проекту RetroLambda — <a href="https://github.com/orfjackal/retrolambda">github.com/orfjackal/retrolambda</a><br>
+Точнее, компилятор нужен будет все равно из JDK8, однако для запуска 
+сгодится любая другая JRE вплоть до Java 5. Особенно это должно помочь 
+разработчикам под андроид.
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_7639369">
+        <div class="comment_item" id="comment_7639543">
+  
+    <span class="parent_id" data-parent_id="7639369"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  " rel="7639543">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/artemgapchenko/" class="comment-item__avatar">
+              <img src="%D0%9B%D1%8F%D0%BC%D0%B1%D0%B4%D0%B0-%D0%B2%D1%8B%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%208%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/fa419fcb6f4264f33664dba36ff84817_small.jpg" alt="" class="comment-item__avatar-img">
+          </a>
+          <a href="http://habrahabr.ru/users/artemgapchenko/" class="comment-item__username">artemgapchenko</a>
+          <time class="comment-item__time_published">30 мая 2014 в 00:07<span class="comment-item__time_changed"> (комментарий был изменён)</span></time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_7639543" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+              <span class="icon_comment-tree js-comment_tree" data-id="7639543" data-parent_id="7639369" title="Показать ветку комментариев"></span>
+              <a href="#comment_7639369" class="icon_comment-parent js-comment_parent" data-id="7639543" data-parent_id="7639369" title="Показать предыдущий комментарий"></a>
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_7639543" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark  ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 0: ↑0 и ↓0">0</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          Я подключал проект retrolambda по <a href="https://github.com/evant/gradle-retrolambda">вот этой вот</a>
+ инструкции. Подключается легко, работает, но мне показалось этого мало,
+ и решил попробовать написать что-нибудь простенькое на Scala. :) Пока 
+что нахожусь на стадии работающего hello-world'a.<br>
+P.S. Да, вот <a href="https://github.com/saturday06/gradle-android-scala-plugin">ссылка</a> на плагин для gradle, который сильно упрощает работу со Scala в Android. Проект не мой, благодарности автору.
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_7639543">
+        <div class="comment_item" id="comment_7639911">
+  
+    <span class="parent_id" data-parent_id="7639543"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  " rel="7639911">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/zserge/" class="comment-item__avatar">
+              <span class="comment-item__avatar-img_default user-pic_blue"></span>
+          </a>
+          <a href="http://habrahabr.ru/users/zserge/" class="comment-item__username">zserge</a>
+          <time class="comment-item__time_published">30 мая 2014 в 04:42</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_7639911" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+              <span class="icon_comment-tree js-comment_tree" data-id="7639911" data-parent_id="7639543" title="Показать ветку комментариев"></span>
+              <a href="#comment_7639543" class="icon_comment-parent js-comment_parent" data-id="7639911" data-parent_id="7639543" title="Показать предыдущий комментарий"></a>
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_7639911" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark  ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 0: ↑0 и ↓0">0</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          А я вот gradle терпеть не могу, поэтому описывал когда-то как с обычным ant то же самое сделать — <a href="http://zserge.com/blog/android-lambda.html">zserge.com/blog/android-lambda.html</a><br>
+От лямбд, конечно, сплошной восторг. А Scala пробовал, но уж больно она медленная, повременю пока с ней.
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_7639911">
+        <div class="comment_item" id="comment_7641115">
+  
+    <span class="parent_id" data-parent_id="7639911"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  " rel="7641115">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/dougrinch/" class="comment-item__avatar">
+              <img src="%D0%9B%D1%8F%D0%BC%D0%B1%D0%B4%D0%B0-%D0%B2%D1%8B%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%208%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/3589dd65ba8d1c2f80bd6262be1cd4cb_small.jpg" alt="" class="comment-item__avatar-img">
+          </a>
+          <a href="http://habrahabr.ru/users/dougrinch/" class="comment-item__username">dougrinch</a>
+          <time class="comment-item__time_published">30 мая 2014 в 12:50</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_7641115" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+              <span class="icon_comment-tree js-comment_tree" data-id="7641115" data-parent_id="7639911" title="Показать ветку комментариев"></span>
+              <a href="#comment_7639911" class="icon_comment-parent js-comment_parent" data-id="7641115" data-parent_id="7639911" title="Показать предыдущий комментарий"></a>
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_7641115" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark  ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 0: ↑0 и ↓0">0</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          <blockquote>А я вот gradle терпеть не могу</blockquote><br>
+Если не секрет, почему так?
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_7641115">
+        <div class="comment_item" id="comment_7641285">
+  
+    <span class="parent_id" data-parent_id="7641115"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  " rel="7641285">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/dginz/" class="comment-item__avatar">
+              <img src="%D0%9B%D1%8F%D0%BC%D0%B1%D0%B4%D0%B0-%D0%B2%D1%8B%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%208%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/f475afc1cf27398fde3cd44df111bf4b_small.jpg" alt="" class="comment-item__avatar-img">
+          </a>
+          <a href="http://habrahabr.ru/users/dginz/" class="comment-item__username">dginz</a>
+          <time class="comment-item__time_published">30 мая 2014 в 13:19</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_7641285" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+              <span class="icon_comment-tree js-comment_tree" data-id="7641285" data-parent_id="7641115" title="Показать ветку комментариев"></span>
+              <a href="#comment_7641115" class="icon_comment-parent js-comment_parent" data-id="7641285" data-parent_id="7641115" title="Показать предыдущий комментарий"></a>
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_7641285" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark voting-wjt__counter_positive ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 1: ↑1 и ↓0">+1</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          Я бы сказал, что Gradle является прекрасным до тех пор, пока 
+не начнёшь его использовать и не поймёшь, что сборка проекта, занимающая
+ в Ant'е 2 секунды, может занять в Gradle (в основном, конечно, всякие 
+инициализации) до 30 секунд.
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_7641285">
+        <div class="comment_item" id="comment_7641651">
+  
+    <span class="parent_id" data-parent_id="7641285"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  " rel="7641651">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/dougrinch/" class="comment-item__avatar">
+              <img src="%D0%9B%D1%8F%D0%BC%D0%B1%D0%B4%D0%B0-%D0%B2%D1%8B%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%208%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/3589dd65ba8d1c2f80bd6262be1cd4cb_small.jpg" alt="" class="comment-item__avatar-img">
+          </a>
+          <a href="http://habrahabr.ru/users/dougrinch/" class="comment-item__username">dougrinch</a>
+          <time class="comment-item__time_published">30 мая 2014 в 14:43</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_7641651" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+              <span class="icon_comment-tree js-comment_tree" data-id="7641651" data-parent_id="7641285" title="Показать ветку комментариев"></span>
+              <a href="#comment_7641285" class="icon_comment-parent js-comment_parent" data-id="7641651" data-parent_id="7641285" title="Показать предыдущий комментарий"></a>
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_7641651" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark  ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 0: ↑0 и ↓0">0</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          Плата за комфорт.
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_7641651">
+      
+    </div>
+  </div>
+  <div class="comment_item" id="comment_7641741">
+  
+    <span class="parent_id" data-parent_id="7641285"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  " rel="7641741">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/zserge/" class="comment-item__avatar">
+              <span class="comment-item__avatar-img_default user-pic_blue"></span>
+          </a>
+          <a href="http://habrahabr.ru/users/zserge/" class="comment-item__username">zserge</a>
+          <time class="comment-item__time_published">30 мая 2014 в 15:02</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_7641741" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+              <span class="icon_comment-tree js-comment_tree" data-id="7641741" data-parent_id="7641285" title="Показать ветку комментариев"></span>
+              <a href="#comment_7641285" class="icon_comment-parent js-comment_parent" data-id="7641741" data-parent_id="7641285" title="Показать предыдущий комментарий"></a>
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_7641741" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark  ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 0: ↑0 и ↓0">0</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          Именно! Скорость, скорость. Даже gradle в режиме демона и 
+параллельное выполнение не спасают. Ant все равно быстрее, а когда на 
+каждое изменние кода ждешь по 30-60 секунд чтобы увидеть результат — о 
+комфортной работе и говоритть нечего.
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_7641741">
+        <div class="comment_item" id="comment_7642659">
+  
+    <span class="parent_id" data-parent_id="7641741"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  " rel="7642659">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/WToll/" class="comment-item__avatar">
+              <span class="comment-item__avatar-img_default user-pic_green"></span>
+          </a>
+          <a href="http://habrahabr.ru/users/WToll/" class="comment-item__username">WToll</a>
+          <time class="comment-item__time_published">30 мая 2014 в 18:48</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_7642659" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+              <span class="icon_comment-tree js-comment_tree" data-id="7642659" data-parent_id="7641741" title="Показать ветку комментариев"></span>
+              <a href="#comment_7641741" class="icon_comment-parent js-comment_parent" data-id="7642659" data-parent_id="7641741" title="Показать предыдущий комментарий"></a>
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_7642659" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark  ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 0: ↑0 и ↓0">0</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          Реально?<br>
+На моём стареньком G2020 с жестким 7200 оборотов, пересборка 
+средненького проекта (10ток фрагментов, 60-70 классов) заняла 10.115 
+секунд. Вполне приемлимо я считаю. При желании можно апнуть проц и рам 
+диск настроить и вообще летать будет.
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_7642659">
+        <div class="comment_item" id="comment_7660671">
+  
+    <span class="parent_id" data-parent_id="7642659"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  " rel="7660671">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/Terranz/" class="comment-item__avatar">
+              <img src="%D0%9B%D1%8F%D0%BC%D0%B1%D0%B4%D0%B0-%D0%B2%D1%8B%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%208%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/289fd8660954089dadcf3791ff6087fe_small.jpg" alt="" class="comment-item__avatar-img">
+          </a>
+          <a href="http://habrahabr.ru/users/Terranz/" class="comment-item__username">Terranz</a>
+          <time class="comment-item__time_published"> 5 июня 2014 в 14:36</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_7660671" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+              <span class="icon_comment-tree js-comment_tree" data-id="7660671" data-parent_id="7642659" title="Показать ветку комментариев"></span>
+              <a href="#comment_7642659" class="icon_comment-parent js-comment_parent" data-id="7660671" data-parent_id="7642659" title="Показать предыдущий комментарий"></a>
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_7660671" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark  ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 2: ↑1 и ↓1">0</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          ну так это же типичный java подход — если программа работает медленно — добавьте рамы и проца
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_7660671">
+        <div class="comment_item" id="comment_7669299">
+  
+    <span class="parent_id" data-parent_id="7660671"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  " rel="7669299">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/WToll/" class="comment-item__avatar">
+              <span class="comment-item__avatar-img_default user-pic_green"></span>
+          </a>
+          <a href="http://habrahabr.ru/users/WToll/" class="comment-item__username">WToll</a>
+          <time class="comment-item__time_published"> 9 июня 2014 в 13:25</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_7669299" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+              <span class="icon_comment-tree js-comment_tree" data-id="7669299" data-parent_id="7660671" title="Показать ветку комментариев"></span>
+              <a href="#comment_7660671" class="icon_comment-parent js-comment_parent" data-id="7669299" data-parent_id="7660671" title="Показать предыдущий комментарий"></a>
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_7669299" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark  ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 0: ↑0 и ↓0">0</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          Как будто что-то плохое.<br>
+[sarcasm]Нет, что вы. Всем должно хватать 640кб памяти.[\sarcasm]
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_7669299">
+      
+    </div>
+  </div>
+
+    </div>
+  </div>
+
+    </div>
+  </div>
+
+    </div>
+  </div>
+
+    </div>
+  </div>
+
+    </div>
+  </div>
+
+    </div>
+  </div>
+
+    </div>
+  </div>
+
+    </div>
+  </div>
+
+              <div class="comment_item" id="comment_7639517">
+  
+    <span class="parent_id" data-parent_id="0"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  " rel="7639517">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/leventov/" class="comment-item__avatar">
+              <img src="%D0%9B%D1%8F%D0%BC%D0%B1%D0%B4%D0%B0-%D0%B2%D1%8B%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%208%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/3d8ed1d4aabbb2ccb1ebb363b7e2c927_small.jpg" alt="" class="comment-item__avatar-img">
+          </a>
+          <a href="http://habrahabr.ru/users/leventov/" class="comment-item__username">leventov</a>
+          <time class="comment-item__time_published">29 мая 2014 в 23:59<span class="comment-item__time_changed"> (комментарий был изменён)</span></time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_7639517" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_7639517" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark voting-wjt__counter_positive ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 3: ↑2 и ↓1">+1</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          <blockquote>крупнейшего обновления в модели программирования, когда-либо бывшего в Java, — большего, чем даже дженерики</blockquote><br>
+Ну уж ладно… все-таки до дженериков совсем тухло было. Хотя я это время уже не застал.
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_7639517">
+      
+    </div>
+  </div>
+
+              <div class="comment_item" id="comment_7639569">
+  
+    <span class="parent_id" data-parent_id="0"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  " rel="7639569">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/dginz/" class="comment-item__avatar">
+              <img src="%D0%9B%D1%8F%D0%BC%D0%B1%D0%B4%D0%B0-%D0%B2%D1%8B%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%208%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/f475afc1cf27398fde3cd44df111bf4b_small.jpg" alt="" class="comment-item__avatar-img">
+          </a>
+          <a href="http://habrahabr.ru/users/dginz/" class="comment-item__username">dginz</a>
+          <time class="comment-item__time_published">30 мая 2014 в 00:26</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_7639569" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_7639569" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark voting-wjt__counter_positive ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 14: ↑14 и ↓0">+14</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          <blockquote> Используйте массив длиной 1</blockquote><br>
+<br>
+Не используйте массив длиной 1. Для таких случаев существует потокобезопасный <code>AtomicInteger</code>, который можно и изменять и декрементировать атомарно.
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_7639569">
+        <div class="comment_item" id="comment_7642229">
+  
+    <span class="parent_id" data-parent_id="7639569"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  " rel="7642229">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/kicum/" class="comment-item__avatar">
+              <img src="%D0%9B%D1%8F%D0%BC%D0%B1%D0%B4%D0%B0-%D0%B2%D1%8B%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%208%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/0a3495481ad9e545381389e7dae55426_small.jpg" alt="" class="comment-item__avatar-img">
+          </a>
+          <a href="http://habrahabr.ru/users/kicum/" class="comment-item__username">kicum</a>
+          <time class="comment-item__time_published">30 мая 2014 в 17:05</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_7642229" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+              <span class="icon_comment-tree js-comment_tree" data-id="7642229" data-parent_id="7639569" title="Показать ветку комментариев"></span>
+              <a href="#comment_7639569" class="icon_comment-parent js-comment_parent" data-id="7642229" data-parent_id="7639569" title="Показать предыдущий комментарий"></a>
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_7642229" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark  ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 0: ↑0 и ↓0">0</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          Иногда такое невозможно, в силу ограничения платформы. Например GWT
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_7642229">
+      
+    </div>
+  </div>
+
+    </div>
+  </div>
+
+              <div class="comment_item" id="comment_7639607">
+  
+    <span class="parent_id" data-parent_id="0"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  " rel="7639607">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/Qbit/" class="comment-item__avatar">
+              <span class="comment-item__avatar-img_default user-pic_pink"></span>
+          </a>
+          <a href="http://habrahabr.ru/users/Qbit/" class="comment-item__username">Qbit</a>
+          <time class="comment-item__time_published">30 мая 2014 в 00:38</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_7639607" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_7639607" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark voting-wjt__counter_positive ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 1: ↑1 и ↓0">+1</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          <blockquote>выигрышная стратегия – смешивать объектно-ориентированное программирование и функциональное</blockquote><br>
+<br>
+Эрик Мейер на эту тему написал статью месяц назад: <a href="http://queue.acm.org/detail.cfm?ref=rss&amp;id=2611829">«Mostly functional» programming does not work.</a>
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_7639607">
+      
+    </div>
+  </div>
+
+              <div class="comment_item" id="comment_7639707">
+  
+    <span class="parent_id" data-parent_id="0"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  " rel="7639707">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/Vanger13/" class="comment-item__avatar">
+              <img src="%D0%9B%D1%8F%D0%BC%D0%B1%D0%B4%D0%B0-%D0%B2%D1%8B%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%208%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/759343ada4b14ccde59342803df87a92_small.jpg" alt="" class="comment-item__avatar-img">
+          </a>
+          <a href="http://habrahabr.ru/users/Vanger13/" class="comment-item__username">Vanger13</a>
+          <time class="comment-item__time_published">30 мая 2014 в 01:31</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_7639707" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_7639707" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark  ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 0: ↑0 и ↓0">0</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          Вообще нативные ламбды — это плюс. Через пару лет даже 
+научаться их пользовать. К генерикам, вон, тоже привыкали. Интересно 
+вот, какие грабли будут найдены :)<br>
+<br>
+Ну и чуть критики про java 8. Самое забавное — это про то как лямбды живут с примитивами:<br>
+<a href="http://java.dzone.com/articles/whats-wrong-java-8-part-ii">java.dzone.com/articles/whats-wrong-java-8-part-ii</a><br>
+<br>
+
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_7639707">
+      
+    </div>
+  </div>
+
+              <div class="comment_item" id="comment_7641009">
+  
+    <span class="parent_id" data-parent_id="0"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  " rel="7641009">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/stp008/" class="comment-item__avatar">
+              <img src="%D0%9B%D1%8F%D0%BC%D0%B1%D0%B4%D0%B0-%D0%B2%D1%8B%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%208%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/8e9da3621fb980387972873009d09ee7_small.jpg" alt="" class="comment-item__avatar-img">
+          </a>
+          <a href="http://habrahabr.ru/users/stp008/" class="comment-item__username">stp008</a>
+          <time class="comment-item__time_published">30 мая 2014 в 12:33<span class="comment-item__time_changed"> (комментарий был изменён)</span></time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_7641009" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_7641009" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark  ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 0: ↑0 и ↓0">0</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          «В этой статье были описаны лямбда-выражения в качестве 
+единого крупнейшего обновления в модели программирования, когда-либо 
+бывшего в Java, — большего, чем даже дженерики.»<br>
+Вы сильно переоцениваете лямбды. Лямбды используются для сокращения 
+записи анонимных классов при передаче. И все. Они никак не могут быть 
+лучше, чем коллекции или дженерики. Если бы их и не ввели, то мы бы 
+особо ничего и не потеряли бы.
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_7641009">
+        <div class="comment_item" id="comment_7641107">
+  
+    <span class="parent_id" data-parent_id="7641009"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  " rel="7641107">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/khim/" class="comment-item__avatar">
+              <span class="comment-item__avatar-img_default user-pic_lilac"></span>
+          </a>
+          <a href="http://habrahabr.ru/users/khim/" class="comment-item__username">khim</a>
+          <time class="comment-item__time_published">30 мая 2014 в 12:49</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_7641107" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+              <span class="icon_comment-tree js-comment_tree" data-id="7641107" data-parent_id="7641009" title="Показать ветку комментариев"></span>
+              <a href="#comment_7641009" class="icon_comment-parent js-comment_parent" data-id="7641107" data-parent_id="7641009" title="Показать предыдущий комментарий"></a>
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_7641107" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark  ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 0: ↑0 и ↓0">0</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          Дженерики — это всего-навсего способ избавиться от некоторого количества явных приведений типа (see <a href="http://en.wikipedia.org/wiki/Type_erasure">type erasure</a>),
+ так что они вполне сравнимы по своему эффекту с лямбдами. А вот как раз
+ коллекции — большое дело, без них как бы вообще очень тяжело 
+программировать,<br>
+
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_7641107">
+        <div class="comment_item" id="comment_7641403">
+  
+    <span class="parent_id" data-parent_id="7641107"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  " rel="7641403">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/KeFA/" class="comment-item__avatar">
+              <span class="comment-item__avatar-img_default user-pic_pink"></span>
+          </a>
+          <a href="http://habrahabr.ru/users/KeFA/" class="comment-item__username">KeFA</a>
+          <time class="comment-item__time_published">30 мая 2014 в 13:44</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_7641403" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+              <span class="icon_comment-tree js-comment_tree" data-id="7641403" data-parent_id="7641107" title="Показать ветку комментариев"></span>
+              <a href="#comment_7641107" class="icon_comment-parent js-comment_parent" data-id="7641403" data-parent_id="7641107" title="Показать предыдущий комментарий"></a>
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_7641403" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark voting-wjt__counter_positive ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 1: ↑1 и ↓0">+1</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          Дженерики делают код более безопасным.
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_7641403">
+        <div class="comment_item" id="comment_7659959">
+  
+    <span class="parent_id" data-parent_id="7641403"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  " rel="7659959">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/khim/" class="comment-item__avatar">
+              <span class="comment-item__avatar-img_default user-pic_lilac"></span>
+          </a>
+          <a href="http://habrahabr.ru/users/khim/" class="comment-item__username">khim</a>
+          <time class="comment-item__time_published"> 5 июня 2014 в 12:10</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_7659959" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+              <span class="icon_comment-tree js-comment_tree" data-id="7659959" data-parent_id="7641403" title="Показать ветку комментариев"></span>
+              <a href="#comment_7641403" class="icon_comment-parent js-comment_parent" data-id="7659959" data-parent_id="7641403" title="Показать предыдущий комментарий"></a>
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_7659959" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark  ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 0: ↑0 и ↓0">0</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          Только опосредованно: они позволяют компилятору проверить некоторые <b>локальные</b> инварианты, не более того.
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_7659959">
+      
+    </div>
+  </div>
+
+    </div>
+  </div>
+  <div class="comment_item" id="comment_7645607">
+  
+    <span class="parent_id" data-parent_id="7641107"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  " rel="7645607">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/corristo/" class="comment-item__avatar">
+              <img src="%D0%9B%D1%8F%D0%BC%D0%B1%D0%B4%D0%B0-%D0%B2%D1%8B%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%208%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/2eb21845f53a5ec51d8f6742a0cffe08_small.jpg" alt="" class="comment-item__avatar-img">
+          </a>
+          <a href="http://habrahabr.ru/users/corristo/" class="comment-item__username">corristo</a>
+          <time class="comment-item__time_published"> 1 июня 2014 в 00:07</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_7645607" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+              <span class="icon_comment-tree js-comment_tree" data-id="7645607" data-parent_id="7641107" title="Показать ветку комментариев"></span>
+              <a href="#comment_7641107" class="icon_comment-parent js-comment_parent" data-id="7645607" data-parent_id="7641107" title="Показать предыдущий комментарий"></a>
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_7645607" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark  ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 0: ↑0 и ↓0">0</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          это type safety и далеко не «всего-навсего»
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_7645607">
+        <div class="comment_item" id="comment_7659953">
+  
+    <span class="parent_id" data-parent_id="7645607"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  " rel="7659953">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/khim/" class="comment-item__avatar">
+              <span class="comment-item__avatar-img_default user-pic_lilac"></span>
+          </a>
+          <a href="http://habrahabr.ru/users/khim/" class="comment-item__username">khim</a>
+          <time class="comment-item__time_published"> 5 июня 2014 в 12:09</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_7659953" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+              <span class="icon_comment-tree js-comment_tree" data-id="7659953" data-parent_id="7645607" title="Показать ветку комментариев"></span>
+              <a href="#comment_7645607" class="icon_comment-parent js-comment_parent" data-id="7659953" data-parent_id="7645607" title="Показать предыдущий комментарий"></a>
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_7659953" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark  ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 0: ↑0 и ↓0">0</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          Нет там никакой type safety. Вам легко может придти какой-нибудь <code>List&lt;String&gt;</code> в котором будет лежать совсем-совсем не <code>String</code>.
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_7659953">
+        <div class="comment_item" id="comment_7659965">
+  
+    <span class="parent_id" data-parent_id="7659953"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  " rel="7659965">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/corristo/" class="comment-item__avatar">
+              <img src="%D0%9B%D1%8F%D0%BC%D0%B1%D0%B4%D0%B0-%D0%B2%D1%8B%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%208%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/2eb21845f53a5ec51d8f6742a0cffe08_small.jpg" alt="" class="comment-item__avatar-img">
+          </a>
+          <a href="http://habrahabr.ru/users/corristo/" class="comment-item__username">corristo</a>
+          <time class="comment-item__time_published"> 5 июня 2014 в 12:12<span class="comment-item__time_changed"> (комментарий был изменён)</span></time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_7659965" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+              <span class="icon_comment-tree js-comment_tree" data-id="7659965" data-parent_id="7659953" title="Показать ветку комментариев"></span>
+              <a href="#comment_7659953" class="icon_comment-parent js-comment_parent" data-id="7659965" data-parent_id="7659953" title="Показать предыдущий комментарий"></a>
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_7659965" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark  ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 0: ↑0 и ↓0">0</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          Только если вы или пользователь вашего API явно привел List&lt;Нечто&gt; к List&lt;String&gt;, ССЗБ.<br>
+<br>
+Дженерики позволяют писать более выразительные API с информацией о типах.
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_7659965">
+      
+    </div>
+  </div>
+
+    </div>
+  </div>
+
+    </div>
+  </div>
+
+    </div>
+  </div>
+
+    </div>
+  </div>
+
+              <div class="comment_item" id="comment_7642579">
+  
+    <span class="parent_id" data-parent_id="0"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  " rel="7642579">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/AN3O/" class="comment-item__avatar">
+              <img src="%D0%9B%D1%8F%D0%BC%D0%B1%D0%B4%D0%B0-%D0%B2%D1%8B%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%208%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/078ef9b6204684cf642e0e25cb9db3f5_small.png" alt="" class="comment-item__avatar-img">
+          </a>
+          <a href="http://habrahabr.ru/users/AN3O/" class="comment-item__username">AN3O</a>
+          <time class="comment-item__time_published">30 мая 2014 в 18:27</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_7642579" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_7642579" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark voting-wjt__counter_positive ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 2: ↑2 и ↓0">+2</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          Кому интересно, вот еще одна очень хорошая статья по поводу J8<br>
+<a href="http://microfork.com/whats-new-in-java-8/">microfork.com/whats-new-in-java-8/</a>
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_7642579">
+      
+    </div>
+  </div>
+
+              <div class="comment_item" id="comment_7642931">
+  
+    <span class="parent_id" data-parent_id="0"></span>
+
+    <div class="comment_body ">
+        <div class="info comments-list__item comment-item  " rel="7642931">
+
+          <div class="folding-dot-holder"><div class="folding-dot"></div></div>
+
+          <a href="http://habrahabr.ru/users/Nikiti4/" class="comment-item__avatar">
+              <img src="%D0%9B%D1%8F%D0%BC%D0%B1%D0%B4%D0%B0-%D0%B2%D1%8B%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%208%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/e00d51a6b8921a5e5fee51a328a9d5bb_small.jpg" alt="" class="comment-item__avatar-img">
+          </a>
+          <a href="http://habrahabr.ru/users/Nikiti4/" class="comment-item__username">Nikiti4</a>
+          <time class="comment-item__time_published">30 мая 2014 в 20:16</time>
+
+          <span class="comment-item__controls">
+            <a href="#comment_7642931" class="icon_comment-anchor" title="Ссылка на комментарий"></a>
+
+
+            <span class="js-comment_chidren" title="Вернуться к ответу"></span>
+          </span>
+
+            <div id="voting_7642931" class="voting-wjt voting-wjt_comments js-voting   ">
+
+              <div class="voting-wjt__counter js-mark  ">
+                <span class="voting-wjt__counter-score js-score" title="Всего 0: ↑0 и ↓0">0</span>
+              </div>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_plus js-plus" title="Голосовать могут только зарегистрированные пользователи"><span>↑</span></button>
+
+                <button type="button" disabled="disabled" class="voting-wjt__button voting-wjt__button_minus js-minus" title="Голосовать могут только зарегистрированные пользователи"><span>↓</span></button>
+            </div>
+        </div>
+
+        <div class="message html_format ">
+          <a href="http://habrahabr.ru/post/216431/">habrahabr.ru/post/216431/</a><br>
+<a href="http://habrahabr.ru/post/213805/">habrahabr.ru/post/213805/</a>
+        </div>
+
+        <div class="reply_form_placeholder"></div>
+
+        <div class="reply">
+
+        </div>
+    </div>
+
+    <div class="reply_comments" id="reply_comments_7642931">
+      
+    </div>
+  </div>
+
+    </div>
+
+
+        			<p class="for_users_only_msg">Только зарегистрированные пользователи могут оставлять комментарии. <a href="https://habrahabr.ru/auth/login/">Войдите</a>, пожалуйста.</p>
+
+
+
+      
+<form action="/json/favorites/" method="post" id="edit_tags_form" class="hidden">
+  <input name="action" value="add" type="hidden">
+  <input name="ti" value="0" type="hidden">
+  <input name="tt" value="0" type="hidden">
+  <label>Пометьте топик понятными вам метками, если хотите</label>
+  <input autocomplete="off" name="tags_string" class="tags_string" type="text">
+  <div class="description">Метки лучше разделять запятой. Например: <i>общение, социальные сети, myspace.com, подростки, мердок</i></div>
+  <input value="Сохранить" class="submit" type="submit"> или <a href="#" class="close" onclick="return close_edit_tags()">закрыть</a>
+</form>
+
+    </div>
+    <div class="sidebar_right">
+        
+
+  <div class="live-broadcast live-broadcast_habrahabr">
+    <h2 class="live-broadcast__title">Что обсуждают</h2>
+    <div class="live-broadcast__tabs tabs" id="broadcast_tabs_comments">
+      <ul class="tabs__menu tabs__menu_comments menu menu_inline">
+        <li class="menu__item active"><a href="#broadcast_comments_now" class="menu__item-tab">Сейчас</a></li>
+        <li class="menu__item"><a href="#broadcast_comments_yesterday" class="menu__item-tab">Вчера</a></li>
+        <li class="menu__item"><a href="#broadcast_comments_week" class="menu__item-tab">Неделя</a></li>
+      </ul>
+
+        <div style="display: block;" class="tabs__content" id="broadcast_comments_now">
+            <ul class="content-list content-list_comments">
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/272013/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'comment'); }" class="content-list__item-link">Как я много раз не бросил разработку своей второй игры</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/272013#comments/" class="content-list__item-counter icon_comments">26</a>
+                </li>
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/272053/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'comment'); }" class="content-list__item-link">Рекомендации по написанию кода на C# от Aviva Solutions</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/272053#comments/" class="content-list__item-counter icon_comments">19</a>
+                </li>
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/271993/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'comment'); }" class="content-list__item-link">Экспериментальная версия PVS-Studio, поддерживающая C#</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/271993#comments/" class="content-list__item-counter icon_comments">97</a>
+                </li>
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/272099/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'comment'); }" class="content-list__item-link">PHP 7.0.0</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/272099#comments/" class="content-list__item-counter icon_comments">43</a>
+                </li>
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/272007/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'comment'); }" class="content-list__item-link">NextCastle Party 2015: как я свою игру показывал</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/272007#comments/" class="content-list__item-counter icon_comments">3</a>
+                </li>
+            </ul>
+        </div>
+        <div style="display: none;" class="tabs__content" id="broadcast_comments_yesterday">
+            <ul class="content-list content-list_comments">
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/272099/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'comment'); }" class="content-list__item-link">PHP 7.0.0</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/272099#comments/" class="content-list__item-counter icon_comments">43</a>
+                </li>
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/272003/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'comment'); }" class="content-list__item-link">Контрольная цифра методом Дамма</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/272003#comments/" class="content-list__item-counter icon_comments">28</a>
+                </li>
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/271905/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'comment'); }" class="content-list__item-link">Знакомьтесь, loop fracking</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/271905#comments/" class="content-list__item-counter icon_comments">27</a>
+                </li>
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/272047/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'comment'); }" class="content-list__item-link">От ASP.Net к Node.JS: как мы переписали серверную часть редакторов ONLYOFFICE</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/272047#comments/" class="content-list__item-counter icon_comments">28</a>
+                </li>
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/272013/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'comment'); }" class="content-list__item-link">Как я много раз не бросил разработку своей второй игры</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/272013#comments/" class="content-list__item-counter icon_comments">25</a>
+                </li>
+            </ul>
+        </div>
+        <div style="display: none;" class="tabs__content" id="broadcast_comments_week">
+            <ul class="content-list content-list_comments">
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/271705/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'comment'); }" class="content-list__item-link">Конец эпохи динамических языков</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/271705#comments/" class="content-list__item-counter icon_comments">226</a>
+                </li>
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/271887/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'comment'); }" class="content-list__item-link">«IT — это достаточно бедная индустрия» — интервью с Дмитрием Нестеруком из JetBrains</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/271887#comments/" class="content-list__item-counter icon_comments">183</a>
+                </li>
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/271773/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'comment'); }" class="content-list__item-link">Найди коррупционера. Анализ данных чиновников из проектов Канцелярской сотни (с примерами на R)</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/271773#comments/" class="content-list__item-counter icon_comments">143</a>
+                </li>
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/271895/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'comment'); }" class="content-list__item-link">Почему электронная почта не умрет никогда</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/271895#comments/" class="content-list__item-counter icon_comments">140</a>
+                </li>
+                <li class="content-list__item">
+                  <a href="http://habrahabr.ru/post/271815/" onclick="if (typeof ga === 'function') { ga('send', 'event', 'tm_block', 'live_broadcast_activity', 'comment'); }" class="content-list__item-link">Сегодняшний мир — это amd64, armv7 и aarch64. Всё остальное мертво, Джим</a>&nbsp;&nbsp;<a href="http://habrahabr.ru/post/271815#comments/" class="content-list__item-counter icon_comments">114</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+  </div>
+
+    </div>
+  </div>
+
+  <script>
+    window._yaparams = {'hubs':[]};
+    // hubs to GA
+      _yaparams['hubs'].push('development (Разработка)');
+      _yaparams['hubs'].push('java (JAVA)');
+      _yaparams['hubs'].push('programming (Программирование)');
+  </script>
+
+
+
+        
+  <div class="column-wrapper column-wrapper_bottom column-wrapper_bordered">
+    <div class="content_left">
+      
+
+  <div class="top-materials top-materials_geektimes">
+    <h2 class="top-materials__title">
+      <a href="http://geektimes.ru/" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo" class="top-materials__title-link">Лучшее на Geektimes</a>
+    </h2>
+
+    <div class="top-materials__content">
+      <ol class="content-list content-list_top-materials">
+          <li class="content-list__item">
+            <div class="content-list__item_wrap">
+              <a class="content-list__item-link" href="http://geektimes.ru/post/266766/" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Светодиодные лампы из магазина Ашан</a>&nbsp;&nbsp;<a href="http://geektimes.ru/post/266766/#comments" class="content-list__item-counter">46</a>
+            </div>
+          </li>
+          <li class="content-list__item">
+            <div class="content-list__item_wrap">
+              <a class="content-list__item-link" href="http://geektimes.ru/post/266746/" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">О проблемах осанки. Почему корректоры осанки редко помогают</a>&nbsp;&nbsp;<a href="http://geektimes.ru/post/266746/#comments" class="content-list__item-counter">35</a>
+            </div>
+          </li>
+          <li class="content-list__item">
+            <div class="content-list__item_wrap">
+              <a class="content-list__item-link" href="http://geektimes.ru/post/266738/" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Эволюция носителей информации, часть 2: оптические накопители</a>&nbsp;&nbsp;<a href="http://geektimes.ru/post/266738/#comments" class="content-list__item-counter">10</a>
+            </div>
+          </li>
+          <li class="content-list__item">
+            <div class="content-list__item_wrap">
+              <a class="content-list__item-link" href="http://geektimes.ru/post/266790/" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Назначена дата первого запуска Wendelstein 7-X</a>&nbsp;&nbsp;<a href="http://geektimes.ru/post/266790/#comments" class="content-list__item-counter">10</a>
+            </div>
+          </li>
+          <li class="content-list__item">
+            <div class="content-list__item_wrap">
+              <a class="content-list__item-link" href="http://geektimes.ru/post/266772/" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Открытие научно-популярного лектория Set Up 5 декабря</a>&nbsp;&nbsp;
+            </div>
+          </li>
+      </ol>
+
+      <ul class="top-materials__menu menu menu_inline">
+        <li class="menu__item">
+          <a href="http://geektimes.ru/" target="blank" class="menu__item-link" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Все публикации</a>
+        </li>
+        <li class="menu__item">
+          <a href="http://geektimes.ru/hubs/" target="blank" class="menu__item-link" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Популярные хабы</a>
+        </li>
+        <li class="menu__item">
+          <a href="http://geektimes.ru/companies/" target="blank" class="menu__item-link" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Компании</a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+
+      
+
+  <div class="top-materials top-materials_megamozg">
+    <h2 class="top-materials__title">
+      <a href="http://megamozg.ru/" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo" class="top-materials__title-link">Лучшее на Мегамозге</a>
+    </h2>
+
+    <div class="top-materials__content">
+      <ol class="content-list content-list_top-materials">
+          <li class="content-list__item">
+            <div class="content-list__item_wrap">
+              <a class="content-list__item-link" href="http://megamozg.ru/post/22308/" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Меньше, да лучше: Mozilla Firefox «худеет», чтобы бегать быстрее конкурентов</a>&nbsp;&nbsp;<a href="http://megamozg.ru/post/22308/#comments" class="content-list__item-counter">10</a>
+            </div>
+          </li>
+          <li class="content-list__item">
+            <div class="content-list__item_wrap">
+              <a class="content-list__item-link" href="http://megamozg.ru/post/22306/" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Тинькофф-банк ожидает получить больше прибыли за 2015 год, чем планировал изначально</a>&nbsp;&nbsp;<a href="http://megamozg.ru/post/22306/#comments" class="content-list__item-counter">18</a>
+            </div>
+          </li>
+          <li class="content-list__item">
+            <div class="content-list__item_wrap">
+              <a class="content-list__item-link" href="http://megamozg.ru/post/22294/" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Испытание публичностью: компания Atlassian проведет одно из самых успешных IPO в этом году</a>&nbsp;&nbsp;
+            </div>
+          </li>
+          <li class="content-list__item">
+            <div class="content-list__item_wrap">
+              <a class="content-list__item-link" href="http://megamozg.ru/post/22300/" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Венсан Жанти: зачем крупным компаниям дружить со стартапами</a>&nbsp;&nbsp;
+            </div>
+          </li>
+          <li class="content-list__item">
+            <div class="content-list__item_wrap">
+              <a class="content-list__item-link" href="http://megamozg.ru/post/22312/" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Интернет вещей сулит большое будущее для Intel</a>&nbsp;&nbsp;
+            </div>
+          </li>
+      </ol>
+
+      <ul class="top-materials__menu menu menu_inline">
+        <li class="menu__item">
+          <a href="http://megamozg.ru/" target="_blank" class="menu__item-link" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Все публикации</a>
+        </li>
+        <li class="menu__item">
+          <a href="http://megamozg.ru/hubs/" target="_blank" class="menu__item-link" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Популярные хабы</a>
+        </li>
+        <li class="menu__item">
+          <a href="http://megamozg.ru/companies/startups/" target="_blank" class="menu__item-link" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo">Стартапы</a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+
+
+        <div class="columns-group columns-group_promo">
+            
+
+  <div class="columns-group__column promo-block promo-block_vacancies">
+  <h2 class="promo-block__title">
+    <a href="https://moikrug.ru/vacancies" target="_blank" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo_B" class="promo-block__title-link">Вакансии на «Моём круге»</a>
+  </h2>
+
+  <div class="promo-block__content">
+    <ul class="content-list content-list_comments">
+        <li class="content-list__item vacancy ">
+          <a href="https://moikrug.ru/vacancies/1000022313" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo_B" class="content-list__item-link vacancy__title" style="background-image:none;">PHP-разработчик</a>
+          <div class="vacancy__attrs attrs">
+            <span class="attrs__item">Краснодар</span>
+            <span class="attrs__item">Полный рабочий день</span>
+          </div>
+        </li>
+        <li class="content-list__item vacancy ">
+          <a href="https://moikrug.ru/vacancies/1000022575" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo_B" class="content-list__item-link vacancy__title" style="background-image:none;">Программист Python/Django</a>
+          <div class="vacancy__attrs attrs">
+            <span class="attrs__item">Екатеринбург</span>
+            <span class="attrs__item">Полный рабочий день</span>
+          </div>
+        </li>
+        <li class="content-list__item vacancy ">
+          <a href="https://moikrug.ru/vacancies/1000022601" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo_B" class="content-list__item-link vacancy__title" style="background-image:none;">iOS-developer</a>
+          <div class="vacancy__attrs attrs">
+            <span class="attrs__item">Санкт-Петербург</span>
+            <span class="attrs__item">Полный рабочий день</span>
+          </div>
+        </li>
+        <li class="content-list__item vacancy vacancy_marked">
+          <a href="https://moikrug.ru/vacancies/1000022220" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo_B" class="content-list__item-link vacancy__title" style="background-image:none;">Full-stack разработчик</a>
+          <div class="vacancy__attrs attrs">
+            <span class="attrs__item">Москва</span>
+            
+          </div>
+        </li>
+        <li class="content-list__item vacancy ">
+          <a href="https://moikrug.ru/vacancies/1000021507" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo_B" class="content-list__item-link vacancy__title" style="background-image:none;">Senior JS developer</a>
+          <div class="vacancy__attrs attrs">
+            
+            <span class="attrs__item">Полный рабочий день</span>
+          </div>
+        </li>
+    </ul>
+  </div>
+
+  <div class="promo-block__footer">
+    <a style="background-image:none;" href="https://moikrug.ru/info/service" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo_B" class="promo-block__footer-link promo-block__footer-link_left">разместить вакансию</a>
+    <a style="background-image:none;" href="https://moikrug.ru/vacancies" data-utm="?utm_source=tm_habrahabr&amp;utm_medium=tm_block&amp;utm_campaign=tm_promo_B" class="promo-block__footer-link promo-block__footer-link_right">все вакансии</a>
+  </div>
+</div>
+
+
+
+
+          
+  <div class="columns-group__column promo-block promo-block_freelansim-tasks">
+    <h2 class="promo-block__title">
+      <a href="http://freelansim.ru/" target="_blank" data-utm="?utm_source=habrahabr&amp;utm_medium=referral&amp;utm_campaign=mainpage&amp;utm_content=block_freelansim" class="promo-block__title-link">Заказы на «Фрилансим»</a>
+    </h2>
+
+    <div class="promo-block__content">
+      <ul class="content-list content-list_comments">
+          <li class="content-list__item task ">
+            <a href="http://freelansim.ru/tasks/130419" data-utm="?utm_source=habrahabr&amp;utm_medium=referral&amp;utm_campaign=mainpage&amp;utm_content=block_freelansim" class="content-list__item-link task__title">Прогрессбар на javascript</a>
+            <div class="task__attrs attrs">
+              <span class="attrs__item">02.12.2015</span>
+              <span class="attrs__item">1 отклик</span>
+            </div>
+          </li>
+          <li class="content-list__item task ">
+            <a href="http://freelansim.ru/tasks/130417" data-utm="?utm_source=habrahabr&amp;utm_medium=referral&amp;utm_campaign=mainpage&amp;utm_content=block_freelansim" class="content-list__item-link task__title">Дизайн блога</a>
+            <div class="task__attrs attrs">
+              <span class="attrs__item">02.12.2015</span>
+              <span class="attrs__item">2 отклика</span>
+            </div>
+          </li>
+          <li class="content-list__item task ">
+            <a href="http://freelansim.ru/tasks/130415" data-utm="?utm_source=habrahabr&amp;utm_medium=referral&amp;utm_campaign=mainpage&amp;utm_content=block_freelansim" class="content-list__item-link task__title">Нужен исполнитель для верстки и программирования на Битрикс</a>
+            <div class="task__attrs attrs">
+              <span class="attrs__item">02.12.2015</span>
+              <span class="attrs__item">0 откликов</span>
+            </div>
+          </li>
+          <li class="content-list__item task ">
+            <a href="http://freelansim.ru/tasks/130411" data-utm="?utm_source=habrahabr&amp;utm_medium=referral&amp;utm_campaign=mainpage&amp;utm_content=block_freelansim" class="content-list__item-link task__title">Изменения в php, админка сайта на Yii. Техническое задание </a>
+            <div class="task__attrs attrs">
+              <span class="attrs__item">02.12.2015</span>
+              <span class="attrs__item">0 откликов</span>
+            </div>
+          </li>
+          <li class="content-list__item task ">
+            <a href="http://freelansim.ru/tasks/130405" data-utm="?utm_source=habrahabr&amp;utm_medium=referral&amp;utm_campaign=mainpage&amp;utm_content=block_freelansim" class="content-list__item-link task__title">Добавление магазина в яндекс маркет</a>
+            <div class="task__attrs attrs">
+              <span class="attrs__item">02.12.2015</span>
+              <span class="attrs__item">0 откликов</span>
+            </div>
+          </li>
+      </ul>
+    </div>
+
+    <div class="promo-block__footer">
+      <a href="http://freelansim.ru/?utm_source=habrahabr&amp;utm_medium=referral&amp;utm_campaign=mainpage&amp;utm_content=block_freelansim" class="promo-block__footer-link promo-block__footer-link_left">разместить заказ</a>
+      <a href="http://freelansim.ru/tasks" data-utm="?utm_source=habrahabr&amp;utm_medium=referral&amp;utm_campaign=mainpage&amp;utm_content=block_freelansim" class="promo-block__footer-link promo-block__footer-link_right">все заказы</a>
+    </div>
+  </div>
+
+        </div>
+    </div>
+
+    <div class="sidebar_right">
+      <div class="float_yandex_ad">
+        <script async="" src="%D0%9B%D1%8F%D0%BC%D0%B1%D0%B4%D0%B0-%D0%B2%D1%8B%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%208%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/adsbygoogle.js"></script>
+        <!-- Banner 1 -->
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4098002249090227" data-ad-slot="3085458198" data-ad-format="auto"></ins>
+        <a href="http://special.habrahabr.ru/advertising/" class="firskill__label">Реклама</a>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </div>
+    </div>
+  </div>
+
+
+
+        <div class="clear"></div>
+
+        <div class="footer_panel">
+          <div id="footer">
+  <dl>
+    <dd><a href="https://habrahabr.ru/auth/login/">Войти</a></dd>
+    <dd><a href="https://habrahabr.ru/auth/register/">Регистрация</a></dd>
+  </dl>
+  <dl>
+    <dt>Разделы</dt>
+    <dd><a href="http://habrahabr.ru/posts/top/">Публикации</a></dd>
+    <dd><a href="http://habrahabr.ru/hubs/">Хабы</a></dd>
+    <dd><a href="http://habrahabr.ru/companies/">Компании</a></dd>
+    <dd><a href="http://habrahabr.ru/users/">Пользователи</a></dd>
+    <dd><a href="http://toster.ru/?_aa=press_anykey">Q&amp;A</a></dd>
+    <dd><a href="http://habrahabr.ru/sandbox/">Песочница</a></dd>
+
+  </dl>
+  <dl>
+    <dt>Инфо</dt>
+    <dd><a href="http://habrahabr.ru/info/about/">О сайте</a></dd>
+    <dd><a href="http://habrahabr.ru/info/help/rules/">Правила</a></dd>
+    <dd><a href="http://habrahabr.ru/info/help/">Помощь</a></dd>
+    <dd><a href="http://habrahabr.ru/info/agreement/">Соглашение</a></dd>
+  </dl>
+  <dl>
+    <dt>Услуги</dt>
+    <dd><a href="http://special.habrahabr.ru/advertising/">Реклама</a></dd>
+      <dd><a href="http://special.habrahabr.ru/">Спецпроекты</a></dd>
+      <dd><a href="http://special.habrahabr.ru/corporate/">Тарифы</a></dd>
+      <dd><a href="http://special.habrahabr.ru/content/">Контент</a></dd>
+      <dd><a href="http://special.habrahabr.ru/workshops/">Вебинары</a></dd>
+  </dl>
+
+  <dl>
+    <dt>Разное</dt>
+    <dd><a href="http://habrahabr.ru/apps/">Приложения</a></dd>
+    <dd><a href="http://special.habrahabr.ru/microsoft/mobile/" target="_blank">Тест-драйв</a></dd>
+    <dd><a href="http://special.habrahabr.ru/hello_startup/bizspark/" target="_blank">Помощь стартапам</a></dd>
+      <dd><a href="http://special.habrahabr.ru/#hr">Работа в IT</a></dd>
+  </dl>
+  <div class="copyright">
+
+    <div class="about">
+      <a href="http://tmtm.ru/">© TM</a>
+
+      <br><br>
+      <a href="http://habrahabr.ru/feedback/">Служба поддержки</a><br><br>
+          <a href="http://m.habrahabr.ru/post/224593/?mobile=yes">Мобильная версия</a><br><br>
+
+
+      <div class="social_accounts">
+        <a href="https://twitter.com/habrahabr" class="tw"></a>
+        <a href="https://www.facebook.com/habrahabr.ru" class="fb"></a>
+        <a href="http://vk.com/habr" class="vk"></a>
+        <!-- <a href="" class="gp"></a> //-->
+      </div>
+
+    </div>
+  </div>
+</div>
+        </div>
+      </div>
+    </div>
+
+
+      <script type="text/javascript" src="%D0%9B%D1%8F%D0%BC%D0%B1%D0%B4%D0%B0-%D0%B2%D1%8B%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%208%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/jquery.js"></script>
+      <script type="text/javascript">
+        $(document).ready( function(){
+          window.tmidLogin = function(){ return false; };
+          if( $.cookie('tmid_no_check') == undefined ) {
+            var expire = new Date();
+            expire.setMinutes(expire.getMinutes() + 10 );
+            $.cookie('tmid_no_check', 1, { expires: expire } );
+            $.getScript("https://id.tmtm.ru/checklogin/", function(){
+              if( window.tmidLogin() ) {
+
+                  var href = $('#login').attr('href');
+
+                  if( href !== undefined ) {
+                      window.location.href = href;
+                  }
+              }
+            });
+          }
+        });
+      </script>
+
+    <script type="text/javascript">
+  // global vars
+  var g_base_url = 'habrahabr.ru';
+  var g_show_xpanel = false;
+  var g_base_fullurl = 'http://habrahabr.ru/';
+  var g_is_guest = false;
+</script> 
+
+      <script type="text/javascript" src="%D0%9B%D1%8F%D0%BC%D0%B1%D0%B4%D0%B0-%D0%B2%D1%8B%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%208%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/shortcuts.js"></script>
+
+    <script type="text/javascript" src="%D0%9B%D1%8F%D0%BC%D0%B1%D0%B4%D0%B0-%D0%B2%D1%8B%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%208%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/global_footer_main.js"></script>
+
+    	<script type="text/javascript" src="%D0%9B%D1%8F%D0%BC%D0%B1%D0%B4%D0%B0-%D0%B2%D1%8B%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Java%208%20_%20%D0%A5%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80_files/a"></script>
+
+    
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+(function (d, w, c) {
+    (w[c] = w[c] || []).push(function() {
+        try {
+            if (typeof (_yaparams) != 'undefined') {
+                w.yaCounter24049213 = new Ya.Metrika({id:24049213,
+                    webvisor:true,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    params:_yaparams});
+            } else {
+                w.yaCounter24049213 = new Ya.Metrika({id:24049213,
+                    webvisor:true,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true});
+            }
+
+        } catch(e) { }
+    });
+
+    var n = d.getElementsByTagName("script")[0],
+        s = d.createElement("script"),
+        f = function () { n.parentNode.insertBefore(s, n); };
+    s.type = "text/javascript";
+    s.async = true;
+    s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+    if (w.opera == "[object Opera]") {
+        d.addEventListener("DOMContentLoaded", f, false);
+    } else { f(); }
+})(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="//mc.yandex.ru/watch/24049213" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+    
+
+    
+
+    <!-- Хабр не резиновый! -->
+  
+
+<div id="AutocompleteContainter_d40b" style="position: absolute; z-index: 9999; top: 2px; left: 0px;"><div class="autocomplete-w1"><div class="autocomplete" id="Autocomplete_d40b" style="display: none; width: 300px; max-height: 400px;"></div></div></div><div id="AutocompleteContainter_edea1" style="position: absolute; z-index: 9999; top: 2px; left: 0px;"><div class="autocomplete-w1"><div class="autocomplete" id="Autocomplete_edea1" style="display: none; width: 300px; max-height: 400px;"></div></div></div></body></html>

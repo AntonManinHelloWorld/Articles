@@ -1,0 +1,78 @@
+﻿As in C and C++, the if statement of the Java programming language suffers from
+the so-called "dangling else problem," illustrated by this misleadingly formatted
+example:
+
+if (door.isOpen())
+if (resident.isVisible())
+resident.greet("Hello!");
+else door.bell.ring(); // A "dangling else"
+
+The Java programming language, like C and C++ and many programming
+languages before them, arbitrarily decrees that an else clause belongs to the
+innermost if to which it might possibly belong.
+
+
+The type of the Switch Expression must be char , byte , short , int , Character , Byte ,
+Short , Integer , String , or an enum type, or a compile-time error occurs.
+<br>
+No switch label is null.
+<br>
+Fall-Through in the switch Statement
+int x = 1;
+switch (x) {
+    case 1: {
+        System.out.print("One ");
+    }
+    case 2: {
+        System.out.print("Two ");
+    }
+    case 3: {
+        System.out.print("Three!");
+    }
+}
+//One Two Three!
+<br>
+<br>
+The enhanced for statement has the form:
+EnhancedForStatement:
+for (FormalParameter : Expression ) Statement
+The type of the Expression must be Iterable or an array type, or a compile-time error occurs.
+<br>
+<br>
+The type of a literal is determined as follows:
+The type of an integer literal that ends with L or l is long.
+The type of any other integer literal is int.
+<br><br>
+A class literal is an expression consisting of the name of a class, interface, array,
+or primitive type, or the pseudo-type void , followed by a ' . ' and the token class .
+The type of C.class , where C is the name of a class, interface, or array type,
+is Class<C> .
+The type of p.class , where p is the name of a primitive type, is Class<B> ,
+where B is the type of an expression of type p after boxing conversion.
+The type of void.class is Class<Void>.
+<br><br>
+The use of parentheses affects only the order of evaluation, except for a corner
+case whereby (-2147483648) and (-9223372036854775808L) are legal but -
+(2147483648) and -(9223372036854775808L) are illegal.
+This is because the decimal literals 2147483648 and 9223372036854775808L are
+allowed only as an operand of the unary minus operator.
+
+The loading process is implemented by the class ClassLoader and its subclasses.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

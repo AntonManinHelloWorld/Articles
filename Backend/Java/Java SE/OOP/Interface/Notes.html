@@ -1,0 +1,24 @@
+﻿Interfaces and their methods are implicitly abstract and adding that modifier makes no difference.
+
+The access modifier public and package-private pertains to every kind of interface declaration.
+
+If an extends clause is provided, then the interface being declared extends each of the other named interfaces and therefore inherits the member types, methods, and constants of each of the other named interfaces. These other named interfaces are the direct superinterfaces of the interface being
+declared. Any class that implements the declared interface is also considered to implement all the interfaces that this interface extends.
+
+The body of an interface may declare members of the interface, that is, fields, methods, classes, and interfaces.
+
+Every field declaration in the body of an interface is implicitly public, static, and final. It is permitted to redundantly specify any or all of these modifiers for such fields.
+
+If the interface declares a field with a certain name, then the declaration of that field is said to hide any and all accessible declarations of fields with the same name in superinterfaces of the interface.
+
+Every method declaration in the body of an interface is implicitly public or package-private.
+
+It is a compile-time error if a method declared in an interface is declared final.
+
+An instance method m1 declared in an interface I overrides another instance method, m2, declared in interface J iff both of the following are true:
+• I is a subinterface of J .
+• The signature of m1 is a subsignature of the signature of m2.
+
+Rules for return types and exceptions in overriding interfaces are the same as for normal class overriding.
+
+

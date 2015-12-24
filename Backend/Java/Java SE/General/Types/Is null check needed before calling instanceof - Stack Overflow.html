@@ -1,0 +1,1752 @@
+<!DOCTYPE html>
+<html itemscope="" itemtype="http://schema.org/QAPage"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<title>java - Is null check needed before calling instanceof - Stack Overflow</title>
+    <link rel="shortcut icon" href="http://cdn.sstatic.net/stackoverflow/img/favicon.ico?v=4f32ecc8f43d">
+    <link rel="apple-touch-icon image_src" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+    <link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="http://stackoverflow.com/opensearch.xml">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="stackoverflow.com">
+    <meta property="og:type" content="website">    
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon@2.png?v=73d79a89bded&amp;a">
+    <meta name="twitter:title" property="og:title" itemprop="title name" content="Is null check needed before calling instanceof">
+    <meta name="twitter:description" property="og:description" itemprop="description" content="Will null instanceof SomeClass return false or throw a NullPointerException
+">
+    <meta property="og:url" content="http://stackoverflow.com/questions/2950319/is-null-check-needed-before-calling-instanceof">
+    <link rel="canonical" href="http://stackoverflow.com/questions/2950319/is-null-check-needed-before-calling-instanceof">
+
+    
+    
+    <script src="Is%20null%20check%20needed%20before%20calling%20instanceof%20-%20Stack%20Overflow_files/ados.js" async="" type="text/javascript"></script><script src="Is%20null%20check%20needed%20before%20calling%20instanceof%20-%20Stack%20Overflow_files/quant.js" async=""></script><script src="Is%20null%20check%20needed%20before%20calling%20instanceof%20-%20Stack%20Overflow_files/beacon.js" async=""></script><script src="Is%20null%20check%20needed%20before%20calling%20instanceof%20-%20Stack%20Overflow_files/analytics.js" async=""></script><script src="Is%20null%20check%20needed%20before%20calling%20instanceof%20-%20Stack%20Overflow_files/ados_002.js" async="" type="text/javascript"></script><script src="Is%20null%20check%20needed%20before%20calling%20instanceof%20-%20Stack%20Overflow_files/jquery.js"></script>
+    <script src="Is%20null%20check%20needed%20before%20calling%20instanceof%20-%20Stack%20Overflow_files/stub.js"></script>
+    <link rel="stylesheet" type="text/css" href="Is%20null%20check%20needed%20before%20calling%20instanceof%20-%20Stack%20Overflow_files/all.css">
+
+            <link rel="alternate" type="application/atom+xml" title="Feed for question 'Is null check needed before calling instanceof'" href="http://stackoverflow.com/feeds/question/2950319">
+            <meta name="twitter:app:country" content="US">
+            <meta name="twitter:app:name:iphone" content="Stack Exchange iOS">
+            <meta name="twitter:app:id:iphone" content="871299723">
+            <meta name="twitter:app:url:iphone" content="se-zaphod://stackoverflow.com/questions/2950319/is-null-check-needed-before-calling-instanceof">
+            <meta name="twitter:app:name:ipad" content="Stack Exchange iOS">
+            <meta name="twitter:app:id:ipad" content="871299723">
+            <meta name="twitter:app:url:ipad" content="se-zaphod://stackoverflow.com/questions/2950319/is-null-check-needed-before-calling-instanceof">
+            <meta name="twitter:app:name:googleplay" content="Stack Exchange Android">
+            <meta name="twitter:app:url:googleplay" content="http://stackoverflow.com/questions/2950319/is-null-check-needed-before-calling-instanceof">
+            <meta name="twitter:app:id:googleplay" content="com.stackexchange.marvin">
+        <script>
+        
+            StackExchange.ready(function () {
+                    
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.initSnippetRenderer();
+                    });
+                    
+
+                StackExchange.using("postValidation", function () {
+                    StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+                });
+
+                
+                StackExchange.question.init({showAnswerHelp:true,totalCommentCount:9,shownCommentCount:5,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:2950319});
+
+                styleCode();
+
+                    StackExchange.realtime.subscribeToQuestion('1', '2950319');
+                                                                    StackExchange.using("gps", function () { StackExchange.gps.trackOutboundClicks('#content', '.post-text'); });
+
+            });
+        </script>
+
+
+    <script>
+        StackExchange.init({"locale":"en","stackAuthUrl":"https://stackauth.com","serverTime":1449262066,"networkMetaHostname":"meta.stackexchange.com","routeName":"Questions/Show","styleCode":true,"enableUserHovercards":true,"snippets":{"enabled":true,"domain":"stacksnippets.net"},"site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdchgIAAAAAAJwGpIzRQSOFaO0pU6s44Xt8aTwc","recaptchaAudioLang":"en","enableNewTagCreationWarning":true,"insertSpaceAfterNameTabCompletion":false,"id":1,"nonAsciiTags":true,"enableSocialMediaInSharePopup":true},"user":{"fkey":"ee32c7e2136057303b9c940f12827d04","rep":0,"isAnonymous":true,"isAnonymousNetworkWide":true}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"201117db6a2b","js/moderator.en.js":"383fea8d7f95","js/full-anon.en.js":"2e94668dfdd2","js/full.en.js":"d51f0666beca","js/wmd.en.js":"e41094a787ac","js/third-party/jquery.autocomplete.min.js":"e5f01e97f7c3","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"ae05e7545ef0","js/help.en.js":"20ffd1ace312","js/tageditor.en.js":"9ea765a97e62","js/tageditornew.en.js":"6b3f4e20418a","js/inline-tag-editing.en.js":"c0c258972ba6","js/revisions.en.js":"6aca57a6c709","js/review.en.js":"4c2a1a000e09","js/tagsuggestions.en.js":"d1ff9b84abe5","js/post-validation.en.js":"61dd105afac7","js/explore-qlist.en.js":"e71f14781288","js/events.en.js":"8899ae7ef636","js/keyboard-shortcuts.en.js":"acb49a527a09","js/external-editor.en.js":"cf58cc6630ef","js/external-editor.en.js":"cf58cc6630ef","js/snippet-javascript.en.js":"50888a2c5e75","js/snippet-javascript-codemirror.en.js":"914ce5426a0f"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </script>
+    
+        <script>
+            StackExchange.ready(function () {
+                $('#nav-tour').click(function () {
+                    StackExchange.using("gps", function() {
+                        StackExchange.gps.track("aboutpage.click", { aboutclick_location: "headermain" }, true);
+                    });
+                });
+            });
+        </script>
+    
+    
+<script src="Is%20null%20check%20needed%20before%20calling%20instanceof%20-%20Stack%20Overflow_files/full-anon.js" async=""></script><script src="Is%20null%20check%20needed%20before%20calling%20instanceof%20-%20Stack%20Overflow_files/snippet-javascript.js" async=""></script><script src="Is%20null%20check%20needed%20before%20calling%20instanceof%20-%20Stack%20Overflow_files/post-validation.js" async=""></script><script src="Is%20null%20check%20needed%20before%20calling%20instanceof%20-%20Stack%20Overflow_files/prettify-full.js" async=""></script><script src="Is%20null%20check%20needed%20before%20calling%20instanceof%20-%20Stack%20Overflow_files/adFeedback.js" type="text/javascript"></script><link href="Is%20null%20check%20needed%20before%20calling%20instanceof%20-%20Stack%20Overflow_files/adFeedback.css" rel="stylesheet"><script src="Is%20null%20check%20needed%20before%20calling%20instanceof%20-%20Stack%20Overflow_files/p.js" async=""></script><link href="Is%20null%20check%20needed%20before%20calling%20instanceof%20-%20Stack%20Overflow_files/jobs.css" rel="stylesheet" type="text/css"></head>
+<body class="question-page new-topbar">
+    <noscript><div id="noscript-padding"></div></noscript>
+    <div id="notify-container"></div>
+    <div id="overlay-header"></div>
+    <div id="custom-header"></div>
+
+
+
+
+
+<div class="topbar">
+    <div class="topbar-wrapper">
+
+        <div class="js-topbar-dialog-corral">
+
+
+<div class="topbar-dialog siteSwitcher-dialog dno">
+    <div class="header">
+        <h3><a href="http://stackoverflow.com/">current community</a></h3>
+    </div>
+    <div class="modal-content current-site-container">
+        <ul class="current-site">
+                <li>
+                        <div class="related-links">
+                    <a href="http://chat.stackoverflow.com/" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:6 })">chat</a>
+            </div>
+
+
+
+
+    <a href="http://stackoverflow.com/" class="current-site-link site-link js-gps-track" data-id="1" data-gps-track="
+        site_switcher.click({ item_type:3 })">
+        <div class="site-icon favicon favicon-stackoverflow" title="Stack Overflow"></div>
+        Stack Overflow
+    </a>
+
+                </li>
+                <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    
+
+
+
+    <a href="http://meta.stackoverflow.com/" class="site-link js-gps-track" data-id="552" data-gps-track="
+            site.switch({ target_site:552, item_type:3 }),
+        site_switcher.click({ item_type:4 })">
+        <div class="site-icon favicon favicon-stackoverflowmeta" title="Meta Stack Overflow"></div>
+        Meta Stack Overflow
+    </a>
+
+                </li>
+                            <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    <a class="site-link js-gps-track" href="http://careers.stackoverflow.com/?utm_source=stackoverflow.com&amp;utm_medium=site-ui&amp;utm_campaign=multicollider" data-gps-track="site_switcher.click({ item_type:9 })">
+                        <div class="site-icon favicon favicon-careers" title="Stack Overflow Careers"></div>
+                        Stack Overflow Careers
+                    </a>
+                </li>
+        </ul>
+    </div>
+    
+    <div class="header" id="your-communities-header">
+        <h3>
+your communities        </h3>
+            
+    </div>
+    <div class="modal-content" id="your-communities-section">
+            
+            <div class="call-to-login">
+<a href="https://stackoverflow.com/users/signup?ssrc=site_switcher&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f2950319%2fis-null-check-needed-before-calling-instanceof" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:10 })">Sign up</a> or <a href="https://stackoverflow.com/users/login?ssrc=site_switcher&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f2950319%2fis-null-check-needed-before-calling-instanceof" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:11 })">log in</a> to customize your list.
+            </div>
+    </div>
+    
+    <div class="header">
+        <h3><a href="http://stackexchange.com/sites">more stack exchange communities</a></h3>
+        <a href="http://blog.stackoverflow.com/" class="fr">company blog</a>
+    </div>
+    <div class="modal-content">
+            <div class="child-content"></div>
+    </div>
+</div>
+        </div>
+
+        <div class="network-items">
+
+            <a href="http://stackexchange.com/" class="topbar-icon icon-site-switcher yes-hover js-site-switcher-button js-gps-track" data-gps-track="site_switcher.show" title="A list of all 150 Stack Exchange sites">
+                <span class="hidden-text">Stack Exchange</span>
+            </a>
+
+    <a href="#" class="topbar-icon icon-inbox yes-hover js-inbox-button" title="Recent inbox messages">
+        <span class="hidden-text">Inbox</span>
+        <span class="unread-count" style="display:none"></span>
+    </a>
+    <a href="#" class="topbar-icon icon-achievements yes-hover js-achievements-button " data-unread-class="" title="Recent achievements: reputation, badges, and privileges earned">
+        <span class="hidden-text">Reputation and Badges</span>
+        <span class="unread-count" style="display:none">
+            
+        </span>
+    </a>
+        </div>
+
+        <div class="topbar-links">
+
+                <div class="links-container">
+                <span class="topbar-menu-links">
+                                    <a href="https://stackoverflow.com/users/signup?ssrc=head&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f2950319%2fis-null-check-needed-before-calling-instanceof" class="login-link">sign up</a>
+                                <a href="https://stackoverflow.com/users/login?ssrc=head&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f2950319%2fis-null-check-needed-before-calling-instanceof" class="login-link">log in</a>
+
+                        <a href="http://stackoverflow.com/tour">tour</a>
+                            <a href="#" class="icon-help js-help-button" title="Help Center and other resources">
+        help
+        <span class="triangle"></span>
+    </a>
+    <div class="topbar-dialog help-dialog js-help-dialog dno">
+        <div class="modal-content">
+            <ul>
+                                    <li>
+                        <a href="http://stackoverflow.com/tour" class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })">
+                            Tour
+                            <span class="item-summary">
+                                Start here for a quick overview of the site
+                            </span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="http://stackoverflow.com/help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })">
+                        Help Center
+                        <span class="item-summary">
+                            Detailed answers to any questions you might have
+                        </span>
+                    </a>
+                </li>
+                    <li>
+                        <a href="http://meta.stackoverflow.com/" class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })">
+                            Meta
+                            <span class="item-summary">
+                                Discuss the workings and policies of this site
+                            </span>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+
+                            <a href="http://careers.stackoverflow.com/?utm_source=stackoverflow.com&amp;utm_medium=site-ui&amp;utm_campaign=anon-topbar">stack overflow careers</a>
+                    </span>
+                </div>
+
+            <div class="search-container">
+                <form id="search" action="/search" method="get" autocomplete="off">
+                    <input name="q" placeholder="search" tabindex="1" autocomplete="off" maxlength="240" type="text">
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+    <script>
+        StackExchange.ready(function() { StackExchange.topbar.init(); });
+    </script>
+
+    <div class="container">
+        <div id="header">
+            <br class="cbt">
+            <div id="hlogo">
+                <a href="http://stackoverflow.com/">
+                    Stack Overflow
+                </a>
+            </div>
+            <div id="hmenus">
+                <div class="nav mainnavs">
+                    <ul>
+                        <li class="youarehere"><a id="nav-questions" href="http://stackoverflow.com/questions">Questions</a></li>
+                        <li><a id="nav-tags" href="http://stackoverflow.com/tags">Tags</a></li>
+                        <li><a id="nav-users" href="http://stackoverflow.com/users">Users</a></li>
+                        <li><a id="nav-badges" href="http://stackoverflow.com/help/badges">Badges</a></li>
+                                                                    </ul>
+                </div>
+                <div class="nav askquestion">
+                    <ul>
+                        <li>
+                            <a id="nav-askquestion" href="http://stackoverflow.com/questions/ask">Ask Question</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+
+
+
+        <div id="content" class="snippet-hidden">
+            
+
+<div itemscope="" itemtype="http://schema.org/Question">
+    <link itemprop="image" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+			<!--googleoff: all-->
+
+
+			<!--googleon: all-->
+			<script>
+				StackExchange.using("gps", function () {
+					StackExchange.gps.track("hero.show", { hero_type: "question-page-mini" }, true);
+				});
+			</script>
+			<div id="question-header">
+                <h1 itemprop="name"><a href="http://stackoverflow.com/questions/2950319/is-null-check-needed-before-calling-instanceof" class="question-hyperlink">Is null check needed before calling instanceof</a></h1>
+		</div>
+			<div id="mainbar">
+
+			
+
+<div class="question" data-questionid="2950319" id="question">
+
+    <script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk2015607853",4).setZone(43); });
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk2015607853"><a href="http://engine.adzerk.net/r?e=eyJhdiI6NDE0LCJhdCI6NCwiYnQiOjAsImNtIjozMjI1MTQsImNoIjoxMTc4LCJjayI6e30sImNyIjoxMTk1OTExLCJkaSI6Ijc5Nzk3ZmE1MWJkYTQ1N2ZiNTVkOTYyOGNmZDk5MzgwIiwiZG0iOjEsImZjIjoxMjY5MjUxLCJmbCI6ODY0MjI2LCJpcCI6IjEzNC42MC4xMDUuMjEyIiwia3ciOiJqYXZhIiwibnciOjIyLCJwYyI6MCwiZWMiOjAsInByIjoxNTY4LCJydCI6MSwicmYiOiJodHRwOi8vc3RhY2tvdmVyZmxvdy5jb20vcXVlc3Rpb25zL3RhZ2dlZC9qYXZhP3BhZ2U9NSZzb3J0PXZvdGVzJnBhZ2VzaXplPTE1Iiwic3QiOjgyNzcsInVrIjoidWUxLTE1MzFiMDkyYjQ0MzQzNzRhNDMwNTFlMmU3NGQ3MDc0Iiwiem4iOjQzLCJ0cyI6MTQ0OTI2MjA2NzI0OSwiYmYiOnRydWUsInBuIjoiYWR6ZXJrMjAxNTYwNzg1MyIsInVyIjoiaHR0cDovL2NhcmVlcnMuc3RhY2tvdmVyZmxvdy5jb20vd2h5LXN0YWNrP3V0bV9zb3VyY2U9c3RhY2tvdmVyZmxvdy5jb20mdXRtX21lZGl1bT1hZCZ1dG1fY2FtcGFpZ249Y2FuZGlkYXRlcy1hZGQtY3YmdXRtX2NvbnRlbnQ9bGItY2FyZWVycy1iaXRidWNrZXQifQ&amp;s=Ou2EKFhNOuJjfI7en_0K5Kbxz7s" rel="nofollow" target="_blank" title=""><img class="jqmegwmvwvdednosltby" src="Is%20null%20check%20needed%20before%20calling%20instanceof%20-%20Stack%20Overflow_files/b027fb42cc2d4f2693aed08b41250d61.png" title="" alt="" height="90" width="728" border="0"></a><img class="jqmegwmvwvdednosltby" src="Is%20null%20check%20needed%20before%20calling%20instanceof%20-%20Stack%20Overflow_files/i_002.gif" style="position:absolute;" height="0px" width="0px" border="0"></div>    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="2950319" type="hidden">
+        <a class="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">550</span>
+        <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a>
+
+        <a class="star-off" href="#" title="This is a favorite question (click again to undo)">favorite</a>
+        <div class="favoritecount"><b>47</b></div>
+
+
+</div>
+
+            </td>
+            
+<td class="postcell">
+<div>
+    <div class="post-text" itemprop="text">
+
+<p>Will <code>null instanceof SomeClass</code> return <code>false</code> or throw a <code>NullPointerException</code></p>
+    </div>
+    <div class="post-taglist">
+        <a href="http://stackoverflow.com/questions/tagged/java" class="post-tag js-gps-track" title="show questions tagged 'java'" rel="tag">java</a> 
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/q/2950319" title="short permalink to this question" class="short-link" id="link-post-2950319">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/2950319/edit" class="suggest-edit-post" title="">improve this question</a></div>        
+    </td>
+    <td class="post-signature owner">
+        <div class="user-info user-hover">
+    <div class="user-action-time">
+        asked <span title="2010-06-01 13:53:15Z" class="relativetime">Jun 1 '10 at 13:53</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/4220/johan-l%c3%bcbcke"><div class="gravatar-wrapper-32"><img src="Is%20null%20check%20needed%20before%20calling%20instanceof%20-%20Stack%20Overflow_files/e1bf47f64ba0ab97e836ff76f23770ba.jpeg" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/4220/johan-l%c3%bcbcke">Johan Lübcke</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">3,661</span><span title="5 gold badges"><span class="badge1"></span><span class="badgecount">5</span></span><span title="21 silver badges"><span class="badge2"></span><span class="badgecount">21</span></span><span title="28 bronze badges"><span class="badge3"></span><span class="badgecount">28</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</div>
+</td>
+        </tr>
+                
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-2950319" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="4" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-16838588" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="supernova">42</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Finding this question has become the result of research effort for lots of people using google. +1</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/1165215/link19" title="189 reputation" class="comment-user">Link19</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment16838588_2950319"><span title="2012-09-20 10:49:24Z" class="relativetime-clean">Sep 20 '12 at 10:49</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-18314391" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="supernova">76</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">There's no such thing as a 
+bad question; there are only bad answers. Because someone else typed in 
+this question and got a good answer, I was able to type it into Google 
+and have the answer in 2 seconds rather than in the 2 minutes it would 
+have taken me to write the test myself.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/901641/artofwarfare" title="6188 reputation" class="comment-user">ArtOfWarfare</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment18314391_2950319"><span title="2012-11-15 19:51:25Z" class="relativetime-clean">Nov 15 '12 at 19:51</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-19870272" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="warm">5</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I too Googled it. This was the first hit. Creating more hits for Google to find is not futile, so still some respect to the OP.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/1267068/nickj" title="5223 reputation" class="comment-user">NickJ</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment19870272_2950319"><span title="2013-01-13 13:50:22Z" class="relativetime-clean">Jan 13 '13 at 13:50</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-24225871" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="hot">17</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Even if there were ten 
+thousand others "trivially testable one-liners" of Java that you could 
+find on stackoverflow, it wouldn't be a problem. It would just mean that
+ those 10000 questions are common Java questions. If each question is 
+viewed 5000 times by people that needed the answer, that makes 500 000 
+000 of answers. If each answer saves 118 seconds. That just saved 1870 
+years of testing. 23 people were born.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/1360941/lyth" title="511 reputation" class="comment-user">Lyth</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment24225871_2950319"><span title="2013-05-29 07:16:41Z" class="relativetime-clean">May 29 '13 at 7:16</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-26517526" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="supernova">76</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">And then they will spend the time they saved reading the comments.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/480483/djjeck" title="810 reputation" class="comment-user">djjeck</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment26517526_2950319"><span title="2013-08-07 19:21:51Z" class="relativetime-clean">Aug 7 '13 at 19:21</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-2950319" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link  dno" title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments."></a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link " title="expand to show all comments on this post" href="#" onclick="">show <b>4</b> more comments</a>
+        </div>         
+    </td>
+</tr>        </tbody></table>
+</div>
+
+			<div id="answers">
+
+				<a name="tab-top"></a>
+				<div id="answers-header">
+					<div class="subheader answers-subheader">
+						<h2>
+								5 Answers
+                                <span style="display:none;" itemprop="answerCount">5</span>
+						</h2>
+						<div>
+							<div id="tabs">
+        <a href="http://stackoverflow.com/questions/2950319/is-null-check-needed-before-calling-instanceof?answertab=active#tab-top" data-nav-xhref="" title="Answers with the latest activity first" data-value="active">active</a>
+        <a href="http://stackoverflow.com/questions/2950319/is-null-check-needed-before-calling-instanceof?answertab=oldest#tab-top" data-nav-xhref="" title="Answers in the order they were provided" data-value="oldest">oldest</a>
+        <a class="youarehere" href="http://stackoverflow.com/questions/2950319/is-null-check-needed-before-calling-instanceof?answertab=votes#tab-top" data-nav-xhref="" title="Answers with the highest score first" data-value="votes">votes</a>
+</div>
+						</div>
+					</div>    
+				</div>    
+
+
+
+
+  
+<a name="2950415"></a>
+<div id="answer-2950415" class="answer accepted-answer" data-answerid="2950415" itemscope="" itemtype="http://schema.org/Answer" itemprop="acceptedAnswer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="2950415" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">731</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+        <span class="vote-accepted-on load-accepted-answer-date" title="loading when this answer was accepted...">accepted</span>
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>No, a null check is not needed before using instanceof. </p>
+
+<p>The expression <code>x instanceof SomeClass</code> is <code>false</code> if x is null.</p>
+
+<p>From the Java Language Specification, at <a href="http://docs.oracle.com/javase/specs/jls/se7/html/jls-15.html#jls-15.20.2">http://docs.oracle.com/javase/specs/jls/se7/html/jls-15.html#jls-15.20.2</a></p>
+
+<blockquote>
+  <p>"At run time, the result of the
+  instanceof operator is true  if the
+  value of the RelationalExpression is
+  not null  and the reference could be
+  cast (§15.16)  to the ReferenceType
+  without raising a ClassCastException.
+  Otherwise the result is false."</p>
+</blockquote>
+
+<p>So if the operand is null, the result is false.</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/2950415" title="short permalink to this answer" class="short-link" id="link-post-2950415">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/2950415/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/2950415/revisions" title="show all edits to this post">edited <span title="2013-01-24 14:13:51Z" class="relativetime">Jan 24 '13 at 14:13</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2010-06-01 14:05:48Z" class="relativetime">Jun 1 '10 at 14:05</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/202009/andy-thomas"><div class="gravatar-wrapper-32"><img src="Is%20null%20check%20needed%20before%20calling%20instanceof%20-%20Stack%20Overflow_files/31dcfef154edd75223ae28f2cfd77f71.jpeg" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/202009/andy-thomas">Andy Thomas</a><br>
+        <span class="reputation-score" title="reputation score 42915" dir="ltr">42.9k</span><span title="6 gold badges"><span class="badge1"></span><span class="badgecount">6</span></span><span title="42 silver badges"><span class="badge2"></span><span class="badgecount">42</span></span><span title="99 bronze badges"><span class="badge3"></span><span class="badgecount">99</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-2950415" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="2" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-19727102" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="supernova">160</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">This answer is more correct than <code>try it</code> because <b>current behavior</b> is not the same as <b>guaranteed behavior</b>.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/664642/luke" title="1735 reputation" class="comment-user">Luke</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment19727102_2950415"><span title="2013-01-08 19:08:11Z" class="relativetime-clean">Jan 8 '13 at 19:08</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-29986924" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">This question comes into play during Joshua Bloch's chapter on object equality in <code>Effective Java</code> - <a href="http://www.amazon.com/Effective-Java-Edition-Joshua-Bloch/dp/0321356683" rel="nofollow">amazon.com/Effective-Java-Edition-Joshua-Bloch/dp/0321356683</a></span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/409976/kevin-meredith" title="9200 reputation" class="comment-user">Kevin Meredith</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment29986924_2950415"><span title="2013-11-21 13:57:02Z" class="relativetime-clean">Nov 21 '13 at 13:57</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-29988702" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="warm">6</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Specifically, in Item 8, he 
+notes that in equals() methods, one instanceof operator serves two 
+purposes - it verifies that the argument is both non-null and of the 
+correct type. "...[S]o you don't need a separate null check."</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/202009/andy-thomas" title="42915 reputation" class="comment-user">Andy Thomas</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment29988702_2950415"><span title="2013-11-21 14:40:29Z" class="relativetime-clean">Nov 21 '13 at 14:40</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-51498514" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I don't see them ever 
+changing this. It can only return true or false so how can can it ever 
+be true for a null reference to be an instanceof anything?</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/1195139/ben-thurley" title="2042 reputation" class="comment-user">Ben Thurley</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment51498514_2950415"><span title="2015-08-03 10:19:52Z" class="relativetime-clean">Aug 3 at 10:19</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-51506774" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@BenThurley - Java's <code>instanceof</code>
+ operator was part of Java 1.0, released almost 20 years ago. Changing 
+the behavior now in a way that would break existing code is unlikely, 
+absent some benefit that outweighs that huge cost. Twenty years ago, 
+maybe there could have been arguments for returning true iff the 
+argument could be cast, or throwing an exception for a null argument. 
+But those definitions would have required separate null checks.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/202009/andy-thomas" title="42915 reputation" class="comment-user">Andy Thomas</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment51506774_2950415"><span title="2015-08-03 13:59:58Z" class="relativetime-clean">Aug 3 at 13:59</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-2950415" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link  dno" title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."></a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link " title="expand to show all comments on this post" href="#" onclick="">show <b>2</b> more comments</a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+<script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk1193459857",4).setZone(44); });
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk1193459857"><a href="http://engine.adzerk.net/r?e=eyJhdiI6NDE0LCJhdCI6NCwiYnQiOjAsImNtIjozMjI1MTQsImNoIjoxMTc4LCJjayI6e30sImNyIjoxMTk1NzkyLCJkaSI6ImY4MGRiNDRkMzcxODQ5MzNhNWRlZWNkZTMxYjhmZjFkIiwiZG0iOjEsImZjIjoxMjY5MTUxLCJmbCI6ODY0MjI1LCJpcCI6IjEzNC42MC4xMDUuMjEyIiwia3ciOiJqYXZhIiwibnciOjIyLCJwYyI6MCwiZWMiOjAsInByIjoxNjA0LCJydCI6MSwicmYiOiJodHRwOi8vc3RhY2tvdmVyZmxvdy5jb20vcXVlc3Rpb25zL3RhZ2dlZC9qYXZhP3BhZ2U9NSZzb3J0PXZvdGVzJnBhZ2VzaXplPTE1Iiwic3QiOjgyNzcsInVrIjoidWUxLTE1MzFiMDkyYjQ0MzQzNzRhNDMwNTFlMmU3NGQ3MDc0Iiwiem4iOjQ0LCJ0cyI6MTQ0OTI2MjA2NzI1MywiYmYiOnRydWUsInBuIjoiYWR6ZXJrMTE5MzQ1OTg1NyIsInVyIjoiaHR0cDovL2NhcmVlcnMuc3RhY2tvdmVyZmxvdy5jb20vam9icy9yZW1vdGU_dXRtX3NvdXJjZT1zdGFja292ZXJmbG93LmNvbSZ1dG1fbWVkaXVtPWFkJnV0bV9jYW1wYWlnbj1jYW5kaWRhdGVzLXdmaCZ1dG1fY29udGVudD1sYi13Zmgta2lkLXdvcmstb24td29yayJ9&amp;s=koQS68JfhK4ezVyZv49uCl4iCHI" rel="nofollow" target="_blank" title=""><img class="jqmegwmvwvdednosltby" src="Is%20null%20check%20needed%20before%20calling%20instanceof%20-%20Stack%20Overflow_files/72156ae7d17b4328808246c02701d7b0.png" title="" alt="" height="90" width="728" border="0"></a><img class="jqmegwmvwvdednosltby" src="Is%20null%20check%20needed%20before%20calling%20instanceof%20-%20Stack%20Overflow_files/i_003.gif" style="position:absolute;" height="0px" width="0px" border="0"></div>
+  
+<a name="2950322"></a>
+<div id="answer-2950322" class="answer" data-answerid="2950322" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="2950322" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">188</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>returns <code>false</code>.</p>
+
+<p>(It takes 1 minute to try it)</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/2950322" title="short permalink to this answer" class="short-link" id="link-post-2950322">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/2950322/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2010-06-01 13:53:45Z" class="relativetime">Jun 1 '10 at 13:53</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/203907/bozho"><div class="gravatar-wrapper-32"><img src="Is%20null%20check%20needed%20before%20calling%20instanceof%20-%20Stack%20Overflow_files/8de038497b6b8b67bc82eeaaef1a0b6b.jpeg" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/203907/bozho">Bozho</a><br>
+        <span class="reputation-score" title="reputation score 340565" dir="ltr">341k</span><span title="69 gold badges"><span class="badge1"></span><span class="badgecount">69</span></span><span title="669 silver badges"><span class="badge2"></span><span class="badgecount">669</span></span><span title="864 bronze badges"><span class="badge3"></span><span class="badgecount">864</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-2950322" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-53304796" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="warm">14</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">(And now it takes 10 seconds to find this question in Google)</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/2926014/pl-kolek" title="93 reputation" class="comment-user">PL_kolek</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment53304796_2950322"><span title="2015-09-23 05:31:23Z" class="relativetime-clean">Sep 23 at 5:31</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-54648284" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@PL_kolek: I second that. Why
+ get distracted from the task at hand, if you can quickly verify with 
+Google? I for example, am in the middle of a massive refactoring, and I 
+don't want to set up a test on the side.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/1812721/paulkore" title="438 reputation" class="comment-user">paulkore</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment54648284_2950322"><span title="2015-10-30 06:30:41Z" class="relativetime-clean">Oct 30 at 6:30</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-2950322" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="17923355"></a>
+<div id="answer-17923355" class="answer" data-answerid="17923355" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="17923355" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">26</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Very good question indeed. I just tried for myself.</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">IsInstanceOfTest</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="kwd">final</span><span class="pln"> </span><span class="typ">String</span><span class="pun">[]</span><span class="pln"> args</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+        </span><span class="typ">String</span><span class="pln"> s</span><span class="pun">;</span><span class="pln">
+
+        s </span><span class="pun">=</span><span class="pln"> </span><span class="str">""</span><span class="pun">;</span><span class="pln">
+
+        </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">((</span><span class="pln">s </span><span class="kwd">instanceof</span><span class="pln"> </span><span class="typ">String</span><span class="pun">));</span><span class="pln">
+        </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="typ">String</span><span class="pun">.</span><span class="kwd">class</span><span class="pun">.</span><span class="pln">isInstance</span><span class="pun">(</span><span class="pln">s</span><span class="pun">));</span><span class="pln">
+
+        s </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">;</span><span class="pln">
+
+        </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">((</span><span class="pln">s </span><span class="kwd">instanceof</span><span class="pln"> </span><span class="typ">String</span><span class="pun">));</span><span class="pln">
+        </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="typ">String</span><span class="pun">.</span><span class="kwd">class</span><span class="pun">.</span><span class="pln">isInstance</span><span class="pun">(</span><span class="pln">s</span><span class="pun">));</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>Prints</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">true</span><span class="pln">
+</span><span class="kwd">true</span><span class="pln">
+</span><span class="kwd">false</span><span class="pln">
+</span><span class="kwd">false</span></code></pre>
+
+<p><strong><a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.20.2">JLS / 15.20.2. Type Comparison Operator instanceof</a></strong></p>
+
+<pre style="" class="lang-none prettyprint prettyprinted"><code><span class="pln">At run time, the result of the instanceof operator is true
+    if the value of the RelationalExpression is not null
+    and the reference could be cast to the ReferenceType
+        without raising a ClassCastException.
+
+Otherwise the result is false.</span></code></pre>
+
+<p><strong><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html#isInstance-java.lang.Object-">API / Class#isInstance(Object)</a></strong></p>
+
+<pre style="" class="lang-none prettyprint prettyprinted"><code><span class="pln">If this Class object represents an interface,
+    this method returns true
+        if the class or any superclass of the specified Object argument
+            implements this interface;
+    it returns false otherwise.
+
+If this Class object represents a primitive type,
+    this method returns false.</span></code></pre>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/17923355" title="short permalink to this answer" class="short-link" id="link-post-17923355">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/17923355/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/17923355/revisions" title="show all edits to this post">edited <span title="2014-08-20 12:31:36Z" class="relativetime">Aug 20 '14 at 12:31</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2013-07-29 11:55:33Z" class="relativetime">Jul 29 '13 at 11:55</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/330457/jin-kwon"><div class="gravatar-wrapper-32"><img src="Is%20null%20check%20needed%20before%20calling%20instanceof%20-%20Stack%20Overflow_files/2JN6W.jpg" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/330457/jin-kwon">Jin Kwon</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">4,324</span><span title="2 gold badges"><span class="badge1"></span><span class="badgecount">2</span></span><span title="25 silver badges"><span class="badge2"></span><span class="badgecount">25</span></span><span title="45 bronze badges"><span class="badge3"></span><span class="badgecount">45</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-17923355" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-17923355" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="2950324"></a>
+<div id="answer-2950324" class="answer" data-answerid="2950324" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="2950324" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">19</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>No, it's not. instanceof would return false if its first operand is null.</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/2950324" title="short permalink to this answer" class="short-link" id="link-post-2950324">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/2950324/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/2950324/revisions" title="show all edits to this post">edited <span title="2014-07-08 17:20:06Z" class="relativetime">Jul 8 '14 at 17:20</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/719662/vaxquis"><div class="gravatar-wrapper-32"><img src="Is%20null%20check%20needed%20before%20calling%20instanceof%20-%20Stack%20Overflow_files/PjW9q.jpg" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/719662/vaxquis">vaxquis</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">4,764</span><span title="4 gold badges"><span class="badge1"></span><span class="badgecount">4</span></span><span title="22 silver badges"><span class="badge2"></span><span class="badgecount">22</span></span><span title="37 bronze badges"><span class="badge3"></span><span class="badgecount">37</span></span>
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2010-06-01 13:53:57Z" class="relativetime">Jun 1 '10 at 13:53</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/329637/roflcoptrexception"><div class="gravatar-wrapper-32"><img src="Is%20null%20check%20needed%20before%20calling%20instanceof%20-%20Stack%20Overflow_files/2aee3158c6eb5d085dfc62cba64d7036.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/329637/roflcoptrexception">RoflcoptrException</a><br>
+        <span class="reputation-score" title="reputation score 28379" dir="ltr">28.4k</span><span title="26 gold badges"><span class="badge1"></span><span class="badgecount">26</span></span><span title="117 silver badges"><span class="badge2"></span><span class="badgecount">117</span></span><span title="183 bronze badges"><span class="badge3"></span><span class="badgecount">183</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-2950324" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-2950324" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="29385822"></a>
+<div id="answer-29385822" class="answer" data-answerid="29385822" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="29385822" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">1</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>The instanceOf operator does not need explicit null checks, as it 
+does not throw a null pointer exception if the operand is null.</p>
+
+<p>At run time, the result of the instanceOf operator is true if the 
+value of the relational expression is not null and the reference could 
+be cast to the reference type without raising a class cast exception.</p>
+
+<p>If the operand is null, the instanceOf operator returns false and hence, explicit null checks are not required.</p>
+
+<p>Consider the below example,</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">String</span><span class="pun">[]</span><span class="pln"> args</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</span><span class="kwd">if</span><span class="pun">(</span><span class="pln">lista </span><span class="pun">!=</span><span class="pln"> </span><span class="kwd">null</span><span class="pln"> </span><span class="pun">&amp;&amp;</span><span class="pln"> lista&nbsp;</span><span class="kwd">instanceof</span><span class="pln"> </span><span class="typ">ArrayList</span><span class="pun">){</span><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="com">//Violation</span><span class="pln">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"In if block"</span><span class="pun">);</span><span class="pln">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</span><span class="pun">}</span><span class="pln">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</span><span class="kwd">else</span><span class="pln">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    </span><span class="pun">{</span><span class="pln">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     &nbsp;</span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"In else block"</span><span class="pun">);</span><span class="pln">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    </span><span class="pun">}</span><span class="pln">
+&nbsp;&nbsp;&nbsp;&nbsp;    </span><span class="pun">}</span></code></pre>
+
+<p>The correct usage of instanceOf is as shown below,</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">String</span><span class="pun">[]</span><span class="pln"> args</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</span><span class="kwd">if</span><span class="pun">(</span><span class="pln">lista&nbsp;</span><span class="kwd">instanceof</span><span class="pln"> </span><span class="typ">ArrayList</span><span class="pun">){</span><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="com">//Correct way</span><span class="pln">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      &nbsp;&nbsp;</span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"In if block"</span><span class="pun">);</span><span class="pln">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</span><span class="pun">}</span><span class="pln">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    </span><span class="kwd">else</span><span class="pln">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;</span><span class="pun">{</span><span class="pln">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     &nbsp;</span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"In else block"</span><span class="pun">);</span><span class="pln">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</span><span class="pun">}</span><span class="pln">
+&nbsp;&nbsp;&nbsp; &nbsp;</span><span class="pun">}</span></code></pre>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/29385822" title="short permalink to this answer" class="short-link" id="link-post-29385822">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/29385822/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2015-04-01 08:09:04Z" class="relativetime">Apr 1 at 8:09</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/2845282/nikhil-kumar"><div class="gravatar-wrapper-32"><img src="Is%20null%20check%20needed%20before%20calling%20instanceof%20-%20Stack%20Overflow_files/f94226cb338a126a5245540e63f79c1f.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/2845282/nikhil-kumar">Nikhil Kumar</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">451</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="6 silver badges"><span class="badge2"></span><span class="badgecount">6</span></span><span title="16 bronze badges"><span class="badge3"></span><span class="badgecount">16</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-29385822" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-29385822" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+				    <div class="question-status">
+        <h2>                    <b>protected</b> by <a href="http://stackoverflow.com/users/300257/gilbert-le-blanc">Gilbert Le Blanc</a> <span dir="ltr"><span title="2013-07-29 12:10:49Z" class="relativetime">Jul 29 '13 at 12:10</span></span>
+</h2>
+        <p>
+Thank you for your interest in this question. 
+Because it has attracted low-quality or spam answers that had to be removed, posting an answer now requires 10 <a href="http://stackoverflow.com/help/whats-reputation">reputation</a> on this site.
+<br><br>
+Would you like to answer one of these <a href="http://stackoverflow.com/unanswered?fromProtectedNotice=true">unanswered questions</a> instead?
+</p>
+    </div>
+
+
+
+
+
+						<h2 class="bottom-notice" data-loc="1">
+Not the answer you're looking for?							Browse other questions tagged <a href="http://stackoverflow.com/questions/tagged/java" class="post-tag" title="show questions tagged 'java'" rel="tag">java</a>  or <a href="http://stackoverflow.com/questions/ask">ask your own question</a>.						</h2>
+			</div>
+		</div>
+				<div id="sidebar" class="show-votes">
+						    <div class="module question-stats">
+			        <table id="qinfo">
+			            <tbody><tr>
+			                <td>
+			                    <p class="label-key">asked</p>
+			                </td>
+			                <td style="padding-left: 10px">
+			                    <p class="label-key" title="2010-06-01 13:53:15Z"><b>5 years ago</b></p>
+			                </td>
+			            </tr>
+			            <tr>
+			                <td>
+			                    <p class="label-key">viewed</p>
+			                </td>
+
+			                <td style="padding-left: 10px">
+			                    <p class="label-key">
+			                        <b>78894 times</b>
+			                    </p>
+			                </td>
+			            </tr>
+			                <tr>
+			                    <td>
+			                        <p class="label-key">active</p>
+			                    </td>
+			                    <td style="padding-left: 10px">
+			                        <p class="label-key"><b><a href="http://stackoverflow.com/questions/2950319/is-null-check-needed-before-calling-instanceof?lastactivity" class="lastactivity-link" title="2015-04-01 08:09:04Z">8 months ago</a></b></p>
+			                    </td>
+			                </tr>
+			        </tbody></table>
+			    </div>
+						
+			<script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk1362189575",[17,2221]).setZone(45); });
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk1362189575"><div id="careersadsdoublehigh" style="display:none;"></div><img class="jqmegwmvwvdednosltby" src="Is%20null%20check%20needed%20before%20calling%20instanceof%20-%20Stack%20Overflow_files/i_004.gif" style="position:absolute;" height="0px" width="0px" border="0"></div>
+        <div class=" blue looking tagged" id="hireme"><a href="http://careers.stackoverflow.com/jobs" target="_blank" data-tz="1" data-ti="0" class="top"><span>Looking for a job?</span></a><div class="middle"><ul class="jobs"><li><a data-tz="3" data-ti="176997" href="http://careers.stackoverflow.com/jobs/90979/young-professional-java-developer-entwickler-senacor-technologies-ag" target="_blank" title="Young Professional - Java Developer/ Entwickler at Senacor Technologies AG. Click to learn more.">Young Professional - Java Developer/ Entwickler<br><div class="company">Senacor Technologies AG</div><div class="location" title="Nürnberg, Deutschland">Nürnberg, Deutschland</div><span class="post-tag highlight">java</span><span class="post-tag">spring</span></a></li><li><a data-tz="3" data-ti="185073" href="http://careers.stackoverflow.com/jobs/99112/senior-java-consultant-developer-m-w-cellent-ag" target="_blank" title="Senior Java Consultant/Developer (m/w) at cellent AG. Click to learn more.">Senior Java Consultant/Developer (m/w)<br><div class="company">cellent AG</div><div class="location" title="Fellbach, Germany">Fellbach, Germany</div><span class="post-tag highlight">java</span><span class="post-tag">java-ee</span></a></li><li><a data-tz="3" data-ti="187977" href="http://careers.stackoverflow.com/jobs/102040/senior-web-engineer-m-w-nolte-lauth-gmbh" target="_blank" title="Senior Web Engineer (m/w) at NOLTE&amp;LAUTH GmbH. Click to learn more.">Senior Web Engineer (m/w)<br><div class="company">NOLTE&amp;LAUTH GmbH</div><div class="location" title="Stuttgart, Deutschland">Stuttgart, Deutschland</div><span class="post-tag">javascript</span><span class="post-tag">angularjs</span></a></li><li><a data-tz="3" data-ti="177004" href="http://careers.stackoverflow.com/jobs/90986/praktikum-softwareentwicklung-java-senacor-technologies-ag" target="_blank" title="Praktikum Softwareentwicklung (Java) at Senacor Technologies AG. Click to learn more.">Praktikum Softwareentwicklung (Java)<br><div class="company">Senacor Technologies AG</div><div class="location" title="Nürnberg, Deutschland">Nürnberg, Deutschland</div><span class="post-tag highlight">java</span><span class="post-tag">spring</span></a></li></ul></div><img class="impression" src="Is%20null%20check%20needed%20before%20calling%20instanceof%20-%20Stack%20Overflow_files/i.gif" style="display:none;"></div>
+			  
+    
+            <div class="module sidebar-linked">
+	<h4 id="h-linked">Linked</h4>
+	<div class="linked" data-tracker="lq=1">
+<div class="spacer">
+	<a href="http://stackoverflow.com/q/1570073?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">65</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/1570073/java-instanceof-and-generics?lq=1" class="question-hyperlink">Java: Instanceof and Generics</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/28880263?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">0</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/28880263/whats-the-correct-way-to-override-equal-method-in-java?lq=1" class="question-hyperlink">What's the correct way to override equal method in java?</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/32048018?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">14</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/32048018/why-does-the-equals-implementation-generated-by-eclipse-check-for-null-before?lq=1" class="question-hyperlink">Why does the equals() implementation generated by Eclipse check for null before type checking (instanceof)?</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/27268867?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">3</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/27268867/java-compare-generic-type-with-void?lq=1" class="question-hyperlink">Java compare generic type with Void</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/10414868?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">0</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/10414868/pmd-how-to-deal-with-no-need-to-check-null-before-instanceof?lq=1" class="question-hyperlink">PMD: how to deal with no need to check null before instanceof</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/30125548?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">-1</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/30125548/why-or-why-not-use-instanceof-to-check-if-not-null?lq=1" class="question-hyperlink">Why or why not use instanceof to check if not null</a>
+</div>			</div>
+</div>
+
+				<div class="module sidebar-related">
+					<h4 id="h-related">Related</h4>
+                    <div class="related js-gps-related-questions" data-tracker="rq=1">
+                        <div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/271526?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted extra-large">2192
+    </div>
+</a><a href="http://stackoverflow.com/questions/271526/avoiding-null-statements?rq=1" class="question-hyperlink">Avoiding != null statements</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/496928?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted large">279
+    </div>
+</a><a href="http://stackoverflow.com/questions/496928/what-is-the-difference-between-instanceof-and-class-isassignablefrom?rq=1" class="question-hyperlink">What is the difference between instanceof and Class.isAssignableFrom(…)?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/1816673?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted large">360
+    </div>
+</a><a href="http://stackoverflow.com/questions/1816673/how-do-i-check-if-a-file-exists-in-java?rq=1" class="question-hyperlink">How do I check if a file exists in Java?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/6018300?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">1
+    </div>
+</a><a href="http://stackoverflow.com/questions/6018300/ifobjvalue-instanceof-date-objvalue-store-string-its-work-or-not?rq=1" class="question-hyperlink">if(objValue instanceof Date) objValue store string its work or not?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/12296554?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">48
+    </div>
+</a><a href="http://stackoverflow.com/questions/12296554/java-null-instanceof-object-evaluates-to-both-true-and-false?rq=1" class="question-hyperlink">Java - null instanceof Object evaluates to both true and false</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/17576922?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted large">231
+    </div>
+</a><a href="http://stackoverflow.com/questions/17576922/why-can-i-throw-null-in-java?rq=1" class="question-hyperlink">Why can I throw null in Java?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/19617326?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/19617326/adding-additional-checks-to-the-instanceof-check-in-java?rq=1" class="question-hyperlink">Adding additional checks to the instanceOf check in java</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/22484478?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">3
+    </div>
+</a><a href="http://stackoverflow.com/questions/22484478/java-nullpointerexception-on-conditional-null-check?rq=1" class="question-hyperlink">Java NullPointerException on conditional null check</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/30295645?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/30295645/comparable-and-myclassnull?rq=1" class="question-hyperlink">Comparable and (MyClass)null</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/32048018?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">14
+    </div>
+</a><a href="http://stackoverflow.com/questions/32048018/why-does-the-equals-implementation-generated-by-eclipse-check-for-null-before?rq=1" class="question-hyperlink">Why does the equals() implementation generated by Eclipse check for null before type checking (instanceof)?</a>
+</div>
+
+                    </div>
+				</div>
+            
+<div id="hot-network-questions" class="module">
+    <h4>
+        <a href="http://stackexchange.com/questions?tab=hot" class="js-gps-track" data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">
+            Hot Network Questions
+        </a>
+    </h4>
+    <ul>
+            <li>
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="http://academia.stackexchange.com/questions/59299/senior-co-author-is-jeopardizing-two-years-of-work" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Senior co-author is jeopardizing two years of work
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="http://math.stackexchange.com/questions/1559695/can-we-always-multiply-some-function-that-is-not-differentiable-everywhere-with" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Can we always multiply some function that is not 
+differentiable everywhere with function that is to obtain differentiable
+ product?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-workplace" title="The Workplace Stack Exchange"></div><a href="http://workplace.stackexchange.com/questions/58713/my-manager-is-kind-of-blaming-and-threatening-me" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:423 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    My manager is kind of blaming and threatening me
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-programmers" title="Programmers Stack Exchange"></div><a href="http://programmers.stackexchange.com/questions/304270/how-is-defining-that-a-method-can-be-overridden-a-stronger-commitment-than-defin" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:131 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How is defining that a method can be overridden a 
+stronger commitment than defining that a method can be called?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-philosophy" title="Philosophy Stack Exchange"></div><a href="http://philosophy.stackexchange.com/questions/30230/good-reads-on-phenomenology-for-a-mathematician" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:265 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    good reads on phenomenology for a mathematician
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-askubuntu" title="Ask Ubuntu"></div><a href="http://askubuntu.com/questions/705987/how-can-i-add-integers-in-an-array" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:89 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How can I add integers in an array
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="http://worldbuilding.stackexchange.com/questions/30879/how-many-people-can-live-on-the-oxygen-provided-by-earth" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How many people can live on the oxygen provided by Earth?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-philosophy" title="Philosophy Stack Exchange"></div><a href="http://philosophy.stackexchange.com/questions/30217/are-methodological-assumptions-of-stackexchange-fundamentally-flawed" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:265 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Are Methodological Assumptions of StackExchange Fundamentally Flawed?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="http://scifi.stackexchange.com/questions/109585/did-we-ever-see-the-captains-yacht" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Did we ever see the captain's yacht?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-dba" title="Database Administrators Stack Exchange"></div><a href="http://dba.stackexchange.com/questions/122890/user-defined-function-udf-in-master-database" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:182 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    User Defined Function (UDF) in master database
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-stats" title="Cross Validated"></div><a href="http://stats.stackexchange.com/questions/184998/the-linearity-of-variance" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:65 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    The linearity of variance
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="http://scifi.stackexchange.com/questions/109481/was-the-original-enterprise-truly-the-first-sci-fi-spaceship-designed-purely-for" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Was the original Enterprise truly the first sci-fi spaceship designed purely for exploration?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-history" title="History Stack Exchange"></div><a href="http://history.stackexchange.com/questions/26650/why-did-baldwin-of-boulogne-proclaim-edessa-a-county-not-a-kingdom" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:324 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why did Baldwin of Boulogne proclaim Edessa a County, not a Kingdom?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="http://english.stackexchange.com/questions/291727/which-is-correct-we-just-need-to-rename-or-we-need-just-to-rename" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Which is correct? "We just need to rename" or "We need just to rename"
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-christianity" title="Christianity Stack Exchange"></div><a href="http://christianity.stackexchange.com/questions/45571/where-is-the-verse-about-people-sinning-because-they-know-god-will-forgive-them" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:304 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Where is the verse about people sinning because they know God will forgive them?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-photo" title="Photography Stack Exchange"></div><a href="http://photo.stackexchange.com/questions/71449/why-do-people-like-square-photos" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:61 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why do people like square photos?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="http://academia.stackexchange.com/questions/59237/short-email-replies" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Short email replies
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-mathematica" title="Mathematica Stack Exchange"></div><a href="http://mathematica.stackexchange.com/questions/101189/why-does-setting-the-imageresolution-to-a-high-value-result-in-a-smaller-picture" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:387 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why does setting the ImageResolution to a high value result in a smaller picture?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="http://worldbuilding.stackexchange.com/questions/30758/what-single-change-would-have-given-the-most-chance-for-the-axis-to-win-world-wa" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What single change would have given the most chance for the Axis to win World War 2?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-security" title="Information Security Stack Exchange"></div><a href="http://security.stackexchange.com/questions/107244/how-do-certificate-issuers-become-trusted" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:162 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How do certificate issuers become trusted?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="http://english.stackexchange.com/questions/291720/correct-phrase-for-this-kind-of-parking-lot-sign" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Correct phrase for this kind of parking lot sign
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="http://english.stackexchange.com/questions/291034/phrase-to-describe-a-moving-goal-that-is-forever-just-out-of-reach" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Phrase to describe a moving goal that is forever just out of reach
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-puzzling" title="Puzzling Stack Exchange"></div><a href="http://puzzling.stackexchange.com/questions/24334/to-catch-a-thief" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:559 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    To Catch a Thief
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-stackoverflow" title="Stack Overflow"></div><a href="http://stackoverflow.com/questions/34062595/strange-definitions-of-true-and-false-macros" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:1 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Strange definitions of TRUE and FALSE macros
+                </a>
+
+            </li>
+    </ul>
+
+        
+</div>
+		</div>
+	
+<div id="feed-link">
+    <div id="feed-link-text">
+        <a href="http://stackoverflow.com/feeds/question/2950319" title="feed of this question and its answers">
+            <span class="feed-icon"></span>question feed
+        </a>
+    </div>
+</div>	<script>
+StackExchange.ready(function(){$.get('/posts/2950319/ivc/2bf4');});
+</script>
+<noscript>
+    <div><img src="/posts/2950319/ivc/2bf4" class="dno" alt="" width="0" height="0"></div>
+</noscript><div style="display:none" id="prettify-lang">lang-java</div></div>
+
+
+        </div>
+    </div>
+    <div id="footer" class="categories">
+        <div class="footerwrap">
+            <div id="footer-menu">
+                <div class="top-footer-links">
+                        <a href="http://stackoverflow.com/tour">tour</a>
+                    <a href="http://stackoverflow.com/help">help</a>
+                    <a href="http://blog.stackoverflow.com/?blb=1">blog</a>
+                        <a href="http://chat.stackoverflow.com/">chat</a>
+                    <a href="http://data.stackexchange.com/">data</a>
+                    <a href="http://stackexchange.com/legal">legal</a>
+                    <a href="http://stackexchange.com/legal/privacy-policy">privacy policy</a>
+                    <a href="http://stackexchange.com/work-here">work here</a>
+                    <a href="http://stackexchange.com/mediakit">advertising info</a>
+
+                    <a onclick='StackExchange.switchMobile("on")'>mobile</a>
+                    <b><a href="http://stackoverflow.com/contact">contact us</a></b>
+                        <b><a href="http://meta.stackoverflow.com/">feedback</a></b>
+                    
+                </div>
+                <div id="footer-sites">
+                    <table>
+    <tbody><tr>
+            <th colspan="3">
+                Technology
+            </th>
+            <th>
+                Life / Arts
+            </th>
+            <th>
+                Culture / Recreation
+            </th>
+            <th>
+                Science
+            </th>
+            <th>
+                Other
+            </th>
+    </tr>
+    <tr>
+            <td>
+                <ol>
+                        <li><a href="http://stackoverflow.com/" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                        <li><a href="http://serverfault.com/" title="system and network administrators">Server Fault</a></li>
+                        <li><a href="http://superuser.com/" title="computer enthusiasts and power users">Super User</a></li>
+                        <li><a href="http://webapps.stackexchange.com/" title="power users of web applications">Web Applications</a></li>
+                        <li><a href="http://askubuntu.com/" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                        <li><a href="http://webmasters.stackexchange.com/" title="pro webmasters">Webmasters</a></li>
+                        <li><a href="http://gamedev.stackexchange.com/" title="professional and independent game developers">Game Development</a></li>
+                        <li><a href="http://tex.stackexchange.com/" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://programmers.stackexchange.com/" title="professional programmers interested in conceptual questions about software development">Programmers</a></li>
+                        <li><a href="http://unix.stackexchange.com/" title="users of Linux, FreeBSD and other Un*x-like operating systems">Unix &amp; Linux</a></li>
+                        <li><a href="http://apple.stackexchange.com/" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+                        <li><a href="http://wordpress.stackexchange.com/" title="WordPress developers and administrators">WordPress Development</a></li>
+                        <li><a href="http://gis.stackexchange.com/" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+                        <li><a href="http://electronics.stackexchange.com/" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+                        <li><a href="http://android.stackexchange.com/" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+                        <li><a href="http://security.stackexchange.com/" title="information security professionals">Information Security</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://dba.stackexchange.com/" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+                        <li><a href="http://drupal.stackexchange.com/" title="Drupal developers and administrators">Drupal Answers</a></li>
+                        <li><a href="http://sharepoint.stackexchange.com/" title="SharePoint enthusiasts">SharePoint</a></li>
+                        <li><a href="http://ux.stackexchange.com/" title="user experience researchers and experts">User Experience</a></li>
+                        <li><a href="http://mathematica.stackexchange.com/" title="users of Mathematica">Mathematica</a></li>
+                        <li><a href="http://salesforce.stackexchange.com/" title="Salesforce administrators, implementation experts, developers and anybody in-between">Salesforce</a></li>
+                        <li><a href="http://expressionengine.stackexchange.com/" title="administrators, end users, developers and designers for ExpressionEngine® CMS">ExpressionEngine® Answers</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#technology" class="more">
+                                more (13)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://photo.stackexchange.com/" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                        <li><a href="http://scifi.stackexchange.com/" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                        <li><a href="http://graphicdesign.stackexchange.com/" title="Graphic Design professionals, students, and enthusiasts">Graphic Design</a></li>
+                        <li><a href="http://movies.stackexchange.com/" title="movie and tv enthusiasts">Movies &amp; TV</a></li>
+                        <li><a href="http://cooking.stackexchange.com/" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                        <li><a href="http://diy.stackexchange.com/" title="contractors and serious DIYers">Home Improvement</a></li>
+                        <li><a href="http://money.stackexchange.com/" title="people who want to be financially literate">Personal Finance &amp; Money</a></li>
+                        <li><a href="http://academia.stackexchange.com/" title="academics and those enrolled in higher education">Academia</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#lifearts" class="more">
+                                more (9)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://english.stackexchange.com/" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                        <li><a href="http://skeptics.stackexchange.com/" title="scientific skepticism">Skeptics</a></li>
+                        <li><a href="http://judaism.stackexchange.com/" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                        <li><a href="http://travel.stackexchange.com/" title="road warriors and seasoned travelers">Travel</a></li>
+                        <li><a href="http://christianity.stackexchange.com/" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                        <li><a href="http://gaming.stackexchange.com/" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+                        <li><a href="http://bicycles.stackexchange.com/" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+                        <li><a href="http://rpg.stackexchange.com/" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#culturerecreation" class="more">
+                                more (21)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://math.stackexchange.com/" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                        <li><a href="http://stats.stackexchange.com/" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                        <li><a href="http://cstheory.stackexchange.com/" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                        <li><a href="http://physics.stackexchange.com/" title="active researchers, academics and students of physics">Physics</a></li>
+                        <li><a href="http://mathoverflow.net/" title="professional mathematicians">MathOverflow</a></li>
+                        <li><a href="http://chemistry.stackexchange.com/" title="scientists, academics, teachers and students">Chemistry</a></li>
+                        <li><a href="http://biology.stackexchange.com/" title="biology researchers, academics, and students">Biology</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#science" class="more">
+                                more (5)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://stackapps.com/" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                        <li><a href="http://meta.stackexchange.com/" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Exchange</a></li>
+                        <li><a href="http://area51.stackexchange.com/" title="proposing new sites in the Stack Exchange network">Area 51</a></li>
+                        <li><a href="http://careers.stackoverflow.com/">Stack Overflow Careers</a></li>
+                    
+                </ol>
+            </td>
+    </tr>
+</tbody></table>
+                </div>
+            </div>
+
+            <div id="copyright">
+                site design / logo © 2015 Stack Exchange Inc; user contributions licensed under <a href="http://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc by-sa 3.0</a> 
+                with <a href="http://blog.stackoverflow.com/2009/06/attribution-required/" rel="license">attribution required</a>
+            </div>
+            <div id="svnrev">
+                rev 2015.12.3.3047
+            </div>
+            
+        </div>
+    </div>
+    <noscript>
+        <div id="noscript-warning">Stack Overflow works best with JavaScript enabled<img src="http://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"></div>
+    </noscript>
+<script>var p = "http", d = "static"; if (document.location.protocol == "https:") { p += "s"; d = "engine"; } var z = document.createElement("script"); z.type = "text/javascript"; z.async = true; z.src = p + "://" + d + ".adzerk.net/ados.js"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(z, s);</script>
+<script>
+    var ados = ados || {};
+    ados.run = ados.run || [];
+    ados.run.push(function () { ados_setKeywords('java');; ados_load(); });         
+</script>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-5620270-1');
+                        ga('set', 'dimension2', '|java|');         ga('send', 'pageview');
+        var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+        (function () {
+            var ssl='https:'==document.location.protocol,
+                s=document.getElementsByTagName('script')[0],
+                qc=document.createElement('script');
+            qc.async=true;
+            qc.src=(ssl?'https://secure':'http://edge')+'.quantserve.com/quant.js';
+            s.parentNode.insertBefore(qc, s);
+            var sc=document.createElement('script');
+            sc.async=true;
+            sc.src=(ssl?'https://sb':'http://b') + '.scorecardresearch.com/beacon.js';
+            s.parentNode.insertBefore(sc, s);
+        })();
+        _comscore.push({ c1: "2", c2: "17440561" });
+        _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+    </script>
+            
+    
+</body></html>

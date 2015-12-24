@@ -1,0 +1,41 @@
+﻿A local variable must be explicitly given a value before it is
+used, by either initialization or assignment.
+
+Every array also has a class. The method getClass, when invoked for an array
+object, will return a class object (of class Class ) that represents the class of the
+array.
+
+Order of the field and class variable is important during the initialization time. 
+A compile-time error occurs for this program:
+	class Test1 {
+		int i = j;
+		// compile-time error:
+		// incorrect forward reference
+		int j = 1;
+	}
+and this one:
+	class Z {
+		static int i = j + 2;
+		static int j = 4;
+	}
+
+Accesses by methods are not checked in this way, so:
+	class Z {
+		static int peek() { return j; }
+		static int i = peek();
+		static int j = 1;
+	}
+
+	class Test {
+		public static void main(String[] args) {
+			System.out.println(Z.i);
+		}
+	}
+produces the output:
+0
+
+
+If two methods of a class (whether both declared in the same class, or both inherited by a class, or one declared and one inherited) have the same name but signatures that are not override-equivalent, then the method name is said to be overloaded. This fact causes no difficulty and never of itself results in a compile-time error. There is no required relationship between the return types or between the throws clauses of two methods with the same name, unless their signatures are override-equivalent.
+
+
+

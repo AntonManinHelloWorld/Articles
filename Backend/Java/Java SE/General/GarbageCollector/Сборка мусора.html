@@ -1,0 +1,1304 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru-RU" lang="ru-RU"><head>
+
+
+<script type="text/javascript" src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/analytics.js"></script>
+<script type="text/javascript">archive_analytics.values.server_name="wwwb-app37.us.archive.org";archive_analytics.values.server_ms=199;</script>
+<link type="text/css" rel="stylesheet" href="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/banner-styles.css">
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- TUTORIAL start: diff variable needed for unique title per page -->
+<title>Успешное прохождение Java-сертификации, Часть 1: SCJP</title>
+<!-- TUTORIAL end: diff variable needed for unique title per page -->
+<meta http-equiv="PICS-Label" content="(PICS-1.1 &quot;http://www.icra.org/ratingsv02.html&quot; l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) &quot;http://www.rsac.org/ratingsv01.html&quot; l gen true r (n 0 s 0 v 0 l 0) &quot;http://www.classify.org/safesurf/&quot; l gen true r (SS~~000 1))">
+<link rel="schema.DC" href="http://purl.org/DC/elements/1.0/">
+<link rel="SHORTCUT ICON" href="http://web.archive.org/web/20120320153402im_/http://www.ibm.com/favicon.ico">
+<meta name="Owner" content="developerWorks@ru.ibm.com">
+  <meta name="DC.Language" scheme="rfc1766" content="ru-RU">
+  <meta name="IBM.Country" content="RU">
+<meta name="IBM.SpecialPurpose" content="SP001">
+<meta name="IBM.PageAttributes" content="sid=1003,1004">
+<meta name="Source" content="v16 Template Generator">
+<meta name="Robots" content="index,follow">
+<!-- TUTORIAL start: diff variable needed for unique abstract per page -->
+<meta name="Abstract" content="Это руководство разработано для подготовки программистов к экзамену по платформе 1.4 Sun Certified Java Programmer (SCJP) и включает подробный обзор основных экзаменационных задач.">
+<!-- TUTORIAL end: diff variable needed for unique abstract per page -->
+<!-- TUTORIAL start: diff variable needed for unique desc per page -->
+<meta name="Description" content="Это руководство разработано для подготовки программистов к экзамену по платформе 1.4 Sun Certified Java Programmer (SCJP) и включает подробный обзор основных экзаменационных задач.">
+<!-- TUTORIAL end: diff variable needed for unique desc per page -->
+<!-- TUTORIAL start: diff variable needed for unique keywords per page -->
+<meta name="Keywords" content="Успешное прохождение Java-сертификации, Часть 1, SCJP, Сертификация, tttjca">
+<!-- TUTORIAL end: diff variable needed for unique keywords per page -->
+<meta name="DC.Date" scheme="iso8601" content="2007-04-02">
+<!-- TUTORIAL start: diff variable needed for type -->
+<meta name="DC.Type" scheme="IBM_ContentClassTaxonomy" content="CT321">
+<!-- TUTORIAL end: diff variable needed for type -->
+<meta name="DC.Subject" scheme="IBM_SubjectTaxonomy" content="TT300">
+<meta scheme="IBM_WTMCategory" name="IBM.WTMCategory" content="SOFDCJVARU">
+<meta name="DC.Rights" content="© Copyright&nbsp;IBM Corporation&nbsp;2007">
+<meta name="IBM.Effective" scheme="W3CDTF" content="2007-04-02">
+<!-- TUTORIAL start: diff variable needed for unique title per page -->
+<meta name="title" content="Успешное прохождение Java-сертификации, Часть 1: SCJP">
+<!-- TUTORIAL end: diff variable needed for unique title per page -->
+
+<!-- HEADER_SCRIPTS_AND_CSS_INCLUDE -->
+<link href="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/all.css" media="all" rel="stylesheet" title="www" type="text/css">
+<link href="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/screen.css" media="screen,projection" rel="stylesheet" title="www" type="text/css">
+<link href="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/screen-uas.css" media="screen,projection" rel="stylesheet" title="www" type="text/css">
+<link type="text/css" title="www" rel="stylesheet" media="screen,projection" href="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/screen-fonts.css">
+<link href="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/handheld.css" media="handheld" rel="stylesheet" title="www" type="text/css">
+<link href="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/print.css" media="print" rel="stylesheet" title="www" type="text/css">
+<!-- dW-specific CSS -->
+<link href="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/dw-screen.css" media="screen,projection" rel="stylesheet" title="www" type="text/css">
+<link href="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/dw-local-site.css" rel="stylesheet" type="text/css">
+<link href="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/jquery.css" media="screen,projection" rel="stylesheet" title="www" type="text/css">
+<link href="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/dw-mf2012-01.css" rel="stylesheet" title="www" type="text/css">
+
+<script src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/ibmcommon.js" type="text/javascript">//</script>
+<script src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/dynamicnav.js" type="text/javascript">//</script>
+<link href="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/overlay.css" media="screen,projection" rel="stylesheet" title="www" type="text/css">
+<!-- dW functional JS -->
+<script language="JavaScript" src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/urltactic.js" type="text/javascript"></script>
+<!-- Rating_START -->
+
+<script language="JavaScript" type="text/javascript">
+ // <![CDATA[
+
+ dwr = {};
+  dwr.clickhere = 'нажмите и проголосуйте';
+  dwr.stars = 'звездочки';
+  dwr.star = 'звездочка'; 
+  dwr.avgRatingOf = 'Средний показатель рейтинга';
+  dwr.youRated = 'Вы проголосовали за это';
+  dwr.avgRating = 'Средний показатель рейтинга';
+  dwr.basedOnVote = 'основанный на {1} голосе'; // {1} to be substitue by code
+  dwr.basedOnVotes = 'основанный на {1} голосов';
+  dwr.leftParen = '('; 
+  dwr.rightParen = ')'; 
+  dwr.space = ' '; 
+  dwr.yourRating = 'Ваш рейтинг';
+
+// ]]>
+</script>
+<script language="JavaScript" src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/artrating.js" type="text/javascript"></script>
+<style type="text/css">
+.metavalue {
+  display: none;
+}
+</style>
+<!-- Rating_END --><!-- RESERVED_HEADER_INCLUDE -->
+<script language="javascript" src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/ajax1.js" type="text/javascript"></script>
+<script language="javascript" src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/search_counter-maverick.js" type="text/javascript"></script>
+<script language="javascript" src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/request_referer_capture-maverick.js" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript">
+ <!--
+ setDefaultQuery('defaultHere');
+ //-->
+</script>
+<script language="JavaScript" type="text/javascript">
+ <!--
+ function openNewWindow(url,tar,arg){window.open(url,tar,arg);}
+ //-->
+</script>
+      <!-- Include file support -->
+      <script language="JavaScript" type="text/javascript">
+        (function($) {
+        jQuery.extend({
+        getInc: function(u,d){
+        if(u==null)return;
+        jQuery.ajax({
+        type: "GET",
+        url: u,
+        dataType: "text",
+        success: function(t) {
+        jQuery(d).html(t);
+        ibmCommon.initShowHide(jQuery(d).children()[0]);			
+        },
+        async: true
+        });
+        }
+        });
+        })(jQuery);
+      </script>
+<script charset="UTF-8" src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/ruru-utf8.js" type="text/javascript" id="mhMenu"></script><script charset="UTF-8" src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/Controller" type="text/javascript" id="wiBundle"></script></head>
+
+<body id="ibm-com"><div class="" id="wm-ipp" style="display: none;" lang="en">
+
+<div style="position:fixed;left:0;top:0;width:100%!important">
+<div id="wm-ipp-inside">
+   <table style="width:100%;"><tbody><tr>
+   <td id="wm-logo">
+       <a href="http://web.archive.org/web/" title="Wayback Machine home page"><img src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/wayback-toolbar-logo.png" alt="Wayback Machine" height="39" width="110" border="0"></a>
+   </td>
+   <td class="c">
+       <table style="margin:0 auto;"><tbody><tr>
+       <td class="u" colspan="2">
+       <form target="_top" method="get" action="/web/form-submit.jsp" name="wmtb" id="wmtb"><input name="url" id="wmtbURL" value="http://www.ibm.com/developerworks/ru/edu/j-scjp/section4.html" style="width:400px;" onfocus="this.focus();this.select();" type="text"><input name="type" value="replay" type="hidden"><input name="date" value="20120320153402" type="hidden"><input value="Go" type="submit"><span id="wm_tb_options" style="display:block;"></span></form>
+       </td>
+       <td class="n" rowspan="2">
+           <table><tbody>
+           <!-- NEXT/PREV MONTH NAV AND MONTH INDICATOR -->
+           <tr class="m">
+           	<td class="b" nowrap="nowrap">
+		
+		    <a href="http://web.archive.org/web/20120219111405/http://www.ibm.com/developerworks/ru/edu/j-scjp/section4.html" title="19 Feb 2012">FEB</a>
+		
+		</td>
+		<td class="c" id="displayMonthEl" title="You are here: 15:34:02 Mar 20, 2012">Mar</td>
+		<td class="f" nowrap="nowrap">
+		
+		    <a href="http://web.archive.org/web/20121113075545/http://www.ibm.com/developerworks/ru/edu/j-scjp/section4.html" title="13 Nov 2012"><strong>NOV</strong></a>
+		
+                </td>
+	    </tr>
+           <!-- NEXT/PREV CAPTURE NAV AND DAY OF MONTH INDICATOR -->
+           <tr class="d">
+               <td class="b" nowrap="nowrap">
+               
+                   <a href="http://web.archive.org/web/20120319052423/http://www.ibm.com/developerworks/ru/edu/j-scjp/section4.html" title="5:24:23 Mar 19, 2012"><img src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/wm_tb_prv_on.png" alt="Previous capture" height="16" width="14" border="0"></a>
+               
+               </td>
+               <td class="c" id="displayDayEl" style="width:34px;font-size:24px;" title="You are here: 15:34:02 Mar 20, 2012">20</td>
+	       <td class="f" nowrap="nowrap">
+               
+		   <a href="http://web.archive.org/web/20121113075545/http://www.ibm.com/developerworks/ru/edu/j-scjp/section4.html" title="7:55:45 Nov 13, 2012"><img src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/wm_tb_nxt_on.png" alt="Next capture" height="16" width="14" border="0"></a>
+	       
+	       </td>
+           </tr>
+           <!-- NEXT/PREV YEAR NAV AND YEAR INDICATOR -->
+           <tr class="y">
+	       <td class="b" nowrap="nowrap">
+               
+                   <a href="http://web.archive.org/web/20100806193509/http://www.ibm.com/developerworks/ru/edu/j-scjp/section4.html" title="6 Aug 2010"><strong>2010</strong></a>
+               
+               </td>
+               <td class="c" id="displayYearEl" title="You are here: 15:34:02 Mar 20, 2012">2012</td>
+	       <td class="f" nowrap="nowrap">
+               
+                   2013
+               
+	       </td>
+           </tr>
+           </tbody></table>
+       </td>
+       </tr>
+       <tr>
+       <td class="s">
+           <a class="t" href="http://web.archive.org/web/20120320153402*/http://www.ibm.com/developerworks/ru/edu/j-scjp/section4.html" title="See a list of every capture for this URL">20 captures</a>
+           <div class="r" title="Timespan for captures of this URL">5 Jun 08 - 13 Nov 12</div>
+       </td>
+       <td class="k">
+       <a href="http://web.archive.org/web/19991201000000/http://www.ibm.com/developerworks/ru/edu/j-scjp/section4.html" id="wm-graph-anchor">
+       <div id="wm-ipp-sparkline" title="Explore captures for this URL">
+	 <img id="sparklineImgId" alt="sparklines" onmouseover="__wm.st(1)" onmouseout="__wm.st(0)" onmousemove="__wm.mv(event,this)" src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/graph.png" height="27" width="500" border="0">
+       <div style="display: none; width: 25px; height: 27px; left: 75px;" class="yt"></div><div style="display: none; width: 2px; height: 27px; left: 98px;" class="mt"></div></div>
+       </a>
+       </td>
+       </tr></tbody></table>
+   </td>
+   <td class="r">
+       <a href="#close" onclick="__wm.h();return false;" style="background-image:url(/static/images/toolbar/wm_tb_close.png);top:5px;" title="Close the toolbar">Close</a>
+       <a href="http://faq.web.archive.org/" style="background-image:url(/static/images/toolbar/wm_tb_help.png);bottom:5px;" title="Get some help using the Wayback Machine">Help</a>
+   </td>
+   </tr></tbody></table>
+</div>
+</div>
+</div>
+
+
+<!-- BEGIN WAYBACK TOOLBAR INSERT -->
+<script type="text/javascript" src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/disclaim-element.js"></script>
+<script type="text/javascript" src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/graph-calc.js"></script>
+<script type="text/javascript">//<![CDATA[
+var __wm = (function(imgWidth,imgHeight,yearImgWidth,monthImgWidth){
+var wbPrefix = "/web/";
+var wbCurrentUrl = "http://www.ibm.com/developerworks/ru/edu/j-scjp/section4.html";
+
+var firstYear = 1996;
+var displayDay = "20";
+var displayMonth = "Mar";
+var displayYear = "2012";
+var prettyMonths = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+var $D=document,$=function(n){return document.getElementById(n)};
+var trackerVal,curYear = -1,curMonth = -1;
+var yearTracker,monthTracker;
+function showTrackers(val) {
+  if (val===trackerVal) return;
+  var $ipp=$("wm-ipp");
+  var $y=$("displayYearEl"),$m=$("displayMonthEl"),$d=$("displayDayEl");
+  if (val) {
+    $ipp.className="hi";
+  } else {
+    $ipp.className="";
+    $y.innerHTML=displayYear;$m.innerHTML=displayMonth;$d.innerHTML=displayDay;
+  }
+  yearTracker.style.display=val?"inline":"none";
+  monthTracker.style.display=val?"inline":"none";
+  trackerVal = val;
+}
+function trackMouseMove(event,element) {
+  var eventX = getEventX(event);
+  var elementX = getElementX(element);
+  var xOff = Math.min(Math.max(0, eventX - elementX),imgWidth);
+  var monthOff = xOff % yearImgWidth;
+
+  var year = Math.floor(xOff / yearImgWidth);
+  var monthOfYear = Math.min(11,Math.floor(monthOff / monthImgWidth));
+  // 1 extra border pixel at the left edge of the year:
+  var month = (year * 12) + monthOfYear;
+  var day = monthOff % 2==1?15:1;
+  var dateString = zeroPad(year + firstYear) + zeroPad(monthOfYear+1,2) +
+    zeroPad(day,2) + "000000";
+
+  $("displayYearEl").innerHTML=year+firstYear;
+  $("displayMonthEl").innerHTML=prettyMonths[monthOfYear];
+  // looks too jarring when it changes..
+  //$("displayDayEl").innerHTML=zeroPad(day,2);
+  var url = wbPrefix + dateString + '/' +  wbCurrentUrl;
+  $("wm-graph-anchor").href=url;
+
+  if(curYear != year) {
+    var yrOff = year * yearImgWidth;
+    yearTracker.style.left = yrOff + "px";
+    curYear = year;
+  }
+  if(curMonth != month) {
+    var mtOff = year + (month * monthImgWidth) + 1;
+    monthTracker.style.left = mtOff + "px";
+    curMonth = month;
+  }
+}
+function hideToolbar() {
+  $("wm-ipp").style.display="none";
+}
+function bootstrap() {
+  var $spk=$("wm-ipp-sparkline");
+  yearTracker=$D.createElement('div');
+  yearTracker.className='yt';
+  with(yearTracker.style){
+    display='none';width=yearImgWidth+"px";height=imgHeight+"px";
+  }
+  monthTracker=$D.createElement('div');
+  monthTracker.className='mt';
+  with(monthTracker.style){
+    display='none';width=monthImgWidth+"px";height=imgHeight+"px";
+  }
+  $spk.appendChild(yearTracker);
+  $spk.appendChild(monthTracker);
+
+  var $ipp=$("wm-ipp");
+  $ipp&&disclaimElement($ipp);
+}
+return{st:showTrackers,mv:trackMouseMove,h:hideToolbar,bt:bootstrap};
+})(500, 27, 25, 2);//]]>
+</script>
+<style type="text/css">
+body {
+  margin-top:0 !important;
+  padding-top:0 !important;
+  min-width:800px !important;
+}
+</style>
+
+<script type="text/javascript">__wm.bt();</script>
+<!-- END WAYBACK TOOLBAR INSERT -->
+
+<div id="ibm-top" class="ibm-landing-page">
+
+<!-- MASTHEAD_BEGIN -->
+<!-- MASTHEAD_BEGIN -->
+<div class="ibm-access"><a href="#ibm-content">Перейти к тексту</a></div>
+<div id="ibm-masthead-dw">
+  
+    <!-- TOP ROW -->    
+    <div id="dw-masthead-top-row">
+    	<ul id="ibm-mast-options-dw" class="ru">
+        	<li id="dw-mast-top-0"> 
+				<a class="" href="http://web.archive.org/developerworks/dwwi/DWAuthRouter?m=loginpage&amp;lang=ru&amp;d=http%3A%2F%2Fweb.archive.org%2Fweb%2F20120320153402%2Fhttp%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fru%2Fedu%2Fj-scjp%2Fsection4.html" title="">Войти (или Регистрация)</a>
+			</li>
+        	<li id="dw-mast-top-1" class="dw-mast-top-1-ru">
+        		<a href="#SELECTLANG">Русский</a><img class="dw-preload" src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/arrow-down-active.gif" alt="" height="7" width="8">
+			</li>
+        	<li id="dw-mast-top-2" class="dw-mf-hide">
+        		<a href="#"><img src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/photo.gif" alt="PHOTO" class="dw-mast-profimg" height="20" width="20"> [userid]</a>
+        	</li>
+    		<li id="dw-mast-top-3">
+    			<a href="#"><img src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/ibm-smlogo.gif" alt="IBM®" height="16" width="44"></a>
+    		</li>
+		</ul>
+	</div>
+    
+    <!-- TOP ROW SLIDER -->
+    <div id="ibm-my-menu-dw">    
+        <div class="ibm-ribbon-pane-dw">
+            <div class="ibm-ribbon-section-dw">
+                <!-- Sign-in -->
+                <div class="dw-mast-columns">
+					<div class="dw-mast-col-1-1">
+						<div id="dw-mast-sso">
+						<!--	<div id="dw-mast-sso-reg">
+								<p>Если Вы еще не зарегистрировались в системе IBM Registration, то мы приносим извинения за неудобство и просим Вас выполнить это действие.  <a href="#" onclick="(function () {window.location='/developerworks/dwwi/DWAuthRouter?m=reg&amp;lang=ru&amp;d='+encodeURIComponent(location.href);})();">Зарегистрироваться сейчас</a></p>
+							</div>-->
+							<div id="signin_error_mf" class="no-display"></div>
+							<div id="dw-mast-sso-form">
+								<form id="sForm_mf" action="" method="post" name="sForm_name_mf" onsubmit="return false;">
+									<div id="dw-mast-sso-id">
+										<label for="ibmid_mf">IBM ID:</label>
+										<input class="" id="ibmid_mf" name="ibmid_name_mf" maxlength="100" onkeypress="handleEP(event,this.form,'mf');" type="text">
+									</div>
+									<div id="dw-mast-sso-pw">
+										<label for="pw_mf">Пароль:</label>
+										<input class="" id="pw_mf" value="" name="pw_name_mf" maxlength="100" onkeypress="handleEP(event,this.form,'mf');" type="password">
+									</div>
+									<div id="dw-mast-sso-target">
+										<p class="dw-mf-perm-box">
+											<input id="perm_mf" name="perm_name_mf" type="checkbox"><label for="perm_mf"> Запомнить меня.</label>
+										</p>											</div>
+									<div id="dw-mast-sso-terms">
+										<p class="dw-mast-sso-terms-ru">Нажимая <strong>Отправить</strong>, Вы принимаете <a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/mydeveloperworks/terms?lang=ru">Условия использования</a> developerWorks.</p>
+									</div>
+									<div>
+										<input class="dw-mf-submit-btn-ru" name="ibm_submit_name_mf" value="Отправить" onclick="signin('mf');return false;" type="submit">
+									</div>
+								</form>
+							</div>
+							<div id="dw-mast-sso-update" class="dw-mast-sso-update-ru">
+								<div id="dw-mast-sso-update-id">
+									<ul>
+										<li><a class="ibm-forward-link" href="#" onclick="(function () {window.location='/developerworks/dwwi/DWAuthRouter?m=reg&amp;lang=ru_RU&amp;d='+encodeURIComponent(location.href);})();">Нужен IBM ID?</a></li>
+										
+									<li><a class="ibm-forward-link" href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/dwwi/jsp/WSHelp.jsp?lang=ru_RU">Забыли Ваш IBM ID?</a></li>
+									</ul>
+								</div>
+								<div id="dw-mast-sso-update-pw">
+								<ul class="dw-mf-pwupdate">
+									<li><a class="ibm-forward-link" href="#" onclick="(function () {window.location='/web/20120320153402/https://www.ibm.com/account/profile?page=forgot&amp;lang=ru_RU&amp;appname=ibm&amp;required=null&amp;d='+encodeURIComponent(getAuthUrl())+'%3Fm%3Dloginpage%26lang%3Dru_RU%26d%3D'+encodeURIComponent(location.href);})();">Забыли Ваш пароль?</a></li>
+									<li><a class="ibm-forward-link" href="#" onclick="(function () {window.location='/web/20120320153402/https://www.ibm.com/account/profile?page=chpw&amp;lang=ru_RU&amp;appname=ibm&amp;required=null&amp;d='+encodeURIComponent(location.href);})();">Изменить пароль</a></li>
+								</ul>
+									</div>
+							</div>
+							<div id="dw-mast-sso-text-ru">
+								<p>При первом входе в developerWorks для Вас будет создан <strong>профиль. Выберите информацию отображаемую в Вашем профиле — скрыть или отобразить поля можно в любой момент</strong>. </p>
+								<p class="dw-mf-secure-ru">Вся введенная информация защищена.</p>
+							</div>
+							<div class="dw-mast-close">
+								<ul>
+									<li><div class="dw-mast-close-sign-ru"><a href="#"><img src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/c_003.gif" alt="Закрыть [x]" height="10" width="20" border="0"></a></div></li>
+								</ul>
+							</div>							
+						</div>
+						
+						<div id="dw-mast-dname" class="dw-mf-hide">
+							<p>При первом входе в developerWorks для Вас будет создан профиль
+ и Вам нужно будет выбрать Отображаемое имя. Оно будет выводиться рядом с
+ контентом, опубликованным Вами в developerWorks.</p><p><strong>Отображаемое имя должно иметь длину от 3 символов до 31 символа</strong>.
+  Ваше Имя в системе должно быть уникальным. В качестве имени по 
+соображениям приватности нельзя использовать контактный e-mail.</p>
+							<div id="signin_dname_error_mf" class="no-display"></div>
+							<div id="dw-mast-dname-form">
+								<form id="dForm_mf" action="" method="post" name="dForm_name_mf" onsubmit="return false;">
+									<div id="dw-mast-dname-mf">
+										<label for="dname_mf">Отображаемое имя:</label>
+										<!-- <label for="dname_mf"><img id="ibmdname_img" alt="Display name" height="1" width="1" src="//dw1.s81c.com/i/c.gif" /></label> -->
+										<input id="dname_mf" name="dname_name_mf" maxlength="31" size="25" onkeypress="handleEP(event,this.form,'mf');" type="text">
+									</div>
+									<div id="dw-mast-dname-terms">
+										<p class="dw-mast-dname-terms-ru">Нажимая <strong>Отправить</strong>, Вы принимаете <a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/mydeveloperworks/terms?lang=ru">Условия использования</a> developerWorks.</p>
+									</div>
+									<div>
+										<input class="dw-mf-submit-btn-ru" name="dname_submit_name_mf" value="Отправить" onclick="signin('mf');return false;" type="submit">
+									</div>
+								</form>								
+							</div>
+							<div id="dw-mast-dname-secure">
+								<p class="dw-mf-secure-ru">Вся введенная информация защищена.</p>
+							</div>
+							<div class="dw-mast-close">
+								<ul>
+									<li><div class="dw-mast-close-sign-ru"><a href="#"><img src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/c_003.gif" alt="Закрыть [x]" height="10" width="20" border="0"></a></div></li>
+								</ul>
+							</div>							
+						</div>
+						
+						<div id="dw-mast-auth" class="dw-mf-hide">
+							<div>
+								<h2>My developerWorks:</h2>
+								<ul>
+									<li><a id="dw-mast-top-0-0" href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/mydeveloperworks/profiles/html/myProfileView.do?lang=ru">Мой профайл</a></li>
+									<li><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/mydeveloperworks/homepage?lang=ru">Моя главная страница</a></li>
+									<li><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/mydeveloperworks/groups/service/html/mycommunities?lang=ru">Мои группы</a></li>
+								</ul>     
+							</div>
+							<div id="dw-mast-notify" class="dw-mf-hide">
+								<h2>Сообщения:</h2>
+								<ul>
+									<li><a id="new_notify" href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/mydeveloperworks/homepage?lang=ru">{[num_notify] новых уведомлений}([num_notify] новых уведомлений)</a></li>
+									<li><a id="new_invite" href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/mydeveloperworks/profiles/html/wc.do?action=in&amp;requireAuth=true&amp;widgetId=friends&amp;lang=[lang]">{[num_invite] запрос}([num_invite] запрос)</a></li>  
+								</ul>
+							</div>
+							<div class="dw-mast-more">
+								<ul class="ibm-link-list">
+									<li><a class="dw-more-link" href="#" onclick="signOut(); return false;"><strong>Выйти</strong></a></li>
+								</ul>
+							</div>
+							<div class="dw-mast-close">
+								<ul>
+									<li><div class="dw-mast-close-sign"><a href="#"><img src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/c_003.gif" alt="Закрыть [x]" height="10" width="20" border="0"></a></div></li>
+								</ul>
+							</div>							
+						</div>
+						
+					</div>                	
+ 
+                </div>
+                <!-- Site selector --> 
+				<div class="dw-mast-columns">
+					<div class="dw-mast-col-2-1">
+						<h2>Выбрать язык:</h2>
+						<ul>
+							<li><a id="dw-mast-top-1-0" href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/">English</a></li>
+							<li><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/cn/">中文</a></li>
+							<li><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/jp/">日本語</a></li>
+							<li><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/kr/">한국어</a></li>
+						</ul>
+					</div>
+					<div class="dw-mast-col-2-2">
+						<ul>
+							<li><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ru/">Русский</a></li>
+							<li><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/br/">Português (Brasil)</a></li>
+							<li><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ssa/">Español</a></li>
+							<li><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/vn/">Việt</a></li>
+						</ul>
+					</div>
+					<div class="dw-mast-close">
+						<ul>
+							<li><div class="dw-mast-close-lang"><a href="#"><img src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/c_003.gif" alt="Закрыть [x]" height="10" width="20" border="0"></a></div></li>
+						</ul>
+					</div>							
+				</div>  
+            	<div class="dw-mast-columns"><!-- Authenticated --></div>
+            	<!-- IBM -->
+            	<div class="dw-mast-columns">
+            		<div class="dw-mast-col-2-1">
+            			<ul>
+            				<li><a id="dw-mast-top-3-0" href="http://web.archive.org/web/20120320153402/http://www.ibm.com/ru/ru/">Домашняя страница IBM</a></li>
+            				<li><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/solutions/ru/ru/">Pешения</a></li>
+            				<li><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/software/ru/">Программное обеспечение</a></li>
+            				<li><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/technologyservices/ru/ru/">Сервис ПО</a></li>
+            			</ul>
+            		</div>
+            		<div class="dw-mast-col-2-2 dw-mast-ibm">
+            			<ul>
+            				<li><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/support/ru/ru/">Поддержка</a></li>
+            				<li><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/support/documentation/ru/ru/">Документация</a></li>
+            				<li><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ru/doc/">Библиотека документов</a></li>
+            			</ul>
+            		</div>
+            		<div class="dw-mast-close">
+            			<ul>
+            				<li><div class="dw-mast-close-ibm"><a href="#"><img src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/c_003.gif" alt="Закрыть [x]" height="10" width="20" border="0"></a></div></li>
+            			</ul>
+            		</div>
+            	</div>       	
+            </div>
+       	
+        </div>
+    </div>
+
+    <!-- BOTTOM ROW -->
+    <div id="ibm-universal-nav-dw">
+        <ul id="ibm-unav-links-dw">
+            <li id="ibm-unav-home-dwlogo">
+				<a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ru/"><img src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/dw-wordmark.gif" alt="developerWorks®" height="32" width="218"></a>
+            </li>
+        </ul>
+        <!-- Links below are displayed inline for prototype; need to determine final placement -->
+    	<ul id="ibm-menu-links-dw" class="ibm-menu-links-dw-ru">
+        	<li id="dw-mast-nav-0"><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ru/topics/">Технические материалы</a></li>
+        	<li id="dw-mast-nav-1"><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/downloads/">Пробное ПО</a></li>
+        	<li id="dw-mast-nav-2"><a href="http://web.archive.org/web/20120320153402/https://www.ibm.com/developerworks/community/?lang=ru">Сообщество</a></li>
+         </ul>
+			<form id="ibm-search-form" action="/web/20120320153402/http://www.ibm.com/search/csass/search/" method="get" name="form1">
+				<input name="sn" value="dw" type="hidden">
+				<input name="lang" value="ru" type="hidden">
+				<input name="cc" value="RU" type="hidden">
+				<input name="en" value="utf" type="hidden">
+				<input name="hpp" value="20" type="hidden">
+				<input name="dws" value="rudw" type="hidden">
+			    <input name="lo" value="ru" type="hidden">
+				<p>
+				<label for="q"><img alt="Искать:" src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/c_003.gif" height="1" width="1"></label>
+					<input value="Поиск developerWorks" name="q" maxlength="100" id="q" type="text">
+					<input id="ibm-search" class="ibm-btn-search ibm-btn-search-ru" name="Search" value="Поиск" type="submit">
+				</p>
+			</form>
+    </div>
+    
+    
+    <!-- BOTTOM ROW SLIDER -->
+    <div id="ibm-common-menu-dw">
+ 
+    	<div class="ibm-ribbon-pane-dw dw-ribbon-pane-en">
+            <div class="ibm-ribbon-section-dw">
+				<!-- Technical topics category -->
+                <div class="dw-mast-columns">
+					<div class="dw-mast-col-3-1 dw-mast-col-3-1-ru">
+						<h2><a id="dw-mast-nav-0-0" href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ru/topics/">Технические материалы</a></h2>
+						<ul>
+							<li><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ru/aix/">AIX и UNIX</a></li>
+							<li><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ru/data/">Information management</a></li>
+							<li><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ru/java/">Технология Java</a></li>
+							<li><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ru/linux/">Linux</a></li>
+							<li><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ru/lotus/">Lotus</a></li>
+						</ul>     
+                    </div>
+                	<div class="dw-mast-col-3-2 dw-mast-col-3-2-ru">
+		
+						<ul>
+							<li><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ru/opensource/">Open source</a></li>
+							<li><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ru/rational/">Rational</a></li>
+							<li><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ru/webservices/">SOA и web-сервисы</a></li>
+							<li><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ru/websphere/">WebSphere</a></li> 
+							<li><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ru/xml/">XML</a></li>     
+						</ul>
+                    </div>
+                	<div class="dw-mast-col-3-3 dw-mast-col-3-3-ru">
+	
+					<ul>
+						<li><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ru/library/"><strong>Техническая библиотека</strong></a></li>
+						<li class="dw-mast-newline"><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ru/products/"><strong>Программные продукты для <br>разработчиков от A до Z</strong></a></li>
+					</ul> 
+  
+                    </div>
+                	<div class="dw-mast-close">
+                		<ul>
+                			<li><div class="dw-mast-close-tech"><a href="#"><img src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/c_003.gif" alt="Закрыть [x]" height="10" width="20" border="0"></a></div></li>
+                		</ul>
+                	</div>
+                </div>
+				<!-- Evaluation software category -->
+                <div class="dw-mast-columns">
+					<div class="dw-mast-col-2-1">
+						<h2><a id="dw-mast-nav-1-0" href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/downloads/">Пробное ПО (Английский)</a></h2>
+						<ul>
+							<li class="dw-mast-newline"><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/downloads/#data">Information management <br> (Английский)</a></li>
+							<li><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/downloads/#lotus">Lotus (Английский)</a></li>
+							<li><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/downloads/#rational">Rational (Английский)</a></li>
+						</ul>            
+					</div>
+                	<div class="dw-mast-col-2-2">
+                		<ul>
+                			<li><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/downloads/#tivoli">Tivoli (Английский)</a></li>
+                			<li><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/downloads/#websphere">WebSphere (Английский)</a></li>
+                			<li><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/downloads/#more">More IBM products (Английский)</a></li>
+                		</ul>            
+                	</div>
+                	<div class="dw-mast-close">
+                		<ul>
+                			<li><div class="dw-mast-close-eval-ru"><a href="#"><img src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/c_003.gif" alt="Закрыть [x]" height="10" width="20" border="0"></a></div></li>
+                		</ul>
+                	</div>
+                </div>
+				<!-- Community category -->
+                <div class="dw-mast-columns">
+					<div class="dw-mast-col-2-1">
+						<h2><a id="dw-mast-nav-2-0" href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/community/?lang=ru">Сообщество</a></h2>
+						
+						<ul>
+							<li><a href="http://web.archive.org/web/20120320153402/https://www.ibm.com/developerworks/community/homepage/?lang=ru">В начало</a></li>
+							<li><a href="http://web.archive.org/web/20120320153402/https://www.ibm.com/developerworks/community/profiles/home.do?lang=ru">Профайлы</a></li>
+							<li><a href="http://web.archive.org/web/20120320153402/https://www.ibm.com/developerworks/community/groups/service/html/allcommunities?lang=ru">Группы</a></li>
+							<li><a href="http://web.archive.org/web/20120320153402/https://www.ibm.com/developerworks/community/blogs/?lang=ru">Блоги</a></li>
+							<li><a href="http://web.archive.org/web/20120320153402/https://www.ibm.com/developerworks/community/bookmarks/html?lang=ru">Закладки</a></li>
+						</ul>     					    
+   
+                    </div>
+					<div class="dw-mast-col-2-2">
+						<ul>
+							<li><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/forums/category.jspa?categoryID=132">Форумы</a></li>
+							<li><a href="http://web.archive.org/web/20120320153402/https://www.ibm.com/developerworks/mydeveloperworks/wikis/home?lang=ru">Вики</a></li>
+							<li><a href="http://web.archive.org/web/20120320153402/https://www.ibm.com/developerworks/community/files/app?lang=ru">Файлы</a></li>
+							<li><a href="http://web.archive.org/web/20120320153402/https://www.ibm.com/developerworks/community/activities/service/html/mainpage?lang=ru#dashboard,myactivities">Операции</a></li>
+						
+						</ul>
+                    </div>
+ 
+                	<div class="dw-mast-close">
+                		<ul>
+                			<li><div class="dw-mast-close-comm-ru"><a href="#"><img src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/c_003.gif" alt="Закрыть [x]" height="10" width="20" border="0"></a></div></li>
+                		</ul>
+                	</div>
+                </div>
+				<!-- Events category -->
+  <!--              <div class="dw-mast-columns">
+					<div class="dw-mast-col-1-1">
+					<!-\-	<ul>
+						<li><a id="dw-mast-nav-3-0" href="">Briefings</a></li>
+							<li><a href="">Webcasts</a></li>
+							<li><a href="">Find events (briefings, webcasts, conferences...)</a></li>
+						</ul>        -\->    
+                    </div>
+                    <div class="dw-mast-more">
+					<!-\-	<ul class="ibm-link-list">
+							<li><a class="dw-more-link" href=""><strong>Подробнее о Событиях</strong></a></li>
+						</ul> -\->
+                    </div>
+                    <div class="dw-mast-close">
+						<ul>
+							<li><a href="#">Закрыть [x]</a></li>
+						</ul>
+                    </div>
+				</div>-->
+            </div>
+        </div>
+ 
+    </div>
+    
+</div>
+<div id="fdiv" class="ibm-access"></div>
+<!-- MASTHEAD_END --><!-- MASTHEAD_END -->
+
+<div id="ibm-pcon">
+
+<!-- CONTENT_BEGIN -->
+<div id="ibm-content">
+
+<!-- Navigation_Trail_BEGIN -->
+<!-- &nbsp; -->
+         <div id="ibm-content-head"><ul id="ibm-navigation-trail"><li class="ibm-first"><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ru/">developerWorks Россия</a></li><li><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ru/java/">Технология Java</a></li><li><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ru/views/java/libraryview.jsp">Статьи</a></li></ul></div>
+<!-- Navigation_Trail_END -->
+
+<!-- dW_Summary Area_START -->
+<div id="dw-summary-article">
+
+<div class="dw-content-head">
+<h1>Успешное прохождение Java-сертификации, Часть 1: SCJP</h1><p>
+</p></div>
+
+<div class="ibm-container-body ibm-two-column">
+
+<div class="ibm-column ibm-first">
+<div class="author"><a class="dwauthor" rel="#authortip1" href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ru/edu/j-scjp/authors.html#author1">Прадип (Pradeep)  Чопра (Chopra) </a>, Cofounder, WHIZlabs Software</div><div style="display: none;" id="authortip1" class="dwauthor-onload-state ibm-no-print">   Прадип Чопра (Pradeep Chopra) является одним из основателей компании <a href="http://web.archive.org/web/20120320153402/http://www.whizlabs.com/">WHIZlabs Software</a>,
+ мирового лидера в области оценки навыков в сфере ИТ и подготовки к 
+сертификационным экзаменам. Прадип Чопра - выпускник Индийского 
+Технологического Института в Дели. Он является автором множества 
+экзаменационных симуляторов и учебных пособий для ИТ-сертификаций, а 
+также статей в области J2EE. С ним можно связаться по адресу  <a href="mailto:pradeep@whizlabs.com">pradeep@whizlabs.com</a>.</div>
+<p></p>
+  <p><strong>Описание:</strong>&nbsp; Это руководство разработано для 
+подготовки программистов к экзамену по платформе 1.4 Sun Certified Java 
+Programmer (SCJP) и включает подробный обзор основных экзаменационных 
+задач.</p>
+
+<div id="dw-tag-content" class="ibm-no-print"></div><div id="dw-moretags-access" class="ibm-access"></div>
+<p class="ibm-no-print"></p><div id="dw-tag-this" class="ibm-no-print"><a class="ibm-external-link" onclick="jQuery.launchTagThisWindow(); return false;" href="#">Пометить это!</a></div><div id="interestShow" class="ibm-no-print"></div><p></p>
+
+</div>
+<div class="ibm-column ibm-second">
+
+<p class="leading"><b>Дата:</b>&nbsp; 02.04.2007
+<br><b>Уровень сложности: </b>&nbsp;простой
+
+<br>
+<br><strong>Активность:</strong>&nbsp; 42342 просмотров
+  <br><strong>Комментарии:</strong> &nbsp; <span id="nCmts">0&nbsp;(<a href="#icomments">Добавить комментарии</a>)</span>
+<!-- Rating_Area_Begin -->
+<!-- Ensure that div id is based on input id and ends with -widget -->	
+<input id="art-rating" name="ratinga" value="4" type="hidden"></p><div id="art-rating-widget"><a href="javascript:void(0);"><img alt="1 star" title="нажмите и проголосуйте 1 звездочка" src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/avg-star-on.gif" height="20" width="20"></a><a href="javascript:void(0);"><img alt="2 stars" title="нажмите и проголосуйте 2 звездочки" src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/avg-star-on.gif" height="20" width="20"></a><a href="javascript:void(0);"><img alt="3 stars" title="нажмите и проголосуйте 3 звездочки" src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/avg-star-on.gif" height="20" width="20"></a><a href="javascript:void(0);"><img alt="4 stars" title="нажмите и проголосуйте 4 звездочки" src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/avg-star-on.gif" height="20" width="20"></a><a href="javascript:void(0);"><img alt="5 stars" title="нажмите и проголосуйте 5 звездочки" src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/star-off.gif" height="20" width="20"></a><span id="rateTxt">  Средний показатель рейтинга (основанный на 148 голосов)</span></div>
+<script language="JavaScript" type="text/javascript">
+// <![CDATA[
+   // widget div id and tutorial id as args
+   window.artRating.init('art-rating-widget');
+// ]]>
+</script>
+<!-- Rating_Area_End -->
+<p></p>
+</div>
+
+</div>
+</div>
+<!-- dW_Summary_Area_END -->
+
+<!-- CONTENT_BODY -->
+<div id="ibm-content-body">
+
+<!-- MAIN_COLUMN_BEGIN -->
+<div id="ibm-content-main">
+
+<!-- Related_Searches_Area_And_Overlays_Begin -->
+
+<!-- MAIN_COLUMN_CONTAINER_BEGIN -->
+<div class="ibm-container">
+
+<!-- MAIN_COLUMN_CONTENT_BEGIN -->
+   
+<!-- TUTORIAL start: Choose the component that goes in the body -->
+<!-- type=section -->
+      <p><span class="atitle">Сборка мусора</span></p>
+         <p><a name="N105EE"><span class="smalltitle">Линия поведения сборщика мусора (утилизатора памяти)</span></a></p>
+                <p>Java-программисту не нужно следить за распределением 
+памяти, так как сборщик мусора управляет памятью автоматически. Сборщик 
+мусора запускается виртуальной машиной Java (JVM). Сборщик мусора - это 
+низкоприоритетный процесс, который запускается периодически и 
+освобождает память, использованную объектами, которые больше не нужны.</p>
+
+                <p>Разные JVM имеют отличные друг от друга алгоритмы 
+сбора мусора. Существует несколько используемых алгоритмов, например: 
+алгоритм подсчёта ссылок или алгоритмы разметки и очистки. Подробнее о 
+сборщике мусора см. <a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ru/edu/j-scjp/resources.html">Ресурсы</a>.</p>
+                <p>
+                    <strong>Запуск сборщика мусора</strong>
+                    <br>JVM обычно запускает сборщик мусора при низком 
+уровне свободной памяти. Но работа сборщика мусора не гарантирует, что 
+всегда будет оставаться достаточно свободной памяти.</p>
+
+                <p>Если памяти недостаточно даже после восстановления, JVM генерирует исключение <code>OutOfMemoryError</code>. Обратите внимание, что перед генерированием исключения JVM обязательно запускает сборщик мусора как минимум 1 раз.</p>
+                <p>Вы можете <em>запросить</em> запуск сборщика мусора, но вы не можете <em>принудительно задавать</em> это действие.</p>
+                <p>
+                    <strong>Запрос запуска сборщика мусора</strong>
+                    <br>Для запроса вы можете вызвать один из следующих методов:</p>
+                <table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code-outline"><pre class="displaycode">  System.gc()
+  Runtime.getRuntime().gc()
+</pre></td></tr></tbody></table><br>
+                <div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="#ibm-pcon" class="ibm-anchor-up-link">В начало</a></p><p><a name="N10621"><span class="smalltitle">Пригодность для запуска сборщика мусора</span></a></p>
+                <p>Объект подлежит утилизации, когда он недоступен живому потоку.</p>
+                <p>Объект может подлежать утилизации в разных случаях:</p>
+                <ul>
+                    <li>Если переменная ссылочного типа, которая 
+ссылается на объект, установлена в положение "0", объект подлежит 
+утилизации, в том случае, если на него нет других ссылок. <br>
+                        <br>
+                    </li>
+                    <li>Если переменная ссылочного типа, которая 
+ссылается на объект, создана для ссылки на другой объект, объект 
+подлежит утилизации, в том случае, если на него нет других ссылок. <br>
+                        <br>
+                    </li>
+                    <li>Объекты, созданные локально в методе, подлежат 
+утилизации, когда метод завершает работу, если только они не 
+экспортируются из этого метода (т.е, возвращаются или генерируются как 
+исключение). <br>
+                        <br>
+                    </li>
+                    <li>Объекты, которые ссылаются друг на друга, могут подлежать утилизации, если ни один из них не доступен живому потоку.</li>
+                </ul>
+                <p>Рассмотрим пример:</p>
+                <table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code-outline"><pre class="displaycode">  public class TestGC
+  {	
+    public static void main(String [] args)  
+    {
+      Object o1 = new Integer(3);               // Line 1
+      Object o2 = new String("Tutorial");       // Line 2
+      o1 = o2;                                  // Line 3
+      o2 = null;                                // Line 4
+      // Rest of the code here
+    }
+  }
+</pre></td></tr></tbody></table><br>
+                <p>В этом примере объект <code>Integer (целочисленный)</code>, на который первоначально ссылается указатель <code>o1</code> может подвергаться утилизации после строки 3, так как <code>o1</code> теперь ссылается на объект <code>String (строковый)</code>. Несмотря на то, что <code>o2</code> создан для ссылки к нулю, объект <code>String (строковый)</code> не подлежит утилизации, так как <code>o1</code> ссылается на него.</p>
+                <div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="#ibm-pcon" class="ibm-anchor-up-link">В начало</a></p><p><a name="N1066D"><span class="smalltitle">Финализация</span></a></p>
+                <p>Java-технология позволяет использовать метод <code>finalize() (финализировать)</code>,
+ чтобы произвести необходимую очистку перед тем, как сборщик мусора 
+извлекает объект из памяти. Этот метод вызывается для объекта сборщиком 
+мусора, когда сборщик мусора вычисляет, что ссылок к объекту больше нет.
+ Это описано в классе <code>Object</code>, а значит, это наследуется всеми классами. Подкласс отменяет метод <code>finalize()</code>, чтобы освободиться от системных ресурсов или для ещё одной очистки:</p>
+                <table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code-outline"><pre class="displaycode">  protected void finalize() throws Throwable
+</pre></td></tr></tbody></table><br>
+
+                <p>Если незарегистрированное исключение генерируется методом <code>finalize()</code>, то исключение игнорируется и финализация этого объекта прекращается.</p>
+                <p>Метод <code>finalize()</code> будет активизирован только один раз за время существования объекта.</p>
+                <p>Возможно использование метода <code>finalize()</code> любого объекта, чтобы защитить его от утилизации. Но в этом случае сборщик мусора уже не активирует <code>finalize()</code> для этого объекта.</p>
+                <p>Метод <code>finalize()</code> всегда будет активизирован один раз перед тем, как объект будет удалён сборщиком мусора. Однако, возможно, что метод <code>finalize()</code> не будет активизирован для данного объекта за всё время его существования, так как он может не подлежать утилизации.</p>
+                <div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="#ibm-pcon" class="ibm-anchor-up-link">В начало</a></p><p><a name="N106A9"><span class="smalltitle">Резюме</span></a></p>
+
+                <p>В этом разделе мы рассмотрели процесс сборки мусора, 
+который относится к технике управления памятью языка Java. Сборка мусора
+ не может быть задана принудительно. Мы познакомились с различными 
+способами обращения объектов в подлежащие утилизации и узнали, что метод
+ <code>finalize()</code> активизируется перед тем, как объект извлекается сборщиком мусора.</p>
+                <div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="#ibm-pcon" class="ibm-anchor-up-link">В начало</a></p><p><a name="N106B5"><span class="smalltitle">Упражнение</span></a></p>
+                <p>
+                    <strong>Вопрос:</strong>
+                </p>
+                <p>Сколько объектов будут подлежать утилизации после строки 7?</p>
+                <table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code-outline"><pre class="displaycode">  public class TutorialGC
+  {
+    public static void main(String [] args)
+    {
+      Object a = new Integer(100);  // Line1
+      Object b = new Long(100);     // Line2
+      Object c = new String("100"); // Line3
+      a = null;                     // Line4
+      a = c;                        // Line5
+      c = b;                        // Line6
+      b = a;                        // Line7
+      // Rest of the code here
+    }
+  }
+</pre></td></tr></tbody></table><br>
+                <p>
+                    <strong>Варианты ответа:</strong>
+                </p>
+                <ul>
+                    <li>A. 0</li>
+                    <li>B. 1</li>
+                    <li>C. 2</li>
+                    <li>D. 3</li>
+                    <li>E. Код не возможно скомпилировать</li>
+                </ul>
+                <p>
+                    <strong>Правильный вариант:</strong>
+                </p>
+                <ul>
+                    <li>B</li>
+                </ul>
+                <p>
+                    <strong>Пояснение:</strong>
+                </p>
+
+                <p>Из трёх объектов, созданных в строках 1, 2 и 3, только объект <code>Integer</code> подлежит утилизации в конце строки 7. Переменная ссылки, <code>a</code>, которая первоначально ссылалась на объект <code>Integer</code>, ссылается на объект <code>String</code> в строке 5. Таким образом, <code>Integer</code> oбъект подлежит утилизации после строки 5, так как нет переменных, которые ссылаются на него. Переменные <code>b</code> и <code>c</code> ссылаются на объекты <code>String</code> и <code>Long</code> объекты в строках 6 и 7, поэтому они не подлежат утилизации.</p>
+            <!-- CMA ID: 205807 --> <!-- Site ID: 40 --> <!-- XSLT stylesheet used to transform this file:  dw-article-6.0-beta.xsl -->
+  
+<!-- TUTORIAL end: Choose the component that goes in the body -->
+   
+<!-- TUTORIAL start: page navigator -->
+<p class="ibm-table-navigation"><span class="ibm-secondary-navigation"><strong>4</strong> из <strong>13</strong><span class="ibm-table-navigation-links"> |
+                 <a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ru/edu/j-scjp/section3.html" class="ibm-back-em-link">предыдущая</a> |
+                 <a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ru/edu/j-scjp/section5.html" class="ibm-forward-em-link">следующая</a></span></span></p>
+<!-- TUTORIAL end: page navigator -->   
+   
+<!-- MAIN_COLUMN_CONTENT_END -->
+   
+ <!-- INLINE_COMMENTS_START -->
+  <p class="ibm-no-print"><span class="atitle"><a name="icomments">Комментарии</a></span></p>
+<div id="dw-icomments-container" class="ibm-no-print">
+<div class="ibm-alternate-rule"><hr></div>
+<div class="ibm-alternate-rule"><hr></div>
+<!-- Comment_Script -->
+ <a id="comments" href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ru/edu/j-scjp/comments"></a>
+  <script language="JavaScript" type="text/javascript">
+    // <![CDATA[
+dwc = {};
+dwc.cmts = 'комментарии';
+dwc.signIn = 'Войти';
+dwc.addCmts = 'Добавить комментарии';
+dwc.addCmt = 'Добавить комментарий';
+dwc.viewOrAddCmts = 'Посмотреть или добавить комментарии';
+dwc.reportInapprCont = 'Сообщить о некорректном содержании';
+dwc.reportInapprContLink = '/web/20120320153402/http://www.ibm.com/developerworks/forums/forum.jspa?forumID=1835';
+dwc.postingCmt = 'Комментарий отправляется';
+dwc.noCmt = 'Нет комментариев';
+dwc.netwkErr = 'Возникла проблема при загрузке комментариев. Пожалуйста, обновите страничку позже.';
+dwc.addACmt = 'Добавить комментарий';
+dwc.instructCmt = 'Для завершения данной транзакции вы обязательно должны заполнить поля, отмеченные звездочкой (<span class="ibm-required">*</span>).';
+dwc.cmt = 'Комментарий:';
+dwc.btnPost = 'Отправить ';
+dwc.btnPostAnon = 'Отправить анонимно';
+dwc.btnClrCmt = 'Стереть';
+dwc.btnCancel = 'Отменить';
+dwc.showRecent = 'Показать следующие {1} '; // {1} is the count to be substituted
+dwc.showNext = 'Показать следующие {1} '; // {1} is the count to be substituted
+dwc.showAllCmts = 'Показать все комментарии';
+dwc.enterCmt = 'Пожалуйста, введите комментарий';
+dwc.loginErr = 'Статус вашей авторизации не может быть установлен в данный момент. Пожалуйста, повторите попытку позже.';
+dwc.postErr = 'В настоящее время ваше сообщение не может быть опубликовано. Пожалуйста, попробуйте позже.';
+dwc.postBy = 'Выложено (Размещено) <strong>{1}</strong> {2}'; // {1} is the author to be substituted; {2} is the date
+dwc.siteId = 40;
+dwc.lang = 'ru_RU';
+// ]]>
+  </script>
+<script language="JavaScript" src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/insertcomment.js" type="text/javascript">//</script>
+<div id="threadShow"><div id="cmtTog" style=""><p><span id="numCmts">0</span>&nbsp;комментарии <span class="dw-bar">|</span> <a href="http://web.archive.org/developerworks/dwwi/DWAuthRouter?m=loginpage&amp;lang=ru_RU&amp;d=http%3A%2F%2Fweb.archive.org%2Fweb%2F20120320153402%2Fhttp%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fru%2Fedu%2Fj-scjp%2Fsection4.html%23icomments" style="display: none;" class="loginLk">Войти</a><a id="addCmtLk" class="dw-icomment-link">Добавить комментарий</a><a class="dw-icomment-report" href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/forums/forum.jspa?forumID=1835">Сообщить о некорректном содержании</a></p><div class="ibm-alternate-rule"><hr></div><div style="display: none;" id="commentForm"><div class="ibm-container"><h2>Добавить комментарий</h2><div class="ibm-container-body"><p>Для завершения данной транзакции вы обязательно должны заполнить поля, отмеченные звездочкой (<span class="ibm-required">*</span>).</p><span id="infoCmt"></span><div class="ibm-rule"><hr></div><form method="post" action="" class="ibm-column-form" enctype="multipart/form-data" focus="name" name="form"><p><label for="newCmt">Комментарий:<span class="ibm-required">*</span></label><br><textarea name="newCmt" id="newCmt" cols="120" rows="4"></textarea></p><div class="ibm-alternate-rule"><hr></div><p class="ibm-buttons-row"><input value="Отправить " name="postCmt" class="ibm-btn-arrow-sec" id="postCmt" type="button"><span class="ibm-sep">&nbsp;</span><input value="Стереть" name="clearCmt" class="ibm-btn-cancel-sec" id="clearCmt" type="button"><span class="ibm-sep">&nbsp;</span><input value="Отменить" name="cancelCmt" class="ibm-btn-cancel-sec" id="cancelCmt" type="button"></p></form></div></div></div><div id="cmtSect"><div class="comment"><div class="dw-icomment-container"><table class="dw-icomment-body" width="100%" cellpadding="0" cellspacing="0"><tbody><tr><td><p>Возникла проблема при загрузке комментариев. Пожалуйста, обновите страничку позже.</p></td></tr></tbody></table></div></div></div><div id="paging"><p><a style="display: none;" id="lastCmts" class="dw-icomment-link">Показать следующие 5 </a><span style="display: none;" id="cmtDivider"> <span class="dw-bar">|</span> </span><a style="display: none;" id="nextCmts" class="dw-icomment-link">Показать следующие 5 </a><span style="display: none;" id="cmtDivider2"> <span class="dw-bar">|</span> </span><a style="display: none;" id="viewAllCmts" class="dw-icomment-link">Показать все комментарии</a></p></div><p><a href="http://web.archive.org/developerworks/dwwi/DWAuthRouter?m=loginpage&amp;lang=ru_RU&amp;d=http%3A%2F%2Fweb.archive.org%2Fweb%2F20120320153402%2Fhttp%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fru%2Fedu%2Fj-scjp%2Fsection4.html%23icomments" style="display: none;" class="loginLk">Войти</a><a id="addCmtLk2" href="#icomments">Добавить комментарий</a></p><div class="ibm-alternate-rule"><hr></div><div class="ibm-alternate-rule"><hr></div></div></div>
+<script language="JavaScript" type="text/javascript">
+// <![CDATA[
+jQuery('threadShow').insertComment('95%',5,'nCmts','icomments');
+// ]]>
+</script>
+</div>
+<!-- INLINE_COMMENTS_END -->
+  
+  <p class="ibm-ind-link ibm-back-to-top"><a class="ibm-anchor-up-link" href="#ibm-pcon">В начало</a></p>
+  
+<!-- Overlays -->
+  <!-- remove the Add to my dW interest overlay until that function is supported for local sites -->
+
+</div>
+<!-- MAIN_COLUMN_CONTAINER_END -->
+
+<!-- Rating_Meta_BEGIN -->
+<!--Rating_Meta_BEGIN--><div class="metavalue">static.content.url=http://www.ibm.com/developerworks/js/artrating/</div><div class="metavalue">SITE_ID=40</div><div class="metavalue">Zone=Технология Java</div><div class="metavalue">ArticleID=205807</div><div class="metavalue">TutorialTitle=Успешное прохождение Java-сертификации, Часть 1: SCJP</div><div class="metavalue">publish-date=04022007</div><div class="metavalue">author1-email=</div><div class="metavalue">author1-email-cc=</div><script language="javascript" type="text/javascript">document.write('<div class="metavalue">url='+location.href.replace(/</g, '%3C')+'></div>');</script><div class="metavalue">url=http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ru/edu/j-scjp/section4.html&gt;</div><!--Rating_Meta_END-->
+<!-- Rating_Meta_END -->
+
+</div>
+<!-- MAIN_COLUMN_END-->
+
+<!-- RIGHT_COLUMN_BEGIN -->
+<div id="ibm-content-sidebar">
+
+<!-- RIGHT_COLUMN_CONTENT_BEGIN --> 
+<!-- TUTORIAL start: Tutorial toc must include page navigator -->
+<div class="ibm-container"><h2>Содержание</h2><div class="ibm-container-body"><img alt="" src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/c_002.gif" height="1" width="1"><ul class="ibm-bullet-list"><li><a class="ibm-feature-link" href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ru/edu/j-scjp/index.html">Подготовка к работе</a></li><li><a class="ibm-feature-link" href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ru/edu/j-scjp/section2.html">Описания и контроль доступа</a></li><li><a class="ibm-feature-link" href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ru/edu/j-scjp/section3.html">Управление потоком данных, операторы контроля и обработка особых ситуаций</a></li><li><strong>Сборка мусора</strong></li><li><a class="ibm-feature-link" href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ru/edu/j-scjp/section5.html">Основы языка</a></li><li><a class="ibm-feature-link" href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ru/edu/j-scjp/section6.html">Операторы и присваивания</a></li><li><a class="ibm-feature-link" href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ru/edu/j-scjp/section7.html">Замещение, перегрузка и ориентация объектов</a></li><li><a class="ibm-feature-link" href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ru/edu/j-scjp/section8.html">Потоки</a></li><li><a class="ibm-feature-link" href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ru/edu/j-scjp/section9.html">Основные классы в пакете java.lang</a></li><li><a class="ibm-feature-link" href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ru/edu/j-scjp/section10.html">Структура коллекции</a></li><li><a class="ibm-feature-link" href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ru/edu/j-scjp/section11.html">Резюме</a></li><li><a class="ibm-feature-link" href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ru/edu/j-scjp/resources.html">Ресурсы</a></li><li><a class="ibm-feature-link" href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ru/edu/j-scjp/authors.html">Об авторе</a></li></ul><div class="ibm-rule"><hr></div><p class="ibm-table-navigation"><span class="ibm-secondary-navigation"><strong>4</strong> из <strong>13</strong><span class="ibm-table-navigation-links"> |
+                 <a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ru/edu/j-scjp/section3.html" class="ibm-back-em-link">предыдущая</a> |
+                 <a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ru/edu/j-scjp/section5.html" class="ibm-forward-em-link">следующая</a></span></span></p></div></div>
+<!-- TUTORIAL end: Tutorial toc must include page navigator -->
+
+
+<!-- Tagging_Start -->
+<div id="dw-tag-cloud-container" class="ibm-container dw-hidetag"><h2>Теги</h2>
+<div id="dw-tag-help"><a class="dwauthor" rel="#tagtip" id="dwtagtip"><img alt="Help" src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/help_icon.gif" height="16" width="16" align="top"></a></div>
+<div style="display: none;" id="tagtip" class="dwauthor-onload-state ibm-no-print">Используйте <strong>форму поиска</strong>, чтобы найти любой контент с данным тегом в My developerWorks. Используйте <strong>ползунок</strong>, чтобы отразить больше или меньше тегов.<p></p><p>Кнопка<strong>Популярные теги</strong> отображает самые распространенные теги для данной области контента (например: Java, Linux, WebSphere).</p><p>Кнопка <strong>Мои теги</strong> отображает Ваши теги для данной области контента (например: Java, Linux, WebSphere).</p></div>
+<div class="ibm-access">Используйте форму поиска, чтобы найти любой контент с данным тегом в My developerWorks. Кнопка <em>Популярные теги</em> отображает самые распространенные теги для данной области контента (например: Java, Linux, WebSphere). Кнопка <em>Мои теги</em> отображает Ваши теги для данной области контента (например: Java, Linux, WebSphere).</div>
+<div class="ibm-container-body">
+<div class="dw-tag-search"><form action="//www.ibm.com/developerworks/mydeveloperworks/bookmarks/html" method="get" id="actualtagform" onsubmit="popupform(this, 'join')">
+<p><label for="tagfield"><strong>Поиск по всем тегам</strong></label>
+<input name="lang" value="ru" type="hidden">
+<input id="tagfield" name="tag" maxlength="20" size="17" type="text">&nbsp;<input src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/short-btn.gif" class="ibm-btn-view" alt="submit search" title="submit search" value="Search" type="image"></p></form></div>
+<div class="ibm-rule"><hr></div>
+<div id="dw-tag-select">
+<div id="dw-tag-select-popular"><p><strong>Популярные теги статьи</strong>&nbsp;|&nbsp;<br><a id="a-my" href="javascript:;">Мои теги статьи</a><a href="#dw-tag-access" class="ibm-access">Перейти к списку тегов</a></p></div>
+<div id="dw-tag-select-my" class="dw-hidetag"><p><a id="a-popular" href="javascript:;">Популярные теги статьи</a>&nbsp;|&nbsp;<br><strong>Мои теги статьи</strong></p><a href="#dw-tag-access" class="ibm-access">Перейти к списку тегов</a></div>
+<div id="dw-tag-cloud">
+
+
+
+
+
+	
+		<title>Internet Archive Wayback Machine</title>
+		
+		
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<link rel="stylesheet" type="text/css" href="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/styles.css">
+		<!-- base href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ru/edu/j-scjp/section4.html" -->
+	
+	
+
+
+
+
+        <div id="positionHome">
+            <section>
+            <div id="logoHome">
+                <a href="http://web.archive.org/index.jsp"><h1><span>Internet Archive's Wayback Machine</span></h1></a>
+            </div>
+            </section>
+            <section>
+            <div id="error">
+	
+		<p class="code">Loading...</p>
+		<p class="code shift target">http://www.ibm.com/developerworks/dwtags/dwjquerytabtags?lang=undefined&amp;base=http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ru/edu
+ | 11:26:45 May 18, 2014</p>
+		<p class="code shift red">Got an HTTP 302 response at crawl time</p>
+		<p class="code">Redirecting to...</p>
+		<p class="code shift target">https://www.ibm.com/developerworks/community/</p>
+        <p class="impatient"><a href="http://web.archive.org/web/20140518112645/https://www.ibm.com/developerworks/community/">Impatient?</a></p>
+            </div>
+            </section>
+            <div id="errorBorder"></div>
+
+        
+<!-- FOOTER -->
+            <footer>
+            <div id="footerHome">
+                <p>The Wayback Machine is an initiative of the <a href="http://archive.org/">Internet Archive</a>, a 501(c)(3) non-profit, building a digital library of Internet sites and other cultural artifacts in digital form.<br>Other <a href="http://archive.org/projects/">projects</a> include <a href="https://openlibrary.org/">Open Library</a> &amp; <a href="https://archive-it.org/">archive-it.org</a>.</p>
+                <p>Your use of the Wayback Machine is subject to the Internet Archive's <a href="http://archive.org/about/terms.php">Terms of Use</a>.</p>
+            </div>
+            </footer>
+        </div>
+    
+
+</div>  
+</div>   
+</div>
+</div>
+<!-- Tagging_End -->
+<!-- Dig_Deeper -->
+
+<!-- High_Visibility_Offer -->
+
+<!-- Special_Offers -->
+
+<!-- RIGHT_COLUMN_CONTENT_END -->
+
+</div>
+<!-- RIGHT_COLUMN_END -->
+
+<!-- CONTENT_BODY_END -->
+</div>
+
+</div>
+<!-- CONTENT_END -->
+
+ <!-- END_IBM-PCON -->
+</div>
+
+<!-- FOOTER_BEGIN -->
+<div id="ibm-footer">
+<!-- IBM footer container; disabled -->
+</div>
+
+<div id="ibm-page-tools-dw">
+	<div id="dw-footer-top-row">
+		<ul id="dw-foot-options">
+			<li id="dw-print"><a class="ibm-print-link" href="#">Печать страницы</a></li>
+		</ul>
+		<ul id="ibm-foot-options-dw">
+			<li id="dw-foot-0" class="dw-foot-0-ru"><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ru/edu/j-scjp/REPLACE-SHARE.HTML">Сделать эту страницу общей</a></li>
+			<!--	<li id="dw-foot-1"><a href="REPLACE-FOLLOW.HTML">Follow developerWorks</a></li>
+			-->
+		</ul>
+	</div>
+
+	<!-- TOP ROW SLIDER -->
+    <div id="dw-page-tools-menu">    
+        <div class="ibm-ribbon-pane-dw">
+            <div class="ibm-ribbon-section-dw">
+				<!-- Share this page -->			
+                <div class="dw-footer-columns">
+                    <div class="dw-footer-col-3-1">
+                    	<h2>Сделать эту страницу общей:</h2>                        
+						<ul class="ibm-link-list">
+							<li><a id="dw-foot-0-0" class="ibm-facebook-link" href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fweb.archive.org%2Fweb%2F20120320153402%2Fhttp%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fru%2Fedu%2Fj-scjp%2Fsection4.html&amp;t=%D0%A3%D1%81%D0%BF%D0%B5%D1%88%D0%BD%D0%BE%D0%B5%20%D0%BF%D1%80%D0%BE%D1%85%D0%BE%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20Java-%D1%81%D0%B5%D1%80%D1%82%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%B8%2C%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201%3A%20SCJP">Facebook</a></li>
+							<li><a class="ibm-linkedin-link" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fweb.archive.org%2Fweb%2F20120320153402%2Fhttp%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fru%2Fedu%2Fj-scjp%2Fsection4.html&amp;title=%D0%A3%D1%81%D0%BF%D0%B5%D1%88%D0%BD%D0%BE%D0%B5%20%D0%BF%D1%80%D0%BE%D1%85%D0%BE%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20Java-%D1%81%D0%B5%D1%80%D1%82%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%B8%2C%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201%3A%20SCJP">LinkedIn</a></li>
+							<li><a class="ibm-twitter-link" href="http://twitter.com/home?status=http%3A%2F%2Fweb.archive.org%2Fweb%2F20120320153402%2Fhttp%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fru%2Fedu%2Fj-scjp%2Fsection4.html%20-%20%D0%A3%D1%81%D0%BF%D0%B5%D1%88%D0%BD%D0%BE%D0%B5%20%D0%BF%D1%80%D0%BE%D1%85%D0%BE%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20Java-%D1%81%D0%B5%D1%80%D1%82%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%B8%2C%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201%3A%20SCJP">Twitter</a></li>
+						</ul>
+                    </div>
+                    <div class="dw-footer-col-3-2">
+						<ul class="ibm-link-list">
+							<li><a class="ibm-delicious-link" href="http://delicious.com/post?url=http%3A%2F%2Fweb.archive.org%2Fweb%2F20120320153402%2Fhttp%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fru%2Fedu%2Fj-scjp%2Fsection4.html&amp;title=%D0%A3%D1%81%D0%BF%D0%B5%D1%88%D0%BD%D0%BE%D0%B5%20%D0%BF%D1%80%D0%BE%D1%85%D0%BE%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20Java-%D1%81%D0%B5%D1%80%D1%82%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%B8%2C%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201%3A%20SCJP">Delicious</a></li>
+							<li><a class="ibm-digg-link" href="http://digg.com/submit?phase=2&amp;url=http%3A%2F%2Fweb.archive.org%2Fweb%2F20120320153402%2Fhttp%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fru%2Fedu%2Fj-scjp%2Fsection4.html&amp;title=%D0%A3%D1%81%D0%BF%D0%B5%D1%88%D0%BD%D0%BE%D0%B5%20%D0%BF%D1%80%D0%BE%D1%85%D0%BE%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20Java-%D1%81%D0%B5%D1%80%D1%82%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%B8%2C%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201%3A%20SCJP">Digg</a></li>
+							<!--<li><a class="ibm-stumbleupon" href="#">StumbleUpon</a></li>-->
+						</ul>
+                    </div>
+                    <div class="dw-footer-col-3-3">
+						<ul class="ibm-link-list">
+							<li><a class="ibm-email-link" href="#">Переслать страницу</a></li>
+						</ul>
+                    </div>
+                    <div class="dw-footer-close">
+						<ul>
+							<li><div class="dw-footer-close-share"><a href="#"><img src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/c.gif" alt="Закрыть [x]" height="10" width="20"></a></div></li>
+						</ul>
+                    </div>
+                </div>
+                <!-- Follow developerWorks -->
+                <div class="dw-footer-columns">
+                    <div class="dw-footer-col-1-1">
+  <!--                      <h2>Follow developerWorks:</h2>
+						<ul class="ibm-link-list">
+							<li><a id="dw-foot-1-0" class="ibm-facebook-link" href="/web/20120320153402/http://www.facebook.com/developerworks">Facebook</a></li>
+							<li><a class="ibm-twitter-link" href="/web/20120320153402/http://twitter.com/developerWorks">Twitter</a></li>
+						</ul>
+                    </div>
+                    <div class="dw-footer-close">
+						<ul>
+							<li><div class="dw-footer-close-follow"><a href="#"><img src="//dw1.s81c.com/i/c.gif" alt="Закрыть [x]" width="20" height="10"/></a></div></li>
+						</ul>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="ibm-footer-module-dw">
+	<div class="dw-footer-columns">
+		<div class="dw-footer-col-6-1">
+			<ul>
+				<li><a href="http://web.archive.org/web/20120320153402/https://www.ibm.com/developerworks/secure/feedback.jsp?domain=dwrussia">Помощь</a></li>
+				<li class="dw-footer-newline"><a href="http://web.archive.org/web/20120320153402/https://www.ibm.com/developerworks/secure/reprintreq.jsp?domain=dwrussia">Запрос
+					на использование<br>материалов developerWorks</a></li>
+			</ul>
+		</div>
+		<div class="dw-footer-col-6-2">
+			<ul>
+				<li><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/developerworks/ru/rss/">Ленты</a></li>
+			</ul>
+		</div>
+		<div class="dw-footer-col-6-3">
+			<ul>
+				<li><a href="http://web.archive.org/web/20120320153402/https://www.ibm.com/developerworks/community/report?lang=ru">Сообщить о нарушениях</a></li>
+				<li><a href="http://web.archive.org/web/20120320153402/https://www.ibm.com/developerworks/community/terms?lang=ru">Условия использования</a></li>
+				<li><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/privacy/ru/ru/">Конфиденциальность</a></li>
+				<li><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/accessibility/us/en/">Доступность (Английский)</a></li>			</ul>
+		</div>
+		<div class="dw-footer-col-6-4">
+			<ul>
+				<!-- JPP:  Validate and update Faculty and Students links -->
+				<li><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/ru/software/info/students/">Портал для студентов</a></li>
+				<li><a href="http://web.archive.org/web/20120320153402/http://www.ibm.com/ru/partners/">Бизнес-партнеры IBM</a></li>
+			</ul>
+		</div>
+		<div class="dw-footer-col-6-5">
+		</div>
+		<div class="dw-footer-col-6-6">
+		</div>
+	</div>
+	<!-- Language selector no-script -->
+	<noscript>
+	<div id="dw-footer-selectlang">
+		<h2><a name="SELECTLANG">Выбрать язык:</a></h2>
+		<ul>
+			<li><a href="/web/20120320153402/http://www.ibm.com/developerworks/">English</a></li>
+			<li><a href="/web/20120320153402/http://www.ibm.com/developerworks/cn/">中文</a></li>
+			<li><a href="/web/20120320153402/http://www.ibm.com/developerworks/jp/">日本語</a></li>
+			<li><a href="/web/20120320153402/http://www.ibm.com/developerworks/kr/">한국어</a></li>
+			<li><a href="/web/20120320153402/http://www.ibm.com/developerworks/ru/">Русский</a></li>
+			<li><a href="/web/20120320153402/http://www.ibm.com/developerworks/br/">Português (Brasil)</a></li>
+			<li><a href="/web/20120320153402/http://www.ibm.com/developerworks/ssa/">Español</a></li>
+			<li><a href="/web/20120320153402/http://www.ibm.com/developerworks/vn/">Việt</a></li>
+		</ul>
+	</div>
+	</noscript>
+</div><!-- FOOTER_END -->
+
+ <!-- END_IBM-TOP -->
+<div id="ibm-overlay-top"></div></div>
+ 
+ <!-- SCRIPTS_INCLUDE_BEGIN -->
+<!-- JQuery start -->
+<script type="text/javascript" language="JavaScript" src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/jquery_004.js"></script>
+<script type="text/javascript" language="JavaScript" src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/jquery.js"></script>
+<script type="text/javascript" language="JavaScript" src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/ui_002.js"></script>
+<script type="text/javascript" language="JavaScript" src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/ui.js"></script>
+<!-- xM Masthead/Footer -->
+<script src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/jquery_003.js" type="text/javascript">//</script>
+<script src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/jquery_002.js" type="text/javascript">//</script>
+<script src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/dw_v16.js" type="text/javascript">//</script>
+<script src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/flash-detect.js" type="text/javascript">//</script>
+<script src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/dwsi.js" type="text/javascript">//</script>
+<script type="text/javascript" language="JavaScript" src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/dwjquerytags.js"></script>
+<script type="text/javascript" language="JavaScript">
+	jQuery.noConflict();     
+	// Put all your code in your document ready area
+	jQuery(document).ready(function(jQuery) {
+	// Do jQuery stuff using jQuery 
+	jQuery('a.dwauthor').cluetip({
+		local: true,
+		showTitle: false,
+		positionBy: 'bottomTop',
+		sticky: true,	
+		mouseOutClose: true,
+		closeText: '<img src="//dw1.s81c.com/developerworks/js/jquery/cluetip98/i/x.gif" alt="Close" />',
+		arrows: false,
+		dropShadow: true,
+		cluetipClass: 'dwbasic'
+		});
+
+		//tagging
+		login="false";
+		userid="";
+		whichTags = "init";
+		pCont = "";
+		mCont = "";
+		signInMCont = "";
+		accessCont = "";
+		pValue = 0;
+		mValue = 0;
+
+		rBHash = null;
+		rBHash = new Object();
+		rBHash['viperLang'] = 'ru';
+		rBHash['urlLang'] = 'ru';
+		rBHash['tagThisWinTitle'] = 'Пометить';
+		//rBHash['tagThisWinTitle'] = 'Tagit';		
+
+		rBHash['pTags1'] = 'Популярные теги';
+		//rBHash['pTags1'] = 'Popular tags';		
+
+		rBHash['pTags2'] = 'Конец популярных тегов';
+		//rBHash['pTags2'] = 'End of Popular tags';
+
+		rBHash['mTags1'] = 'Мои теги';
+		//rBHash['mTags1'] = 'My tags';
+
+		rBHash['mTags2'] = 'Конец моих тегов';
+		//rBHash['mTags2'] = 'End of My tags';
+
+		rBHash['alt1'] = 'Загрузка контента';
+		//rBHash['alt1'] = 'Loading Content';
+
+		rBHash['noATags'] = 'Нет активных тегов';
+		//rBHash['noATags'] = 'No active tags';
+
+		rBHash['signIn1'] = 'Пожалуйста ';
+		//rBHash['signIn1'] = 'Please ';
+
+		rBHash['signIn2'] = 'войдите';
+		//rBHash['signIn2'] = 'sign in';
+
+		rBHash['signIn3'] = ' Для того, чтобы получить доступ';
+		//rBHash['signIn3'] = ' to access';
+
+		rBHash['signIn4'] = 'Мои теги';
+		//rBHash['signIn4'] = 'My Tags';
+
+		rBHash['signIn5'] = 'Для того, чтобы получить доступ к Моим тегам, пожалуйста ';
+		//rBHash['signIn5'] = 'To access My Tags, please ';
+
+		rBHash['signIn6'] = 'войдите';
+		//rBHash['signIn6'] = 'sign in';
+
+		rBHash['signIn7'] = 'Отобразить популярные теги';		
+		//rBHash['signIn7'] = 'Read Popular tags';
+
+		zoneHash = new Object();
+		zoneHash['aix'] = 'AIX and UNIX zone';
+		zoneHash['data'] = 'Information Management zone';
+		zoneHash['lotus'] = 'Lotus zone';
+		zoneHash['rational'] = 'Rational zone';
+		zoneHash['tivoli'] = 'Tivoli zone';
+		zoneHash['websphere'] = 'WebSphere zone';
+		zoneHash['architecture'] = 'Architecture zone';
+		zoneHash['autonomic'] = 'Autonomic computing zone';
+		zoneHash['java'] = 'Java technology zone';
+		zoneHash['library'] = 'Technical library';
+		zoneHash['linux'] = 'Linux zone';
+		zoneHash['opensource'] = 'Open source zone';
+		zoneHash['power'] = 'Multicore acceleration zone';
+		zoneHash['webservices'] = 'SOA and web services zone';
+		zoneHash['web'] = 'Web development zone';
+		zoneHash['xml'] = 'XML zone';
+		zoneHash['wireless'] = 'Wireless technology zone';
+		jQuery.checkRB();
+		jQuery.getPopularTags("/developerworks/dwtags/dwjquerytabtags?lang=" + rBHash['lang'] + "&base=" + jQuery.getZoneUrl(location.href));
+		jQuery.getUserTags();
+		if(jQuery.isTutorial(location.href) == "true") {
+			jQuery.getTagsForContent("/developerworks/tagging/UseCaseServlet?lang=" + rBHash['lang'] + "&format=maverick&cType=tutorials&use_case=geturltags&action=gettags&url=" + jQuery.normalizeUrl(location.href));
+		}
+		else {
+			jQuery.getTagsForContent("/developerworks/tagging/UseCaseServlet?lang=" + rBHash['lang'] + "&format=maverick&cType=articles&use_case=geturltags&action=gettags&url=" + jQuery.normalizeUrl(location.href));
+
+		}
+		// si
+		initSI();
+		});
+</script>
+ <!-- JQuery end -->
+
+<!-- BEGIN: Use this section to set page specific variables for the Unica Page Tag -->
+<script language="JavaScript">var NTPT_PGEXTRA="ibmSkillLevel=2&ibmAdoptPhase=667&ibmRole=710";</script>
+<!--END --><!-- SCRIPTS_INCLUDE_END -->
+
+<div id="ibm-metrics">
+<script src="%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0_files/stats.js" type="text/javascript">//</script>
+</div>
+
+
+
+
+
+
+
+
+
+<div style="position: absolute; z-index: 95; display: none;" id="cluetip-waitimage"></div><div style="z-index: 96; display: none; position: absolute;" id="cluetip"><div style="z-index: 95; opacity: 0.1; top: 1px; left: 1px; position: absolute; background-color: rgb(0, 0, 0);"></div><div style="z-index: 94; opacity: 0.1; top: 2px; left: 2px; position: absolute; background-color: rgb(0, 0, 0);"></div><div style="z-index: 93; opacity: 0.1; top: 3px; left: 3px; position: absolute; background-color: rgb(0, 0, 0);"></div><div style="z-index: 92; opacity: 0.1; top: 4px; left: 4px; position: absolute; background-color: rgb(0, 0, 0);"></div><div style="z-index: 91; opacity: 0.1; top: 5px; left: 5px; position: absolute; background-color: rgb(0, 0, 0);"></div><div style="z-index: 90; opacity: 0.1; top: 6px; left: 6px; position: absolute; background-color: rgb(0, 0, 0);"></div><div style="position: relative; z-index: 97;" id="cluetip-outer"><div id="cluetip-title"></div><div id="cluetip-inner"></div></div><div id="cluetip-extra"></div><div style="z-index: 97;" id="cluetip-arrows" class="cluetip-arrows"></div></div></body></html>
+<!--
+     FILE ARCHIVED ON 15:34:02 Mar 20, 2012 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 12:40:20 Dec 2, 2015.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->

@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html lang="en" dir="ltr" class="ie8"><![endif]-->
+<!--[if IE 9]><html lang="en" dir="ltr" class="ie9"><![endif]-->
+<!--[if gt IE 9]><!-->
+<html class="js no-touch localstorage sessionstorage contenteditable use-opacity-transitions" dir="ltr" lang="en"><!--<![endif]--><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Disqus Comments</title>
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    
+    
+    <style>
+        html {
+            overflow: hidden;
+        }
+
+        
+    </style>
+
+<link href="a_data/lounge.css" rel="stylesheet"><script src="a_data/config.js" data-requiremodule="remote/config" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="a_data/common.js" data-requiremodule="common.bundle" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="a_data/lounge.js" data-requiremodule="lounge.bundle" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="a_data/ga.js" data-requiremodule="ga" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><style id="css_1450090686130"></style><!-- base href="http://disqus.com/embed/comments/?base=default&version=ef8a04cc55a4466175b5cff18466d48b&f=intertechblog&t_i=2537%20http%3A%2F%2Fwww.intertech.com%2FBlog%2F%3Fp%3D2537&t_u=http%3A%2F%2Fwww.intertech.com%2FBlog%2Funderstanding-spring-mvc-model-and-session-attributes%2F&t_e=Understanding%20Spring%20MVC%20Model%20and%20Session%20Attributes&t_d=Understanding%20Spring%20MVC%20Model%20and%20Session%20Attributes&t_t=Understanding%20Spring%20MVC%20Model%20and%20Session%20Attributes&s_o=default&l=" --><link href="http://tempest.services.disqus.com/" rel="preconnect"><link href="http://tempest.services.disqus.com/" rel="dns-prefetch"><link href="a_data/discovery.css" rel="stylesheet"><script src="a_data/discovery.js" data-requiremodule="discovery/main" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script charset="UTF-8" async="" src="a_data/event.js"></script></head>
+<body>
+    
+
+    
+    <!--[if lt IE 10]><p style="color: #fff; background-color: #f05f70; padding: 10px; margin-top: 20px;">
+        You're using a browser that Disqus plans to stop supporting soon. For more information, visit our list of 
+        <a href="https://help.disqus.com/customer/portal/articles/466228-which-browsers-does-disqus-work-with-" style="color: #fff; text-decoration: underline;">supported browsers</a>
+        and consider upgrading.
+    </p><![endif]-->
+    <div id="error" style="display:none; text-align: center">
+        <p>We were unable to load Disqus. If you are a moderator please see our <a href="https://docs.disqus.com/help/83/"> troubleshooting guide</a>. </p>
+    </div>
+
+    
+    <script type="text/json" id="disqus-forumData">{"session":{"canModerate":false,"audienceSyncVerified":false,"mustVerify":false,"canReply":true,"mustVerifyEmail":false},"features":{"sso":true},"forum":{"category":null,"description":"","founder":"52096153","settings":{"supportLevel":0,"adsDRNativeEnabled":false,"disable3rdPartyTrackers":false,"moderatorText":"","ssoRequired":false,"linkAffiliationEnabled":true,"hasCustomAvatar":false,"organicDiscoveryEnabled":false,"colorScheme":"auto","discoveryMax":false,"discoverySettingsUrl":"https://intertechblog.disqus.com/admin/settings/ads/","adsVideoEnabled":false,"allowAnonPost":false,"allowMedia":true,"promotedDiscoveryEnabled":false,"allowAnonVotes":false,"mustVerify":false,"mustVerifyEmail":false,"discoveryVariant":null,"adsBannerEnabled":false,"audienceSyncEnabled":false,"typeface":"auto","discoveryLocked":false,"discoveryThumbnailsEnabled":false,"isVIP":false},"url":"http://www.intertech.com/blog","guidelines":null,"favicon":{"permalink":"http://disqus.com/api/forums/favicons/intertechblog.jpg","cache":"//a.disquscdn.com/1449636575/images/favicon-default.png"},"language":"en","avatar":{"small":{"permalink":"http://disqus.com/api/forums/avatars/intertechblog.jpg?size=32","cache":"//a.disquscdn.com/1449636575/images/noavatar32.png"},"large":{"permalink":"http://disqus.com/api/forums/avatars/intertechblog.jpg?size=92","cache":"//a.disquscdn.com/1449636575/images/noavatar92.png"}},"pk":"2361191","signedUrl":"http://disq.us/?url=http%3A%2F%2Fwww.intertech.com%2Fblog&key=oD68t9-jNZSV45yEcOG98Q","raw_guidelines":null,"id":"intertechblog","channel":null,"name":"Intertech Blog"}}</script>
+
+    
+    <script type="text/json" id="disqus-threadData">{"cursor":{"hasPrev":false,"prev":null,"total":7,"hasNext":false,"next":"1:0:0"},"code":0,"response":{"lastModified":1449055520,"posts":[{"forum":"intertechblog","parent":null,"isApproved":true,"author":{"username":"puneethshivalingaiah","about":"professional coder. Loves Coding and Algorithms set","name":"Puneeth Shivalingaiah","disable3rdPartyTrackers":false,"isPowerContributor":false,"isAnonymous":false,"rep":1.245722,"profileUrl":"https://disqus.com/by/puneethshivalingaiah/","url":"","reputation":1.245722,"location":"Bangalore, India.","isPrivate":false,"signedUrl":"","isPrimary":true,"joinedAt":"2014-08-04T06:09:02","id":"116908753","avatar":{"small":{"permalink":"http://disqus.com/api/users/avatars/puneethshivalingaiah.jpg","cache":"//a.disquscdn.com/uploads/users/11690/8753/avatar32.jpg?1436981455"},"isCustom":true,"permalink":"http://disqus.com/api/users/avatars/puneethshivalingaiah.jpg","cache":"//a.disquscdn.com/uploads/users/11690/8753/avatar92.jpg?1436981455","large":{"permalink":"http://disqus.com/api/users/avatars/puneethshivalingaiah.jpg","cache":"//a.disquscdn.com/uploads/users/11690/8753/avatar92.jpg?1436981455"}}},"media":[],"isDeleted":false,"isFlagged":false,"dislikes":0,"raw_message":"Simply put its Great. :) Thanks a lot. I was in need of clarity.","createdAt":"2015-05-13T15:57:45","id":"2022518673","thread":"1877767634","depth":0,"numReports":0,"isDeletedByAuthor":false,"likes":1,"isEdited":false,"message":"\u003cp>Simply put its Great. :) Thanks a lot. I was in need of clarity.\u003c/p>","isSpam":false,"isHighlighted":false,"points":1},{"forum":"intertechblog","parent":null,"isApproved":true,"author":{"username":"rocogarcaluque","about":"","name":"Roc\u00edo Garc\u00eda Luque","disable3rdPartyTrackers":false,"isPowerContributor":false,"isAnonymous":false,"rep":1.234945,"profileUrl":"https://disqus.com/by/rocogarcaluque/","url":"","reputation":1.234945,"location":"Salamanca","isPrivate":false,"signedUrl":"","isPrimary":true,"joinedAt":"2013-11-29T19:31:09","id":"83914932","avatar":{"small":{"permalink":"http://disqus.com/api/users/avatars/rocogarcaluque.jpg","cache":"//a.disquscdn.com/uploads/users/8391/4932/avatar32.jpg?1418301407"},"isCustom":true,"permalink":"http://disqus.com/api/users/avatars/rocogarcaluque.jpg","cache":"//a.disquscdn.com/uploads/users/8391/4932/avatar92.jpg?1418301407","large":{"permalink":"http://disqus.com/api/users/avatars/rocogarcaluque.jpg","cache":"//a.disquscdn.com/uploads/users/8391/4932/avatar92.jpg?1418301407"}}},"media":[],"isDeleted":false,"isFlagged":false,"dislikes":0,"raw_message":"Thank you, great explanation!","createdAt":"2014-05-10T11:46:57","id":"1377982804","thread":"1877767634","depth":0,"numReports":0,"isDeletedByAuthor":false,"likes":1,"isEdited":false,"message":"\u003cp>Thank you, great explanation!\u003c/p>","isSpam":false,"isHighlighted":false,"points":1},{"forum":"intertechblog","parent":null,"isApproved":true,"author":{"username":"puneethshivalingaiah","about":"professional coder. Loves Coding and Algorithms set","name":"Puneeth Shivalingaiah","disable3rdPartyTrackers":false,"isPowerContributor":false,"isAnonymous":false,"rep":1.245722,"profileUrl":"https://disqus.com/by/puneethshivalingaiah/","url":"","reputation":1.245722,"location":"Bangalore, India.","isPrivate":false,"signedUrl":"","isPrimary":true,"joinedAt":"2014-08-04T06:09:02","id":"116908753","avatar":{"small":{"permalink":"http://disqus.com/api/users/avatars/puneethshivalingaiah.jpg","cache":"//a.disquscdn.com/uploads/users/11690/8753/avatar32.jpg?1436981455"},"isCustom":true,"permalink":"http://disqus.com/api/users/avatars/puneethshivalingaiah.jpg","cache":"//a.disquscdn.com/uploads/users/11690/8753/avatar92.jpg?1436981455","large":{"permalink":"http://disqus.com/api/users/avatars/puneethshivalingaiah.jpg","cache":"//a.disquscdn.com/uploads/users/11690/8753/avatar92.jpg?1436981455"}}},"media":[],"isDeleted":false,"isFlagged":false,"dislikes":0,"raw_message":"Thanks... Its wonderfullll.... clear and concise:)","createdAt":"2015-03-31T07:38:36","id":"1937482129","thread":"1877767634","depth":0,"numReports":0,"isDeletedByAuthor":false,"likes":0,"isEdited":false,"message":"\u003cp>Thanks... Its wonderfullll.... clear and concise:)\u003c/p>","isSpam":false,"isHighlighted":false,"points":0},{"forum":"intertechblog","parent":null,"isApproved":true,"author":{"username":"disqus_eJ1NZBaeKB","about":"","name":"Rob Shepherd","disable3rdPartyTrackers":false,"isPowerContributor":false,"isAnonymous":false,"rep":1.2344359999999999,"profileUrl":"https://disqus.com/by/disqus_eJ1NZBaeKB/","url":"","reputation":1.2344359999999999,"location":"","isPrivate":false,"signedUrl":"","isPrimary":true,"joinedAt":"2014-01-27T18:04:30","id":"92423502","avatar":{"small":{"permalink":"http://disqus.com/api/users/avatars/disqus_eJ1NZBaeKB.jpg","cache":"//a.disquscdn.com/1449636575/images/noavatar32.png"},"isCustom":false,"permalink":"http://disqus.com/api/users/avatars/disqus_eJ1NZBaeKB.jpg","cache":"//a.disquscdn.com/1449636575/images/noavatar92.png","large":{"permalink":"http://disqus.com/api/users/avatars/disqus_eJ1NZBaeKB.jpg","cache":"//a.disquscdn.com/1449636575/images/noavatar92.png"}}},"media":[],"isDeleted":false,"isFlagged":false,"dislikes":0,"raw_message":"Excellent write-up. Thank you.","createdAt":"2015-01-09T17:31:42","id":"1782804475","thread":"1877767634","depth":0,"numReports":0,"isDeletedByAuthor":false,"likes":0,"isEdited":false,"message":"\u003cp>Excellent write-up. Thank you.\u003c/p>","isSpam":false,"isHighlighted":false,"points":0},{"forum":"intertechblog","parent":null,"isApproved":true,"author":{"username":"ivananisimov","about":"","name":"Ivan Anisimov","disable3rdPartyTrackers":false,"isPowerContributor":false,"isAnonymous":false,"rep":1.232124,"profileUrl":"https://disqus.com/by/ivananisimov/","url":"","reputation":1.232124,"location":"","isPrivate":false,"signedUrl":"","isPrimary":true,"joinedAt":"2014-10-16T12:05:04","id":"125963099","avatar":{"small":{"permalink":"http://disqus.com/api/users/avatars/ivananisimov.jpg","cache":"//a.disquscdn.com/1449636575/images/noavatar32.png"},"isCustom":false,"permalink":"http://disqus.com/api/users/avatars/ivananisimov.jpg","cache":"//a.disquscdn.com/1449636575/images/noavatar92.png","large":{"permalink":"http://disqus.com/api/users/avatars/ivananisimov.jpg","cache":"//a.disquscdn.com/1449636575/images/noavatar92.png"}}},"media":[],"isDeleted":false,"isFlagged":false,"dislikes":0,"raw_message":"this is great article, it really helped me","createdAt":"2014-10-16T12:05:09","id":"1638801847","thread":"1877767634","depth":0,"numReports":0,"isDeletedByAuthor":false,"likes":0,"isEdited":false,"message":"\u003cp>this is great article, it really helped me\u003c/p>","isSpam":false,"isHighlighted":false,"points":0},{"forum":"intertechblog","parent":null,"isApproved":true,"author":{"username":"disqus_xhRkta5QPh","about":"Developer","name":"Praveen","disable3rdPartyTrackers":false,"isPowerContributor":false,"isAnonymous":false,"rep":1.232124,"profileUrl":"https://disqus.com/by/disqus_xhRkta5QPh/","url":"","reputation":1.232124,"location":"India","isPrivate":false,"signedUrl":"","isPrimary":true,"joinedAt":"2014-08-26T05:25:38","id":"119573381","avatar":{"small":{"permalink":"http://disqus.com/api/users/avatars/disqus_xhRkta5QPh.jpg","cache":"//a.disquscdn.com/1449636575/images/noavatar32.png"},"isCustom":false,"permalink":"http://disqus.com/api/users/avatars/disqus_xhRkta5QPh.jpg","cache":"//a.disquscdn.com/1449636575/images/noavatar92.png","large":{"permalink":"http://disqus.com/api/users/avatars/disqus_xhRkta5QPh.jpg","cache":"//a.disquscdn.com/1449636575/images/noavatar92.png"}}},"media":[],"isDeleted":false,"isFlagged":false,"dislikes":0,"raw_message":"Thank You!!!!","createdAt":"2014-08-26T05:26:18","id":"1559400557","thread":"1877767634","depth":0,"numReports":0,"isDeletedByAuthor":false,"likes":0,"isEdited":false,"message":"\u003cp>Thank You!!!!\u003c/p>","isSpam":false,"isHighlighted":false,"points":0},{"forum":"intertechblog","parent":null,"isApproved":true,"author":{"username":"laker2000","about":"","name":"Laker2000","disable3rdPartyTrackers":false,"isPowerContributor":false,"isAnonymous":false,"rep":1.2413859999999999,"profileUrl":"https://disqus.com/by/laker2000/","url":"","reputation":1.2413859999999999,"location":"","isPrivate":false,"signedUrl":"","isPrimary":true,"joinedAt":"2013-10-03T19:04:18","id":"75928821","avatar":{"small":{"permalink":"http://disqus.com/api/users/avatars/laker2000.jpg","cache":"//a.disquscdn.com/uploads/users/7592/8821/avatar32.jpg?1380827060"},"isCustom":true,"permalink":"http://disqus.com/api/users/avatars/laker2000.jpg","cache":"//a.disquscdn.com/uploads/users/7592/8821/avatar92.jpg?1380827060","large":{"permalink":"http://disqus.com/api/users/avatars/laker2000.jpg","cache":"//a.disquscdn.com/uploads/users/7592/8821/avatar92.jpg?1380827060"}}},"media":[],"isDeleted":false,"isFlagged":false,"dislikes":0,"raw_message":"Huge! you got featured in the Spring blog!","createdAt":"2013-10-25T00:26:36","id":"1095878712","thread":"1877767634","depth":0,"numReports":0,"isDeletedByAuthor":false,"likes":0,"isEdited":false,"message":"\u003cp>Huge! you got featured in the Spring blog!\u003c/p>","isSpam":false,"isHighlighted":false,"points":0}],"thread":{"feed":"https://intertechblog.disqus.com/understanding_spring_mvc_model_and_session_attributes/latest.rss","uploadAdd":"//intertechblog.disqus.com/thread/understanding_spring_mvc_model_and_session_attributes/async_media_upload/","identifiers":["2537 http://www.intertech.com/Blog/?p=2537"],"dislikes":0,"likes":2,"message":"","isSpam":false,"isDeleted":false,"category":"2396511","clean_title":"Understanding Spring MVC Model and Session Attributes","userScore":0,"userSubscription":false,"id":"1877767634","signedLink":"http://disq.us/?url=http%3A%2F%2Fwww.intertech.com%2FBlog%2Funderstanding-spring-mvc-model-and-session-attributes%2F&key=VjSd-q60qsiyDt0nkGM1iQ","createdAt":"2013-10-20T05:04:48","hasStreaming":false,"uploadRemove":"//intertechblog.disqus.com/thread/understanding_spring_mvc_model_and_session_attributes/async_media_remove/","raw_message":"","isClosed":false,"link":"http://www.intertech.com/Blog/understanding-spring-mvc-model-and-session-attributes/","slug":"understanding_spring_mvc_model_and_session_attributes","forum":"intertechblog","author":"52096153","posts":7,"moderators":[54843971,69773703,57470027,58011820,5242323,26227956,105116409,52102840,115228601,52096153,55040427],"title":"Understanding Spring MVC Model and Session Attributes","highlightedPost":null}},"order":"popular"}</script>
+
+    
+
+    <div id="fixed-content"></div>
+
+
+    
+        
+        <!--[if lte IE 8]>
+<script src="//a.disquscdn.com/1449636575/build/vendor/ie8.js"></script>
+<![endif]-->
+<!--[if IE 9]>
+<script src="//a.disquscdn.com/1449636575/build/vendor/ie9.js"></script>
+<![endif]-->
+
+        
+<script type="text/json" id="disqus-urls">{
+    "root":"//disqus.com",
+    "next":"//a.disquscdn.com/next/current/embed"
+}</script>
+
+        <script src="a_data/lounge_002.js" id="bootstrap-script" data-app="lounge" async=""></script>
+    
+
+
+<div id="layout" data-tracking-area="layout">
+
+<div id="placement-top" data-tracking-area="discovery-north"></div>
+
+<div id="onboard" data-tracking-area="onboard"><div></div></div>
+
+<div style="display: none;" id="highlighted-post" data-tracking-area="highlighted" class="highlighted-post"></div>
+
+<div id="global-alert"></div>
+
+<header id="main-nav" data-tracking-area="main-nav">
+<nav class="nav nav-primary">
+<ul>
+<li class="tab-conversation active" data-role="post-count"><a class="publisher-nav-color">
+<span class="comment-count">
+7 comments
+</span>
+
+<span class="comment-count-placeholder">
+Comments
+</span>
+</a>
+</li>
+<li class="tab-community">
+<a href="https://disqus.com/home/forums/intertechblog/" class="publisher-nav-color" data-action="community-sidebar" data-forum="intertechblog" id="community-tab">
+<span class="community-name">
+<strong>Intertech Blog</strong>
+
+</span>
+
+<strong class="community-name-placeholder">Community</strong>
+</a>
+</li>
+<li class="dropdown user-menu" data-role="logout"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+<span class="dropdown-toggle-wrapper">
+
+<span>
+Login
+</span>
+
+</span> <span class="caret"></span>
+</a>
+<ul class="dropdown-menu">
+
+<li class="sso">
+<a href="#" data-action="auth:sso">Intertech Blog</a>
+</li>
+
+<li>
+<a href="#" data-action="auth:disqus">Disqus</a>
+</li>
+<li>
+<a href="#" data-action="auth:facebook">Facebook</a>
+</li>
+<li>
+<a href="#" data-action="auth:twitter">Twitter</a>
+</li>
+<li>
+<a href="#" data-action="auth:google">Google</a>
+</li>
+
+
+
+</ul>
+</li>
+<li class="notification-menu" data-role="notification-menu"><a href="https://disqus.com/home/inbox/" class="notification-container" data-action="home" data-home-path="home/inbox/">
+<span class="notification-icon icon-comment" aria-hidden=""></span>
+<span class="notification-count" data-role="notification-count"></span>
+</a>
+</li>
+</ul>
+</nav>
+</header>
+
+<section id="conversation" data-role="main" data-tracking-area="main">
+<div class="nav nav-secondary" data-tracking-area="secondary-nav">
+<ul>
+<li id="recommend-button" class="recommend dropdown">
+<div class="thread-likes"><a href="#" data-action="recommend" title="Recommend this discussion" class="dropdown-toggle ">
+<span class="icon-heart"></span>
+<span class="label label-default">Recommend</span>
+<span class="label label-recommended">Recommended</span>
+<span class="label label-count">2</span>
+</a>
+<ul class="dropdown-menu coachmark">
+<li>
+<h2>Discussion Recommended!</h2>
+<p>Recommending means this is a discussion worth sharing. It gets shared
+ to your followers' Disqus feeds, and gives the creator kudos!</p>
+<a href="http://disqus.com/home/?utm_source=disqus_embed&amp;utm_content=recommend_btn" class="btn btn-primary" target="_blank">
+ Find More Discussions 
+</a>
+</li>
+</ul>
+</div></li>
+<li id="thread-share-menu" class="dropdown share-menu hidden-sm"><a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Share">
+<span class="icon-export"></span>
+<span class="label">Share</span>
+</a>
+<ul class="share-menu dropdown-menu">
+<li class="share">Share this discussion on
+<ul>
+<li class="twitter">
+<a data-action="share:twitter" href="#">Twitter</a>
+</li>
+<li class="facebook">
+<a data-action="share:facebook" href="#">Facebook</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li data-role="post-sort" class="dropdown sorting pull-right">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+Sort by Best
+
+
+<span class="caret"></span>
+</a>
+<ul class="dropdown-menu pull-right">
+<li class="selected">
+<a href="#" data-action="sort" data-sort="popular">Best<i aria-hidden="true" class="icon-checkmark"></i></a>
+</li>
+
+<li>
+<a href="#" data-action="sort" data-sort="desc">Newest<i aria-hidden="true" class="icon-checkmark"></i></a>
+</li>
+
+<li>
+<a href="#" data-action="sort" data-sort="asc">Oldest<i aria-hidden="true" class="icon-checkmark"></i></a>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+<div id="posts">
+<div id="form"><form class="reply">
+<div class="postbox">
+<div role="alert"></div>
+<div class="avatar">
+<span class="user">
+<img data-role="user-avatar" src="a_data/noavatar92_002.png" alt="Avatar">
+</span>
+</div>
+
+<div class="textarea-wrapper" data-role="textarea" dir="auto"><div><span class="placeholder">Join the discussion…</span><div aria-label="Join the discussion…" style="overflow: auto; max-height: 350px;" data-role="editable" aria-multiline="true" role="textbox" tabindex="0" class="textarea" contenteditable="true"><p><br></p></div><div style="display: none;"><ul class="suggestions">
+<li class="header">
+<h5>in this conversation</h5>
+</li>
+</ul>
+</div></div>
+<div data-role="drag-drop-placeholder" class="media-drag-hover" style="display: none">
+<div class="drag-text">
+⬇ Drag and drop your images here to upload them.
+</div>
+</div>
+<div class="media-preview empty" data-role="media-preview"><ul data-role="media-legacy-list"></ul>
+<ul data-role="media-progress-list"></ul>
+<ul data-role="media-rich-list"></ul>
+<div class="media-expanded empty" data-role="media-preview-expanded">
+<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-role="media-preview-expanded-image" alt="Media preview placeholder">
+</div>
+</div>
+<div class="edit-alert" role="postbox-alert"></div>
+<div class="post-actions">
+<ul class="wysiwyg">
+<li data-role="media-uploader"><a href="#" tabindex="-1" data-action="attach" class="attach" title="Upload Images"><span>Attach</span></a>
+<input data-role="media-upload" tabindex="-1" accept="image/*" type="file">
+</li>
+</ul>
+</div>
+</div>
+
+<div data-role="login-form"><div><section class="auth-section logged-out">
+<div class="connect">
+<h6>Log in with</h6>
+<ul data-role="login-menu" class="services login-buttons">
+
+<li class="sso">
+<button type="button" data-action="auth:sso" title="Intertech Blog" class="no-image">
+Intertech Blog
+</button>
+</li>
+
+<li class="auth-disqus">
+<button type="button" data-action="auth:disqus" title="Disqus"><i class="icon-disqus"></i></button>
+</li>
+<li class="auth-facebook">
+<button type="button" data-action="auth:facebook" title="Facebook"><i class="icon-facebook-circle"></i></button>
+</li>
+<li class="auth-twitter">
+<button type="button" data-action="auth:twitter" title="Twitter"><i class="icon-twitter-circle"></i></button>
+</li>
+<li class="auth-google">
+<button type="button" data-action="auth:google" title="Google"><i class="icon-google-plus-circle"></i></button>
+</li>
+</ul>
+</div>
+<div class="guest">
+<h6 class="guest-form-title">
+<span class="register-text"> or sign up with Disqus </span>
+<span class="guest-text"> or pick a name </span>
+</h6>
+
+<div class="what-is-disqus help-icon">
+<div id="rules" class="tooltip show">
+<h3>Disqus is a discussion network</h3>
+<ul>
+<li><span>Disqus never moderates or censors. The rules on this community are its own.</span></li>
+<li><span>Your email is safe with us. It's only used for moderation and optional notifications.</span></li>
+<li><span>Don't be a jerk or do anything illegal. Everything is easier that way.</span></li>
+</ul>
+<p class="clearfix"><a href="https://docs.disqus.com/kb/terms-and-policies/" class="btn btn-small" target="_blank">Read full terms and conditions</a></p>
+</div>
+</div>
+
+<p class="input-wrapper">
+<input dir="auto" placeholder="Name" name="display_name" id="view44_display_name" maxlength="30" type="text">
+</p>
+
+<div class="guest-details expanded" data-role="guest-details">
+<p class="input-wrapper">
+<input dir="auto" placeholder="Email" name="email" id="view44_email" type="email">
+</p>
+
+<p class="input-wrapper">
+<input dir="auto" class="register-text" placeholder="Password" name="password" id="view44_password" type="password">
+</p>
+
+<div class="acceptance-wrapper register-text">
+By signing up, you agree to the Disqus <a target="_blank" href="https://help.disqus.com/customer/portal/articles/1753105-basic-rules-for-disqus-powered-profiles-and-discussions">Basic Rules</a>, <a target="_blank" href="https://help.disqus.com/customer/portal/articles/466260-terms-of-service">Terms of Service</a>, and <a target="_blank" href="https://help.disqus.com/customer/portal/articles/466259-privacy-policy">Privacy Policy</a>.
+</div>
+<div class="acceptance-wrapper guest-text">
+By posting, you agree to the Disqus <a target="_blank" href="https://help.disqus.com/customer/portal/articles/1753105-basic-rules-for-disqus-powered-profiles-and-discussions">Basic Rules</a>, <a target="_blank" href="https://help.disqus.com/customer/portal/articles/466260-terms-of-service">Terms of Service</a>, and <a target="_blank" href="https://help.disqus.com/customer/portal/articles/466259-privacy-policy">Privacy Policy</a>.
+</div>
+
+<input name="author-guest" style="display:none" type="checkbox">
+
+<div class="proceed" data-role="submit-btn-container">
+<button type="submit" class="btn submit" aria-label="Next"><span class="icon-proceed"></span><div class="spinner"></div></button>
+</div>
+</div>
+</div>
+</section>
+
+</div></div>
+</div>
+</form></div>
+
+<button class="alert realtime" style="display: none" data-role="realtime-notification">
+</button>
+
+<div id="no-posts" style="display:none"></div>
+
+<ul id="post-list" class="post-list"><li id="post-2022518673" class="post"><div role="alert"></div>
+<div data-role="post-content" class="post-content">
+<ul class="post-menu dropdown" data-role="menu">
+<li class="collapse">
+<a href="#" data-action="collapse" title="Collapse"><span>−</span></a>
+</li>
+<li class="expand">
+<a href="#" data-action="collapse" title="Expand"><span>+</span></a>
+</li>
+
+<li class="" role="menu">
+<a class="dropdown-toggle" href="#" data-action="flag" data-role="flag" title="Flag as inappropriate">
+<i aria-hidden="true" class="icon icon-flag"></i>
+</a>
+</li>
+</ul>
+
+<div class="indicator"></div>
+
+<div class="avatar hovercard">
+<a href="https://disqus.com/by/puneethshivalingaiah/" class="user" data-action="profile" data-username="puneethshivalingaiah">
+<img data-role="user-avatar" data-user="116908753" src="a_data/avatar92.jpg" alt="Avatar">
+</a>
+</div>
+<div class="post-body">
+<header>
+<span class="post-byline">
+<span class="author publisher-anchor-color"><a href="https://disqus.com/by/puneethshivalingaiah/" data-action="profile" data-username="puneethshivalingaiah" data-role="username">Puneeth Shivalingaiah</a></span>
+
+</span>
+
+<span class="post-meta">
+<span class="bullet time-ago-bullet" aria-hidden="true">•</span>
+
+<a href="http://www.intertech.com/Blog/understanding-spring-mvc-model-and-session-attributes/#comment-2022518673" data-role="relative-time" class="time-ago" title="Wednesday, May 13, 2015 4:57 PM">7 months ago</a>
+</span>
+
+</header>
+
+<div class="post-body-inner">
+<div class="post-message-container" data-role="message-container">
+<div class="publisher-anchor-color" data-role="message-content">
+<div class="post-message " data-role="message" dir="auto">
+<p>Simply put its Great. :) Thanks a lot. I was in need of clarity.</p>
+</div>
+
+<span class="post-media"><ul data-role="post-media-list"></ul></span>
+</div>
+</div>
+<a class="see-more hidden" title="see more" data-action="see-more">see more</a>
+</div>
+
+<footer><menu>
+
+<li class="voting" data-role="voting">
+<a href="#" class="vote-up  count-1" data-action="upvote" title="">
+
+<span class="updatable count" data-role="likes">1</span>
+<span class="control"><i aria-hidden="true" class="icon icon-arrow-2"></i></span>
+</a>
+<span role="button" class="vote-down  count-0" data-action="downvote" title="Vote down">
+
+<span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+</span>
+</li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+<li class="reply" data-role="reply-link">
+<a href="#" data-action="reply">
+<i class="icon icon-mobile icon-reply"></i><span class="text">Reply</span></a></li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+<li class="share">
+<a class="toggle"><i class="icon icon-mobile icon-share"></i><span class="text">Share ›</span></a>
+<ul>
+<li class="twitter"><a href="#" data-action="share:twitter">Twitter</a></li>
+<li class="facebook"><a href="#" data-action="share:facebook">Facebook</a></li>
+<li class="link"><a href="http://www.intertech.com/Blog/understanding-spring-mvc-model-and-session-attributes/#comment-2022518673">Link</a></li>
+</ul>
+</li>
+
+<li class="realtime" data-role="realtime-notification:2022518673">
+<span style="display:none;" class="realtime-replies"></span>
+<a style="display:none;" href="#" class="btn btn-small"></a>
+</li>
+
+</menu>
+</footer>
+</div>
+
+<div data-role="blacklist-form"></div>
+<div class="reply-form-container" data-role="reply-form"></div>
+</div>
+
+<ul data-role="children" class="children"></ul>
+
+</li><li id="post-1377982804" class="post"><div role="alert"></div>
+<div data-role="post-content" class="post-content">
+<ul class="post-menu dropdown" data-role="menu">
+<li class="collapse">
+<a href="#" data-action="collapse" title="Collapse"><span>−</span></a>
+</li>
+<li class="expand">
+<a href="#" data-action="collapse" title="Expand"><span>+</span></a>
+</li>
+
+<li class="" role="menu">
+<a class="dropdown-toggle" href="#" data-action="flag" data-role="flag" title="Flag as inappropriate">
+<i aria-hidden="true" class="icon icon-flag"></i>
+</a>
+</li>
+</ul>
+
+<div class="indicator"></div>
+
+<div class="avatar hovercard">
+<a href="https://disqus.com/by/rocogarcaluque/" class="user" data-action="profile" data-username="rocogarcaluque">
+<img data-role="user-avatar" data-user="83914932" src="a_data/avatar92_002.jpg" alt="Avatar">
+</a>
+</div>
+<div class="post-body">
+<header>
+<span class="post-byline">
+<span class="author publisher-anchor-color"><a href="https://disqus.com/by/rocogarcaluque/" data-action="profile" data-username="rocogarcaluque" data-role="username">Rocío García Luque</a></span>
+
+</span>
+
+<span class="post-meta">
+<span class="bullet time-ago-bullet" aria-hidden="true">•</span>
+
+<a href="http://www.intertech.com/Blog/understanding-spring-mvc-model-and-session-attributes/#comment-1377982804" data-role="relative-time" class="time-ago" title="Saturday, May 10, 2014 12:46 PM">2 years ago</a>
+</span>
+
+</header>
+
+<div class="post-body-inner">
+<div class="post-message-container" data-role="message-container">
+<div class="publisher-anchor-color" data-role="message-content">
+<div class="post-message " data-role="message" dir="auto">
+<p>Thank you, great explanation!</p>
+</div>
+
+<span class="post-media"><ul data-role="post-media-list"></ul></span>
+</div>
+</div>
+<a class="see-more hidden" title="see more" data-action="see-more">see more</a>
+</div>
+
+<footer><menu>
+
+<li class="voting" data-role="voting">
+<a href="#" class="vote-up  count-1" data-action="upvote" title="">
+
+<span class="updatable count" data-role="likes">1</span>
+<span class="control"><i aria-hidden="true" class="icon icon-arrow-2"></i></span>
+</a>
+<span role="button" class="vote-down  count-0" data-action="downvote" title="Vote down">
+
+<span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+</span>
+</li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+<li class="reply" data-role="reply-link">
+<a href="#" data-action="reply">
+<i class="icon icon-mobile icon-reply"></i><span class="text">Reply</span></a></li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+<li class="share">
+<a class="toggle"><i class="icon icon-mobile icon-share"></i><span class="text">Share ›</span></a>
+<ul>
+<li class="twitter"><a href="#" data-action="share:twitter">Twitter</a></li>
+<li class="facebook"><a href="#" data-action="share:facebook">Facebook</a></li>
+<li class="link"><a href="http://www.intertech.com/Blog/understanding-spring-mvc-model-and-session-attributes/#comment-1377982804">Link</a></li>
+</ul>
+</li>
+
+<li class="realtime" data-role="realtime-notification:1377982804">
+<span style="display:none;" class="realtime-replies"></span>
+<a style="display:none;" href="#" class="btn btn-small"></a>
+</li>
+
+</menu>
+</footer>
+</div>
+
+<div data-role="blacklist-form"></div>
+<div class="reply-form-container" data-role="reply-form"></div>
+</div>
+
+<ul data-role="children" class="children"></ul>
+
+</li><li id="post-1937482129" class="post"><div role="alert"></div>
+<div data-role="post-content" class="post-content">
+<ul class="post-menu dropdown" data-role="menu">
+<li class="collapse">
+<a href="#" data-action="collapse" title="Collapse"><span>−</span></a>
+</li>
+<li class="expand">
+<a href="#" data-action="collapse" title="Expand"><span>+</span></a>
+</li>
+
+<li class="" role="menu">
+<a class="dropdown-toggle" href="#" data-action="flag" data-role="flag" title="Flag as inappropriate">
+<i aria-hidden="true" class="icon icon-flag"></i>
+</a>
+</li>
+</ul>
+
+<div class="indicator"></div>
+
+<div class="avatar hovercard">
+<a href="https://disqus.com/by/puneethshivalingaiah/" class="user" data-action="profile" data-username="puneethshivalingaiah">
+<img data-role="user-avatar" data-user="116908753" src="a_data/avatar92.jpg" alt="Avatar">
+</a>
+</div>
+<div class="post-body">
+<header>
+<span class="post-byline">
+<span class="author publisher-anchor-color"><a href="https://disqus.com/by/puneethshivalingaiah/" data-action="profile" data-username="puneethshivalingaiah" data-role="username">Puneeth Shivalingaiah</a></span>
+
+</span>
+
+<span class="post-meta">
+<span class="bullet time-ago-bullet" aria-hidden="true">•</span>
+
+<a href="http://www.intertech.com/Blog/understanding-spring-mvc-model-and-session-attributes/#comment-1937482129" data-role="relative-time" class="time-ago" title="Tuesday, March 31, 2015 8:38 AM">8 months ago</a>
+</span>
+
+</header>
+
+<div class="post-body-inner">
+<div class="post-message-container" data-role="message-container">
+<div class="publisher-anchor-color" data-role="message-content">
+<div class="post-message " data-role="message" dir="auto">
+<p>Thanks... Its wonderfullll.... clear and concise:)</p>
+</div>
+
+<span class="post-media"><ul data-role="post-media-list"></ul></span>
+</div>
+</div>
+<a class="see-more hidden" title="see more" data-action="see-more">see more</a>
+</div>
+
+<footer><menu>
+
+<li class="voting" data-role="voting">
+<a href="#" class="vote-up  count-0" data-action="upvote" title="Vote up">
+
+<span class="updatable count" data-role="likes">0</span>
+<span class="control"><i aria-hidden="true" class="icon icon-arrow-2"></i></span>
+</a>
+<span role="button" class="vote-down  count-0" data-action="downvote" title="Vote down">
+
+<span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+</span>
+</li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+<li class="reply" data-role="reply-link">
+<a href="#" data-action="reply">
+<i class="icon icon-mobile icon-reply"></i><span class="text">Reply</span></a></li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+<li class="share">
+<a class="toggle"><i class="icon icon-mobile icon-share"></i><span class="text">Share ›</span></a>
+<ul>
+<li class="twitter"><a href="#" data-action="share:twitter">Twitter</a></li>
+<li class="facebook"><a href="#" data-action="share:facebook">Facebook</a></li>
+<li class="link"><a href="http://www.intertech.com/Blog/understanding-spring-mvc-model-and-session-attributes/#comment-1937482129">Link</a></li>
+</ul>
+</li>
+
+<li class="realtime" data-role="realtime-notification:1937482129">
+<span style="display:none;" class="realtime-replies"></span>
+<a style="display:none;" href="#" class="btn btn-small"></a>
+</li>
+
+</menu>
+</footer>
+</div>
+
+<div data-role="blacklist-form"></div>
+<div class="reply-form-container" data-role="reply-form"></div>
+</div>
+
+<ul data-role="children" class="children"></ul>
+
+</li><li id="post-1782804475" class="post"><div role="alert"></div>
+<div data-role="post-content" class="post-content">
+<ul class="post-menu dropdown" data-role="menu">
+<li class="collapse">
+<a href="#" data-action="collapse" title="Collapse"><span>−</span></a>
+</li>
+<li class="expand">
+<a href="#" data-action="collapse" title="Expand"><span>+</span></a>
+</li>
+
+<li class="" role="menu">
+<a class="dropdown-toggle" href="#" data-action="flag" data-role="flag" title="Flag as inappropriate">
+<i aria-hidden="true" class="icon icon-flag"></i>
+</a>
+</li>
+</ul>
+<div class="indicator"></div>
+
+<div class="avatar hovercard">
+<a href="https://disqus.com/by/disqus_eJ1NZBaeKB/" class="user" data-action="profile" data-username="disqus_eJ1NZBaeKB">
+<img data-role="user-avatar" data-user="92423502" src="a_data/noavatar92.png" alt="Avatar">
+</a>
+</div>
+<div class="post-body">
+<header>
+<span class="post-byline">
+<span class="author publisher-anchor-color"><a href="https://disqus.com/by/disqus_eJ1NZBaeKB/" data-action="profile" data-username="disqus_eJ1NZBaeKB" data-role="username">Rob Shepherd</a></span>
+
+</span>
+
+<span class="post-meta">
+<span class="bullet time-ago-bullet" aria-hidden="true">•</span>
+
+<a href="http://www.intertech.com/Blog/understanding-spring-mvc-model-and-session-attributes/#comment-1782804475" data-role="relative-time" class="time-ago" title="Friday, January 9, 2015 5:31 PM">a year ago</a>
+</span>
+
+</header>
+
+<div class="post-body-inner">
+<div class="post-message-container" data-role="message-container">
+<div class="publisher-anchor-color" data-role="message-content">
+<div class="post-message " data-role="message" dir="auto">
+<p>Excellent write-up. Thank you.</p>
+</div>
+
+<span class="post-media"><ul data-role="post-media-list"></ul></span>
+</div>
+</div>
+<a class="see-more hidden" title="see more" data-action="see-more">see more</a>
+</div>
+
+<footer>
+<menu>
+
+<li class="voting" data-role="voting">
+<a href="#" class="vote-up  count-0" data-action="upvote" title="Vote up">
+
+<span class="updatable count" data-role="likes">0</span>
+<span class="control"><i aria-hidden="true" class="icon icon-arrow-2"></i></span>
+</a>
+<span role="button" class="vote-down  count-0" data-action="downvote" title="Vote down">
+
+<span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+</span>
+</li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+<li class="reply" data-role="reply-link">
+<a href="#" data-action="reply">
+<i class="icon icon-mobile icon-reply"></i><span class="text">Reply</span></a></li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+<li class="share">
+<a class="toggle"><i class="icon icon-mobile icon-share"></i><span class="text">Share ›</span></a>
+<ul>
+<li class="twitter"><a href="#" data-action="share:twitter">Twitter</a></li>
+<li class="facebook"><a href="#" data-action="share:facebook">Facebook</a></li>
+<li class="link"><a href="http://www.intertech.com/Blog/understanding-spring-mvc-model-and-session-attributes/#comment-1782804475">Link</a></li>
+</ul>
+</li>
+
+<li class="realtime" data-role="realtime-notification:1782804475">
+<span style="display:none;" class="realtime-replies"></span>
+<a style="display:none;" href="#" class="btn btn-small"></a>
+</li>
+
+</menu>
+</footer>
+</div>
+
+<div data-role="blacklist-form"></div>
+<div class="reply-form-container" data-role="reply-form"></div>
+</div>
+
+<ul data-role="children" class="children"></ul>
+
+</li><li id="post-1638801847" class="post"><div role="alert"></div>
+<div data-role="post-content" class="post-content">
+<ul class="post-menu dropdown" data-role="menu">
+<li class="collapse">
+<a href="#" data-action="collapse" title="Collapse"><span>−</span></a>
+</li>
+<li class="expand">
+<a href="#" data-action="collapse" title="Expand"><span>+</span></a>
+</li>
+
+<li class="" role="menu">
+<a class="dropdown-toggle" href="#" data-action="flag" data-role="flag" title="Flag as inappropriate">
+<i aria-hidden="true" class="icon icon-flag"></i>
+</a>
+</li>
+</ul>
+<div class="indicator"></div>
+
+<div class="avatar hovercard">
+<a href="https://disqus.com/by/ivananisimov/" class="user" data-action="profile" data-username="ivananisimov">
+<img data-role="user-avatar" data-user="125963099" src="a_data/noavatar92.png" alt="Avatar">
+</a>
+</div>
+<div class="post-body">
+<header>
+<span class="post-byline">
+<span class="author publisher-anchor-color"><a href="https://disqus.com/by/ivananisimov/" data-action="profile" data-username="ivananisimov" data-role="username">Ivan Anisimov</a></span>
+
+</span>
+
+<span class="post-meta">
+<span class="bullet time-ago-bullet" aria-hidden="true">•</span>
+
+<a href="http://www.intertech.com/Blog/understanding-spring-mvc-model-and-session-attributes/#comment-1638801847" data-role="relative-time" class="time-ago" title="Thursday, October 16, 2014 1:05 PM">a year ago</a>
+</span>
+
+</header>
+
+<div class="post-body-inner">
+<div class="post-message-container" data-role="message-container">
+<div class="publisher-anchor-color" data-role="message-content">
+<div class="post-message " data-role="message" dir="auto">
+<p>this is great article, it really helped me</p>
+</div>
+
+<span class="post-media"><ul data-role="post-media-list"></ul></span>
+</div>
+</div>
+<a class="see-more hidden" title="see more" data-action="see-more">see more</a>
+</div>
+
+<footer>
+<menu>
+
+<li class="voting" data-role="voting">
+<a href="#" class="vote-up  count-0" data-action="upvote" title="Vote up">
+
+<span class="updatable count" data-role="likes">0</span>
+<span class="control"><i aria-hidden="true" class="icon icon-arrow-2"></i></span>
+</a>
+<span role="button" class="vote-down  count-0" data-action="downvote" title="Vote down">
+
+<span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+</span>
+</li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+<li class="reply" data-role="reply-link">
+<a href="#" data-action="reply">
+<i class="icon icon-mobile icon-reply"></i><span class="text">Reply</span></a></li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+<li class="share">
+<a class="toggle"><i class="icon icon-mobile icon-share"></i><span class="text">Share ›</span></a>
+<ul>
+<li class="twitter"><a href="#" data-action="share:twitter">Twitter</a></li>
+<li class="facebook"><a href="#" data-action="share:facebook">Facebook</a></li>
+<li class="link"><a href="http://www.intertech.com/Blog/understanding-spring-mvc-model-and-session-attributes/#comment-1638801847">Link</a></li>
+</ul>
+</li>
+
+<li class="realtime" data-role="realtime-notification:1638801847">
+<span style="display:none;" class="realtime-replies"></span>
+<a style="display:none;" href="#" class="btn btn-small"></a>
+</li>
+
+</menu>
+</footer>
+</div>
+
+<div data-role="blacklist-form"></div>
+<div class="reply-form-container" data-role="reply-form"></div>
+</div>
+
+<ul data-role="children" class="children"></ul>
+
+</li><li id="post-1559400557" class="post"><div role="alert"></div>
+<div data-role="post-content" class="post-content">
+<ul class="post-menu dropdown" data-role="menu">
+<li class="collapse">
+<a href="#" data-action="collapse" title="Collapse"><span>−</span></a>
+</li>
+<li class="expand">
+<a href="#" data-action="collapse" title="Expand"><span>+</span></a>
+</li>
+
+<li class="" role="menu">
+<a class="dropdown-toggle" href="#" data-action="flag" data-role="flag" title="Flag as inappropriate">
+<i aria-hidden="true" class="icon icon-flag"></i>
+</a>
+</li>
+</ul>
+<div class="indicator"></div>
+
+<div class="avatar hovercard">
+<a href="https://disqus.com/by/disqus_xhRkta5QPh/" class="user" data-action="profile" data-username="disqus_xhRkta5QPh">
+<img data-role="user-avatar" data-user="119573381" src="a_data/noavatar92.png" alt="Avatar">
+</a>
+</div>
+<div class="post-body">
+<header>
+<span class="post-byline">
+<span class="author publisher-anchor-color"><a href="https://disqus.com/by/disqus_xhRkta5QPh/" data-action="profile" data-username="disqus_xhRkta5QPh" data-role="username">Praveen</a></span>
+
+</span>
+
+<span class="post-meta">
+<span class="bullet time-ago-bullet" aria-hidden="true">•</span>
+
+<a href="http://www.intertech.com/Blog/understanding-spring-mvc-model-and-session-attributes/#comment-1559400557" data-role="relative-time" class="time-ago" title="Tuesday, August 26, 2014 6:26 AM">a year ago</a>
+</span>
+
+</header>
+
+<div class="post-body-inner">
+<div class="post-message-container" data-role="message-container">
+<div class="publisher-anchor-color" data-role="message-content">
+<div class="post-message " data-role="message" dir="auto">
+<p>Thank You!!!!</p>
+</div>
+
+<span class="post-media"><ul data-role="post-media-list"></ul></span>
+</div>
+</div>
+<a class="see-more hidden" title="see more" data-action="see-more">see more</a>
+</div>
+
+<footer>
+<menu>
+
+<li class="voting" data-role="voting">
+<a href="#" class="vote-up  count-0" data-action="upvote" title="Vote up">
+
+<span class="updatable count" data-role="likes">0</span>
+<span class="control"><i aria-hidden="true" class="icon icon-arrow-2"></i></span>
+</a>
+<span role="button" class="vote-down  count-0" data-action="downvote" title="Vote down">
+
+<span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+</span>
+</li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+<li class="reply" data-role="reply-link">
+<a href="#" data-action="reply">
+<i class="icon icon-mobile icon-reply"></i><span class="text">Reply</span></a></li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+<li class="share">
+<a class="toggle"><i class="icon icon-mobile icon-share"></i><span class="text">Share ›</span></a>
+<ul>
+<li class="twitter"><a href="#" data-action="share:twitter">Twitter</a></li>
+<li class="facebook"><a href="#" data-action="share:facebook">Facebook</a></li>
+<li class="link"><a href="http://www.intertech.com/Blog/understanding-spring-mvc-model-and-session-attributes/#comment-1559400557">Link</a></li>
+</ul>
+</li>
+
+<li class="realtime" data-role="realtime-notification:1559400557">
+<span style="display:none;" class="realtime-replies"></span>
+<a style="display:none;" href="#" class="btn btn-small"></a>
+</li>
+
+</menu>
+</footer>
+</div>
+
+<div data-role="blacklist-form"></div>
+<div class="reply-form-container" data-role="reply-form"></div>
+</div>
+
+<ul data-role="children" class="children"></ul>
+
+</li><li id="post-1095878712" class="post"><div role="alert"></div>
+<div data-role="post-content" class="post-content">
+<ul class="post-menu dropdown" data-role="menu">
+<li class="collapse">
+<a href="#" data-action="collapse" title="Collapse"><span>−</span></a>
+</li>
+<li class="expand">
+<a href="#" data-action="collapse" title="Expand"><span>+</span></a>
+</li>
+
+<li class="" role="menu">
+<a class="dropdown-toggle" href="#" data-action="flag" data-role="flag" title="Flag as inappropriate">
+<i aria-hidden="true" class="icon icon-flag"></i>
+</a>
+</li>
+</ul>
+<div class="indicator"></div>
+
+<div class="avatar hovercard">
+<a href="https://disqus.com/by/laker2000/" class="user" data-action="profile" data-username="laker2000">
+<img data-role="user-avatar" data-user="75928821" src="a_data/noavatar92.png" alt="Avatar">
+</a>
+</div>
+<div class="post-body">
+<header>
+<span class="post-byline">
+<span class="author publisher-anchor-color"><a href="https://disqus.com/by/laker2000/" data-action="profile" data-username="laker2000" data-role="username">Laker2000</a></span>
+
+</span>
+
+<span class="post-meta">
+<span class="bullet time-ago-bullet" aria-hidden="true">•</span>
+
+<a href="http://www.intertech.com/Blog/understanding-spring-mvc-model-and-session-attributes/#comment-1095878712" data-role="relative-time" class="time-ago" title="Friday, October 25, 2013 1:26 AM">2 years ago</a>
+</span>
+
+</header>
+
+<div class="post-body-inner">
+<div class="post-message-container" data-role="message-container">
+<div class="publisher-anchor-color" data-role="message-content">
+<div class="post-message " data-role="message" dir="auto">
+<p>Huge! you got featured in the Spring blog!</p>
+</div>
+
+<span class="post-media"><ul data-role="post-media-list"></ul></span>
+</div>
+</div>
+<a class="see-more hidden" title="see more" data-action="see-more">see more</a>
+</div>
+
+<footer>
+<menu>
+
+<li class="voting" data-role="voting">
+<a href="#" class="vote-up  count-0" data-action="upvote" title="Vote up">
+
+<span class="updatable count" data-role="likes">0</span>
+<span class="control"><i aria-hidden="true" class="icon icon-arrow-2"></i></span>
+</a>
+<span role="button" class="vote-down  count-0" data-action="downvote" title="Vote down">
+
+<span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+</span>
+</li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+<li class="reply" data-role="reply-link">
+<a href="#" data-action="reply">
+<i class="icon icon-mobile icon-reply"></i><span class="text">Reply</span></a></li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+<li class="share">
+<a class="toggle"><i class="icon icon-mobile icon-share"></i><span class="text">Share ›</span></a>
+<ul>
+<li class="twitter"><a href="#" data-action="share:twitter">Twitter</a></li>
+<li class="facebook"><a href="#" data-action="share:facebook">Facebook</a></li>
+<li class="link"><a href="http://www.intertech.com/Blog/understanding-spring-mvc-model-and-session-attributes/#comment-1095878712">Link</a></li>
+</ul>
+</li>
+
+<li class="realtime" data-role="realtime-notification:1095878712">
+<span style="display:none;" class="realtime-replies"></span>
+<a style="display:none;" href="#" class="btn btn-small"></a>
+</li>
+
+</menu>
+</footer>
+</div>
+
+<div data-role="blacklist-form"></div>
+<div class="reply-form-container" data-role="reply-form"></div>
+</div>
+
+<ul data-role="children" class="children"></ul>
+
+</li></ul>
+
+<div class="load-more" data-role="more" style="display:none">
+<a href="#" data-action="more-posts" class="btn">Load more comments</a>
+</div>
+</div>
+
+</section>
+
+<div id="placement-bottom" data-tracking-area="discovery-south"></div>
+
+<div id="footer" data-tracking-area="footer">
+<ul>
+<li class="logo"><a href="https://disqus.com/" rel="nofollow" title="Powered by Disqus">Powered by Disqus</a></li>
+<li id="thread-subscribe-button" class="email"> 
+<div class="default">
+<a href="#" rel="nofollow" data-action="subscribe" title="Subscribe and get email updates from this discussion"><i aria-hidden="true" class="icon-mail"></i><span class="clip">Subscribe</span> <i aria-hidden="true" class="icon-checkmark"></i></a>
+</div>
+<div class="form">
+<div class="input-wrapper"><input id="thread-subscribe-email" placeholder="yourname@email.com" type="email"></div>
+</div>
+</li>
+<li class="install">
+<a href="https://publishers.disqus.com/engage?utm_source=intertechblog&amp;utm_medium=Disqus-Footer" rel="nofollow" target="_blank">
+<i aria-hidden="true" class="icon-disqus"></i>
+<span class="clip">Add Disqus to your site</span>
+</a>
+</li>
+<li class="privacy">
+<a href="https://help.disqus.com/customer/portal/articles/1657951?utm_source=disqus&amp;utm_medium=embed-footer&amp;utm_content=privacy-btn" rel="nofollow" target="_blank">
+<i aria-hidden="true" class="icon-lock"></i>
+<span class="clip">Privacy</span>
+</a>
+</li>
+</ul>
+</div>
+</div></body></html>

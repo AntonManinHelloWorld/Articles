@@ -1,0 +1,68 @@
+html div.sffwp_content{
+    background: url('../img/border.jpg');
+    padding: 8px;
+    /*border-radius: 5px;*/
+    width: 98%;
+    margin-bottom: 30px;
+    clear:left;
+}
+html div.sffwp_content .sffwp_form{
+    padding: 20px !important;
+    background-color: #fff;
+}
+html div.sffwp_content .sffwp_form .sffwp_head{
+    padding: 0 80px 0 0 !important;
+    margin: 0 !important;
+    background: url('../img/mark.png') no-repeat top right !important;
+    border-bottom: 1px solid #e2e2e2 !important;
+}
+html div.sffwp_content .sffwp_form .sffwp_head .sffwp_desc{
+    padding: 0 0 20px 0 !important;
+}
+html div.sffwp_content .sffwp_form .sffwp_head h3{
+    margin: 0 0 20px 0 !important;
+}
+html div.sffwp_content .sffwp_form table.sffwp_tbl{
+    width: 100% !important;
+    border-spacing: 0px !important;
+    border: 0px transparent !important;
+    line-height: 0 !important;
+    margin: 0 !important;
+}
+html div.sffwp_content .sffwp_form table.sffwp_tbl tr,
+html div.sffwp_content .sffwp_form table.sffwp_tbl td,
+html div.sffwp_content .sffwp_form table.sffwp_tbl tbody{
+    border-spacing: 0px !important;
+    border:none !important;
+    padding: 0 !important;
+    background-color: #fff !important;
+}
+html div.sffwp_content .sffwp_form .sffwp_tbl tr td .sffwp_input_wrap{
+    background-color: #FAFAFA !important;
+    border: 1px solid gainsboro !important;
+    height: 34px !important;
+    margin: 20px 0 20px 0 !important;
+    padding: 0 15px !important;
+}
+html div.sffwp_content .sffwp_form table.sffwp_tbl tr td input[type="submit"]{
+    width: auto !important;
+}
+html div.sffwp_content .sffwp_form table.sffwp_tbl tr td input[type="text"]{
+    background-color: #FAFAFA !important;
+    border: 0px transparent !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    margin-top: 4px !important;
+    padding: 0 26px 0 0 !important;
+    line-height: 15px !important;
+    outline: none !important;
+    width: 100% !important;
+}
+html div.sffwp_content .sffwp_form .sffwp_tbl tr td.sffwp_counter{
+    text-align: right !important;
+    vertical-align: middle !important;
+}
+html div.sffwp_content .sffwp_form .sffwp_tbl tr td.sffwp_counter img{
+    box-shadow: none !important;
+    border-radius: 0px !important;
+}

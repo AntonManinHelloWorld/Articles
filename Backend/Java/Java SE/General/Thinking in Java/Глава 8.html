@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html dir="ltr" class="client-nojs" lang="ru"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8"><title>Глава 8 Thinking in Java 4th edition — WikiJava: Wiki of Java: викифицированные книги и статьи по Java</title>
+<meta name="generator" content="MediaWiki 1.22.2">
+<link rel="shortcut icon" href="http://wikijava.it-cache.net/favicon.ico">
+<link rel="search" type="application/opensearchdescription+xml" href="http://wikijava.it-cache.net/opensearch_desc.php" title="WikiJava: Wiki of Java: викифицированные книги и статьи по Java (ru)">
+<link rel="EditURI" type="application/rsd+xml" href="http://wikijava.it-cache.net/api.php@action=rsd">
+<link rel="copyright" href="http://www.gnu.org/copyleft/fdl.html">
+<link rel="alternate" type="application/atom+xml" title="WikiJava: Wiki of Java: викифицированные книги и статьи по Java&nbsp;— Atom-лента" href="http://wikijava.it-cache.net/index.php@title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F%253A%D0%A1%D0%B2%D0%B5%D0%B6%D0%B8%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8&amp;feed=atom">
+<link rel="stylesheet" href="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%208_files/style3.css">
+<meta name="ResourceLoaderDynamicStyles" content="">
+<style>a:lang(ar),a:lang(ckb),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}
+/* cache key: wjava2-wj_:resourceloader:filter:minify-css:7:32e7e505403c81fe0a24e297ef166436 */</style>
+
+<script src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%208_files/style1.css"></script><script src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%208_files/load.html"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Глава_8_Thinking_in_Java_4th_edition","wgTitle":"Глава 8 Thinking in Java 4th edition","wgCurRevisionId":32,"wgRevisionId":32,"wgArticleId":22,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Книги","Java","Страницы с неработающими файловыми ссылками"],"wgBreakFrames":false,"wgPageContentLanguage":"ru","wgPageContentModel":"wikitext","wgSeparatorTransformTable":[",\t."," \t,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"],"wgMonthNamesShort":["","янв","фев","мар","апр","май","июн","июл","авг","сен","окт","ноя","дек"],"wgRelevantPageName":"Глава_8_Thinking_in_Java_4th_edition","wgIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgVectorEnabledModules":{"collapsiblenav":true,"collapsibletabs":true,"editwarning":true,"expandablesearch":false,"footercleanup":false,"sectioneditlinks":false,"simplesearch":true,"experiments":true}});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function(){mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"vector-simplesearch":1,"watchcreations":0,"watchdefault":0,"watchdeletion":0,"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,
+"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"useeditwarning":1,"prefershttps":1,"language":"ru","variant-gan":"gan","variant-iu":"iu","variant-kk":"kk","variant-ku":"ku","variant-shi":"shi","variant-sr":"sr","variant-tg":"tg","variant-uz":"uz","variant-zh":"zh","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false,"variant":"ru"});},{},{});mw.loader.implement("user.tokens",function(){mw.user.tokens.set({"editToken":"+\\","patrolToken":false,"watchToken":false});},{},{});
+/* cache key: wjava2-wj_:resourceloader:filter:minify-js:7:07bb1f4d2452379e70abca47c4cde6d9 */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax","skins.vector.js"]);
+}</script>
+<style type="text/css">/*<![CDATA[*/
+.source-java5 {line-height: normal;}
+.source-java5 li, .source-java5 pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for java5
+ * CSS class: source-java5, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.java5.source-java5 .de1, .java5.source-java5 .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;font-family: monospace, monospace;}
+.java5.source-java5  {font-family:monospace;}
+.java5.source-java5 .imp {font-weight: bold; color: red;}
+.java5.source-java5 li, .java5.source-java5 .li1 {font-weight: normal; vertical-align:top;}
+.java5.source-java5 .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.java5.source-java5 .li2 {font-weight: bold; vertical-align:top;}
+.java5.source-java5 .kw1 {color: #000000;  font-weight: bold;}
+.java5.source-java5 .kw2 {color: #000000; font-weight: bold;}
+.java5.source-java5 .kw3 {color: #006600; font-weight: bold;}
+.java5.source-java5 .kw4 {color: #006600; font-weight: bold;}
+.java5.source-java5 .kw5 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw6 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw7 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw8 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw9 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw10 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw11 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw12 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw13 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw14 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw15 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw16 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw17 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw18 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw19 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw20 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw21 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw22 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw23 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw24 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw25 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw26 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw27 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw28 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw29 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw30 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw31 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw32 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw33 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw34 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw35 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw36 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw37 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw38 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw39 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw40 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw41 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw42 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw43 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw44 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw45 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw46 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw47 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw48 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw49 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw50 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw51 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw52 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw53 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw54 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw55 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw56 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw57 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw58 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw59 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw60 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw61 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw62 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw63 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw64 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw65 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw66 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw67 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw68 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw69 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw70 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw71 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw72 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw73 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw74 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw75 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw76 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw77 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw78 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw79 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw80 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw81 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw82 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw83 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw84 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw85 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw86 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw87 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw88 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw89 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw90 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw91 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw92 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw93 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw94 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw95 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw96 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw97 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw98 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw99 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw100 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw101 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw102 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw103 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw104 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw105 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw106 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw107 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw108 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw109 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw110 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw111 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw112 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw113 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw114 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw115 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw116 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw117 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw118 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw119 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw120 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw121 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw122 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw123 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw124 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw125 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw126 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw127 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw128 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw129 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw130 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw131 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw132 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw133 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw134 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw135 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw136 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw137 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw138 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw139 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw140 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw141 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw142 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw143 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw144 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw145 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw146 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw147 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw148 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw149 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw150 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw151 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw152 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw153 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw154 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw155 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw156 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw157 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw158 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw159 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw160 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw161 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw162 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw163 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw164 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw165 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw166 {color: #003399; font-weight: bold;}
+.java5.source-java5 .co1 {color: #666666; font-style: italic;}
+.java5.source-java5 .co2 {color: #006699;}
+.java5.source-java5 .co3 {color: #008000; font-style: italic; font-weight: bold;}
+.java5.source-java5 .coMULTI {color: #666666; font-style: italic;}
+.java5.source-java5 .es0 {color: #000099; font-weight: bold;}
+.java5.source-java5 .br0 {color: #009900;}
+.java5.source-java5 .sy0 {color: #339933;}
+.java5.source-java5 .st0 {color: #0000ff;}
+.java5.source-java5 .nu0 {color: #cc66cc;}
+.java5.source-java5 .me1 {color: #006633;}
+.java5.source-java5 .me2 {color: #006633;}
+.java5.source-java5 .ln-xtra, .java5.source-java5 li.ln-xtra, .java5.source-java5 div.ln-xtra {background-color: #ffc;}
+.java5.source-java5 span.xtra { display:block; }
+
+/*]]>*/
+</style><!--[if lt IE 7]><style type="text/css">body{behavior:url("/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Глава_8_Thinking_in_Java_4th_edition skin-vector action-view vector-animateLayout">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<div id="content" class="mw-body" role="main">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<h1 id="firstHeading" class="firstHeading" lang="ru"><span dir="auto">Глава 8 Thinking in Java 4th edition</span></h1>
+			<div id="bodyContent">
+								<div id="siteSub">Материал из WikiJava: Wiki of Java: викифицированные книги и статьи по Java</div>
+								<div id="contentSub"></div>
+												<div id="jump-to-nav" class="mw-jump">
+					Перейти к:					<a href="http://wikijava.it-cache.net/index.php@title=Glava_8_Thinking_in_Java_4th_edition.html#mw-navigation">навигация</a>, 					<a href="http://wikijava.it-cache.net/index.php@title=Glava_8_Thinking_in_Java_4th_edition.html#p-search">поиск</a>
+				</div>
+				<div id="mw-content-text" dir="ltr" class="mw-content-ltr" lang="ru"><table style="clear: right; margin-bottom: .5em; float: right; padding: .5em 0 .8em 1.4em; background: none; width: auto;" cellpadding="0" cellspacing="0">
+<tbody><tr>
+<td> <div id="toc" class="toc"><div id="toctitle"><h2>Содержание</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="http://wikijava.it-cache.net/index.php@title=Glava_8_Thinking_in_Java_4th_edition.html#.D0.9F.D0.9E.D0.9B.D0.98.D0.9C.D0.9E.D0.A0.D0.A4.D0.98.D0.97.D0.9C"><span class="tocnumber">1</span> <span class="toctext"><b>ПОЛИМОРФИЗМ</b></span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="http://wikijava.it-cache.net/index.php@title=Glava_8_Thinking_in_Java_4th_edition.html#.D0.A1.D0.BD.D0.BE.D0.B2.D0.B0_.D0.BE_.D0.B2.D0.BE.D1.81.D1.85.D0.BE.D0.B4.D1.8F.D1.89.D0.B5.D0.BC_.D0.BF.D1.80.D0.B5.D0.BE.D0.B1.D1.80.D0.B0.D0.B7.D0.BE.D0.B2.D0.B0.D0.BD.D0.B8.D0.B8"><span class="tocnumber">1.1</span> <span class="toctext">Снова о восходящем преобразовании</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="http://wikijava.it-cache.net/index.php@title=Glava_8_Thinking_in_Java_4th_edition.html#.D0.9F.D0.BE.D1.82.D0.B5.D1.80.D1.8F_.D1.82.D0.B8.D0.BF.D0.B0_.D0.BE.D0.B1.D1.8A.D0.B5.D0.BA.D1.82.D0.B0"><span class="tocnumber">1.2</span> <span class="toctext">Потеря типа объекта</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="http://wikijava.it-cache.net/index.php@title=Glava_8_Thinking_in_Java_4th_edition.html#.D0.A1.D0.B2.D1.8F.D0.B7.D1.8B.D0.B2.D0.B0.D0.BD.D0.B8.D0.B5_.C2.AB.D0.BC.D0.B5.D1.82.D0.BE.D0.B4-.D0.B2.D1.8B.D0.B7.D0.BE.D0.B2.C2.BB"><span class="tocnumber">1.3</span> <span class="toctext">Связывание «метод-вызов»</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="http://wikijava.it-cache.net/index.php@title=Glava_8_Thinking_in_Java_4th_edition.html#.D0.9F.D0.BE.D0.BB.D1.83.D1.87.D0.B5.D0.BD.D0.B8.D0.B5_.D0.BD.D1.83.D0.B6.D0.BD.D0.BE.D0.B3.D0.BE_.D1.80.D0.B5.D0.B7.D1.83.D0.BB.D1.8C.D1.82.D0.B0.D1.82.D0.B0"><span class="tocnumber">1.4</span> <span class="toctext">Получение нужного результата</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="http://wikijava.it-cache.net/index.php@title=Glava_8_Thinking_in_Java_4th_edition.html#.D0.A0.D0.B0.D1.81.D1.88.D0.B8.D1.80.D1.8F.D0.B5.D0.BC.D0.BE.D1.81.D1.82.D1.8C"><span class="tocnumber">1.5</span> <span class="toctext">Расширяемость</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="http://wikijava.it-cache.net/index.php@title=Glava_8_Thinking_in_Java_4th_edition.html#.D0.9F.D1.80.D0.BE.D0.B1.D0.BB.D0.B5.D0.BC.D0.B0:_.C2.AB.D0.BF.D0.B5.D1.80.D0.B5.D0.BE.D0.BF.D1.80.D0.B5.D0.B4.D0.B5.D0.BB.D0.B5.D0.BD.D0.B8.D0.B5.C2.BB_.D0.B7.D0.B0.D0.BA.D1.80.D1.8B.D1.82.D1.8B.D1.85_.D0.BC.D0.B5.D1.82.D0.BE.D0.B4.D0.BE.D0.B2"><span class="tocnumber">1.6</span> <span class="toctext">Проблема: «переопределение» закрытых методов</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="http://wikijava.it-cache.net/index.php@title=Glava_8_Thinking_in_Java_4th_edition.html#.D0.9A.D0.BE.D0.BD.D1.81.D1.82.D1.80.D1.83.D0.BA.D1.82.D0.BE.D1.80.D1.8B_.D0.B8_.D0.BF.D0.BE.D0.BB.D0.B8.D0.BC.D0.BE.D1.80.D1.84.D0.B8.D0.B7.D0.BC"><span class="tocnumber">1.7</span> <span class="toctext">Конструкторы и полиморфизм</span></a>
+<ul>
+<li class="toclevel-3 tocsection-9"><a href="http://wikijava.it-cache.net/index.php@title=Glava_8_Thinking_in_Java_4th_edition.html#.D0.9F.D0.BE.D1.80.D1.8F.D0.B4.D0.BE.D0.BA_.D0.B2.D1.8B.D0.B7.D0.BE.D0.B2.D0.B0_.D0.BA.D0.BE.D0.BD.D1.81.D1.82.D1.80.D1.83.D0.BA.D1.82.D0.BE.D1.80.D0.BE.D0.B2"><span class="tocnumber">1.7.1</span> <span class="toctext">Порядок вызова конструкторов</span></a></li>
+<li class="toclevel-3 tocsection-10"><a href="http://wikijava.it-cache.net/index.php@title=Glava_8_Thinking_in_Java_4th_edition.html#.D0.9D.D0.B0.D1.81.D0.BB.D0.B5.D0.B4.D0.BE.D0.B2.D0.B0.D0.BD.D0.B8.D0.B5_.D0.B8_.D0.B7.D0.B0.D0.B2.D0.B5.D1.80.D1.88.D0.B0.D1.8E.D1.89.D0.B8.D0.B5_.D0.B4.D0.B5.D0.B9.D1.81.D1.82.D0.B2.D0.B8.D1.8F"><span class="tocnumber">1.7.2</span> <span class="toctext">Наследование и завершающие действия</span></a></li>
+<li class="toclevel-3 tocsection-11"><a href="http://wikijava.it-cache.net/index.php@title=Glava_8_Thinking_in_Java_4th_edition.html#.D0.9F.D0.BE.D0.B2.D0.B5.D0.B4.D0.B5.D0.BD.D0.B8.D0.B5_.D0.BF.D0.BE.D0.BB.D0.B8.D0.BC.D0.BE.D1.80.D1.84.D0.BD.D1.8B.D1.85_.D0.BC.D0.B5.D1.82.D0.BE.D0.B4.D0.BE.D0.B2_.D0.BF.D1.80.D0.B8_.D0.B2.D1.8B.D0.B7.D0.BE.D0.B2.D0.B5_.D0.B8.D0.B7_.D0.BA.D0.BE.D0.BD.D1.81.D1.82.D1.80.D1.83.D0.BA.D1.82.D0.BE.D1.80.D0.BE.D0.B2"><span class="tocnumber">1.7.3</span> <span class="toctext">Поведение полиморфных методов при вызове из конструкторов</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-12"><a href="http://wikijava.it-cache.net/index.php@title=Glava_8_Thinking_in_Java_4th_edition.html#.D0.9A.D0.BE.D0.B2.D0.B0.D1.80.D0.B8.D0.B0.D0.BD.D1.82.D0.BD.D0.BE.D1.81.D1.82.D1.8C_.D0.B2.D0.BE.D0.B7.D0.B2.D1.80.D0.B0.D1.89.D0.B0.D0.B5.D0.BC.D1.8B.D1.85_.D1.82.D0.B8.D0.BF.D0.BE.D0.B2"><span class="tocnumber">1.8</span> <span class="toctext">Ковариантность возвращаемых типов</span></a></li>
+<li class="toclevel-2 tocsection-13"><a href="http://wikijava.it-cache.net/index.php@title=Glava_8_Thinking_in_Java_4th_edition.html#.D0.A0.D0.B0.D0.B7.D1.80.D0.B0.D0.B1.D0.BE.D1.82.D0.BA.D0.B0_.D1.81_.D0.BD.D0.B0.D1.81.D0.BB.D0.B5.D0.B4.D0.BE.D0.B2.D0.B0.D0.BD.D0.B8.D0.B5.D0.BC"><span class="tocnumber">1.9</span> <span class="toctext">Разработка с наследованием</span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="http://wikijava.it-cache.net/index.php@title=Glava_8_Thinking_in_Java_4th_edition.html#.D0.9D.D0.B8.D1.81.D1.85.D0.BE.D0.B4.D1.8F.D1.89.D0.B5.D0.B5_.D0.BF.D1.80.D0.B5.D0.BE.D0.B1.D1.80.D0.B0.D0.B7.D0.BE.D0.B2.D0.B0.D0.BD.D0.B8.D0.B5_.D0.B8_.D0.B4.D0.B8.D0.BD.D0.B0.D0.BC.D0.B8.D1.87.D0.B5.D1.81.D0.BA.D0.BE.D0.B5_.D0.BE.D0.BF.D1.80.D0.B5.D0.B4.D0.B5.D0.BB.D0.B5.D0.BD.D0.B8.D0.B5_.D1.82.D0.B8.D0.BF.D0.BE.D0.B2"><span class="tocnumber">1.10</span> <span class="toctext">Нисходящее преобразование и динамическое определение типов</span></a></li>
+<li class="toclevel-2 tocsection-15"><a href="http://wikijava.it-cache.net/index.php@title=Glava_8_Thinking_in_Java_4th_edition.html#.D0.A0.D0.B5.D0.B7.D1.8E.D0.BC.D0.B5"><span class="tocnumber">1.11</span> <span class="toctext">Резюме</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+</td></tr></tbody></table>
+<h1><span class="mw-headline" id=".D0.9F.D0.9E.D0.9B.D0.98.D0.9C.D0.9E.D0.A0.D0.A4.D0.98.D0.97.D0.9C"><b>ПОЛИМОРФИЗМ</b></span></h1>
+<p>Полиморфизм является третьей неотъемлемой чертой объектно-ориентированного языка, вместе с абстракцией данных и наследованием.
+</p><p>Он предоставляет еще одну степень отделения интерфейса от 
+реализации, разъединения что от как. Полиморфизм улучшает организацию 
+кода и его читаемость, а также способствует созданию расширяемых 
+программ, которые могут «расти» не только в процессе начальной 
+разработки проекта, но и при добавлении новых возможностей.
+</p><p>Инкапсуляция создает новые типы данных за счет объединения 
+характеристик и поведения. Сокрытие реализации отделяет интерфейс от 
+реализации за счет изоляции технических подробностей в <i><b>private</b></i>-частях
+ класса. Подобное механическое разделение понятно любому, кто имел опыт 
+работы с процедурными языками. 
+Но полиморфизм имеет дело с логическим разделением в контексте типов. В 
+предыдущей главе вы увидели, что наследование позволяет работать с 
+объектом, используя как его собственный тип, так и его базовый тип. 
+</p><p>Этот факт очень важен, потому что он позволяет работать со 
+многими типами (производными от одного базового типа) как с единым 
+типом, что дает возможность единому коду работать с множеством разных 
+типов единообразно. Вызов полиморфного метода позволяет одному типу 
+выразить свое отличие от другого, сходного типа, хотя они и происходят 
+от одного базового типа. Это отличие выражается различным действием 
+методов, вызываемых через базовый класс.
+</p><p>В этой главе рассматривается полиморфизм (также называемый 
+динамическим связыванием, или поздним связыванием, или связыванием во 
+время выполнения). Мы начнем с азов, а изложение материала будет 
+поясняться простыми примерами, полностью акцентированными на полиморфном
+ поведении программы.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id=".D0.A1.D0.BD.D0.BE.D0.B2.D0.B0_.D0.BE_.D0.B2.D0.BE.D1.81.D1.85.D0.BE.D0.B4.D1.8F.D1.89.D0.B5.D0.BC_.D0.BF.D1.80.D0.B5.D0.BE.D0.B1.D1.80.D0.B0.D0.B7.D0.BE.D0.B2.D0.B0.D0.BD.D0.B8.D0.B8">Снова о восходящем преобразовании</span></h2>
+<p>Как было показано в главе 7, с объектом можно работать с 
+использованием как его собственного типа, так и его базового типа. 
+Интерпретация ссылки на объект как ссылки на базовый тип называется 
+восходящим преобразованием.
+</p><p>Также были представлены проблемы, возникающие при восходящем 
+преобразовании и наглядно воплощенные в следующей программе с 
+музыкальными инструментами. Поскольку мы будем проигрывать с их помощью 
+объекты <i><b>Note</b></i> (нота), логично создать эти объекты в отдельном пакете:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: polymorphism/music/Note.java</span>
+<span class="co1">// Ноты для игры на музыкальных инструментах.</span>
+<span class="kw2">package</span> <span class="co2">polymorphism.music</span><span class="sy0">;</span>
+ <span class="kw2">public</span> <span class="kw2">enum</span> Note <span class="br0">{</span>
+    MIDDLE_C, C_SHARP, B_FLAT<span class="sy0">;</span> <span class="co1">// Etc.</span>
+<span class="br0">}</span></pre></div></div>
+<p>Перечисления были представлены в главе 5. В следующем примере <i><b>Wind</b></i> является частным случаем инструмента (<i><b>Instrument</b></i>), поэтому класс <i><b>Wind</b></i> наследует от <i><b>Instrument</b></i>:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: polymorphism/music/Instrument.java</span>
+<span class="kw2">package</span> <span class="co2">polymorphism.music</span><span class="sy0">;</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">class</span> <span class="kw97">Instrument</span> <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> play<span class="br0">(</span>Note n<span class="br0">)</span> <span class="br0">{</span>
+    print<span class="br0">(</span><span class="st0">"Instrument.play()"</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="co1">//: polymorphism/music/Wind.java</span>
+<span class="kw2">package</span> <span class="co2">polymorphism.music</span><span class="sy0">;</span>
+&nbsp;
+<span class="co1">// Объекты Wind также являются объектами Instrument</span>
+<span class="co1">// поскольку имеют тот же интерфейс:</span>
+<span class="kw2">public</span> <span class="kw2">class</span> Wind <span class="kw2">extends</span> <span class="kw97">Instrument</span> <span class="br0">{</span>
+  <span class="co1">// Redefine interface method:</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> play<span class="br0">(</span>Note n<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">(</span><span class="st0">"Wind.play() "</span> + n<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="co1">//: polymorphism/music/Music.java</span>
+<span class="co1">// Наследование и восходящее преобразование</span>
+<span class="kw2">package</span> <span class="co2">polymorphism.music</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> Music <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> tune<span class="br0">(</span><span class="kw97">Instrument</span> i<span class="br0">)</span> <span class="br0">{</span>
+    <span class="co1">// ...</span>
+    i.<span class="me1">play</span><span class="br0">(</span>Note.<span class="me1">MIDDLE_C</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    Wind flute = <span class="kw2">new</span> Wind<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    tune<span class="br0">(</span>flute<span class="br0">)</span><span class="sy0">;</span> <span class="co1">// Восходящее преобразование</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>Wind.play() MIDDLE_C
+</pre>
+<p>&lt;/spoiler&gt;
+Метод <i><b>Music.tune()</b></i> получает ссылку на <i><b>Instrument</b></i>, но последняя также может указывать на объект любого класса, производного от <i><b>Instrument</b></i>. В методе <i><b>main()</b></i> ссылка на объект <i><b>Wind</b></i> передается методу <i><b>tune()</b></i> без явных преобразований. Это нормально; интерфейс класса <i><b>Instrument</b></i> должен существовать и в классе <i><b>Wind</b></i>, поскольку последний был унаследован от <i><b>Instrument</b></i>. Восходящее преобразование от <i><b>Wind</b></i> к <i><b>Instrument</b></i> способно «сузить» этот интерфейс, но не сделает его «меньше», чем полный интерфейс класса <i><b>Instrument</b></i>.
+</p>
+<h2><span class="mw-headline" id=".D0.9F.D0.BE.D1.82.D0.B5.D1.80.D1.8F_.D1.82.D0.B8.D0.BF.D0.B0_.D0.BE.D0.B1.D1.8A.D0.B5.D0.BA.D1.82.D0.B0">Потеря типа объекта</span></h2>
+<p>Программа <i><b>Music.java</b></i> выглядит немного странно. Зачем 
+умышленно игнорировать фактический тип объекта? Именно это мы наблюдаем 
+при восходящем преобразовании, и казалось бы, программа стала яснее, 
+если бы методу <i><b>tune()</b></i> передавалась ссылка на объект <i><b>Wind</b></i>.
+ Но при этом мы сталкиваемся с очень важным обстоятельством: если 
+поступить подобным образом, то потом придется писать новый метод <i><b>tune()</b></i> для каждого типа <i><b>Instrument</b></i>, присутствующего в системе. Предположим, что в систему были добавлены новые классы <i><b>Stringed</b></i> и <i><b>Brass</b></i>:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: polymorphism/music/Music2.java</span>
+<span class="co1">// Перегрузка вместо восходящего преобразования</span>
+<span class="kw2">package</span> <span class="co2">polymorphism.music</span><span class="sy0">;</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">class</span> Stringed <span class="kw2">extends</span> <span class="kw97">Instrument</span> <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> play<span class="br0">(</span>Note n<span class="br0">)</span> <span class="br0">{</span>
+    print<span class="br0">(</span><span class="st0">"Stringed.play() "</span> + n<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> Brass <span class="kw2">extends</span> <span class="kw97">Instrument</span> <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> play<span class="br0">(</span>Note n<span class="br0">)</span> <span class="br0">{</span>
+    print<span class="br0">(</span><span class="st0">"Brass.play() "</span> + n<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> Music2 <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> tune<span class="br0">(</span>Wind i<span class="br0">)</span> <span class="br0">{</span>
+    i.<span class="me1">play</span><span class="br0">(</span>Note.<span class="me1">MIDDLE_C</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> tune<span class="br0">(</span>Stringed i<span class="br0">)</span> <span class="br0">{</span>
+    i.<span class="me1">play</span><span class="br0">(</span>Note.<span class="me1">MIDDLE_C</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> tune<span class="br0">(</span>Brass i<span class="br0">)</span> <span class="br0">{</span>
+    i.<span class="me1">play</span><span class="br0">(</span>Note.<span class="me1">MIDDLE_C</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    Wind flute = <span class="kw2">new</span> Wind<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    Stringed violin = <span class="kw2">new</span> Stringed<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    Brass frenchHorn = <span class="kw2">new</span> Brass<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    tune<span class="br0">(</span>flute<span class="br0">)</span><span class="sy0">;</span> <span class="co1">// Без восходящего преобразования</span>
+    tune<span class="br0">(</span>violin<span class="br0">)</span><span class="sy0">;</span>
+    tune<span class="br0">(</span>frenchHorn<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>Wind.play() MIDDLE_C
+Stringed.play() MIDDLE_C
+Brass.play() MIDDLE_C
+</pre>
+<p>&lt;/spoiler&gt;
+Программа работает, но у нее есть огромный недостаток: для каждого нового <i><b>Instrument</b></i> приходится писать новый, зависящий от конкретного типа метод <i><b>tune()</b></i>. Объем программного кода увеличивается, а при добавлении нового метода (такого, как <i><b>tune()</b></i>)
+ или нового типа инструмента придется выполнить немало дополнительной 
+работы. А если учесть, что компилятор не выводит сообщений об ошибках, 
+если вы забудете перегрузить один из ваших методов, весь процесс работы с
+ типами станет совершенно неуправляемым.
+</p><p>Разве не лучше было бы написать единственный метод, в аргументе 
+которого передается базовый класс, а не один из производных классов? 
+Разве не удобнее было бы забыть о производных классах и написать 
+обобщенный код для базового класса?
+</p><p>Именно это и позволяет делать полиморфизм. Однако большинство 
+программистов с опытом работы на процедурных языках при работе с 
+полиморфизмом испытывают некоторые затруднения.
+</p><p><b>Особенности</b>
+</p><p>Сложности с программой <i><b>Music.java</b></i> обнаруживаются после ее запуска. Она выводит строку <i><b>Wind.play(</b></i>). Именно это и требуется, но не понятно, откуда берется такой результат. Взгляните на метод <i><b>tune()</b></i>:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> tune<span class="br0">(</span><span class="kw97">Instrument</span> i<span class="br0">)</span> <span class="br0">{</span>
+    <span class="co1">//...</span>
+    і.<span class="me1">play</span><span class="br0">(</span>Note.<span class="me1">MIDDLE_C</span><span class="br0">)</span>,
+ <span class="br0">}</span></pre></div></div>
+<p>Метод получает ссылку на объект <i><b>Instrument</b></i>. Как компилятор узнает, что ссылка на <i><b>Instrument</b></i> в данном случае указывает на объект <i><b>Wind</b></i>, а не на <i><b>Brass</b></i> или <i><b>Stringed</b></i>? Компилятор и не знает. Чтобы в полной мере разобраться в сути про­исходящего, необходимо рассмотреть понятие связывания (<i>binding</i>).
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id=".D0.A1.D0.B2.D1.8F.D0.B7.D1.8B.D0.B2.D0.B0.D0.BD.D0.B8.D0.B5_.C2.AB.D0.BC.D0.B5.D1.82.D0.BE.D0.B4-.D0.B2.D1.8B.D0.B7.D0.BE.D0.B2.C2.BB">Связывание «метод-вызов»</span></h2>
+<p>Присоединение вызова метода к телу метода называется связыванием. 
+Если связывание проводится перед запуском программы (компилятором и 
+компоновщиком, если он есть), оно называется ранним связыванием (<i>early binding</i>).
+ Возможно, ранее вам не приходилось слышать этот термин, потому что в 
+процедурных языках никакого выбора связывания не было. Компиляторы <i>C</i> поддерживают только один тип вызова — раннее связывание.
+</p><p>Неоднозначность предыдущей программы кроется именно в раннем 
+связывании: компилятор не может знать, какой метод нужно вызывать, когда
+ у него есть только ссылка на объект <i><b>Instrument</b></i>.
+Проблема решается благодаря позднему связыванию (<i>late binding</i>), 
+то есть связыванию, проводимому во время выполнения программы, в 
+зависимости от типа объекта. Позднее связывание также называют 
+динамическим (<i>dynamic</i>) или связыванием на стадии выполнения (<i>runtime binding</i>).
+</p><p>В языках, реализующих позднее связывание, должен существовать 
+механизм определения фактического типа объекта во время работы 
+программы, для вызова подходящего метода. Иначе говоря, компилятор не 
+знает тип объекта, но механизм вызова методов определяет его и вызывает 
+соответствующее тело метода. Механизм позднего связывания зависит от 
+конкретного языка, но нетрудно предположить, что для его реализации в 
+объекты должна включаться какая-то дополнительная информация.
+</p><p>Для всех методов <i>Java</i> используется механизм позднего связывания, если только метод не был объявлен как <i><b>final</b></i> (приватные методы являются <i><b>final</b></i>
+ по умолчанию). Следовательно, вам не придется принимать решений 
+относительно использования позднего связывания — оно осуществляется 
+автоматически.
+Зачем объявлять метод как <i><b>final</b></i>? Как уже было замечено в предыдущей главе, это запрещает переопределение соответствующего метода. 
+</p><p>Что еще важнее, это фактически «отключает» позднее связывание 
+или, скорее, указывает компилятору на то, что позднее связывание не 
+является необходимым. Поэтому для методов <i><b>final</b></i> компилятор
+ генерирует чуть более эффективный код. Впрочем, в большинстве случаев 
+влияние на производительность вашей программы незначительно, поэтому <i><b>final</b></i> лучше использовать в качестве продуманного элемента своего проекта, а не как средство улучшения производительности.
+</p>
+<h2><span class="mw-headline" id=".D0.9F.D0.BE.D0.BB.D1.83.D1.87.D0.B5.D0.BD.D0.B8.D0.B5_.D0.BD.D1.83.D0.B6.D0.BD.D0.BE.D0.B3.D0.BE_.D1.80.D0.B5.D0.B7.D1.83.D0.BB.D1.8C.D1.82.D0.B0.D1.82.D0.B0">Получение нужного результата</span></h2>
+<p>Теперь, когда вы знаете, что связывание всех методов в <i>Java</i> 
+осуществляется полиморфно, через позднее связывание, вы можете писать 
+код для базового класса, не сомневаясь в том, что для всех производных 
+классов он также будет работать верно. Другими словами, вы «посылаете 
+сообщение объекту и позволяете ему решить, что следует делать дальше».
+</p><p>Классическим примером полиморфизма в ООП является пример с 
+геометрическими фигурами. Он часто используется благодаря своей 
+наглядности, но, к сожалению, некоторые новички начинают думать, что ООП
+ подразумевает графическое программирование — а это, конечно же, 
+неверно.
+</p><p>В примере с фигурами имеется базовый класс с именем <i><b>Shape</b></i> (фигура) и различные производные типы: <i><b>Circle</b></i> (окружность), <i><b>Square</b></i> (прямоугольник), <i><b>Triangle</b></i>
+ (треугольник) и т. п. Выражения типа «окружность есть фигура» очевидны и
+ не представляют трудностей для понимания. Взаимосвязи показаны на 
+следующей диаграмме наследования:
+</p><p><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%97%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B0&amp;wpDestFile=P0203.png" class="new" title="Файл:P0203.png">Файл:P0203.png</a>
+</p><p><br>
+Восходящее преобразование имеет место даже в такой простой команде: 
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> <span class="kw6">Shape</span> s = <span class="kw2">new</span> Circle<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span></pre></div></div>
+<p>Здесь создается объект <i><b>Circle</b></i>, и полученная ссылка немедленно присваивается типу <i><b>Shape</b></i>.
+ На первый взгляд это может показаться ошибкой (присвоение одного типа 
+другому), но в действительности все правильно, потому что тип <i><b>Circle</b></i> (окружность) является типом <i><b>Shape</b></i> (фигура) посредством наследования. Компилятор принимает команду и не выдает сообщения об ошибке.
+</p><p>Предположим, вызывается один из методов базового класса (из тех, что были переопределены в производных классах):
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"> s.<span class="me1">draw</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span></pre></div></div>
+<p>Опять можно подумать, что вызывается метод <i><b>draw()</b></i> из класса <i><b>Shape</b></i>, раз имеется ссылка на объект <i><b>Shape</b></i> — как компилятор может сделать что-то другое? И все же будет вызван правильный метод <i><b>Circle.draw()</b></i>, так как в программе используется позднее связывание (полиморфизм).
+Следующий пример показывает несколько другой подход:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: polymorphism/shape/Shape.java</span>
+<span class="kw2">package</span> <span class="co2">polymorphism.shape</span><span class="sy0">;</span>
+ <span class="kw2">public</span> <span class="kw2">class</span> <span class="kw6">Shape</span> <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> draw<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> erase<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="co1">//: polymorphism/shape/Circle.java</span>
+<span class="kw2">package</span> <span class="co2">polymorphism.shape</span><span class="sy0">;</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+ <span class="kw2">public</span> <span class="kw2">class</span> Circle <span class="kw2">extends</span> <span class="kw6">Shape</span> <span class="br0">{</span>
+   <span class="kw2">public</span> <span class="kw3">void</span> draw<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> print<span class="br0">(</span><span class="st0">"Circle.draw()"</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+   <span class="kw2">public</span> <span class="kw3">void</span> erase<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> print<span class="br0">(</span><span class="st0">"Circle.erase()"</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span> 
+&nbsp;
+<span class="co1">//: polymorphism/shape/Triangle.java</span>
+<span class="kw2">package</span> <span class="co2">polymorphism.shape</span><span class="sy0">;</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+ <span class="kw2">public</span> <span class="kw2">class</span> Triangle <span class="kw2">extends</span> <span class="kw6">Shape</span> <span class="br0">{</span>
+   <span class="kw2">public</span> <span class="kw3">void</span> draw<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> print<span class="br0">(</span><span class="st0">"Triangle.draw()"</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+   <span class="kw2">public</span> <span class="kw3">void</span> erase<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> print<span class="br0">(</span><span class="st0">"Triangle.erase()"</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="co1">//: polymorphism/shape/Square.java</span>
+<span class="kw2">package</span> <span class="co2">polymorphism.shape</span><span class="sy0">;</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+ <span class="kw2">public</span> <span class="kw2">class</span> Square <span class="kw2">extends</span> <span class="kw6">Shape</span> <span class="br0">{</span>
+   <span class="kw2">public</span> <span class="kw3">void</span> draw<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> print<span class="br0">(</span><span class="st0">"Square.draw()"</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+   <span class="kw2">public</span> <span class="kw3">void</span> erase<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> print<span class="br0">(</span><span class="st0">"Square.erase()"</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span> 
+&nbsp;
+<span class="co1">//: polymorphism/shape/RandomShapeGenerator.java</span>
+<span class="co1">// "Фабрика" случайных фигур.</span>
+<span class="kw2">package</span> <span class="co2">polymorphism.shape</span><span class="sy0">;</span>
+<span class="kw2">import</span> <span class="co2">java.util.*</span><span class="sy0">;</span>
+ <span class="kw2">public</span> <span class="kw2">class</span> RandomShapeGenerator <span class="br0">{</span>
+   <span class="kw2">private</span> <span class="kw46">Random</span> rand = <span class="kw2">new</span> <span class="kw46">Random</span><span class="br0">(</span><span class="nu0">47</span><span class="br0">)</span><span class="sy0">;</span>
+   <span class="kw2">public</span> <span class="kw6">Shape</span> next<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw1">switch</span><span class="br0">(</span>rand.<span class="me1">nextInt</span><span class="br0">(</span><span class="nu0">3</span><span class="br0">)</span><span class="br0">)</span> <span class="br0">{</span>
+      <span class="kw1">default</span>:
+      <span class="kw1">case</span> <span class="nu0">0</span>: <span class="kw2">return</span> <span class="kw2">new</span> Circle<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+      <span class="kw1">case</span> <span class="nu0">1</span>: <span class="kw2">return</span> <span class="kw2">new</span> Square<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+      <span class="kw1">case</span> <span class="nu0">2</span>: <span class="kw2">return</span> <span class="kw2">new</span> Triangle<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+  <span class="br0">}</span>
+<span class="br0">}</span> 
+&nbsp;
+&nbsp;
+<span class="co1">//: polymorphism/Shapes.java</span>
+<span class="co1">// Polymorphism in Java.</span>
+<span class="kw2">import</span> <span class="co2">polymorphism.shape.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> Shapes <span class="br0">{</span>
+  <span class="kw2">private</span> <span class="kw2">static</span> RandomShapeGenerator gen =
+    <span class="kw2">new</span> RandomShapeGenerator<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw6">Shape</span><span class="br0">[</span><span class="br0">]</span> s = <span class="kw2">new</span> <span class="kw6">Shape</span><span class="br0">[</span><span class="nu0">9</span><span class="br0">]</span><span class="sy0">;</span>
+    <span class="co1">// Fill up the array with shapes:</span>
+    <span class="kw1">for</span><span class="br0">(</span><span class="kw3">int</span> i = <span class="nu0">0</span><span class="sy0">;</span> i <span class="sy0">&lt;</span> s.<span class="me1">length</span><span class="sy0">;</span> i++<span class="br0">)</span>
+      s<span class="br0">[</span>i<span class="br0">]</span> = gen.<span class="me1">next</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="co1">// Make polymorphic method calls:</span>
+    <span class="kw1">for</span><span class="br0">(</span><span class="kw6">Shape</span> shp&nbsp;: s<span class="br0">)</span>
+      shp.<span class="me1">draw</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>Triangle.draw()
+Triangle.draw()
+Square.draw()
+Triangle.draw()
+Square.draw()
+Triangle.draw()
+Square.draw()
+Triangle.draw()
+Circle.draw()
+</pre>
+<p>&lt;/spoiler&gt;
+Базовый класс <i><b>Shape</b></i> устанавливает общий интерфейс для всех классов, производных от <i><b>Shape</b></i> — то есть любую фигуру можно нарисовать (<i><b>draw()</b></i>) и стереть (<i><b>erase()</b></i>). Производные классы переопределяют этот интерфейс, чтобы реализовать уникальное поведение для каждой конкретной фигуры.
+</p><p>Класс <i><b>RandomShapeGenerator</b></i> — своего рода «фабрика», при каждом вызове метода <i><b>next()</b></i> производящая ссылку на случайно выбираемый объект <i><b>Shape</b></i>. Заметьте, что восходящее преобразование выполняется в командах <i><b>return</b></i>, каждая из которых получает ссылку на объект <i><b>Circle, Square</b></i> или <i><b>Triangle</b></i>, а выдает ее за пределы <i><b>next()</b></i> в виде возвращаемого типа <i><b>Shape</b></i>. Таким образом, при вызове этого метода вы не сможете определить конкретный тип объекта, поскольку всегда получаете просто <i><b>Shape</b></i>.
+</p><p>Метод <i><b>main()</b></i> содержит массив ссылок на <i><b>Shape</b></i>, который заполняется последовательными вызовами <i><b>RandomShapeGenerator.next()</b></i>. К этому моменту вам известно, что имеются объекты <i><b>Shape</b></i>,
+ но вы не знаете об этих объектах ничего конкретного (так же, как и 
+компилятор). Но если перебрать содержимое массива и вызвать <i><b>draw()</b></i>
+ для каждого его элемента, то, как по волшебству, произойдет верное, 
+свойственное для определенного типа действие — в этом нетрудно 
+убедиться, взглянув на результат работы программы.
+</p><p>Случайный выбор фигур в нашем примере всего лишь помогает понять,
+ что компилятор во время компиляции кода не располагает информацией о 
+том, какую реализацию следует вызывать. Все вызовы метода <i><b>draw()</b></i> проводятся с при­менением позднего связывания.
+</p>
+<h2><span class="mw-headline" id=".D0.A0.D0.B0.D1.81.D1.88.D0.B8.D1.80.D1.8F.D0.B5.D0.BC.D0.BE.D1.81.D1.82.D1.8C">Расширяемость</span></h2>
+<p>Теперь вернемся к программе <i><b>Music.java</b></i>. Благодаря полиморфизму вы можете добавить в нее сколько угодно новых типов, не изменяя метод <i><b>tune()</b></i>. В хорошо спланированной ООП-программе большая часть ваших методов (или даже все методы) следуют модели метода <i><b>tune()</b></i>, оперируя только с интерфейсом базового класса.
+</p><p>Такая программа является расширяемой, поскольку в нее можно 
+добавить дополнительную функциональность, определяя новые типы данных от
+ общего базового класса. Методы, работающие на уровне интерфейса 
+базового класса, совсем не нужно изменять, чтобы приспособить их к новым
+ классам.
+</p><p>Давайте возьмем пример с объектами <i><b>Instrument</b></i> и включим дополнительные методы в базовый класс, а также определим несколько новых классов. Рассмотрим диаграмму.
+</p><p><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%97%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B0&amp;wpDestFile=P0206.png" class="new" title="Файл:P0206.png">Файл:P0206.png</a>
+</p><p>Все новые классы правильно работают со старым, неизмененным методом <i><b>tune()</b></i>. Даже если метод <i><b>tune()</b></i> находится в другом файле, а к классу <i><b>Instrument</b></i>
+ присоединяются новые методы, он все равно будет работать верно без 
+повторной компиляции. Ниже приведена реализация рассмотренной диаграммы:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: polymorphism/music3/Music3.java</span>
+<span class="co1">// Расширяемая программа</span>
+<span class="kw2">package</span> <span class="co2">polymorphism.music3</span><span class="sy0">;</span>
+<span class="kw2">import</span> <span class="co2">polymorphism.music.Note</span><span class="sy0">;</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">class</span> <span class="kw97">Instrument</span> <span class="br0">{</span>
+  <span class="kw3">void</span> play<span class="br0">(</span>Note n<span class="br0">)</span> <span class="br0">{</span> print<span class="br0">(</span><span class="st0">"Instrument.play() "</span> + n<span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw21">String</span> what<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> <span class="st0">"Instrument"</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw3">void</span> adjust<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> print<span class="br0">(</span><span class="st0">"Adjusting Instrument"</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> Wind <span class="kw2">extends</span> <span class="kw97">Instrument</span> <span class="br0">{</span>
+  <span class="kw3">void</span> play<span class="br0">(</span>Note n<span class="br0">)</span> <span class="br0">{</span> print<span class="br0">(</span><span class="st0">"Wind.play() "</span> + n<span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw21">String</span> what<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> <span class="st0">"Wind"</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw3">void</span> adjust<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> print<span class="br0">(</span><span class="st0">"Adjusting Wind"</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span>	
+&nbsp;
+<span class="kw2">class</span> Percussion <span class="kw2">extends</span> <span class="kw97">Instrument</span> <span class="br0">{</span>
+  <span class="kw3">void</span> play<span class="br0">(</span>Note n<span class="br0">)</span> <span class="br0">{</span> print<span class="br0">(</span><span class="st0">"Percussion.play() "</span> + n<span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw21">String</span> what<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> <span class="st0">"Percussion"</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw3">void</span> adjust<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> print<span class="br0">(</span><span class="st0">"Adjusting Percussion"</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> Stringed <span class="kw2">extends</span> <span class="kw97">Instrument</span> <span class="br0">{</span>
+  <span class="kw3">void</span> play<span class="br0">(</span>Note n<span class="br0">)</span> <span class="br0">{</span> print<span class="br0">(</span><span class="st0">"Stringed.play() "</span> + n<span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw21">String</span> what<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> <span class="st0">"Stringed"</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw3">void</span> adjust<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> print<span class="br0">(</span><span class="st0">"Adjusting Stringed"</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> Brass <span class="kw2">extends</span> Wind <span class="br0">{</span>
+  <span class="kw3">void</span> play<span class="br0">(</span>Note n<span class="br0">)</span> <span class="br0">{</span> print<span class="br0">(</span><span class="st0">"Brass.play() "</span> + n<span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw3">void</span> adjust<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> print<span class="br0">(</span><span class="st0">"Adjusting Brass"</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> Woodwind <span class="kw2">extends</span> Wind <span class="br0">{</span>
+  <span class="kw3">void</span> play<span class="br0">(</span>Note n<span class="br0">)</span> <span class="br0">{</span> print<span class="br0">(</span><span class="st0">"Woodwind.play() "</span> + n<span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw21">String</span> what<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> <span class="st0">"Woodwind"</span><span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span>	
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> Music3 <span class="br0">{</span>
+  <span class="co1">// Работа метода не зависит от фактического типа объекта, </span>
+  <span class="co1">// поэтому типы, добавленные в систему, будут работать правильно:</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> tune<span class="br0">(</span><span class="kw97">Instrument</span> i<span class="br0">)</span> <span class="br0">{</span>
+    <span class="co1">// ...</span>
+    i.<span class="me1">play</span><span class="br0">(</span>Note.<span class="me1">MIDDLE_C</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> tuneAll<span class="br0">(</span><span class="kw97">Instrument</span><span class="br0">[</span><span class="br0">]</span> e<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw1">for</span><span class="br0">(</span><span class="kw97">Instrument</span> i&nbsp;: e<span class="br0">)</span>
+      tune<span class="br0">(</span>i<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>	
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    <span class="co1">// Upcasting during addition to the array:</span>
+    <span class="kw97">Instrument</span><span class="br0">[</span><span class="br0">]</span> orchestra = <span class="br0">{</span>
+      <span class="kw2">new</span> Wind<span class="br0">(</span><span class="br0">)</span>,
+      <span class="kw2">new</span> Percussion<span class="br0">(</span><span class="br0">)</span>,
+      <span class="kw2">new</span> Stringed<span class="br0">(</span><span class="br0">)</span>,
+      <span class="kw2">new</span> Brass<span class="br0">(</span><span class="br0">)</span>,
+      <span class="kw2">new</span> Woodwind<span class="br0">(</span><span class="br0">)</span>
+    <span class="br0">}</span><span class="sy0">;</span>
+    tuneAll<span class="br0">(</span>orchestra<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>Wind.play() MIDDLE_C
+Percussion.play() MIDDLE_C
+Stringed.play() MIDDLE_C
+Brass.play() MIDDLE_C
+Woodwind.play() MIDDLE_C
+</pre>
+<p>&lt;/spoiler&gt;
+Новый метод <i><b>what()</b></i> возвращает строку (<i><b>String</b></i>) с информацией о классе, а метод <i><b>adjust()</b></i> предназначен для настройки инструментов.
+</p><p>В методе <i><b>main()</b></i> сохранение любого объекта в массиве orchestra автоматически приводит к выполнению восходящего преобразования к типу <i><b>Instrument</b></i>.
+</p><p>Вы можете видеть, что метод <i><b>tune()</b></i> изолирован от 
+окружающих изменений кода, но при этом все равно работает правильно. Для
+ достижения такой функциональности и используется полиморфизм. Изменения
+ в коде не затрагивают те части программы, которые не зависят от них. 
+Другими словами, полиморфизм помогает отделить «изменяемое от 
+неизменного».
+</p>
+<h2><span class="mw-headline" id=".D0.9F.D1.80.D0.BE.D0.B1.D0.BB.D0.B5.D0.BC.D0.B0:_.C2.AB.D0.BF.D0.B5.D1.80.D0.B5.D0.BE.D0.BF.D1.80.D0.B5.D0.B4.D0.B5.D0.BB.D0.B5.D0.BD.D0.B8.D0.B5.C2.BB_.D0.B7.D0.B0.D0.BA.D1.80.D1.8B.D1.82.D1.8B.D1.85_.D0.BC.D0.B5.D1.82.D0.BE.D0.B4.D0.BE.D0.B2">Проблема: «переопределение» закрытых методов</span></h2>
+<p>Перед вами одна из ошибок, совершаемых по наивности:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: polymorphism/PrivateOverride.java</span>
+<span class="co1">// Попытка переопределения приватного метода</span>
+<span class="kw2">package</span> <span class="co2">polymorphism</span><span class="sy0">;</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> PrivateOverride <span class="br0">{</span>
+  <span class="kw2">private</span> <span class="kw3">void</span> f<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> print<span class="br0">(</span><span class="st0">"private f()"</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    PrivateOverride po = <span class="kw2">new</span> Derived<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    po.<span class="me1">f</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> Derived <span class="kw2">extends</span> PrivateOverride <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> f<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> print<span class="br0">(</span><span class="st0">"public f()"</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>private f()
+</pre>
+<p>&lt;/spoiler&gt;
+Вполне естественно было бы ожидать, что программа выведет сообщение <i><b>public f()</b></i>, но закрытый (<i><b>private</b></i>) метод автоматически является неизменным (<i><b>final</b></i>), а заодно и скрытым от производного класса. Так что метод <i><b>f()</b></i> класса <i><b>Derived</b></i> в нашем случае является полностью новым — он даже не был перегружен, так как метод <i><b>f()</b></i> базового класса классу <i><b>Derived</b></i> недоступен.
+</p><p>Из этого можно сделать вывод, что переопределяются только методы,
+ не являющиеся закрытыми. Будьте внимательны: компилятор в подобных 
+ситуациях не выдает сообщений об ошибке, но и не делает того, что вы от 
+него ожидаете. Иными словами, методам производного класса следует 
+присваивать имена, отличные от имен закрытых методов базового класса.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id=".D0.9A.D0.BE.D0.BD.D1.81.D1.82.D1.80.D1.83.D0.BA.D1.82.D0.BE.D1.80.D1.8B_.D0.B8_.D0.BF.D0.BE.D0.BB.D0.B8.D0.BC.D0.BE.D1.80.D1.84.D0.B8.D0.B7.D0.BC">Конструкторы и полиморфизм</span></h2>
+<p>Конструкторы отличаются от обычных методов, и эти отличия проявляются
+ и при использовании полиморфизма. Хотя конструкторы сами по себе не 
+полиморфны (фактически они представляют собой статические методы, только
+ ключевое слово <i><b>static</b></i> опущено), вы должны хорошо 
+понимать, как работают конструкторы в сложных полиморфных иерархиях. 
+Такое понимание в дальнейшем поможет избежать некоторых затруднительных 
+ситуаций.
+</p>
+<h3><span class="mw-headline" id=".D0.9F.D0.BE.D1.80.D1.8F.D0.B4.D0.BE.D0.BA_.D0.B2.D1.8B.D0.B7.D0.BE.D0.B2.D0.B0_.D0.BA.D0.BE.D0.BD.D1.81.D1.82.D1.80.D1.83.D0.BA.D1.82.D0.BE.D1.80.D0.BE.D0.B2">Порядок вызова конструкторов</span></h3>
+<p>Порядок вызова конструкторов коротко обсуждался в главах 5 и 7, но в 
+то время мы еще не рассматривали полиморфизм.
+Конструктор базового класса всегда вызывается в процессе конструирования
+ производного класса. Вызов автоматически проходит вверх по цепочке 
+наследования, так что в конечном итоге вызываются конструкторы всех 
+базовых классов по всей цепочке наследования. Это очень важно, поскольку
+ конструктору отводится особая роль — обеспечивать правильное построение
+ объектов. 
+</p><p>Производный класс обычно имеет доступ только к своим членам, но 
+не к членам базового класса (которые чаще всего объявляются со 
+спецификатором <i><b>private</b></i>). Только конструктор базового 
+класса обладает необходимыми знаниями и правами доступа, чтобы правильно
+ инициализировать свои внутренние элементы.
+</p><p>Именно поэтому компилятор настаивает на вызове конструктора для 
+любой части производного класса. Он незаметно подставит конструктор по 
+умолчанию, если вы явно не вызовете конструктор базового класса в теле 
+конструктора производного класса. Если конструктора по умолчанию не 
+существует, компилятор сообщит об этом. (Если у класса вообще нет 
+пользовательских конструкторов, компилятор автоматически генерирует 
+конструктор по умолчанию.)
+</p><p>Следующий пример показывает, как композиция, наследование и полиморфизм влияют на порядок конструирования:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: polymorphism/Sandwich.java</span>
+<span class="co1">// Порядок вызова конструкторов.</span>
+<span class="kw2">package</span> <span class="co2">polymorphism</span><span class="sy0">;</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">class</span> Meal <span class="br0">{</span>
+  Meal<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> print<span class="br0">(</span><span class="st0">"Meal()"</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> Bread <span class="br0">{</span>
+  Bread<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> print<span class="br0">(</span><span class="st0">"Bread()"</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> Cheese <span class="br0">{</span>
+  Cheese<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> print<span class="br0">(</span><span class="st0">"Cheese()"</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> Lettuce <span class="br0">{</span>
+  Lettuce<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> print<span class="br0">(</span><span class="st0">"Lettuce()"</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> Lunch <span class="kw2">extends</span> Meal <span class="br0">{</span>
+  Lunch<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> print<span class="br0">(</span><span class="st0">"Lunch()"</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> PortableLunch <span class="kw2">extends</span> Lunch <span class="br0">{</span>
+  PortableLunch<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> print<span class="br0">(</span><span class="st0">"PortableLunch()"</span><span class="br0">)</span><span class="sy0">;</span><span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> Sandwich <span class="kw2">extends</span> PortableLunch <span class="br0">{</span>
+  <span class="kw2">private</span> Bread b = <span class="kw2">new</span> Bread<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="kw2">private</span> Cheese c = <span class="kw2">new</span> Cheese<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="kw2">private</span> Lettuce l = <span class="kw2">new</span> Lettuce<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="kw2">public</span> Sandwich<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> print<span class="br0">(</span><span class="st0">"Sandwich()"</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw2">new</span> Sandwich<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>Meal()
+Lunch()
+PortableLunch()
+Bread()
+Cheese()
+Lettuce()
+Sandwich()
+</pre>
+<p>&lt;/spoiler&gt;
+В этом примере создается сложный класс, собранный из других классов, и в
+ каждом классе имеется конструктор, который сообщает о своем выполнении.
+ Самый важный класс — <i><b>Sandwich</b></i>, с тремя уровнями наследования (четырьмя, если считать неявное наследование от класса <i><b>Object</b></i>) и тремя встроенными объектами. Результат виден при создании объекта <i><b>Sandwich</b></i> в методе <i><b>main()</b></i>. Это значит, что конструкторы для сложного объекта вызываются в следующей по­следовательности:
+</p>
+<hr>
+<ul>
+<li><span style="color:#800000">Сначала вызывается конструктор базового 
+класса. Этот шаг повторяется рекурсивно: сначала конструируется корень 
+иерархии, затем следующий за ним класс, затем следующий за этим классом 
+класс и т. д., пока не достигается «низший» производный класс.</span>
+</li>
+</ul>
+<ul>
+<li><span style="color:#800000">Проводится инициализация членов класса в порядке их объявления.</span>
+</li>
+</ul>
+<ul>
+<li><span style="color:#800000">Вызывается тело конструктора производного класса.</span>
+</li>
+</ul>
+<hr>
+<p>Порядок вызова конструкторов немаловажен. При наследовании вы 
+располагаете полной информацией о базовом классе и можете получить 
+доступ к любому из его открытых (<i><b>public</b></i>) или защищенных (<i><b>protected</b></i>) членов. Следовательно, при этом подразумевается, что все члены базового класса являются действительными в производном классе. 
+</p><p>При вызове нормального метода известно, что конструирование уже 
+было проведено, поэтому все части объекта инициализированы. Однако в 
+конструкторе вы также должны быть уверены в том, что все используемые 
+члены уже проинициализированы. Это можно гарантировать только одним 
+способом — сначала вызывать конструктор базового класса.
+</p><p>В дальнейшем при выполнении конструктора производного класса 
+можно быть уверенным в том, что все члены базового класса уже 
+инициализированы. Гарантия действительности всех членов в конструкторе —
+ важная причина, по которой все встроенные объекты (то есть объекты, 
+помещенные в класс посредством композиции) инициализируются на месте их 
+определения (как в рассмотренном примере сделано с объектами <i><b>b, с</b></i> и <i><b>l</b></i>).
+ Если вы будете следовать этому правилу, это усилит уверенность в том, 
+что все члены базового класса и объекты-члены были проинициализированы. К
+ сожалению, это помогает не всегда, в чем вы убедитесь в следующем 
+разделе.
+</p>
+<h3><span class="mw-headline" id=".D0.9D.D0.B0.D1.81.D0.BB.D0.B5.D0.B4.D0.BE.D0.B2.D0.B0.D0.BD.D0.B8.D0.B5_.D0.B8_.D0.B7.D0.B0.D0.B2.D0.B5.D1.80.D1.88.D0.B0.D1.8E.D1.89.D0.B8.D0.B5_.D0.B4.D0.B5.D0.B9.D1.81.D1.82.D0.B2.D0.B8.D1.8F">Наследование и завершающие действия</span></h3>
+<p>Если при создании нового класса используется композиция и 
+наследование, обычно вам не приходится беспокоиться о проведении 
+завершающих действий — подобъекты уничтожаются сборщиком мусора. Но если
+ вам необходимо провести завершающие действия, создайте в своем классе 
+метод <i><b>dispose()</b></i> (в данном разделе я решил использовать такое имя; возможно, вы придумаете более удачное название). Переопределяя метод <i><b>dispose()</b></i>
+ в производном классе, важно помнить о вызове версии этого метода из 
+базового класса, поскольку иначе не будут выполнены завершающие действия
+ базового класса. Следующий пример доказывает справедливость этого 
+утверждения:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: polymorphism/Frog.java</span>
+<span class="co1">// Наследование и завершающие действия.</span>
+<span class="kw2">package</span> <span class="co2">polymorphism</span><span class="sy0">;</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">class</span> Characteristic <span class="br0">{</span>
+  <span class="kw2">private</span> <span class="kw21">String</span> s<span class="sy0">;</span>
+  Characteristic<span class="br0">(</span><span class="kw21">String</span> s<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw2">this</span>.<span class="me1">s</span> = s<span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"Creating Characteristic "</span> + s<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">protected</span> <span class="kw3">void</span> dispose<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    print<span class="br0">(</span><span class="st0">"disposing Characteristic "</span> + s<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> Description <span class="br0">{</span>
+  <span class="kw2">private</span> <span class="kw21">String</span> s<span class="sy0">;</span>
+  Description<span class="br0">(</span><span class="kw21">String</span> s<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw2">this</span>.<span class="me1">s</span> = s<span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"Creating Description "</span> + s<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">protected</span> <span class="kw3">void</span> dispose<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    print<span class="br0">(</span><span class="st0">"disposing Description "</span> + s<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span>
+<span class="co1">// живое существо</span>
+<span class="kw2">class</span> LivingCreature <span class="br0">{</span>
+  <span class="kw2">private</span> Characteristic p =
+    <span class="kw2">new</span> Characteristic<span class="br0">(</span><span class="st0">"is alive"</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="kw2">private</span> Description t =
+    <span class="kw2">new</span> Description<span class="br0">(</span><span class="st0">"Basic Living Creature"</span><span class="br0">)</span><span class="sy0">;</span>
+  LivingCreature<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    print<span class="br0">(</span><span class="st0">"LivingCreature()"</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">protected</span> <span class="kw3">void</span> dispose<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    print<span class="br0">(</span><span class="st0">"LivingCreature dispose"</span><span class="br0">)</span><span class="sy0">;</span>
+    t.<span class="me1">dispose</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    p.<span class="me1">dispose</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span>
+<span class="co1">// животное</span>
+<span class="kw2">class</span> Animal <span class="kw2">extends</span> LivingCreature <span class="br0">{</span>
+  <span class="kw2">private</span> Characteristic p =
+    <span class="kw2">new</span> Characteristic<span class="br0">(</span><span class="st0">"has heart"</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="kw2">private</span> Description t =
+    <span class="kw2">new</span> Description<span class="br0">(</span><span class="st0">"Animal not Vegetable"</span><span class="br0">)</span><span class="sy0">;</span>
+  Animal<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> print<span class="br0">(</span><span class="st0">"Animal()"</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw2">protected</span> <span class="kw3">void</span> dispose<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    print<span class="br0">(</span><span class="st0">"Animal dispose"</span><span class="br0">)</span><span class="sy0">;</span>
+    t.<span class="me1">dispose</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    p.<span class="me1">dispose</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw2">super</span>.<span class="me1">dispose</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span>
+<span class="co1">// земноводное</span>
+<span class="kw2">class</span> Amphibian <span class="kw2">extends</span> Animal <span class="br0">{</span>
+  <span class="kw2">private</span> Characteristic p =
+    <span class="kw2">new</span> Characteristic<span class="br0">(</span><span class="st0">"can live in water"</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="kw2">private</span> Description t =
+    <span class="kw2">new</span> Description<span class="br0">(</span><span class="st0">"Both water and land"</span><span class="br0">)</span><span class="sy0">;</span>
+  Amphibian<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    print<span class="br0">(</span><span class="st0">"Amphibian()"</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">protected</span> <span class="kw3">void</span> dispose<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    print<span class="br0">(</span><span class="st0">"Amphibian dispose"</span><span class="br0">)</span><span class="sy0">;</span>
+    t.<span class="me1">dispose</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    p.<span class="me1">dispose</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw2">super</span>.<span class="me1">dispose</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span>
+<span class="co1">// лягушка</span>
+<span class="kw2">public</span> <span class="kw2">class</span> Frog <span class="kw2">extends</span> Amphibian <span class="br0">{</span>
+  <span class="kw2">private</span> Characteristic p = <span class="kw2">new</span> Characteristic<span class="br0">(</span><span class="st0">"Croaks"</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="kw2">private</span> Description t = <span class="kw2">new</span> Description<span class="br0">(</span><span class="st0">"Eats Bugs"</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="kw2">public</span> Frog<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> print<span class="br0">(</span><span class="st0">"Frog()"</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw2">protected</span> <span class="kw3">void</span> dispose<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    print<span class="br0">(</span><span class="st0">"Frog dispose"</span><span class="br0">)</span><span class="sy0">;</span>
+    t.<span class="me1">dispose</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    p.<span class="me1">dispose</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw2">super</span>.<span class="me1">dispose</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    Frog frog = <span class="kw2">new</span> Frog<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"Bye!"</span><span class="br0">)</span><span class="sy0">;</span>
+    frog.<span class="me1">dispose</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>Creating Characteristic is alive
+Creating Description Basic Living Creature
+LivingCreature()
+Creating Characteristic has heart
+Creating Description Animal not Vegetable
+Animal()
+Creating Characteristic can live in water
+Creating Description Both water and land
+Amphibian()
+Creating Characteristic Croaks
+Creating Description Eats Bugs
+Frog()
+Bye!
+Frog dispose
+disposing Description Eats Bugs
+disposing Characteristic Croaks
+Amphibian dispose
+disposing Description Both water and land
+disposing Characteristic can live in water
+Animal dispose
+disposing Description Animal not Vegetable
+disposing Characteristic has heart
+LivingCreature dispose
+disposing Description Basic Living Creature
+disposing Characteristic is alive
+</pre>
+<p>&lt;/spoiler&gt;
+Каждый класс в иерархии содержит объекты классов <i><b>Characteristic</b></i> и <i><b>Description</b></i>,
+ которые также необходимо «завершать». Очередность завершения должна 
+быть обратной порядку инициализации в том случае, если объекты зависят 
+друг от друга. Для полей это означает порядок, обратный 
+последовательности объявления полей в классе (инициализация 
+соответствует порядку объявления). 
+</p><p>В базовых классах сначала следует выполнять финализацию для 
+производного класса, а затем — для базового класса. Это объясняется тем,
+ что завершающий метод производного класса может вызывать некоторые 
+методы базового класса, для которых необходимы действительные компоненты
+ базового класса. Из результатов работы программы видно, что все части 
+объекта <i><b>Frog</b></i> будут финализованы в порядке, противоположном очередности их создания.
+</p><p>Также обратите внимание на то, что в описанном примере объект <i><b>Frog</b></i>
+ является «владельцем» встроенных объектов. Он создает их, определяет 
+продолжительность их существования (до тех пор, пока существует <i><b>Frog</b></i>) и знает, когда вызывать <i><b>dispose()</b></i> для встроенных объектов. 
+</p><p>Но если встроенный объект используется совместно с другими объектами, ситуация усложняется и вы уже не можете просто вызвать <i><b>dispose()</b></i>.
+ В таких случаях для отслеживания количества объектов, работающих со 
+встроенным объектом, приходится использовать подсчет ссылок. Вот как это
+ выглядит:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: polymorphism/ReferenceCounting.java</span>
+<span class="co1">//  Уничтожение совместно используемых встроенных объектов</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">class</span> Shared <span class="br0">{</span>
+  <span class="kw2">private</span> <span class="kw3">int</span> refcount = <span class="nu0">0</span><span class="sy0">;</span>
+  <span class="kw2">private</span> <span class="kw2">static</span> <span class="kw3">long</span> counter = <span class="nu0">0</span><span class="sy0">;</span>
+  <span class="kw2">private</span> <span class="kw2">final</span> <span class="kw3">long</span> id = counter++<span class="sy0">;</span>
+  <span class="kw2">public</span> Shared<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    print<span class="br0">(</span><span class="st0">"Creating "</span> + <span class="kw2">this</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> addRef<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> refcount++<span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw2">protected</span> <span class="kw3">void</span> dispose<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw1">if</span><span class="br0">(</span>--refcount == <span class="nu0">0</span><span class="br0">)</span>
+      print<span class="br0">(</span><span class="st0">"Disposing "</span> + <span class="kw2">this</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw21">String</span> toString<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> <span class="st0">"Shared "</span> + id<span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> Composing <span class="br0">{</span>
+  <span class="kw2">private</span> Shared shared<span class="sy0">;</span>
+  <span class="kw2">private</span> <span class="kw2">static</span> <span class="kw3">long</span> counter = <span class="nu0">0</span><span class="sy0">;</span>
+  <span class="kw2">private</span> <span class="kw2">final</span> <span class="kw3">long</span> id = counter++<span class="sy0">;</span>
+  <span class="kw2">public</span> Composing<span class="br0">(</span>Shared shared<span class="br0">)</span> <span class="br0">{</span>
+    print<span class="br0">(</span><span class="st0">"Creating "</span> + <span class="kw2">this</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw2">this</span>.<span class="me1">shared</span> = shared<span class="sy0">;</span>
+    <span class="kw2">this</span>.<span class="me1">shared</span>.<span class="me1">addRef</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">protected</span> <span class="kw3">void</span> dispose<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    print<span class="br0">(</span><span class="st0">"disposing "</span> + <span class="kw2">this</span><span class="br0">)</span><span class="sy0">;</span>
+    shared.<span class="me1">dispose</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw21">String</span> toString<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> <span class="st0">"Composing "</span> + id<span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> ReferenceCounting <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    Shared shared = <span class="kw2">new</span> Shared<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    Composing<span class="br0">[</span><span class="br0">]</span> composing = <span class="br0">{</span> <span class="kw2">new</span> Composing<span class="br0">(</span>shared<span class="br0">)</span>,
+      <span class="kw2">new</span> Composing<span class="br0">(</span>shared<span class="br0">)</span>, <span class="kw2">new</span> Composing<span class="br0">(</span>shared<span class="br0">)</span>,
+      <span class="kw2">new</span> Composing<span class="br0">(</span>shared<span class="br0">)</span>, <span class="kw2">new</span> Composing<span class="br0">(</span>shared<span class="br0">)</span> <span class="br0">}</span><span class="sy0">;</span>
+    <span class="kw1">for</span><span class="br0">(</span>Composing c&nbsp;: composing<span class="br0">)</span>
+      c.<span class="me1">dispose</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>Creating Shared 0
+Creating Composing 0
+Creating Composing 1
+Creating Composing 2
+Creating Composing 3
+Creating Composing 4
+disposing Composing 0
+disposing Composing 1
+disposing Composing 2
+disposing Composing 3
+disposing Composing 4
+Disposing Shared 0
+</pre>
+<p>&lt;/spoiler&gt;
+В переменной <i><b>static long counter</b></i> хранится количество созданных экземпляров <i><b>Shared</b></i>. Для счетчика выбран тип <i><b>long</b></i> вместо <i><b>int</b></i>
+ для того, чтобы предотвратить переполнение (это всего лишь хороший 
+стиль программирования; в рас­сматриваемых примерах переполнение вряд ли
+ возможно). Поле <i><b>id</b></i> объявлено со спецификатором <i><b>final</b></i>, поскольку его значение остается постоянным на протяжении жизненного цикла объекта.
+</p><p>Присоединяя к классу общий объект, необходимо вызвать <i><b>addRef()</b></i>, но метод <i><b>dispose()</b></i>
+ будет следить за состоянием счетчика ссылок и сам решит, когда нужно 
+выполнить завершающие действия. Подсчет ссылок требует дополнительных 
+усилий со стороны программиста, но при совместном использовании 
+объектов, требующих завершения, у вас нет особого выбора.
+</p><p><br>
+</p>
+<h3><span class="mw-headline" id=".D0.9F.D0.BE.D0.B2.D0.B5.D0.B4.D0.B5.D0.BD.D0.B8.D0.B5_.D0.BF.D0.BE.D0.BB.D0.B8.D0.BC.D0.BE.D1.80.D1.84.D0.BD.D1.8B.D1.85_.D0.BC.D0.B5.D1.82.D0.BE.D0.B4.D0.BE.D0.B2_.D0.BF.D1.80.D0.B8_.D0.B2.D1.8B.D0.B7.D0.BE.D0.B2.D0.B5_.D0.B8.D0.B7_.D0.BA.D0.BE.D0.BD.D1.81.D1.82.D1.80.D1.83.D0.BA.D1.82.D0.BE.D1.80.D0.BE.D0.B2">Поведение полиморфных методов при вызове из конструкторов</span></h3>
+<p>В иерархиях конструкторов возникает интересный вопрос. Что 
+происходит, если вызвать в конструкторе динамически связываемый метод 
+конструируемого объекта?
+</p><p>В обычных методах представить происходящее нетрудно — динамически
+ связываемый вызов обрабатывается во время выполнения, так как объект не
+ знает, принадлежит ли этот вызов классу, в котором определен метод, или
+ классу, производному от этого класса. Казалось бы, то же самое должно 
+происходить и в конструкторах.
+Но ничего подобного. При вызове динамически связываемого метода в 
+конструкторе используется переопределенное описание этого метода. Однако
+ последствия такого вызова могут быть весьма неожиданными, и здесь могут
+ крыться некоторые коварные ошибки.
+</p><p>По определению, задача конструктора — дать объекту жизнь (и это 
+отнюдь не простая задача). Внутри любого конструктора объект может быть 
+сформирован лишь частично — известно только то, что объекты базового 
+класса были проини- циализированы. Если конструктор является лишь 
+очередным шагом на пути построения объекта класса, производного от 
+класса данного конструктора, «производные» части еще не были 
+инициализированы на момент вызова текущего конструктора. 
+</p><p>Однако динамически связываемый вызов может перейти во «внешнюю» 
+часть иерархии, то есть к производным классам. Если он вызовет метод 
+производного класса в конструкторе, это может привести к манипуляциям с 
+неинициализированными данными — а это наверняка приведет к катастрофе. 
+Следующий пример поясняет суть проблемы:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: polymorphism/PolyConstructors.java</span>
+<span class="co1">// Конструкторы и полиморфизм дают не тот </span>
+<span class="co1">// результат, который можно было бы ожидать</span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">class</span> Glyph <span class="br0">{</span>
+  <span class="kw3">void</span> draw<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> print<span class="br0">(</span><span class="st0">"Glyph.draw()"</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+  Glyph<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    print<span class="br0">(</span><span class="st0">"Glyph() before draw()"</span><span class="br0">)</span><span class="sy0">;</span>
+    draw<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"Glyph() after draw()"</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span>	
+&nbsp;
+<span class="kw2">class</span> RoundGlyph <span class="kw2">extends</span> Glyph <span class="br0">{</span>
+  <span class="kw2">private</span> <span class="kw3">int</span> radius = <span class="nu0">1</span><span class="sy0">;</span>
+  RoundGlyph<span class="br0">(</span><span class="kw3">int</span> r<span class="br0">)</span> <span class="br0">{</span>
+    radius = r<span class="sy0">;</span>
+    print<span class="br0">(</span><span class="st0">"RoundGlyph.RoundGlyph(), radius = "</span> + radius<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+  <span class="kw3">void</span> draw<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    print<span class="br0">(</span><span class="st0">"RoundGlyph.draw(), radius = "</span> + radius<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span>	
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> PolyConstructors <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw2">new</span> RoundGlyph<span class="br0">(</span><span class="nu0">5</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>Glyph() before draw()
+RoundGlyph.draw(), radius = 0
+Glyph() after draw()
+RoundGlyph.RoundGlyph(), radius = 5
+</pre>
+<p>&lt;/spoiler&gt;
+Метод <i><b>Glyph.draw()</b></i> изначально предназначен для переопределения в производных классах, что и происходит в <i><b>RoundGlyph</b></i>. Но конструктор <i><b>Glyph</b></i> вызывает этот метод, и в результате это приводит к вызову метода <i><b>RoundGlyph.draw()</b></i>, что вроде бы и предполагалось.
+</p><p>Однако из результатов работы программы видно — когда конструктор класса <i><b>Glyph</b></i> вызывает метод <i><b>draw()</b></i>, переменной <i><b>radius</b></i> еще не присвоено даже значение по умолчанию <i>1</i>. Переменная равна <i>0</i>.
+ В итоге класс может не выполнить свою задачу, а вам придется долго 
+всматриваться в код программы, чтобы определить причину неверного 
+результата.
+</p><p>Порядок инициализации, описанный в предыдущем разделе, немного 
+неполон, и именно здесь кроется ключ к этой загадке. На самом деле 
+процесс инициализации проходит следующим образом:
+</p>
+<hr>
+<ul>
+<li><span style="color:#800000">Память, выделенная под новый объект, заполняется двоичными нулями.</span>
+</li>
+</ul>
+<ul>
+<li><span style="color:#800000">Конструкторы базовых классов вызываются в
+ описанном ранее порядке. В этот момент вызывается переопределенный 
+метод draw() (да, перед вызовом конструктора класса RoundGlyph), где 
+обнаруживается, что переменная radius равна нулю из-за первого этапа.</span>
+</li>
+</ul>
+<ul>
+<li><span style="color:#800000">Вызываются инициализаторы членов класса в порядке их определения.</span>
+</li>
+</ul>
+<ul>
+<li><span style="color:#800000">Исполняется тело конструктора производного класса.</span>
+</li>
+</ul>
+<hr>
+<p>У происходящего есть и положительная сторона — по крайней мере, 
+данные инициализируются нулями (или тем, что понимается под нулевым 
+значением для определенного типа данных), а не случайным «мусором» в 
+памяти. Это относится и к ссылкам на объекты, внедренные в класс с 
+помощью композиции. Они принимают особое значение <i><b>null</b></i>. 
+</p><p>Если вы забудете инициализировать такую ссылку, то получите 
+исключение во время выполнения программы. Остальные данные заполняются 
+нулями, а это обычно легко заметить по выходным данным программы.
+С другой стороны, результат программы выглядит довольно жутко. Вроде бы 
+все логично, а программ ведет себя загадочно и некорректно без малейших 
+объяснений со стороны компилятора. (В языке <i>C++</i> такие ситуации обрабатываются более рациональным способом.) Поиск подобных ошибок занимает много времени.
+</p><p>При написании конструктора руководствуйтесь следующим правилом: 
+не пытайтесь сделать больше для того, чтобы привести объект в нужное 
+состояние, и по возможности избегайте вызова каких-либо методов. 
+Единственные методы, которые можно вызывать в конструкторе без опаски — 
+неизменные (<i><b>final</b></i>) методы базового класса. (Сказанное относится и к закрытым (<i><b>private</b></i>)
+ методам, поскольку они автоматически являются неизменными.) Такие 
+методы невозможно переопределить, и поэтому они застрахованы от 
+«сюрпризов».
+</p>
+<h2><span class="mw-headline" id=".D0.9A.D0.BE.D0.B2.D0.B0.D1.80.D0.B8.D0.B0.D0.BD.D1.82.D0.BD.D0.BE.D1.81.D1.82.D1.8C_.D0.B2.D0.BE.D0.B7.D0.B2.D1.80.D0.B0.D1.89.D0.B0.D0.B5.D0.BC.D1.8B.D1.85_.D1.82.D0.B8.D0.BF.D0.BE.D0.B2">Ковариантность возвращаемых типов</span></h2>
+<p>В <i>Java</i> <i>SE5</i> появилась концепция ковариантности 
+возвращаемых типов; этот термин означает, что переопределенный метод 
+производного класса может вернуть тип, производный от типа, 
+возвращаемого методом базового класса:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: polymorphism/CovariantReturn.java</span>
+&nbsp;
+<span class="kw2">class</span> Grain <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw21">String</span> toString<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> <span class="st0">"Grain"</span><span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> Wheat <span class="kw2">extends</span> Grain <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw21">String</span> toString<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> <span class="st0">"Wheat"</span><span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> Mill <span class="br0">{</span>
+  Grain process<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> <span class="kw2">new</span> Grain<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> WheatMill <span class="kw2">extends</span> Mill <span class="br0">{</span>
+  Wheat process<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> <span class="kw2">return</span> <span class="kw2">new</span> Wheat<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> CovariantReturn <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    Mill m = <span class="kw2">new</span> Mill<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    Grain g = m.<span class="me1">process</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">(</span>g<span class="br0">)</span><span class="sy0">;</span>
+    m = <span class="kw2">new</span> WheatMill<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    g = m.<span class="me1">process</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw21">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">(</span>g<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>Grain
+Wheat
+</pre>
+<p>&lt;/spoiler&gt;
+Главное отличие <i>Java</i> <i>SE5</i> от предыдущих версий <i>Java</i> заключается в том, что старые версии заставляли переопределение <i><b>process()</b></i> возвращать <i><b>Grain</b></i> вместо <i><b>Wheat</b></i>, хотя тип <i><b>Wheat</b></i>, производный от <i><b>Grain</b></i>, является допустимым возвращаемым типом. Ковариантность возвращаемых типов позволяет вернуть более специализированный тип <i><b>Wheat</b></i>.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id=".D0.A0.D0.B0.D0.B7.D1.80.D0.B0.D0.B1.D0.BE.D1.82.D0.BA.D0.B0_.D1.81_.D0.BD.D0.B0.D1.81.D0.BB.D0.B5.D0.B4.D0.BE.D0.B2.D0.B0.D0.BD.D0.B8.D0.B5.D0.BC">Разработка с наследованием</span></h2>
+<p>После знакомства с полиморфизмом может показаться, что его следует 
+применять везде и всегда. Однако злоупотребление полиморфизмом ухудшит 
+архитектуру ваших приложений.
+</p><p>Лучше для начала использовать композицию, пока вы точно не 
+уверены в том, какой именно механизм следует выбрать. Композиция не 
+стесняет разработку рамками иерархии наследования. К тому же механизм 
+композиции более гибок, так как он позволяет динамически выбирать тип (а
+ следовательно, и поведение), тогда как наследование требует, чтобы 
+точный тип был известен уже во время компиляции. Следующий пример 
+демонстрирует это:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: polymorphism/Transmogrify.java</span>
+<span class="co1">// Динамическое изменение поведения объекта </span>
+<span class="co1">// с помощью композиции (шаблон проектирования «Состояние») </span>
+<span class="kw2">import</span> <span class="kw2">static</span> <span class="co2">net.mindview.util.Print.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">class</span> Actor <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> act<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> HappyActor <span class="kw2">extends</span> Actor <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> act<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> print<span class="br0">(</span><span class="st0">"HappyActor"</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> SadActor <span class="kw2">extends</span> Actor <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> act<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> print<span class="br0">(</span><span class="st0">"SadActor"</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> Stage <span class="br0">{</span>
+  <span class="kw2">private</span> Actor actor = <span class="kw2">new</span> HappyActor<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> change<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> actor = <span class="kw2">new</span> SadActor<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> performPlay<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span> actor.<span class="me1">act</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span> <span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> Transmogrify <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    Stage stage = <span class="kw2">new</span> Stage<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    stage.<span class="me1">performPlay</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    stage.<span class="me1">change</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    stage.<span class="me1">performPlay</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>&lt;spoiler text="Output:"&gt;
+</p>
+<pre>HappyActor
+SadActor
+</pre>
+<p>&lt;/spoiler&gt;
+Объект Stage содержит ссылку на объект <i><b>Actor</b></i>, которая инициализируется объектом <i><b>HappyActor</b></i>. Это значит, что метод <i><b>performPlay()</b></i>
+ имеет определенное поведение. Но так как ссылку на объект можно заново 
+присоединить к другому объекту во время выполнения программы, ссылке <i><b>actor</b></i> назначается объект <i><b>SadActor</b></i>, и после этого поведение метода <i><b>performPlay()</b></i> изменяется. 
+</p><p>Таким образом значительно улучшается динамика поведения на стадии
+ выполнения программы. С другой стороны, переключиться на другой способ 
+наследования во время работы программы невозможно; иерархия наследования
+ раз и навсегда определяется в процессе компиляции программы.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id=".D0.9D.D0.B8.D1.81.D1.85.D0.BE.D0.B4.D1.8F.D1.89.D0.B5.D0.B5_.D0.BF.D1.80.D0.B5.D0.BE.D0.B1.D1.80.D0.B0.D0.B7.D0.BE.D0.B2.D0.B0.D0.BD.D0.B8.D0.B5_.D0.B8_.D0.B4.D0.B8.D0.BD.D0.B0.D0.BC.D0.B8.D1.87.D0.B5.D1.81.D0.BA.D0.BE.D0.B5_.D0.BE.D0.BF.D1.80.D0.B5.D0.B4.D0.B5.D0.BB.D0.B5.D0.BD.D0.B8.D0.B5_.D1.82.D0.B8.D0.BF.D0.BE.D0.B2">Нисходящее преобразование и динамическое определение типов</span></h2>
+<p>Так как при проведении восходящего преобразования (передвижение вверх
+ по иерархии наследования) теряется информация, характерная для 
+определенного типа, возникает естественное желание восстановить ее с 
+помощью нисходящего преобразования. Впрочем, мы знаем, что восходящее 
+преобразование абсолютно безопасно; базовый класс не может иметь 
+«больший» интерфейс, чем производный класс, и поэтому любое сообщение, 
+посланное базовому классу, гарантированно дойдет до получателя. 
+</p><p>Но при использовании нисходящего преобразования вы не знаете 
+достоверно, что фигура (например) в действительности является 
+окружностью. С такой же вероятностью она может оказаться треугольником, 
+прямоугольником или другим типом. Должен существовать какой-то механизм,
+ гарантирующий правильность нисходящего преобразования; в противном 
+случае вы можете случайно использовать неверный тип, послав ему 
+сообщение, которое он не в состоянии принять. Это было бы небезопасно.
+</p><p>В некоторых языках (подобных <i>C++</i>) для проведения безопасного нисходящего преобразования типов необходимо провести специальную операцию, но в <i>Java</i>
+ каждое преобразование контролируется! Поэтому, хотя внешне все выглядит
+ как обычное приведение типов в круглых скобках, во время выполнения 
+программы это преобразование проходит проверку на фактическое 
+соответствие типу. Если типы не совпадают, происходит исключение <i><b>ClassCastException</b></i>. Процесс проверки типов во время выполнения программы называется динамическим определением типов (<i>run-time type identification, RTTI</i>). Следующий пример демонстрирует действие <i>RTTI</i>:
+</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="java5 source-java5"><pre class="de1"><span class="co1">//: polymorphism/RTTI.java</span>
+<span class="co1">// Нисходящее преобразование и динамическое определение типов (RTTI).</span>
+<span class="co1">// {ThrowsException}</span>
+&nbsp;
+<span class="kw2">class</span> Useful <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> f<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> g<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">class</span> MoreUseful <span class="kw2">extends</span> Useful <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> f<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> g<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> u<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> v<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+  <span class="kw2">public</span> <span class="kw3">void</span> w<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span>
+<span class="br0">}</span>	
+&nbsp;
+<span class="kw2">public</span> <span class="kw2">class</span> RTTI <span class="br0">{</span>
+  <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> main<span class="br0">(</span><span class="kw21">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+    Useful<span class="br0">[</span><span class="br0">]</span> x = <span class="br0">{</span>
+      <span class="kw2">new</span> Useful<span class="br0">(</span><span class="br0">)</span>,
+      <span class="kw2">new</span> MoreUseful<span class="br0">(</span><span class="br0">)</span>
+    <span class="br0">}</span><span class="sy0">;</span>
+    x<span class="br0">[</span><span class="nu0">0</span><span class="br0">]</span>.<span class="me1">f</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    x<span class="br0">[</span><span class="nu0">1</span><span class="br0">]</span>.<span class="me1">g</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="co1">// Стадия компиляции- метод не найден в классе Useful:</span>
+    <span class="co1">//! x[1].u();</span>
+    <span class="br0">(</span><span class="br0">(</span>MoreUseful<span class="br0">)</span>x<span class="br0">[</span><span class="nu0">1</span><span class="br0">]</span><span class="br0">)</span>.<span class="me1">u</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span> <span class="co1">// Нисх. преобразование /RTTI</span>
+    <span class="br0">(</span><span class="br0">(</span>MoreUseful<span class="br0">)</span>x<span class="br0">[</span><span class="nu0">0</span><span class="br0">]</span><span class="br0">)</span>.<span class="me1">u</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span> <span class="co1">//Происходит исключение</span>
+  <span class="br0">}</span>
+<span class="br0">}</span></pre></div></div>
+<p>Класс <i><b>MoreUseful</b></i> расширяет интерфейс класса <i><b>Useful</b></i>. Но благодаря наследованию он также может быть преобразован к типу <i><b>Useful</b></i>. Вы видите, как это происходит, при инициализации массива х в методе <i><b>main()</b></i>. Так как оба объекта в массиве являются производными от <i><b>Useful</b></i>, вы можете послать сообщения (вызвать методы) <i><b>f()</b></i> и <i><b>g()</b></i> для обоих объектов, но при попытке вызова метода <i><b>u()</b></i> (который существует только в классе <i><b>MoreUseful</b></i>) вы получите сообщение об ошибке компиляции.
+</p><p>Чтобы получить доступ к расширенному интерфейсу объекта <i><b>MoreUseful</b></i>, используйте нисходящее преобразование. Если тип указан правильно, все пройдет успешно; иначе произойдет исключение <i><b>ClassCastException.</b></i>
+ Вам не понадобится писать дополнительный код для этого исключения, 
+поскольку оно указывает на общую ошибку, которая может произойти в любом
+ месте программы.
+</p><p>Впрочем, <i>RTTI</i> не сводится к простой проверке 
+преобразований. Например, можно узнать, с каким типом вы имеете дело, 
+прежде чем проводить нисходящее преобразование. Глава 11 полностью 
+посвящена изучению различных аспектов динамического определения типов <i>Java</i>.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id=".D0.A0.D0.B5.D0.B7.D1.8E.D0.BC.D0.B5">Резюме</span></h2>
+<p>Полиморфизм означает «многообразие форм». В объектно-ориентированном 
+программировании базовый класс предоставляет общий интерфейс, а 
+различные версии динамически связываемых методов — разные формы 
+использования интерфейса.
+</p><p>Как было показано в этой главе, невозможно понять или создать 
+примеры с использованием полиморфизма, не прибегнув к абстракции данных и
+ наследованию. Полиморфизм — это возможность языка, которая не может 
+рассматриваться изолированно; она работает только согласованно, как 
+часть «общей картины» взаимоотношений классов.
+</p><p>Чтобы эффективно использовать полиморфизм — а значит, все 
+объектно- ориентированные приемы — в своих программах, необходимо 
+расширить свои представления о программировании, чтобы они охватывали не
+ только члены и сообщения отдельного класса, но и общие аспекты классов,
+ их взаимоотношения. Хотя это потребует значительных усилий, результат 
+стоит того. Наградой станет ускорение разработки программ, улучшение 
+структуры кода, расширяемые программы и сокращение усилий по 
+сопровождению кода.
+
+</p>
+                <p><br>
+                </p>
+                <hr>
+                <p><a href="http://wikijava.it-cache.net/index.php" title="Thinking in Java 4th edition">назад в Оглавление</a>
+                </p><p><br>
+                </p>
+<!-- 
+NewPP limit report
+CPU time usage: 1.792 seconds
+Real time usage: 2.506 seconds
+Preprocessor visited node count: 225/1000000
+Preprocessor generated node count: 480/1000000
+Post‐expand include size: 242/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 3/40
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key wjava2-wj_:pcache:idhash:22-0!*!*!!ru!2!* and timestamp 20140813073623
+ -->
+</div>								<div class="printfooter">
+				Источник — «<a href="http://wikijava.org.ua/index.php?title=Glava_8_Thinking_in_Java_4th_edition&amp;oldid=32">http://wikijava.org.ua/index.php?title=Глава_8_Thinking_in_Java_4th_edition&amp;oldid=32</a>»				</div>
+                                <div id="catlinks" class="catlinks"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%9A%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D0%B8" title="Служебная:Категории">Категории</a>: <ul><li><a href="http://wikijava.org.ua/index.php?title=%D0%9A%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D1%8F:%D0%9A%D0%BD%D0%B8%D0%B3%D0%B8" title="Категория:Книги">Книги</a></li><li><a href="http://wikijava.org.ua/index.php?title=%D0%9A%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D1%8F:Java" title="Категория:Java">Java</a></li><li><a href="http://wikijava.org.ua/index.php?title=%D0%9A%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D1%8F:%D0%A1%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D1%8B_%D1%81_%D0%BD%D0%B5%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D1%8E%D1%89%D0%B8%D0%BC%D0%B8_%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2%D1%8B%D0%BC%D0%B8_%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D0%B0%D0%BC%D0%B8" title="Категория:Страницы с неработающими файловыми ссылками">Страницы с неработающими файловыми ссылками</a></li></ul></div></div>												<div class="visualClear"></div>
+            </div>
+		</div>
+		<div id="mw-navigation">
+			<h2>Навигация</h2>
+			<div id="mw-head">
+				<div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
+	<h3 id="p-personal-label">Персональные инструменты</h3>
+	<ul>
+<li id="pt-login"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%92%D1%85%D0%BE%D0%B4&amp;returnto=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0+8+Thinking+in+Java+4th+edition" title="Здесь можно зарегистрироваться в системе, но это необязательно. [o]" accesskey="o">Представиться системе</a></li>	</ul>
+</div>
+				<div id="left-navigation">
+					<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
+	<h3 id="p-namespaces-label">Пространства имён</h3>
+	<ul>
+					<!--<li  id="ca-nstab-main" class="selected"><span><a href="index.php@title=Glava_8_Thinking_in_Java_4th_edition.html"  title="Просмотр основной страницы [c]" accesskey="c">Статья</a></span></li>-->
+					<!--<li  id="ca-talk" class="new"><span><a href="http://wikijava.org.ua/index.php?title=%D0%9E%D0%B1%D1%81%D1%83%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5:%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_8_Thinking_in_Java_4th_edition&amp;action=edit&amp;redlink=1"  title="Обсуждение основной страницы [t]" accesskey="t">Обсуждение</a></span></li>-->
+			</ul>
+</div>
+<div id="p-variants" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-variants-label">
+	<h3 id="mw-vector-current-variant">
+		</h3>
+	<h3 id="p-variants-label"><span>Варианты</span><a href="http://wikijava.it-cache.net/index.php@title=Glava_8_Thinking_in_Java_4th_edition.html#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+				</div>
+				<div id="right-navigation">
+					<div id="p-views" role="navigation" class="vectorTabs" aria-labelledby="p-views-label">
+	<h3 id="p-views-label">Просмотры</h3>
+	<ul>
+					<!--<li id="ca-view" class="selected"><span><a href="index.php@title=Glava_8_Thinking_in_Java_4th_edition.html" >Читать</a></span></li>-->
+					<!--<li id="ca-viewsource"><span><a href="http://wikijava.org.ua/index.php?title=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_8_Thinking_in_Java_4th_edition&amp;action=edit"  title="Эта страница защищена от изменений, но вы можете посмотреть и скопировать её исходный текст [e]" accesskey="e">Просмотр</a></span></li>-->
+					<!--<li id="ca-history" class="collapsible"><span><a href="http://wikijava.org.ua/index.php?title=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_8_Thinking_in_Java_4th_edition&amp;action=history"  title="Журнал изменений страницы [h]" accesskey="h">История</a></span></li>-->
+			</ul>
+</div>
+<div id="p-cactions" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-cactions-label">
+	<h3 id="p-cactions-label"><span>Действия</span><a href="http://wikijava.it-cache.net/index.php@title=Glava_8_Thinking_in_Java_4th_edition.html#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+<div id="p-search" role="search">
+	<h3><label for="searchInput">Поиск</label></h3>
+	<form action="http://wikijava.org.ua/index.php" id="searchform">
+				<div id="simpleSearch">
+						<input name="search" placeholder="Поиск" title="Искать в WikiJava: Wiki of Java: викифицированные книги и статьи по Java [f]" accesskey="f" id="searchInput">						<button type="submit" name="button" title="Найти страницы, содержащие указанный текст" id="searchButton"><img src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%208_files/search-ltr.asc" alt="Найти" height="13" width="12"></button>								<input name="title" value="Служебная:Поиск" type="hidden">
+		</div>
+	</form>
+</div>
+				</div>
+			</div>
+			<div id="mw-panel">
+					<!--<div id="p-logo" role="banner"><a style="background-image: url(/skins/common/images/wikijava.png);" href="index.php@title=Заглавная_страница.html"  title="Перейти на заглавную страницу"></a></div>-->
+				<div class="portal" role="navigation" id="p-navigation" aria-labelledby="p-navigation-label">
+	<h3 id="p-navigation-label">Навигация</h3>
+	<div class="body">
+        <ul>
+            <li id="n-mainpage-description"><a href="http://wikijava.org.ua/index.php?title=%D0%97%D0%B0%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F_%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0" title="Перейти на заглавную страницу [z]" accesskey="z">Заглавная страница</a></li>
+            <li id="n-recentchanges"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%B2%D0%B5%D0%B6%D0%B8%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8" title="Список последних изменений [r]" accesskey="r">Свежие правки</a></li>
+            <li id="n-.D0.9A.D0.BD.D0.B8.D0.B3.D0.B8-Java"><a href="http://wikijava.org.ua/index.php?title=%D0%9A%D0%BD%D0%B8%D0%B3%D0%B8_Java">Книги Java</a></li>
+            <li id="n-.D0.A1.D1.82.D0.B0.D1.82.D1.8C.D0.B8-Java"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D1%82%D0%B0%D1%82%D1%8C%D0%B8_Java">Статьи Java</a></li>
+            <li id="n-Java-.D0.BF.D0.BE.D1.80.D1.82.D0.B0.D0.BB"><a href="http://wikijava.org.ua/index.php?title=Java-portal">Java портал</a></li>
+            <li id="n-help"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B0:%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5" title="Место, где можно получить справку">Справка</a></li>
+            <li id="n-.D0.A1.D1.82.D0.B0.D1.82.D0.B8.D1.81.D1.82.D0.B8.D0.BA.D0.B0"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%81%D1%82%D0%B8%D0%BA%D0%B0">Статистика</a></li>
+        </ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id="p-tb" aria-labelledby="p-tb-label">
+	<h3 id="p-tb-label">Инструменты</h3>
+	<div class="body">
+		<ul>
+			<li id="t-whatlinkshere"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D1%81%D1%8B%D0%BB%D0%BA%D0%B8_%D1%81%D1%8E%D0%B4%D0%B0/%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_8_Thinking_in_Java_4th_edition" title="Список всех страниц, ссылающихся на данную [j]" accesskey="j">Ссылки сюда</a></li>
+			<li id="t-recentchangeslinked"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%B2%D1%8F%D0%B7%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8/%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_8_Thinking_in_Java_4th_edition" title="Последние изменения в страницах, на которые ссылается эта страница [k]" accesskey="k">Связанные правки</a></li>
+			<li id="t-specialpages"><a href="http://wikijava.org.ua/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%BF%D0%B5%D1%86%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D1%8B" title="Список служебных страниц [q]" accesskey="q">Спецстраницы</a></li>
+			<li id="t-print"><a href="http://wikijava.org.ua/index.php?title=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_8_Thinking_in_Java_4th_edition&amp;printable=yes" rel="alternate" title="Версия этой страницы для печати [p]" accesskey="p">Версия для печати</a></li>
+			<li id="t-permalink"><a href="http://wikijava.org.ua/index.php?title=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_8_Thinking_in_Java_4th_edition&amp;oldid=32" title="Постоянная ссылка на эту версию страницы">Постоянная ссылка</a></li>
+			<li id="t-info"><a href="http://wikijava.org.ua/index.php?title=%D0%93%D0%BB%D0%B0%D0%B2%D0%B0_8_Thinking_in_Java_4th_edition&amp;action=info">Сведения о странице</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id="p-.D0.94.D1.80.D1.83.D0.B3.D0.B8.D0.B5_.D0.BF.D1.80.D0.BE.D0.B5.D0.BA.D1.82.D1.8B" aria-labelledby="p-.D0.94.D1.80.D1.83.D0.B3.D0.B8.D0.B5_.D0.BF.D1.80.D0.BE.D0.B5.D0.BA.D1.82.D1.8B-label">
+	<h3 id="p-.D0.94.D1.80.D1.83.D0.B3.D0.B8.D0.B5_.D0.BF.D1.80.D0.BE.D0.B5.D0.BA.D1.82.D1.8B-label">Другие проекты</h3>
+	<div class="body">
+		<ul>
+			<li id="n-rastafara.com.ua"><a href="http://rastafara.com.ua/" rel="nofollow">rastafara.com.ua</a></li>
+			<li id="n-rastafara-blog"><a href="http://sergey-rastafara.blogspot.com/" rel="nofollow">rastafara blog</a></li>
+			<li id="n-rastaban"><a href="http://rastaban.com.ua/" rel="nofollow">rastaban</a></li>
+		</ul>
+	</div>
+</div>
+			</div>
+		</div>
+		<div id="footer" role="contentinfo">
+							<ul id="footer-info">
+											<li id="footer-info-lastmod"> Последнее изменение этой страницы: 21:36, 16 февраля 2014.</li>
+											<li id="footer-info-viewcount">К этой странице обращались 3489 раза.</li>
+											<li id="footer-info-copyright">Содержимое доступно по лицензии <a class="external" rel="nofollow" href="http://www.gnu.org/copyleft/fdl.html">GNU Free Documentation License 1.3 или более поздняя</a> (если не указано иное).</li>
+									</ul>
+							<ul id="footer-places">
+											<li id="footer-places-privacy"><a href="http://wikijava.org.ua/index.php?title=WikiJava:_Wiki_of_Java:_%D0%B2%D0%B8%D0%BA%D0%B8%D1%84%D0%B8%D1%86%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5_%D0%BA%D0%BD%D0%B8%D0%B3%D0%B8_%D0%B8_%D1%81%D1%82%D0%B0%D1%82%D1%8C%D0%B8_%D0%BF%D0%BE_Java:%D0%9F%D0%BE%D0%BB%D0%B8%D1%82%D0%B8%D0%BA%D0%B0_%D0%BA%D0%BE%D0%BD%D1%84%D0%B8%D0%B4%D0%B5%D0%BD%D1%86%D0%B8%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D0%B8" title="WikiJava: Wiki of Java: викифицированные книги и статьи по Java:Политика конфиденциальности">Политика конфиденциальности</a></li>
+											<li id="footer-places-about"><a href="http://wikijava.org.ua/index.php?title=WikiJava:_Wiki_of_Java:_%D0%B2%D0%B8%D0%BA%D0%B8%D1%84%D0%B8%D1%86%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5_%D0%BA%D0%BD%D0%B8%D0%B3%D0%B8_%D0%B8_%D1%81%D1%82%D0%B0%D1%82%D1%8C%D0%B8_%D0%BF%D0%BE_Java:%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5" title="WikiJava: Wiki of Java: викифицированные книги и статьи по Java:Описание">Описание WikiJava: Wiki of Java: викифицированные книги и статьи по Java</a></li>
+											<li id="footer-places-disclaimer"><a href="http://wikijava.org.ua/index.php?title=WikiJava:_Wiki_of_Java:_%D0%B2%D0%B8%D0%BA%D0%B8%D1%84%D0%B8%D1%86%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5_%D0%BA%D0%BD%D0%B8%D0%B3%D0%B8_%D0%B8_%D1%81%D1%82%D0%B0%D1%82%D1%8C%D0%B8_%D0%BF%D0%BE_Java:%D0%9E%D1%82%D0%BA%D0%B0%D0%B7_%D0%BE%D1%82_%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D0%BE%D1%81%D1%82%D0%B8" title="WikiJava: Wiki of Java: викифицированные книги и статьи по Java:Отказ от ответственности">Отказ от ответственности</a></li>
+									</ul>
+										<ul id="footer-icons" class="noprint">
+					<li id="footer-copyrightico">
+						<a href="http://www.gnu.org/copyleft/fdl.html"><img src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%208_files/gnu-fdl.png" alt="GNU Free Documentation License 1.3 или более поздняя" height="31" width="88"></a>
+					</li>
+					<li id="footer-poweredbyico">
+						<a href="http://www.mediawiki.org/"><img src="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0%208_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" height="31" width="88"></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<script>/*<![CDATA[*/window.jQuery && jQuery.ready();/*]]>*/</script><script>if(window.mw){
+mw.loader.state({"site":"loading","user":"ready","user.groups":"ready"});
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.action.view.postEdit","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest","ext.vector.collapsibleNav","ext.vector.collapsibleTabs","ext.vector.editWarning","ext.vector.simpleSearch","skins.vector.collapsibleNav"],null,true);
+}</script>
+<script>if(window.mw){
+mw.loader.state({"site":"ready"});
+}</script>
+<!-- Served in 0.236 secs. -->
+	
+
+</body></html>

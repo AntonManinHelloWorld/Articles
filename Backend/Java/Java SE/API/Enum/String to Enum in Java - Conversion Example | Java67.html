@@ -1,0 +1,2522 @@
+<!DOCTYPE html>
+<html class="v2" dir="ltr" xmlns="http://www.w3.org/1999/xhtml" xmlns:b="http://www.google.com/2005/gml/b" xmlns:data="http://www.google.com/2005/gml/data" xmlns:expr="http://www.google.com/2005/gml/expr"><head>
+<meta content="width=1100" name="viewport">
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<script async="" src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/cbgapi.loaded_4"></script><script async="" src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/cbgapi.loaded_3"></script><script async="" src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/cbgapi.loaded_2"></script><script async="" src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/cbgapi.loaded_1"></script><script async="" src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/cbgapi.loaded_0"></script><script src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/ti.js"></script><script src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/ga.js" async="" type="text/javascript"></script><script type="text/javascript">(function() { (function(){function c(a){this.t={};this.tick=function(a,c,b){var d=void 0!=b?b:(new Date).getTime();this.t[a]=[d,c];if(void 0==b)try{window.console.timeStamp("CSI/"+a)}catch(e){}};this.tick("start",null,a)}var a;window.performance&&(a=window.performance.timing);var h=a?new c(a.responseStart):new c;window.jstiming={Timer:c,load:h};if(a){var b=a.navigationStart,e=a.responseStart;0<b&&e>=b&&(window.jstiming.srt=e-b)}if(a){var d=window.jstiming.load;0<b&&e>=b&&(d.tick("_wtsrt",void 0,b),d.tick("wtsrt_",
+"_wtsrt",e),d.tick("tbsd_","wtsrt_"))}try{a=null,window.chrome&&window.chrome.csi&&(a=Math.floor(window.chrome.csi().pageT),d&&0<b&&(d.tick("_tbnd",void 0,window.chrome.csi().startE),d.tick("tbnd_","_tbnd",b))),null==a&&window.gtbExternal&&(a=window.gtbExternal.pageT()),null==a&&window.external&&(a=window.external.pageT,d&&0<b&&(d.tick("_tbnd",void 0,window.external.startE),d.tick("tbnd_","_tbnd",b))),a&&(window.jstiming.pt=a)}catch(k){}})();window.tickAboveFold=function(c){var a=0;if(c.offsetParent){do a+=c.offsetTop;while(c=c.offsetParent)}c=a;750>=c&&window.jstiming.load.tick("aft")};var f=!1;function g(){f||(f=!0,window.jstiming.load.tick("firstScrollTime"))}window.addEventListener?window.addEventListener("scroll",g,!1):window.attachEvent("onscroll",g);
+ })();</script>
+<meta content="blogger" name="generator">
+<link href="http://java67.blogspot.de/favicon.ico" rel="icon" type="image/x-icon">
+<link href="http://java67.blogspot.com/2012/08/how-to-create-enum-from-string-in-java.html" rel="canonical">
+<link rel="alternate" type="application/atom+xml" title="Java67 - Atom" href="http://java67.blogspot.com/feeds/posts/default">
+<link rel="alternate" type="application/rss+xml" title="Java67 - RSS" href="http://java67.blogspot.com/feeds/posts/default?alt=rss">
+<link rel="service.post" type="application/atom+xml" title="Java67 - Atom" href="https://www.blogger.com/feeds/694855878384792308/posts/default">
+
+<link rel="alternate" type="application/atom+xml" title="Java67 - Atom" href="http://java67.blogspot.com/feeds/6939925714905304276/comments/default">
+<!--[if IE]><script type="text/javascript" src="https://www.blogger.com/static/v1/jsbin/1494333581-ieretrofit.js"></script>
+<![endif]-->
+<link href="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/java_logo_50_50.jpg" rel="image_src">
+<link href="https://plus.google.com/114528699166048052030" rel="publisher">
+<!--[if IE]> <script> (function() { var html5 = ("abbr,article,aside,audio,canvas,datalist,details," + "figure,footer,header,hgroup,mark,menu,meter,nav,output," + "progress,section,time,video").split(','); for (var i = 0; i < html5.length; i++) { document.createElement(html5[i]); } try { document.execCommand('BackgroundImageCache', false, true); } catch(e) {} })(); </script> <![endif]-->
+<title>String to Enum in Java - Conversion Example | Java67</title>
+<link type="text/css" rel="stylesheet" href="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/1578089587-css_bundle_v2.css">
+<link type="text/css" rel="stylesheet" href="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/gsearch.css">
+<link type="text/css" rel="stylesheet" href="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/authorization.css">
+<style id="page-skin-1" type="text/css"><!--
+/*
+-----------------------------------------------
+Blogger Template Style
+Name:     Simple
+Designer: Josh Peterson
+URL:      www.noaesthetic.com
+----------------------------------------------- */
+/* Variable definitions
+====================
+<Variable name="keycolor" description="Main Color" type="color" default="#66bbdd"/>
+<Group description="Page Text" selector="body">
+<Variable name="body.font" description="Font" type="font"
+default="normal normal 12px Arial, Tahoma, Helvetica, FreeSans, sans-serif"/>
+<Variable name="body.text.color" description="Text Color" type="color" default="#222222"/>
+</Group>
+<Group description="Backgrounds" selector=".body-fauxcolumns-outer">
+<Variable name="body.background.color" description="Outer Background" type="color" default="#66bbdd"/>
+<Variable name="content.background.color" description="Main Background" type="color" default="#ffffff"/>
+<Variable name="header.background.color" description="Header Background" type="color" default="transparent"/>
+</Group>
+<Group description="Links" selector=".main-outer">
+<Variable name="link.color" description="Link Color" type="color" default="#2288bb"/>
+<Variable name="link.visited.color" description="Visited Color" type="color" default="#888888"/>
+<Variable name="link.hover.color" description="Hover Color" type="color" default="#33aaff"/>
+</Group>
+<Group description="Blog Title" selector=".header h1">
+<Variable name="header.font" description="Font" type="font"
+default="normal normal 60px Arial, Tahoma, Helvetica, FreeSans, sans-serif"/>
+<Variable name="header.text.color" description="Title Color" type="color" default="#3399bb" />
+</Group>
+<Group description="Blog Description" selector=".header .description">
+<Variable name="description.text.color" description="Description Color" type="color"
+default="#777777" />
+</Group>
+<Group description="Tabs Text" selector=".tabs-inner .widget li a">
+<Variable name="tabs.font" description="Font" type="font"
+default="normal normal 14px Arial, Tahoma, Helvetica, FreeSans, sans-serif"/>
+<Variable name="tabs.text.color" description="Text Color" type="color" default="#999999"/>
+<Variable name="tabs.selected.text.color" description="Selected Color" type="color" default="#000000"/>
+</Group>
+<Group description="Tabs Background" selector=".tabs-outer .PageList">
+<Variable name="tabs.background.color" description="Background Color" type="color" default="#f5f5f5"/>
+<Variable name="tabs.selected.background.color" description="Selected Color" type="color" default="#eeeeee"/>
+</Group>
+<Group description="Post Title" selector="h3.post-title, .comments h4">
+<Variable name="post.title.font" description="Font" type="font"
+default="normal normal 22px Arial, Tahoma, Helvetica, FreeSans, sans-serif"/>
+</Group>
+<Group description="Date Header" selector=".date-header">
+<Variable name="date.header.color" description="Text Color" type="color"
+default="#222222"/>
+<Variable name="date.header.background.color" description="Background Color" type="color"
+default="transparent"/>
+<Variable name="date.header.font" description="Text Font" type="font"
+default="normal bold 11px Arial, Tahoma, Helvetica, FreeSans, sans-serif"/>
+<Variable name="date.header.padding" description="Date Header Padding" type="string" default="inherit"/>
+<Variable name="date.header.letterspacing" description="Date Header Letter Spacing" type="string" default="inherit"/>
+<Variable name="date.header.margin" description="Date Header Margin" type="string" default="inherit"/>
+</Group>
+<Group description="Post Footer" selector=".post-footer">
+<Variable name="post.footer.text.color" description="Text Color" type="color" default="#666666"/>
+<Variable name="post.footer.background.color" description="Background Color" type="color"
+default="#f9f9f9"/>
+<Variable name="post.footer.border.color" description="Shadow Color" type="color" default="#eeeeee"/>
+</Group>
+<Group description="Gadgets" selector="h2">
+<Variable name="widget.title.font" description="Title Font" type="font"
+default="normal bold 11px Arial, Tahoma, Helvetica, FreeSans, sans-serif"/>
+<Variable name="widget.title.text.color" description="Title Color" type="color" default="#000000"/>
+<Variable name="widget.alternate.text.color" description="Alternate Color" type="color" default="#999999"/>
+</Group>
+<Group description="Images" selector=".main-inner">
+<Variable name="image.background.color" description="Background Color" type="color" default="#ffffff"/>
+<Variable name="image.border.color" description="Border Color" type="color" default="#eeeeee"/>
+<Variable name="image.text.color" description="Caption Text Color" type="color" default="#222222"/>
+</Group>
+<Group description="Accents" selector=".content-inner">
+<Variable name="body.rule.color" description="Separator Line Color" type="color" default="#eeeeee"/>
+<Variable name="tabs.border.color" description="Tabs Border Color" type="color" default="#eee5dd"/>
+</Group>
+<Variable name="body.background" description="Body Background" type="background"
+color="#513831" default="$(color) none repeat scroll top left"/>
+<Variable name="body.background.override" description="Body Background Override" type="string" default=""/>
+<Variable name="body.background.gradient.cap" description="Body Gradient Cap" type="url"
+default="url(//www.blogblog.com/1kt/simple/gradients_light.png)"/>
+<Variable name="body.background.gradient.tile" description="Body Gradient Tile" type="url"
+default="url(//www.blogblog.com/1kt/simple/body_gradient_tile_light.png)"/>
+<Variable name="content.background.color.selector" description="Content Background Color Selector" type="string" default=".content-inner"/>
+<Variable name="content.padding" description="Content Padding" type="length" default="10px" min="0" max="100px"/>
+<Variable name="content.padding.horizontal" description="Content Horizontal Padding" type="length" default="10px" min="0" max="100px"/>
+<Variable name="content.shadow.spread" description="Content Shadow Spread" type="length" default="40px" min="0" max="100px"/>
+<Variable name="content.shadow.spread.webkit" description="Content Shadow Spread (WebKit)" type="length" default="5px" min="0" max="100px"/>
+<Variable name="content.shadow.spread.ie" description="Content Shadow Spread (IE)" type="length" default="10px" min="0" max="100px"/>
+<Variable name="main.border.width" description="Main Border Width" type="length" default="0" min="0" max="10px"/>
+<Variable name="header.background.gradient" description="Header Gradient" type="url" default="none"/>
+<Variable name="header.shadow.offset.left" description="Header Shadow Offset Left" type="length" default="-1px" min="-50px" max="50px"/>
+<Variable name="header.shadow.offset.top" description="Header Shadow Offset Top" type="length" default="-1px" min="-50px" max="50px"/>
+<Variable name="header.shadow.spread" description="Header Shadow Spread" type="length" default="1px" min="0" max="100px"/>
+<Variable name="header.padding" description="Header Padding" type="length" default="30px" min="0" max="100px"/>
+<Variable name="header.border.size" description="Header Border Size" type="length" default="1px" min="0" max="10px"/>
+<Variable name="header.bottom.border.size" description="Header Bottom Border Size" type="length" default="0" min="0" max="10px"/>
+<Variable name="header.border.horizontalsize" description="Header Horizontal Border Size" type="length" default="0" min="0" max="10px"/>
+<Variable name="description.text.size" description="Description Text Size" type="string" default="140%"/>
+<Variable name="tabs.margin.top" description="Tabs Margin Top" type="length" default="0" min="0" max="100px"/>
+<Variable name="tabs.margin.side" description="Tabs Side Margin" type="length" default="30px" min="0" max="100px"/>
+<Variable name="tabs.background.gradient" description="Tabs Background Gradient" type="url"
+default="url(//www.blogblog.com/1kt/simple/gradients_light.png)"/>
+<Variable name="tabs.border.width" description="Tabs Border Width" type="length" default="1px" min="0" max="10px"/>
+<Variable name="tabs.bevel.border.width" description="Tabs Bevel Border Width" type="length" default="1px" min="0" max="10px"/>
+<Variable name="post.margin.bottom" description="Post Bottom Margin" type="length" default="25px" min="0" max="100px"/>
+<Variable name="image.border.small.size" description="Image Border Small Size" type="length" default="2px" min="0" max="10px"/>
+<Variable name="image.border.large.size" description="Image Border Large Size" type="length" default="5px" min="0" max="10px"/>
+<Variable name="page.width.selector" description="Page Width Selector" type="string" default=".region-inner"/>
+<Variable name="page.width" description="Page Width" type="string" default="auto"/>
+<Variable name="main.section.margin" description="Main Section Margin" type="length" default="15px" min="0" max="100px"/>
+<Variable name="main.padding" description="Main Padding" type="length" default="15px" min="0" max="100px"/>
+<Variable name="main.padding.top" description="Main Padding Top" type="length" default="30px" min="0" max="100px"/>
+<Variable name="main.padding.bottom" description="Main Padding Bottom" type="length" default="30px" min="0" max="100px"/>
+<Variable name="paging.background"
+color="#fff9ee"
+description="Background of blog paging area" type="background"
+default="transparent none no-repeat scroll top center"/>
+<Variable name="footer.bevel" description="Bevel border length of footer" type="length" default="0" min="0" max="10px"/>
+<Variable name="mobile.background.overlay" description="Mobile Background Overlay" type="string"
+default="transparent none repeat scroll top left"/>
+<Variable name="mobile.background.size" description="Mobile Background Size" type="string" default="auto"/>
+<Variable name="mobile.button.color" description="Mobile Button Color" type="color" default="#ffffff" />
+<Variable name="startSide" description="Side where text starts in blog language" type="automatic" default="left"/>
+<Variable name="endSide" description="Side where text ends in blog language" type="automatic" default="right"/>
+*/
+/* Content
+----------------------------------------------- */
+body {
+font: normal normal 16px Georgia, Utopia, 'Palatino Linotype', Palatino, serif;
+color: #222222;
+background: #513831 none no-repeat scroll center center;
+padding: 0 40px 40px 40px;
+}
+html body .region-inner {
+min-width: 0;
+max-width: 100%;
+width: auto;
+}
+h2 {
+font-size: 22px;
+}
+a:link {
+text-decoration:none;
+color: #993300;
+}
+a:visited {
+text-decoration:none;
+color: #888888;
+}
+a:hover {
+text-decoration:underline;
+color: #ff1900;
+}
+.body-fauxcolumn-outer .fauxcolumn-inner {
+background: transparent none repeat scroll top left;
+_background-image: none;
+}
+.body-fauxcolumn-outer .cap-top {
+position: absolute;
+z-index: 1;
+height: 400px;
+width: 100%;
+background: #513831 none no-repeat scroll center center;
+}
+.body-fauxcolumn-outer .cap-top .cap-left {
+width: 100%;
+background: transparent none repeat-x scroll top left;
+_background-image: none;
+}
+.content-outer {
+-moz-box-shadow: 0 0 40px rgba(0, 0, 0, .15);
+-webkit-box-shadow: 0 0 5px rgba(0, 0, 0, .15);
+-goog-ms-box-shadow: 0 0 10px #333333;
+box-shadow: 0 0 40px rgba(0, 0, 0, .15);
+margin-bottom: 1px;
+}
+.content-inner {
+padding: 10px 10px;
+}
+.content-inner {
+background-color: #fff9ee;
+}
+/* Header
+----------------------------------------------- */
+.header-outer {
+background: #ccb666 url(//www.blogblog.com/1kt/simple/gradients_light.png) repeat-x scroll 0 -400px;
+_background-image: none;
+}
+.Header h2 {
+font: normal normal 48px Georgia, Utopia, 'Palatino Linotype', Palatino, serif;
+color: #ffffff;
+text-shadow: 1px 2px 3px rgba(0, 0, 0, .2);
+}
+.Header h2 a {
+color: #ffffff;
+}
+.Header .description {
+font-size: 140%;
+color: #ffffff;
+}
+.header-inner .Header .titlewrapper {
+padding: 22px 30px;
+}
+.header-inner .Header .descriptionwrapper {
+padding: 0 30px;
+}
+/* Tabs
+----------------------------------------------- */
+.tabs-inner .section:first-child {
+border-top: 0 solid #eee5dd;
+}
+.tabs-inner .section:first-child ul {
+margin-top: -0;
+border-top: 0 solid #eee5dd;
+border-left: 0 solid #eee5dd;
+border-right: 0 solid #eee5dd;
+}
+.tabs-inner .widget ul {
+background: #fff9ee none repeat-x scroll 0 -800px;
+_background-image: none;
+border-bottom: 1px solid #eee5dd;
+margin-top: 0;
+margin-left: -30px;
+margin-right: -30px;
+}
+.tabs-inner .widget li a {
+display: inline-block;
+padding: .6em 1em;
+font: normal normal 16px Georgia, Utopia, 'Palatino Linotype', Palatino, serif;
+color: #998877;
+border-left: 1px solid #fff9ee;
+border-right: 1px solid #eee5dd;
+}
+.tabs-inner .widget li:first-child a {
+border-left: none;
+}
+.tabs-inner .widget li.selected a, .tabs-inner .widget li a:hover {
+color: #000000;
+background-color: #fff9ee;
+text-decoration: none;
+}
+/* Columns
+----------------------------------------------- */
+.main-outer {
+border-top: 0 solid #eee5dd;
+}
+.fauxcolumn-left-outer .fauxcolumn-inner {
+border-right: 1px solid #eee5dd;
+}
+.fauxcolumn-right-outer .fauxcolumn-inner {
+border-left: 1px solid #eee5dd;
+}
+/* Headings
+----------------------------------------------- */
+div.widget > h2,
+div.widget h2.title {
+margin: 0 0 1em 0;
+font: normal bold 12px Georgia, Utopia, 'Palatino Linotype', Palatino, serif;
+color: #000000;
+}
+/* Widgets
+----------------------------------------------- */
+.widget .zippy {
+color: #999999;
+text-shadow: 2px 2px 1px rgba(0, 0, 0, .1);
+}
+.widget .popular-posts ul {
+list-style: none;
+}
+/* Posts
+----------------------------------------------- */
+h2.date-header {
+font: normal bold 11px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+}
+.date-header span {
+background-color: transparent;
+color: #222222;
+padding: inherit;
+letter-spacing: inherit;
+margin: inherit;
+}
+.main-inner {
+padding-top: 30px;
+padding-bottom: 30px;
+}
+.main-inner .column-center-inner {
+padding: 0 15px;
+}
+.main-inner .column-center-inner .section {
+margin: 0 15px;
+}
+.post {
+margin: 0 0 25px 0;
+}
+h1.post-title, .comments h4 {
+font: normal normal 24px Georgia, Utopia, 'Palatino Linotype', Palatino, serif;
+margin: .75em 0 0;
+}
+.post-body {
+font-size: 110%;
+line-height: 1.5;
+position: relative;
+}
+.post-body img, .post-body .tr-caption-container, .Profile img, .Image img,
+.BlogList .item-thumbnail img {
+padding: 2px;
+background: #ffffff;
+border: 1px solid #eeeeee;
+-moz-box-shadow: 1px 1px 5px rgba(0, 0, 0, .1);
+-webkit-box-shadow: 1px 1px 5px rgba(0, 0, 0, .1);
+box-shadow: 1px 1px 5px rgba(0, 0, 0, .1);
+}
+.post-body img, .post-body .tr-caption-container {
+padding: 5px;
+}
+.post-body .tr-caption-container {
+color: #222222;
+}
+.post-body .tr-caption-container img {
+padding: 0;
+background: transparent;
+border: none;
+-moz-box-shadow: 0 0 0 rgba(0, 0, 0, .1);
+-webkit-box-shadow: 0 0 0 rgba(0, 0, 0, .1);
+box-shadow: 0 0 0 rgba(0, 0, 0, .1);
+}
+.post-header {
+margin: 0 0 1.5em;
+line-height: 1.6;
+font-size: 90%;
+}
+.post-footer {
+margin: 20px -2px 0;
+padding: 5px 10px;
+color: #666555;
+background-color: #eee9dd;
+border-bottom: 1px solid #eeeeee;
+line-height: 1.6;
+font-size: 90%;
+}
+#comments .comment-author {
+padding-top: 1.5em;
+border-top: 1px solid #eee5dd;
+background-position: 0 1.5em;
+}
+#comments .comment-author:first-child {
+padding-top: 0;
+border-top: none;
+}
+.avatar-image-container {
+margin: .2em 0 0;
+}
+#comments .avatar-image-container img {
+border: 1px solid #eeeeee;
+}
+/* Comments
+----------------------------------------------- */
+.comments .comments-content .icon.blog-author {
+background-repeat: no-repeat;
+background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEgAACxIB0t1+/AAAAAd0SU1FB9sLFwMeCjjhcOMAAAD+SURBVDjLtZSvTgNBEIe/WRRnm3U8RC1neQdsm1zSBIU9VVF1FkUguQQsD9ITmD7ECZIJSE4OZo9stoVjC/zc7ky+zH9hXwVwDpTAWWLrgS3QAe8AZgaAJI5zYAmc8r0G4AHYHQKVwII8PZrZFsBFkeRCABYiMh9BRUhnSkPTNCtVXYXURi1FpBDgArj8QU1eVXUzfnjv7yP7kwu1mYrkWlU33vs1QNu2qU8pwN0UpKoqokjWwCztrMuBhEhmh8bD5UDqur75asbcX0BGUB9/HAMB+r32hznJgXy2v0sGLBcyAJ1EK3LFcbo1s91JeLwAbwGYu7TP/3ZGfnXYPgAVNngtqatUNgAAAABJRU5ErkJggg==);
+}
+.comments .comments-content .loadmore a {
+border-top: 1px solid #999999;
+border-bottom: 1px solid #999999;
+}
+.comments .comment-thread.inline-thread {
+background-color: #eee9dd;
+}
+.comments .continue {
+border-top: 2px solid #999999;
+}
+/* Accents
+---------------------------------------------- */
+.section-columns td.columns-cell {
+border-left: 1px solid #eee5dd;
+}
+.blog-pager {
+background: transparent none no-repeat scroll top center;
+}
+.blog-pager-older-link, .home-link,
+.blog-pager-newer-link {
+background-color: #fff9ee;
+padding: 5px;
+}
+.footer-outer {
+border-top: 0 dashed #bbbbbb;
+}
+/* Mobile
+----------------------------------------------- */
+body.mobile  {
+background-size: auto;
+}
+.mobile .body-fauxcolumn-outer {
+background: transparent none repeat scroll top left;
+}
+.mobile .body-fauxcolumn-outer .cap-top {
+background-size: 100% auto;
+}
+.mobile .content-outer {
+-webkit-box-shadow: 0 0 3px rgba(0, 0, 0, .15);
+box-shadow: 0 0 3px rgba(0, 0, 0, .15);
+}
+body.mobile .AdSense {
+margin: 0 -40px;
+}
+.mobile .tabs-inner .widget ul {
+margin-left: 0;
+margin-right: 0;
+}
+.mobile .post {
+margin: 0;
+}
+.mobile .main-inner .column-center-inner .section {
+margin: 0;
+}
+.mobile .date-header span {
+padding: 0.1em 10px;
+margin: 0 -10px;
+}
+.mobile h3.post-title {
+margin: 0;
+}
+.mobile .blog-pager {
+background: transparent none no-repeat scroll top center;
+}
+.mobile .footer-outer {
+border-top: none;
+}
+.mobile .main-inner, .mobile .footer-inner {
+background-color: #fff9ee;
+}
+.mobile-index-contents {
+color: #222222;
+}
+.mobile-link-button {
+background-color: #993300;
+}
+.mobile-link-button a:link, .mobile-link-button a:visited {
+color: #ffffff;
+}
+.mobile .tabs-inner .section:first-child {
+border-top: none;
+}
+.mobile .tabs-inner .PageList .widget-content {
+background-color: #fff9ee;
+color: #000000;
+border-top: 1px solid #eee5dd;
+border-bottom: 1px solid #eee5dd;
+}
+.mobile .tabs-inner .PageList .widget-content .pagelist-arrow {
+border-left: 1px solid #eee5dd;
+}
+#navbar-iframe {display: none !important;}
+body .navbar {
+height:20px;
+}
+.Header h2 {
+margin-top: -15px;
+font: 32px Georgia,Utopia,"Palatino Linotype",Palatino,serif;
+margin-bottom : 10px
+}
+#.Header .description {margin-top: 10;}
+#.header-inner .Header .titlewrapper {padding-bottom:0;}
+#header .description {
+#display: block;
+margin-bottom: -10px;
+margin-top: -30px;
+#padding-bottom: 0px;
+#font: 14px Arial,Helvetica,sans-serif;
+font-size: 16px;
+}
+.column-right-outer{
+margin-left:-20px;
+}
+.post-body h2 {
+text-transform:initial !important;
+font-size: 14pt;
+line-height: 1.5;
+}
+.content-outer {
+margin-top:-25px;
+}
+.main-outer{
+margin-top:-40px;
+}.widget {
+margin: 10px 0 0 0;
+}
+#CustomSearch1{
+margin-top:-60px;
+width: 300px;
+display: block;
+position: absolute;
+}
+
+--></style>
+<style id="template-skin-1" type="text/css"><!--
+body {
+min-width: 1120px;
+}
+.content-outer, .content-fauxcolumn-outer, .region-inner {
+min-width: 1120px;
+max-width: 1120px;
+_width: 1120px;
+}
+.main-inner .columns {
+padding-left: 0px;
+padding-right: 330px;
+}
+.main-inner .fauxcolumn-center-outer {
+left: 0px;
+right: 330px;
+/* IE6 does not respect left and right together */
+_width: expression(this.parentNode.offsetWidth -
+parseInt("0px") -
+parseInt("330px") + 'px');
+}
+.main-inner .fauxcolumn-left-outer {
+width: 0px;
+}
+.main-inner .fauxcolumn-right-outer {
+width: 330px;
+}
+.main-inner .column-left-outer {
+width: 0px;
+right: 100%;
+margin-left: -0px;
+}
+.main-inner .column-right-outer {
+width: 330px;
+margin-right: -330px;
+}
+#layout {
+min-width: 0;
+}
+#layout .content-outer {
+min-width: 0;
+width: 800px;
+}
+#layout .region-inner {
+min-width: 0;
+width: auto;
+}
+--></style>
+<script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-35838489-1']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+          var ga = document.createElement('script');
+          ga.type = 'text/javascript';
+          ga.async = true;
+          ga.src = (document.location.protocol == 'https:' ?
+                    'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(ga, s);
+        })();
+      </script>
+<!-- BEGIN 33Across SiteCTRL Script -->
+<script type="text/javascript">
+      if(document.location.protocol=='http:'){
+      var Tynt=Tynt||[];Tynt.push('dQAl1IQCar5iJpacwqm_6l');
+
+      (function(){var h,s=document.createElement('script');s.src='http://cdn.tynt.com/ti.js';
+      h=document.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h);})();}
+      </script>
+<!-- END 33Across SiteCTRL Script -->
+    
+	<script async="" src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/adsbygoogle.js"></script>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-5808379456926196",
+        enable_page_level_ads: true
+      });
+    </script>
+<script type="text/javascript">var a="&m=1",d="(^|&)m=",e="?",f="?m=1";function g(){var b=window.location.href,c=b.split(e);switch(c.length){case 1:return b+f;case 2:return 0<=c[1].search(d)?null:b+a;default:return null}}var h=navigator.userAgent;if(-1!=h.indexOf("Mobile")&&-1!=h.indexOf("WebKit")&&-1==h.indexOf("iPad")||-1!=h.indexOf("Opera Mini")||-1!=h.indexOf("IEMobile")){var k=g();k&&window.location.replace(k)};
+</script><script type="text/javascript">
+if (window.jstiming) window.jstiming.load.tick('headEnd');
+</script><style>.gc-bubbleDefault{background-color:transparent !important;text-align:left;padding:0 !important;margin:0 !important;border:0 !important;table-layout:auto !important}.gc-reset{background-color:transparent !important;border:0 !important;padding:0 !important;margin:0 !important;text-align:left}.pls-bubbleTop{border-bottom:1px solid #ccc !important}.pls-topTail,.pls-vertShimLeft,.pls-contentLeft{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/border_3.gif) !important}.pls-topTail{background-repeat:repeat-x !important;background-position:bottom !important}.pls-vertShim{background-color:#fff !important;text-align:right}.tbl-grey .pls-vertShim{background-color:#f5f5f5 !important}.pls-vertShimLeft{background-repeat:repeat-y !important;background-position:right !important;height:4px}.pls-vertShimRight{height:4px}.pls-confirm-container .pls-vertShim{background-color:#fff3c2 !important}.pls-contentWrap{background-color:#fff !important;position:relative !important;vertical-align:top}.pls-contentLeft{background-repeat:repeat-y;background-position:right;vertical-align:top}.pls-dropRight{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleDropR_3.png) !important;background-repeat:repeat-y !important;vertical-align:top}.pls-vert,.pls-tailleft,.pls-dropTR .pls-dropBR,.pls-dropBL,.pls-vert img{vertical-align:top}.pls-dropBottom{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleDropB_3.png) !important;background-repeat:repeat-x !important;width:100%;vertical-align:top}.pls-topLeft{background:inherit !important;text-align:right;vertical-align:bottom}.pls-topRight{background:inherit !important;text-align:left;vertical-align:bottom}.pls-bottomLeft{background:inherit !important;text-align:right}.pls-bottomRight{background:inherit !important;text-align:left;vertical-align:top}.pls-tailtop,.pls-tailright,.pls-tailbottom,.pls-tailleft{display:none;position:relative}.pls-tailbottom,.pls-tailtop,.pls-tailright,.pls-tailleft,.pls-dropTR,.pls-dropBR,.pls-dropBL{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleSprite_3.png) !important;background-repeat:no-repeat}.tbl-grey .pls-tailbottom,.tbl-grey .pls-tailtop,.tbl-grey .pls-tailright,.tbl-grey .pls-tailleft,.tbl-grey .pls-dropTR,.tbl-grey .pls-dropBR,.tbl-grey .pls-dropBL{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleSprite-grey.png) !important}.pls-tailbottom{background-position:-23px 0}.pls-confirm-container .pls-tailbottom{background-position:-23px -10px}.pls-tailtop{background-position:-19px -20px}.pls-tailright{background-position:0 0}.pls-tailleft{background-position:-10px 0}.pls-tailtop{vertical-align:top}.gc-bubbleDefault td{line-height:0;font-size:0}.pls-topLeft img,.pls-topRight img,.pls-tailbottom{vertical-align:bottom}.pls-bottomLeft img,.bubbleDropTR,.pls-dropBottomL img,.pls-dropBottom img,.pls-dropBottomR img,.pls-bottomLeft{vertical-align:top}.pls-dropTR{background-position:0 -22px}.pls-dropBR{background-position:0 -27px}.pls-dropBL{background-position:0 -16px}.pls-spacertop,.pls-spacerright,.pls-spacerbottom,.pls-spacerleft{position:static !important}.pls-spinner{bottom:0;position:absolute;left:0;margin:auto;right:0;top:0} </style><script src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/google_top_exp.js" type="text/javascript"></script><script src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/get_custom_js.js" type="text/javascript"></script><script src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/a" type="text/javascript"></script><link rel="stylesheet" href="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/defaulten.css" type="text/css"><script src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/defaulten.js" type="text/javascript"></script><style type="text/css" class="singleton-element">.cookie-choices-info { position:fixed;width:100%;background-color:#666;margin:0;left:0;top:0;padding:0;z-index:4000;text-align:center;color:#fff;line-height:140%;padding:10px 0;font-family:roboto,Arial; } .cookie-choices-info .cookie-choices-inner { position:relative;width:initial;margin:0;left:0;top:0; } .cookie-choices-info .cookie-choices-text { display:inline-block;vertical-align:middle;font-size:16px;margin:10px 20px;color:#ccc;max-width:800px;text-align:left; }.cookie-choices-info .cookie-choices-buttons { display:inline-block;vertical-align:middle;white-space:nowrap;margin:0 10px; } .cookie-choices-info .cookie-choices-button:hover {  color: #fff; } .cookie-choices-info .cookie-choices-button { font-weight:bold;text-transform:UPPERCASE;white-space:nowrap;color:#eee;margin-left:8px;padding:0 6px; text-decoration:none; }</style></head>
+<body class="">
+<div class="navbar section" id="navbar" name="Navbar"><div class="widget Navbar" id="Navbar1"><script type="text/javascript">
+    function setAttributeOnload(object, attribute, val) {
+      if(window.addEventListener) {
+        window.addEventListener('load',
+          function(){ object[attribute] = val; }, false);
+      } else {
+        window.attachEvent('onload', function(){ object[attribute] = val; });
+      }
+    }
+  </script>
+<div id="navbar-iframe-container"><iframe src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/navbar.html" name="navbar-iframe" id="navbar-iframe" vspace="0" tabindex="0" style="" scrolling="no" marginwidth="0" marginheight="0" hspace="0" frameborder="0" width="100%"></iframe></div>
+<script gapi_processed="true" type="text/javascript" src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/plusone.js"></script>
+<script type="text/javascript">
+        gapi.load("gapi.iframes:gapi.iframes.style.bubble", function() {
+          if (gapi.iframes && gapi.iframes.getContext) {
+            gapi.iframes.getContext().openChild({
+                url: 'https://www.blogger.com/navbar.g?targetBlogID\075694855878384792308\46blogName\75Java67\46publishMode\75PUBLISH_MODE_BLOGSPOT\46navbarType\75LIGHT\46layoutType\75LAYOUTS\46searchRoot\75//java67.blogspot.com/search\46blogLocale\75en\46v\0752\46homepageUrl\75http://java67.blogspot.com/\46targetPostID\0756939925714905304276\46blogPostOrPageUrl\75http://java67.blogspot.com/2012/08/how-to-create-enum-from-string-in-java.html\46vt\75-576813791515777417',
+                where: document.getElementById("navbar-iframe-container"),
+                id: "navbar-iframe"
+            });
+          }
+        });
+      </script><script type="text/javascript">
+(function() {
+var script = document.createElement('script');
+script.type = 'text/javascript';
+script.src = '//pagead2.googlesyndication.com/pagead/js/google_top_exp.js';
+var head = document.getElementsByTagName('head')[0];
+if (head) {
+head.appendChild(script);
+}})();
+</script>
+</div></div>
+<div class="body-fauxcolumns">
+<div class="fauxcolumn-outer body-fauxcolumn-outer">
+<div class="cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left">
+<div class="fauxborder-right"></div>
+<div class="fauxcolumn-inner">
+</div>
+</div>
+<div class="cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+</div>
+<div class="content">
+<div class="content-fauxcolumns">
+<div class="fauxcolumn-outer content-fauxcolumn-outer">
+<div class="cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left">
+<div class="fauxborder-right"></div>
+<div class="fauxcolumn-inner">
+</div>
+</div>
+<div class="cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+</div>
+<div class="content-outer">
+<div class="content-cap-top cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left content-fauxborder-left">
+<div class="fauxborder-right content-fauxborder-right"></div>
+<div class="content-inner">
+<header>
+<div class="header-outer">
+<div class="header-cap-top cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left header-fauxborder-left">
+<div class="fauxborder-right header-fauxborder-right"></div>
+<div class="region-inner header-inner">
+<div class="header section" id="header" name="Header"><div class="widget Header" id="Header1">
+<div id="header-inner">
+<div class="titlewrapper">
+<h2>
+<a href="http://java67.blogspot.de/">Java67</a>
+</h2>
+</div>
+<div class="descriptionwrapper">
+<p class="description"><span>Java Programming tutorials and Interview Questions</span></p>
+</div>
+</div>
+</div></div>
+</div>
+</div>
+<div class="header-cap-bottom cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+</header>
+<div class="tabs-outer">
+<div class="tabs-cap-top cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left tabs-fauxborder-left">
+<div class="fauxborder-right tabs-fauxborder-right"></div>
+<div class="region-inner tabs-inner">
+<div class="tabs section" id="crosscol" name="Cross-Column"></div>
+<div class="tabs section" id="crosscol-overflow" name="Cross-Column 2"></div>
+</div>
+</div>
+<div class="tabs-cap-bottom cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+<div class="main-outer">
+<div class="main-cap-top cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left main-fauxborder-left">
+<div class="fauxborder-right main-fauxborder-right"></div>
+<div class="region-inner main-inner">
+<div class="columns fauxcolumns">
+<div class="fauxcolumn-outer fauxcolumn-center-outer">
+<div class="cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left">
+<div class="fauxborder-right"></div>
+<div class="fauxcolumn-inner">
+</div>
+</div>
+<div class="cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+<div class="fauxcolumn-outer fauxcolumn-left-outer">
+<div class="cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left">
+<div class="fauxborder-right"></div>
+<div class="fauxcolumn-inner">
+</div>
+</div>
+<div class="cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+<div class="fauxcolumn-outer fauxcolumn-right-outer">
+<div class="cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left">
+<div class="fauxborder-right"></div>
+<div class="fauxcolumn-inner">
+</div>
+</div>
+<div class="cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+<!-- corrects IE6 width calculation -->
+<div class="columns-inner">
+<div class="column-center-outer">
+<div class="column-center-inner">
+<div class="main section" id="main" name="Main"><div id="uds-searchControl"><a name="uds-search-results"></a><div id="uds-searchResults"><div dir="ltr" class="gsc-control"><div class="gsc-results-wrapper-nooverlay"><div class="gsc-tabsAreaInvisible"><div class="gsc-tabHeader gsc-inline-block gsc-tabhActive">This Blog</div><span class="gs-spacer"> </span><div class=" gsc-tabHeader gsc-tabhInactive gsc-inline-block" tabindex="0">Linked From Here</div><span class="gs-spacer"> </span><div class=" gsc-tabHeader gsc-tabhInactive gsc-inline-block" tabindex="0">The Web</div><span class="gs-spacer"> </span></div><div class="gsc-above-wrapper-area-invisible"><table class="gsc-above-wrapper-area-container" cellpadding="0" cellspacing="0"><tbody><tr><td class="gsc-result-info-container"><div class="gsc-result-info-invisible"></div></td></tr></tbody></table></div><div class="gsc-resultsbox-invisible"><div class="gsc-resultsRoot gsc-tabData gsc-tabdActive"><table class="gsc-resultsHeader" cellpadding="0" cellspacing="0"><tbody><tr><td class="gsc-twiddleRegionCell"><div class="gsc-twiddle"><div class="gsc-title">This Blog</div></div><div class="gsc-stats"></div><div class="gsc-results-selector gsc-more-results-active"><div title="show one result" class="gsc-result-selector gsc-one-result">&nbsp;</div><div title="show more results" class="gsc-result-selector gsc-more-results">&nbsp;</div><div title="show all results" class="gsc-result-selector gsc-all-results">&nbsp;</div></div></td><td class="gsc-configLabelCell"><span title="settings" class="gsc-configLabel gsc-twiddle-closed">&nbsp;</span></td></tr></tbody></table><div style="display: none;" class="gsc-config gsc-blogConfig"><form class="gsc-config gsc-blogConfig"></form></div><div><div class="gsc-expansionArea"></div></div></div><div class="gsc-resultsRoot gsc-tabData gsc-tabdInactive"><table class="gsc-resultsHeader" cellpadding="0" cellspacing="0"><tbody><tr><td class="gsc-twiddleRegionCell"><div class="gsc-twiddle"><div class="gsc-title">Linked From Here</div></div><div class="gsc-stats"></div><div class="gsc-results-selector gsc-more-results-active"><div title="show one result" class="gsc-result-selector gsc-one-result">&nbsp;</div><div title="show more results" class="gsc-result-selector gsc-more-results">&nbsp;</div><div title="show all results" class="gsc-result-selector gsc-all-results">&nbsp;</div></div></td><td class="gsc-configLabelCell"></td></tr></tbody></table><div><div class="gsc-expansionArea"></div></div></div><div class="gsc-resultsRoot gsc-tabData gsc-tabdInactive"><table class="gsc-resultsHeader" cellpadding="0" cellspacing="0"><tbody><tr><td class="gsc-twiddleRegionCell"><div class="gsc-twiddle"><div class="gsc-title">The Web</div></div><div class="gsc-stats"></div><div class="gsc-results-selector gsc-more-results-active"><div title="show one result" class="gsc-result-selector gsc-one-result">&nbsp;</div><div title="show more results" class="gsc-result-selector gsc-more-results">&nbsp;</div><div title="show all results" class="gsc-result-selector gsc-all-results">&nbsp;</div></div></td><td class="gsc-configLabelCell"></td></tr></tbody></table><div><div class="gsc-expansionArea"></div></div></div></div></div></div></div><div style="display: none;" class="gsc-clear-button" id="uds-searchClearResults">&nbsp;</div></div><div class="widget Blog" id="Blog1">
+<div class="blog-posts hfeed">
+
+          <div class="date-outer">
+        
+
+          <div class="date-posts">
+        
+<div class="post-outer">
+<div class="post hentry" itemprop="blogPost" itemscope="itemscope" itemtype="http://schema.org/BlogPosting">
+<meta content="http://1.bp.blogspot.com/-_GCqP1vu06Q/UBaTOZM869I/AAAAAAAAAaw/ykubu9U9kK4/s1600/java_logo_50_50.jpg" itemprop="image_url">
+<meta content="694855878384792308" itemprop="blogId">
+<meta content="6939925714905304276" itemprop="postId">
+<a name="6939925714905304276"></a>
+<h1 class="post-title entry-title" itemprop="name">
+String to Enum in Java - Conversion Example
+</h1>
+<div class="post-header">
+<div style="float: right; margin:5px 6px 0px 5px; position:relative; z-index:10 ">
+            <script async="" src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/adsbygoogle.js"></script>
+
+            
+<ins class="adsbygoogle" data-ad-client="ca-pub-5808379456926196" data-ad-slot="7171924747" style="display:inline-block;width:336px;height:280px"></ins>
+<script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+</div>
+<div class="post-header-line-1"></div>
+</div>
+<div class="post-body entry-content" id="post-body-6939925714905304276" itemprop="description articleBody">
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<div class="MsoNormal">
+<span class="CharChar1"><span style="font-size: 14.0pt; font-style: normal; font-weight: normal;"></span></span><b style="mso-bidi-font-weight: normal;"><u>Creating Enum from </u></b><b style="mso-bidi-font-weight: normal;"><u><span style="font-family: &quot;Courier New&quot;;">String</span></u></b> <br>
+You can create Enum from <span style="font-family: &quot;Courier New&quot;;">String</span> by using <span style="font-family: &quot;Courier New&quot;;">Enum.valueOf()</span> method. <span style="font-family: &quot;Courier New&quot;;">valueOf()</span> is a static method which is added on
+every Enum class during compile time and its implicitly available to all Enum
+along with <span style="font-family: Courier New, Courier, monospace;">values()</span>, <span style="font-family: Courier New, Courier, monospace;">name()</span> and <span style="font-family: Courier New, Courier, monospace;">cardinal()</span> methods. In order to create Enum
+from <span style="font-family: &quot;Courier New&quot;;">String</span>, <span style="font-family: &quot;Courier New&quot;;">String</span> must be same as declared Enum otherwise code will throw <b>"java.lang.IllegalArgumentException:
+No enum const class"</b>. same technique can be used to convert <span style="font-family: inherit;">String</span><span style="font-family: inherit;"> </span>into
+ Enum instance as well. This is the second part of Enum conversion 
+tutorial, in the first part we have seen how to convert Enum to String 
+in Java. If you have not read that yet, check it out. Also from Java 7 
+onwards, Java started supporting String constants in switch cases, but 
+you should always prefer Enum over both Integer and String constant 
+because Enum provides type safety. Compiler will ensure that incorrect 
+value is not supplied, but in case of String and Integer, compiler will 
+check whether variable is of correct type, but it wont check values, 
+which is why you should use Enum to define well known fixed number of 
+things.&nbsp;</div>
+<a name="more"></a><br>
+<div class="MsoNormal">
+<br></div>
+<div class="MsoNormal">
+<h2 style="text-align: left;">
+<u>Enum to String Conversion Example&nbsp;</u></h2>
+<a href="http://1.bp.blogspot.com/-_GCqP1vu06Q/UBaTOZM869I/AAAAAAAAAaw/ykubu9U9kK4/s1600/java_logo_50_50.jpg" imageanchor="1" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"><img alt="How to create Enum from String in Java - Example" src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/java_logo_50_50.jpg" title="" border="0"></a>Here is a code
+example of <span style="font-family: &quot;Courier New&quot;;">String</span> to Enum conversion in Java. It
+demonstrate both the technique which we have discussed so far to create Enum
+from <span style="font-family: &quot;Courier New&quot;;">String</span> in Java. You can use same technique to convert any String to corresponding Enum as well. Always make sure to pass correct <span style="font-family: &quot;Courier New&quot;,Courier,monospace;">String </span>in order to avoid <span style="font-family: &quot;Courier New&quot;,Courier,monospace;">IllegalArgumentExcpeiton </span>in
+ Java. There are few other method of converting String to Enum as well 
+which compares passed String to all Enum instances declared by iterating
+ over all Enum instances using values() method and then comparing them 
+using equals(). Though that method works well it requires more code than
+ simple <span style="font-family: &quot;Courier New&quot;,Courier,monospace;">Enum.valueOf()</span>.</div>
+<div class="MsoNormal">
+<br></div>
+<div class="MsoNormal">
+<b>Problem: </b>We
+have a declared Enum Currency, which contains Enum instances USD INR EURO, Now
+We have a <span style="font-family: &quot;Courier New&quot;;">String</span> "USD" and we want to
+convert that <span style="font-family: &quot;Courier New&quot;;">String</span> into Enum, it should convert into
+Currency.USD<br>
+<br></div>
+<div class="MsoNormal">
+<b>Solution:</b>
+Currency.valueOf("USD") or Enum.valueOf(Currency.class,
+"USD") </div>
+<div class="MsoNormal">
+<br></div>
+<div style="background: #F3F3F3; border: dotted windowtext 1.0pt; mso-border-alt: dotted windowtext .5pt; mso-element: para-border-div; padding: 1.0pt 4.0pt 1.0pt 4.0pt;">
+<div class="MsoNormal" style="background: #F3F3F3; border: none; mso-border-alt: dotted windowtext .5pt; mso-padding-alt: 1.0pt 4.0pt 1.0pt 4.0pt; padding: 0in;">
+<b><span style="color: black; font-family: &quot;Courier New&quot;;">package</span></b><span style="font-family: &quot;Courier New&quot;;"> <span style="color: #006699;">example</span><span style="color: #339933;">;</span> <br>
+<br>
+<span style="color: green; mso-bidi-font-style: italic; mso-bidi-font-weight: bold;">/**
+<br>
+&nbsp;* Java program for <b>creating Enum instance from String in Java</b>. <br>
+&nbsp;* This program demonstrate how to use Enum.valueOf() method to convert
+enum instance<br>
+&nbsp;* into String. beware that String must be same as declared Enum instances
+and they are <br>
+&nbsp;* case sensitive as well. "UsD" instead of "USD" will
+throw IllegalArgumentException <br>
+&nbsp;*<br>
+&nbsp;* @author Javin Paul<br>
+&nbsp;*/</span> <br>
+<b><span style="color: black;">public</span></b> <b><span style="color: black;">class</span></b>
+StringToEnum <span style="color: #009900;">{</span> <br>
+&nbsp; &nbsp; <b><span style="color: black;">private</span></b> <b><span style="color: black;">enum</span></b> <b>Currency</b> <span style="color: #009900;">{</span>USD,
+AUD, GBP, EURO <span style="color: #009900;">}</span> &nbsp; <br>
+&nbsp; &nbsp; <br>
+&nbsp; &nbsp; <b><span style="color: black;">public</span></b> <b><span style="color: black;">static</span></b> <b><span style="color: #006600;">void</span></b>
+main<span style="color: #009900;">(</span><b>String</b> args<span style="color: #009900;">[])</span> <span style="color: #009900;">{</span> <br>
+&nbsp; &nbsp; &nbsp; &nbsp; <br>
+&nbsp; &nbsp; &nbsp; &nbsp; <i><span style="color: #666666;">//Converting String
+to Enum in Java </span></i><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b>String</b> usd = <span style="color: blue;">"USD"</span><span style="color: #339933;">;</span> <br>
+&nbsp; &nbsp; &nbsp; &nbsp; <br>
+&nbsp; &nbsp; &nbsp; &nbsp; <i><span style="color: #666666;">//Enum to String
+using Enum.valueOf() </span></i><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b>Enum</b> currency = <b>Enum</b>.<span style="color: #006633;">valueOf</span><span style="color: #009900;">(</span><b>Currency</b>.<b><span style="color: black;">class</span></b>, usd<span style="color: #009900;">)</span><span style="color: #339933;">;</span> <br>
+&nbsp; &nbsp; &nbsp; &nbsp; <br>
+&nbsp; &nbsp; &nbsp; &nbsp; <i><span style="color: #666666;">//Enum to String
+using Currency.valueOf() </span></i><br>
+&nbsp; &nbsp; &nbsp; &nbsp; currency = <b>Currency</b>.<span style="color: #006633;">valueOf</span><span style="color: #009900;">(</span>usd<span style="color: #009900;">)</span><span style="color: #339933;">;</span> <br>
+&nbsp; &nbsp; &nbsp; &nbsp; <br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b>System</b>.<span style="color: #006633;">out</span>.<span style="color: #006633;">println</span><span style="color: #009900;">(</span><span style="color: blue;">"String to Enum Example : "</span> + currency<span style="color: #009900;">)</span><span style="color: #339933;">;</span> <br>
+&nbsp; &nbsp; &nbsp; <br>
+&nbsp; &nbsp; &nbsp; &nbsp; <i><span style="color: #666666;">//This Enum to
+String conversion will throw Exception </span></i><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b>String</b> INR = <span style="color: blue;">"INR"</span><span style="color: #339933;">;</span> <br>
+&nbsp; &nbsp; &nbsp; &nbsp; <i><span style="color: #666666;">//java.lang.IllegalArgumentException:
+No enum const class </span></i><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b>Currency</b> rupee = <b>Currency</b>.<span style="color: #006633;">valueOf</span><span style="color: #009900;">(</span><span style="color: blue;">"INR"</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span> <br>
+&nbsp; &nbsp; <span style="color: #009900;">}</span> <br>
+<span style="color: #009900;">}</span> <br>
+<b style="mso-bidi-font-weight: normal;">Output:</b> <br>
+<b>String</b> to <b>Enum</b> Example : USD <br>
+<b>Exception</b> in thread <span style="color: blue;">"main"</span>
+java.<span style="color: #006633;">lang</span>.<b>IllegalArgumentException</b>:
+No <b><span style="color: black;">enum</span></b> <b><span style="color: black;">const</span></b>
+<b><span style="color: black;">class</span></b> test.<span style="color: #006633;">CollectionTest</span>$Currency.<span style="color: #006633;">INR</span> <br>
+&nbsp; &nbsp; &nbsp; &nbsp; at java.<span style="color: #006633;">lang</span>.<b>Enum</b>.<span style="color: #006633;">valueOf</span><span style="color: #009900;">(</span><b>Enum</b>.<span style="color: #006633;">java</span>:<span style="color: #cc66cc;">196</span><span style="color: #009900;">)</span> <br>
+&nbsp; &nbsp; &nbsp; &nbsp; at test.<span style="color: #006633;">CollectionTest</span>$Currency.<span style="color: #006633;">valueOf</span><span style="color: #009900;">(</span>CollectionTest.<span style="color: #006633;">java</span>:<span style="color: #cc66cc;">16</span><span style="color: #009900;">)</span> <br>
+&nbsp; &nbsp; &nbsp; &nbsp; at test.<span style="color: #006633;">CollectionTest</span>.<span style="color: #006633;">main</span><span style="color: #009900;">(</span>CollectionTest.<span style="color: #006633;">java</span>:<span style="color: #cc66cc;">32</span><span style="color: #009900;">)</span> <br>
+Java <b>Result</b>: <span style="color: #cc66cc;">1</span>&nbsp;</span></div>
+</div>
+<div class="MsoNormal">
+<br></div>
+<div class="MsoNormal">
+That’s all on
+<b style="mso-bidi-font-weight: normal;"><i style="mso-bidi-font-style: normal;">How
+to create Enum from String in Java</i></b>. This is very frequent requirement <span style="mso-spacerun: yes;">&nbsp;</span>and Java programmers should be familiar with this
+technique to convert String to Enum easily. In Summary prefer Enum over String to
+get compile time checking and type safety but since String is a global type and
+you may store your data in database in form of String and runtime each of those
+String converted to Enum.<br>
+<br>
+Related Java Enum Tutorial for further reading :<br>
+<ol>
+<li>Java tip to convert &nbsp;Enum to String in Java (<a href="http://java67.blogspot.sg/2012/08/how-to-convert-enum-to-string-in-java.html">see tip</a>)</li>
+<li>How to use valueOf method of Enum (<a href="http://java67.blogspot.com/2012/10/java-enum-valueof-example-how-to-use.html">check here</a>)</li>
+<li>String to Enum in Java with Example (<a href="http://java67.blogspot.sg/2012/08/how-to-create-enum-from-string-in-java.html">check here</a>)</li>
+<li>Top 15 Java Enum Interview Questions with Answers (see <a href="http://java67.blogspot.com/2013/07/15-java-enum-interview-questions-amswers-for-experienced-programmers.html">here</a>)</li>
+<li>Difference between RegularEnumSet and JumboEnumSet in Java (<a href="http://java67.blogspot.com/2013/11/difference-between-regularenumset-and-jumboenumset-java.html">read here</a>)</li>
+<li>Learn how to use Enum in Java with a Simple Example (<a href="http://java67.blogspot.com/2013/07/java-enum-code-example-softdrinks-how.html">check here</a>)</li>
+<li>Can we use Enum in Switch Statement in Java (<a href="http://java67.blogspot.com/2012/09/how-to-use-java-enum-in-switch-case-example.html">Yes</a>)</li>
+<li>How to loop over Enum constants in Java (<a href="http://java67.blogspot.com/2013/03/how-to-iterate-over-java-enum-using.html">example</a>)</li>
+<li>What Every Java Programmer Should know about Enum (<a href="http://java67.blogspot.sg/2014/04/what-java-developer-should-know-about-Enumeration-type-in-Java.html">click here</a>)</li>
+<li>10 points about Enum in Java (<a href="http://java67.blogspot.com/2012/10/java-enum-concepts-and-fundamentals.html">see here</a>)</li>
+<li>Can Enum have Constructor in Java (<a href="http://java67.blogspot.com/2012/11/java-enum-example-with-constructor.html">learn here</a>)</li>
+</ol>
+</div>
+</div>
+
+          <!-- Java67_2nd_Leaderboard_After_Post -->
+            <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-5808379456926196" data-ad-slot="5158432746"></ins>
+            <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        
+<div style="clear: both;"></div>
+<div id="lws_0"></div></div>
+<div class="post-footer">
+<div class="post-footer-line post-footer-line-1"><span class="post-author vcard">
+Posted by
+<span class="fn" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
+<meta content="https://plus.google.com/114528699166048052030" itemprop="url">
+<a data-gapiattached="true" data-onload="true" data-gapiscan="true" class="g-profile" href="https://plus.google.com/114528699166048052030" rel="author" title="author profile">
+<span itemprop="name">Javin Paul</span>
+</a>
+</span>
+</span>
+<span class="post-timestamp">
+</span>
+<span class="post-comment-link">
+</span>
+<span class="post-icons">
+<span class="item-action">
+<a href="https://www.blogger.com/email-post.g?blogID=694855878384792308&amp;postID=6939925714905304276" title="Email Post">
+<img alt="" class="icon-action" src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/icon18_email.gif" height="13" width="18">
+</a>
+</span>
+<span class="item-control blog-admin pid-1298605557">
+<a href="https://www.blogger.com/post-edit.g?blogID=694855878384792308&amp;postID=6939925714905304276&amp;from=pencil" title="Edit Post">
+<img alt="" class="icon-action" src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/icon18_edit_allbkg.gif" height="18" width="18">
+</a>
+</span>
+</span>
+<div class="post-share-buttons goog-inline-block">
+<a class="goog-inline-block share-button sb-email" href="https://www.blogger.com/share-post.g?blogID=694855878384792308&amp;postID=6939925714905304276&amp;target=email" target="_blank" title="Email This"><span class="share-button-link-text">Email This</span></a><a class="goog-inline-block share-button sb-blog" href="https://www.blogger.com/share-post.g?blogID=694855878384792308&amp;postID=6939925714905304276&amp;target=blog" onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target="_blank" title="BlogThis!"><span class="share-button-link-text">BlogThis!</span></a><a class="goog-inline-block share-button sb-twitter" href="https://www.blogger.com/share-post.g?blogID=694855878384792308&amp;postID=6939925714905304276&amp;target=twitter" target="_blank" title="Share to Twitter"><span class="share-button-link-text">Share to Twitter</span></a><a class="goog-inline-block share-button sb-facebook" href="https://www.blogger.com/share-post.g?blogID=694855878384792308&amp;postID=6939925714905304276&amp;target=facebook" onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target="_blank" title="Share to Facebook"><span class="share-button-link-text">Share to Facebook</span></a><a class="goog-inline-block share-button sb-pinterest" href="https://www.blogger.com/share-post.g?blogID=694855878384792308&amp;postID=6939925714905304276&amp;target=pinterest" target="_blank" title="Share to Pinterest"><span class="share-button-link-text">Share to Pinterest</span></a><div class="goog-inline-block google-plus-share-container"><div id="___plusone_0" style="position: absolute; width: 450px; left: -10000px;"><iframe class="vzonhymbjeosxhpjbtyc" data-gapiattached="true" src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/fastbutton.html" name="I0_1449412968497" id="I0_1449412968497" vspace="0" tabindex="0" style="position:absolute;top:-10000px;width:450px;margin:0px;border-style:none" scrolling="no" marginwidth="0" marginheight="0" hspace="0" frameborder="0" width="100%"></iframe></div><g:plusone data-gapistub="true" data-onload="true" data-gapiscan="true" source="blogger:blog:plusone" href="http://java67.blogspot.com/2012/08/how-to-create-enum-from-string-in-java.html" size="medium" width="300" annotation="inline"></g:plusone></div>
+</div>
+</div>
+<div class="post-footer-line post-footer-line-2"><span class="post-labels">
+Labels:
+<a href="http://java67.blogspot.de/search/label/homework" rel="tag">homework</a>,
+<a href="http://java67.blogspot.de/search/label/interview%20questions" rel="tag">interview questions</a>,
+<a href="http://java67.blogspot.de/search/label/java" rel="tag">java</a>,
+<a href="http://java67.blogspot.de/search/label/programming" rel="tag">programming</a>
+</span>
+<span class="post-location">
+</span>
+</div>
+<div class="post-footer-line post-footer-line-3"></div>
+</div>
+</div>
+<div class="comments" id="comments">
+<a name="comments"></a>
+<h4>2 comments:</h4>
+<div class="comments-content">
+<script async="async" src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/comments.js" type="text/javascript"></script>
+<script type="text/javascript">
+    (function() {
+      var items = [{'id': '9122379371499605477', 'body': 'I think, it\46#39;s better to provide factory methods like fromString(String enum) for creating Enum, rather than directly using valueOf(), this will also gives you opportunity to handle issue with String, which can not be converted into Enum.', 'timestamp': '1373876281762', 'permalink': 'http://java67.blogspot.com/2012/08/how-to-create-enum-from-string-in-java.html?showComment\0751373876281762#c9122379371499605477', 'author': {'name': 'Anonymous', 'avatarUrl': 'https://img1.blogblog.com/img/blank.gif', 'profileUrl': ''}, 'displayTime': 'July 15, 2013 at 1:18 AM', 'deleteclass': 'item-control blog-admin pid-1695997609'}, {'id': '2942108983311447261', 'body': 'I have to parse a comma separated String and has to create enum from them e.g. Payment methods : Cheque, Electronic Transfer, Cash, Travelers Cheque etc. Any tips or suggestion how to do this in Java?c', 'timestamp': '1376369150968', 'permalink': 'http://java67.blogspot.com/2012/08/how-to-create-enum-from-string-in-java.html?showComment\0751376369150968#c2942108983311447261', 'author': {'name': 'Anonymous', 'avatarUrl': 'https://img1.blogblog.com/img/blank.gif', 'profileUrl': ''}, 'displayTime': 'August 12, 2013 at 9:45 PM', 'deleteclass': 'item-control blog-admin pid-248025'}];
+      var msgs = {'loadMore': 'Load more...', 'loading': 'Loading...', 'loaded': 'No more!', 'addComment': 'Add comment', 'reply': 'Reply', 'delete': 'Delete'};
+      var config = {'blogId': '694855878384792308', 'postId': '6939925714905304276', 'feed': 'http://java67.blogspot.com/feeds/6939925714905304276/comments/default', 'authorName': 'Javin Paul', 'authorUrl': 'https://www.blogger.com/profile/15028902221295732276', 'baseUri': 'https://www.blogger.com', 'maxThreadDepth': 2};
+
+// <![CDATA[
+      var cursor = null;
+      if (items && items.length > 0) {
+        cursor = parseInt(items[items.length - 1].timestamp) + 1;
+      }
+
+      var bodyFromEntry = function(entry) {
+        if (entry.gd$extendedProperty) {
+          for (var k in entry.gd$extendedProperty) {
+            if (entry.gd$extendedProperty[k].name == 'blogger.contentRemoved') {
+              return '<span class="deleted-comment">' + entry.content.$t + '</span>';
+            }
+          }
+        }
+        return entry.content.$t;
+      }
+
+      var parse = function(data) {
+        cursor = null;
+        var comments = [];
+        if (data && data.feed && data.feed.entry) {
+          for (var i = 0, entry; entry = data.feed.entry[i]; i++) {
+            var comment = {};
+            // comment ID, parsed out of the original id format
+            var id = /blog-(\d+).post-(\d+)/.exec(entry.id.$t);
+            comment.id = id ? id[2] : null;
+            comment.body = bodyFromEntry(entry);
+            comment.timestamp = Date.parse(entry.published.$t) + '';
+            if (entry.author && entry.author.constructor === Array) {
+              var auth = entry.author[0];
+              if (auth) {
+                comment.author = {
+                  name: (auth.name ? auth.name.$t : undefined),
+                  profileUrl: (auth.uri ? auth.uri.$t : undefined),
+                  avatarUrl: (auth.gd$image ? auth.gd$image.src : undefined)
+                };
+              }
+            }
+            if (entry.link) {
+              if (entry.link[2]) {
+                comment.link = comment.permalink = entry.link[2].href;
+              }
+              if (entry.link[3]) {
+                var pid = /.*comments\/default\/(\d+)\?.*/.exec(entry.link[3].href);
+                if (pid && pid[1]) {
+                  comment.parentId = pid[1];
+                }
+              }
+            }
+            comment.deleteclass = 'item-control blog-admin';
+            if (entry.gd$extendedProperty) {
+              for (var k in entry.gd$extendedProperty) {
+                if (entry.gd$extendedProperty[k].name == 'blogger.itemClass') {
+                  comment.deleteclass += ' ' + entry.gd$extendedProperty[k].value;
+                } else if (entry.gd$extendedProperty[k].name == 'blogger.displayTime') {
+                  comment.displayTime = entry.gd$extendedProperty[k].value;
+                }
+              }
+            }
+            comments.push(comment);
+          }
+        }
+        return comments;
+      };
+
+      var paginator = function(callback) {
+        if (hasMore()) {
+          var url = config.feed + '?alt=json&v=2&orderby=published&reverse=false&max-results=50';
+          if (cursor) {
+            url += '&published-min=' + new Date(cursor).toISOString();
+          }
+          window.bloggercomments = function(data) {
+            var parsed = parse(data);
+            cursor = parsed.length < 50 ? null
+                : parseInt(parsed[parsed.length - 1].timestamp) + 1
+            callback(parsed);
+            window.bloggercomments = null;
+          }
+          url += '&callback=bloggercomments';
+          var script = document.createElement('script');
+          script.type = 'text/javascript';
+          script.src = url;
+          document.getElementsByTagName('head')[0].appendChild(script);
+        }
+      };
+      var hasMore = function() {
+        return !!cursor;
+      };
+      var getMeta = function(key, comment) {
+        if ('iswriter' == key) {
+          var matches = !!comment.author
+              && comment.author.name == config.authorName
+              && comment.author.profileUrl == config.authorUrl;
+          return matches ? 'true' : '';
+        } else if ('deletelink' == key) {
+          return config.baseUri + '/delete-comment.g?blogID='
+               + config.blogId + '&postID=' + comment.id;
+        } else if ('deleteclass' == key) {
+          return comment.deleteclass;
+        }
+        return '';
+      };
+
+      var replybox = null;
+      var replyUrlParts = null;
+      var replyParent = undefined;
+
+      var onReply = function(commentId, domId) {
+        if (replybox == null) {
+          // lazily cache replybox, and adjust to suit this style:
+          replybox = document.getElementById('comment-editor');
+          if (replybox != null) {
+            replybox.height = '250px';
+            replybox.style.display = 'block';
+            replyUrlParts = replybox.src.split('#');
+          }
+        }
+        if (replybox && (commentId !== replyParent)) {
+          replybox.src = '';
+          document.getElementById(domId).insertBefore(replybox, null);
+          replybox.src = replyUrlParts[0]
+              + (commentId ? '&parentID=' + commentId : '')
+              + '#' + replyUrlParts[1];
+          replyParent = commentId;
+        }
+      };
+
+      var hash = (window.location.hash || '#').substring(1);
+      var startThread, targetComment;
+      if (/^comment-form_/.test(hash)) {
+        startThread = hash.substring('comment-form_'.length);
+      } else if (/^c[0-9]+$/.test(hash)) {
+        targetComment = hash.substring(1);
+      }
+
+      // Configure commenting API:
+      var configJso = {
+        'maxDepth': config.maxThreadDepth
+      };
+      var provider = {
+        'id': config.postId,
+        'data': items,
+        'loadNext': paginator,
+        'hasMore': hasMore,
+        'getMeta': getMeta,
+        'onReply': onReply,
+        'rendered': true,
+        'initComment': targetComment,
+        'initReplyThread': startThread,
+        'config': configJso,
+        'messages': msgs
+      };
+
+      var render = function() {
+        if (window.goog && window.goog.comments) {
+          var holder = document.getElementById('comment-holder');
+          window.goog.comments.render(holder, provider);
+        }
+      };
+
+      // render now, or queue to render when library loads:
+      if (window.goog && window.goog.comments) {
+        render();
+      } else {
+        window.goog = window.goog || {};
+        window.goog.comments = window.goog.comments || {};
+        window.goog.comments.loadQueue = window.goog.comments.loadQueue || [];
+        window.goog.comments.loadQueue.push(render);
+      }
+    })();
+// ]]>
+</script>
+<div id="comment-holder">
+
+<div id="bc_0_3C" kind="c"><div id="bc_0_3CT"><div id="bc_0_2T" class="comment-thread" kind="r" t="0" u="0"><ol id="bc_0_2TB"><li id="bc_0_0B" class="comment" kind="b"><div class="avatar-image-container"><img src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/anon36.png"></div><div id="c9122379371499605477" class="comment-block"><div id="bc_0_0M" class="comment-header" kind="m"><cite class="user">Anonymous</cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://java67.blogspot.com/2012/08/how-to-create-enum-from-string-in-java.html?showComment=1373876281762#c9122379371499605477">July 15, 2013 at 1:18 AM</a></span></div><p id="bc_0_0MC" class="comment-content">I
+ think, it's better to provide factory methods like fromString(String 
+enum) for creating Enum, rather than directly using valueOf(), this will
+ also gives you opportunity to handle issue with String, which can not 
+be converted into Enum.</p><span id="bc_0_0MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-1695997609"><a o="d" target="_self" href="https://www.blogger.com/delete-comment.g?blogID=694855878384792308&amp;postID=9122379371499605477">Delete</a></span></span></div><div id="bc_0_0BR" class="comment-replies"></div><div id="bc_0_0B_box" class="comment-replybox-single"></div></li><li id="bc_0_1B" class="comment" kind="b"><div class="avatar-image-container"><img src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/anon36.png"></div><div id="c2942108983311447261" class="comment-block"><div id="bc_0_1M" class="comment-header" kind="m"><cite class="user">Anonymous</cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://java67.blogspot.com/2012/08/how-to-create-enum-from-string-in-java.html?showComment=1376369150968#c2942108983311447261">August 12, 2013 at 9:45 PM</a></span></div><p id="bc_0_1MC" class="comment-content">I
+ have to parse a comma separated String and has to create enum from them
+ e.g. Payment methods : Cheque, Electronic Transfer, Cash, Travelers 
+Cheque etc. Any tips or suggestion how to do this in Java?c</p><span id="bc_0_1MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-248025"><a o="d" target="_self" href="https://www.blogger.com/delete-comment.g?blogID=694855878384792308&amp;postID=2942108983311447261">Delete</a></span></span></div><div id="bc_0_1BR" class="comment-replies"></div><div id="bc_0_1B_box" class="comment-replybox-single"></div></li></ol><div style="display: none;" id="bc_0_2I" class="continue" kind="ci"><a href="javascript:;" target="_self">Add comment</a></div><div id="bc_0_2T_box" class="comment-replybox-thread"><iframe style="display: block;" allowtransparency="true" class="blogger-iframe-colorize blogger-comment-from-post" id="comment-editor" name="comment-editor" src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/comment-iframe.html" frameborder="0" height="270px" width="100%"></iframe></div><div id="bc_0_2L" class="loadmore loaded" kind="rb"><a href="javascript:;" target="_self">Load more...</a></div></div></div></div></div>
+</div>
+<p class="comment-footer">
+</p><div class="comment-form">
+<a name="comment-form"></a>
+<p>
+</p>
+<a href="https://www.blogger.com/comment-iframe.g?blogID=694855878384792308&amp;postID=6939925714905304276&amp;blogspotRpcToken=1140349" id="comment-editor-src"></a>
+
+<script type="text/javascript" src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/2443413180-comment_from_post_iframe.js"></script>
+<script type="text/javascript">
+      BLOG_CMT_createIframe('https://www.blogger.com/rpc_relay.html');
+    </script>
+</div>
+<p></p>
+<div id="backlinks-container">
+<div id="Blog1_backlinks-container">
+</div>
+</div>
+</div>
+</div>
+
+        </div></div>
+      
+</div>
+<div class="blog-pager" id="blog-pager">
+<span id="blog-pager-newer-link">
+<a class="blog-pager-newer-link" href="http://java67.blogspot.de/2012/08/how-to-convert-enum-to-string-in-java.html" id="Blog1_blog-pager-newer-link" title="Newer Post">Newer Post</a>
+</span>
+<span id="blog-pager-older-link">
+<a class="blog-pager-older-link" href="http://java67.blogspot.de/2012/08/java-program-to-find-gcd-of-two-numbers.html" id="Blog1_blog-pager-older-link" title="Older Post">Older Post</a>
+</span>
+<a class="home-link" href="http://java67.blogspot.de/">Home</a>
+</div>
+<div class="clear"></div>
+<div class="post-feeds">
+<div class="feed-links">
+Subscribe to:
+<a class="feed-link" href="http://java67.blogspot.com/feeds/6939925714905304276/comments/default" target="_blank" type="application/atom+xml">Post Comments (Atom)</a>
+</div>
+</div>
+<script type="text/javascript">window.___gcfg = {'lang': 'en'};</script>
+</div></div>
+</div>
+</div>
+<div class="column-left-outer">
+<div class="column-left-inner">
+<aside>
+</aside>
+</div>
+</div>
+<div class="column-right-outer">
+<div class="column-right-inner">
+<aside>
+<div class="sidebar section" id="sidebar-right-1"><div class="widget CustomSearch" id="CustomSearch1">
+<h2 class="title">Search This Blog</h2>
+<div class="widget-content">
+<div id="CustomSearch1_form"><form accept-charset="utf-8" class="gsc-search-box"><table class="gsc-search-box" cellpadding="0" cellspacing="0"><tbody><tr><td class="gsc-input"><input title="search" name="search" class=" gsc-input" size="10" autocomplete="off" type="text"><input id="bgresponse" name="bgresponse" type="hidden"></td><td class="gsc-search-button"><input title="search" class="gsc-search-button" value="Search" type="submit"></td></tr></tbody></table><table class="gsc-branding" cellpadding="0" cellspacing="0"><tbody><tr style="display: none;"><td class="gsc-branding-user-defined"></td><td class="gsc-branding-text"><div class="gsc-branding-text">powered by</div></td><td class="gsc-branding-img-noclear"><img class="gsc-branding-img-noclear" src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/small-logo.png"></td></tr></tbody></table></form></div>
+</div>
+<style type="text/css">
+      #uds-searchControl .gs-result .gs-title,
+      #uds-searchControl .gs-result .gs-title *,
+      #uds-searchControl .gsc-results .gsc-trailing-more-results,
+      #uds-searchControl .gsc-results .gsc-trailing-more-results * {
+        color:#993300;
+      }
+
+      #uds-searchControl .gs-result .gs-title a:visited,
+      #uds-searchControl .gs-result .gs-title a:visited * {
+        color:#888888;
+      }
+
+      #uds-searchControl .gs-relativePublishedDate,
+      #uds-searchControl .gs-publishedDate {
+        color: #ffffff;
+      }
+
+      #uds-searchControl .gs-result a.gs-visibleUrl,
+      #uds-searchControl .gs-result .gs-visibleUrl {
+        color: #993300;
+      }
+
+      #uds-searchControl .gsc-results {
+        border-color: #eee5dd;
+        background-color: #fff9ee;
+      }
+
+      #uds-searchControl .gsc-tabhActive {
+        border-color: #eee5dd;
+        border-top-color: #eee5dd;
+        background-color: #fff9ee;
+        color: #222222;
+      }
+
+      #uds-searchControl .gsc-tabhInactive {
+        border-color: #eee5dd;
+        background-color: transparent;
+        color: #993300;
+      }
+
+      #uds-searchClearResults {
+        border-color: #eee5dd;
+      }
+
+      #uds-searchClearResults:hover {
+        border-color: #eee5dd;
+      }
+
+      #uds-searchControl .gsc-cursor-page {
+        color: #993300;
+      }
+
+      #uds-searchControl .gsc-cursor-current-page {
+        color: #222222;
+      }
+    </style>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=694855878384792308&amp;widgetType=CustomSearch&amp;widgetId=CustomSearch1&amp;action=editWidget&amp;sectionId=sidebar-right-1" onclick='return _WidgetManager._PopupConfig(document.getElementById("CustomSearch1"));' target="configCustomSearch1" title="Edit">
+<img alt="" src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/icon18_wrench_allbkg.png" height="18" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div><div class="widget Label" id="Label1">
+<h2>Categories</h2>
+<div class="widget-content list-label-widget-content">
+<ul>
+<li>
+<a dir="ltr" href="http://java67.blogspot.de/search/label/core%20java">core java</a>
+<span dir="ltr">(228)</span>
+</li>
+<li>
+<a dir="ltr" href="http://java67.blogspot.de/search/label/programming">programming</a>
+<span dir="ltr">(181)</span>
+</li>
+<li>
+<a dir="ltr" href="http://java67.blogspot.de/search/label/core%20java%20interview%20question%20answer">core java interview question answer</a>
+<span dir="ltr">(70)</span>
+</li>
+<li>
+<a dir="ltr" href="http://java67.blogspot.de/search/label/Java%20collection%20tutorial">Java collection tutorial</a>
+<span dir="ltr">(55)</span>
+</li>
+<li>
+<a dir="ltr" href="http://java67.blogspot.de/search/label/interview%20questions">interview questions</a>
+<span dir="ltr">(51)</span>
+</li>
+<li>
+<a dir="ltr" href="http://java67.blogspot.de/search/label/Coding%20Problems">Coding Problems</a>
+<span dir="ltr">(27)</span>
+</li>
+<li>
+<a dir="ltr" href="http://java67.blogspot.de/search/label/SQL%20interview%20Question">SQL interview Question</a>
+<span dir="ltr">(11)</span>
+</li>
+<li>
+<a dir="ltr" href="http://java67.blogspot.de/search/label/java%20concurrency%20tutorial">java concurrency tutorial</a>
+<span dir="ltr">(10)</span>
+</li>
+<li>
+<a dir="ltr" href="http://java67.blogspot.de/search/label/data%20structure%20and%20algorithm">data structure and algorithm</a>
+<span dir="ltr">(9)</span>
+</li>
+</ul>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=694855878384792308&amp;widgetType=Label&amp;widgetId=Label1&amp;action=editWidget&amp;sectionId=sidebar-right-1" onclick='return _WidgetManager._PopupConfig(document.getElementById("Label1"));' target="configLabel1" title="Edit">
+<img alt="" src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/icon18_wrench_allbkg.png" height="18" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div><div class="widget HTML" id="HTML1">
+<div class="widget-content">
+<!-- java67_sidebar-right-1_AdSense1_300x600_as -->
+<ins class="adsbygoogle" style="display:inline-block;width:300px;height:600px" data-ad-client="ca-pub-5808379456926196" data-ad-slot="7739051945"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=694855878384792308&amp;widgetType=HTML&amp;widgetId=HTML1&amp;action=editWidget&amp;sectionId=sidebar-right-1" onclick='return _WidgetManager._PopupConfig(document.getElementById("HTML1"));' target="configHTML1" title="Edit">
+<img alt="" src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/icon18_wrench_allbkg.png" height="18" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div><div class="widget HTML" id="HTML2">
+<div class="widget-content">
+<script async="" src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/adsbygoogle.js"></script>
+<!-- java67 -ATF 300x250 right sidebar -->
+<ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-5808379456926196" data-ad-slot="5713081140"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=694855878384792308&amp;widgetType=HTML&amp;widgetId=HTML2&amp;action=editWidget&amp;sectionId=sidebar-right-1" onclick='return _WidgetManager._PopupConfig(document.getElementById("HTML2"));' target="configHTML2" title="Edit">
+<img alt="" src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/icon18_wrench_allbkg.png" height="18" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div><div class="widget Followers" id="Followers1">
+<h2 class="title">Followers</h2>
+<div class="widget-content">
+<div id="Followers1-wrapper">
+<div style="margin-right:2px;">
+<div><script gapi_processed="true" type="text/javascript" src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/plusone.js"></script>
+<div id="followers-iframe-container"><iframe src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/followers.html" name="I0_1449412968546" id="I0_1449412968546" vspace="0" tabindex="0" style="" scrolling="no" marginwidth="0" marginheight="0" hspace="0" frameborder="0" height="0" width="100%"></iframe></div>
+<script type="text/javascript">
+    window.followersIframe = null;
+    function followersIframeOpen(url) {
+      gapi.load("gapi.iframes", function() {
+        if (gapi.iframes && gapi.iframes.getContext) {
+          window.followersIframe = gapi.iframes.getContext().openChild({
+            url: url,
+            where: document.getElementById("followers-iframe-container"),
+            messageHandlersFilter: gapi.iframes.CROSS_ORIGIN_IFRAMES_FILTER,
+            messageHandlers: {
+              '_ready': function(obj) {
+                window.followersIframe.getIframeEl().height = obj.height;
+              },
+              'reset': function() {
+                window.followersIframe.close();
+                followersIframeOpen("https://www.blogger.com/followers.g?blogID\x3d694855878384792308\x26origin\x3dhttp://java67.blogspot.com/\x26colors\x3dCgt0cmFuc3BhcmVudBILdHJhbnNwYXJlbnQaBjIyMjIyMiIGOTkzMzAwKgZmZmY5ZWUyBjAwMDAwMDoGMjIyMjIyQgY5OTMzMDBKBjk5OTk5OVIGOTkzMzAwWgt0cmFuc3BhcmVudA%3D%3D\x26postID\x3d6939925714905304276");
+              },
+              'open': function(url) {
+                window.followersIframe.close();
+                followersIframeOpen(url);
+              }
+            }
+          });
+        }
+      });
+    }
+    followersIframeOpen("https://www.blogger.com/followers.g?blogID\x3d694855878384792308\x26origin\x3dhttp://java67.blogspot.com/\x26colors\x3dCgt0cmFuc3BhcmVudBILdHJhbnNwYXJlbnQaBjIyMjIyMiIGOTkzMzAwKgZmZmY5ZWUyBjAwMDAwMDoGMjIyMjIyQgY5OTMzMDBKBjk5OTk5OVIGOTkzMzAwWgt0cmFuc3BhcmVudA%3D%3D\x26postID\x3d6939925714905304276");
+  </script></div>
+</div>
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=694855878384792308&amp;widgetType=Followers&amp;widgetId=Followers1&amp;action=editWidget&amp;sectionId=sidebar-right-1" onclick='return _WidgetManager._PopupConfig(document.getElementById("Followers1"));' target="configFollowers1" title="Edit">
+<img alt="" src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/icon18_wrench_allbkg.png" height="18" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div><div class="widget HTML" id="HTML3">
+<div class="widget-content">
+<!-- Java67_300x250_right_sidebar_above_the_fold -->
+<ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-5808379456926196" data-ad-slot="8175491944"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=694855878384792308&amp;widgetType=HTML&amp;widgetId=HTML3&amp;action=editWidget&amp;sectionId=sidebar-right-1" onclick='return _WidgetManager._PopupConfig(document.getElementById("HTML3"));' target="configHTML3" title="Edit">
+<img alt="" src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/icon18_wrench_allbkg.png" height="18" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div><div class="widget Label" id="Label2">
+<h2>Categories</h2>
+<div class="widget-content list-label-widget-content">
+<ul>
+<li>
+<a dir="ltr" href="http://java67.blogspot.de/search/label/array">array</a>
+</li>
+<li>
+<a dir="ltr" href="http://java67.blogspot.de/search/label/books">books</a>
+</li>
+<li>
+<a dir="ltr" href="http://java67.blogspot.de/search/label/coding">coding</a>
+</li>
+<li>
+<a dir="ltr" href="http://java67.blogspot.de/search/label/database">database</a>
+</li>
+<li>
+<a dir="ltr" href="http://java67.blogspot.de/search/label/homework">homework</a>
+</li>
+<li>
+<a dir="ltr" href="http://java67.blogspot.de/search/label/Java%20collection%20tutorial">Java collection tutorial</a>
+</li>
+<li>
+<a dir="ltr" href="http://java67.blogspot.de/search/label/java%20io%20tutorial">java io tutorial</a>
+</li>
+<li>
+<a dir="ltr" href="http://java67.blogspot.de/search/label/Java%20programming%20Tutorial">Java programming Tutorial</a>
+</li>
+</ul>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=694855878384792308&amp;widgetType=Label&amp;widgetId=Label2&amp;action=editWidget&amp;sectionId=sidebar-right-1" onclick='return _WidgetManager._PopupConfig(document.getElementById("Label2"));' target="configLabel2" title="Edit">
+<img alt="" src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/icon18_wrench_allbkg.png" height="18" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div><div class="widget HTML" id="HTML4">
+<div class="widget-content">
+<script type="text/javascript" language="javascript" src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/getads.js"></script>
+<script type="text/javascript" language="javascript">
+//<![CDATA[
+aax_getad_mpb({
+  "slot_uuid":"392ffdf9-b1c9-44b2-9e3e-c43ecd0faabd"
+});
+//]]>
+</script>
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=694855878384792308&amp;widgetType=HTML&amp;widgetId=HTML4&amp;action=editWidget&amp;sectionId=sidebar-right-1" onclick='return _WidgetManager._PopupConfig(document.getElementById("HTML4"));' target="configHTML4" title="Edit">
+<img alt="" src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/icon18_wrench_allbkg.png" height="18" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div><div class="widget FollowByEmail" id="FollowByEmail1">
+<h2 class="title">Follow by Email</h2>
+<div class="widget-content">
+<div class="follow-by-email-inner">
+<form action="https://feedburner.google.com/fb/a/mailverify" method="post" onsubmit='window.open("https://feedburner.google.com/fb/a/mailverify?uri=Java67", "popupwindow", "scrollbars=yes,width=550,height=520"); return true' target="popupwindow">
+<table width="100%">
+<tbody><tr>
+<td>
+<input class="follow-by-email-address" name="email" placeholder="Email address..." type="text">
+</td>
+<td width="64px">
+<input class="follow-by-email-submit" value="Submit" type="submit">
+</td>
+</tr>
+</tbody></table>
+<input name="uri" value="Java67" type="hidden">
+<input name="loc" value="en_US" type="hidden">
+</form>
+</div>
+</div>
+<span class="item-control blog-admin">
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=694855878384792308&amp;widgetType=FollowByEmail&amp;widgetId=FollowByEmail1&amp;action=editWidget&amp;sectionId=sidebar-right-1" onclick='return _WidgetManager._PopupConfig(document.getElementById("FollowByEmail1"));' target="configFollowByEmail1" title="Edit">
+<img alt="" src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/icon18_wrench_allbkg.png" height="18" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</span>
+</div><div class="widget HTML" id="HTML6">
+<div class="widget-content">
+<script type="text/javascript" language="javascript">
+//<![CDATA[
+aax_getad_mpb({
+  "slot_uuid":"04fe6626-7404-4356-b895-1fd4d298071a"
+});
+//]]>
+</script>
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=694855878384792308&amp;widgetType=HTML&amp;widgetId=HTML6&amp;action=editWidget&amp;sectionId=sidebar-right-1" onclick='return _WidgetManager._PopupConfig(document.getElementById("HTML6"));' target="configHTML6" title="Edit">
+<img alt="" src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/icon18_wrench_allbkg.png" height="18" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div><div class="widget LinkList" id="LinkList2">
+<h2>Recommended Reading</h2>
+<div class="widget-content">
+<ul>
+<li><a href="http://java67.blogspot.de/2015/05/best-book-to-learn-java-for-beginners.html">The Best Book to Learn Java in 30 days</a></li>
+<li><a href="http://java67.blogspot.de/2012/09/top-10-java-web-service-interview-question-answer-soap-rest.html">10 Java Web Service Interview Questions</a></li>
+<li><a href="http://java67.blogspot.de/2012/10/top-10-android-interview-questions-and.html">Top 10 Android Interview Questions for Java Programmers</a></li>
+<li><a href="http://java67.blogspot.de/2012/11/java-arraylist-example-contains-add-set.html">How to use an ArrayList in Java?</a></li>
+<li><a href="http://java67.blogspot.de/2015/03/10-books-every-programmer-and-software-engineer-read.html">10 Books Every Programmer Should Read</a></li>
+<li><a href="http://java67.blogspot.de/2015/07/5-books-learn-java-8-functional-programming.html">5 Great Books to Learn Java 8</a></li>
+</ul>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=694855878384792308&amp;widgetType=LinkList&amp;widgetId=LinkList2&amp;action=editWidget&amp;sectionId=sidebar-right-1" onclick='return _WidgetManager._PopupConfig(document.getElementById("LinkList2"));' target="configLinkList2" title="Edit">
+<img alt="" src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/icon18_wrench_allbkg.png" height="18" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div><div class="widget HTML" id="HTML5">
+<div class="widget-content">
+<script type="text/javascript" language="javascript">
+//<![CDATA[
+aax_getad_mpb({
+  "slot_uuid":"1a631a27-7478-440e-ac7f-355dbed82b58"
+});
+//]]>
+</script>
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=694855878384792308&amp;widgetType=HTML&amp;widgetId=HTML5&amp;action=editWidget&amp;sectionId=sidebar-right-1" onclick='return _WidgetManager._PopupConfig(document.getElementById("HTML5"));' target="configHTML5" title="Edit">
+<img alt="" src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/icon18_wrench_allbkg.png" height="18" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div><div class="widget BlogArchive" id="BlogArchive1">
+<h2>Blog Archive</h2>
+<div class="widget-content">
+<div id="ArchiveList">
+<div id="BlogArchive1_ArchiveList">
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://java67.blogspot.de/search?updated-min=2015-01-01T00:00:00-08:00&amp;updated-max=2016-01-01T00:00:00-08:00&amp;max-results=50">
+2015
+</a>
+<span class="post-count" dir="ltr">(97)</span>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://java67.blogspot.de/2015_12_01_archive.html">
+December
+</a>
+<span class="post-count" dir="ltr">(2)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://java67.blogspot.de/2015_11_01_archive.html">
+November
+</a>
+<span class="post-count" dir="ltr">(4)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://java67.blogspot.de/2015_10_01_archive.html">
+October
+</a>
+<span class="post-count" dir="ltr">(13)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://java67.blogspot.de/2015_09_01_archive.html">
+September
+</a>
+<span class="post-count" dir="ltr">(10)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://java67.blogspot.de/2015_08_01_archive.html">
+August
+</a>
+<span class="post-count" dir="ltr">(10)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://java67.blogspot.de/2015_07_01_archive.html">
+July
+</a>
+<span class="post-count" dir="ltr">(18)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://java67.blogspot.de/2015_06_01_archive.html">
+June
+</a>
+<span class="post-count" dir="ltr">(22)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://java67.blogspot.de/2015_05_01_archive.html">
+May
+</a>
+<span class="post-count" dir="ltr">(5)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://java67.blogspot.de/2015_04_01_archive.html">
+April
+</a>
+<span class="post-count" dir="ltr">(1)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://java67.blogspot.de/2015_03_01_archive.html">
+March
+</a>
+<span class="post-count" dir="ltr">(3)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://java67.blogspot.de/2015_02_01_archive.html">
+February
+</a>
+<span class="post-count" dir="ltr">(2)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://java67.blogspot.de/2015_01_01_archive.html">
+January
+</a>
+<span class="post-count" dir="ltr">(7)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://java67.blogspot.de/search?updated-min=2014-01-01T00:00:00-08:00&amp;updated-max=2015-01-01T00:00:00-08:00&amp;max-results=50">
+2014
+</a>
+<span class="post-count" dir="ltr">(68)</span>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://java67.blogspot.de/2014_12_01_archive.html">
+December
+</a>
+<span class="post-count" dir="ltr">(7)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://java67.blogspot.de/2014_11_01_archive.html">
+November
+</a>
+<span class="post-count" dir="ltr">(6)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://java67.blogspot.de/2014_10_01_archive.html">
+October
+</a>
+<span class="post-count" dir="ltr">(3)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://java67.blogspot.de/2014_09_01_archive.html">
+September
+</a>
+<span class="post-count" dir="ltr">(7)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://java67.blogspot.de/2014_08_01_archive.html">
+August
+</a>
+<span class="post-count" dir="ltr">(6)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://java67.blogspot.de/2014_07_01_archive.html">
+July
+</a>
+<span class="post-count" dir="ltr">(2)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://java67.blogspot.de/2014_06_01_archive.html">
+June
+</a>
+<span class="post-count" dir="ltr">(3)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://java67.blogspot.de/2014_05_01_archive.html">
+May
+</a>
+<span class="post-count" dir="ltr">(4)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://java67.blogspot.de/2014_04_01_archive.html">
+April
+</a>
+<span class="post-count" dir="ltr">(6)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://java67.blogspot.de/2014_03_01_archive.html">
+March
+</a>
+<span class="post-count" dir="ltr">(7)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://java67.blogspot.de/2014_02_01_archive.html">
+February
+</a>
+<span class="post-count" dir="ltr">(8)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://java67.blogspot.de/2014_01_01_archive.html">
+January
+</a>
+<span class="post-count" dir="ltr">(9)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://java67.blogspot.de/search?updated-min=2013-01-01T00:00:00-08:00&amp;updated-max=2014-01-01T00:00:00-08:00&amp;max-results=48">
+2013
+</a>
+<span class="post-count" dir="ltr">(48)</span>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://java67.blogspot.de/2013_12_01_archive.html">
+December
+</a>
+<span class="post-count" dir="ltr">(1)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://java67.blogspot.de/2013_11_01_archive.html">
+November
+</a>
+<span class="post-count" dir="ltr">(3)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://java67.blogspot.de/2013_08_01_archive.html">
+August
+</a>
+<span class="post-count" dir="ltr">(8)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://java67.blogspot.de/2013_07_01_archive.html">
+July
+</a>
+<span class="post-count" dir="ltr">(6)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://java67.blogspot.de/2013_06_01_archive.html">
+June
+</a>
+<span class="post-count" dir="ltr">(2)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://java67.blogspot.de/2013_05_01_archive.html">
+May
+</a>
+<span class="post-count" dir="ltr">(3)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://java67.blogspot.de/2013_04_01_archive.html">
+April
+</a>
+<span class="post-count" dir="ltr">(1)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://java67.blogspot.de/2013_03_01_archive.html">
+March
+</a>
+<span class="post-count" dir="ltr">(7)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://java67.blogspot.de/2013_02_01_archive.html">
+February
+</a>
+<span class="post-count" dir="ltr">(7)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://java67.blogspot.de/2013_01_01_archive.html">
+January
+</a>
+<span class="post-count" dir="ltr">(10)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate expanded">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy toggle-open">
+
+        ▼&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://java67.blogspot.de/search?updated-min=2012-01-01T00:00:00-08:00&amp;updated-max=2013-01-01T00:00:00-08:00&amp;max-results=50">
+2012
+</a>
+<span class="post-count" dir="ltr">(134)</span>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://java67.blogspot.de/2012_12_01_archive.html">
+December
+</a>
+<span class="post-count" dir="ltr">(26)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://java67.blogspot.de/2012_11_01_archive.html">
+November
+</a>
+<span class="post-count" dir="ltr">(8)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://java67.blogspot.de/2012_10_01_archive.html">
+October
+</a>
+<span class="post-count" dir="ltr">(27)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://java67.blogspot.de/2012_09_01_archive.html">
+September
+</a>
+<span class="post-count" dir="ltr">(25)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate expanded">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy toggle-open">
+
+        ▼&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://java67.blogspot.de/2012_08_01_archive.html">
+August
+</a>
+<span class="post-count" dir="ltr">(42)</span>
+<ul class="posts">
+<li><a href="http://java67.blogspot.de/2012/08/can-we-overload-static-method-in-java.html">Can we overload static method in Java Program - Ex...</a></li>
+<li><a href="http://java67.blogspot.de/2012/08/can-we-override-private-method-in-java.html">Can we override private method in Java - Example p...</a></li>
+<li><a href="http://java67.blogspot.de/2012/08/spring-interview-questions-answers.html">Spring MVC Framework Interview Questions Answers</a></li>
+<li><a href="http://java67.blogspot.de/2012/08/difference-between-abstraction-and-encapsulation-java-oops.html">Difference between Abstraction and Encapsulation i...</a></li>
+<li><a href="http://java67.blogspot.de/2012/08/can-we-override-static-method-in-java.html">Can we override static method in Java - Method Hid...</a></li>
+<li><a href="http://java67.blogspot.de/2012/08/what-is-method-overriding-in-java-example-tutorial.html">What is method overriding in Java – Example Tutori...</a></li>
+<li><a href="http://java67.blogspot.de/2012/08/what-is-inheritance-in-java-oops-programming-example.html">What is Inheritance in Java OOPS – Example Tutoria...</a></li>
+<li><a href="http://java67.blogspot.de/2012/08/what-is-method-overloading-in-java-example.html">What is method overloading in Java - Example Tutor...</a></li>
+<li><a href="http://java67.blogspot.de/2012/08/difference-between-string-and-stringbuffer-in-java.html">Difference between String and StringBuffer in Java...</a></li>
+<li><a href="http://java67.blogspot.de/2012/08/what-is-package-in-java-how-to-use.html">10 Things Every Java developer Should Know about P...</a></li>
+<li><a href="http://java67.blogspot.de/2012/08/what-is-thread-and-runnable-in-java.html">What is Thread and Runnable in Java - Example</a></li>
+<li><a href="http://java67.blogspot.de/2012/08/what-is-serialization-in-java.html">What is Serialization in Java - Serializable and E...</a></li>
+<li><a href="http://java67.blogspot.de/2012/08/what-is-class-file-in-java-how-to-create-class.html">What is class file in Java - How to create Class F...</a></li>
+<li><a href="http://java67.blogspot.de/2012/08/what-is-transient-variable-in-java.html">What is transient variable in Java - Serialization...</a></li>
+<li><a href="http://java67.blogspot.de/2012/08/what-is-volatile-variable-in-java-when.html">What is volatile variable in Java - When to use</a></li>
+<li><a href="http://java67.blogspot.de/2012/08/how-to-traverse-iterate-or-loop-ArrayList-in-java-example-tutorial.html">How to traverse iterate or loop ArrayList in Java</a></li>
+<li><a href="http://java67.blogspot.de/2012/08/difference-between-hashset-and-hashmap.html">Difference between HashSet and HashMap in Java</a></li>
+<li><a href="http://java67.blogspot.de/2012/08/what-is-singleton-pattern-in-java.html">What is Singleton pattern in Java - Example</a></li>
+<li><a href="http://java67.blogspot.de/2012/08/what-is-noclassdeffounderror-in-java.html">What is NoClassDefFoundError in Java - cause and s...</a></li>
+<li><a href="http://java67.blogspot.de/2012/08/5-difference-between-hashtable-hashmap-Java-collection.html">5 difference between Hashtable and HashMap in Java...</a></li>
+<li><a href="http://java67.blogspot.de/2012/08/difference-between-hashmap-and-concurrentHashMap-java-collection.html">Difference between HashMap and ConcurrentHashMap i...</a></li>
+<li><a href="http://java67.blogspot.de/2012/08/5-thread-interview-questions-answers-in.html">Top 12  Java Thread, Concurrency and Multithreadin...</a></li>
+<li><a href="http://java67.blogspot.de/2012/08/10-java-coding-interview-questions-and.html">Top 10 Java Programming Coding Interview Questions...</a></li>
+<li><a href="http://java67.blogspot.de/2012/08/10-advanced-core-java-interview.html">10 Advanced core Java interview questions for seni...</a></li>
+<li><a href="http://java67.blogspot.de/2012/08/what-is-path-and-classpath-in-java-difference.html">What is PATH and CLASSPATH in Java - Path vs Class...</a></li>
+<li><a href="http://java67.blogspot.de/2012/08/what-is-main-method-in-java-why-main-is.html">What is main method in Java ? Why main is public s...</a></li>
+<li><a href="http://java67.blogspot.de/2012/08/how-to-sort-arraylist-in-java-list.html">How to sort ArrayList in java - List Sorting - Asc...</a></li>
+<li><a href="http://java67.blogspot.de/2012/08/what-are-difference-between-wait-and.html">What is difference between wait and sleep in Java?...</a></li>
+<li><a href="http://java67.blogspot.de/2012/08/difference-between-list-and-set-in-java.html">Difference between List and Set in Java</a></li>
+<li><a href="http://java67.blogspot.de/2012/08/how-java-achieves-platform-independence.html">How Java achieves platform independence</a></li>
+<li><a href="http://java67.blogspot.de/2012/08/how-to-create-read-only-collection-in-java-example.html">How to Make Collection like ArrayList Read Only in...</a></li>
+<li><a href="http://java67.blogspot.de/2012/08/difference-between-yield-and-sleep-in.html">Difference between yield and sleep in Java</a></li>
+<li><a href="http://java67.blogspot.de/2012/08/difference-between-yield-and-wait.html">Difference between yield and wait method in Java</a></li>
+<li><a href="http://java67.blogspot.de/2012/08/how-to-convert-enum-to-string-in-java.html">How to convert Enum to String in Java with Example...</a></li>
+<li><a href="http://java67.blogspot.de/2012/08/how-to-create-enum-from-string-in-java.html">String to Enum in Java - Conversion Example</a></li>
+<li><a href="http://java67.blogspot.de/2012/08/java-program-to-find-gcd-of-two-numbers.html">How to find GCD of two numbers in Java - Euclid's ...</a></li>
+<li><a href="http://java67.blogspot.de/2012/08/difference-between-countdownlatch-and-cyclicbarrier-java.html">Difference between CountDownLatch and CyclicBarrie...</a></li>
+<li><a href="http://java67.blogspot.de/2012/08/difference-between-hashmap-and-LinkedHashMap-Java.html">Difference between HashMap and LinkedHashMap in Ja...</a></li>
+<li><a href="http://java67.blogspot.de/2012/08/difference-between-hashmap-and-ArrayList-in-Java.html">Difference between HashMap and ArrayList in Java</a></li>
+<li><a href="http://java67.blogspot.de/2012/08/difference-between-hashset-and-treeset-java.html">Difference between HashSet  and TreeSet in Java</a></li>
+<li><a href="http://java67.blogspot.de/2012/08/difference-between-treemap-and-treeset-java.html">Difference between TreeMap and TreeSet in Java</a></li>
+<li><a href="http://java67.blogspot.de/2012/08/video-example-dijkstras-algorithm.html">Video example - Dijkstra's Algorithm shortest path...</a></li>
+</ul>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://java67.blogspot.de/2012_07_01_archive.html">
+July
+</a>
+<span class="post-count" dir="ltr">(6)</span>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=694855878384792308&amp;widgetType=BlogArchive&amp;widgetId=BlogArchive1&amp;action=editWidget&amp;sectionId=sidebar-right-1" onclick='return _WidgetManager._PopupConfig(document.getElementById("BlogArchive1"));' target="configBlogArchive1" title="Edit">
+<img alt="" src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/icon18_wrench_allbkg.png" height="18" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div><div class="widget HTML" id="HTML7">
+<div class="widget-content">
+<script type="text/javascript" src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/fpi_002.js"></script>
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=694855878384792308&amp;widgetType=HTML&amp;widgetId=HTML7&amp;action=editWidget&amp;sectionId=sidebar-right-1" onclick='return _WidgetManager._PopupConfig(document.getElementById("HTML7"));' target="configHTML7" title="Edit">
+<img alt="" src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/icon18_wrench_allbkg.png" height="18" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div><div class="widget AdSense" id="AdSense1">
+<div class="widget-content">
+<script type="text/javascript">
+    google_ad_client = "ca-pub-5808379456926196";
+    google_ad_host = "ca-host-pub-1556223355139109";
+    google_ad_host_channel = "L0001";
+    google_ad_slot = "4887071946";
+    google_ad_width = 200;
+    google_ad_height = 90;
+</script>
+<!-- java67_sidebar-right-1_AdSense1_200x90_0ads_al_s -->
+<script type="text/javascript" src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/show_ads.js">
+</script>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=694855878384792308&amp;widgetType=AdSense&amp;widgetId=AdSense1&amp;action=editWidget&amp;sectionId=sidebar-right-1" onclick='return _WidgetManager._PopupConfig(document.getElementById("AdSense1"));' target="configAdSense1" title="Edit">
+<img alt="" src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/icon18_wrench_allbkg.png" height="18" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div><div class="widget HTML" id="HTML9">
+<div class="widget-content">
+<script type="text/javascript" src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/fpi.js"></script>
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=694855878384792308&amp;widgetType=HTML&amp;widgetId=HTML9&amp;action=editWidget&amp;sectionId=sidebar-right-1" onclick='return _WidgetManager._PopupConfig(document.getElementById("HTML9"));' target="configHTML9" title="Edit">
+<img alt="" src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/icon18_wrench_allbkg.png" height="18" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div></div>
+</aside>
+</div>
+</div>
+</div>
+<div style="clear: both"></div>
+<!-- columns -->
+</div>
+<!-- main -->
+</div>
+</div>
+<div class="main-cap-bottom cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+<footer>
+<div class="footer-outer">
+<div class="footer-cap-top cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left footer-fauxborder-left">
+<div class="fauxborder-right footer-fauxborder-right"></div>
+<div class="region-inner footer-inner">
+<div class="foot section" id="footer-1"><div class="widget HTML" id="HTML8"><script>
+var linkwithin_site_id = 2413259;
+</script>
+<script src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/widget.js"></script></div></div>
+<table class="section-columns columns-2" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td class="first columns-cell">
+<div class="foot section" id="footer-2-1"></div>
+</td>
+<td class="columns-cell">
+<div class="foot section" id="footer-2-2"></div>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- outside of the include in order to lock Attribution widget -->
+<div class="foot section" id="footer-3" name="Footer"><div class="widget Attribution" id="Attribution1">
+<div class="widget-content" style="text-align: center;">
+Powered by <a href="https://www.blogger.com/" target="_blank">Blogger</a>.
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=694855878384792308&amp;widgetType=Attribution&amp;widgetId=Attribution1&amp;action=editWidget&amp;sectionId=footer-3" onclick='return _WidgetManager._PopupConfig(document.getElementById("Attribution1"));' target="configAttribution1" title="Edit">
+<img alt="" src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/icon18_wrench_allbkg.png" height="18" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div></div>
+</div>
+</div>
+<div class="footer-cap-bottom cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+</footer>
+<!-- content -->
+</div>
+</div>
+<div class="content-cap-bottom cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+</div><iframe tabindex="-1" style="width: 1px; height: 1px; position: absolute; top: -100px;" src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/postmessageRelay.html" id="oauth2relay293171218" name="oauth2relay293171218"></iframe>
+<script type="text/javascript">
+    window.setTimeout(function() {
+        document.body.className = document.body.className.replace('loading', '');
+      }, 10);
+  </script>
+<!-- infolink -->
+<script type="text/javascript">
+    var infolinks_pid = 258201;
+    var infolinks_wsid = 1;
+</script>
+<script src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/infolinks_main.js" type="text/javascript"></script>
+<script src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/controller.php"></script>
+
+
+<script type="text/javascript">
+if (window.jstiming) window.jstiming.load.tick('widgetJsBefore');
+</script>
+
+<!-- 'Es liegt in deiner Verantwortung, deine Besucher über die in deinem Blog verwendeten Cookies zu informieren. Weitere Informationen findest du hier http://www.blogger.com/go/cookiechoices.' -->
+<script src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/cookiechoices.js" defer="defer"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function(event) {
+    window.cookieChoices && cookieChoices.showCookieConsentBar && cookieChoices.showCookieConsentBar(
+        (window.cookieOptions && cookieOptions.msg) || 'Diese Website verwendet Cookies von Google, um ihre Dienste bereitzustellen, Anzeigen zu personalisieren und Zugriffe zu analysieren. Informationen darüber, wie du die Website verwendest, werden an Google weitergegeben. Durch die Nutzung dieser Website erklärst du dich damit einverstanden, dass sie Cookies verwendet.',
+        (window.cookieOptions && cookieOptions.close) || 'OK',
+        (window.cookieOptions && cookieOptions.learn) || 'Weitere Informationen',
+        (window.cookieOptions && cookieOptions.link) || 'https://www.blogger.com/go/blogspot-cookies');
+  });
+</script>
+
+<script type="text/javascript" src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/2759014865-widgets.js"></script>
+<script gapi_processed="true" type="text/javascript" src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/plusone.js"></script>
+<script type="text/javascript" src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/jsapi"></script>
+<script type="text/javascript">
+if (typeof(BLOG_attachCsiOnload) != 'undefined' && BLOG_attachCsiOnload != null) { window['blogger_templates_experiment_id'] = "templatesV2";window['blogger_blog_id'] = '694855878384792308';BLOG_attachCsiOnload('item_'); }_WidgetManager._Init('//www.blogger.com/rearrange?blogID\x3d694855878384792308','//java67.blogspot.de/2012/08/how-to-create-enum-from-string-in-java.html','694855878384792308');
+_WidgetManager._SetDataContext([{'name': 'blog', 'data': {'blogId': '694855878384792308', 'bloggerUrl': 'https://www.blogger.com', 'title': 'Java67', 'pageType': 'item', 'postId': '6939925714905304276', 'url': 'http://java67.blogspot.de/2012/08/how-to-create-enum-from-string-in-java.html', 'canonicalUrl': 'http://java67.blogspot.com/2012/08/how-to-create-enum-from-string-in-java.html', 'homepageUrl': 'http://java67.blogspot.de/', 'canonicalHomepageUrl': 'http://java67.blogspot.com/', 'blogspotFaviconUrl': 'http://java67.blogspot.de/favicon.ico', 'enabledCommentProfileImages': true, 'adultContent': false, 'disableAdSenseWidget': false, 'analyticsAccountNumber': 'UA-35838489-1', 'useUniversalAnalytics': false, 'pageName': 'String to Enum in Java - Conversion Example', 'pageTitle': 'Java67: String to Enum in Java - Conversion Example', 'metaDescription': '', 'encoding': 'UTF-8', 'locale': 'en', 'localeUnderscoreDelimited': 'en', 'isPrivate': false, 'isMobile': false, 'isMobileRequest': false, 'mobileClass': '', 'isPrivateBlog': false, 'languageDirection': 'ltr', 'feedLinks': '\74link rel\75\42alternate\42 type\75\42application/atom+xml\42 title\75\42Java67 - Atom\42 href\75\42http://java67.blogspot.com/feeds/posts/default\42 /\76\n\74link rel\75\42alternate\42 type\75\42application/rss+xml\42 title\75\42Java67 - RSS\42 href\75\42http://java67.blogspot.com/feeds/posts/default?alt\75rss\42 /\76\n\74link rel\75\42service.post\42 type\75\42application/atom+xml\42 title\75\42Java67 - Atom\42 href\75\42https://www.blogger.com/feeds/694855878384792308/posts/default\42 /\76\n\n\74link rel\75\42alternate\42 type\75\42application/atom+xml\42 title\75\42Java67 - Atom\42 href\75\42http://java67.blogspot.com/feeds/6939925714905304276/comments/default\42 /\76\n', 'meTag': '', 'openIdOpTag': '', 'googleProfileUrl': 'https://plus.google.com/114528699166048052030', 'postImageThumbnailUrl': 'http://1.bp.blogspot.com/-_GCqP1vu06Q/UBaTOZM869I/AAAAAAAAAaw/ykubu9U9kK4/s72-c/java_logo_50_50.jpg', 'postImageUrl': 'http://1.bp.blogspot.com/-_GCqP1vu06Q/UBaTOZM869I/AAAAAAAAAaw/ykubu9U9kK4/s1600/java_logo_50_50.jpg', 'latencyHeadScript': '\74script type\75\42text/javascript\42\76(function() { (function(){function c(a){this.t\75{};this.tick\75function(a,c,b){var d\75void 0!\75b?b:(new Date).getTime();this.t[a]\75[d,c];if(void 0\75\75b)try{window.console.timeStamp(\42CSI/\42+a)}catch(e){}};this.tick(\42start\42,null,a)}var a;window.performance\46\46(a\75window.performance.timing);var h\75a?new c(a.responseStart):new c;window.jstiming\75{Timer:c,load:h};if(a){var b\75a.navigationStart,e\75a.responseStart;0\74b\46\46e\76\75b\46\46(window.jstiming.srt\75e-b)}if(a){var d\75window.jstiming.load;0\74b\46\46e\76\75b\46\46(d.tick(\42_wtsrt\42,void 0,b),d.tick(\42wtsrt_\42,\n\42_wtsrt\42,e),d.tick(\42tbsd_\42,\42wtsrt_\42))}try{a\75null,window.chrome\46\46window.chrome.csi\46\46(a\75Math.floor(window.chrome.csi().pageT),d\46\0460\74b\46\46(d.tick(\42_tbnd\42,void 0,window.chrome.csi().startE),d.tick(\42tbnd_\42,\42_tbnd\42,b))),null\75\75a\46\46window.gtbExternal\46\46(a\75window.gtbExternal.pageT()),null\75\75a\46\46window.external\46\46(a\75window.external.pageT,d\46\0460\74b\46\46(d.tick(\42_tbnd\42,void 0,window.external.startE),d.tick(\42tbnd_\42,\42_tbnd\42,b))),a\46\46(window.jstiming.pt\75a)}catch(k){}})();window.tickAboveFold\75function(c){var a\0750;if(c.offsetParent){do a+\75c.offsetTop;while(c\75c.offsetParent)}c\75a;750\76\75c\46\46window.jstiming.load.tick(\42aft\42)};var f\75!1;function g(){f||(f\75!0,window.jstiming.load.tick(\42firstScrollTime\42))}window.addEventListener?window.addEventListener(\42scroll\42,g,!1):window.attachEvent(\42onscroll\42,g);\n })();\74/script\076', 'mobileHeadScript': '', 'adsenseClientId': 'ca-pub-5808379456926196', 'ieCssRetrofitLinks': '\74!--[if IE]\76\74script type\75\42text/javascript\42 src\75\42https://www.blogger.com/static/v1/jsbin/1494333581-ieretrofit.js\42\76\74/script\76\n\74![endif]--\076', 'view': '', 'dynamicViewsCommentsSrc': '//www.blogblog.com/dynamicviews/4224c15c4e7c9321/js/comments.js', 'dynamicViewsScriptSrc': '//www.blogblog.com/dynamicviews/f01787774e22c89a', 'plusOneApiSrc': 'https://apis.google.com/js/plusone.js', 'sf': 'n', 'tf': ''}}, {'name': 'messages', 'data': {'archive': 'Archive', 'deleteBacklink': 'Delete Backlink', 'deleteComment': 'Delete Comment', 'keepReading': 'Keep reading', 'labels': 'Labels', 'loading': 'Loading...', 'myBlogList': 'My Blog List', 'myFavoriteSites': 'My favorite sites', 'newer': 'Newer', 'newest': 'Newest', 'noTitle': 'No title', 'older': 'Older', 'oldest': 'Oldest', 'popularPosts': 'Popular Posts', 'popularPostsFromThisBlog': 'Popular posts from this blog', 'postAComment': 'Post a Comment', 'reportAbuse': 'Report Abuse', 'search': 'Search', 'share': 'Share', 'showAll': 'Show all', 'subscribe': 'Subscribe', 'subscribeToThisBlog': 'Subscribe to this blog', 'onlyTeamMembersCanComment': 'Note: Only a member of this blog may post a comment.'}}, {'name': 'skin', 'data': {'vars': {'post_footer_background_color': '#eee9dd', 'tabs_text_color': '#998877', 'date_header_letterspacing': 'inherit', 'content_shadow_spread': '40px', 'body_background_override': '', 'description_text_size': '140%', 'mobile_background_size': 'auto', 'header_shadow_spread': '3px', 'image_border_color': '#eeeeee', 'date_header_color': '#222222', 'header_shadow_offset_top': '2px', 'header_border_horizontalsize': '0', 'widget_title_font': 'normal bold 12px Georgia, Utopia, \47Palatino Linotype\47, Palatino, serif', 'tabs_border_color': '#eee5dd', 'tabs_bevel_border_width': '1px', 'body_background_gradient_tile': 'none', 'description_text_color': '#ffffff', 'main_section_margin': '15px', 'post_title_font': 'normal normal 24px Georgia, Utopia, \47Palatino Linotype\47, Palatino, serif', 'page_width': 'auto', 'paging_background': 'transparent none no-repeat scroll top center', 'body_text_color': '#222222', 'content_padding': '10px', 'header_background_gradient': 'url(//www.blogblog.com/1kt/simple/gradients_light.png)', 'post_margin_bottom': '25px', 'header_shadow_offset_left': '1px', 'tabs_background_color': '#fff9ee', 'content_background_color': '#fff9ee', 'body_background_gradient_cap': 'none', 'main_padding_top': '30px', 'widget_alternate_text_color': '#999999', 'image_text_color': '#222222', 'link_visited_color': '#888888', 'tabs_margin_side': '30px', 'image_border_large_size': '5px', 'content_shadow_spread_webkit': '5px', 'mobile_button_color': '#ffffff', 'tabs_selected_text_color': '#000000', 'main_border_width': '0', 'content_background_color_selector': '.content-inner', 'link_color': '#993300', 'post_footer_border_color': '#eeeeee', 'date_header_font': 'normal bold 11px Arial, Tahoma, Helvetica, FreeSans, sans-serif', 'tabs_background_gradient': 'none', 'content_padding_horizontal': '10px', 'header_font': 'normal normal 48px Georgia, Utopia, \47Palatino Linotype\47, Palatino, serif', 'startSide': 'left', 'tabs_font': 'normal normal 16px Georgia, Utopia, \47Palatino Linotype\47, Palatino, serif', 'widget_title_text_color': '#000000', 'header_border_size': '0', 'tabs_selected_background_color': '#fff9ee', 'date_header_margin': 'inherit', 'footer_bevel': '0', 'image_border_small_size': '2px', 'content_shadow_spread_ie': '10px', 'mobile_background_overlay': 'transparent none repeat scroll top left', 'endSide': 'right', 'date_header_padding': 'inherit', 'image_background_color': '#ffffff', 'body_rule_color': '#eee5dd', 'header_bottom_border_size': '0', 'page_width_selector': '.region-inner', 'body_background_color': '#513831', 'header_text_color': '#ffffff', 'main_padding': '15px', 'date_header_background_color': 'transparent', 'tabs_border_width': '1px', 'body_font': 'normal normal 16px Georgia, Utopia, \47Palatino Linotype\47, Palatino, serif', 'link_hover_color': '#ff1900', 'header_background_color': '#ccb666', 'keycolor': '#ccb666', 'main_padding_bottom': '30px', 'post_footer_text_color': '#666555', 'tabs_margin_top': '0', 'header_padding': '30px'}, 'override': ''}}, {'name': 'view', 'data': {'classic': {'name': 'classic', 'url': '?view\75classic'}, 'flipcard': {'name': 'flipcard', 'url': '?view\75flipcard'}, 'magazine': {'name': 'magazine', 'url': '?view\75magazine'}, 'mosaic': {'name': 'mosaic', 'url': '?view\75mosaic'}, 'sidebar': {'name': 'sidebar', 'url': '?view\75sidebar'}, 'snapshot': {'name': 'snapshot', 'url': '?view\75snapshot'}, 'timeslide': {'name': 'timeslide', 'url': '?view\75timeslide'}}}]);
+_WidgetManager._RegisterWidget('_NavbarView', new _WidgetInfo('Navbar1', 'navbar', null, document.getElementById('Navbar1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HeaderView', new _WidgetInfo('Header1', 'header', null, document.getElementById('Header1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogView', new _WidgetInfo('Blog1', 'main', null, document.getElementById('Blog1'), {'cmtInteractionsEnabled': false, 'lightboxEnabled': true, 'lightboxModuleUrl': 'https://www.blogger.com/static/v1/jsbin/68035727-lbx.js', 'lightboxCssUrl': 'https://www.blogger.com/static/v1/v-css/1185134592-lightbox_bundle.css'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_CustomSearchView', new _WidgetInfo('CustomSearch1', 'sidebar-right-1', null, document.getElementById('CustomSearch1'), {'title': 'Search This Blog', 'includeBlog': true, 'includePostLinks': true, 'includeWeb': true, 'linkLists': [], 'blogUrl': 'http://java67.blogspot.com/', 'loadingMsg': 'Loading...', 'thisBlogMsg': 'This Blog', 'linkedFromHereMsg': 'Linked From Here', 'theWebMsg': 'The Web', 'backgroundColor': '#fff9ee', 'textColor': '#222222', 'dateColor': '#ffffff', 'linkColor': '#993300', 'urlColor': '#993300', 'visitedLinkColor': '#888888', 'borderColor': '#eee5dd', 'activeBorderColor': '#eee5dd', 'cse_ua': false}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_LabelView', new _WidgetInfo('Label1', 'sidebar-right-1', null, document.getElementById('Label1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML1', 'sidebar-right-1', null, document.getElementById('HTML1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML2', 'sidebar-right-1', null, document.getElementById('HTML2'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_FollowersView', new _WidgetInfo('Followers1', 'sidebar-right-1', null, document.getElementById('Followers1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML3', 'sidebar-right-1', null, document.getElementById('HTML3'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_LabelView', new _WidgetInfo('Label2', 'sidebar-right-1', null, document.getElementById('Label2'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML4', 'sidebar-right-1', null, document.getElementById('HTML4'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_FollowByEmailView', new _WidgetInfo('FollowByEmail1', 'sidebar-right-1', null, document.getElementById('FollowByEmail1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML6', 'sidebar-right-1', null, document.getElementById('HTML6'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_LinkListView', new _WidgetInfo('LinkList2', 'sidebar-right-1', null, document.getElementById('LinkList2'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML5', 'sidebar-right-1', null, document.getElementById('HTML5'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogArchiveView', new _WidgetInfo('BlogArchive1', 'sidebar-right-1', null, document.getElementById('BlogArchive1'), {'languageDirection': 'ltr', 'loadingMessage': 'Loading...'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML7', 'sidebar-right-1', null, document.getElementById('HTML7'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_AdSenseView', new _WidgetInfo('AdSense1', 'sidebar-right-1', null, document.getElementById('AdSense1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML9', 'sidebar-right-1', null, document.getElementById('HTML9'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML8', 'footer-1', null, document.getElementById('HTML8'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_AttributionView', new _WidgetInfo('Attribution1', 'footer-3', null, document.getElementById('Attribution1'), {'attribution': 'Powered by \74a href\75\47https://www.blogger.com\47 target\75\47_blank\47\76Blogger\74/a\76.'}, 'displayModeFull'));
+</script>
+
+<link href="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/1185134592-lightbox_bundle.css" rel="stylesheet" type="text/css"><script src="String%20to%20Enum%20in%20Java%20-%20Conversion%20Example%20%7C%20Java67_files/68035727-lbx.js" type="text/javascript"></script></body></html>

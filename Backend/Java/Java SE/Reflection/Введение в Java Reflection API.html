@@ -1,0 +1,525 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <meta name="description" content="В статье дается ввод в технологию рефлексии - механизма исследования данных о программе во время её выполнения. Рефлексия позволяет исследовать информацию о полях, методах и конструкторах классов.">
+    <meta name="Keywords" content="java reflection, рефлексия java, java интроспекция, introspection java api">
+    
+    <link rel="image_src" href="http://www.quizful.net/res/img/logo.png">
+    <meta name="verify-v1" content="6KfOvLrGm4KgPJB+V2B+ELyBzxjG+LoVhKdUcFXetdc=">
+    <meta name="verify-v1" content="qYSVa9mzpQpfGqnpnzskiw2v73evzB42bGM/wcip0Hg=">
+    <meta name="y_key" content="29ad813d1559a2f3">
+    <meta name="google-site-verification" content="iBH4tJ3rxmGwMxXc6uL-qF4pRUbmBrSlRT_XQbw_4Vs">
+
+    <title>Введение в Java Reflection API</title>
+
+    <style>@import '/res/page.css?97';</style>
+    <script src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/widgets.js" id="twitter-wjs"></script><script type="text/javascript" src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/page.js"></script>
+    
+
+    <script>
+        //IE6 идет на$#%
+        if ('\v'=='v' && !window.XMLHttpRequest) window.location='/res/no-ie6.html';
+        jQuery(function() { pageInit(); });
+    </script>
+    <link rel="shortcut icon" href="http://www.quizful.net/res/favicon.ico">
+<style type="text/css">/* Chili -- java */
+.java__mlcom { color: #4040c2; }
+.java__com { color: green; }
+.java__string { color: teal; }
+.java__number { color: red; }
+.java__meta { color: red; }
+.java__keyword { color: navy; font-weight: bold; }</style><script src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/button.js" async="" charset="utf-8" type="text/javascript"></script></head>
+<body>
+
+    <div id="header">
+                <a id="logo" title="Онлайн тесты" href="http://www.quizful.net/"></a>
+
+        <div id="top-groups">
+    <iframe class="pcfykmqlcrtplekulgcu" src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/like.html" scrolling="no" style="border:none; overflow:hidden; height:21px; width:90px;" allowtransparency="true" frameborder="0"></iframe>
+</div>
+
+<div id="top-popups">
+    <div id="feedback-block">
+        <div class="feedback-block-button closed" onclick="toggleBlock(jQuery.event.fix(event), '#feedback-block'); return false;"></div>
+
+        <div class="content">
+            <div class="corners"><b></b><u></u><i></i></div>
+
+            <form id="feedback" action="">
+                <div class="errors hidden"></div>
+                <textarea id="feedback-text" name="text" class="form-control"></textarea>
+                                    <div class="captcha">
+                        <img class="captcha-img" src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/feedback.png" style="cursor:pointer;">
+                        <label for="feedback-code">Введите число</label>
+                        <input id="feedback-code" name="captcha" type="text">
+                    </div>
+                                <div class="buttons"><input value="Отправить" class="btn btn-primary btn-xs" type="button"></div>
+            </form>
+        </div>
+    </div>
+    
+</div>
+
+<script type="text/javascript">
+    new Feedback();
+    $(document).bind('click', handleClickOutside);
+
+    function handleClickOutside(e) {
+        var blocks = ['#feedback-block', '#invite-block'];
+        for (var id in blocks) {
+            var blockEl = jQuery(blocks[id] + " .content");
+
+            if (jQuery.find(blocks[id]).length > 0 && blockEl.attr('display') != 'none') {
+                if (jQuery(e.target).parents().index(jQuery(blocks[id])) == -1 && !jQuery(e.target).parent().hasClass('thanks')
+                        && jQuery(e.target).attr('id') != blocks[id].substring(1)) {
+
+//                    alert(jQuery(e.target).parents().map(function() { return this.tagName + " id=" + this.id; }).get().join());
+
+                    blockEl.slideUp(250);
+                    jQuery((blocks[id] + '-button').replace('#', '.')).removeClass('opened').addClass('closed');
+                }
+            }
+        }
+    }
+
+    function toggleBlock(e, block) {
+        if (jQuery(e.target).hasClass('opened')) {
+            jQuery(block + ' .content').slideUp(250);
+            jQuery(e.target).removeClass('opened').addClass('closed');
+        } else {
+            jQuery(e.target).removeClass('closed').addClass('opened');
+            jQuery(block + ' .content').slideDown(250);
+        }
+    }
+</script>
+
+        <ul id="navigation">
+                                    <li class="
+            first                         ">
+                <b></b><a href="http://www.quizful.net/test">Главная</a>
+                            </li>
+            <li class="sep"></li>
+                                                                        <li class="
+                                                                                                                                                                                                                                                                                                                ">
+                <a href="http://www.quizful.net/posts">Статьи</a>
+                            </li>
+            <li class="sep"></li>
+                                                                        <li class="last">
+                <a href="http://www.quizful.net/page/about">О проекте</a><b></b>
+                                    <ul class="sub">
+                                                <li class="">
+                            <a href="http://www.quizful.net/page/about">описание</a>
+                        </li>
+                                                <li class="">
+                            <a href="http://www.quizful.net/page/hall-of-fame">зал славы</a>
+                        </li>
+                                                <li class="">
+                            <a href="http://www.quizful.net/page/certification-exams">сертификаты</a>
+                        </li>
+                                                <li class="">
+                            <a href="http://www.quizful.net/faq">faq</a>
+                        </li>
+                                                <li class="last"><b class="left"></b><b class="middle"></b><b class="right"></b></li>
+                    </ul>
+                            </li>
+            
+                                                        </ul>
+
+        <ul id="user-panel">
+            <li> <a href="http://www.quizful.net/LoginAction.loginForm" rel="nofollow">войти</a> </li>
+            <li class="separator"></li>
+                                    <li> <a href="http://www.quizful.net/LoginAction.registration" rel="nofollow">зарегистрироваться</a> </li>
+        </ul>
+
+    </div>
+    <div style="min-height: 471px;" id="content">
+        <div id="contributor"></div>
+        <div id="left">
+                        <div class="a-block">
+                <div class="corners"><s></s><b></b><u></u><i></i></div>
+                <div class="sides"><s></s><b></b><u></u><i></i></div>
+                <div class="content">
+                    <a data-twitter-extracted-i1449089176649277410="true" class="twitter-follow-button" href="https://twitter.com/quizful_com" data-show-count="false" data-size="large">
+Follow @Quizful</a>
+<br><br>
+Contribute to new <a href="http://quizful.com/contribute" target="_blank">Quizful</a> Help to translate Java. 
+<a href="http://quizful.com/contribute" style="padding-left: 25px" target="_blank"><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/contribute_logo1.png"></a>
+<br><br>
+Раздаем бесплатные Q! подробности в группе <a href="https://plus.google.com/communities/103078004820764559925" target="_blank">Quizful.Alpha-test</a>
+
+
+
+<script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+ 
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+ 
+  return t;
+}(document, "script", "twitter-wjs"));</script>
+                </div>
+            </div>
+            
+                            <div id="vips" class="sblock">
+    <div class="corners"><s></s><b></b><u></u><i></i></div>
+    <div class="title"><b>Партнеры</b></div>
+    <div class="content">
+        <table class="table" style="background-color: white;">
+                            <tbody><tr class="vip">
+                    <td class="content"><a href="http://skillbox.io/" target="_blank"><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/banner_prescreening.png" alt="Рекрутерам: Прескрининг кандидатов" border="0"></a></td>
+                    <td>
+                        <img title="" data-original-title="" style="vertical-align:middle; padding-right:5px; opacity: 0.5" alt="about" src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/help-tip.gif" data-tooltip="" data-title="Skillbox - инструмент для прескрининга IT специалистов" data-placement="right">
+                    </td>
+                </tr>
+                            <tr class="vip">
+                    <td class="content"><a href="http://cogniance.com/vacancies/?from=quizful" target="blank"><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/cogniance_logo_image.png" alt="Cogniance тесты работодателя" border="0"></a></td>
+                    <td>
+                        <img title="" data-original-title="" style="vertical-align:middle; padding-right:5px; opacity: 0.5" alt="about" src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/help-tip.gif" data-tooltip="" data-title="Cogniance  — компания, предоставляющая услуги в области проектирования, разработки, тестирования, внедрения и поддержки систем программного обеспечения на международном рынке." data-placement="right">
+                    </td>
+                </tr>
+                    </tbody></table>
+    </div>
+</div>
+            
+            <div id="contributors" class="sblock">
+    <div class="corners"><s></s><b></b><u></u><i></i></div>
+    <div class="title"><b>Топ контрибуторов</b></div>
+    <div class="content" id="contributors-content">
+        <select id="contributors-report">
+            <option value="day">За последние сутки</option>
+            <option selected="selected" value="month">За последний месяц</option>
+            <option value="all">За весь период</option>
+        </select>
+        <img style="display: none;" src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/loading.gif" id="contributors-loading-select" alt="loading" align="absmiddle">
+        <div id="contributors-table"><table class="data"><tbody><tr class="second"><td class="place">1.</td><td class="login">Doublecherry</td><td class="points">48.5&nbsp;Q</td></tr><tr class="first"><td class="place">2.</td><td class="login">kudryashov</td><td class="points">23.0&nbsp;Q</td></tr><tr class="second"><td class="place">3.</td><td class="login">ratushnyak_k</td><td class="points">18.5&nbsp;Q</td></tr><tr class="first"><td class="place">4.</td><td class="login"><a href="http://www.quizful.net/user/joker8999" rel="nofollow">joker8999</a></td><td class="points">15.0&nbsp;Q</td></tr><tr class="second"><td class="place">5.</td><td class="login">ChmilevFA</td><td class="points">10.0&nbsp;Q</td></tr><tr class="first"><td class="place">6.</td><td class="login">dimbesson</td><td class="points">10.0&nbsp;Q</td></tr><tr class="second"><td class="place">7.</td><td class="login">kavokivon</td><td class="points">10.0&nbsp;Q</td></tr><tr class="first"><td class="place">8.</td><td class="login">garrich</td><td class="points">9.5&nbsp;Q</td></tr><tr class="second"><td class="place">9.</td><td class="login"><a href="http://www.quizful.net/user/luna" rel="nofollow">luna</a></td><td class="points">8.5&nbsp;Q</td></tr><tr class="first"><td class="place">10.</td><td class="login"><a href="http://www.quizful.net/user/SirGate" rel="nofollow">SirGate</a></td><td class="points">8.5&nbsp;Q</td></tr></tbody></table><a class="contribute" href="http://www.quizful.net/page/contribute">Получение Q</a></div>
+        <div id="contribution-paging" class="paging">
+            <img style="display: none;" src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/loading.gif" alt="loading" id="contributors-loading" align="absmiddle">
+            <span style="color: gray; cursor: default;" class="arrow">←</span>
+            <span style="color: rgb(65, 159, 221); cursor: pointer;" class="arrow">→</span>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    if (!Cookie.get("reportType"))
+        Cookie.set("reportType", "month", 365);
+    $("#contributors-report").val(Cookie.get("reportType"));
+    new TopContributors();
+</script>
+
+            <div id="tips-block" class="sblock opened">
+    <div class="corners"><s></s><b></b><u></u><i></i></div>
+    <div class="title"><b>Знаете ли Вы, что</b></div>
+    <div class="content">
+        <p id="tips-text">Список полученных сертификатов находится на 
+странице Вашего профиля. Сертификаты можно распечатать или разместить на
+ Вашем сайте.</p>
+        <input id="tip-index" value="2" type="hidden">
+        <p class="link">
+            <img style="display: none;" src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/loading.gif" alt="Loading" id="tips-loading" align="absmiddle">
+            <span class="arrow">←</span>
+            <span class="arrow">→</span>
+        </p>
+    </div>
+</div>
+<script type="text/javascript"> new Tips(); </script>
+
+
+                        <div id="globalfeed" class="sblock">
+    <div class="corners"><s></s><b></b><u></u><i></i></div>
+    <div class="title"><b>Лента обновлений</b></div>
+    <div class="content">
+        <table>
+                            <tbody><tr><td>
+                    <a href="http://www.quizful.net/TestStoreAction.viewQuestion?question=OKtJbVQZ5eJK#1030788690422821453">ссылка</a>
+                    <span>20:22:59</span>
+                    <div>
+                    Комментарий от Xacho:<br>ошибка  не выдает тогда, когда находится в этом же папке, ...
+                </div></td></tr>
+                            <tr class="even"><td>
+                    <a href="http://www.quizful.net/TestStoreAction.viewQuestion?question=HFhiuaqClzNw#4030510395222128798">ссылка</a>
+                    <span>18:45:40</span>
+                    <div>
+                    Комментарий от Andriy_LVIV:<br>+
+                </div></td></tr>
+                            <tr><td>
+                    <a href="http://www.quizful.net/TestStoreAction.viewQuestion?question=fxEtPnSNPWy5#4254047330748600510">ссылка</a>
+                    <span>18:30:37</span>
+                    <div>
+                    Комментарий от Andriy_LVIV:<br>тоже попался на "M3 - класс", пропустил, что "S1" - ...
+                </div></td></tr>
+                            <tr class="even"><td>
+                    <a href="http://www.quizful.net/TestStoreAction.viewQuestion?question=UCCyg6QMl8KX#6810351683575137232">ссылка</a>
+                    <span>15:52:45</span>
+                    <div>
+                    Комментарий от youriver:<br>"подумал что подразумевается то что bean mock объявлен"...
+                </div></td></tr>
+                            <tr><td>
+                    <a href="http://www.quizful.net/TestStoreAction.viewQuestion?question=UzQ2Gpbsk0x9">ссылка</a>
+                    <span>15:15:04</span>
+                    <div>
+                    Добавлен вопрос в тест JavaScript - Средний уровень
+                </div></td></tr>
+                    </tbody></table>
+    </div>
+</div>
+
+                        <div id="statistics" class="sblock">
+                <div class="corners"><s></s><b></b><u></u><i></i></div>
+                <div class="title"><b>Статистика</b></div>
+                <div class="content">
+                    <p>Тестов: 153, вопросов: 8401.
+                    Пройдено: 284821 / 1340244.</p>
+                </div>
+            </div>
+                    </div>
+        <div id="middle">
+            <div id="page-title-hr"></div>
+            <script type="text/javascript" src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/share.js" charset="windows-1251"></script>
+
+<h1 id="page-title" style="height:auto;">Введение в Java Reflection API</h1>
+        <div class="post">
+    <div id="post-info" class="rform">
+        <div class="corners"><s></s><b></b><u></u><i></i></div>
+        <div class="title">
+            <img class="head" src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/blank.gif" alt="head">
+            <img class="tail" src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/blank.gif" alt="tail">
+            <b>Статья</b>
+        </div>
+        <div class="content">
+            <table>
+                                <tbody><tr class="even category"><td colspan="2"><span>категория</span><br><a href="http://www.quizful.net/category/java">Java</a></td></tr>
+                                <tr><td>дата</td><td>26.11.2010</td></tr>
+                <tr class="even"><td>автор</td><td><a href="http://www.quizful.net/user/san">san</a></td></tr>
+                <tr><td>голосов</td><td id="votes">80</td></tr>
+            </tbody></table>
+        </div>
+    </div>
+
+    <div class="text" style="margin-right:260px;">
+        <p style="font-family: Arial, 'sans serif'; "><strong>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Рефлексия</strong> (от позднелат. reflexio - обращение назад) - это механизм исследования данных о программе во время её выполнения.
+Рефлексия позволяет исследовать информацию о полях, методах и конструкторах классов. Можно также выполнять операции над полями
+и методами которые исследуются. Рефлексия в Java осуществляется с помощью Java Reflection API. Этот интерфейс API состоит 
+из классов пакетов java.lang и java.lang.reflect.
+	С помощью интерфейса Java Reflection API можно делать следующее:&nbsp;</p><ul style="font-family: Arial, 'sans serif'; "><li>Определить класс объекта.&nbsp;</li><li>Получить информацию о модификаторах класса, полях, методах, конструкторах и суперклассах.</li><li>Выяснить, какие константы и методы принадлежат интерфейсу.&nbsp;</li><li>Создать экземпляр класса, имя которого неизвестно до момента выполнения программы.</li><li>Получить и установить значение свойства объекта.</li><li>Вызвать метод объекта.</li><li>Создать новый массив, размер и тип компонентов которого неизвестны до момента выполнения программ.</li></ul><h3 style="font-family: Arial, 'sans serif'; ">Получение объекта типа Class</h3><pre class="chili" style="font-family: Arial, 'sans serif'; "><code class="java">MyClass&nbsp;a&nbsp;=&nbsp;<span class="java__keyword">new</span>&nbsp;MyClass();&nbsp;<br>Class&nbsp;aclass&nbsp;=&nbsp;a.getClass();&nbsp;<br></code></pre><font class="Apple-style-span" style="font-family: Arial, 'sans serif'; " face="Arial, 'sans serif'"><span class="Apple-style-span" style="font-size: 0,8em;">
+Самое простое, что обычно делается в динамическом программировании, - это получают объект типа java.lang.Class. Если у нас есть
+экземпляр объекта Class мы можем получить всевозможную информацию об этом классе и даже осуществлять операции над ним.
+Вышеприведенный метод getClass() часто полезен тогда когда есть экземпляр объекта, но не известно какого класса этот экземпляр.
+Если у нас есть класс, для которого в момент компиляции известен тип, то получить экземпляр класса ещё проще.</span></font><pre class="chili" style="font-family: Arial, 'sans serif'; "><code class="java">Class&nbsp;aclass&nbsp;=&nbsp;MyClass.<span class="java__keyword">class</span>;&nbsp;<br>Class&nbsp;iclass&nbsp;=&nbsp;Integer.<span class="java__keyword">class</span>;&nbsp;<br></code></pre><font class="Apple-style-span" style="font-family: Arial, 'sans serif'; " face="Arial, 'sans serif'"><span class="Apple-style-span" style="font-size: 0,8em;">
+Если имя класса не известно в момент компиляции, но становится известным во время выполнения программы, можно использовать метод forName(),
+чтобы получить объект Class.</span></font><pre class="chili" style="font-family: Arial, 'sans serif'; "><code class="java">Class&nbsp;c&nbsp;=&nbsp;Class.forName(<span class="java__string">"com.mysql.jdbc.Driver"</span>);</code></pre>
+
+
+
+<h3 style="font-family: Arial, 'sans serif'; ">Получение имени класса</h3><pre class="chili" style="font-family: Arial, 'sans serif'; "><code class="java">Class&nbsp;c&nbsp;=&nbsp;myObject.getClass();&nbsp;<br>String&nbsp;s&nbsp;=&nbsp;c.getName();&nbsp;<br></code></pre><font class="Apple-style-span" style="font-family: Arial, 'sans serif'; " face="Arial, 'sans serif'"><span class="Apple-style-span" style="font-size: 0,8em;">
+Объект типа String, возвращаемый методом getName(), будет содержать полностью уточненное имя класса, т.е. если типом объекта 
+myObject будет Integer, то результат будет вида java.lang.Integer .</span></font><div style="font-family: Arial, 'sans serif'; "><font class="Apple-style-span" face="Arial, 'sans serif'"><br></font><h3 style="font-family: Arial, 'sans serif'; font-size: 0,8em; ">Исследование модификаторов класса</h3><pre class="chili" style="font-family: Arial, 'sans serif'; font-size: 0,8em; "><code class="java">Class&nbsp;c&nbsp;=&nbsp;&nbsp;obj.getClass();&nbsp;<br><span class="java__keyword">int</span>&nbsp;mods&nbsp;=&nbsp;c.getModifiers();&nbsp;<br><span class="java__keyword">if</span>&nbsp;(Modifier.isPublic(mods))&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="java__string">"public"</span>);&nbsp;<br>}&nbsp;<br><span class="java__keyword">if</span>&nbsp;(Modifier.isAbstract(mods))&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="java__string">"abstract"</span>);&nbsp;<br>}&nbsp;<br><span class="java__keyword">if</span>&nbsp;(Modifier.isFinal(mods))&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="java__string">"final"</span>);&nbsp;<br>}&nbsp;<br></code></pre><font class="Apple-style-span" face="Arial, 'sans serif'"><span class="Apple-style-span" style="font-size: 0,8em;">
+Чтобы узнать, какие модификаторы были применены к заданному классу, сначала нужно с помощью метода getClass получить объект типа
+Class, представляющий данный класс. Затем нужно вызвать метод getModifiers() для объекта типа Class, чтобы определить значение типа
+int, биты которого представляют модификаторы класса. После этого можно использовать статические методы класса java.lang.reflect.Modifier,
+чтобы определить, какие именно модификаторы были применены к классу.</span></font></div><div style="font-family: Arial, 'sans serif'; "><font class="Apple-style-span" face="Arial, 'sans serif'"><br></font><h3 style="font-family: Arial, 'sans serif'; font-size: 0,8em; ">Нахождение суперклассов</h3><pre class="chili" style="font-family: Arial, 'sans serif'; font-size: 0,8em; "><code class="java">Class&nbsp;c&nbsp;=&nbsp;myObj.getClass();&nbsp;<br>Class&nbsp;superclass&nbsp;=&nbsp;c.getSuperclass();&nbsp;<br></code></pre><font class="Apple-style-span" face="Arial, 'sans serif'"><span class="Apple-style-span" style="font-size: 0,8em;">
+Можно также использовать метод getSuperclass() для объекта Class, чтобы получить объект типа Class, представляющий суперкласс рефлексированного класса.
+Нужно не забывать учитывать, что в Java отсутствует множественное наследование и класс java.lang.Object является базовым классом для всех классов, вследствие 
+чего если у класса нет родителя то метод getSuperclass вернет null. Для того чтобы получить все родительские суперклассы, 
+нужно рекурсивно вызывать метод getSuperclass().</span></font></div><div style="font-family: Arial, 'sans serif'; "><font class="Apple-style-span" face="Arial, 'sans serif'"><br></font><h3 style="font-family: Arial, 'sans serif'; font-size: 0,8em; ">Определение интерфейсов, реализуемых классом</h3><pre class="chili" style="font-family: Arial, 'sans serif'; font-size: 0,8em; "><code class="java">Class&nbsp;c&nbsp;=&nbsp;&nbsp;LinkedList.<span class="java__keyword">class</span>;&nbsp;<br>Class[]&nbsp;interfaces&nbsp;=&nbsp;c.getInterfaces();&nbsp;<br><span class="java__keyword">for</span>(Class&nbsp;cInterface&nbsp;:&nbsp;interfaces)&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(&nbsp;cInterface.getName()&nbsp;);&nbsp;<br>}&nbsp;<br></code></pre><font class="Apple-style-span" face="Arial, 'sans serif'"><span class="Apple-style-span" style="font-size: 0,8em;">
+С помощью рефлексии можно также определить, какие интерфейсы реализованы в заданном классе. Метод getInterfaces() вернет массив объектов типа Class.
+Каждый объект в массиве представляет один интерфейс, реализованный в заданном классе.</span></font></div><div style="font-family: Arial, 'sans serif'; "><font class="Apple-style-span" face="Arial, 'sans serif'"><br></font><h3 style="font-family: Arial, 'sans serif'; font-size: 0,8em; ">Исследование, получение и установка значений полей класса.</h3><pre class="chili" style="font-family: Arial, 'sans serif'; font-size: 0,8em; "><code class="java">Class&nbsp;c&nbsp;=&nbsp;obj.getClass();&nbsp;<br>Field[]&nbsp;publicFields&nbsp;=&nbsp;c.getFields();&nbsp;<br><span class="java__keyword">for</span>&nbsp;(Field&nbsp;field&nbsp;:&nbsp;publicFields)&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;Class&nbsp;fieldType&nbsp;=&nbsp;field.getType();&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="java__string">"Имя:&nbsp;"</span>&nbsp;+&nbsp;field.getName());&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="java__string">"Тип:&nbsp;"</span>&nbsp;+&nbsp;fieldType.getName());&nbsp;<br>}&nbsp;<br></code></pre><font class="Apple-style-span" face="Arial, 'sans serif'"><span class="Apple-style-span" style="font-size: 0,8em;">
+Чтобы исследовать поля принадлежащие классу, можно воспользоваться методом getFields() для объекта типа Class. Метод getFields() возвращает массив объектов
+типа java.lang.reflect.Field, соответствующих всем открытым полям объекта. Эти открытые поля необязательно должны содержаться непосредственно внутри класса,
+с которым вы работаете, они также могут содержатся в суперклассе, интерфейсе или интерфейсе представляющем собой расширение интерфейса, реализованного классом.
+С помощью класса Field можно получить имя поля, тип и модификаторы. Если известно имя поля, то можно получить о нем информацию с помощью метода getField()</span></font><pre class="chili" style="font-family: Arial, 'sans serif'; font-size: 0,8em; "><code class="java">Class&nbsp;c&nbsp;=&nbsp;obj.getClass();&nbsp;<br>Field&nbsp;nameField&nbsp;=&nbsp;c.getField(<span class="java__string">"name"</span>);&nbsp;<br></code></pre><font class="Apple-style-span" face="Arial, 'sans serif'"><span class="Apple-style-span" style="font-size: 0,8em;">
+Методы getField() и getFields() возвращают только открытые члены данных класса. Если требуется получить все поля некоторого класса нужно использовать методы
+getDeclaredField() и getDeclaredFields(). Эти методы работают точно также как их аналоги getField() и getFields(), за исключением того, что они возвращают
+все поля, включая закрытые и защищенные.
+Чтобы получить значение поля, нужно сначала получить для этого поля объект типа Field затем использовать метод get(). Метод принимает входным параметром 
+ссылку на объект класса.</span></font><pre class="chili" style="font-family: Arial, 'sans serif'; font-size: 0,8em; "><code class="java">Class&nbsp;c&nbsp;=&nbsp;obj.getClass();&nbsp;<br>Field&nbsp;field&nbsp;=&nbsp;c.getField(<span class="java__string">"name"</span>);&nbsp;<br>String&nbsp;nameValue&nbsp;=&nbsp;(String)&nbsp;field.get(obj)&nbsp;<br></code></pre><font class="Apple-style-span" face="Arial, 'sans serif'"><span class="Apple-style-span" style="font-size: 0,8em;">
+Так же у класса Field имеются специализированные методы для получения значений примитивных типов: getInt(), getFloat(), getByte() и др.. Для установки значения
+поля, используется метод set().</span></font><pre class="chili" style="font-family: Arial, 'sans serif'; font-size: 0,8em; "><code class="java">Class&nbsp;c&nbsp;=&nbsp;obj.getClass();&nbsp;<br>Field&nbsp;field&nbsp;=&nbsp;c.getField(<span class="java__string">"name"</span>);&nbsp;<br>field.set(obj,&nbsp;<span class="java__string">"New&nbsp;name"</span>);&nbsp;<br></code></pre><font class="Apple-style-span" face="Arial, 'sans serif'"><span class="Apple-style-span" style="font-size: 0,8em;">
+Для примитивных типов имеются методы setInt(), setFloat(), setByte() и др.
+Вопрос к читателю, можно ли изменить значение private поля? А private final?
+Ответ узнаем чуть позже.</span></font></div><div style="font-family: Arial, 'sans serif'; "><font class="Apple-style-span" face="Arial, 'sans serif'"><br></font><h3 style="font-family: Arial, 'sans serif'; font-size: 0,8em; ">Исследование конструкторов класса</h3><pre class="chili" style="font-family: Arial, 'sans serif'; font-size: 0,8em; "><code class="java">Class&nbsp;c&nbsp;=&nbsp;obj.getClass();&nbsp;<br>Constructor[]&nbsp;constructors&nbsp;=&nbsp;c.getConstructors();&nbsp;<br><span class="java__keyword">for</span>&nbsp;(Constructor&nbsp;constructor&nbsp;:&nbsp;constructors)&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;Class[]&nbsp;paramTypes&nbsp;=&nbsp;constructor.getParameterTypes();&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">for</span>&nbsp;(Class&nbsp;paramType&nbsp;:&nbsp;paramTypes)&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.print(paramType.getName()&nbsp;+&nbsp;<span class="java__string">"&nbsp;"</span>);&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;System.out.println();&nbsp;<br>}&nbsp;<br></code></pre><font class="Apple-style-span" face="Arial, 'sans serif'"><span class="Apple-style-span" style="font-size: 0,8em;">
+Чтобы получить информацию об открытых конструкторах класса, нужно вызвать метод getConstructors() для объекта Class. Этот метод возвращает массив объектов
+типа java.lang.reflect.Constructor. С помощью объекта Constructor можно затем получить имя конструктора, модификаторы, типы параметров и генерируемые
+исключения. Можно также получить по отдельному открытому конструктору, если известны типы его параметров.</span></font><pre class="chili" style="font-family: Arial, 'sans serif'; font-size: 0,8em; "><code class="java">Class[]&nbsp;paramTypes&nbsp;=&nbsp;<span class="java__keyword">new</span>&nbsp;Class[]&nbsp;{&nbsp;String.<span class="java__keyword">class</span>,&nbsp;<span class="java__keyword">int</span>.<span class="java__keyword">class</span>&nbsp;};&nbsp;<br>Constructor&nbsp;aConstrct&nbsp;=&nbsp;c.getConstructor(paramTypes);&nbsp;<br></code></pre><font class="Apple-style-span" face="Arial, 'sans serif'"><span class="Apple-style-span" style="font-size: 0,8em;">
+Методы getConstructor() и getConstructors() возвращают только открытые конструкторы. Если требуется получить все конструкторы класса, включая закрытые
+можно использовать методы getDeclaredConstructor() и getDeclaredConstructors() эти методы работают точно также, как их аналоги getConstructor() и 
+getConstructors().</span></font></div><div style="font-family: Arial, 'sans serif'; "><font class="Apple-style-span" face="Arial, 'sans serif'"><br></font><h3 style="font-family: Arial, 'sans serif'; font-size: 0,8em; ">Исследование информации о методе, вызов метода.</h3><pre class="chili" style="font-family: Arial, 'sans serif'; font-size: 0,8em; "><code class="java">Class&nbsp;c&nbsp;=&nbsp;obj.getClass();&nbsp;<br>Method[]&nbsp;methods&nbsp;=&nbsp;c.getMethods();&nbsp;<br><span class="java__keyword">for</span>&nbsp;(Method&nbsp;method&nbsp;:&nbsp;methods)&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="java__string">"Имя:&nbsp;"</span>&nbsp;+&nbsp;method.getName());&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="java__string">"Возвращаемый&nbsp;тип:&nbsp;"</span>&nbsp;+&nbsp;method.getReturnType().getName());&nbsp;<br>&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;Class[]&nbsp;paramTypes&nbsp;=&nbsp;method.getParameterTypes();&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;System.out.print(<span class="java__string">"Типы&nbsp;параметров:&nbsp;"</span>);&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">for</span>&nbsp;(Class&nbsp;paramType&nbsp;:&nbsp;paramTypes)&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.print(<span class="java__string">"&nbsp;"</span>&nbsp;+&nbsp;paramType.getName());&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;System.out.println();&nbsp;<br>}&nbsp;<br></code></pre><font class="Apple-style-span" face="Arial, 'sans serif'"><span class="Apple-style-span" style="font-size: 0,8em;">
+Чтобы получить информацию об открытых методах класса, нужно вызвать метод getMethods() для объекта Class. Этот метод возвращает массив объектов
+типа java.lang.reflect.Method. Затем с помощью объекта Method можно получить имя метода, тип возвращаемого им значения, типы параметров, модификаторы
+и генерируемые исключения. Также можно получить информацию по отдельному методу если известны имя метода и типы параметров.</span></font><pre class="chili" style="font-family: Arial, 'sans serif'; font-size: 0,8em; "><code class="java">Class&nbsp;c&nbsp;=&nbsp;obj.getClass();&nbsp;<br>Class[]&nbsp;paramTypes&nbsp;=&nbsp;<span class="java__keyword">new</span>&nbsp;Class[]&nbsp;{&nbsp;<span class="java__keyword">int</span>.<span class="java__keyword">class</span>,&nbsp;String.<span class="java__keyword">class</span>};&nbsp;<br>Method&nbsp;m&nbsp;=&nbsp;c.getMethod(<span class="java__string">"methodA"</span>,&nbsp;paramTypes);&nbsp;<br></code></pre><font class="Apple-style-span" face="Arial, 'sans serif'"><span class="Apple-style-span" style="font-size: 0,8em;">
+Методы getMethod() и getMethods() возвращают только открытые методы, для того чтобы получить все методы класса не зависимо от типа доступа, нужно 
+воспользоватся методами getDeclaredMethod() и getDeclaredMethods(), которые работают точно также как и их аналоги (getMethod() и getMethods()). 
+Интерфейс Java Reflection Api позволяет динамически вызвать метод, даже если во время компиляции имя этого метода неизвестно (Имена методов класса 
+можно получить методом getMethods() или getDeclaredMethods()). В следующем примере рассмотрим вызов метода зная его имя. 
+Например метод getCalculateRating:</span></font><pre class="chili" style="font-family: Arial, 'sans serif'; font-size: 0,8em; "><code class="java">Class&nbsp;c&nbsp;=&nbsp;obj.getClass();&nbsp;<br>Class[]&nbsp;paramTypes&nbsp;=&nbsp;<span class="java__keyword">new</span>&nbsp;Class[]&nbsp;{&nbsp;String.<span class="java__keyword">class</span>,&nbsp;<span class="java__keyword">int</span>.<span class="java__keyword">class</span>&nbsp;};&nbsp;<br>Method&nbsp;method&nbsp;=&nbsp;c.getMethod(<span class="java__string">"getCalculateRating"</span>,&nbsp;paramTypes);&nbsp;<br>Object[]&nbsp;args&nbsp;=&nbsp;<span class="java__keyword">new</span>&nbsp;Object[]&nbsp;{&nbsp;<span class="java__keyword">new</span>&nbsp;String(<span class="java__string">"First&nbsp;Calculate"</span>),&nbsp;<span class="java__keyword">new</span>&nbsp;Integer(<span class="java__number">10</span>)&nbsp;};&nbsp;<br>Double&nbsp;d&nbsp;=&nbsp;(Double)&nbsp;method.invoke(obj,&nbsp;args);&nbsp;<br></code></pre><font class="Apple-style-span" face="Arial, 'sans serif'"><span class="Apple-style-span" style="font-size: 0,8em;">
+В данном примере сначала получаем объект Method по имени метода getCalculateRating, затем вызываем метод invoke() объекта Method, и получаем результат
+работы метода. Метод invoke принимает два параметра, первый - это объект, класс которого объявляет или наследует данный метод, а второй - массив значений
+параметров, которые передаются вызываемому методу. Если метод имеет модификатор доступа private, тогда выше приведённый код нужно модифицировать таким образом, для объекта Method вместо метода getMethod() вызываем getDeclaredMethod(), затем для получения доступа вызываем setAccessible(true)</span></font>.</div><div><pre class="chili" style="font-family: Arial, 'sans serif'; "><code class="java">Method&nbsp;method&nbsp;=&nbsp;c.getDeclaredMethod(<span class="java__string">"getCalculateRating"</span>,&nbsp;paramTypes);&nbsp;<br>method.setAccessible(<span class="java__keyword">true</span>);</code></pre>
+
+
+<h3 style="font-family: Arial, 'sans serif'; ">Загрузка и динамическое создание экземпляра класса</h3><pre class="chili" style="font-family: Arial, 'sans serif'; "><code class="java">Class&nbsp;c&nbsp;=&nbsp;Class.forName(<span class="java__string">"Test"</span>);&nbsp;<br>Object&nbsp;obj&nbsp;=&nbsp;c.newInstance();&nbsp;<br>Test&nbsp;test&nbsp;=&nbsp;(Test)&nbsp;obj;&nbsp;<br></code></pre><font class="Apple-style-span" style="font-family: Arial, 'sans serif'; " face="Arial, 'sans serif'"><span class="Apple-style-span" style="font-size: 0,8em;">
+С помощью методов Class.forName() и newInstance() объекта Class можно динамически загружать и создавать экземпляры класса в случае, когда имя класса
+неизвестно до момента выполнения программы. В приведенном коде мы загружаем класс с помощью метода Class.forName(), передавая имя этого класса. В
+результате возвращается объект типа Class. Затем мы вызываем метод newInstance() для объекта типа Class, чтобы создать экземпляры объекта исходного 
+класса. Метод newInstance() возвращает объет обобщенного типа Object, поэтому в последней строке мы приводим возвращенный объект к тому типу, который 
+нам нужен.</span></font></div><div style="font-family: Arial, 'sans serif'; "><font class="Apple-style-span" face="Arial, 'sans serif'"><span class="Apple-style-span" style="font-size: 0,8em;"><br></span></font></div><div style="font-family: Arial, 'sans serif'; "><font class="Apple-style-span" face="Arial, 'sans serif'"><span class="Apple-style-span" style="font-size: 0,8em;">И напоследок, пример модификации private полей.</span></font></div><div style="font-family: Arial, 'sans serif'; "><pre class="chili" style="font-family: Arial, 'sans serif'; font-size: 0,8em; "><code class="java"><span class="java__keyword">import</span>&nbsp;java.lang.reflect.Field;&nbsp;<br>&nbsp;<br><span class="java__keyword">class</span>&nbsp;WithPrivateFinalField&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">private</span>&nbsp;<span class="java__keyword">int</span>&nbsp;i&nbsp;=&nbsp;<span class="java__number">1</span>;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">private</span>&nbsp;<span class="java__keyword">final</span>&nbsp;String&nbsp;s&nbsp;=&nbsp;<span class="java__string">"String&nbsp;S"</span>;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">private</span>&nbsp;String&nbsp;s2&nbsp;=&nbsp;<span class="java__string">"String&nbsp;S2"</span>;&nbsp;<br>&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">public</span>&nbsp;String&nbsp;toString()&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">return</span>&nbsp;<span class="java__string">"i&nbsp;=&nbsp;"</span>&nbsp;+&nbsp;i&nbsp;+&nbsp;<span class="java__string">",&nbsp;"</span>&nbsp;+&nbsp;s&nbsp;+&nbsp;<span class="java__string">",&nbsp;"</span>&nbsp;+&nbsp;s2;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<br>}&nbsp;<br>&nbsp;<br><span class="java__keyword">public</span>&nbsp;<span class="java__keyword">class</span>&nbsp;ModifyngPrivateFields&nbsp;{&nbsp;<br>&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="java__keyword">public</span>&nbsp;<span class="java__keyword">static</span>&nbsp;<span class="java__keyword">void</span>&nbsp;main(String[]&nbsp;args)&nbsp;<span class="java__keyword">throws</span>&nbsp;Exception&nbsp;{&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WithPrivateFinalField&nbsp;pf&nbsp;=&nbsp;<span class="java__keyword">new</span>&nbsp;WithPrivateFinalField();&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Field&nbsp;f&nbsp;=&nbsp;pf.getClass().getDeclaredField(<span class="java__string">"i"</span>);&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f.setAccessible(<span class="java__keyword">true</span>);&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f.setInt(pf,&nbsp;<span class="java__number">47</span>);&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(pf);&nbsp;<br>&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f&nbsp;=&nbsp;pf.getClass().getDeclaredField(<span class="java__string">"s"</span>);&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f.setAccessible(<span class="java__keyword">true</span>);&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f.set(pf,&nbsp;<span class="java__string">"MODIFY&nbsp;S"</span>);&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(pf);&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f&nbsp;=&nbsp;pf.getClass().getDeclaredField(<span class="java__string">"s2"</span>);&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f.setAccessible(<span class="java__keyword">true</span>);&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f.set(pf,&nbsp;<span class="java__string">"MODIFY&nbsp;S2"</span>);&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(pf);&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<br>}&nbsp;<br></code></pre><font class="Apple-style-span" face="Arial, 'sans serif'"><span class="Apple-style-span" style="font-size: 0,8em;">
+Из приведённого кода видно что private поля можно изменять. Для этого требуется получить объект типа
+java.lang.reflect.Field с помощью метода getDeclaredField(), вызвать метод setAccessible(true) и с помощью
+метода set() устанавливаем значение поля. Учтите что поле final при выполнении данной процедуры не выдаёт предупреждений,
+а значение поля остаётся прежним, т.е. final поля остаются неизменные.</span></font></div><br>
+<p>Для закрепления материала рекомендую пройти тесты:<br>
+<a href="http://www.quizful.net/test/java_se_basic">Тест знаний Java - Основы</a><br>
+<a href="http://www.quizful.net/test/java_se_midlevel">Тест знаний Java - Средний уровень</a><br>
+</p>
+    </div>
+    <div class="vote" id="votePost">
+                <p>Если Вам понравилась статья, проголосуйте за нее</p>
+        <a id="showVoters" href="#">Голосов</a>: <span>80</span>
+        <button class="btn btn-default btn-xs">Голосовать</button> &nbsp;<img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/loading_002.gif" alt="loading..." style="display:none;" align="absmiddle">
+        <script type="text/javascript">
+                        $("#votePost button").click(function() {
+                location.replace("/LoginAction.forbidden");
+                return false;
+            });
+                    </script>
+            </div>
+    <script type="text/javascript">
+        $("#showVoters").on("click", function() {
+            var voters = $("#voters");
+            voters.stop(true, true);
+            voters.slideToggle();
+            voters.toggleClass("closed").toggleClass("opened");
+            return false;
+        });
+    </script>
+    <div id="voters" class="closed">
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/bu_ma_ga.gif" height="24" align="absmiddle"> bu_ma_ga</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/cache.jpeg" height="24" align="absmiddle"> cache</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/pyJIoH.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/pyJIoH">pyJIoH</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/colriot.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/colriot">colriot</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/dector.jpeg" height="24" align="absmiddle"> dector</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/safonik.jpeg" height="24" align="absmiddle"> safonik</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/b3lowster.jpeg" height="24" align="absmiddle"> b3lowster</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/rinsvid.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/rinsvid">rinsvid</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/alex1395.jpeg" height="24" align="absmiddle"> alex1395</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/viacheslav_t.jpeg" height="24" align="absmiddle"> viacheslav_t</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/dmtrsokolov.jpeg" height="24" align="absmiddle"> dmtrsokolov</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/indagetto.jpeg" height="24" align="absmiddle"> indagetto</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/forest_dm.jpeg" height="24" align="absmiddle"> <a href="http://www.quizful.net/user/forest_dm">forest_dm</a></nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/rokoko.jpeg" height="24" align="absmiddle"> rokoko</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/theman.jpeg" height="24" align="absmiddle"> theman</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/lg_qzfl.jpeg" height="24" align="absmiddle"> lg_qzfl</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/aprl_mary.jpeg" height="24" align="absmiddle"> aprl_mary</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/Gonza12.jpeg" height="24" align="absmiddle"> Gonza12</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/shokko_rockko.jpeg" height="24" align="absmiddle"> shokko_rockko</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/t1mer.jpeg" height="24" align="absmiddle"> t1mer</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/Sapozhko.jpeg" height="24" align="absmiddle"> Sapozhko</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/evgen310.jpeg" height="24" align="absmiddle"> evgen310</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/Shved90.jpeg" height="24" align="absmiddle"> Shved90</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/Riddler.jpeg" height="24" align="absmiddle"> Riddler</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/anabi22.jpeg" height="24" align="absmiddle"> anabi22</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/Carrera.jpeg" height="24" align="absmiddle"> Carrera</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/arteffes.jpeg" height="24" align="absmiddle"> arteffes</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/BohdanSemenenko.jpeg" height="24" align="absmiddle"> BohdanSemenenko</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/poltora.jpeg" height="24" align="absmiddle"> poltora</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/toxli.jpeg" height="24" align="absmiddle"> toxli</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/hassan.jpeg" height="24" align="absmiddle"> hassan</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/jmen7070.jpeg" height="24" align="absmiddle"> jmen7070</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/dnepr3703902.jpeg" height="24" align="absmiddle"> dnepr3703902</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/meter.jpeg" height="24" align="absmiddle"> meter</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/Olgerd.jpeg" height="24" align="absmiddle"> Olgerd</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/Asdfgh.jpeg" height="24" align="absmiddle"> Asdfgh</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/laver.jpeg" height="24" align="absmiddle"> laver</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/rustock.jpeg" height="24" align="absmiddle"> rustock</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/bardakov.jpeg" height="24" align="absmiddle"> bardakov</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/SiarheiZoo.jpeg" height="24" align="absmiddle"> SiarheiZoo</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/hoop21.jpeg" height="24" align="absmiddle"> hoop21</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/ya_paul.jpeg" height="24" align="absmiddle"> ya_paul</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/Veles.jpeg" height="24" align="absmiddle"> Veles</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/KIKEP1990.jpeg" height="24" align="absmiddle"> KIKEP1990</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/kisce86.jpeg" height="24" align="absmiddle"> kisce86</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/Vitaliy1986.jpeg" height="24" align="absmiddle"> Vitaliy1986</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/artemgapchenko.jpeg" height="24" align="absmiddle"> artemgapchenko</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/svetiva.jpeg" height="24" align="absmiddle"> svetiva</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/MarianaSemesta.jpeg" height="24" align="absmiddle"> MarianaSemesta</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/Letos.jpeg" height="24" align="absmiddle"> Letos</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/izakacman.jpeg" height="24" align="absmiddle"> izakacman</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/visel_chak.jpeg" height="24" align="absmiddle"> visel_chak</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/rxic.jpeg" height="24" align="absmiddle"> rxic</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/dydus0x14.jpeg" height="24" align="absmiddle"> dydus0x14</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/gotoalice.jpeg" height="24" align="absmiddle"> gotoalice</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/mozzart.jpeg" height="24" align="absmiddle"> mozzart</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/oshilan.jpeg" height="24" align="absmiddle"> oshilan</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/NordLad.jpeg" height="24" align="absmiddle"> NordLad</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/platon_tsy.jpeg" height="24" align="absmiddle"> platon_tsy</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/TeaWitch.jpeg" height="24" align="absmiddle"> TeaWitch</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/andrik92.jpeg" height="24" align="absmiddle"> andrik92</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/chehonadskih.jpeg" height="24" align="absmiddle"> chehonadskih</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/Romantic.jpeg" height="24" align="absmiddle"> Romantic</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/whak.jpeg" height="24" align="absmiddle"> whak</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/dmytro_p.jpeg" height="24" align="absmiddle"> dmytro_p</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/FastForward77.jpeg" height="24" align="absmiddle"> FastForward77</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/Vovk.jpeg" height="24" align="absmiddle"> Vovk</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/Alibek7000.jpeg" height="24" align="absmiddle"> Alibek7000</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/polinkot.jpeg" height="24" align="absmiddle"> polinkot</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/SkunS.jpeg" height="24" align="absmiddle"> SkunS</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/lavaki.jpeg" height="24" align="absmiddle"> lavaki</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/dimon_lvov.jpeg" height="24" align="absmiddle"> dimon_lvov</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/RabbitInq.jpeg" height="24" align="absmiddle"> RabbitInq</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/SamTan.jpeg" height="24" align="absmiddle"> SamTan</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/zateyev.jpeg" height="24" align="absmiddle"> zateyev</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/bal_gena.jpeg" height="24" align="absmiddle"> bal_gena</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/MudragelGV.jpeg" height="24" align="absmiddle"> MudragelGV</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/Vanya_1234.jpeg" height="24" align="absmiddle"> Vanya_1234</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/interjava.jpeg" height="24" align="absmiddle"> interjava</nobr>&nbsp;&nbsp;
+                <nobr><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/DanikG.jpeg" height="24" align="absmiddle"> DanikG</nobr>&nbsp;&nbsp;
+            </div>
+</div>
+<div style="margin-top:15px;" id="shareThis"></div>
+<div id="post-comments"><div class="comments"><div class="topic-panel" id="comments-top"><div class="total">Комментариев: 49</div><a class="order-link" href="">↑</a><a href="" class="refresh-link">обновить</a></div><div id="471244137493922887" class="comment-block"><div class="head"><a href="#471244137493922887" class="link">#</a><span class="author"><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/frederique.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;frederique</span><span class="created">28.10.2014 | 17:53:29</span></div><div class="text">Скажите, а можно переопределять методы с помощью рефлексии?</div><a href="" class="reply-link">ответить</a><div class="sub-comments"><div id="2042013353967842315" class="comment-block"><div class="head"><a href="#2042013353967842315" class="link">#</a><span class="author"><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/ksp107.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;ksp107</span><span class="created">29.10.2014 | 09:33:27</span></div><div class="text">Перехватить вызов нужного метода и, соответственно, подсунуть свою реализацию, можно с помощью класса java.lang.reflect.Proxy - см. пример в <a href="http://docs.oracle.com/javase/8/docs/technotes/guides/reflection/proxy.html">http://docs.oracle.com/javase/8/docs/technotes/guides/reflection/proxy.html</a></div><a href="" class="reply-link">ответить</a><div class="sub-comments"></div></div></div></div><div id="4783045287006637187" class="comment-block"><div class="head"><a href="#4783045287006637187" class="link">#</a><span class="author"><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/platon_tsy.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;platon_tsy</span><span class="created">02.06.2014 | 16:19:39</span></div><div class="text">Скажите, пожалуйста, как динамически создать и преобразовать объект в тип который храниться в виде строки, то есть загружаю из конфига название класса и по этому названию создаю объект. Например:<br>// "Person" - строка из файла, так есть такой скомпилированный класс;<br>"Person" personObject = ("Person")Class.forName("Person").newInstance();<br>Возможно ли сделать это?</div><a href="" class="reply-link">ответить</a><div class="sub-comments"></div></div><div id="6483834757303300186" class="comment-block"><div class="head"><a href="#6483834757303300186" class="link">#</a><span class="author"><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/unqiue.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;unqiue</span><span class="created">26.07.2013 | 16:21:01</span></div><div class="text">НАКОНЕЦ-ТО НАШЕЛ! Долго искал статью на эту тему. Очень понравилось то, что все изложено предельно просто и понятно. После первого прочтения сразу все получилось реализовать в своём коде. <br>БОЛЬШАЯ БЛАГОДАРНОСТЬ автору!</div><a href="" class="reply-link">ответить</a><div class="sub-comments"></div></div><div id="4144853566614193150" class="comment-block"><div class="head"><a href="#4144853566614193150" class="link">#</a><span class="author"><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/Satsak.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;Satsak</span><span class="created">23.03.2013 | 07:54:29</span></div><div class="text">"Учтите что поле final при выполнении данной процедуры не выдаёт предупреждений, а значение поля остаётся прежним, т.е. final поля остаются неизменные."<br>_____________________________________________________________________<br>Насколько я понимаю, final поле можно изменять:<br>Если мы вызываем setAccessible(true) у объекта типа java.lang.reflect.Field, дальнейший вызов метода "set() и подобных" сможет изменить final поле.<br>Если же не использовать setAccessible(true) изменить получится все поля, кроме final;<br>_______________________________________________<br>Поправьте, пожалуйста, если я не прав. Вышесказанное проверял</div><a href="" class="reply-link">ответить</a><div class="sub-comments"><div id="5164443701686397806" class="comment-block"><div class="head"><a href="#5164443701686397806" class="link">#</a><span class="author"><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/san.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;<a href="http://www.quizful.net/user/san" rel="nofollow">san</a></span><span class="created">23.03.2013 | 11:17:52</span></div><div class="text">Правы но частично. Попробуйте выполнить последний, в статье выше, пример кода.<br>Поле final не изменится.<br><br>Я чесно говоря соврал что нельзя менять поля final, как раз в этом вы и правы. Мне хотелось посмотреть а найдет ли кто нибудь эту ошибку.<br>Вот пример как можно изменять поля final  <a href="http://stackoverflow.com/questions/3301635/change-private-static-final-field-using-java-reflection">http://stackoverflow.com/questions/3301635/change-private-static-final-field-using-java-reflection</a></div><a href="" class="reply-link">ответить</a><div class="sub-comments"><div id="8597236461620573904" class="comment-block"><div class="head"><a href="#8597236461620573904" class="link">#</a><span class="author"><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/Satsak.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;Satsak</span><span class="created">25.03.2013 | 09:30:36</span></div><div class="text">Знаете, у меня с помощью setAccessible(true) легко получается изменить final private поле. А вот если не использовать setAccessible(true) - java.lang.IllegalAccessException<br><br>Field f = temp.getClass().getDeclaredField("stringField");<br>		System.out.println("Old Value private final stringField = " + f.get(temp));<br>        f.setAccessible(true);<br>        f.set(temp, "MODIFY with setAccessible(true)");<br>        System.out.println("New Value private final stringField = " + f.get(temp));<br>		<br>        System.out.println("-----------------------");<br>        <br>        f = temp.getClass().getDeclaredField("stringField");<br>		System.out.println("Old Value private final stringField = " + f.get(temp));<br>        /*f.setAccessible(true);*/ <br>        f.set(temp, "MODIFY without setAccessible(true)");<br>        System.out.println("New Value private final stringField = " + f.get(temp));</div><a href="" class="reply-link">ответить</a><div class="sub-comments"></div></div><div id="6971675042799742971" class="comment-block"><div class="head"><a href="#6971675042799742971" class="link">#</a><span class="author"><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/Satsak.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;Satsak</span><span class="created">25.03.2013 | 09:35:50</span></div><div class="text">public class Temp {<br>	private final int intField = 2;<br>	private final String stringField = "stroka";<br>	public boolean booleanField;<br>	<br>	public static void main(String[] args) <br>	{<br>		Temp temp = new Temp();<br><br>		/*место для кода, приведенного выше;*/ 		<br>	}<br>}</div><a href="" class="reply-link">ответить</a><div class="sub-comments"><div id="6510572412447507162" class="comment-block"><div class="head"><a href="#6510572412447507162" class="link">#</a><span class="author"><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/san.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;<a href="http://www.quizful.net/user/san" rel="nofollow">san</a></span><span class="created">25.03.2013 | 09:53:23</span></div><div class="text">У вас получается сохранить данное поле в объекте класса Field. А по факту изменить не получается. Попробуйте вывести значение данного поля вот так System.out.println(temp.stringField).</div><a href="" class="reply-link">ответить</a><div class="sub-comments"><div id="1616663654781726980" class="comment-block"><div class="head"><a href="#1616663654781726980" class="link">#</a><span class="author"><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/Satsak.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;Satsak</span><span class="created">25.03.2013 | 09:56:27</span></div><div class="text">Вы правы. Значение не изменилось.<br>Не хотелось бы запутать своими комментариями начинающих)</div><a href="" class="reply-link">ответить</a><div class="sub-comments"><div id="9167528034903557190" class="comment-block"><div class="head"><a href="#9167528034903557190" class="link">#</a><span class="author"><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/Satsak.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;Satsak</span><span class="created">25.03.2013 | 10:12:53</span></div><div class="text">Вот код, представленный на сайте по Вашей ссылке:<br><br>public class EverythingIsTrue {<br>	<br>   static void setFinalStatic(Field field, Object newValue) throws Exception {<br>      field.setAccessible(true);<br><br>      Field modifiersField = Field.class.getDeclaredField("modifiers");<br>      modifiersField.setAccessible(true);<br>      modifiersField.setInt(field, field.getModifiers() &amp; ~Modifier.FINAL);<br><br>      field.set(null, newValue);<br>   }<br>   <br>   public static void main(String args[]) throws Exception {      <br>      setFinalStatic(Boolean.class.getField("FALSE"), true);<br><br>      System.out.format("Everything is %s", false); // "Everything is true"<br>   }<br>}<br><br>Не могли бы Вы прокомментировать эту строчку?<br>modifiersField.setInt(field, field.getModifiers() &amp; ~Modifier.FINAL);</div><a href="" class="reply-link">ответить</a><div class="sub-comments"><div id="1049054148895578334" class="comment-block"><div class="head"><a href="#1049054148895578334" class="link">#</a><span class="author"><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/san.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;<a href="http://www.quizful.net/user/san" rel="nofollow">san</a></span><span class="created">25.03.2013 | 10:41:36</span></div><div class="text">метод setInt это аналог метода set, только значение поля устанавливает в виде целого числа. Так вот этим методом мы пытаемся установить значение поля modifiers в классе Field. В поле modifiers хранится число которое говорит какой модификатор у поля. Т.е. тем самым мы изменяем у поля модификатор final на другой модификатор отличный от final. И после этого в строке field.set(null, newValue); пытаемся выставить новое значение для поля Field которое изначально требуется изменить (Boolean.FALSE ).</div><a href="" class="reply-link">ответить</a><div class="sub-comments"><div id="6369525073827657310" class="comment-block"><div class="head"><a href="#6369525073827657310" class="link">#</a><span class="author"><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/Satsak.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;Satsak</span><span class="created">25.03.2013 | 10:50:51</span></div><div class="text">Не могу понять почему тут null :(<br>field.set(null, newValue);</div><a href="" class="reply-link">ответить</a><div class="sub-comments"><div id="5360989856711122446" class="comment-block"><div class="head"><a href="#5360989856711122446" class="link">#</a><span class="author"><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/san.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;<a href="http://www.quizful.net/user/san" rel="nofollow">san</a></span><span class="created">25.03.2013 | 10:59:41</span></div><div class="text">Потому что поле Boolean.FALSE статическое, а для статических полей экземпляр объекта не обязателен.</div><a href="" class="reply-link">ответить</a><div class="sub-comments"><div id="2112332002496193267" class="comment-block"><div class="head"><a href="#2112332002496193267" class="link">#</a><span class="author"><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/Satsak.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;Satsak</span><span class="created">25.03.2013 | 11:08:23</span></div><div class="text">field.set(null, newValue);<br>field.set(Field.class, newValue);<br>одно и то же?</div><a href="" class="reply-link">ответить</a><div class="sub-comments"></div></div><div id="1272647454191186942" class="comment-block"><div class="head"><a href="#1272647454191186942" class="link">#</a><span class="author"><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/san.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;<a href="http://www.quizful.net/user/san" rel="nofollow">san</a></span><span class="created">25.03.2013 | 12:49:21</span></div><div class="text">null первым параметром данного метода устанавливают когда изменяют значения static поля (поля класса), в других случаях туда вставляется объект, поле которого мы меняем.</div><a href="" class="reply-link">ответить</a><div class="sub-comments"></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div><div id="5814088415424623605" class="comment-block"><div class="head"><a href="#5814088415424623605" class="link">#</a><span class="author"><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/Satsak.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;Satsak</span><span class="created">25.03.2013 | 09:53:30</span></div><div class="text">А в своем коде Вы выводите не значение переменной объекта, а троковое представление самого объекта:<br>System.out.println(pf); // Ваш код<br>System.out.println(f.get(pf)); // мой код</div><a href="" class="reply-link">ответить</a><div class="sub-comments"><div id="2197099502131012868" class="comment-block"><div class="head"><a href="#2197099502131012868" class="link">#</a><span class="author"><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/san.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;<a href="http://www.quizful.net/user/san" rel="nofollow">san</a></span><span class="created">25.03.2013 | 09:55:59</span></div><div class="text">В строковом представлении объекта я вывожу значения всех полей, и final поля в том числе.</div><a href="" class="reply-link">ответить</a><div class="sub-comments"><div id="4395667302057372156" class="comment-block"><div class="head"><a href="#4395667302057372156" class="link">#</a><span class="author"><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/Satsak.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;Satsak</span><span class="created">25.03.2013 | 09:57:15</span></div><div class="text">не заметил переопределения toString()</div><a href="" class="reply-link">ответить</a><div class="sub-comments"></div></div></div></div></div></div></div></div></div></div><div id="2017794353461682206" class="comment-block"><div class="head"><a href="#2017794353461682206" class="link">#</a><span class="author"><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/Carrera.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;Carrera</span><span class="created">03.03.2013 | 16:01:15</span></div><div class="text">А можно ли в рефлексию передать текстовую информацию которая постоянно изменяется, или необходимо постоянно сохранять в файл, а потом выбирать методы конкретно из файла?</div><a href="" class="reply-link">ответить</a><div class="sub-comments"></div></div><div id="9130542955681398036" class="comment-block"><div class="head"><a href="#9130542955681398036" class="link">#</a><span class="author"><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/freedom08_lt.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;freedom08_lt</span><span class="created">22.12.2012 | 22:04:03</span></div><div class="text">(продолжение)<br>И дальше через метод подгружало в каждый класс информацию из базы. Как-то так )<br>   Просто в С# есть прослойка, которая на основе базы, сама создает классы, где можно получать информацию напрямую, а тут походу такого в JAVA нет, или пока не знаю об этом. <br>   <br>Итак, можно ли создавать динамические имена для экземпляра класса и если нет, какие пути решения посоветуете вы.</div><a href="" class="reply-link">ответить</a><div class="sub-comments"></div></div><div id="4413312867353789113" class="comment-block"><div class="head"><a href="#4413312867353789113" class="link">#</a><span class="author"><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/freedom08_lt.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;freedom08_lt</span><span class="created">22.12.2012 | 22:02:08</span></div><div class="text">Здарова всем!<br>Статья хорошая, и скорее всего к ней буду возвращаться, по мере необходимости, так что, за нее спасибо )<br><br>Но вот на один вопрос не нашел ответа.<br>После прочтение заголовка ниже<br>"Загрузка и динамическое создание экземпляра класса"<br>понял, что на самом деле здесь подгружается динамически класс, а вот имя экземпляра - статическое.<br><br>Вопрос который я хочу задать уже поднимался года два назад здесь -<br><a href="http://www.linux.org.ru/forum/development/5038629">http://www.linux.org.ru/forum/development/5038629</a><br>У меня вопрос тот же ) возможно ли чтобы имя экземпляра задавалось из строки?<br>Если нет, что посоветуете сделать чтобы это обойти )<br><br>1. Есть класс с определенными полями. ClassWithFields clsWF;<br>2. Есть входящие данные которые могут в себе содержать много таких классов(clsWF). Количество заранее неизвестно.<br>   Вот поэтому в программе нужно чтобы, она сама определяла сколько таких классов делать<br>   СlassWithFields "clsWF+(someFieldFromInputData)" = new ClassWithFields(...);</div><a href="" class="reply-link">ответить</a><div class="sub-comments"></div></div><div id="1565748498300873431" class="comment-block"><div class="head"><a href="#1565748498300873431" class="link">#</a><span class="author"><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/theman.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;theman</span><span class="created">06.03.2012 | 12:54:19</span></div><div class="text">хотите увидеть работу мастера рефлексии? :)))</div><a href="" class="reply-link">ответить</a><div class="sub-comments"></div></div><div id="2054925526417122788" class="comment-block"><div class="head"><a href="#2054925526417122788" class="link">#</a><span class="author"><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/rokoko.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;rokoko</span><span class="created">01.01.2012 | 12:43:55</span></div><div class="text">Скажите, пожалуйста, если среди полей класса переменная другого класса, возможно ли получить доступ к полям этого другого класса? Например,<br>public class BigClass {<br>private SmallClass smlClass;<br>private int anyField;<br>}<br>class SmallClass {<br>private int smlClassField;<br>}<br>Возможно ли получить значение smlClassField?<br>Спасибо.</div><a href="" class="reply-link">ответить</a><div class="sub-comments"><div id="7430946855760089981" class="comment-block"><div class="head"><a href="#7430946855760089981" class="link">#</a><span class="author"><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/san.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;<a href="http://www.quizful.net/user/san" rel="nofollow">san</a></span><span class="created">01.01.2012 | 13:43:44</span></div><div class="text">Да можно. Нужно сначала получить поле содержащие другой класс, затем определить его тип. Далее имея тип можно получить требуемое поле. Пример кода в следующем комментарии. Так как в данный коммент он не влез.</div><a href="" class="reply-link">ответить</a><div class="sub-comments"><div id="7942713661868505626" class="comment-block"><div class="head"><a href="#7942713661868505626" class="link">#</a><span class="author"><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/san.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;<a href="http://www.quizful.net/user/san" rel="nofollow">san</a></span><span class="created">01.01.2012 | 13:44:06</span></div><div class="text">import java.lang.reflect.Field;<br><br>class BigClass {<br>	private SmallClass smlClass;<br>	private int anyField = 22;<br>}<br><br>class SmallClass {<br>	public int smlClassField = 133;<br>}<br><br>public class Test {<br>	public static void main(String[] args) throws Exception {<br>		/** Исходные данные имеется ссылка на BigClass */<br>		Class&lt;BigClass&gt; type = BigClass.class;<br>		/** Получаем требуемое поле другого класса */<br>		Field field = type.getDeclaredField("smlClass");<br>		/** Определяем тип данного поля */<br>		Class&lt;?&gt; newType = field.getType();<br>		/** Определяем искомое поле */<br>		Field newField = newType.getDeclaredField("smlClassField");<br>		/**<br>		 * Для получение доступа к требуемому полю так как модификатор доступа<br>		 * `private`<br>		 */<br>		newField.setAccessible(true);<br>		/** получаем значение поля */<br>		int smlClassField = newField.getInt(newType.newInstance());<br>		System.out.println(smlClassField);<br>	}<br>}</div><a href="" class="reply-link">ответить</a><div class="sub-comments"><div id="8449820206967234965" class="comment-block"><div class="head"><a href="#8449820206967234965" class="link">#</a><span class="author"><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/rokoko.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;rokoko</span><span class="created">01.01.2012 | 16:41:44</span></div><div class="text">В строке<br>int smlClassField = newField.getInt(newType.newInstance());<br>генерируется InstantiationException.<br>Конструктора по умолчанию в классе SmallClass нет. Есть public-конструктор с одним параметром.<br>При попытке инстанциировать объект с помощью конструктора:<br>Constructor c = newType.getDeclaredConstructor();<br>int smlClassField = newField.getInt(c.newInstance()));<br>генерируется NoSuchMethodException в строке Constructor c = ...<br>Скажите, пожалуйста, почему не работает?</div><a href="" class="reply-link">ответить</a><div class="sub-comments"><div id="3946424962577089905" class="comment-block"><div class="head"><a href="#3946424962577089905" class="link">#</a><span class="author"><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/san.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;<a href="http://www.quizful.net/user/san" rel="nofollow">san</a></span><span class="created">01.01.2012 | 16:55:51</span></div><div class="text">Потому что вы создаете инстанс использую конструктор без параметров, а по вашим словам его нету, поэтому получается NoSuchMethodException. Нужно делать так:<br>Если конструктор выглядит например так<br>	public SmallClass(int z) {<br>		this.z = z;<br>	}	<br><br>тогда в код добавляется<br>		Constructor&lt;?&gt; constructor = newType.getConstructor(int.class);		<br>		int smlClassField = newField.getInt(constructor.newInstance(10));<br>Если что-то ещё не получится приведите пример своего кода, так будет проще определить причину ошибки.</div><a href="" class="reply-link">ответить</a><div class="sub-comments"><div id="6504943637179850892" class="comment-block"><div class="head"><a href="#6504943637179850892" class="link">#</a><span class="author"><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/rokoko.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;rokoko</span><span class="created">02.01.2012 | 00:25:10</span></div><div class="text">Все получилось, спасибо за ответы.</div><a href="" class="reply-link">ответить</a><div class="sub-comments"></div></div></div></div></div></div></div></div></div></div></div></div><div id="5362781567797400707" class="comment-block"><div class="head"><a href="#5362781567797400707" class="link">#</a><span class="author"><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/andy1001.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;andy1001</span><span class="created">09.11.2011 | 11:48:26</span></div><div class="text">Мне, как новичку в java-программировании, статья очень помогла в извлечении данных из полей объекта. Спасибо автору от чистого сердца!</div><a href="" class="reply-link">ответить</a><div class="sub-comments"><div id="8902139166411818829" class="comment-block"><div class="head"><a href="#8902139166411818829" class="link">#</a><span class="author"><img src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/san.jpeg" style="vertical-align:middle;margin-bottom:4px;" height="24px"> &nbsp;<a href="http://www.quizful.net/user/san" rel="nofollow">san</a></span><span class="created">09.11.2011 | 12:20:43</span></div><div class="text">Пожалуйста. Я рад что статья понравилась, значит время на её написание я не зря потратил.</div><a href="" class="reply-link">ответить</a><div class="sub-comments"></div></div></div></div><div class="page-navigation"><a href="" class="current">1</a><a href="">2</a></div><form class="comment-form"><div class="title">Добавить комментарий</div><div style="display: none;" class="errors"></div><textarea></textarea><div class="buttons"><button>Отправить</button> </div></form></div></div>
+<style>@import '/comments/comments.css?1';</style>
+
+<script src="%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Java%20Reflection%20API_files/comments.js"></script>
+<script>document.getElementById('post-comments').appendChild(new Comments.Panel('post/java-reflection-api', {onLoad:Markup}));</script>
+
+<script type="text/javascript">
+    ShareThis(jQuery("#shareThis"), window.location, jQuery("title").html(), jQuery('head meta[name=description]').attr('Content'));
+</script>
+            <br class="clear">
+        </div>
+        <br class="clear">
+    </div>
+
+    <div id="footer">
+        <b></b>
+        <a class="forteko" target="_blank" href="http://www.forteko.com/" title="Forteko"></a>
+        
+        <span class="social">
+            <a class="icon-twitter" target="_blank" rel="nofollow" href="http://www.twitter.com/quizful" title="Twitter"></a>
+            <a class="icon-facebook" target="_blank" rel="nofollow" href="http://www.facebook.com/Quizful" title="Facebook"></a>
+            <a class="icon-vkontakte" target="_blank" rel="nofollow" href="http://vkontakte.ru/club8978114" title="VKontakte"></a>
+            <span class="title">Наши представительства</span>
+        </span>
+    </div>
+    <script type="text/javascript">
+    if (window.location.host == 'www.quizful.net') {
+        var pageTracker = _gat._getTracker("UA-199293-2");
+        pageTracker._initData();
+        pageTracker._trackPageview();
+
+        $("#footer .group a").click(function() { pageTracker._trackPageview('/' + this.className); });
+    }
+    </script>
+
+
+</body></html>

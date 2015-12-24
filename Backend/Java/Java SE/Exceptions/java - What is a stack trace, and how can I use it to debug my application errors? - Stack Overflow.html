@@ -1,0 +1,2377 @@
+<!DOCTYPE html>
+<html itemscope="" itemtype="http://schema.org/QAPage"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<title>java - What is a stack trace, and how can I use it to debug my application errors? - Stack Overflow</title>
+    <link rel="shortcut icon" href="http://cdn.sstatic.net/stackoverflow/img/favicon.ico?v=4f32ecc8f43d">
+    <link rel="apple-touch-icon image_src" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+    <link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="http://stackoverflow.com/opensearch.xml">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="stackoverflow.com">
+    <meta property="og:type" content="website">    
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon@2.png?v=73d79a89bded&amp;a">
+    <meta name="twitter:title" property="og:title" itemprop="title name" content="What is a stack trace, and how can I use it to debug my application errors?">
+    <meta name="twitter:description" property="og:description" itemprop="description" content="Sometimes when I run my application it gives me an error that looks like:
+
+Exception in thread &quot;main&quot; java.lang.NullPointerException
+        at com.example.myproject.Book.getTitle(Book.java:16)
+   ...">
+    <meta property="og:url" content="http://stackoverflow.com/questions/3988788/what-is-a-stack-trace-and-how-can-i-use-it-to-debug-my-application-errors">
+    <link rel="canonical" href="http://stackoverflow.com/questions/3988788/what-is-a-stack-trace-and-how-can-i-use-it-to-debug-my-application-errors">
+
+    
+    
+    <script src="java%20-%20What%20is%20a%20stack%20trace,%20and%20how%20can%20I%20use%20it%20to%20debug%20my%20application%20errors%3F%20-%20Stack%20Overflow_files/quant.js" async=""></script><script src="java%20-%20What%20is%20a%20stack%20trace,%20and%20how%20can%20I%20use%20it%20to%20debug%20my%20application%20errors%3F%20-%20Stack%20Overflow_files/beacon.js" async=""></script><script src="java%20-%20What%20is%20a%20stack%20trace,%20and%20how%20can%20I%20use%20it%20to%20debug%20my%20application%20errors%3F%20-%20Stack%20Overflow_files/analytics.js" async=""></script><script src="java%20-%20What%20is%20a%20stack%20trace,%20and%20how%20can%20I%20use%20it%20to%20debug%20my%20application%20errors%3F%20-%20Stack%20Overflow_files/ados_002.js" async="" type="text/javascript"></script><script src="java%20-%20What%20is%20a%20stack%20trace,%20and%20how%20can%20I%20use%20it%20to%20debug%20my%20application%20errors%3F%20-%20Stack%20Overflow_files/ados.js" async="" type="text/javascript"></script><script src="java%20-%20What%20is%20a%20stack%20trace,%20and%20how%20can%20I%20use%20it%20to%20debug%20my%20application%20errors%3F%20-%20Stack%20Overflow_files/jquery.js"></script>
+    <script src="java%20-%20What%20is%20a%20stack%20trace,%20and%20how%20can%20I%20use%20it%20to%20debug%20my%20application%20errors%3F%20-%20Stack%20Overflow_files/stub.js"></script>
+    <link rel="stylesheet" type="text/css" href="java%20-%20What%20is%20a%20stack%20trace,%20and%20how%20can%20I%20use%20it%20to%20debug%20my%20application%20errors%3F%20-%20Stack%20Overflow_files/all.css">
+
+            <link rel="alternate" type="application/atom+xml" title="Feed for question 'What is a stack trace, and how can I use it to debug my application errors?'" href="http://stackoverflow.com/feeds/question/3988788">
+            <meta name="twitter:app:country" content="US">
+            <meta name="twitter:app:name:iphone" content="Stack Exchange iOS">
+            <meta name="twitter:app:id:iphone" content="871299723">
+            <meta name="twitter:app:url:iphone" content="se-zaphod://stackoverflow.com/questions/3988788/what-is-a-stack-trace-and-how-can-i-use-it-to-debug-my-application-errors">
+            <meta name="twitter:app:name:ipad" content="Stack Exchange iOS">
+            <meta name="twitter:app:id:ipad" content="871299723">
+            <meta name="twitter:app:url:ipad" content="se-zaphod://stackoverflow.com/questions/3988788/what-is-a-stack-trace-and-how-can-i-use-it-to-debug-my-application-errors">
+            <meta name="twitter:app:name:googleplay" content="Stack Exchange Android">
+            <meta name="twitter:app:url:googleplay" content="http://stackoverflow.com/questions/3988788/what-is-a-stack-trace-and-how-can-i-use-it-to-debug-my-application-errors">
+            <meta name="twitter:app:id:googleplay" content="com.stackexchange.marvin">
+        <script>
+        
+            StackExchange.ready(function () {
+                    
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.initSnippetRenderer();
+                    });
+                    
+
+                StackExchange.using("postValidation", function () {
+                    StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+                });
+
+                
+                StackExchange.question.init({showAnswerHelp:true,totalCommentCount:3,shownCommentCount:3,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:3988788});
+
+                styleCode();
+
+                    StackExchange.realtime.subscribeToQuestion('1', '3988788');
+                                                                    StackExchange.using("gps", function () { StackExchange.gps.trackOutboundClicks('#content', '.post-text'); });
+
+            });
+        </script>
+
+
+    <script>
+        StackExchange.init({"locale":"en","stackAuthUrl":"https://stackauth.com","serverTime":1449061348,"networkMetaHostname":"meta.stackexchange.com","routeName":"Questions/Show","styleCode":true,"enableUserHovercards":true,"snippets":{"enabled":true,"domain":"stacksnippets.net"},"site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdchgIAAAAAAJwGpIzRQSOFaO0pU6s44Xt8aTwc","recaptchaAudioLang":"en","enableNewTagCreationWarning":true,"insertSpaceAfterNameTabCompletion":false,"id":1,"nonAsciiTags":true,"enableSocialMediaInSharePopup":true},"user":{"fkey":"403aacb6ad65e2352d636eae87907085","rep":0,"isAnonymous":true,"isAnonymousNetworkWide":true}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"3961c61ca69a","js/moderator.en.js":"97fe5aef6f7f","js/full-anon.en.js":"33499cc2cad7","js/full.en.js":"1e4fcf6f9ef0","js/wmd.en.js":"a3d548c88788","js/third-party/jquery.autocomplete.min.js":"e5f01e97f7c3","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"16f21161a721","js/help.en.js":"7be3de40c932","js/tageditor.en.js":"228dca89f504","js/tageditornew.en.js":"baf6339578c3","js/inline-tag-editing.en.js":"239de90350f6","js/revisions.en.js":"9e897f24d78d","js/review.en.js":"38c906a6db58","js/tagsuggestions.en.js":"d1ff9b84abe5","js/post-validation.en.js":"e9d59f898ee2","js/explore-qlist.en.js":"415c9ef1f829","js/events.en.js":"b6ad5fb336a6","js/keyboard-shortcuts.en.js":"8027a5b2287f","js/external-editor.en.js":"cf58cc6630ef","js/external-editor.en.js":"cf58cc6630ef","js/snippet-javascript.en.js":"1034ef6a3153","js/snippet-javascript-codemirror.en.js":"aeb2a0b12236"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </script>
+    
+        <script>
+            StackExchange.ready(function () {
+                $('#nav-tour').click(function () {
+                    StackExchange.using("gps", function() {
+                        StackExchange.gps.track("aboutpage.click", { aboutclick_location: "headermain" }, true);
+                    });
+                });
+            });
+        </script>
+    
+    
+<script src="java%20-%20What%20is%20a%20stack%20trace,%20and%20how%20can%20I%20use%20it%20to%20debug%20my%20application%20errors%3F%20-%20Stack%20Overflow_files/full-anon.js" async=""></script><script src="java%20-%20What%20is%20a%20stack%20trace,%20and%20how%20can%20I%20use%20it%20to%20debug%20my%20application%20errors%3F%20-%20Stack%20Overflow_files/adFeedback.js" type="text/javascript"></script><link href="java%20-%20What%20is%20a%20stack%20trace,%20and%20how%20can%20I%20use%20it%20to%20debug%20my%20application%20errors%3F%20-%20Stack%20Overflow_files/adFeedback.css" rel="stylesheet"><script src="java%20-%20What%20is%20a%20stack%20trace,%20and%20how%20can%20I%20use%20it%20to%20debug%20my%20application%20errors%3F%20-%20Stack%20Overflow_files/snippet-javascript.js" async=""></script><script src="java%20-%20What%20is%20a%20stack%20trace,%20and%20how%20can%20I%20use%20it%20to%20debug%20my%20application%20errors%3F%20-%20Stack%20Overflow_files/post-validation.js" async=""></script><script src="java%20-%20What%20is%20a%20stack%20trace,%20and%20how%20can%20I%20use%20it%20to%20debug%20my%20application%20errors%3F%20-%20Stack%20Overflow_files/prettify-full.js" async=""></script><script src="java%20-%20What%20is%20a%20stack%20trace,%20and%20how%20can%20I%20use%20it%20to%20debug%20my%20application%20errors%3F%20-%20Stack%20Overflow_files/external-editor.js" async=""></script><script src="java%20-%20What%20is%20a%20stack%20trace,%20and%20how%20can%20I%20use%20it%20to%20debug%20my%20application%20errors%3F%20-%20Stack%20Overflow_files/p.js" async=""></script><link href="java%20-%20What%20is%20a%20stack%20trace,%20and%20how%20can%20I%20use%20it%20to%20debug%20my%20application%20errors%3F%20-%20Stack%20Overflow_files/jobs.css" rel="stylesheet" type="text/css"></head>
+<body class="question-page new-topbar">
+    <noscript><div id="noscript-padding"></div></noscript>
+    <div id="notify-container"></div>
+    <div id="overlay-header"></div>
+    <div id="custom-header"></div>
+
+
+
+
+
+<div class="topbar">
+    <div class="topbar-wrapper">
+
+        <div class="js-topbar-dialog-corral">
+
+
+<div class="topbar-dialog siteSwitcher-dialog dno">
+    <div class="header">
+        <h3><a href="http://stackoverflow.com/">current community</a></h3>
+    </div>
+    <div class="modal-content current-site-container">
+        <ul class="current-site">
+                <li>
+                        <div class="related-links">
+                    <a href="http://chat.stackoverflow.com/" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:6 })">chat</a>
+            </div>
+
+
+
+
+    <a href="http://stackoverflow.com/" class="current-site-link site-link js-gps-track" data-id="1" data-gps-track="
+        site_switcher.click({ item_type:3 })">
+        <div class="site-icon favicon favicon-stackoverflow" title="Stack Overflow"></div>
+        Stack Overflow
+    </a>
+
+                </li>
+                <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    
+
+
+
+    <a href="http://meta.stackoverflow.com/" class="site-link js-gps-track" data-id="552" data-gps-track="
+            site.switch({ target_site:552, item_type:3 }),
+        site_switcher.click({ item_type:4 })">
+        <div class="site-icon favicon favicon-stackoverflowmeta" title="Meta Stack Overflow"></div>
+        Meta Stack Overflow
+    </a>
+
+                </li>
+                            <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    <a class="site-link js-gps-track" href="http://careers.stackoverflow.com/?utm_source=stackoverflow.com&amp;utm_medium=site-ui&amp;utm_campaign=multicollider" data-gps-track="site_switcher.click({ item_type:9 })">
+                        <div class="site-icon favicon favicon-careers" title="Stack Overflow Careers"></div>
+                        Stack Overflow Careers
+                    </a>
+                </li>
+        </ul>
+    </div>
+    
+    <div class="header" id="your-communities-header">
+        <h3>
+your communities        </h3>
+            
+    </div>
+    <div class="modal-content" id="your-communities-section">
+            
+            <div class="call-to-login">
+<a href="https://stackoverflow.com/users/signup?ssrc=site_switcher&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f3988788%2fwhat-is-a-stack-trace-and-how-can-i-use-it-to-debug-my-application-errors" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:10 })">Sign up</a> or <a href="https://stackoverflow.com/users/login?ssrc=site_switcher&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f3988788%2fwhat-is-a-stack-trace-and-how-can-i-use-it-to-debug-my-application-errors" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:11 })">log in</a> to customize your list.
+            </div>
+    </div>
+    
+    <div class="header">
+        <h3><a href="http://stackexchange.com/sites">more stack exchange communities</a></h3>
+        <a href="http://blog.stackoverflow.com/" class="fr">company blog</a>
+    </div>
+    <div class="modal-content">
+            <div class="child-content"></div>
+    </div>
+</div>
+        </div>
+
+        <div class="network-items">
+
+            <a href="http://stackexchange.com/" class="topbar-icon icon-site-switcher yes-hover js-site-switcher-button js-gps-track" data-gps-track="site_switcher.show" title="A list of all 150 Stack Exchange sites">
+                <span class="hidden-text">Stack Exchange</span>
+            </a>
+
+    <a href="#" class="topbar-icon icon-inbox yes-hover js-inbox-button" title="Recent inbox messages">
+        <span class="hidden-text">Inbox</span>
+        <span class="unread-count" style="display:none"></span>
+    </a>
+    <a href="#" class="topbar-icon icon-achievements yes-hover js-achievements-button " data-unread-class="" title="Recent achievements: reputation, badges, and privileges earned">
+        <span class="hidden-text">Reputation and Badges</span>
+        <span class="unread-count" style="display:none">
+            
+        </span>
+    </a>
+        </div>
+
+        <div class="topbar-links">
+
+                <div class="links-container">
+                <span class="topbar-menu-links">
+                                    <a href="https://stackoverflow.com/users/signup?ssrc=head&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f3988788%2fwhat-is-a-stack-trace-and-how-can-i-use-it-to-debug-my-application-errors" class="login-link">sign up</a>
+                                <a href="https://stackoverflow.com/users/login?ssrc=head&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f3988788%2fwhat-is-a-stack-trace-and-how-can-i-use-it-to-debug-my-application-errors" class="login-link">log in</a>
+
+                        <a href="http://stackoverflow.com/tour">tour</a>
+                            <a href="#" class="icon-help js-help-button" title="Help Center and other resources">
+        help
+        <span class="triangle"></span>
+    </a>
+    <div class="topbar-dialog help-dialog js-help-dialog dno">
+        <div class="modal-content">
+            <ul>
+                                    <li>
+                        <a href="http://stackoverflow.com/tour" class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })">
+                            Tour
+                            <span class="item-summary">
+                                Start here for a quick overview of the site
+                            </span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="http://stackoverflow.com/help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })">
+                        Help Center
+                        <span class="item-summary">
+                            Detailed answers to any questions you might have
+                        </span>
+                    </a>
+                </li>
+                    <li>
+                        <a href="http://meta.stackoverflow.com/" class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })">
+                            Meta
+                            <span class="item-summary">
+                                Discuss the workings and policies of this site
+                            </span>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+
+                            <a href="http://careers.stackoverflow.com/?utm_source=stackoverflow.com&amp;utm_medium=site-ui&amp;utm_campaign=anon-topbar">stack overflow careers</a>
+                    </span>
+                </div>
+
+            <div class="search-container">
+                <form id="search" action="/search" method="get" autocomplete="off">
+                    <input name="q" placeholder="search" tabindex="1" autocomplete="off" maxlength="240" type="text">
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+    <script>
+        StackExchange.ready(function() { StackExchange.topbar.init(); });
+    </script>
+
+    <div class="container">
+        <div id="header">
+            <br class="cbt">
+            <div id="hlogo">
+                <a href="http://stackoverflow.com/">
+                    Stack Overflow
+                </a>
+            </div>
+            <div id="hmenus">
+                <div class="nav mainnavs">
+                    <ul>
+                        <li class="youarehere"><a id="nav-questions" href="http://stackoverflow.com/questions">Questions</a></li>
+                        <li><a id="nav-tags" href="http://stackoverflow.com/tags">Tags</a></li>
+                        <li><a id="nav-users" href="http://stackoverflow.com/users">Users</a></li>
+                        <li><a id="nav-badges" href="http://stackoverflow.com/help/badges">Badges</a></li>
+                                                                    </ul>
+                </div>
+                <div class="nav askquestion">
+                    <ul>
+                        <li>
+                            <a id="nav-askquestion" href="http://stackoverflow.com/questions/ask">Ask Question</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+
+
+
+        <div id="content" class="snippet-hidden">
+            
+
+<div itemscope="" itemtype="http://schema.org/Question">
+    <link itemprop="image" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+			<!--googleoff: all-->
+
+<div id="herobox-mini">
+    <div id="hero-content">
+        <span id="controls">
+                <a href="http://stackoverflow.com/users/signup?ssrc=hero&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f3988788%2fwhat-is-a-stack-trace-and-how-can-i-use-it-to-debug-my-application-errors" id="tell-me-more" class="button">Sign up</a>
+            <span id="close"><a title="click to dismiss">×</a></span>
+        </span>
+        <div id="blurb">
+            Stack Overflow is a community of 4.7 million programmers, 
+just like you, helping each other. Join them; it only takes a minute:
+        </div>        
+    </div>
+    <script>
+        StackExchange.ready(function() {
+            var clickSource = $("body").attr("class") + '-mini';
+            var location = 0;
+            if ($("body").hasClass("questions-page")) {
+                clickSource = 'questionpagemini';
+                location = 2;
+            } else if ($("body").hasClass("question-page")) {
+                clickSource = 'questionpagemini';
+                location = 2;
+            } else if ($("body").hasClass("home-page")) {
+                clickSource = 'homepagemini';
+                location = 4;
+            }
+
+            $('#tell-me-more').click(function () {
+                StackExchange.using("gps", function () {
+                    StackExchange.gps.track("hero.action", { hero_action_type: 'cta', location: location }, true);
+                });
+            });
+            $('#herobox-mini #close').click(function () {
+                StackExchange.using("gps", function () {
+                    StackExchange.gps.track("hero.action", { hero_action_type: "close", location: location }, true);
+                });
+                $.cookie("hero", "none", { path: "/", expires: 365 });
+                var $hero = $("#herobox-mini");
+                $hero.slideUp('fast', function () { $hero.remove(); });
+                return false;
+            });
+        });
+    </script>
+</div>
+			<!--googleon: all-->
+			<div id="question-header">
+                <h1 itemprop="name"><a href="http://stackoverflow.com/questions/3988788/what-is-a-stack-trace-and-how-can-i-use-it-to-debug-my-application-errors" class="question-hyperlink">What is a stack trace, and how can I use it to debug my application errors?</a></h1>
+		</div>
+			<div id="mainbar">
+
+			
+
+<div class="question" data-questionid="3988788" id="question">
+
+    <script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk2022476061",4).setZone(43); });
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk2022476061"><a href="http://engine.adzerk.net/r?e=eyJhdiI6NjE5NTgsImF0Ijo0LCJidCI6MCwiY20iOjMyMzczMCwiY2giOjExNzgsImNrIjp7fSwiY3IiOjEwNTUzOTksImRpIjoiZWJhMGVhNTU3NGRlNDc5MGE1OWUyNTA4ZTI1YmJhNjUiLCJkbSI6MSwiZmMiOjEyODg1MjksImZsIjo5MDUyNTQsImlwIjoiMTM0LjYwLjE0OC45NyIsImt3IjoiamF2YSxkZWJ1Z2dpbmcsc3RhY2stdHJhY2UiLCJtayI6ImRlYnVnZ2luZyIsIm53IjoyMiwicGMiOjExLjI1LCJlYyI6MTEuMjUsInByIjo3NjUsInJ0IjoyLCJyZiI6Imh0dHA6Ly9pbmZvLmphdmFydXNoLnJ1L0phdmFSdXNoX2xlY3R1cmVzX2Rpc2N1c3Npb24vMjAxMy8wNi8xMi9sZWN0dXJlLTkuaHRtbCIsInN0Ijo4Mjc3LCJ1ayI6InVlMS0xNTMxYjA5MmI0NDM0Mzc0YTQzMDUxZTJlNzRkNzA3NCIsInpuIjo0MywidHMiOjE0NDkwNjEzNDk2NTYsImJmIjp0cnVlLCJwbiI6ImFkemVyazIwMjI0NzYwNjEiLCJ1ciI6Imh0dHA6Ly9zb2Z0d2FyZWludGVncml0eS5jb3Zlcml0eS5jb20vZnJlZS10cmlhbC1jb3Zlcml0eS5odG1sP3V0bV9zb3VyY2VfYz1zdGFja292ZXJmbG93JnV0bV9tZWRpdW1fYz1jcGMmdXRtX2NhbXBhaWduX2M9Z2VuZXJhbCJ9&amp;s=QaN3FZUKWY7OEckp_YFX3cqnOwg" rel="nofollow" target="_blank" title=""><img class="pcfykmqlcrtplekulgcu" src="java%20-%20What%20is%20a%20stack%20trace,%20and%20how%20can%20I%20use%20it%20to%20debug%20my%20application%20errors%3F%20-%20Stack%20Overflow_files/70a05af53f624cad800729bd50a34a7c.png" title="" alt="" height="90" width="728" border="0"></a><img class="pcfykmqlcrtplekulgcu" src="java%20-%20What%20is%20a%20stack%20trace,%20and%20how%20can%20I%20use%20it%20to%20debug%20my%20application%20errors%3F%20-%20Stack%20Overflow_files/i_002.gif" style="position:absolute;" height="0px" width="0px" border="0"></div>    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="3988788" type="hidden">
+        <a class="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">202</span>
+        <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a>
+
+        <a class="star-off" href="#" title="This is a favorite question (click again to undo)">favorite</a>
+        <div class="favoritecount"><b>83</b></div>
+
+
+</div>
+
+            </td>
+            
+<td class="postcell">
+<div>
+    <div class="post-text" itemprop="text">
+
+<p>Sometimes when I run my application it gives me an error that looks like:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="typ">Exception</span><span class="pln"> in thread </span><span class="str">"main"</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">lang</span><span class="pun">.</span><span class="typ">NullPointerException</span><span class="pln">
+        at com</span><span class="pun">.</span><span class="pln">example</span><span class="pun">.</span><span class="pln">myproject</span><span class="pun">.</span><span class="typ">Book</span><span class="pun">.</span><span class="pln">getTitle</span><span class="pun">(</span><span class="typ">Book</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">16</span><span class="pun">)</span><span class="pln">
+        at com</span><span class="pun">.</span><span class="pln">example</span><span class="pun">.</span><span class="pln">myproject</span><span class="pun">.</span><span class="typ">Author</span><span class="pun">.</span><span class="pln">getBookTitles</span><span class="pun">(</span><span class="typ">Author</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">25</span><span class="pun">)</span><span class="pln">
+        at com</span><span class="pun">.</span><span class="pln">example</span><span class="pun">.</span><span class="pln">myproject</span><span class="pun">.</span><span class="typ">Bootstrap</span><span class="pun">.</span><span class="pln">main</span><span class="pun">(</span><span class="typ">Bootstrap</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">14</span><span class="pun">)</span></code></pre>
+
+<p>People have referred to this as a "stack trace". <strong>What is a stack trace?</strong> What can it tell me about the error that's happening in my program?</p>
+
+<hr>
+
+<p><em>About this question - quite often I see a question come through 
+where a novice programmer is "getting an error", and they simply paste 
+their stack trace and some random block of code without understanding 
+what the stack trace is or how they can use it. This question is 
+intended as a reference for novice programmers who might need help 
+understanding the value of a stack trace.</em></p>
+    </div>
+    <div class="post-taglist">
+        <a href="http://stackoverflow.com/questions/tagged/java" class="post-tag js-gps-track" title="show questions tagged 'java'" rel="tag">java</a> <a href="http://stackoverflow.com/questions/tagged/debugging" class="post-tag js-gps-track" title="show questions tagged 'debugging'" rel="tag">debugging</a> <a href="http://stackoverflow.com/questions/tagged/stack-trace" class="post-tag js-gps-track" title="show questions tagged 'stack-trace'" rel="tag">stack-trace</a> 
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/q/3988788" title="short permalink to this question" class="short-link" id="link-post-3988788">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/3988788/edit" class="suggest-edit-post" title="">improve this question</a></div>        
+    </td>
+    <td class="post-signature owner">
+        <div class="user-info user-hover">
+    <div class="user-action-time">
+        asked <span title="2010-10-21 14:52:24Z" class="relativetime">Oct 21 '10 at 14:52</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/29995/rob-hruska"><div class="gravatar-wrapper-32"><img src="java%20-%20What%20is%20a%20stack%20trace,%20and%20how%20can%20I%20use%20it%20to%20debug%20my%20application%20errors%3F%20-%20Stack%20Overflow_files/ffffa52ae8108fdeb2559d804051556e.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/29995/rob-hruska">Rob Hruska</a><br>
+        <span class="reputation-score" title="reputation score 57455" dir="ltr">57.5k</span><span title="18 gold badges"><span class="badge1"></span><span class="badgecount">18</span></span><span title="116 silver badges"><span class="badge2"></span><span class="badgecount">116</span></span><span title="157 bronze badges"><span class="badge3"></span><span class="badgecount">157</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</div>
+</td>
+        </tr>
+                
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-3988788" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-4270314" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">2</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Have you considered blogging this?</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/251173/buhake-sindi" title="49417 reputation" class="comment-user">Buhake Sindi</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment4270314_3988788"><span title="2010-10-21 16:12:56Z" class="relativetime-clean">Oct 21 '10 at 16:12</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-4270440" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@The Elite Gentleman - I would, if I were a blogger. :) Perhaps someday.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/29995/rob-hruska" title="57455 reputation" class="comment-user owner">Rob Hruska</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment4270440_3988788"><span title="2010-10-21 16:24:09Z" class="relativetime-clean">Oct 21 '10 at 16:24</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-5931736" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="warm">11</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Also, if a stacktrace line 
+does not contain the filename and a line number, the class for that line
+ was not compiled with debug information.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/53897/thorbj%c3%b8rn-ravn-andersen" title="45709 reputation" class="comment-user">Thorbjørn Ravn Andersen</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment5931736_3988788"><span title="2011-03-10 21:11:31Z" class="relativetime-clean">Mar 10 '11 at 21:11</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-3988788" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>        </tbody></table>
+</div>
+
+			<div id="answers">
+
+				<a name="tab-top"></a>
+				<div id="answers-header">
+					<div class="subheader answers-subheader">
+						<h2>
+								6 Answers
+                                <span style="display:none;" itemprop="answerCount">6</span>
+						</h2>
+						<div>
+							<div id="tabs">
+        <a href="http://stackoverflow.com/questions/3988788/what-is-a-stack-trace-and-how-can-i-use-it-to-debug-my-application-errors?answertab=active#tab-top" data-nav-xhref="" title="Answers with the latest activity first" data-value="active">active</a>
+        <a href="http://stackoverflow.com/questions/3988788/what-is-a-stack-trace-and-how-can-i-use-it-to-debug-my-application-errors?answertab=oldest#tab-top" data-nav-xhref="" title="Answers in the order they were provided" data-value="oldest">oldest</a>
+        <a class="youarehere" href="http://stackoverflow.com/questions/3988788/what-is-a-stack-trace-and-how-can-i-use-it-to-debug-my-application-errors?answertab=votes#tab-top" data-nav-xhref="" title="Answers with the highest score first" data-value="votes">votes</a>
+</div>
+						</div>
+					</div>    
+				</div>    
+
+
+
+
+  
+<a name="3988794"></a>
+<div id="answer-3988794" class="answer accepted-answer" data-answerid="3988794" itemscope="" itemtype="http://schema.org/Answer" itemprop="acceptedAnswer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="3988794" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">213</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+        <span class="vote-accepted-on load-accepted-answer-date" title="loading when this answer was accepted...">accepted</span>
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>In simple terms, a <strong>stack trace</strong> is a list of the method calls that the application was in the middle of when an Exception was thrown.</p>
+
+<p><strong>Simple Example</strong></p>
+
+<p>With the example given in the question, we can determine exactly 
+where the exception was thrown in the application. Let's have a look at 
+the stack trace:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="typ">Exception</span><span class="pln"> in thread </span><span class="str">"main"</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">lang</span><span class="pun">.</span><span class="typ">NullPointerException</span><span class="pln">
+        at com</span><span class="pun">.</span><span class="pln">example</span><span class="pun">.</span><span class="pln">myproject</span><span class="pun">.</span><span class="typ">Book</span><span class="pun">.</span><span class="pln">getTitle</span><span class="pun">(</span><span class="typ">Book</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">16</span><span class="pun">)</span><span class="pln">
+        at com</span><span class="pun">.</span><span class="pln">example</span><span class="pun">.</span><span class="pln">myproject</span><span class="pun">.</span><span class="typ">Author</span><span class="pun">.</span><span class="pln">getBookTitles</span><span class="pun">(</span><span class="typ">Author</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">25</span><span class="pun">)</span><span class="pln">
+        at com</span><span class="pun">.</span><span class="pln">example</span><span class="pun">.</span><span class="pln">myproject</span><span class="pun">.</span><span class="typ">Bootstrap</span><span class="pun">.</span><span class="pln">main</span><span class="pun">(</span><span class="typ">Bootstrap</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">14</span><span class="pun">)</span></code></pre>
+
+<p>This is a very simple stack trace. If we start at the beginning of 
+the list of "at ...", we can tell where our error happened. What we're 
+looking for is the <strong>topmost</strong> method call that is part of our application. In this case, it's:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="pln">at com</span><span class="pun">.</span><span class="pln">example</span><span class="pun">.</span><span class="pln">myproject</span><span class="pun">.</span><span class="typ">Book</span><span class="pun">.</span><span class="pln">getTitle</span><span class="pun">(</span><span class="typ">Book</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">16</span><span class="pun">)</span></code></pre>
+
+<p>To debug this, we can open up <code>Book.java</code> and look at line <code>16</code>, which is:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">public</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> getTitle</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="pln">title</span><span class="pun">.</span><span class="pln">toString</span><span class="pun">());</span><span class="pln"> </span><span class="pun">&lt;--</span><span class="pln"> line </span><span class="lit">16</span><span class="pln">
+    </span><span class="kwd">return</span><span class="pln"> title</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>This would indicate that something (probably <code>title</code>) is <code>null</code> in the above code.</p>
+
+<p><strong>Example with a chain of exceptions</strong></p>
+
+<p>Sometimes applications will catch an Exception and re-throw it as the cause of another Exception.  This typically looks like:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">try</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+</span><span class="pun">....</span><span class="pln">
+</span><span class="pun">}</span><span class="pln"> </span><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="typ">NullPointerException</span><span class="pln"> e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="kwd">throw</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">IllegalStateException</span><span class="pun">(</span><span class="str">"A book has a null property"</span><span class="pun">,</span><span class="pln"> e</span><span class="pun">)</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>This might give you a stack trace that looks like:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="typ">Exception</span><span class="pln"> in thread </span><span class="str">"main"</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">lang</span><span class="pun">.</span><span class="typ">IllegalStateException</span><span class="pun">:</span><span class="pln"> A book has a </span><span class="kwd">null</span><span class="pln"> property
+        at com</span><span class="pun">.</span><span class="pln">example</span><span class="pun">.</span><span class="pln">myproject</span><span class="pun">.</span><span class="typ">Author</span><span class="pun">.</span><span class="pln">getBookIds</span><span class="pun">(</span><span class="typ">Author</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">38</span><span class="pun">)</span><span class="pln">
+        at com</span><span class="pun">.</span><span class="pln">example</span><span class="pun">.</span><span class="pln">myproject</span><span class="pun">.</span><span class="typ">Bootstrap</span><span class="pun">.</span><span class="pln">main</span><span class="pun">(</span><span class="typ">Bootstrap</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">14</span><span class="pun">)</span><span class="pln">
+</span><span class="typ">Caused</span><span class="pln"> by</span><span class="pun">:</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">lang</span><span class="pun">.</span><span class="typ">NullPointerException</span><span class="pln">
+        at com</span><span class="pun">.</span><span class="pln">example</span><span class="pun">.</span><span class="pln">myproject</span><span class="pun">.</span><span class="typ">Book</span><span class="pun">.</span><span class="pln">getId</span><span class="pun">(</span><span class="typ">Book</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">22</span><span class="pun">)</span><span class="pln">
+        at com</span><span class="pun">.</span><span class="pln">example</span><span class="pun">.</span><span class="pln">myproject</span><span class="pun">.</span><span class="typ">Author</span><span class="pun">.</span><span class="pln">getBookIds</span><span class="pun">(</span><span class="typ">Author</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">35</span><span class="pun">)</span><span class="pln">
+        </span><span class="pun">...</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> more</span></code></pre>
+
+<p>What's different about this one is the "Caused by". Sometimes 
+exceptions will have multiple "Caused by" sections. For these, you 
+typically want to find the "root cause", which will be one of the lowest
+ "Caused by" sections in the stack trace. In our case, it's:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="typ">Caused</span><span class="pln"> by</span><span class="pun">:</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">lang</span><span class="pun">.</span><span class="typ">NullPointerException</span><span class="pln"> </span><span class="pun">&lt;--</span><span class="pln"> root cause
+        at com</span><span class="pun">.</span><span class="pln">example</span><span class="pun">.</span><span class="pln">myproject</span><span class="pun">.</span><span class="typ">Book</span><span class="pun">.</span><span class="pln">getId</span><span class="pun">(</span><span class="typ">Book</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">22</span><span class="pun">)</span><span class="pln"> </span><span class="pun">&lt;--</span><span class="pln"> important line</span></code></pre>
+
+<p>Again, with this exception we'd want to look at line <code>22</code> of <code>Book.java</code> to see what might cause the <code>NullPointerException</code> here.</p>
+
+<p><strong>More daunting example with library code</strong></p>
+
+<p>Usually stack traces are much more complex than the two examples 
+above. Here's an example (it's a long one, but demonstrates several 
+levels of chained exceptions):</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="pln">javax</span><span class="pun">.</span><span class="pln">servlet</span><span class="pun">.</span><span class="typ">ServletException</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Something</span><span class="pln"> bad happened
+    at com</span><span class="pun">.</span><span class="pln">example</span><span class="pun">.</span><span class="pln">myproject</span><span class="pun">.</span><span class="typ">OpenSessionInViewFilter</span><span class="pun">.</span><span class="pln">doFilter</span><span class="pun">(</span><span class="typ">OpenSessionInViewFilter</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">60</span><span class="pun">)</span><span class="pln">
+    at org</span><span class="pun">.</span><span class="pln">mortbay</span><span class="pun">.</span><span class="pln">jetty</span><span class="pun">.</span><span class="pln">servlet</span><span class="pun">.</span><span class="typ">ServletHandler$CachedChain</span><span class="pun">.</span><span class="pln">doFilter</span><span class="pun">(</span><span class="typ">ServletHandler</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">1157</span><span class="pun">)</span><span class="pln">
+    at com</span><span class="pun">.</span><span class="pln">example</span><span class="pun">.</span><span class="pln">myproject</span><span class="pun">.</span><span class="typ">ExceptionHandlerFilter</span><span class="pun">.</span><span class="pln">doFilter</span><span class="pun">(</span><span class="typ">ExceptionHandlerFilter</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">28</span><span class="pun">)</span><span class="pln">
+    at org</span><span class="pun">.</span><span class="pln">mortbay</span><span class="pun">.</span><span class="pln">jetty</span><span class="pun">.</span><span class="pln">servlet</span><span class="pun">.</span><span class="typ">ServletHandler$CachedChain</span><span class="pun">.</span><span class="pln">doFilter</span><span class="pun">(</span><span class="typ">ServletHandler</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">1157</span><span class="pun">)</span><span class="pln">
+    at com</span><span class="pun">.</span><span class="pln">example</span><span class="pun">.</span><span class="pln">myproject</span><span class="pun">.</span><span class="typ">OutputBufferFilter</span><span class="pun">.</span><span class="pln">doFilter</span><span class="pun">(</span><span class="typ">OutputBufferFilter</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">33</span><span class="pun">)</span><span class="pln">
+    at org</span><span class="pun">.</span><span class="pln">mortbay</span><span class="pun">.</span><span class="pln">jetty</span><span class="pun">.</span><span class="pln">servlet</span><span class="pun">.</span><span class="typ">ServletHandler$CachedChain</span><span class="pun">.</span><span class="pln">doFilter</span><span class="pun">(</span><span class="typ">ServletHandler</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">1157</span><span class="pun">)</span><span class="pln">
+    at org</span><span class="pun">.</span><span class="pln">mortbay</span><span class="pun">.</span><span class="pln">jetty</span><span class="pun">.</span><span class="pln">servlet</span><span class="pun">.</span><span class="typ">ServletHandler</span><span class="pun">.</span><span class="pln">handle</span><span class="pun">(</span><span class="typ">ServletHandler</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">388</span><span class="pun">)</span><span class="pln">
+    at org</span><span class="pun">.</span><span class="pln">mortbay</span><span class="pun">.</span><span class="pln">jetty</span><span class="pun">.</span><span class="pln">security</span><span class="pun">.</span><span class="typ">SecurityHandler</span><span class="pun">.</span><span class="pln">handle</span><span class="pun">(</span><span class="typ">SecurityHandler</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">216</span><span class="pun">)</span><span class="pln">
+    at org</span><span class="pun">.</span><span class="pln">mortbay</span><span class="pun">.</span><span class="pln">jetty</span><span class="pun">.</span><span class="pln">servlet</span><span class="pun">.</span><span class="typ">SessionHandler</span><span class="pun">.</span><span class="pln">handle</span><span class="pun">(</span><span class="typ">SessionHandler</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">182</span><span class="pun">)</span><span class="pln">
+    at org</span><span class="pun">.</span><span class="pln">mortbay</span><span class="pun">.</span><span class="pln">jetty</span><span class="pun">.</span><span class="pln">handler</span><span class="pun">.</span><span class="typ">ContextHandler</span><span class="pun">.</span><span class="pln">handle</span><span class="pun">(</span><span class="typ">ContextHandler</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">765</span><span class="pun">)</span><span class="pln">
+    at org</span><span class="pun">.</span><span class="pln">mortbay</span><span class="pun">.</span><span class="pln">jetty</span><span class="pun">.</span><span class="pln">webapp</span><span class="pun">.</span><span class="typ">WebAppContext</span><span class="pun">.</span><span class="pln">handle</span><span class="pun">(</span><span class="typ">WebAppContext</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">418</span><span class="pun">)</span><span class="pln">
+    at org</span><span class="pun">.</span><span class="pln">mortbay</span><span class="pun">.</span><span class="pln">jetty</span><span class="pun">.</span><span class="pln">handler</span><span class="pun">.</span><span class="typ">HandlerWrapper</span><span class="pun">.</span><span class="pln">handle</span><span class="pun">(</span><span class="typ">HandlerWrapper</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">152</span><span class="pun">)</span><span class="pln">
+    at org</span><span class="pun">.</span><span class="pln">mortbay</span><span class="pun">.</span><span class="pln">jetty</span><span class="pun">.</span><span class="typ">Server</span><span class="pun">.</span><span class="pln">handle</span><span class="pun">(</span><span class="typ">Server</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">326</span><span class="pun">)</span><span class="pln">
+    at org</span><span class="pun">.</span><span class="pln">mortbay</span><span class="pun">.</span><span class="pln">jetty</span><span class="pun">.</span><span class="typ">HttpConnection</span><span class="pun">.</span><span class="pln">handleRequest</span><span class="pun">(</span><span class="typ">HttpConnection</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">542</span><span class="pun">)</span><span class="pln">
+    at org</span><span class="pun">.</span><span class="pln">mortbay</span><span class="pun">.</span><span class="pln">jetty</span><span class="pun">.</span><span class="typ">HttpConnection$RequestHandler</span><span class="pun">.</span><span class="pln">content</span><span class="pun">(</span><span class="typ">HttpConnection</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">943</span><span class="pun">)</span><span class="pln">
+    at org</span><span class="pun">.</span><span class="pln">mortbay</span><span class="pun">.</span><span class="pln">jetty</span><span class="pun">.</span><span class="typ">HttpParser</span><span class="pun">.</span><span class="pln">parseNext</span><span class="pun">(</span><span class="typ">HttpParser</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">756</span><span class="pun">)</span><span class="pln">
+    at org</span><span class="pun">.</span><span class="pln">mortbay</span><span class="pun">.</span><span class="pln">jetty</span><span class="pun">.</span><span class="typ">HttpParser</span><span class="pun">.</span><span class="pln">parseAvailable</span><span class="pun">(</span><span class="typ">HttpParser</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">218</span><span class="pun">)</span><span class="pln">
+    at org</span><span class="pun">.</span><span class="pln">mortbay</span><span class="pun">.</span><span class="pln">jetty</span><span class="pun">.</span><span class="typ">HttpConnection</span><span class="pun">.</span><span class="pln">handle</span><span class="pun">(</span><span class="typ">HttpConnection</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">404</span><span class="pun">)</span><span class="pln">
+    at org</span><span class="pun">.</span><span class="pln">mortbay</span><span class="pun">.</span><span class="pln">jetty</span><span class="pun">.</span><span class="pln">bio</span><span class="pun">.</span><span class="typ">SocketConnector$Connection</span><span class="pun">.</span><span class="pln">run</span><span class="pun">(</span><span class="typ">SocketConnector</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">228</span><span class="pun">)</span><span class="pln">
+    at org</span><span class="pun">.</span><span class="pln">mortbay</span><span class="pun">.</span><span class="pln">thread</span><span class="pun">.</span><span class="typ">QueuedThreadPool$PoolThread</span><span class="pun">.</span><span class="pln">run</span><span class="pun">(</span><span class="typ">QueuedThreadPool</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">582</span><span class="pun">)</span><span class="pln">
+</span><span class="typ">Caused</span><span class="pln"> by</span><span class="pun">:</span><span class="pln"> com</span><span class="pun">.</span><span class="pln">example</span><span class="pun">.</span><span class="pln">myproject</span><span class="pun">.</span><span class="typ">MyProjectServletException</span><span class="pln">
+    at com</span><span class="pun">.</span><span class="pln">example</span><span class="pun">.</span><span class="pln">myproject</span><span class="pun">.</span><span class="typ">MyServlet</span><span class="pun">.</span><span class="pln">doPost</span><span class="pun">(</span><span class="typ">MyServlet</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">169</span><span class="pun">)</span><span class="pln">
+    at javax</span><span class="pun">.</span><span class="pln">servlet</span><span class="pun">.</span><span class="pln">http</span><span class="pun">.</span><span class="typ">HttpServlet</span><span class="pun">.</span><span class="pln">service</span><span class="pun">(</span><span class="typ">HttpServlet</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">727</span><span class="pun">)</span><span class="pln">
+    at javax</span><span class="pun">.</span><span class="pln">servlet</span><span class="pun">.</span><span class="pln">http</span><span class="pun">.</span><span class="typ">HttpServlet</span><span class="pun">.</span><span class="pln">service</span><span class="pun">(</span><span class="typ">HttpServlet</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">820</span><span class="pun">)</span><span class="pln">
+    at org</span><span class="pun">.</span><span class="pln">mortbay</span><span class="pun">.</span><span class="pln">jetty</span><span class="pun">.</span><span class="pln">servlet</span><span class="pun">.</span><span class="typ">ServletHolder</span><span class="pun">.</span><span class="pln">handle</span><span class="pun">(</span><span class="typ">ServletHolder</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">511</span><span class="pun">)</span><span class="pln">
+    at org</span><span class="pun">.</span><span class="pln">mortbay</span><span class="pun">.</span><span class="pln">jetty</span><span class="pun">.</span><span class="pln">servlet</span><span class="pun">.</span><span class="typ">ServletHandler$CachedChain</span><span class="pun">.</span><span class="pln">doFilter</span><span class="pun">(</span><span class="typ">ServletHandler</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">1166</span><span class="pun">)</span><span class="pln">
+    at com</span><span class="pun">.</span><span class="pln">example</span><span class="pun">.</span><span class="pln">myproject</span><span class="pun">.</span><span class="typ">OpenSessionInViewFilter</span><span class="pun">.</span><span class="pln">doFilter</span><span class="pun">(</span><span class="typ">OpenSessionInViewFilter</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">30</span><span class="pun">)</span><span class="pln">
+    </span><span class="pun">...</span><span class="pln"> </span><span class="lit">27</span><span class="pln"> more
+</span><span class="typ">Caused</span><span class="pln"> by</span><span class="pun">:</span><span class="pln"> org</span><span class="pun">.</span><span class="pln">hibernate</span><span class="pun">.</span><span class="pln">exception</span><span class="pun">.</span><span class="typ">ConstraintViolationException</span><span class="pun">:</span><span class="pln"> could not insert</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln">com</span><span class="pun">.</span><span class="pln">example</span><span class="pun">.</span><span class="pln">myproject</span><span class="pun">.</span><span class="typ">MyEntity</span><span class="pun">]</span><span class="pln">
+    at org</span><span class="pun">.</span><span class="pln">hibernate</span><span class="pun">.</span><span class="pln">exception</span><span class="pun">.</span><span class="typ">SQLStateConverter</span><span class="pun">.</span><span class="pln">convert</span><span class="pun">(</span><span class="typ">SQLStateConverter</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">96</span><span class="pun">)</span><span class="pln">
+    at org</span><span class="pun">.</span><span class="pln">hibernate</span><span class="pun">.</span><span class="pln">exception</span><span class="pun">.</span><span class="typ">JDBCExceptionHelper</span><span class="pun">.</span><span class="pln">convert</span><span class="pun">(</span><span class="typ">JDBCExceptionHelper</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">66</span><span class="pun">)</span><span class="pln">
+    at org</span><span class="pun">.</span><span class="pln">hibernate</span><span class="pun">.</span><span class="pln">id</span><span class="pun">.</span><span class="pln">insert</span><span class="pun">.</span><span class="typ">AbstractSelectingDelegate</span><span class="pun">.</span><span class="pln">performInsert</span><span class="pun">(</span><span class="typ">AbstractSelectingDelegate</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">64</span><span class="pun">)</span><span class="pln">
+    at org</span><span class="pun">.</span><span class="pln">hibernate</span><span class="pun">.</span><span class="pln">persister</span><span class="pun">.</span><span class="pln">entity</span><span class="pun">.</span><span class="typ">AbstractEntityPersister</span><span class="pun">.</span><span class="pln">insert</span><span class="pun">(</span><span class="typ">AbstractEntityPersister</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">2329</span><span class="pun">)</span><span class="pln">
+    at org</span><span class="pun">.</span><span class="pln">hibernate</span><span class="pun">.</span><span class="pln">persister</span><span class="pun">.</span><span class="pln">entity</span><span class="pun">.</span><span class="typ">AbstractEntityPersister</span><span class="pun">.</span><span class="pln">insert</span><span class="pun">(</span><span class="typ">AbstractEntityPersister</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">2822</span><span class="pun">)</span><span class="pln">
+    at org</span><span class="pun">.</span><span class="pln">hibernate</span><span class="pun">.</span><span class="pln">action</span><span class="pun">.</span><span class="typ">EntityIdentityInsertAction</span><span class="pun">.</span><span class="pln">execute</span><span class="pun">(</span><span class="typ">EntityIdentityInsertAction</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">71</span><span class="pun">)</span><span class="pln">
+    at org</span><span class="pun">.</span><span class="pln">hibernate</span><span class="pun">.</span><span class="pln">engine</span><span class="pun">.</span><span class="typ">ActionQueue</span><span class="pun">.</span><span class="pln">execute</span><span class="pun">(</span><span class="typ">ActionQueue</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">268</span><span class="pun">)</span><span class="pln">
+    at org</span><span class="pun">.</span><span class="pln">hibernate</span><span class="pun">.</span><span class="pln">event</span><span class="pun">.</span><span class="pln">def</span><span class="pun">.</span><span class="typ">AbstractSaveEventListener</span><span class="pun">.</span><span class="pln">performSaveOrReplicate</span><span class="pun">(</span><span class="typ">AbstractSaveEventListener</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">321</span><span class="pun">)</span><span class="pln">
+    at org</span><span class="pun">.</span><span class="pln">hibernate</span><span class="pun">.</span><span class="pln">event</span><span class="pun">.</span><span class="pln">def</span><span class="pun">.</span><span class="typ">AbstractSaveEventListener</span><span class="pun">.</span><span class="pln">performSave</span><span class="pun">(</span><span class="typ">AbstractSaveEventListener</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">204</span><span class="pun">)</span><span class="pln">
+    at org</span><span class="pun">.</span><span class="pln">hibernate</span><span class="pun">.</span><span class="pln">event</span><span class="pun">.</span><span class="pln">def</span><span class="pun">.</span><span class="typ">AbstractSaveEventListener</span><span class="pun">.</span><span class="pln">saveWithGeneratedId</span><span class="pun">(</span><span class="typ">AbstractSaveEventListener</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">130</span><span class="pun">)</span><span class="pln">
+    at org</span><span class="pun">.</span><span class="pln">hibernate</span><span class="pun">.</span><span class="pln">event</span><span class="pun">.</span><span class="pln">def</span><span class="pun">.</span><span class="typ">DefaultSaveOrUpdateEventListener</span><span class="pun">.</span><span class="pln">saveWithGeneratedOrRequestedId</span><span class="pun">(</span><span class="typ">DefaultSaveOrUpdateEventListener</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">210</span><span class="pun">)</span><span class="pln">
+    at org</span><span class="pun">.</span><span class="pln">hibernate</span><span class="pun">.</span><span class="pln">event</span><span class="pun">.</span><span class="pln">def</span><span class="pun">.</span><span class="typ">DefaultSaveEventListener</span><span class="pun">.</span><span class="pln">saveWithGeneratedOrRequestedId</span><span class="pun">(</span><span class="typ">DefaultSaveEventListener</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">56</span><span class="pun">)</span><span class="pln">
+    at org</span><span class="pun">.</span><span class="pln">hibernate</span><span class="pun">.</span><span class="pln">event</span><span class="pun">.</span><span class="pln">def</span><span class="pun">.</span><span class="typ">DefaultSaveOrUpdateEventListener</span><span class="pun">.</span><span class="pln">entityIsTransient</span><span class="pun">(</span><span class="typ">DefaultSaveOrUpdateEventListener</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">195</span><span class="pun">)</span><span class="pln">
+    at org</span><span class="pun">.</span><span class="pln">hibernate</span><span class="pun">.</span><span class="pln">event</span><span class="pun">.</span><span class="pln">def</span><span class="pun">.</span><span class="typ">DefaultSaveEventListener</span><span class="pun">.</span><span class="pln">performSaveOrUpdate</span><span class="pun">(</span><span class="typ">DefaultSaveEventListener</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">50</span><span class="pun">)</span><span class="pln">
+    at org</span><span class="pun">.</span><span class="pln">hibernate</span><span class="pun">.</span><span class="pln">event</span><span class="pun">.</span><span class="pln">def</span><span class="pun">.</span><span class="typ">DefaultSaveOrUpdateEventListener</span><span class="pun">.</span><span class="pln">onSaveOrUpdate</span><span class="pun">(</span><span class="typ">DefaultSaveOrUpdateEventListener</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">93</span><span class="pun">)</span><span class="pln">
+    at org</span><span class="pun">.</span><span class="pln">hibernate</span><span class="pun">.</span><span class="pln">impl</span><span class="pun">.</span><span class="typ">SessionImpl</span><span class="pun">.</span><span class="pln">fireSave</span><span class="pun">(</span><span class="typ">SessionImpl</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">705</span><span class="pun">)</span><span class="pln">
+    at org</span><span class="pun">.</span><span class="pln">hibernate</span><span class="pun">.</span><span class="pln">impl</span><span class="pun">.</span><span class="typ">SessionImpl</span><span class="pun">.</span><span class="pln">save</span><span class="pun">(</span><span class="typ">SessionImpl</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">693</span><span class="pun">)</span><span class="pln">
+    at org</span><span class="pun">.</span><span class="pln">hibernate</span><span class="pun">.</span><span class="pln">impl</span><span class="pun">.</span><span class="typ">SessionImpl</span><span class="pun">.</span><span class="pln">save</span><span class="pun">(</span><span class="typ">SessionImpl</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">689</span><span class="pun">)</span><span class="pln">
+    at sun</span><span class="pun">.</span><span class="pln">reflect</span><span class="pun">.</span><span class="typ">GeneratedMethodAccessor5</span><span class="pun">.</span><span class="pln">invoke</span><span class="pun">(</span><span class="typ">Unknown</span><span class="pln"> </span><span class="typ">Source</span><span class="pun">)</span><span class="pln">
+    at sun</span><span class="pun">.</span><span class="pln">reflect</span><span class="pun">.</span><span class="typ">DelegatingMethodAccessorImpl</span><span class="pun">.</span><span class="pln">invoke</span><span class="pun">(</span><span class="typ">DelegatingMethodAccessorImpl</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">25</span><span class="pun">)</span><span class="pln">
+    at java</span><span class="pun">.</span><span class="pln">lang</span><span class="pun">.</span><span class="pln">reflect</span><span class="pun">.</span><span class="typ">Method</span><span class="pun">.</span><span class="pln">invoke</span><span class="pun">(</span><span class="typ">Method</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">597</span><span class="pun">)</span><span class="pln">
+    at org</span><span class="pun">.</span><span class="pln">hibernate</span><span class="pun">.</span><span class="pln">context</span><span class="pun">.</span><span class="typ">ThreadLocalSessionContext$TransactionProtectionWrapper</span><span class="pun">.</span><span class="pln">invoke</span><span class="pun">(</span><span class="typ">ThreadLocalSessionContext</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">344</span><span class="pun">)</span><span class="pln">
+    at $Proxy19</span><span class="pun">.</span><span class="pln">save</span><span class="pun">(</span><span class="typ">Unknown</span><span class="pln"> </span><span class="typ">Source</span><span class="pun">)</span><span class="pln">
+    at com</span><span class="pun">.</span><span class="pln">example</span><span class="pun">.</span><span class="pln">myproject</span><span class="pun">.</span><span class="typ">MyEntityService</span><span class="pun">.</span><span class="pln">save</span><span class="pun">(</span><span class="typ">MyEntityService</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">59</span><span class="pun">)</span><span class="pln"> </span><span class="pun">&lt;--</span><span class="pln"> relevant call </span><span class="pun">(</span><span class="pln">see notes below</span><span class="pun">)</span><span class="pln">
+    at com</span><span class="pun">.</span><span class="pln">example</span><span class="pun">.</span><span class="pln">myproject</span><span class="pun">.</span><span class="typ">MyServlet</span><span class="pun">.</span><span class="pln">doPost</span><span class="pun">(</span><span class="typ">MyServlet</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">164</span><span class="pun">)</span><span class="pln">
+    </span><span class="pun">...</span><span class="pln"> </span><span class="lit">32</span><span class="pln"> more
+</span><span class="typ">Caused</span><span class="pln"> by</span><span class="pun">:</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">sql</span><span class="pun">.</span><span class="typ">SQLException</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Violation</span><span class="pln"> of unique constraint MY_ENTITY_UK_1</span><span class="pun">:</span><span class="pln"> duplicate value</span><span class="pun">(</span><span class="pln">s</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">for</span><span class="pln"> column</span><span class="pun">(</span><span class="pln">s</span><span class="pun">)</span><span class="pln"> MY_COLUMN in statement </span><span class="pun">[...]</span><span class="pln">
+    at org</span><span class="pun">.</span><span class="pln">hsqldb</span><span class="pun">.</span><span class="pln">jdbc</span><span class="pun">.</span><span class="typ">Util</span><span class="pun">.</span><span class="pln">throwError</span><span class="pun">(</span><span class="typ">Unknown</span><span class="pln"> </span><span class="typ">Source</span><span class="pun">)</span><span class="pln">
+    at org</span><span class="pun">.</span><span class="pln">hsqldb</span><span class="pun">.</span><span class="pln">jdbc</span><span class="pun">.</span><span class="pln">jdbcPreparedStatement</span><span class="pun">.</span><span class="pln">executeUpdate</span><span class="pun">(</span><span class="typ">Unknown</span><span class="pln"> </span><span class="typ">Source</span><span class="pun">)</span><span class="pln">
+    at com</span><span class="pun">.</span><span class="pln">mchange</span><span class="pun">.</span><span class="pln">v2</span><span class="pun">.</span><span class="pln">c3p0</span><span class="pun">.</span><span class="pln">impl</span><span class="pun">.</span><span class="typ">NewProxyPreparedStatement</span><span class="pun">.</span><span class="pln">executeUpdate</span><span class="pun">(</span><span class="typ">NewProxyPreparedStatement</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">105</span><span class="pun">)</span><span class="pln">
+    at org</span><span class="pun">.</span><span class="pln">hibernate</span><span class="pun">.</span><span class="pln">id</span><span class="pun">.</span><span class="pln">insert</span><span class="pun">.</span><span class="typ">AbstractSelectingDelegate</span><span class="pun">.</span><span class="pln">performInsert</span><span class="pun">(</span><span class="typ">AbstractSelectingDelegate</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">57</span><span class="pun">)</span><span class="pln">
+    </span><span class="pun">...</span><span class="pln"> </span><span class="lit">54</span><span class="pln"> more</span></code></pre>
+
+<p>In this example, there's a lot more. What we're mostly concerned about is looking for methods that are from <em>our code</em>, which would be anything in the <code>com.example.myproject</code> package. From the second example (above), we'd first want to look down for the root cause, which is:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="typ">Caused</span><span class="pln"> by</span><span class="pun">:</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">sql</span><span class="pun">.</span><span class="typ">SQLException</span></code></pre>
+
+<p>However, all the method calls under that are library code. So we'll 
+move up to the "Caused by" above it, and look for the first method call 
+originating from our code, which is:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="pln">at com</span><span class="pun">.</span><span class="pln">example</span><span class="pun">.</span><span class="pln">myproject</span><span class="pun">.</span><span class="typ">MyEntityService</span><span class="pun">.</span><span class="pln">save</span><span class="pun">(</span><span class="typ">MyEntityService</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">59</span><span class="pun">)</span></code></pre>
+
+<p>Like in previous examples, we should look at <code>MyEntityService.java</code> on line <code>59</code>,
+ because that's where this error originated (this one's a bit obvious 
+what went wrong, since the SQLException states the error, but the 
+debugging procedure is what we're after).</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/3988794" title="short permalink to this answer" class="short-link" id="link-post-3988794">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/3988794/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/3988794/revisions" title="show all edits to this post">edited <span title="2011-03-10 21:14:50Z" class="relativetime">Mar 10 '11 at 21:14</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/53897/thorbj%c3%b8rn-ravn-andersen"><div class="gravatar-wrapper-32"><img src="java%20-%20What%20is%20a%20stack%20trace,%20and%20how%20can%20I%20use%20it%20to%20debug%20my%20application%20errors%3F%20-%20Stack%20Overflow_files/2e71c1745ebc5401c8c8dfbf7c9a5d30.jpeg" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/53897/thorbj%c3%b8rn-ravn-andersen">Thorbjørn Ravn Andersen</a><br>
+        <span class="reputation-score" title="reputation score 45709" dir="ltr">45.7k</span><span title="12 gold badges"><span class="badge1"></span><span class="badgecount">12</span></span><span title="103 silver badges"><span class="badge2"></span><span class="badgecount">103</span></span><span title="222 bronze badges"><span class="badge3"></span><span class="badgecount">222</span></span>
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature owner" align="right">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2010-10-21 14:52:43Z" class="relativetime">Oct 21 '10 at 14:52</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/29995/rob-hruska"><div class="gravatar-wrapper-32"><img src="java%20-%20What%20is%20a%20stack%20trace,%20and%20how%20can%20I%20use%20it%20to%20debug%20my%20application%20errors%3F%20-%20Stack%20Overflow_files/ffffa52ae8108fdeb2559d804051556e.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/29995/rob-hruska">Rob Hruska</a><br>
+        <span class="reputation-score" title="reputation score 57455" dir="ltr">57.5k</span><span title="18 gold badges"><span class="badge1"></span><span class="badgecount">18</span></span><span title="116 silver badges"><span class="badge2"></span><span class="badgecount">116</span></span><span title="157 bronze badges"><span class="badge3"></span><span class="badgecount">157</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-3988794" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="3" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-4270337" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">2</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">You've not explained the possibility of having multiple root causes in the stacktrace.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/251173/buhake-sindi" title="49417 reputation" class="comment-user">Buhake Sindi</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment4270337_3988794"><span title="2010-10-21 16:15:01Z" class="relativetime-clean">Oct 21 '10 at 16:15</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-4270467" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="warm">7</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@The Elite Gentleman - Well, 
+there's ultimately only one root cause, no? The bottom-most "Caused by" 
+will be the root. I could probably get a trace that has multiple "cause"
+ chaining. I'll see what I can do.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/29995/rob-hruska" title="57455 reputation" class="comment-user owner">Rob Hruska</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment4270467_3988794"><span title="2010-10-21 16:26:30Z" class="relativetime-clean">Oct 21 '10 at 16:26</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-4270542" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@Rob Hruska, sorry, I meant that you can potentially have more than 1 "Caused By" in a stacktrace.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/251173/buhake-sindi" title="49417 reputation" class="comment-user">Buhake Sindi</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment4270542_3988794"><span title="2010-10-21 16:33:44Z" class="relativetime-clean">Oct 21 '10 at 16:33</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-4270651" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@The Elite Gentleman - No problem - I updated my example anyway, hopefully it'll help.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/29995/rob-hruska" title="57455 reputation" class="comment-user owner">Rob Hruska</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment4270651_3988794"><span title="2010-10-21 16:43:10Z" class="relativetime-clean">Oct 21 '10 at 16:43</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-42219754" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@RobHruska - Very well 
+explained. +1. Do you know of any parsers that take the exception trace 
+as a string and provide useful methods to analyze stacktrace? - like 
+getLastCausedBy() or getCausedByForMyAppCode("com.example.myproject")</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/537503/andy-dufresne" title="2265 reputation" class="comment-user">Andy Dufresne</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment42219754_3988794"><span title="2014-11-09 06:33:30Z" class="relativetime-clean">Nov 9 '14 at 6:33</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-3988794" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link  dno" title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."></a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link " title="expand to show all comments on this post" href="#" onclick="">show <b>3</b> more comments</a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+<script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk1376950542",4).setZone(44); });
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk1376950542"><a href="http://engine.adzerk.net/r?e=eyJhdiI6NDE0LCJhdCI6NCwiYnQiOjAsImNtIjozMjI1MTQsImNoIjoxMTc4LCJjayI6e30sImNyIjoxMTk1OTc3LCJkaSI6ImE2OWRhN2ViNmI3ODRhYTdhZTdjZDJkNzBhZjU2MTVhIiwiZG0iOjEsImZjIjoxMjY5MzM1LCJmbCI6ODY0MjI2LCJpcCI6IjEzNC42MC4xNDguOTciLCJrdyI6ImphdmEsZGVidWdnaW5nLHN0YWNrLXRyYWNlIiwibnciOjIyLCJwYyI6MCwiZWMiOjAsInByIjoxNTY4LCJydCI6MSwicmYiOiJodHRwOi8vaW5mby5qYXZhcnVzaC5ydS9KYXZhUnVzaF9sZWN0dXJlc19kaXNjdXNzaW9uLzIwMTMvMDYvMTIvbGVjdHVyZS05Lmh0bWwiLCJzdCI6ODI3NywidWsiOiJ1ZTEtMTUzMWIwOTJiNDQzNDM3NGE0MzA1MWUyZTc0ZDcwNzQiLCJ6biI6NDQsInRzIjoxNDQ5MDYxMzQ5NjU5LCJiZiI6dHJ1ZSwicG4iOiJhZHplcmsxMzc2OTUwNTQyIiwidXIiOiJodHRwOi8vY2FyZWVycy5zdGFja292ZXJmbG93LmNvbS93aHktc3RhY2s_dXRtX3NvdXJjZT1zdGFja292ZXJmbG93LmNvbSZ1dG1fbWVkaXVtPWFkJnV0bV9jYW1wYWlnbj1jYW5kaWRhdGVzLWFkZC1jdiZ1dG1fY29udGVudD1sYi1jYXJlZXJzLWJpdGJ1Y2tldCJ9&amp;s=Hf39msYxwsQCP5QLnSgx-h-X0LI" rel="nofollow" target="_blank" title=""><img class="pcfykmqlcrtplekulgcu" src="java%20-%20What%20is%20a%20stack%20trace,%20and%20how%20can%20I%20use%20it%20to%20debug%20my%20application%20errors%3F%20-%20Stack%20Overflow_files/b027fb42cc2d4f2693aed08b41250d61.png" title="" alt="" height="90" width="728" border="0"></a><img class="pcfykmqlcrtplekulgcu" src="java%20-%20What%20is%20a%20stack%20trace,%20and%20how%20can%20I%20use%20it%20to%20debug%20my%20application%20errors%3F%20-%20Stack%20Overflow_files/i_004.gif" style="position:absolute;" height="0px" width="0px" border="0"></div>
+  
+<a name="3988919"></a>
+<div id="answer-3988919" class="answer" data-answerid="3988919" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="3988919" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">10</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>To add on to what Rob has mentioned.  Setting break points in your 
+application allows for the step-by-step processing of the stack.  This 
+enables the developer to use the debugger to see at what exact point the
+ method is doing something that was unanticipated.</p>
+
+<p>Since Rob has used the NullPointerException (NPE) to illustrate 
+something common, we can help to remove this issue in the following 
+manner:  </p>
+
+<p>if we have a method that takes parameters such as:  <code>void (String firstName)</code>  </p>
+
+<p>In our code we would want to evaluate that firstName contains a value, we would do this like so: <code>if(firstName == null || firstName.equals(""))  return;</code></p>
+
+<p>The above prevents us from using firstName as an unsafe parameter.  
+Therefore  by doing null checks before processing we can help to ensure 
+that our code will run properly.  To expand on an example that utilizes 
+an object with methods we can look here:  </p>
+
+<p><code>if(dog == null || dog.firstName == null)  return;</code></p>
+
+<p>The above is the proper order to check for nulls, we start with the 
+base object, dog in this case, and then begin walking down the tree of 
+possibilities to make sure everything is valid before processing.  If 
+the order were reversed a NPE could potentially be thrown and our 
+program would crash.</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/3988919" title="short permalink to this answer" class="short-link" id="link-post-3988919">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/3988919/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/3988919/revisions" title="show all edits to this post">edited <span title="2010-10-21 15:15:02Z" class="relativetime">Oct 21 '10 at 15:15</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2010-10-21 15:05:54Z" class="relativetime">Oct 21 '10 at 15:05</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/205426/woot4moo"><div class="gravatar-wrapper-32"><img src="java%20-%20What%20is%20a%20stack%20trace,%20and%20how%20can%20I%20use%20it%20to%20debug%20my%20application%20errors%3F%20-%20Stack%20Overflow_files/fb24c70ec76f0a28e47fc1df1e70dcdf.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/205426/woot4moo">Woot4Moo</a><br>
+        <span class="reputation-score" title="reputation score 15626" dir="ltr">15.6k</span><span title="9 gold badges"><span class="badge1"></span><span class="badgecount">9</span></span><span title="49 silver badges"><span class="badge2"></span><span class="badgecount">49</span></span><span title="101 bronze badges"><span class="badge3"></span><span class="badgecount">101</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-3988919" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-4269518" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Agreed. This approach could be used to find out which reference in a statement is <code>null</code> when a <code>NullPointerException</code> is being examined, for example.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/29995/rob-hruska" title="57455 reputation" class="comment-user owner">Rob Hruska</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment4269518_3988919"><span title="2010-10-21 15:07:37Z" class="relativetime-clean">Oct 21 '10 at 15:07</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-4311715" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="warm">8</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">When dealing with String, if 
+you want to use equals method I think it´s better to use the constant in
+ the left side of the comparation, like this:    Instead of:      
+if(firstName == null || firstName.equals("")) return;    I always use:  
+      if(("").equals(firstName))    This prevents the Nullpointer 
+exception</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/422869/torres" title="2211 reputation" class="comment-user">Torres</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment4311715_3988919"><span title="2010-10-26 06:23:28Z" class="relativetime-clean">Oct 26 '10 at 6:23</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 3 times"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-3988919" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="25875099"></a>
+<div id="answer-25875099" class="answer" data-answerid="25875099" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="25875099" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">6</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>There is one more stacktrace feature offered by Throwable family - the possibility to <strong>manipulate</strong> stack trace information.</p>
+
+<p><strong>Standard behavior:</strong></p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">package</span><span class="pln"> test</span><span class="pun">.</span><span class="pln">stack</span><span class="pun">.</span><span class="pln">trace</span><span class="pun">;</span><span class="pln">
+
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">SomeClass</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> methodA</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        methodB</span><span class="pun">();</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> methodB</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        methodC</span><span class="pun">();</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> methodC</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">throw</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">RuntimeException</span><span class="pun">();</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">String</span><span class="pun">[]</span><span class="pln"> args</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">SomeClass</span><span class="pun">().</span><span class="pln">methodA</span><span class="pun">();</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>Stack trace:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="typ">Exception</span><span class="pln"> in thread </span><span class="str">"main"</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">lang</span><span class="pun">.</span><span class="typ">RuntimeException</span><span class="pln">
+    at test</span><span class="pun">.</span><span class="pln">stack</span><span class="pun">.</span><span class="pln">trace</span><span class="pun">.</span><span class="typ">SomeClass</span><span class="pun">.</span><span class="pln">methodC</span><span class="pun">(</span><span class="typ">SomeClass</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">18</span><span class="pun">)</span><span class="pln">
+    at test</span><span class="pun">.</span><span class="pln">stack</span><span class="pun">.</span><span class="pln">trace</span><span class="pun">.</span><span class="typ">SomeClass</span><span class="pun">.</span><span class="pln">methodB</span><span class="pun">(</span><span class="typ">SomeClass</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">13</span><span class="pun">)</span><span class="pln">
+    at test</span><span class="pun">.</span><span class="pln">stack</span><span class="pun">.</span><span class="pln">trace</span><span class="pun">.</span><span class="typ">SomeClass</span><span class="pun">.</span><span class="pln">methodA</span><span class="pun">(</span><span class="typ">SomeClass</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">9</span><span class="pun">)</span><span class="pln">
+    at test</span><span class="pun">.</span><span class="pln">stack</span><span class="pun">.</span><span class="pln">trace</span><span class="pun">.</span><span class="typ">SomeClass</span><span class="pun">.</span><span class="pln">main</span><span class="pun">(</span><span class="typ">SomeClass</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">27</span><span class="pun">)</span></code></pre>
+
+<p><strong>Manipulated stack trace:</strong></p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">package</span><span class="pln"> test</span><span class="pun">.</span><span class="pln">stack</span><span class="pun">.</span><span class="pln">trace</span><span class="pun">;</span><span class="pln">
+
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">SomeClass</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+    </span><span class="pun">...</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> methodC</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="typ">RuntimeException</span><span class="pln"> e </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">RuntimeException</span><span class="pun">();</span><span class="pln">
+        e</span><span class="pun">.</span><span class="pln">setStackTrace</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">StackTraceElement</span><span class="pun">[]{</span><span class="pln">
+                </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">StackTraceElement</span><span class="pun">(</span><span class="str">"OtherClass"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"methodX"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"String.java"</span><span class="pun">,</span><span class="pln"> </span><span class="lit">99</span><span class="pun">),</span><span class="pln">
+                </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">StackTraceElement</span><span class="pun">(</span><span class="str">"OtherClass"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"methodY"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"String.java"</span><span class="pun">,</span><span class="pln"> </span><span class="lit">55</span><span class="pun">)</span><span class="pln">
+        </span><span class="pun">});</span><span class="pln">
+        </span><span class="kwd">throw</span><span class="pln"> e</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">String</span><span class="pun">[]</span><span class="pln"> args</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">SomeClass</span><span class="pun">().</span><span class="pln">methodA</span><span class="pun">();</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>Stack trace:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="typ">Exception</span><span class="pln"> in thread </span><span class="str">"main"</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">lang</span><span class="pun">.</span><span class="typ">RuntimeException</span><span class="pln">
+    at </span><span class="typ">OtherClass</span><span class="pun">.</span><span class="pln">methodX</span><span class="pun">(</span><span class="typ">String</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">99</span><span class="pun">)</span><span class="pln">
+    at </span><span class="typ">OtherClass</span><span class="pun">.</span><span class="pln">methodY</span><span class="pun">(</span><span class="typ">String</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">55</span><span class="pun">)</span></code></pre>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/25875099" title="short permalink to this answer" class="short-link" id="link-post-25875099">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/25875099/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2014-09-16 17:34:09Z" class="relativetime">Sep 16 '14 at 17:34</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/4005008/przemek-hertel"><div class="gravatar-wrapper-32"><img src="java%20-%20What%20is%20a%20stack%20trace,%20and%20how%20can%20I%20use%20it%20to%20debug%20my%20application%20errors%3F%20-%20Stack%20Overflow_files/8f40d01317d883e8176f0111f435d882.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/4005008/przemek-hertel">przemek hertel</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">1,788</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="5 silver badges"><span class="badge2"></span><span class="badgecount">5</span></span><span title="6 bronze badges"><span class="badge3"></span><span class="badgecount">6</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-25875099" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-25875099" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="33123156"></a>
+<div id="answer-33123156" class="answer" data-answerid="33123156" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="33123156" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">1</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>I post this answer so that the topmost answer when sorting by activity is not the one that is just plain wrong.</p>
+
+<p><strong>What is a Stacktrace?</strong></p>
+
+<p>A stacktrace is a very helpful debugging tool. It shows you the call 
+stack (meaning, the stack of functions that were called up to that 
+point) at the time an uncaught exception was thrown (or the time the 
+stacktrace was generated manually). This is very useful because it 
+doesn't only show you where the error happened, but also how the program
+ ended up in that place of the code.
+This leads over to the next question:</p>
+
+<p><strong>What is an Exception?</strong></p>
+
+<p>An Exception is what the Runtime Environment uses to tell you that an
+ error occurred. Popular examples are NullPointerException, 
+IndexOutOfBoundsException or ArithmeticException. Each of these are 
+caused when you try to do something that is not possible. For example, a
+ NullPointerException will be thrown when you try to deference a 
+Null-object:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="typ">Object</span><span class="pln"> a </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">;</span><span class="pln">
+a</span><span class="pun">.</span><span class="pln">toString</span><span class="pun">();</span><span class="pln">    </span><span class="com">//this line throws a NullPointerException</span><span class="pln">
+
+</span><span class="typ">Object</span><span class="pun">[]</span><span class="pln"> b </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Object</span><span class="pun">[</span><span class="lit">5</span><span class="pun">];</span><span class="pln">
+</span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="pln">b</span><span class="pun">[</span><span class="lit">10</span><span class="pun">]);</span><span class="pln">    </span><span class="com">//this line throws an IndexOutOfBoundsException,</span><span class="pln">
+                              </span><span class="com">//because b is only 5 elements long</span><span class="pln">
+</span><span class="kwd">int</span><span class="pln"> ia </span><span class="pun">=</span><span class="pln"> </span><span class="lit">5</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">int</span><span class="pln"> ib </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln">
+ia </span><span class="pun">=</span><span class="pln"> ia</span><span class="pun">/</span><span class="pln">b</span><span class="pun">;</span><span class="pln">                      </span><span class="com">//this line throws an  ArithmeticException with the </span><span class="pln">
+                              </span><span class="com">//message "/ by 0", because you are trying to</span><span class="pln">
+                              </span><span class="com">//divide by 0, which is not possible.</span></code></pre>
+
+<p><strong>How to deal with Stacktraces/Exceptions?</strong></p>
+
+<p>At first, find out what is causing the Exception. Try googleing the 
+name of the exception to find out, what is the cause of that exception. 
+Most of the time it will be caused by incorrect code. In the given 
+examples above, all of the exceptions are caused by incorrect code. So 
+for the NullPointerException example you could make sure that <code>a</code> is never null at that time. You could, for example, initialize <code>a</code> or include a check like this one:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">a</span><span class="pun">!=</span><span class="kwd">null</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    a</span><span class="pun">.</span><span class="pln">toString</span><span class="pun">();</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>This way, the offending line is not executed if <code>a==null</code>. Same goes for the other examples.</p>
+
+<p>Sometimes you can't make sure that you don't get an exception. For 
+example, if you are using a network connection in your program, you 
+cannot stop computer from loosing the internet connection (e.g. you 
+can't stop the user from disconnecting the computer's network 
+connection). In this case the network library will probably throw an 
+exception. In this case, you should catch the exception and <strong>handle</strong>
+ it. This means, in the example with the network connection, you should 
+use this to try to reopen the connection or notify the user or something
+ like that. Also, whenever you use catch, always catch only the 
+exception you want to catch, <strong>do not use broad catch statements like <code>catch (Exception e)</code></strong>
+ that would catch all exceptions. This is very important, because 
+otherwise you might accidentally catch the wrong exception and react in 
+the wrong way.</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">try</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="typ">Socket</span><span class="pln"> x </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Socket</span><span class="pun">(</span><span class="str">"1.1.1.1"</span><span class="pun">,</span><span class="pln"> </span><span class="lit">6789</span><span class="pun">);</span><span class="pln">
+    x</span><span class="pun">.</span><span class="pln">getInputStream</span><span class="pun">().</span><span class="pln">read</span><span class="pun">()</span><span class="pln">
+</span><span class="pun">}</span><span class="pln"> </span><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="typ">IOException</span><span class="pln"> e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="typ">System</span><span class="pun">.</span><span class="pln">err</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Connection could not be established, please try again later!"</span><span class="pun">)</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p><strong>Why should I not use <code>catch (Exception e)</code>?</strong></p>
+
+<p>Let's use a small example to show why not to just catch all Exceptions:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">int</span><span class="pln"> mult</span><span class="pun">(</span><span class="typ">Integer</span><span class="pln"> a</span><span class="pun">,</span><span class="typ">Integer</span><span class="pln"> b</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">try</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">int</span><span class="pln"> result </span><span class="pun">=</span><span class="pln"> a</span><span class="pun">*</span><span class="pln">b
+        </span><span class="kwd">return</span><span class="pln"> result</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Exception</span><span class="pln"> e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="typ">System</span><span class="pun">.</span><span class="pln">err</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Error: Division by zero!"</span><span class="pun">);</span><span class="pln">
+        </span><span class="kwd">return</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>What this code is trying to do is to catch the <code>ArithmeticException</code> caused by a possible division by 0. But what it also catches is a possible <code>NullPointerException</code> that is thrown if <code>a</code> or <code>b</code> are <code>null</code>. This means, you might get a <code>NullPointerException</code>
+ but you'll treat it as an ArithmeticException and probably do the wrong
+ thing. In the best case you still miss that there was a 
+NullPointerException. Stuff like that makes debugging much harder, so 
+don't do that.</p>
+
+<p><strong>TLDR</strong></p>
+
+<ol>
+<li>Figure out what is the cause of the exception and fix it, so that it doesn't throw the exception at all.</li>
+<li><p>If 1. is not possible, catch the specific exception and handle it.</p>
+
+<ul>
+<li>Never just add a try/catch for any exception and then just ignore the exception! Don't do that!</li>
+<li>Never use <code>catch (Exception e)</code>, always catch specific Exceptions. That will save you a lot of headaches.</li>
+</ul></li>
+</ol>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/33123156" title="short permalink to this answer" class="short-link" id="link-post-33123156">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/33123156/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/33123156/revisions" title="show all edits to this post">edited <span title="2015-10-14 11:29:08Z" class="relativetime">Oct 14 at 11:29</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2015-10-14 10:40:07Z" class="relativetime">Oct 14 at 10:40</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/3236102/dakkaron"><div class="gravatar-wrapper-32"><img src="java%20-%20What%20is%20a%20stack%20trace,%20and%20how%20can%20I%20use%20it%20to%20debug%20my%20application%20errors%3F%20-%20Stack%20Overflow_files/4e17d815c87167ddeae52f2f5cd0efd8.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/3236102/dakkaron">Dakkaron</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">1,670</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="7 silver badges"><span class="badge2"></span><span class="badgecount">7</span></span><span title="24 bronze badges"><span class="badge3"></span><span class="badgecount">24</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-33123156" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-33123156" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="29006088"></a>
+<div id="answer-29006088" class="answer" data-answerid="29006088" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="29006088" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">0</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>The other posts describe what a stack trace is, but it can still be hard to work with.</p>
+
+<p>If you get a stack trace and want to trace the cause of the exception, a good start point in understanding it is to use the <em>Java Stack Trace Console</em> in <strong>Eclipse</strong>. If you use another IDE there may be a similar feature, but this answer is about Eclipse.</p>
+
+<p>First, ensure that you have all of your Java sources accessible in an Eclipse project.</p>
+
+<p>Then in the <em>Java</em> respective, click on the <em>Console</em> tab (usually at the bottom). If the Console view is not visible, go to the menu option <em>Window -&gt; Show View</em> and select <em>Console</em>.</p>
+
+<p>Then in the console window, click on the following button (on the right)</p>
+
+<p><img src="java%20-%20What%20is%20a%20stack%20trace,%20and%20how%20can%20I%20use%20it%20to%20debug%20my%20application%20errors%3F%20-%20Stack%20Overflow_files/B57aS.gif" alt="Consoles button"></p>
+
+<p>and then select <strong>Java Stack Trace Console</strong> from the drop-down list.</p>
+
+<p>Paste your stack trace into the console. It will then provide a list 
+of links into your source code and any other source code available.</p>
+
+<p>This is what you might see (image from the Eclipse documentation):</p>
+
+<p><img src="java%20-%20What%20is%20a%20stack%20trace,%20and%20how%20can%20I%20use%20it%20to%20debug%20my%20application%20errors%3F%20-%20Stack%20Overflow_files/E5hFw.png" alt="Diagram from Eclipse documentation"></p>
+
+<p>The most recent method call made will be the <em>top</em> of the 
+stack, which is the top line (excluding the message text). Going down 
+the stack goes back in time. The second line is the method that calls 
+the first line, etc.</p>
+
+<p>If you are using open-source software, you might need to download and
+ attach to your project the sources if you want to examine. Download the
+ source jars, in your project, open the <em>Referenced Libraries</em> folder to find your jar for your open-source module (the one with the class files) then right click, select <em>Properties</em> and attach the source jar.</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/29006088" title="short permalink to this answer" class="short-link" id="link-post-29006088">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/29006088/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/29006088/revisions" title="show all edits to this post">edited <span title="2015-03-12 09:55:30Z" class="relativetime">Mar 12 at 9:55</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2015-03-12 09:34:18Z" class="relativetime">Mar 12 at 9:34</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/3800782/rghome"><div class="gravatar-wrapper-32"><img src="java%20-%20What%20is%20a%20stack%20trace,%20and%20how%20can%20I%20use%20it%20to%20debug%20my%20application%20errors%3F%20-%20Stack%20Overflow_files/d6d5273f12d5fd7a7cc4c31769558918.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/3800782/rghome">rghome</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">1,771</span><span title="6 silver badges"><span class="badge2"></span><span class="badgecount">6</span></span><span title="21 bronze badges"><span class="badge3"></span><span class="badgecount">21</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-29006088" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-29006088" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="31932912"></a>
+<div id="answer-31932912" class="answer downvoted-answer" data-answerid="31932912" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="31932912" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">-3</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p><strong>if you are getting error of stack trace like following error</strong></p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="lit">30</span><span class="pun">:</span><span class="pln">                 </span><span class="typ">String</span><span class="pln"> s3</span><span class="pun">=</span><span class="pln">rs</span><span class="pun">.</span><span class="pln">getString</span><span class="pun">(</span><span class="str">"username"</span><span class="pun">);</span><span class="pln">
+</span><span class="lit">31</span><span class="pun">:</span><span class="pln">                 </span><span class="typ">String</span><span class="pln"> s4</span><span class="pun">=</span><span class="pln">rs</span><span class="pun">.</span><span class="pln">getString</span><span class="pun">(</span><span class="str">"password"</span><span class="pun">);</span><span class="pln">
+</span><span class="lit">32</span><span class="pun">:</span><span class="pln">                 
+</span><span class="lit">33</span><span class="pun">:</span><span class="pln">                 </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">s1</span><span class="pun">.</span><span class="pln">equals</span><span class="pun">(</span><span class="pln">s3</span><span class="pun">)&amp;&amp;</span><span class="pln">s2</span><span class="pun">.</span><span class="pln">equals</span><span class="pun">(</span><span class="pln">s4</span><span class="pun">))</span><span class="pln">
+</span><span class="lit">34</span><span class="pun">:</span><span class="pln">                 </span><span class="pun">{</span><span class="pln">
+</span><span class="lit">35</span><span class="pun">:</span><span class="pln">         </span><span class="pun">%&gt;</span><span class="pln">          </span><span class="pun">&lt;%@</span><span class="pln"> taglib uri</span><span class="pun">=</span><span class="str">"http://java.sun.com/jsp/jstl/core"</span><span class="pln"> prefix</span><span class="pun">=</span><span class="str">"c"</span><span class="pln"> </span><span class="pun">%&gt;</span><span class="pln"> 
+</span><span class="lit">36</span><span class="pun">:</span><span class="pln">                     </span><span class="pun">&lt;</span><span class="pln">c</span><span class="pun">:</span><span class="pln">redirect url</span><span class="pun">=</span><span class="str">"user1.jsp"</span><span class="pun">/&gt;</span><span class="pln">
+</span><span class="typ">Stacktrace</span><span class="pun">:</span><span class="pln">
+    org</span><span class="pun">.</span><span class="pln">apache</span><span class="pun">.</span><span class="pln">jasper</span><span class="pun">.</span><span class="pln">servlet</span><span class="pun">.</span><span class="typ">JspServletWrapper</span><span class="pun">.</span><span class="pln">handleJspException</span><span class="pun">(</span><span class="typ">JspServletWrapper</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">568</span><span class="pun">)</span><span class="pln">
+    org</span><span class="pun">.</span><span class="pln">apache</span><span class="pun">.</span><span class="pln">jasper</span><span class="pun">.</span><span class="pln">servlet</span><span class="pun">.</span><span class="typ">JspServletWrapper</span><span class="pun">.</span><span class="pln">service</span><span class="pun">(</span><span class="typ">JspServletWrapper</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">470</span><span class="pun">)</span><span class="pln">
+    org</span><span class="pun">.</span><span class="pln">apache</span><span class="pun">.</span><span class="pln">jasper</span><span class="pun">.</span><span class="pln">servlet</span><span class="pun">.</span><span class="typ">JspServlet</span><span class="pun">.</span><span class="pln">serviceJspFile</span><span class="pun">(</span><span class="typ">JspServlet</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">390</span><span class="pun">)</span><span class="pln">
+    org</span><span class="pun">.</span><span class="pln">apache</span><span class="pun">.</span><span class="pln">jasper</span><span class="pun">.</span><span class="pln">servlet</span><span class="pun">.</span><span class="typ">JspServlet</span><span class="pun">.</span><span class="pln">service</span><span class="pun">(</span><span class="typ">JspServlet</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">334</span><span class="pun">)</span><span class="pln">
+    javax</span><span class="pun">.</span><span class="pln">servlet</span><span class="pun">.</span><span class="pln">http</span><span class="pun">.</span><span class="typ">HttpServlet</span><span class="pun">.</span><span class="pln">service</span><span class="pun">(</span><span class="typ">HttpServlet</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">727</span><span class="pun">)</span><span class="pln">
+    org</span><span class="pun">.</span><span class="pln">apache</span><span class="pun">.</span><span class="pln">tomcat</span><span class="pun">.</span><span class="pln">websocket</span><span class="pun">.</span><span class="pln">server</span><span class="pun">.</span><span class="typ">WsFilter</span><span class="pun">.</span><span class="pln">doFilter</span><span class="pun">(</span><span class="typ">WsFilter</span><span class="pun">.</span><span class="pln">java</span><span class="pun">:</span><span class="lit">52</span><span class="pun">)</span><span class="pln">
+root cause
+java</span><span class="pun">.</span><span class="pln">lang</span><span class="pun">.</span><span class="typ">NullPointerException</span></code></pre>
+
+<p><strong>to avoid stack trace error in database just simply add try and catch method to remove that error try as folowwing</strong></p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">try</span><span class="pln">
+        </span><span class="pun">{</span><span class="pln">
+            </span><span class="typ">Class</span><span class="pun">.</span><span class="pln">forName</span><span class="pun">(</span><span class="str">"com.mysql.jdbc.Driver"</span><span class="pun">);</span><span class="pln">
+            java</span><span class="pun">.</span><span class="pln">sql</span><span class="pun">.</span><span class="typ">Connection</span><span class="pln"> con </span><span class="pun">=</span><span class="pln"> </span><span class="typ">DriverManager</span><span class="pun">.</span><span class="pln">getConnection</span><span class="pun">(</span><span class="str">"jdbc:mysql://localhost/c_d"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"root"</span><span class="pun">,</span><span class="str">"root"</span><span class="pun">);</span><span class="pln">
+            </span><span class="typ">Statement</span><span class="pln"> st</span><span class="pun">=</span><span class="pln">con</span><span class="pun">.</span><span class="pln">createStatement</span><span class="pun">();</span><span class="pln">
+            </span><span class="typ">ResultSet</span><span class="pln"> rs</span><span class="pun">;</span><span class="pln">
+            rs</span><span class="pun">=</span><span class="pln">st</span><span class="pun">.</span><span class="pln">executeQuery</span><span class="pun">(</span><span class="str">"select username,password from temp1"</span><span class="pun">);</span><span class="pln">
+
+        </span><span class="kwd">while</span><span class="pun">(</span><span class="pln">rs</span><span class="pun">.</span><span class="pln">next</span><span class="pun">())</span><span class="pln">
+        </span><span class="pun">{</span><span class="pln">
+            </span><span class="typ">String</span><span class="pln"> s3</span><span class="pun">=</span><span class="pln">rs</span><span class="pun">.</span><span class="pln">getString</span><span class="pun">(</span><span class="str">"username"</span><span class="pun">);</span><span class="pln">
+            </span><span class="typ">String</span><span class="pln"> s4</span><span class="pun">=</span><span class="pln">rs</span><span class="pun">.</span><span class="pln">getString</span><span class="pun">(</span><span class="str">"password"</span><span class="pun">);</span><span class="pln">
+
+            </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">s1</span><span class="pun">.</span><span class="pln">equals</span><span class="pun">(</span><span class="pln">s3</span><span class="pun">)&amp;&amp;</span><span class="pln">s2</span><span class="pun">.</span><span class="pln">equals</span><span class="pun">(</span><span class="pln">s4</span><span class="pun">))</span><span class="pln">
+            </span><span class="pun">{</span><span class="pln">
+    </span><span class="pun">%&gt;</span><span class="pln">          </span><span class="pun">&lt;%@</span><span class="pln"> taglib uri</span><span class="pun">=</span><span class="str">"http://java.sun.com/jsp/jstl/core"</span><span class="pln"> prefix</span><span class="pun">=</span><span class="str">"c"</span><span class="pln"> </span><span class="pun">%&gt;</span><span class="pln"> 
+                </span><span class="pun">&lt;</span><span class="pln">c</span><span class="pun">:</span><span class="pln">redirect url</span><span class="pun">=</span><span class="str">"user1.jsp"</span><span class="pun">/&gt;</span><span class="pln">
+    </span><span class="pun">&lt;%</span><span class="pln">
+            </span><span class="pun">}</span><span class="pln">
+          </span><span class="pun">}</span><span class="pln">
+
+        </span><span class="pun">}</span><span class="pln">
+
+        </span><span class="kwd">catch</span><span class="pun">(</span><span class="typ">Exception</span><span class="pln"> e</span><span class="pun">)</span><span class="pln">
+        </span><span class="pun">{</span><span class="pln">
+            e</span><span class="pun">.</span><span class="pln">printStackTrace</span><span class="pun">();</span><span class="pln">
+        </span><span class="pun">}</span></code></pre>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/31932912" title="short permalink to this answer" class="short-link" id="link-post-31932912">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/31932912/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/31932912/revisions" title="show all edits to this post">edited <span title="2015-09-01 14:19:27Z" class="relativetime">Sep 1 at 14:19</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/2327328/philshem"><div class="gravatar-wrapper-32"><img src="java%20-%20What%20is%20a%20stack%20trace,%20and%20how%20can%20I%20use%20it%20to%20debug%20my%20application%20errors%3F%20-%20Stack%20Overflow_files/dDIn1.jpg" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/2327328/philshem">philshem</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">3,674</span><span title="3 gold badges"><span class="badge1"></span><span class="badgecount">3</span></span><span title="13 silver badges"><span class="badge2"></span><span class="badgecount">13</span></span><span title="45 bronze badges"><span class="badge3"></span><span class="badgecount">45</span></span>
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2015-08-11 03:53:11Z" class="relativetime">Aug 11 at 3:53</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/4410270/aviraj-dua"><div class="gravatar-wrapper-32"><img src="java%20-%20What%20is%20a%20stack%20trace,%20and%20how%20can%20I%20use%20it%20to%20debug%20my%20application%20errors%3F%20-%20Stack%20Overflow_files/photo.jpg" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/4410270/aviraj-dua">AVIRAJ DUA</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">1</span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-31932912" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-54027041" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">3</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Just catching Exceptions to 
+"fix" the errors is a terrible practice. Do not do that! And catching 
+all exceptions is even more terrible!</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/3236102/dakkaron" title="1670 reputation" class="comment-user">Dakkaron</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment54027041_31932912"><span title="2015-10-13 15:03:14Z" class="relativetime-clean">Oct 13 at 15:03</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-54043766" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Why does @Dakkaron's comment have three upvotes but this answer has only two downvotes?</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/18356/shoover" title="2133 reputation" class="comment-user">shoover</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment54043766_31932912"><span title="2015-10-14 00:32:22Z" class="relativetime-clean">Oct 14 at 0:32</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-31932912" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+									<a name="new-answer"></a>
+						<form id="post-form" action="/questions/3988788/answer/submit" method="post" class="post-form">
+						    <input id="post-id" value="3988788" type="hidden">
+                            <input id="qualityBanWarningShown" name="qualityBanWarningShown" value="false" type="hidden">
+                            <input name="referrer" value="http://info.javarush.ru/JavaRush_lectures_discussion/2013/06/12/lecture-9.html" type="hidden">
+							<h2 class="space">Your Answer</h2>
+
+
+            <script>
+            StackExchange.ifUsing("editor", function () {
+                StackExchange.using("externalEditor", function () {
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.init();
+                    });
+                });
+            }, "code-snippets");
+        </script>
+    
+
+<script>
+    StackExchange.ready(function() {
+        initTagRenderer("".split(" "), "".split(" "));
+       
+        StackExchange.using("externalEditor", function() {
+                // Have to fire editor after snippets, if snippets enabled
+                if (StackExchange.options.snippets.enabled) {
+                    StackExchange.using("snippets", function() {
+                        createEditor();
+                    });
+                }
+                else {
+                    createEditor();
+                }
+            });
+
+            function createEditor() {
+                prepareEditor({
+                    heartbeatType: 'answer',
+                convertImagesToLinks: true,
+                reputationToPostImages: 10,
+                bindNavPrevention: true,
+                postfix: "",
+                    onDemand: true,
+                    discardSelector: ".discard-answer"
+                    ,immediatelyShowMarkdownHelp:true
+                    });
+                
+
+        }
+    });  
+</script>
+
+
+<div id="post-editor" class="post-editor js-post-editor">
+
+    <div style="position: relative;">     
+        <div class="wmd-container">
+            <div id="wmd-button-bar" class="wmd-button-bar"><ul id="wmd-button-row" class="wmd-button-row"><li style="left: 0px;" class="wmd-button" id="wmd-bold-button"><span style="background-position: 0px -20px;"></span></li><li style="left: 25px;" class="wmd-button" id="wmd-italic-button"><span style="background-position: -20px -20px;"></span></li><li style="left: 50px;" class="wmd-spacer" id="wmd-spacer1"><span style="background-position: -40px -20px;"></span></li><li style="left: 75px;" class="wmd-button" id="wmd-link-button"><span style="background-position: -40px -20px;"></span></li><li style="left: 100px;" class="wmd-button" id="wmd-quote-button"><span style="background-position: -60px -20px;"></span></li><li style="left: 125px;" class="wmd-button" id="wmd-code-button"><span style="background-position: -80px -20px;"></span></li><li style="left: 150px;" class="wmd-button" id="wmd-image-button"><span style="background-position: -100px -20px;"></span></li><li style="left: 175px;" class="wmd-spacer" id="wmd-spacer2"><span style="background-position: -120px -20px;"></span></li><li style="left: 200px;" class="wmd-button" id="wmd-olist-button"><span style="background-position: -120px -20px;"></span></li><li style="left: 225px;" class="wmd-button" id="wmd-ulist-button"><span style="background-position: -140px -20px;"></span></li><li style="left: 250px;" class="wmd-button" id="wmd-heading-button"><span style="background-position: -160px -20px;"></span></li><li style="left: 275px;" class="wmd-button" id="wmd-hr-button"><span style="background-position: -180px -20px;"></span></li><li style="left: 300px;" class="wmd-spacer" id="wmd-spacer3"><span style="background-position: -200px -20px;"></span></li><li style="left: 325px;" class="wmd-button" id="wmd-undo-button"><span style="background-position: -200px -20px;"></span></li><li style="left: 350px;" class="wmd-button" id="wmd-redo-button"><span style="background-position: -220px -20px;"></span></li></ul></div>
+            <textarea id="wmd-input" class="wmd-input" name="post-text" cols="92" rows="15" tabindex="101" data-min-length=""></textarea>
+        </div>
+    </div>
+
+    <div class="fl" style="margin-top: 8px; height:24px;">&nbsp;</div>
+    <div id="draft-saved" class="draft-saved community-option fl" style="margin-top: 8px; height:24px; display:none;">draft saved</div>
+
+    <div id="draft-discarded" class="draft-discarded community-option fl" style="margin-top: 8px; height:24px; display:none;">draft discarded</div>
+
+
+
+    <div id="wmd-preview" class="wmd-preview"></div>
+    <div></div>
+    <div class="edit-block">
+        <input id="fkey" name="fkey" value="403aacb6ad65e2352d636eae87907085" type="hidden">
+        <input id="author" name="author" type="text">
+    </div>
+
+
+
+</div>
+							<div style="position: relative;">
+								
+								            <div class="form-item new-post-login">
+        
+                <div class="new-login-form">
+                    <div class="new-login-left">
+                        <h3>Sign up or <a id="login-link" href="http://stackoverflow.com/users/login?ssrc=question_page&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f3988788%2fwhat-is-a-stack-trace-and-how-can-i-use-it-to-debug-my-application-errors%23new-answer">log in</a></h3>
+                        <script>
+                            StackExchange.ready(function () {
+                                StackExchange.helpers.onClickDraftSave('#login-link');
+                            });
+                        </script>
+                        <div class="preferred-login google-login">
+                            <p><span class="icon"></span><span>Sign up using Google</span></p>
+                        </div>
+                        <div class="preferred-login facebook-login">
+                            <p><span class="icon"></span><span>Sign up using Facebook</span></p>
+                        </div>
+                        <div class="preferred-login stackexchange-login">
+                            <p><span class="icon"></span><span>Sign up using Email and Password</span></p>
+                        </div>
+                    </div>
+                    <input name="manual-openid" class="manual-openid" type="hidden">
+                    <input name="use-facebook" class="use-facebook" value="false" type="hidden">
+                    <input name="use-google" class="use-google" value="false" type="hidden">
+                    <input class="submit-openid" value="Submit" style="display:none" type="button">
+                    <div class="new-login-right">
+                                <h3>Post as a guest</h3>
+    <div class="form-item">
+        <table>
+        <tbody><tr>
+                    <td class="vm">
+                <div>
+                    <label for="display-name">Name</label>
+                    <input id="display-name" name="display-name" size="30" maxlength="30" tabindex="105" type="text">
+                </div>
+                <div>
+                    <label for="m-address">Email</label>
+                    <input id="m-address" name="m-address" size="30" maxlength="100" tabindex="106" placeholder="required, but never shown" type="email">
+                </div>
+            </td>
+        </tr>
+        </tbody></table>
+    </div>
+
+                    </div>
+                </div>
+            </div>
+            <script>
+                StackExchange.ready(
+                    function () {
+                        StackExchange.openid.initPostLogin('.new-post-login', 'http%3a%2f%2fstackoverflow.com%2fquestions%2f3988788%2fwhat-is-a-stack-trace-and-how-can-i-use-it-to-debug-my-application-errors%23new-answer', 'question_page');
+                    }
+                );
+            </script>
+            <noscript>
+                        <h3>Post as a guest</h3>
+    <div class="form-item">
+        <table>
+        <tr>
+                    <td class="vm">
+                <div>
+                    <label for="display-name">Name</label>
+                    <input id="display-name" name="display-name" type="text" size="30" maxlength="30" value="" tabindex="105">
+                </div>
+                <div>
+                    <label for="m-address">Email</label>
+                    <input id="m-address" name="m-address" type="email" size="30" maxlength="100" value="" tabindex="106" placeholder="required, but never shown" />
+                </div>
+            </td>
+        </tr>
+        </table>
+    </div>
+
+            </noscript>
+
+							</div>
+           
+															<div class="form-submit cbt">
+									<input id="submit-button" value="Post Your Answer" tabindex="110" type="submit">
+									<a href="#" class="discard-answer dno">discard</a>
+
+<p class="privacy-policy-agreement">
+By posting your answer, you agree to the <a href="http://stackexchange.com/legal/privacy-policy" target="_blank">privacy policy</a> and <a href="http://stackexchange.com/legal/terms-of-service" target="_blank">terms of service</a>.</p>
+<input name="legalLinksShown" value="1" type="hidden">								</div>
+						</form>
+
+
+
+						<h2 class="bottom-notice" data-loc="1">
+Not the answer you're looking for?							Browse other questions tagged <a href="http://stackoverflow.com/questions/tagged/java" class="post-tag" title="show questions tagged 'java'" rel="tag">java</a> <a href="http://stackoverflow.com/questions/tagged/debugging" class="post-tag" title="show questions tagged 'debugging'" rel="tag">debugging</a> <a href="http://stackoverflow.com/questions/tagged/stack-trace" class="post-tag" title="show questions tagged 'stack-trace'" rel="tag">stack-trace</a>  or <a href="http://stackoverflow.com/questions/ask">ask your own question</a>.						</h2>
+			</div>
+		</div>
+				<div id="sidebar" class="show-votes">
+						    <div class="module question-stats">
+			        <table id="qinfo">
+			            <tbody><tr>
+			                <td>
+			                    <p class="label-key">asked</p>
+			                </td>
+			                <td style="padding-left: 10px">
+			                    <p class="label-key" title="2010-10-21 14:52:24Z"><b>5 years ago</b></p>
+			                </td>
+			            </tr>
+			            <tr>
+			                <td>
+			                    <p class="label-key">viewed</p>
+			                </td>
+
+			                <td style="padding-left: 10px">
+			                    <p class="label-key">
+			                        <b>102297 times</b>
+			                    </p>
+			                </td>
+			            </tr>
+			                <tr>
+			                    <td>
+			                        <p class="label-key">active</p>
+			                    </td>
+			                    <td style="padding-left: 10px">
+			                        <p class="label-key"><b><a href="http://stackoverflow.com/questions/3988788/what-is-a-stack-trace-and-how-can-i-use-it-to-debug-my-application-errors?lastactivity" class="lastactivity-link" title="2015-10-14 11:29:08Z">1 month ago</a></b></p>
+			                    </td>
+			                </tr>
+			        </tbody></table>
+			    </div>
+						
+			<script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk1899970132",[17,2221]).setZone(45); });
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk1899970132"><div id="careersadsdoublehigh" style="display:none;"></div><img class="pcfykmqlcrtplekulgcu" src="java%20-%20What%20is%20a%20stack%20trace,%20and%20how%20can%20I%20use%20it%20to%20debug%20my%20application%20errors%3F%20-%20Stack%20Overflow_files/i_003.gif" style="position:absolute;" height="0px" width="0px" border="0"></div>
+        <div class=" blue looking tagged" id="hireme"><a href="http://careers.stackoverflow.com/jobs" target="_blank" data-tz="1" data-ti="0" class="top"><span>Looking for a job?</span></a><div class="middle"><ul class="jobs"><li><a data-tz="3" data-ti="185673" href="http://careers.stackoverflow.com/jobs/99726/senior-javascript-frontend-entwickler-m-w-tresmo-gmbh" target="_blank" title="Senior Javascript Frontend-Entwickler (m/w) at tresmo GmbH. Click to learn more.">Senior Javascript Frontend-Entwickler (m/w)<br><div class="company">tresmo GmbH</div><div class="location" title="Augsburg, Germany">Augsburg, Germany</div><span class="post-tag">javascript</span><span class="post-tag">css3</span></a></li><li><a data-tz="3" data-ti="182026" href="http://careers.stackoverflow.com/jobs/96048/junior-software-developer-m-w-industrie-40-bosch-software-innovations" target="_blank" title="Junior Software Developer (m/w) – Industrie 4.0 at Bosch Software Innovations GmbH. Click to learn more.">Junior Software Developer (m/w) – Industrie 4.0<br><div class="company">Bosch Software Innovations…</div><div class="location" title="Immenstaad, Deutschland">Immenstaad, Deutschland</div><span class="post-tag">html</span><span class="post-tag">java-ee</span></a></li><li><a data-tz="3" data-ti="186255" href="http://careers.stackoverflow.com/jobs/100308/softwareentwickler-java-eclipse-m-w-eplan-software-service-gmbh" target="_blank" title="Softwareentwickler Java/Eclipse (m/w) at EPLAN Software &amp; Service GmbH &amp; Co. KG. Click to learn more.">Softwareentwickler Java/Eclipse (m/w)<br><div class="company">EPLAN Software &amp; Service G…</div><div class="location" title="Stuttgart, Deutschland">Stuttgart, Deutschland</div><span class="post-tag highlight">java</span><span class="post-tag">eclipse</span></a></li><li><a data-tz="3" data-ti="177002" href="http://careers.stackoverflow.com/jobs/90984/senior-professional-java-developer-entwickler-senacor-technologies-ag" target="_blank" title="Senior Professional - Java Developer/ Entwickler at Senacor Technologies AG. Click to learn more.">Senior Professional - Java Developer/ Entwickler<br><div class="company">Senacor Technologies AG</div><div class="location" title="Nürnberg, Deutschland">Nürnberg, Deutschland</div><span class="post-tag highlight">java</span><span class="post-tag">spring</span></a></li></ul></div><img class="impression" src="java%20-%20What%20is%20a%20stack%20trace,%20and%20how%20can%20I%20use%20it%20to%20debug%20my%20application%20errors%3F%20-%20Stack%20Overflow_files/i.gif" style="display:none;"></div>
+			  
+    
+            <div class="module sidebar-linked">
+	<h4 id="h-linked">Linked</h4>
+	<div class="linked" data-tracker="lq=1">
+<div class="spacer">
+	<a href="http://stackoverflow.com/q/12688068?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">35</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/12688068/how-to-read-and-understand-the-java-stack-trace?lq=1" class="question-hyperlink">How to read and understand the java stack trace?</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/21479861?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">0</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/21479861/why-im-getting-this-error-of-http-status-500?lq=1" class="question-hyperlink">why i'm getting this error of HTTP Status 500?</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/21501428?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">-4</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/21501428/how-to-solve-the-java-lang-arrayindexoutofboundsexception-1-0-error-in-my-ja?lq=1" class="question-hyperlink">How to solve the java.lang.ArrayIndexOutOfBoundsException: 1 &gt;= 0 error in my java program?</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/22362456?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">-1</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/22362456/java-lang-nullpointerexception-in-string-replace?lq=1" class="question-hyperlink">java.lang.NullPointerException in String.replace()</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/23292035?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">-1</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/23292035/spring-and-hibernate-integration-bean-exception-http-500-error?lq=1" class="question-hyperlink">Spring and hibernate integration Bean exception (Http 500 error)</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/22050785?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">-2</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/22050785/exception-in-thread-main-java-lang-nullpointerexception?lq=1" class="question-hyperlink">Exception in thread “main” java.lang.NullPointerException</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/25983096?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/25983096/array-out-of-bounds?lq=1" class="question-hyperlink">Array “out of bounds”</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/25477656?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">-1</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/25477656/unable-to-start-activity-componentinfo-logcat?lq=1" class="question-hyperlink">Unable to start activity ComponentInfo LogCat</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/25088523?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">0</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/25088523/app-crashes-on-android-4-3?lq=1" class="question-hyperlink">app crashes on android 4.3</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/29578710?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">-2</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/29578710/array-index-out-of-bounds-exception-when-i-run-this-i-am-not-able-to-figure-ou?lq=1" class="question-hyperlink">Array Index out of bounds exception, when I run this, I am not able to figure out why. I am not able to view the sorted array</a>
+</div>					<div class="spacer more">
+				<a href="http://stackoverflow.com/questions/linked/3988788?lq=1">see more linked questions…</a>
+			</div>
+	</div>
+</div>
+
+				<div class="module sidebar-related">
+					<h4 id="h-related">Related</h4>
+                    <div class="related js-gps-related-questions" data-tracker="rq=1">
+                        <div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/132058?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted large">215
+    </div>
+</a><a href="http://stackoverflow.com/questions/132058/showing-the-stack-trace-from-a-running-python-application?rq=1" class="question-hyperlink">Showing the stack trace from a running Python application</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/944991?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">67
+    </div>
+</a><a href="http://stackoverflow.com/questions/944991/is-there-a-way-to-dump-a-stack-trace-without-throwing-an-exception-in-java?rq=1" class="question-hyperlink">Is there a way to dump a stack trace without throwing an exception in java?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/1037925?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">13
+    </div>
+</a><a href="http://stackoverflow.com/questions/1037925/recreate-stack-trace-with-line-numbers-from-user-bug-report-in-net?rq=1" class="question-hyperlink">Recreate stack trace with line numbers from user bug-report in .net?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/1069066?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted large">583
+    </div>
+</a><a href="http://stackoverflow.com/questions/1069066/get-current-stack-trace-in-java?rq=1" class="question-hyperlink">Get current stack trace in Java</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/1149703?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted large">646
+    </div>
+</a><a href="http://stackoverflow.com/questions/1149703/how-can-i-convert-a-stack-trace-to-a-string?rq=1" class="question-hyperlink">How can I convert a stack trace to a string?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/1911015?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted large">803
+    </div>
+</a><a href="http://stackoverflow.com/questions/1911015/how-to-debug-node-js-applications?rq=1" class="question-hyperlink">How to debug Node.js applications</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/5045947?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">4
+    </div>
+</a><a href="http://stackoverflow.com/questions/5045947/what-resources-are-available-to-convince-a-developer-that-java-stack-traces-are?rq=1" class="question-hyperlink">What resources are available to convince a developer that Java stack traces are worth logging</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/12307951?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">3
+    </div>
+</a><a href="http://stackoverflow.com/questions/12307951/when-does-the-jvm-omit-line-info-in-a-stack-trace-and-how-can-i-prevent-it?rq=1" class="question-hyperlink">When does the JVM omit line info in a stack trace and how can I prevent it?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/12688068?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">35
+    </div>
+</a><a href="http://stackoverflow.com/questions/12688068/how-to-read-and-understand-the-java-stack-trace?rq=1" class="question-hyperlink">How to read and understand the java stack trace?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/31494707?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">7
+    </div>
+</a><a href="http://stackoverflow.com/questions/31494707/how-to-find-the-source-of-an-nsinternalinconsistencyexception-in-an-xcode-stack?rq=1" class="question-hyperlink">How to Find the Source of an NSInternalInconsistencyException in an Xcode Stack Trace</a>
+</div>
+
+                    </div>
+				</div>
+            
+<div id="hot-network-questions" class="module">
+    <h4>
+        <a href="http://stackexchange.com/questions?tab=hot" class="js-gps-track" data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">
+            Hot Network Questions
+        </a>
+    </h4>
+    <ul>
+            <li>
+                <div class="favicon favicon-askubuntu" title="Ask Ubuntu"></div><a href="http://askubuntu.com/questions/704600/why-does-c-v-etc-appear-in-the-terminal-when-i-use-the-ctrlcharacter-keyboa" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:89 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why does ^C, ^V etc. appear in the terminal when I use the Ctrl+character keyboard shortcut?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-security" title="Information Security Stack Exchange"></div><a href="http://security.stackexchange.com/questions/106896/why-is-steam-so-insistent-on-security" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:162 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why is Steam so insistent on security?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-security" title="Information Security Stack Exchange"></div><a href="http://security.stackexchange.com/questions/106921/is-it-safer-to-ssh-as-a-privileged-user-than-to-ssh-and-sudo" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:162 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is it safer to ssh as a privileged user than to ssh and sudo?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-security" title="Information Security Stack Exchange"></div><a href="http://security.stackexchange.com/questions/107025/is-obfuscation-worth-it" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:162 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is obfuscation worth it
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-superuser" title="Super User"></div><a href="http://superuser.com/questions/1008036/why-cant-we-use-set-function-keys-as-password-keys" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:3 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why can't we use/set function keys as password keys?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-rpg" title="Role-playing Games Stack Exchange"></div><a href="http://rpg.stackexchange.com/questions/71685/how-can-a-gm-interrupt-a-pc-archers-full-attack-barrage-or-otherwise-make-it-l" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:122 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How can a GM interrupt a PC archer's full attack barrage, or otherwise make it less reliable?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-security" title="Information Security Stack Exchange"></div><a href="http://security.stackexchange.com/questions/106855/how-should-i-set-up-emergency-access-to-business-critical-secrets-in-case-i-am" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:162 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How should I set up emergency access to business-critical secrets in case I am "hit by a bus"?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-rpg" title="Role-playing Games Stack Exchange"></div><a href="http://rpg.stackexchange.com/questions/71625/risk-of-a-tpk-vs-realistic-npcs" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:122 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Risk of a TPK vs realistic NPCs
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="http://scifi.stackexchange.com/questions/109234/why-did-harry-name-his-child-after-snape" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why did Harry name his child after Snape?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-codereview" title="Code Review Stack Exchange"></div><a href="http://codereview.stackexchange.com/questions/112461/pythonish-integer-range-in-java" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:196 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Pythonish integer range in Java
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-electronics" title="Electrical Engineering Stack Exchange"></div><a href="http://electronics.stackexchange.com/questions/203713/whats-does-hr-mean-among-v-and-ah-in-batteries" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:135 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Whats does "hr" mean among "V" and "Ah" in batteries?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="http://worldbuilding.stackexchange.com/questions/30738/how-do-mermaids-perform-major-surgical-procedure-underwater" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How do mermaids perform major surgical procedure underwater?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-philosophy" title="Philosophy Stack Exchange"></div><a href="http://philosophy.stackexchange.com/questions/30124/is-it-a-fallacy-to-say-that-a-sane-person-cannot-apply-rational-thought-to-the-m" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:265 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is it a fallacy to say that a sane person cannot apply rational thought to the motivations of the insane?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-aviation" title="Aviation Stack Exchange"></div><a href="http://aviation.stackexchange.com/questions/23271/how-dangerous-was-the-turbulence-on-this-commercial-flight" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:528 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How dangerous was the turbulence on this commercial flight?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="http://english.stackexchange.com/questions/291034/phrase-to-describe-a-moving-goal-that-is-forever-just-out-of-reach" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Phrase to describe a moving goal that is forever just out of reach
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-stackoverflow" title="Stack Overflow"></div><a href="http://stackoverflow.com/questions/34038246/or-operator-in-conditional-attribute-in-c-sharp" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:1 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Or operator in Conditional attribute in C#
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-rpg" title="Role-playing Games Stack Exchange"></div><a href="http://rpg.stackexchange.com/questions/71673/warhammer-war-pick-how-to-handle-this-in-dnd" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:122 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Warhammer = war pick, how to handle this in DnD?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-unix" title="Unix &amp; Linux Stack Exchange"></div><a href="http://unix.stackexchange.com/questions/246798/exit-status-in-bash-script" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:106 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Exit status in bash script
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-politics" title="Politics Stack Exchange"></div><a href="http://politics.stackexchange.com/questions/9421/why-not-have-a-wealth-dependent-income-tax" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:475 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why not have a wealth dependent income tax?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="http://codegolf.stackexchange.com/questions/65420/you-are-the-weakest-link-goodbye" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    You are the Weakest Link, Goodbye
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-gamedev" title="Game Development Stack Exchange"></div><a href="http://gamedev.stackexchange.com/questions/112247/should-i-tell-the-player-he-has-no-chance-to-complete-the-level" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:53 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Should I tell the player he has no chance to complete the level?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-travel" title="Travel Stack Exchange"></div><a href="http://travel.stackexchange.com/questions/59437/can-i-check-if-there-is-a-boarding-pass-or-airline-ticket-in-my-name" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:273 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Can I check if there is a boarding pass or airline ticket in my name?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="http://academia.stackexchange.com/questions/59182/leaving-academia-for-financial-reasons-how-to-communicate-the-reason-of-depart" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Leaving academia for financial reasons - how to 
+communicate the reason of departure in a professional manner?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-electronics" title="Electrical Engineering Stack Exchange"></div><a href="http://electronics.stackexchange.com/questions/203903/how-do-i-increase-the-drive-current-from-the-arduino-digital-pins" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:135 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How do I increase the drive current from the arduino digital pins?
+                </a>
+
+            </li>
+    </ul>
+
+        
+</div>
+		</div>
+	
+<div id="feed-link">
+    <div id="feed-link-text">
+        <a href="http://stackoverflow.com/feeds/question/3988788" title="feed of this question and its answers">
+            <span class="feed-icon"></span>question feed
+        </a>
+    </div>
+</div>	<script>
+StackExchange.ready(function(){$.get('/posts/3988788/ivc/e895');});
+</script>
+<noscript>
+    <div><img src="/posts/3988788/ivc/e895" class="dno" alt="" width="0" height="0"></div>
+</noscript><div style="display:none" id="prettify-lang">lang-java</div></div>
+
+
+        </div>
+    </div>
+    <div id="footer" class="categories">
+        <div class="footerwrap">
+            <div id="footer-menu">
+                <div class="top-footer-links">
+                        <a href="http://stackoverflow.com/tour">tour</a>
+                    <a href="http://stackoverflow.com/help">help</a>
+                    <a href="http://blog.stackoverflow.com/?blb=1">blog</a>
+                        <a href="http://chat.stackoverflow.com/">chat</a>
+                    <a href="http://data.stackexchange.com/">data</a>
+                    <a href="http://stackexchange.com/legal">legal</a>
+                    <a href="http://stackexchange.com/legal/privacy-policy">privacy policy</a>
+                    <a href="http://stackexchange.com/work-here">work here</a>
+                    <a href="http://stackexchange.com/mediakit">advertising info</a>
+
+                    <a onclick='StackExchange.switchMobile("on")'>mobile</a>
+                    <b><a href="http://stackoverflow.com/contact">contact us</a></b>
+                        <b><a href="http://meta.stackoverflow.com/">feedback</a></b>
+                    
+                </div>
+                <div id="footer-sites">
+                    <table>
+    <tbody><tr>
+            <th colspan="3">
+                Technology
+            </th>
+            <th>
+                Life / Arts
+            </th>
+            <th>
+                Culture / Recreation
+            </th>
+            <th>
+                Science
+            </th>
+            <th>
+                Other
+            </th>
+    </tr>
+    <tr>
+            <td>
+                <ol>
+                        <li><a href="http://stackoverflow.com/" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                        <li><a href="http://serverfault.com/" title="system and network administrators">Server Fault</a></li>
+                        <li><a href="http://superuser.com/" title="computer enthusiasts and power users">Super User</a></li>
+                        <li><a href="http://webapps.stackexchange.com/" title="power users of web applications">Web Applications</a></li>
+                        <li><a href="http://askubuntu.com/" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                        <li><a href="http://webmasters.stackexchange.com/" title="pro webmasters">Webmasters</a></li>
+                        <li><a href="http://gamedev.stackexchange.com/" title="professional and independent game developers">Game Development</a></li>
+                        <li><a href="http://tex.stackexchange.com/" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://programmers.stackexchange.com/" title="professional programmers interested in conceptual questions about software development">Programmers</a></li>
+                        <li><a href="http://unix.stackexchange.com/" title="users of Linux, FreeBSD and other Un*x-like operating systems">Unix &amp; Linux</a></li>
+                        <li><a href="http://apple.stackexchange.com/" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+                        <li><a href="http://wordpress.stackexchange.com/" title="WordPress developers and administrators">WordPress Development</a></li>
+                        <li><a href="http://gis.stackexchange.com/" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+                        <li><a href="http://electronics.stackexchange.com/" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+                        <li><a href="http://android.stackexchange.com/" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+                        <li><a href="http://security.stackexchange.com/" title="information security professionals">Information Security</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://dba.stackexchange.com/" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+                        <li><a href="http://drupal.stackexchange.com/" title="Drupal developers and administrators">Drupal Answers</a></li>
+                        <li><a href="http://sharepoint.stackexchange.com/" title="SharePoint enthusiasts">SharePoint</a></li>
+                        <li><a href="http://ux.stackexchange.com/" title="user experience researchers and experts">User Experience</a></li>
+                        <li><a href="http://mathematica.stackexchange.com/" title="users of Mathematica">Mathematica</a></li>
+                        <li><a href="http://salesforce.stackexchange.com/" title="Salesforce administrators, implementation experts, developers and anybody in-between">Salesforce</a></li>
+                        <li><a href="http://expressionengine.stackexchange.com/" title="administrators, end users, developers and designers for ExpressionEngine® CMS">ExpressionEngine® Answers</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#technology" class="more">
+                                more (13)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://photo.stackexchange.com/" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                        <li><a href="http://scifi.stackexchange.com/" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                        <li><a href="http://graphicdesign.stackexchange.com/" title="Graphic Design professionals, students, and enthusiasts">Graphic Design</a></li>
+                        <li><a href="http://movies.stackexchange.com/" title="movie and tv enthusiasts">Movies &amp; TV</a></li>
+                        <li><a href="http://cooking.stackexchange.com/" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                        <li><a href="http://diy.stackexchange.com/" title="contractors and serious DIYers">Home Improvement</a></li>
+                        <li><a href="http://money.stackexchange.com/" title="people who want to be financially literate">Personal Finance &amp; Money</a></li>
+                        <li><a href="http://academia.stackexchange.com/" title="academics and those enrolled in higher education">Academia</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#lifearts" class="more">
+                                more (9)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://english.stackexchange.com/" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                        <li><a href="http://skeptics.stackexchange.com/" title="scientific skepticism">Skeptics</a></li>
+                        <li><a href="http://judaism.stackexchange.com/" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                        <li><a href="http://travel.stackexchange.com/" title="road warriors and seasoned travelers">Travel</a></li>
+                        <li><a href="http://christianity.stackexchange.com/" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                        <li><a href="http://gaming.stackexchange.com/" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+                        <li><a href="http://bicycles.stackexchange.com/" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+                        <li><a href="http://rpg.stackexchange.com/" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#culturerecreation" class="more">
+                                more (21)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://math.stackexchange.com/" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                        <li><a href="http://stats.stackexchange.com/" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                        <li><a href="http://cstheory.stackexchange.com/" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                        <li><a href="http://physics.stackexchange.com/" title="active researchers, academics and students of physics">Physics</a></li>
+                        <li><a href="http://mathoverflow.net/" title="professional mathematicians">MathOverflow</a></li>
+                        <li><a href="http://chemistry.stackexchange.com/" title="scientists, academics, teachers and students">Chemistry</a></li>
+                        <li><a href="http://biology.stackexchange.com/" title="biology researchers, academics, and students">Biology</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#science" class="more">
+                                more (5)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://stackapps.com/" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                        <li><a href="http://meta.stackexchange.com/" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Exchange</a></li>
+                        <li><a href="http://area51.stackexchange.com/" title="proposing new sites in the Stack Exchange network">Area 51</a></li>
+                        <li><a href="http://careers.stackoverflow.com/">Stack Overflow Careers</a></li>
+                    
+                </ol>
+            </td>
+    </tr>
+</tbody></table>
+                </div>
+            </div>
+
+            <div id="copyright">
+                site design / logo © 2015 Stack Exchange Inc; user contributions licensed under <a href="http://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc by-sa 3.0</a> 
+                with <a href="http://blog.stackoverflow.com/2009/06/attribution-required/" rel="license">attribution required</a>
+            </div>
+            <div id="svnrev">
+                rev 2015.12.1.3044
+            </div>
+            
+        </div>
+    </div>
+    <noscript>
+        <div id="noscript-warning">Stack Overflow works best with JavaScript enabled<img src="http://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"></div>
+    </noscript>
+<script>var p = "http", d = "static"; if (document.location.protocol == "https:") { p += "s"; d = "engine"; } var z = document.createElement("script"); z.type = "text/javascript"; z.async = true; z.src = p + "://" + d + ".adzerk.net/ados.js"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(z, s);</script>
+<script>
+    var ados = ados || {};
+    ados.run = ados.run || [];
+    ados.run.push(function () { ados_setKeywords('java,debugging,stack-trace');; ados_load(); });         
+</script>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-5620270-1');
+                        ga('set', 'dimension2', '|java|debugging|stack-trace|');         ga('send', 'pageview');
+        var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+        (function () {
+            var ssl='https:'==document.location.protocol,
+                s=document.getElementsByTagName('script')[0],
+                qc=document.createElement('script');
+            qc.async=true;
+            qc.src=(ssl?'https://secure':'http://edge')+'.quantserve.com/quant.js';
+            s.parentNode.insertBefore(qc, s);
+            var sc=document.createElement('script');
+            sc.async=true;
+            sc.src=(ssl?'https://sb':'http://b') + '.scorecardresearch.com/beacon.js';
+            s.parentNode.insertBefore(sc, s);
+        })();
+        _comscore.push({ c1: "2", c2: "17440561" });
+        _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+    </script>
+            
+    
+</body></html>

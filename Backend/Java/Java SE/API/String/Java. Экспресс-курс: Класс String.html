@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Java. Экспресс-курс: Класс String</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Le styles -->
+<link href="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20String_files/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+  body {
+    padding-top: 60px;
+    padding-bottom: 10px;
+  }
+  .sidebar-nav {
+    padding: 9px 0;
+  }
+</style>
+	
+<link href="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20String_files/bootstrap-responsive.css" rel="stylesheet">
+	
+   <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    
+<link rel="icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">   
+</head>
+
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        
+        <div class="nav-collapse collapse">
+          <p class="navbar-text pull-right">
+			<a data-toggle="modal" href="#myModal" class="navbar-link">Гость</a>
+          </p>
+          <ul class="nav">
+            
+          </ul>
+        </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+        <p>
+		<a href="http://developer.alexanderklimov.ru/"><img src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20String_files/header.png" alt="Сайт разработчика Александр Климова" border="0"></a>
+		</p>
+    
+    </div><!--/span-->
+    
+	<div class="span5">
+        <p style="color:green; font-style: italic; font-size: small;">
+		/* Моя кошка замечательно разбирается в программировании. Стоит мне объяснить проблему ей - и все становится ясно. */<br>John Robbins, Debugging Applications, Microsoft Press, 2000
+		</p>
+    </div><!--/span-->
+    
+	<div class="span2">
+        <p>
+		<a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20String_files/kot-2-rss-100.png" border="0"></a>
+		</p>
+    </div><!--/span-->
+</div><!--/row-->    
+<div class="clearfix"></div>
+    
+<noindex><!--Rating@Mail.ru COUNTER--><script async="" src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20String_files/cbgapi.loaded_1"></script><script async="" src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20String_files/cbgapi.loaded_0"></script><script gapi_processed="true" src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20String_files/plusone.js" async="" type="text/javascript"></script><script language="JavaScript" type="text/javascript"><!--
+d=document;var a='';a+=';r='+escape(d.referrer)
+js=10//--></script><script language="JavaScript1.1" type="text/javascript"><!--
+a+=';j='+navigator.javaEnabled()
+js=11//--></script><script language="JavaScript1.2" type="text/javascript"><!--
+s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+js=12//--></script><script language="JavaScript1.3" type="text/javascript"><!--
+js=13//--></script><script language="JavaScript" type="text/javascript"><!--
+d.write('<IMG src="http://db.c7.b3.a0.top.mail.ru/counter'+
+'?id=228158;js='+js+a+';rand='+Math.random()+
+'" height="1" width="1" alt="top.mail.ru" border="0" />')
+if(11<js)d.write('<'+'!-- ')//--></script><img class="pcfykmqlcrtplekulgcu" src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20String_files/counter_002.gif" alt="top.mail.ru" height="1" width="1" border="0"><!-- <noscript><img
+src="http://db.c7.b3.a0.top.mail.ru/counter?js=na;id=228158"
+height="1" width="1" alt="top.mail.ru" border="0" /></noscript><script language="JavaScript" type="text/javascript"><!--
+if(11<js)d.write('--'+'>')//--><!--/COUNTER--></noindex><ul class="nav nav-pills" style="margin-left: 20px">
+<li class="active"><a href="http://developer.alexanderklimov.ru/android">Android</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/dotnet/">C#/Visual Basic</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/windowsphone/wp.php">Windows Phone</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/wpf/wpf.php">WPF</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/php">PHP</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/arduino">Arduino</a></li>
+</ul>
+<div class="container-fluid">
+    
+    <div class="row-fluid">
+        <!--левое меню -->
+        <div class="span2">
+            <div class="well sidebar-nav">
+            <ul class="nav nav-list nav nav-sidebar">
+<li class=""><a href="http://developer.alexanderklimov.ru/android/index.php">Главная</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/theory/">Теория</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/views.php">Palette</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/listview/">ListView</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/catshop/">Котошоп</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/animation/">Анимация</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/sqlite/">SQLite</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opengles/">OpenGL ES</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/library/">Библиотеки</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/games/">Игры</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/wear/">Wear</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/emulator/">Эмулятор</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/tips-android.php">Советы</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/articles-android.php">Статьи</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/books.php">Книги</a></li>
+<li class="active"><a href="http://developer.alexanderklimov.ru/android/java/java.php">Java. Экспресс-курс</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/design/">Дизайн</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/debug/">Отладка</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opensource.php">Open Source</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/links.php">Полезные ресурсы</a></li>
+</ul>            </div><!--/.well -->
+        </div><!--/span-->
+
+
+        <div class="span8">
+
+        <div class="row-fluid">
+            <div class="span12">
+            
+                        <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Читайте на здоровье!</h3>
+            </div>
+            <div class="modal-body">
+            
+              <p>Статья проплачена кошками - всемирно известными производителями котят.</p>
+
+            <p>Если статья вам понравилась, то можете <a href="http://developer.alexanderklimov.ru/donate.php">поддержать проект</a>.</p>
+			
+			            
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal">Закрыть</button>
+              
+            </div>
+          </div>
+<h1 class="text-warning">Класс String</h1>
+
+<p>
+<a href="#methods">Методы</a><br>
+<a href="#randomstring">Генерируем случайную строку</a><br>
+<a href="#equals">Сравнение строк: equals() или ==?</a><br>
+</p>
+
+<p>Класс <b>String</b> очень часто используется программистами, поэтому его следует изучить очень хорошо.</p>
+
+<p>Следует помнить, что объекты класса <b>String</b> являются 
+неизменяемыми. Поэтому, когда вам кажется, что вы меняете строку, то на 
+самом деле вы создаёте новую строку. В Java есть специальные классы <b>StringBuffer</b> и <b>StringBuilder</b>, который допускают изменения в строке.</p>
+
+<p>Классы <b>String</b>, <b>StringBuffer</b>, <b>StringBuilder</b> определены в пакете <b>java.lang</b> и доступны автоматически без объявления импорта. Все три класса реализуют интерфейс <b>CharSequence</b>.</p>
+
+<p>Создать строку очень просто. Например, можно так:</p>
+
+<pre>String aboutCat = "Кот - это звучит гордо, а если наступить на хвост, то громко";</pre>
+
+<p>Можно создать массив строк:</p>
+
+<pre>String[] cats = {"Васька", "Барсик", "Мурзик"};
+</pre>
+
+<p>Можно создать пустой объект класса <b>String</b>:</p>
+
+<pre><code class="java">
+String str = new String();
+</code></pre>
+
+<p>Можно создать строку через массив символов:</p>
+
+<pre><code class="java">
+char[] chars = { 'c', 'a', 't' };
+String str = new String(chars);
+</code></pre>
+
+<p>Есть ещё конструктор, позволяющий задать диапазон символьного 
+массива. Вам нужно указать начало диапазона и количество символов для 
+использования:</p>
+
+<pre><code class="java">
+char[] chars = {'c', 'a', 't', 'a', 'm', 'a', 'r', 'a', 'n' };
+String str = new String(chars, 0, 3);
+</code></pre>
+
+<p>Можно создать объект класса <b>String</b> из объекта классов <b>StringBuffer</b> и <b>StringBuilder</b> при помощи следующих конструкторов:</p>
+
+<pre><code class="java">
+String(StringBuffer объект_StrBuf)
+String(StringBuilder объект_StrBuild)
+</code></pre>
+
+<h2 class="text-warning">Операторы + и += для String</h2>
+
+<p>На языке Java знак плюс (+) означает конкатенацию строк (con<b>cat</b>enation), иными словами - объединение строк.</p>
+
+<pre><code class="java">
+String cat = "Кот";
+String name = "Васька";
+//складываем две строки и пробел между ними, чтобы слова не слиплись
+String fullname = cat + "" + name; // получится Кот Васька
+</code></pre>
+
+<p>Если один из операндов в выражении содержит строку, то другие 
+операнды также должны быть строками. Поэтому Java сама может привести 
+переменные к строковому представлению, даже если они не являются 
+строками.</p>
+
+<pre><code class="java">
+int digit = 4;
+String paws = " лапы";
+String aboutcat = digit + paws; // хотя мы складываем число и строку, но все равно получим строку
+</code></pre>
+
+<p>За кулисами Java за нас преобразовало число 4 в строку "4".</p>
+
+<h2 class="text-warning">Форматирование строк</h2>
+
+<p>Предположим у нас есть строковый ресурс:</p>
+
+<pre><code class="xml">
+&lt;string name="aboutcat"&gt;У кота по имени Барсик четыре лапы, один хвост. Ему 5 лет&lt;/string&gt;
+</code></pre>
+
+<p>Чтобы вывести эту строку программно в элементе TextView, можно использовать код:</p>
+
+<pre><code class="java">
+TextView tvCatsInfo = (TextView)findViewById(R.id.textView1);
+tvCatsInfo.setText(R.string.aboutcat);
+</code></pre>
+
+<p>Представьте себе, что у вас несколько котов. Можно, конечно, завести 
+для каждого кота свою строку. Но ведь строки очень похожи, меняются 
+только имена и возраст. Также можно менять число лап и хвостов (что вы 
+курите?).</p>
+
+<p>В таких случаях можно применить форматирование строк. Нужно 
+определить слова, которые мы будем менять и заменить их на специальный 
+набор символов, которые начинаются с символа процента, затем идет число,
+ увеличивающееся на единицу, далее $s для строк или $d для чисел. Итак, 
+изменим наш строковой ресурс так:</p>
+
+<pre><code class="xml">
+&lt;string name="aboutcat"&gt;У кота по имени %1$s %2$s лапы, %3$s хвост. Ему %4$d лет&lt;/string&gt;
+</code></pre>
+
+<p>Внесём изменения в код:</p>
+
+<pre><code class="java">
+String strBarsik = "Барсик";
+String strPaws = "четыре";
+String strTail = "один";
+int year = 5;  
+String strCats = getResources().getString(R.string.aboutcat);  
+String strFinal = String.format(strCats, strBarsik, strPaws, strTail, year);  
+tvCatsInfo.setText(strFinal);
+</code></pre>
+
+<p>Если вас есть кот Васька и ему шесть лет, то добавляем две переменные и форматируем строку</p>
+
+<pre><code class="java">
+String strVaska = "Васька";
+year = 6;
+String strFinal = String.format(strCats, strVaska, strPaws, strTail, year);  
+tvCatsInfo.setText(strFinal);
+</code></pre>
+
+<p>Здесь показан простейший пример с форматированием. Помните о нём и применяйте в нужных местах.</p>
+
+<h2 class="text-warning">Строковой ресурс</h2>
+
+<p>Строки желательно хранить в ресурсах (о ресурсах есть <a href="http://developer.alexanderklimov.ru/android/resources.php">отдельная статья</a>).</p>
+
+<p>Программно доступ к строковому ресурсу делается так:</p>
+
+<pre><code class="java">
+String catName = getResources().getString(R.string.barsik);
+</code></pre>
+
+<h2 class="text-warning">Извлечь строки из строковых массивов в ресурсах</h2>
+
+<p>Предположим, у вас есть строковый массив, определенный в файле <b>strings.xml</b> под именем <b>cats_array</b>. Тогда получить доступ к строкам из ресурсов можно так:</p>
+
+<pre><code class="java">
+Resources res = getResources();
+String[] cats = res.getStringArray(R.array.cats_array);
+</code></pre>
+
+<h2 class="text-warning" id="methods">Методы</h2>
+
+<h3 class="text-warning" id="charat">public char charAt (int index)</h3>
+
+<p>Возвращает символ с указанным смещением в этой строке. Отсчёт идет от
+ 0. Не надо использовать отрицательные и несуществующие значения, будьте
+ серьёзнее. Для извлечения нескольких символов используйте <a href="#getchars">getChars()</a>.</p>
+
+<pre><code class="java">
+String testString = "Котёнок";
+char myChar = testString.charAt(2);
+tv.setText(Character.toString(myChar)); // выводит третий символ - т
+</code></pre>
+
+<h3 class="text-warning">public int codePointAt(int index)</h3>
+
+<p>Возвращает Unicode-символ в заданном индексе</p>
+
+<pre><code class="java">
+String testString = "Котёнок";
+int myChar = testString.codePointAt(3);
+tv.setText(String.valueOf(myChar)); // возвращает 1105
+</code></pre>
+
+<h3 class="text-warning">public int codePointBefore(int index)</h3>
+
+<p>Возвращает Unicode-символ, который предшествует данному индексу</p>
+
+<pre><code class="java">
+String testString = "Котёнок";
+int myChar = testString.codePointBefore(4);
+tv.setText(String.valueOf(myChar)); // возвращает 1105
+</code></pre>
+
+<h3 class="text-warning">public int codePointCount(int start, int end)</h3>
+
+<p>Вычисляет количество Unicode-символов между позициями <b>start</b> и <b>end</b></p>
+
+<pre><code class="java">
+String testString = "Котёнок";
+int myChar = testString.codePointCount(0, 3);
+tv.setText(String.valueOf(myChar)); // возвращает 3
+</code></pre>
+
+<h3 class="text-warning">public int compareTo(String string)</h3>
+
+<p>Сравнивает указанную строку, используя значения символов Unicode и 
+вычисляет, какая из строк меньше, равна или больше следующей. Может 
+использоваться при сортировке. Регистр учитывается. Если строки 
+совпадают, то возвращается 0, если меньше нуля, то вызывающая строка 
+меньше строки <b>string</b>, если больше нуля, то вызывающая строка больше строки <b>string</b>. Слова с большим регистром стоят выше слова с нижним регистром.</p>
+
+<pre><code class="java">
+String testString = "Котёнок";
+
+if (testString.compareTo("котёнок") == 0) {
+    tvInfo.setText("Строки равны");
+} else {
+    tvInfo.setText("Строки не равны. Возвращено"
+            + testString.compareTo("котёнок")); // возвращает -32
+}
+</code></pre>
+
+<p>Отсортируем массив строк через пузырьковую сортировку.</p>
+
+<pre><code class="java">
+String[] poem = { "Мы", "везём", "с", "собой", "кота" };
+
+for (int j = 0; j &lt; poem.length; j++) {
+	for (int i = j + 1; i &lt; poem.length; i++) {
+		if (poem[i].compareTo(poem[j]) &lt; 0) {
+			String temp = poem[j];
+			poem[j] = poem[i];
+			poem[i] = temp;
+		}
+	}
+	System.out.println(poem[j]);
+}
+</code></pre>
+
+<p>В результате мы получим:</p>
+
+<pre><code>
+Мы
+везём
+кота
+с
+собой
+</code></pre>
+
+<p>Как видите, от <del>перемены мест слагаемых сумма</del> сортировки коты не меняются.</p>
+
+<h3 class="text-warning">public int compareToIgnoreCase (String string)</h3>
+
+<p>Сравнивает указанную строку, используя значения символов Unicode, без учета регистра.</p>
+
+<pre><code class="java">
+String testString = "Котёнок";
+
+if (testString.compareToIgnoreCase("котёнок") == 0) {
+    tv.setText("Строки равны"); // слова одинаковы, если не учитывать регистр
+} else {
+    tv.setText("Строки не равны. Возвращено"
+            + testString.compareTo("котёнок"));
+}
+</code></pre>
+
+<h3 class="text-warning">public String concat (String string)</h3>
+
+<p>Объединяет строку с указанной строкой. Возвращается новая строка, 
+которая содержит объединение двух строк. Обратите внимание, что само имя
+ метода содержит кота!</p>
+
+<pre><code class="java">
+String testString = "Сук";
+String newString = testString.concat("кот");
+tv.setText(newString);
+</code></pre>
+
+<p>Метод выполняет ту же функцию, что и оператор <b>+</b> и можно было написать <code>Сук + кот</code>. Но настоящий кошатник будет использовать "кошачий" метод.</p>
+
+<h3 class="text-warning">public boolean contains (CharSequence cs)</h3>
+
+<p>Определяет, содержит ли строка последовательность символов в CharSequence</p>
+
+<pre><code class="java">
+String testString = "котёнок";
+
+if(testString.contains("кот")){
+    infoTextView.setText("В слове котёнок содержится слово кот!");
+}
+</code></pre>
+
+<h3 class="text-warning">public boolean contentEquals(CharSequence cs)</h3>
+
+<p>Сравнивает <b>CharSequence</b> с этой строкой.</p>
+
+<pre><code class="java">
+
+</code></pre>
+
+<h3 class="text-warning">public boolean contentEquals(StringBuffer strbuf)</h3>
+
+<p>Сравнивает StringBuffer с этой строкой</p>
+
+<pre><code class="java">
+
+</code></pre>
+
+<h3 class="text-warning">public static String copyValueOf (char[] data, int start, int length)</h3>
+
+<p>Создаёт новую строку, содержащую указанные символы из массива Data 
+начиная с позиции start (нумерация начинается с нуля) длинной length.</p>
+
+<pre><code class="java">
+
+</code></pre>
+
+<h3 class="text-warning">public static String copyValueOf(char[] data)</h3>
+
+<p>Создаёт новую строку, содержащую символы из указанного массива. 
+Изменение массива после создания строки не изменяет созданную строку.</p>
+
+<pre><code class="java">
+
+</code></pre>
+
+<h3 class="text-warning">public boolean endsWith(String suffix)</h3>
+
+<p>Проверяет, заканчивается ли строка символами <i>suffix</i>.</p>
+
+<pre><code class="java">
+String str1 = "Суккот";
+
+if(str1.endsWith("кот"))
+    infoTextView.setText("Слово заканчивается на котике");
+else
+    infoTextView.setText("Плохое слово. Нет смысла его использовать");
+</code></pre>
+
+<h3 class="text-warning">public boolean equals (Object string)</h3>
+
+<p>Сравнивает указанный объект и строку и возвращает <i>true</i>, если сравниваемые строки равны, т.е. содержит те же символы и в том же порядке с учётом регистра.</p>
+
+<pre><code class="java">
+String str1 = "Кот";
+String str2 = "Кошка";
+
+if(str1.equals(str2))
+    infoTextView.setText("Строки совпадают");
+else
+    infoTextView.setText("Строки не совпадают");    
+</code></pre>
+
+<p>Не путать метод с оператором <b>==</b>, который сравнивает две ссылки на объекты и определяет, ссылаются ли они на один и тот же экземпляр. Смотри пункт <a href="#equals">Сравнение строк: equals() или ==?</a></p>
+
+<h3 class="text-warning">public boolean equalsIgnoreCase(String string)</h3>
+
+<p>Сравнивает указанную строку с исходной строкой без учёта регистра и 
+возвращает true, если они равны. Диапазон A-Z считается равным диапазону
+ a-z.</p>
+
+<pre><code class="java">
+String str1 = "Кот";
+String str2 = "кот";
+
+if(str1.equalsIgnoreCase(str2))
+    infoTextView.setText("Строки совпадают");
+else
+    infoTextView.setText("Строки не совпадают");
+</code></pre>
+
+<h3 class="text-warning">public static String format(Locale locale, String format, Object... args)</h3>
+
+<p>Возвращает отформатированную строку, используя прилагаемый формат и 
+аргументы, локализованных в данной области. Например дату или время</p>
+
+<pre><code class="java">
+// выводим число типа float с двумя знаками после запятой
+String.format("%.2f", floatValue);
+</code></pre>
+
+<p>Склеиваем два слова, которые выводятся с новой строки. При этом второе слово выводится в верхнем регистре.</p>
+<pre><code class="java">
+String str1 = "Кот";
+String str2 = "васька";
+String strResult = String.format("%s\n%S", str1, str2);
+// выводим результат в TextView
+infoTextView.setText(strResult);
+</code></pre>
+
+<p>Конвертируем число в восьмеричную систему.</p>
+
+<pre><code class="java">
+String str1 = "8";
+int inInt = Integer.parseInt(str1); // конвертируем строку в число
+String strResult = String.format("(Восьмеричное значение): %o\n", inInt);
+
+infoTextView.setText(strResult);
+</code></pre>
+
+<p>По аналогии выводим в шестнадцатеричной системе</p>
+
+<pre><code class="java">
+String str1 = "255";
+int inInt = Integer.parseInt(str1);
+String strResult = String.format("(Шестнадцатеричное значение): %x\n", inInt);
+// число 255 будет выведено как ff
+infoTextView.setText(strResult);
+</code></pre>
+
+<p>Для верхнего регистра используйте <b>%X</b>, тогда вместо <b>ff</b> будет <b>FF</b>.</p>
+
+<p>Для десятичной системы используйте <b>%d</b>.</p>
+
+<p>Дату тоже можно выводить по разному.</p>
+
+<pre><code class="java">
+Date now = new Date();
+Locale locale = Locale.getDefault();
+infoTextView.setText(
+		String.format(locale, "%tD\n", now) + // (MM/DD/YY)
+		String.format(locale, "%tF\n", now) + // (YYYY-MM-DD)
+		String.format(locale, "%tr\n", now) + // Full 12-hour time
+		String.format(locale, "%tz\n", now) + // Time zone GMT offset
+		String.format(locale, "%tZ\n", now)); // Localized time zone bbreviation
+</code></pre>
+
+
+<h3 class="text-warning">public byte[] getBytes(String charsetName)</h3>
+
+<p>Возвращает отформатированную строку, используя прилагаемый формат.</p>
+
+<pre><code class="java">
+
+</code></pre>
+
+<h3 class="text-warning">public void getBytes(int start, int end, byte[] data, int index) и другие перегруженные версии</h3>
+
+<p>Метод сохраняет символы в массив байтов, альтернатива методу <a href="#getchars%22">getChars()</a>.
+ Часто используется при экспорте строк из различных источников, где 
+используются другие символы Unicode. Например, Java по умолчанию 
+работает с 16-битовые символы Unicode, а в интернете часто строки 
+используют 8-битовый код Unicode, ASCII и др.</p>
+
+<pre><code class="java">
+
+</code></pre>
+
+<h3 class="text-warning" id="getchars">public void getChars(int start, int end, char[] buffer, int index)</h3>
+
+<p>Метод для извлечения нескольких символов из строки. Вам надо указать 
+индекс начала подстроки (start), индекс символа, следующего за концом 
+извлекаемой подстроки (end). Массив, который принимает выделенные 
+символы находится в параметре <b>buffer</b>. Индекс в массиве, начиная с которого будет записываться подстрока, передаётся в параметре <b>index</b>. Следите, чтобы массив был достаточного размера, чтобы в нём поместились все символы указанной подстроки.</p>
+
+<pre><code class="java">
+String unusualCat = "Котёнок по имени Гав";
+int start = 5;
+int end = 12;
+char[] buf = new char[end - start];
+unusualCat.getChars(start, end, buf, 0);
+infoTextView.setText(new String(buf));
+</code></pre>
+
+<h3 class="text-warning">public int hashCode()</h3>
+
+<p>Возвращает целое число — хэш-код для данного объекта.</p>
+
+<pre><code class="java">
+
+</code></pre>
+
+<h3 class="text-warning">public int indexOf(int c)</h3>
+
+<p>Возвращает номер первой встречной позиции с указанным индексом <b>с</b>.</p>
+
+<pre><code class="java">
+String testString = "котёнок";
+// символ ё встречается в четвёртой позиции (index = 3)
+infoTextView.setText(String.valueOf(testString.indexOf("ё")));
+</code></pre>
+
+<h3 class="text-warning">public int indexOf (int c, int start)</h3>
+
+<p>Ищет индекс <b>с</b>, начиная с позиции <b>start</b></p>
+
+<pre><code class="java">
+String testString = "котёнок";
+// вернёт -1, так как после 5 символа буквы ё нет
+infoTextView.setText(String.valueOf(testString.indexOf("ё", 4)));
+</code></pre>
+
+<h3 class="text-warning">public int indexOf (String string)</h3>
+
+<p>Ищет цепочку символов <b>subString</b></p>
+
+<pre><code class="java">
+String testString = "У окошка";
+infoTextView.setText(String.valueOf(testString.indexOf("кошка")));
+</code></pre>
+
+<h3 class="text-warning">public int indexOf (String subString, int start)</h3>
+
+<p>Ищет цепочку символов <b>subString</b>, начиная с позиции <b>start</b></p>
+
+<pre><code class="java">
+String testString = "У окошка";
+infoTextView.setText(String.valueOf(testString.indexOf("кошка", 2)));
+</code></pre>
+
+
+<h3 class="text-warning">public String intern ()</h3>
+
+<p>«Xэширует» строку</p>
+
+<pre><code class="java">
+
+</code></pre>
+
+<h3 class="text-warning">public boolean isEmpty ()</h3>
+
+<p>Проверяет, является ли строка пустой</p>
+
+<pre><code class="java">
+if(catname.isEmpty()) {
+    // здесь ваш код
+}
+</code></pre>
+
+<p>Данный метод появился в API 9 (Android 2.1). Для старых устройств используйте <b>String.length() == 0</b></p>
+
+<h3 class="text-warning">public int lastIndexOf (String string) и другие перегруженные версии</h3>
+
+<p>Возвращает номер последней встречной позиции с указанным индексом. Например, получить имя файла без расширения можно так:</p>
+
+<pre><code class="java">
+filename.toString().substring(0, filename.getString().lastIndexOf("."));
+</code></pre>
+
+<p>В этом примере мы получаем позицию последней точки и получаем подстроку до неё.</p>
+
+<h3 class="text-warning">public int length()</h3>
+
+<p>Возвращает длину строки</p>
+
+<pre><code class="java">
+String testString = "котёнок";
+
+infoTextView.setText(String.valueOf(testString.length())); // возвращает 7 (семь символов)
+</code></pre>
+
+<h3 class="text-warning">public boolean matches(String regularExpression)</h3>
+
+<p>Проверяет, соответствует ли строка регулярным выражениям.</p>
+
+<pre><code class="java">
+
+</code></pre>
+
+<h3 class="text-warning">public int offsetByCodePoints (int index, int codePointOffset)</h3>
+
+<p>Возвращает позицию, расположенную на расстоянии codePointOffset после начальной позиции, заданной параметром index</p>
+
+<pre><code class="java">
+
+</code></pre>
+
+<h3 class="text-warning">public boolean regionMatches (int thisStart, String string, int start, int length)</h3>
+
+<p>Метод сравнивает указанную часть строки с другой частью строки. Нужно
+ задать индекс начала диапазон строки вызывающего объекта класса <b>String</b>. Строка для сравнивания передаётся в параметре <b>string</b>. Индекс символа, начиная с которого нужно выполнять сравнение передаётся в параметре <b>start</b>, а длина сравниваемой подстроки в параметре <b>length</b>.</p>
+
+<pre><code class="java">
+
+</code></pre>
+
+<h3 class="text-warning">public boolean regionMatches (boolean ignoreCase, int thisStart, String string, int start, int length)</h3>
+
+<p>Перегруженная версия. Метод сравнивает указанную часть строки с другой частью строки, игнорируя регистр.</p>
+
+<pre><code class="java">
+
+</code></pre>
+
+<h3 class="text-warning">public String replace(CharSequence target, CharSequence replacement) и другие перегруженные версии</h3>
+
+<p>Меняет символ или последовательность символов <b>target</b> на <b>replacement</b></p>
+
+<pre><code class="java">
+String testString = "кит";
+// меняем и на о
+infoTextView.setText(testString.replace("и", "о")); // возвращается кот
+</code></pre>
+
+<h3 class="text-warning">public String replaceAll (String regularExpression, String replacement)</h3>
+
+<p></p>
+
+<pre><code class="java">
+
+</code></pre>
+
+<h3 class="text-warning">public String replaceFirst (String regularExpression, String replacement)</h3>
+
+<p>Удаляет первые символы при помощи регулярного выражения.</p>
+
+<p>Например, если нужно удалить нули в начале чисел 001, 007, 000024, то можно использовать такой вызов.</p>
+
+<pre><code class="java">
+String s = "001234-cat";
+String s = s.replaceFirst ("^0*", ""); // останется 1234-cat
+</code></pre>
+
+<h3 class="text-warning">public String[] split (String regularExpression) и другие перегруженные версии</h3>
+
+<p>Разбивает строку на массив из слов. Например, есть строка <b>Васька Рыжик Мурзик Барсик</b> и мы хотим получить массив имён котов:</p>
+
+<pre><code class="java">
+String catnames = "Васька Рыжик Мурзик Барсик";  
+String aCats[] = catnames.split(" ");  // по пробелу
+</code></pre>
+
+<p>Получим:</p>
+
+<p>
+aCats[0] = Васька<br>
+aCats[1] = Рыжик<br>
+aCats[2] = Мурзик<br>
+aCats[3] = Барсик
+</p>
+
+<h3 class="text-warning">public boolean startsWith(String prefix)</h3>
+
+<p>Проверяет, начинается ли строка символами <i>prefix</i> с начала строки</p>
+
+<pre><code class="java">
+String str1 = "котлета";
+
+if(str1.startsWith("кот"))
+    infoTextView.setText("Слово содержит кота");
+else
+    infoTextView.setText("Плохое слово. Нет смысла его использовать");
+</code></pre>
+
+<h3 class="text-warning">public boolean startsWith(String prefix, int start)</h3>
+
+<p>Проверяет, начинается ли заданная строка символами <i>prefix</i> с указанной позиции.</p>
+
+<pre><code class="java">
+String str1 = "Суккот";
+
+if(str1.startsWith("кот", 3))
+    infoTextView.setText("Слово содержит кота");
+else
+    infoTextView.setText("Плохое слово. Нет смысла его использовать");
+</code></pre>
+
+<h3 class="text-warning">public CharSequence subSequence (int start, int end)</h3>
+
+<p>Аналогичен методу <a href="#substring">substring()</a>, но может использоваться для <b>CharSequence</b>.</p>
+
+<pre><code class="java">
+
+</code></pre>
+
+<h3 class="text-warning" id="substring">public String substring(int start) и другие перегруженные версии.</h3>
+
+<p>Создаёт новую последовательность/строку с символами из данной строки начиная с позиции <b>start</b> до конца строки/заканчивая символом с позиции <b>end</b>. Новая строка содержит символы от <b>start</b> до <b>end</b> - 1, поэтому берём на один символ больше.</p>
+
+<pre><code class="java">
+String testString = "скотина";
+
+infoTextView.setText(testString.substring(1, 4)); // возвращается кот
+</code></pre>
+
+<h3 class="text-warning">public char[] toCharArray()</h3>
+
+<p>Копирует символы в этой строке в массив символов. Тот же результат можно получить через метод <a href="#getchars">getChars()</a>. Документация не рекомендует использовать данный метод, предлагая метод <a href="#charat">charAt()</a>.</p>
+
+<pre><code class="java">
+String unusualCat = "Котёнок по имени Гав";
+
+char[] yomoe = unusualCat.toCharArray();
+infoTextView.setText(String.valueOf(yomoe[3]));
+</code></pre>
+
+<h3 class="text-warning">public String toLowerCase() и другие перегруженные версии</h3>
+
+<p>Преобразовывает строку в нижний регистр. Преобразованием управляет заданный по умолчанию региональный язык.</p>
+
+<pre><code class="java">
+String cat = "Кот";
+String lower = cat.toLowerCase();
+infoTextView.setText(lower);
+</code></pre>
+
+<h3 class="text-warning">public String toString ()</h3>
+
+<p>Возвращает строку. Для самой строки, которая сама уже является 
+строкой, возвращать строку бессмысленно (о, как я загнул). Но на самом 
+деле этот метод очень <a href="http://developer.alexanderklimov.ru/android/java/class.php#tostring">полезен для других классов</a>.</p>
+
+<pre><code class="java">
+
+</code></pre>
+
+<h3 class="text-warning">public String toUpperCase()</h3>
+
+<p>Преобразовывает строку в верхний регистр. Преобразованием управляет заданный по умолчанию региональный язык.</p>
+
+<pre><code class="java">
+String cat = "Кот";
+String upper = cat.toUpperCase();
+infoTextView.setText(upper);
+</code></pre>
+
+<h3 class="text-warning">public String trim()</h3>
+
+<p>Удаляет пробелы в начале и в конце строки.</p>
+
+<pre><code class="java">
+String str = "   Hello Kitty  ".trim();
+infoTextView.setText(str);
+</code></pre>
+
+<h3 class="text-warning">public static String valueOf(long value) и другие перегруженные версии</h3>
+
+<p>Конвертирует содержимое (числа, объекты, символы, массивы символов) в строку.</p>
+
+<pre><code class="java">
+int catAge = 7; // это число
+
+infoTextView.setText(String.valueOf(catAge)); // преобразовано в строку
+</code></pre>
+
+<h2 class="text-warning" id="randomstring">Генерируем случайную строку</h2>
+
+<p>Допустим, нам нужна случайная строка из заданных символов.</p>
+
+<pre><code class="code java">
+private static final String mCHAR = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+private static final int STR_LENGTH = 9; // длина генерируемой строки
+Random random = new Random();
+    
+public void onClick(View view) {
+    TextView infoTextView = (TextView) findViewById(R.id.textViewInfo);
+    infoTextView.setText(createRandomString());
+}
+
+public String createRandomString() {
+    StringBuilder builder = new StringBuilder();
+    for (int i = 0; i &lt; STR_LENGTH; i++) {
+        int number = random.nextInt(mCHAR.length());
+        char ch = mCHAR.charAt(number);
+        builder.append(ch);
+    }
+    return builder.toString();
+}
+</code></pre>
+
+<h2 class="text-warning" id="equals">Сравнение строк: equals() или ==?</h2>
+
+<p>Рассмотрим пример.</p>
+
+<pre><code class="java">
+String str1 = "Мурзик";
+String str2 = new String(str1);
+boolean isCat = str1 == str2;
+
+infoTextView.setText(str1 + " == " + str2 + " -&gt; " + isCat);
+</code></pre>
+
+<p>Хотя в двух переменных содержится одно и то же слово, мы имеем дело с двумя разными объектами и оператор <b>==</b> вернёт <i>false</i>.</p> 
+
+<p>Однажды, когда деревья были большими, мне понадобилось сравнить две 
+строки из разных источников. Хотя строки выглядели совершенно одинаково,
+ сравнение при помощи оператора ==  возвращало false и путало мне все 
+карты. И только потом я узнал, что нужно использовать метод <b>equals()</b>.
+ Строка в Java - это отдельный объект, который может не совпадать с 
+другим объектом, хотя на экране результат выводимой строки может 
+выглядеть одинаково. Просто Java в случае с логическим оператором == (а 
+также !=) сравнивает ссылки на объекты (при работе с примитивами такой 
+проблемы нет):</p>
+
+<pre><code class="java">
+String s1 = "hello";
+String s2 = "hello";
+String s3 = s1;
+String s4 = "h" + "e" + "l" + "l" + "o";
+String s5 = new String("hello");
+String s6 = new String(new char[]{'h', 'e', 'l', 'l', 'o'});
+
+infoTextView.setText(s1 + " == " + s2 + ": " + (s1 == s2));
+// попробуйте и другие варианты
+// infoTextView.setText(s1 + " equals " + s2 + ": " + (s1.equals(s2)));
+// infoTextView.setText(s1 + " == " + s3 + ": " + (s1 == s3));
+// infoTextView.setText(s1 + " equals " + s3 + ": " + (s1.equals(s3)));
+// infoTextView.setText(s1 + " == " + s4 + ": " + (s1 == s4));
+// infoTextView.setText(s1 + " equals " + s4 + ": " + (s1.equals(s4)));
+// infoTextView.setText(s1 + " == " + s5 + ": " + (s1 == s5)); // false
+// infoTextView.setText(s1 + " equals " + s5 + ": " + (s1.equals(s5)));
+// infoTextView.setText(s1 + " == " + s6 + ": " + (s1 == s6)); // false
+// infoTextView.setText(s1 + " equals " + s6 + ": " + (s1.equals(s6)));
+</code></pre>
+
+<h5 class="text-error">Реклама</h5>
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-4224968932772057";
+/* Полноразмерный баннер 728х90 */
+google_ad_slot = "4077523505";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript" src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20String_files/show_ads.js">
+</script>
+
+</div><!--/span-->
+        </div><!--/row-->    
+          
+        </div><!--/span-->
+        
+        <div class="span2">
+            <div class="well sidebar-nav">
+    <h4><span class="label label-info">Реклама</span></h4>
+    <script type="text/javascript">
+    google_ad_client = "ca-pub-4224968932772057";
+    google_ad_slot = "8217353101";
+    google_ad_width = 160;
+    google_ad_height = 600;
+</script>
+<!-- 160 x 600 -->
+<script type="text/javascript" src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20String_files/show_ads.js">
+</script>
+</div><!--/.well -->        </div><!--/span-->
+        
+      </div><!--/row-->
+      
+    
+      <hr>
+      
+	  	  <div class="row-fluid">
+	  <div class="span12">
+	  <img src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20String_files/cat_bottom.png" align="right">
+</div><!--/span-->
+        </div><!--/row-->
+
+<footer>
+    <noindex>
+    <span style="float:left; margin:3px 1px 1px 2px;">
+	    © 2015 <a href="mailto:rusproject@mail.ru">А.Климов</a>
+		
+		<!-- Place this code where you want the badge to render. -->
+<a href="http://plus.google.com/109061106977829925124?prsrc=3" rel="publisher" style="text-decoration:none;">
+<img src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20String_files/gplus-16.png" alt="Google+" style="border:0;width:16px;height:16px;"></a>
+
+    </span>
+	
+		<span style="float: right; margin:3px 5px 1px 1px; font-size:22px;">
+        <!--Rating@Mail.ru LOGO--><a target="_top" href="http://top.mail.ru/jump?from=228158"><img class="pcfykmqlcrtplekulgcu" src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20String_files/counter.gif" alt="Рейтинг@Mail.ru" height="31" width="88" border="0"></a><!--/LOGO-->
+	</span>
+    
+    <span style="float: right; margin:2px 70px 1px 1px; font-size:22px;">
+        <a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20String_files/VJcl.gif" style="border:0" alt="" height="26" width="88"></a>
+	</span>
+	
+<div style="float: right; margin:2px 70px 1px 1px;">
+<!-- Place this tag where you want the +1 button to render. -->
+<div id="___plusone_0" style="position: absolute; width: 450px; left: -10000px;"><iframe data-gapiattached="true" class="pcfykmqlcrtplekulgcu" src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20String_files/fastbutton.html" name="I0_1449071606533" id="I0_1449071606533" vspace="0" tabindex="0" style="position:absolute;top:-10000px;width:450px;margin:0px;border-style:none" scrolling="no" marginwidth="0" marginheight="0" hspace="0" frameborder="0" width="100%"></iframe></div><div data-gapistub="true" data-onload="true" data-gapiscan="true" class="g-plusone" data-size="small" data-annotation="inline" data-width="300" data-align="right"></div>
+
+</div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'ru'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+	
+
+    </noindex>
+</footer>
+
+</div><!--/.fluid-container-->
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20String_files/jquery.js"></script>
+    <script src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20String_files/bootstrap-transition.js"></script>
+    <script src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20String_files/bootstrap-alert.js"></script>
+    <script src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20String_files/bootstrap-modal.js"></script>
+    <script src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20String_files/bootstrap-dropdown.js"></script><iframe tabindex="-1" style="width: 1px; height: 1px; position: absolute; top: -100px;" src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20String_files/postmessageRelay.html" id="oauth2relay1613219915" name="oauth2relay1613219915"></iframe>
+    <script src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20String_files/bootstrap-scrollspy.js"></script>
+    <script src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20String_files/bootstrap-tab.js"></script>
+    <script src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20String_files/bootstrap-tooltip.js"></script>
+    <script src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20String_files/bootstrap-popover.js"></script>
+    <script src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20String_files/bootstrap-button.js"></script>
+    <script src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20String_files/bootstrap-collapse.js"></script>
+    <script src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20String_files/bootstrap-carousel.js"></script>
+    <script src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20String_files/bootstrap-typeahead.js"></script>
+    <script src="Java.%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%BA%D1%83%D1%80%D1%81:%20%D0%9A%D0%BB%D0%B0%D1%81%D1%81%20String_files/jquery-1.js"></script>
+
+</body></html>

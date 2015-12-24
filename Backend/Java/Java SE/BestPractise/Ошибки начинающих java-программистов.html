@@ -1,0 +1,933 @@
+<!--?xml version="1.0"?-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru"><head>
+  <title>FAQ / Java / Ошибки начинающих java-программистов [SQL.Ru]</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+  <link rel="stylesheet" type="text/css" href="%D0%9E%D1%88%D0%B8%D0%B1%D0%BA%D0%B8%20%D0%BD%D0%B0%D1%87%D0%B8%D0%BD%D0%B0%D1%8E%D1%89%D0%B8%D1%85%20java-%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%81%D1%82%D0%BE%D0%B2_files/screen.css" media="screen">
+
+    <!--[if lte IE 6]>
+            <link rel="stylesheet" type="text/css" href="/css/ie.css" media="screen" />
+            <![endif]-->
+  <!--afmeta-->
+  <script src="%D0%9E%D1%88%D0%B8%D0%B1%D0%BA%D0%B8%20%D0%BD%D0%B0%D1%87%D0%B8%D0%BD%D0%B0%D1%8E%D1%89%D0%B8%D1%85%20java-%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%81%D1%82%D0%BE%D0%B2_files/watch.js" async="" type="text/javascript"></script><script src="%D0%9E%D1%88%D0%B8%D0%B1%D0%BA%D0%B8%20%D0%BD%D0%B0%D1%87%D0%B8%D0%BD%D0%B0%D1%8E%D1%89%D0%B8%D1%85%20java-%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%81%D1%82%D0%BE%D0%B2_files/analytics.js" async=""></script><script type="text/javascript">jQuery = false;</script>
+  <!--afhead-->
+  <script type="text/javascript" src="%D0%9E%D1%88%D0%B8%D0%B1%D0%BA%D0%B8%20%D0%BD%D0%B0%D1%87%D0%B8%D0%BD%D0%B0%D1%8E%D1%89%D0%B8%D1%85%20java-%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%81%D1%82%D0%BE%D0%B2_files/utils.js"></script>
+  <meta property="og:image" content="http://www.sql.ru/images/logofb.jpg">
+	
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-265508-1', 'sql.ru');
+  ga('send', 'pageview');
+
+</script>
+</head>
+
+<body>
+  <div id="page-container">
+    <div id="header">
+      <div class="header-wrap">
+        <div id="title">
+          <a href="http://www.sql.ru/" title="На главную страницу">SQL.ru</a>
+        </div>
+		<!--begin case_isguest-->
+        <div id="login">
+          <form action="/forum/login.aspx" method="post">
+            <span class="close" onclick="hideLoginWindow(); return false;">x</span>
+
+            <div class="username">
+              <label for="login-input">Логин:</label> <input name="login" id="login-input" type="text">
+            </div>
+
+            <div class="password">
+              <label for="pass-input">Пароль:</label> <input name="password" id="pass-input" type="password">
+            </div>
+			
+			<div style="text-align:left;">
+				<input name="cbremember" id="cbremember" checked="checked" type="checkbox">
+				<label style="width:auto" for="cbremember">Запомнить меня</label>
+			</div>
+
+            <div class="submit">
+              <input value="Войти" type="submit">
+            </div>
+
+            <div class="links">
+              <a href="http://www.sql.ru/forum/register.aspx">Регистрация</a> <a href="http://www.sql.ru/forum/remindpass.aspx">Забыли пароль?</a>
+            </div>
+          </form>
+        </div>
+		<span id="login-link" onclick="showLoginWindow(); return false">Вход на сайт</span>
+		<!--end case_isguest-->
+		
+        <form action="/forum/afsearch.aspx" method="get" id="top-search" name="top-search">
+          <div>
+            <input name="s" id="search-query" value=" поиск" class="inactive" onfocus="tffocus(this)" onblur="tfblur(this)" type="text"> <input value="Найти" type="submit">
+          </div>
+        </form>
+
+        <ul id="top-menu">
+          <li class=""><a href="http://www.sql.ru/">Главная</a></li>
+
+          <li class=""><a href="http://www.sql.ru/articles">Статьи</a></li>
+
+          <li class=""><a href="http://www.sql.ru/forum">Форум</a></li>
+
+          <li class=""><a href="http://www.sql.ru/blogs">Блоги</a></li>
+
+          <li class=""><a href="http://www.sql.ru/books">Книги</a></li>
+
+          <li class=""><a href="http://www.sql.ru/subscribe">Рассылка</a></li>
+
+          <li class=""><a href="http://www.sql.ru/forum/job">Работа</a></li>
+
+          <li class=""><a href="http://www.sql.ru/search">Поиск</a></li>
+
+          <li class="selected"><a href="http://www.sql.ru/faq">FAQ</a></li>
+        </ul><div id="top-advert"><!--banner.img--></div>
+      </div>
+    </div>			<div id="middle" class="column-2">
+				<div id="middle-wrap">
+                    <div id="side-1" class="side-blocks">
+						<div class="wrap">
+
+							<!-- блок "Основные темы" -->
+							<div class="side-block art-themes">
+                                <h4>FAQ</h4>
+								<ul>
+                                    
+                                    <!--begin case_iscat_unsel-->
+									<li><a href="http://www.sql.ru/faq/faq.aspx?id=1">Microsoft SQL Server</a></li>
+                                    <!--end case_iscat_unsel-->
+                                    
+                                    
+                                    <!--begin case_iscat_unsel-->
+									<li><a href="http://www.sql.ru/faq/faq.aspx?id=10000">Oracle</a></li>
+                                    <!--end case_iscat_unsel-->
+                                    
+                                    
+                                    <!--begin case_iscat_unsel-->
+									<li><a href="http://www.sql.ru/faq/faq.aspx?id=15000">.NET Framework</a></li>
+                                    <!--end case_iscat_unsel-->
+                                    
+                                    
+                                    <!--begin case_iscat_unsel-->
+									<li><a href="http://www.sql.ru/faq/faq.aspx?id=20000">MySql</a></li>
+                                    <!--end case_iscat_unsel-->
+                                    
+                                    
+                                    <!--begin case_iscat_unsel-->
+									<li><a href="http://www.sql.ru/faq/faq.aspx?id=25000">Работа</a></li>
+                                    <!--end case_iscat_unsel-->
+                                    
+                                    
+                                    <!--begin case_iscat_unsel-->
+									<li><a href="http://www.sql.ru/faq/faq.aspx?id=30000">MS Access</a></li>
+                                    <!--end case_iscat_unsel-->
+                                    
+                                    
+                                    <!--begin case_iscat_unsel-->
+									<li><a href="http://www.sql.ru/faq/faq.aspx?id=40000">Visual Fox Pro</a></li>
+                                    <!--end case_iscat_unsel-->
+                                    
+                                    
+                                    <!--begin case_iscat_unsel-->
+									<li><a href="http://www.sql.ru/faq/faq.aspx?id=50000">Delphi</a></li>
+                                    <!--end case_iscat_unsel-->
+                                    
+                                    
+                                    <!--begin case_iscat_unsel-->
+									<li><a href="http://www.sql.ru/faq/faq.aspx?id=60000">Sybase</a></li>
+                                    <!--end case_iscat_unsel-->
+                                    
+                                    
+                                    <!--begin case_iscat_unsel-->
+									<li><a href="http://www.sql.ru/faq/faq.aspx?id=70000">PowerBuilder</a></li>
+                                    <!--end case_iscat_unsel-->
+                                    
+                                    
+                                    <!--begin case_iscat_unsel-->
+									<li><a href="http://www.sql.ru/faq/faq.aspx?id=80000">InterBase, Firebird, Yaffil</a></li>
+                                    <!--end case_iscat_unsel-->
+                                    
+                                    
+                                    <!--begin case_iscat_unsel-->
+									<li><a href="http://www.sql.ru/faq/faq.aspx?id=90000">Форум</a></li>
+                                    <!--end case_iscat_unsel-->
+                                    
+                                    
+                                    
+                                    <!--begin case_iscat_sel-->
+									<li class="selected">Java</li>
+                                    <!--end case_iscat_sel-->
+                                    
+                                    <!--begin case_iscat_unsel-->
+									<li><a href="http://www.sql.ru/faq/faq.aspx?id=105000">Microsoft&nbsp;Office</a></li>
+                                    <!--end case_iscat_unsel-->
+                                    
+                                    
+                                    <!--begin case_iscat_unsel-->
+									<li><a href="http://www.sql.ru/faq/faq.aspx?id=110000">PHP&nbsp;,&nbsp;Perl</a></li>
+                                    <!--end case_iscat_unsel-->
+                                    
+                                    
+                                    <!--begin case_iscat_unsel-->
+									<li><a href="http://www.sql.ru/faq/faq.aspx?id=115000">Informix</a></li>
+                                    <!--end case_iscat_unsel-->
+                                    
+                                    
+                                    <!--begin case_iscat_unsel-->
+									<li><a href="http://www.sql.ru/faq/faq.aspx?id=120000">Проектирование</a></li>
+                                    <!--end case_iscat_unsel-->
+                                    
+                                    
+                                    <!--begin case_iscat_unsel-->
+									<li><a href="http://www.sql.ru/faq/faq.aspx?id=125000">C++</a></li>
+                                    <!--end case_iscat_unsel-->
+                                    
+                                    
+                                    <!--begin case_iscat_unsel-->
+									<li><a href="http://www.sql.ru/faq/faq.aspx?id=130000">Visual Basic</a></li>
+                                    <!--end case_iscat_unsel-->
+                                    
+                                    
+								</ul>
+							</div>
+							<!-- конец блока "Основные темы" -->
+
+						</div>
+					</div>
+					<div id="content-section">
+						<div id="content-wrapper">
+
+							<p id="path">
+								<a href="http://www.sql.ru/faq/faq.aspx?id=100000">Java</a><br><img src="%D0%9E%D1%88%D0%B8%D0%B1%D0%BA%D0%B8%20%D0%BD%D0%B0%D1%87%D0%B8%D0%BD%D0%B0%D1%8E%D1%89%D0%B8%D1%85%20java-%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%81%D1%82%D0%BE%D0%B2_files/blank.gif" height="1" width="25"><img src="%D0%9E%D1%88%D0%B8%D0%B1%D0%BA%D0%B8%20%D0%BD%D0%B0%D1%87%D0%B8%D0%BD%D0%B0%D1%8E%D1%89%D0%B8%D1%85%20java-%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%81%D1%82%D0%BE%D0%B2_files/lvl.gif" height="10" width="10"><a href="http://www.sql.ru/faq/faq.aspx?id=565">Общие вопросы</a>
+							</p>
+
+                            <!--begin faqlist-->
+                            <h1>Ошибки начинающих java-программистов</h1>
+							<div class="article full">
+								<div class="statistics">
+									Опубликовано: 31&nbsp;окт&nbsp;05<br>
+									<span>Рейтинг:</span>
+									<div class="rating_layout" title="4,72727251052856">
+										<div style="width:58px" class="rating">
+										</div>
+									</div>
+								</div>
+								<div class="links">
+									<!-- AddThis Button BEGIN -->
+									<div class="addthis_toolbox addthis_default_style">
+										<a href="http://www.addthis.com/bookmark.php?v=250&amp;username=xa-4cb75b821386eec8" class="addthis_button_compact">Добавить в закладки и поделиться</a>
+									</div>
+									<script type="text/javascript"> 
+									var addthis_config = { 
+										services_compact: 'email, facebook, twitter, vk, livejournal, linkedin, bobrdobr, live,  delicious, digg, google, more' 
+									} 
+									</script>
+									<script type="text/javascript" src="%D0%9E%D1%88%D0%B8%D0%B1%D0%BA%D0%B8%20%D0%BD%D0%B0%D1%87%D0%B8%D0%BD%D0%B0%D1%8E%D1%89%D0%B8%D1%85%20java-%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%81%D1%82%D0%BE%D0%B2_files/addthis_widget.js"></script>
+									<!-- AddThis Button END --><br>
+									<a href="#add-comment" class="comment">Оценить и прокомменитировать</a><br>
+									<a href="#" class="print" onclick="window.print(); return false;">Распечатать статью</a><br>
+								</div>
+								<p class="info">
+									Автор: А.Грасоff™<br>
+									Прислал: А.Грасоff™
+								</p>
+								<p></p><table style="border: solid 1px #888888; margin :10px" bgcolor="#DDDDDD" border="0" cellpadding="4" cellspacing="0"><tbody><tr height="1"><td style="font: bold 11px Arial;"></td></tr><tr><td style="font : xx-small Verdana,Arial; padding : 7px" bgcolor="#EFEFFF"><br>Эта статья создана из топика <a href="http://www.sql.ru/forum/actualthread.aspx?tid=229151" target="_blank">ошибки начинающих java-программистов</a>.<br>Оригинал статьи здесь: <a href="http://users.erols.com/ziring/java-npm.html" target="_blank">http://users.erols.com/ziring/java-npm.html</a><br>Перевод: <a href="http://www.sql.ru/forum/memberinfo.aspx?mid=38707" target="_blank">Deady</a><br></td></tr></tbody></table><br><br><b>1. Имя класса отличается от имени файла, в котором он хранится.</b><br><br>Все используемые мною среды java, включая Javasoft JDKs, предполагают, <br>что исходный код класса с модификатором public хранится в файле с точно <br>таким же именем, как и имя класса, и расширением .java. Несоблюдение этого <br>соглашения может стать причиной многих проблем, которые выявятся во время <br>компиляции.<br><br>Начинающие студенты (программисты) часто забывают об этом соглашении, <br>и, например, задают имя файла в соответствии с заданием: Lab6.java.<br><br><u>Ошибочный пример: Имя файла Lab6.java</u> -<br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px"><font color="darkblue"><b>public</b></font> <font color="darkblue"><b>class</b></font> Airplane <font color="darkblue"><b>extends</b></font> Vehicle
+  Seat pilot;
+  <font color="darkblue"><b>public</b></font> Airplane() { 
+    pilot = <font color="darkblue"><b>new</b></font> Seat(); 
+  }
+}
+</pre></td></tr></tbody></table><br><u>Исправленный пример: Имя файла Airplane.java</u> -<br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px"><font color="darkblue"><b>public</b></font> <font color="darkblue"><b>class</b></font> Airplane <font color="darkblue"><b>extends</b></font> Vehicle
+  Seat pilot;
+  <font color="darkblue"><b>public</b></font> Airplane() { 
+    pilot = <font color="darkblue"><b>new</b></font> Seat(); 
+  }
+}
+</pre></td></tr></tbody></table><br>Заметьте: предполагается, что имя класса начинается с заглавной буквы. В <br>операционных системах, которые учитывают регистр символов в именах файлов, <br>могут появиться дополнительные проблемы, особенно у студентов, изучающих <br>Java под Unix, и привыкших к системе именования файлов в DOS. Класс <br>MotorVehicle должен храниться в файле MotorVehicle.java, но не в файле <br>motorvehicle.java.<br><br><br><b>2. Сравнение с помощью ==</b><br><br>В Java строки - это объекты класса java.lang.String. Оператор ==, применяемый <br>к объектам, проверяет на равенство ссылки на объекты! Иногда студенты не <br>понимают семантики оператора == и пытаются применить его для сравнения <br>строк.<br><br><u>Ошибочный пример</u>:       <br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px"><font color="#00AA00">// проверим, равен ли первый аргумент <font color="blue">"-a"</font></font>
+<font color="darkblue"><b>if</b></font> (args[<font color="darkblue"><b>0</b></font>] == <font color="blue">"-a"</font>) {
+    optionsAll = true;
+}
+</pre></td></tr></tbody></table><br>Правильный способ сравнения 2х строк на равенство - это использование метода<br> equals() класса java.lang.String. Он возвращает true, если строки одинаковой <br>длины и состоят из одних и тех же символов. (Прим. перев.: вообще-то это не <br>гарантирует равенство. На самом деле, equals проверяет, равны ли посимвольно <br>2 строки)<br><br><u>Исправленный пример</u>:<br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px"><font color="#00AA00">//  проверим, равен ли первый аргумент <font color="blue">"-a"</font></font>
+<font color="darkblue"><b>if</b></font> (<font color="blue">"-a"</font>.equals(args[<font color="darkblue"><b>0</b></font>])) {
+    optionsAll = true;
+}
+</pre></td></tr></tbody></table><br>Эта ошибка - дурацкая, потому что на самом деле Java код получается <br>синтаксически правильным, а в итоге работает не так как нужно. Некоторые <br>студенты также пытаются применять операторы сравнения <b>&gt;</b> и <b>&lt;=</b>, вместо метода compareTo() класса java.lang.String. Эту ошибку обнаружить <br>проще, потому что она вызывает ошибки на этапе компиляции.<br><br><br><b>3. Забыл проинициализировать объекты, являющиеся элементами массива.</b><br><br>В Java массив объектов - это на самом деле массив ссылок на объекты. Создание<br> массива - это просто создание набора ссылок, ни на что не указывающих (то <br>есть равных <b>null</b>). Чтобы на самом деле создать "полноценный" массив <br>объектов, необходимо проинициализировать каждый элемент массива. Многие <br>студенты не понимают этого; они считают, что, создавая массив объектов, они <br>автоматически создают сами объекты. (В большинстве случаев, студенты <br>приносят эту концепцию из C++, где создание массива объектов приводит к <br>созданию самих объектов путем вызова их конструктора по умолчанию).<br><br>В примере ниже, студент хочет создать 3 объекта класса StringBuffer. Код <br>будет откомпилирован без ошибок, но в последней строке произойдет <br>исключение NullPointerException, где происходит обращение к несуществующему <br>объекту.<br><br><u>Ошибочный пример</u>:<br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px"><font color="#00AA00">// Создаем массив из StringBuffer</font>
+StringBuffer [] myTempBuffers;
+myTempBuffers = <font color="darkblue"><b>new</b></font> StringBuffer[<font color="darkblue"><b>3</b></font>];
+myTempBuffers[<font color="darkblue"><b>0</b></font>].add(data);
+</pre></td></tr></tbody></table><br>Чтобы не допускать эту ошибку, необходимо не забывать проинициализировать <br>элементы массива.<br><br><u>Исправленный пример</u>:<br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px"><font color="#00AA00">// Создаем массив из StringBuffer и инициализируем элементы</font>
+StringBuffer [] myTempBuffers;
+myTempBuffers = <font color="darkblue"><b>new</b></font> StringBuffer[<font color="darkblue"><b>3</b></font>];
+<font color="darkblue"><b>for</b></font> (<font color="darkblue"><b>int</b></font> ix = <font color="darkblue"><b>0</b></font>; ix &lt; myTempBuffers.length; ix++) 
+     myTempBuffers[ix] = <font color="darkblue"><b>new</b></font> StringBuffer();
+
+myTempBuffers[<font color="darkblue"><b>0</b></font>].add(data);
+</pre></td></tr></tbody></table><br><br><b>4. Помещение в один файл сразу нескольких классов с модификатором public</b><br><br>Файлы с исходным java-кодом определенным образом связаны с классами, <br>содержащимися в этих файлах. Связь можно охарактеризовать так:<br><br><li>Любой Java-класс хранится не более чем в одном файле<br></li><li>В любой файл с исходным кодом можно поместить не более 1-го класса с <br>модификатором <b>public</b><br></li><li>Если в файле с исходным кодом есть класс с модификатором <b>public</b>, имя <br>файла и имя класса должны быть строго одинаковыми (прим. перев.: до <br>регистра, см. п.1)<br><br>Иногда студенты забывают о 2-ом правиле, что приводит к ошибкам на этапе <br>компиляции. Сообщение об ошибке для 2-го и 3-го правила будет одинаковым <br>(в чем собственно и заключается трудность распознания этой ошибки).<br><br><br><b>5. Подмена поля класса локальной переменной.</b><br><br>Java позволяет объявлять внутри метода переменные, чье имя совпадает с <br>полями класса. В таком случае преимущество будет отдано локальным <br>переменным, и они будут использоваться вместо полей.<br><br>Компилятор выдаст ошибку, если переменные с одинаковыми именами будут <br>разных типов. Если же они одинаковых типов, ошибки компиляции не будет, и <br>будут непонятны причины неправильной работы программы.<br><br><u>Ошибочный пример</u>:       <br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px"><font color="darkblue"><b>public</b></font> <font color="darkblue"><b>class</b></font> Point3 {
+    <font color="darkblue"><b>int</b></font> i = <font color="darkblue"><b>0</b></font>;    
+    <font color="darkblue"><b>int</b></font> j = <font color="darkblue"><b>0</b></font>;    
+    <font color="darkblue"><b>int</b></font> k = <font color="darkblue"><b>0</b></font>;
+
+    <font color="darkblue"><b>public</b></font> <font color="darkblue"><b>boolean</b></font> hits(Point[] p2list) {
+      <font color="darkblue"><b>for</b></font>(<font color="darkblue"><b>int</b></font> i = <font color="darkblue"><b>0</b></font>; i &lt; p2list.length; i++) {
+        Point p2 = p2list[i];
+        <font color="darkblue"><b>if</b></font> (p2.x == i &amp;&amp; p2.y == j)
+          <font color="darkblue"><b>return</b></font> true;
+      }
+      <font color="darkblue"><b>return</b></font> false;
+    }
+}
+</pre></td></tr></tbody></table><br>Есть несколько способов, как исправить эту ошибку. Наиболее простой - <br>обращаться к полям класса с помощью неявного указателя this: this.имя_поля. <br>Более лучший способ - это переименовать поле класса или локальную <br>переменную, тогда подмены не произойдет. (прим. перев.: 2-ой способ - не <br>наш метод. К тому же он не гарантирует, что я когда нибудь случайно не <br>подменю поле переменной. Еще большая трудность возникнет при <br>наследовании, когда я вообще не вижу, какие поля есть у класса)<br><br><u>Исправленный пример</u>:<br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px">  <font color="#00AA00">// One way to fix the problem</font>
+  <font color="darkblue"><b>int</b></font> i = <font color="darkblue"><b>0</b></font>;    
+  <font color="darkblue"><b>int</b></font> j = <font color="darkblue"><b>0</b></font>;    
+  <font color="darkblue"><b>int</b></font> k = <font color="darkblue"><b>0</b></font>;
+
+  <font color="darkblue"><b>public</b></font> <font color="darkblue"><b>boolean</b></font> hits(Point[] p2list) {
+    <font color="darkblue"><b>for</b></font>(<font color="darkblue"><b>int</b></font> i = <font color="darkblue"><b>0</b></font>; i &lt; p2list.length; i++) {
+      Point p2 = p2list[i];
+      <font color="darkblue"><b>if</b></font> (p2.x == <font color="darkblue"><b>this</b></font>.i &amp;&amp; p2.y == <font color="darkblue"><b>this</b></font>.j)
+        <font color="darkblue"><b>return</b></font> true;
+    }
+    <font color="darkblue"><b>return</b></font> false;
+  }
+
+  <font color="#00AA00">// *****************************</font>
+  <font color="#00AA00">// Более лучший способ</font>
+  <font color="darkblue"><b>int</b></font> x = <font color="darkblue"><b>0</b></font>;    
+  <font color="darkblue"><b>int</b></font> y = <font color="darkblue"><b>0</b></font>;    
+  <font color="darkblue"><b>int</b></font> z = <font color="darkblue"><b>0</b></font>;
+
+  <font color="darkblue"><b>public</b></font> <font color="darkblue"><b>boolean</b></font> hits(Point[] p2list) {
+    <font color="darkblue"><b>for</b></font>(<font color="darkblue"><b>int</b></font> i = <font color="darkblue"><b>0</b></font>; i &lt; p2list.length; i++) {
+      Point p2 = p2list[i];
+      <font color="darkblue"><b>if</b></font> (p2.x == x &amp;&amp; p2.y == y)
+        <font color="darkblue"><b>return</b></font> true;
+    }
+    <font color="darkblue"><b>return</b></font> false;
+  }
+</pre></td></tr></tbody></table><br>Еще одно возможное место появления этой ошибки - задание имени параметра <br>метода таким же, как и имя поля класса. Это  хорошо выглядит в конструкторах, <br>но для обычных методов не подходит.<br><br><table style="border: solid 1px #888888; margin :10px" bgcolor="#DDDDDD" border="0" cellpadding="4" cellspacing="0"><tbody><tr height="1"><td style="font: bold 11px Arial;">    прим. перев.</td></tr><tr><td style="font : xx-small Verdana,Arial; padding : 7px" bgcolor="#EFEFFF"><br>немного сумбурно, но смысл такой<br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px"><font color="darkblue"><b>public</b></font> <font color="darkblue"><b>class</b></font> Test {
+   <font color="darkblue"><b>private</b></font> <font color="darkblue"><b>int</b></font> param = <font color="darkblue"><b>0</b></font>;
+
+   <font color="darkblue"><b>public</b></font> Test(<font color="darkblue"><b>int</b></font> param) {
+      <font color="darkblue"><b>this</b></font>.param = param;
+   }
+}
+</pre></td></tr></tbody></table>то есть в конструкторе все смотрится красиво, но для обычных методов <br>применять это не следует.<br></td></tr></tbody></table><br><br><br><b>6. Забыл вызвать конструктор родителя (суперкласса).</b><br><br>Когда класс расширяет другой класс, каждый конструктор подкласса должен <br>вызвать какой-либо конструктор суперкласса. Обычно это достигается вызовом <br>конструктора суперкласса методом <b>super(x)</b>, помещенным в первой строке <br>конструктора. Если в первой строке конвтруктора нет вызова <b>super(x)</b>, <br>компилятор самостоятельно вставляет этот вызов, но без параметров: <b>super()</b>. <br>(прим. перев.: х...се, а я и не знал <img valign="middle" src="%D0%9E%D1%88%D0%B8%D0%B1%D0%BA%D0%B8%20%D0%BD%D0%B0%D1%87%D0%B8%D0%BD%D0%B0%D1%8E%D1%89%D0%B8%D1%85%20java-%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%81%D1%82%D0%BE%D0%B2_files/laugh.gif">)<br><br>Иногда студенты забывают об этом требовании. Обычно это не является <br>проблемой: вызов конструктора суперкласса вставляется компилятором и все <br>работает отлично. Однако если у суперкласса нет конструктора по умолчанию <br>(прим. перев.: то есть конструктора без параметров), то компилятор выдаст <br>ошибку. В примере ниже все конструкторы суперкласса java.io.File имеют <br>1 или 2 параметра:<br><br><u>Ошибочный пример</u>:       <br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px"><font color="darkblue"><b>public</b></font> <font color="darkblue"><b>class</b></font> JavaClassFile <font color="darkblue"><b>extends</b></font> File {
+    String classname;
+    <font color="darkblue"><b>public</b></font> JavaClassFile(String cl) {
+        classname = cl;
+    }
+}
+</pre></td></tr></tbody></table><br>Решением проблемы является вставка явного вызова правильного <br>конструктора суперкласса:<br><br><u>Исправленный пример</u>:<br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px"><font color="darkblue"><b>public</b></font> <font color="darkblue"><b>class</b></font> JavaClassFile <font color="darkblue"><b>extends</b></font> File {
+    String classname;
+    <font color="darkblue"><b>public</b></font> JavaClassFile(String cl) {
+        <font color="darkblue"><b>super</b></font>(cl + <font color="blue">".class"</font>);
+        classname = cl;
+    }
+}
+</pre></td></tr></tbody></table><br>Более неприятная ситуация возникает, когда у суперкласса есть конструктор <br>по умолчанию, но он не полностью инициализирует объект. В таком случае <br>код скомпилируется, но результат работы программы может быть <br>неправильным или может возникнуть исключение.<br><br><br><b>7. Неправильный перехват исключений</b><br><br>Система обработки исключений в Java достаточно мощная, но трудная для <br>понимания новичками. Студенты, хорошо владеющие C++ или Ada, обычно не <br>испытывают сложностей, в отличие от программистов C и Fortran. Примеры ниже <br>показывают некоторые распространенные ошибки.<br><br>В данном примере для исключения не указано имя. На эту ошибку укажет <br>компилятор на этапе компиляции, так что ее легко исправить самостоятельно.<br><br><u>Ошибочный пример</u>:       <br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px"><font color="darkblue"><b>try</b></font> {
+    stream1 = <font color="darkblue"><b>new</b></font> FileInputStream(<font color="blue">"data.txt"</font>);
+} <font color="darkblue"><b>catch</b></font> (IOException) { 
+    message(<font color="blue">"Could not open data.txt"</font>);
+}
+</pre></td></tr></tbody></table><br><u>Исправленный пример</u>:<br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px"><font color="darkblue"><b>try</b></font> {
+   stream1 = <font color="darkblue"><b>new</b></font> FileInputStream(<font color="blue">"data.txt"</font>);
+} <font color="darkblue"><b>catch</b></font> (IOException ie) { 
+   message(<font color="blue">"Could not open data.txt: "</font> + ie);
+}
+</pre></td></tr></tbody></table><br><br>Порядок расположения блоков catch определяет очередность перехвата <br>исключений. Нужно учитывать, что каждый такой блок перехватит все <br>исключения указанного класса или любого его подкласса. Если не учесть <br>это, то можно получить недостижимый блок catch, на что укажет компилятор. <br>В примере ниже SocketException является подклассом IOException.<br><br><u>Ошибочный пример</u>:       <br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px"><font color="darkblue"><b>try</b></font> {
+    serviceSocket.setSoTimeout(<font color="darkblue"><b>1000</b></font>);
+    newsock = serviceSocket.accept();
+} <font color="darkblue"><b>catch</b></font> (IOException ie) { 
+    message(<font color="blue">"Error accepting connection."</font>);
+} <font color="darkblue"><b>catch</b></font> (SocketException se) {
+    message(<font color="blue">"Error setting time-out."</font>);
+}
+</pre></td></tr></tbody></table><br><u>Исправленный пример</u>:<br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px"><font color="darkblue"><b>try</b></font> {
+    serviceSocket.setSoTimeout(<font color="darkblue"><b>1000</b></font>);
+    newsock = serviceSocket.accept();
+} <font color="darkblue"><b>catch</b></font> (SocketException se) {
+    message(<font color="blue">"Error setting time-out."</font>);
+} <font color="darkblue"><b>catch</b></font> (IOException ie) { 
+    message(<font color="blue">"Error accepting connection."</font>);
+}
+</pre></td></tr></tbody></table><br><br>Если в коде возможно появление исключения, которое не перехватавается <br>ни одним блоком try-catch, то это исключение следует объявить в заголовке <br>метода. (Для исключений - подклассов класса RuntimeException это не <br>обязательно). Студенты иногда забывают о том, что вызов метода может <br>порождать исключение. Проще всего это исправить, помещая вызов метода в <br>блок try-catch.<br><br><u>Ошибочный пример</u>:<br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px"><font color="darkblue"><b>public</b></font> <font color="darkblue"><b>void</b></font> waitFor(<font color="darkblue"><b>int</b></font> sec) {
+    Thread.sleep(sec * <font color="darkblue"><b>1000</b></font>);
+}
+</pre></td></tr></tbody></table><br><u>Исправленный пример</u>:<br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px"><font color="darkblue"><b>public</b></font> <font color="darkblue"><b>void</b></font> waitFor(<font color="darkblue"><b>int</b></font> sec) <font color="darkblue"><b>throws</b></font> InterruptedException {
+    Thread.sleep(sec * <font color="darkblue"><b>1000</b></font>);
+}
+</pre></td></tr></tbody></table><br><br><b>8. Метод доступа имеет тип void</b><br><br>Это очень простая ошибка. Студент создает метод для доступа к переменной, <br>но указывает, что метод ничего не возвращает (помещает модификатор <b>void</b> <br>в загогловок метода). Чтобы исправить эту ошибку, нужно указать правильный <br>тип возвращаемого значения.<br><br><u>Ошибочный пример</u>:       <br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px"><font color="darkblue"><b>public</b></font> <font color="darkblue"><b>class</b></font> Line {
+    <font color="darkblue"><b>private</b></font> Point start, end;
+    <font color="darkblue"><b>public</b></font> <font color="darkblue"><b>void</b></font> getStart() { 
+      <font color="darkblue"><b>return</b></font> start; 
+    }
+}
+</pre></td></tr></tbody></table><br><u>Исправленный пример</u>:<br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px"><font color="darkblue"><b>public</b></font> <font color="darkblue"><b>class</b></font> Line {
+    <font color="darkblue"><b>private</b></font> Point start, end;
+    <font color="darkblue"><b>public</b></font> Point getStart() { 
+      <font color="darkblue"><b>return</b></font> start; 
+    }
+}
+</pre></td></tr></tbody></table><br>Указание неправильного возвращаемого типа порождает целый класс <br>ошибок. Обычно компилятор распознает эти ошибки и сообщает о них, <br>так что студенты могут самостоятельно их исправить.<br><br><br><b>9. Вызов нестатичных методов класса из метода main()</b><br><br>Входной точкой любой Java программы должен быть статичный метод <b>main</b>:<br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px"><font color="darkblue"><b>public</b></font> <font color="darkblue"><b>static</b></font> <font color="darkblue"><b>void</b></font> main(String[] args) {
+  ...
+}
+</pre></td></tr></tbody></table><br>Так как этот метод статичный, нельзя из него вызывать нестатичные <br>методы класса. Об этом часто забывают студенты и пытаются вызывать <br>методы, не создавая экземпляр класса. Эту ошибку обычно допускают в <br>самом начале обучения, когда студенты пишут маленькие программы.<br><br><u>Ошибочный пример</u>:       <br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px"><font color="darkblue"><b>public</b></font> <font color="darkblue"><b>class</b></font> DivTest {
+    <font color="darkblue"><b>boolean</b></font> divisible(<font color="darkblue"><b>int</b></font> x, <font color="darkblue"><b>int</b></font> y) {
+        <font color="darkblue"><b>return</b></font> (x % y == <font color="darkblue"><b>0</b></font>);
+    }
+
+    <font color="darkblue"><b>public</b></font> <font color="darkblue"><b>static</b></font> <font color="darkblue"><b>void</b></font> main(String[] args) {
+        <font color="darkblue"><b>int</b></font> v1 = <font color="darkblue"><b>14</b></font>;
+        <font color="darkblue"><b>int</b></font> v2 = <font color="darkblue"><b>9</b></font>;
+
+        <font color="#00AA00">// на следующие строки компилятор выдаст ошибку</font>
+        <font color="darkblue"><b>if</b></font> (divisible(v1, v2)) {
+            System.out.println(v1 + <font color="blue">" is a multiple of "</font> + v2);
+        } <font color="darkblue"><b>else</b></font> {
+            System.out.println(v2 + <font color="blue">" does not divide "</font> + v1);
+        }
+    }
+}
+</pre></td></tr></tbody></table><br>Есть 2 способа исправления ошибки: сделать нужный метод статичным <br>или создать экземпляр класса. Чтобы правильно выбрать нужный способ, <br>задайте себе вопрос: использует ли метод поля или другие методы класса. <br>Если да, то следует создать экземпляр класса и вызвать у него метод, <br>иначе следует сделать метод статичным.<br><br><u>Исправленный пример 1</u>:<br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px"><font color="darkblue"><b>public</b></font> <font color="darkblue"><b>class</b></font> DivTest {
+    <font color="darkblue"><b>int</b></font> modulus;
+
+    <font color="darkblue"><b>public</b></font> DivTest(<font color="darkblue"><b>int</b></font> m) { 
+      modulus = m; 
+    }
+    
+    <font color="darkblue"><b>boolean</b></font> divisible(<font color="darkblue"><b>int</b></font> x) {
+        <font color="darkblue"><b>return</b></font> (x % modulus == <font color="darkblue"><b>0</b></font>);
+    }
+
+    <font color="darkblue"><b>public</b></font> <font color="darkblue"><b>static</b></font> <font color="darkblue"><b>void</b></font> main(String[] args) {
+        <font color="darkblue"><b>int</b></font> v1 = <font color="darkblue"><b>14</b></font>;
+        <font color="darkblue"><b>int</b></font> v2 = <font color="darkblue"><b>9</b></font>;
+
+        DivTest tester = <font color="darkblue"><b>new</b></font> DivTest(v2);
+
+        <font color="darkblue"><b>if</b></font> (tester.divisible(v1) {
+            System.out.println(v1 + <font color="blue">" is a multiple of "</font> + v2);
+        } <font color="darkblue"><b>else</b></font> {
+            System.out.println(v2 + <font color="blue">" does not divide "</font> + v1);
+        }
+    }
+}
+</pre></td></tr></tbody></table><br><u>Исправленный пример 2</u>:<br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px">
+<font color="darkblue"><b>public</b></font> <font color="darkblue"><b>class</b></font> DivTest {
+    <font color="darkblue"><b>static</b></font> <font color="darkblue"><b>boolean</b></font> divisible(<font color="darkblue"><b>int</b></font> x, <font color="darkblue"><b>int</b></font> y) {
+        <font color="darkblue"><b>return</b></font> (x % y == <font color="darkblue"><b>0</b></font>);
+    }
+
+    <font color="darkblue"><b>public</b></font> <font color="darkblue"><b>static</b></font> <font color="darkblue"><b>void</b></font> main(String[] args) {
+        <font color="darkblue"><b>int</b></font> v1 = <font color="darkblue"><b>14</b></font>;
+        <font color="darkblue"><b>int</b></font> v2 = <font color="darkblue"><b>9</b></font>;
+
+        <font color="darkblue"><b>if</b></font> (divisible(v1, v2)) {
+            System.out.println(v1 + <font color="blue">" is a multiple of "</font> + v2);
+        } <font color="darkblue"><b>else</b></font> {
+            System.out.println(v2 + <font color="blue">" does not divide "</font> + v1);
+        }
+    }
+}
+</pre></td></tr></tbody></table><br><br><b>10. Использование объектов класса String как параметров метода.</b><br><br>В Java класс java.lang.String хранит строковые данные. Однако, строки в Java <br>(1) обладают постоянством (то есть их нельзя изменять), <br>(2) являются объектами.<br><br>Поэтому с ними нельзя обращаться как просто с буфером символов, это <br>неизменяемые объекты. Иногда студенты передают строки, ошибочно <br>расчитывая на то, что строка-объект будет передана как массив символов <br>по ссылке (как в C или C++). Компилятор обычно не считает это ошибкой.<br><br><u>Ошибочный пример</u>.<br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px"><font color="darkblue"><b>public</b></font> <font color="darkblue"><b>static</b></font> <font color="darkblue"><b>void</b></font> main(String args[]) {
+   String test1 = <font color="blue">"Today is "</font>;
+   appendTodaysDate(test1);
+   System.out.println(test1);
+}
+
+<font color="gray">/* прим. редактора: закомментированный метод должен иметь модификатор
+    static (здесь автором допущена ошибка №9)
+public void appendTodaysDate(String line) {
+    line = line + (new Date()).toString();
+}
+*/</font>
+
+<font color="darkblue"><b>public</b></font> <font color="darkblue"><b>static</b></font> <font color="darkblue"><b>void</b></font> appendTodaysDate(String line) {
+    line = line + (<font color="darkblue"><b>new</b></font> Date()).toString();
+}
+</pre></td></tr></tbody></table><br>В примере выше студент хочет изменить значение локальной переменной test1, <br>присваивая новое значение параметру line в методе appendTodaysDate. <br>Естественно это не сработает. Значение line изменится, но значение test1 <br>останется прежним.<br><br>Эта ошибка возникает из-за непонимания того, что (1) java объекты всегда <br>передаются по ссылке и (2) строки в Java неизменяемы. Нужно осмыслить, что <br>объекты-строки никогда не изменяют своего значения, а все операции над <br>строками создают новый объект.<br><br>Чтобы исправить ошибку в примере выше, нужно или возвращать строку из <br>метода, или передавать объект StringBuffer как параметр методу вместо String.<br><br><u>Исправленный пример 1</u>:<br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px"><font color="darkblue"><b>public</b></font> <font color="darkblue"><b>static</b></font> <font color="darkblue"><b>void</b></font> main(String args[]) {
+   String test1 = <font color="blue">"Today is "</font>;
+   test1 = appendTodaysDate(test1);
+   System.out.println(test1);
+}
+
+<font color="darkblue"><b>public</b></font> <font color="darkblue"><b>static</b></font> String appendTodaysDate(String line) {
+    <font color="darkblue"><b>return</b></font> (line + (<font color="darkblue"><b>new</b></font> Date()).toString());
+}
+</pre></td></tr></tbody></table><br><u>Исправленный пример 2</u>:<br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px"><font color="darkblue"><b>public</b></font> <font color="darkblue"><b>static</b></font> <font color="darkblue"><b>void</b></font> main(String args[]) {
+   StringBuffer test1 = <font color="darkblue"><b>new</b></font> StringBuffer(<font color="blue">"Today is "</font>);
+   appendTodaysDate(test1);
+   System.out.println(test1.toString());
+}
+
+<font color="darkblue"><b>public</b></font> <font color="darkblue"><b>static</b></font> <font color="darkblue"><b>void</b></font> appendTodaysDate(StringBuffer line) {
+    line.append((<font color="darkblue"><b>new</b></font> Date()).toString());
+}
+</pre></td></tr></tbody></table><br><table style="border: solid 1px #888888; margin :10px" bgcolor="#DDDDDD" border="0" cellpadding="4" cellspacing="0"><tbody><tr height="1"><td style="font: bold 11px Arial;">    прим. перев.</td></tr><tr><td style="font : xx-small Verdana,Arial; padding : 7px" bgcolor="#EFEFFF">вообще-то понять в чем ошибка не так просто.<br>так как объекты передаются по ссылке, то значит line ссылается туда же, <br>куда и test1. А значит создавая новый line, мы создаем новый test1.<br>в неправильном примере все выглядит так, как будто передача String идет <br>по значению, а не по ссылке.<br></td></tr></tbody></table><br><br><br><b>11. Объявление конструктора как метода</b><br><br>Конструкторы объектов в Java внешне похожы на обычные методы. Единственные <br>отличия - у конструктора не указывается тип возвращаемого значения и <br>название совпадает с именем класса. К несчастью, Java допускает задание <br>имени метода, совпадающего с названием класса.<br><br>В примере ниже, студент хочет проинициализировать поле класса Vector list <br>при создании класса. Этого не произойдет, так как метод 'IntList' - это не <br>конструктор.<br><br><u>Ошибочный пример</u>.<br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px"><font color="darkblue"><b>public</b></font> <font color="darkblue"><b>class</b></font> IntList {
+    Vector list;
+
+    <font color="#00AA00">// Выглядит как конструктор, но на самом деле это метод</font>
+    <font color="darkblue"><b>public</b></font> <font color="darkblue"><b>void</b></font> IntList() {
+        list = <font color="darkblue"><b>new</b></font> Vector();
+    }
+
+    <font color="darkblue"><b>public</b></font> append(<font color="darkblue"><b>int</b></font> n) {
+        list.addElement(<font color="darkblue"><b>new</b></font> Integer(n));
+    }
+}
+</pre></td></tr></tbody></table><br>Код выдаст исключение NullPointerException при первом же ображении к полю <br>list. Ошибку легко исправить: нужно просто убрать возвращаемое значение <br>из заголовка метода.<br><br><u>Исправленный пример</u>:<br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px"><font color="darkblue"><b>public</b></font> <font color="darkblue"><b>class</b></font> IntList {
+    Vector list;
+
+    <font color="#00AA00">// Это конструктор</font>
+    <font color="darkblue"><b>public</b></font> IntList() {
+        list = <font color="darkblue"><b>new</b></font> Vector();
+    }
+
+    <font color="darkblue"><b>public</b></font> append(<font color="darkblue"><b>int</b></font> n) {
+        list.addElement(<font color="darkblue"><b>new</b></font> Integer(n));
+    }
+}
+</pre></td></tr></tbody></table><br><br><b>12. Забыл привести объект к нужному типу.</b><br><br>Как и во всех других объектно-ориентированных языках, в Java можно <br>обращаться к объекту как к его суперклассу. Это называется 'upcasting', <br>он выполняется в Java автоматически. Однако, если переменная, поле <br>класса или возвращаемое значение метода объявлено как суперкласс, поля <br>и методы подкласса будут невидимы. Обращение к суперклассу как к подклассу <br>называется 'downcasting', его нужно прописывать самостоятельно (то есть <br>привести объект к нужному подклассу).<br><br>Студенты часто забывают о приведении оъекта к подклассу. Чаще всего это <br>случается при использовании массивов объектов Object и коллекций из пакета <br>java.util (имеется ввиду Collection Framework). В примере ниже объект String <br>заносится в массив, а затем извлекается из массива для сравнения с другой <br>строкой. Компилятор обнаружит ошибку и не станет компилировать код, пока не <br>будет явно указано приведение типов.<br><br><u>Ошибочный пример</u>.<br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px">Object arr[] = <font color="darkblue"><b>new</b></font> Object[<font color="darkblue"><b>10</b></font>];
+arr[<font color="darkblue"><b>0</b></font>] = <font color="blue">"m"</font>; 
+arr[<font color="darkblue"><b>1</b></font>] = <font color="darkblue"><b>new</b></font> Character(<font color="blue">'m'</font>);
+
+String arg = args[<font color="darkblue"><b>0</b></font>];
+<font color="darkblue"><b>if</b></font> (arr[<font color="darkblue"><b>0</b></font>].compareTo(arg) &lt; <font color="darkblue"><b>0</b></font>) {
+    System.out.println(arg + <font color="blue">" comes before "</font> + arr[<font color="darkblue"><b>0</b></font>]);
+}
+</pre></td></tr></tbody></table><br>Смысл приведения типов для некоторых оказывается затруднительным. <br>Особенно часто затруднения вызывают динамические методы. В примере выше, <br>если бы использовался метод equals вместо compareTo, компилятор бы не <br>выдал ошибку, и код бы правильно отработал, так как вызвался бы метод <br>equals именно класса String. Нужно понять, что динамическое связывание отличается от downcasting.<br><br><u>Исправленный пример</u>:<br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px">Object arr[] = <font color="darkblue"><b>new</b></font> Object[<font color="darkblue"><b>10</b></font>];
+arr[<font color="darkblue"><b>0</b></font>] = <font color="blue">"m"</font>; 
+arr[<font color="darkblue"><b>1</b></font>] = <font color="darkblue"><b>new</b></font> Character(<font color="blue">'m'</font>);
+
+String arg = args[<font color="darkblue"><b>0</b></font>];
+<font color="darkblue"><b>if</b></font> ( ((String) arr[<font color="darkblue"><b>0</b></font>]).compareTo(arg) &lt; <font color="darkblue"><b>0</b></font>) {
+    System.out.println(arg + <font color="blue">" comes before "</font> + arr[<font color="darkblue"><b>0</b></font>]);
+}
+</pre></td></tr></tbody></table><br><br><b>13. Использование интерфейсов.</b><br><br>Для многих студентов не совсем ясна разница между классами и интерфейсами. <br>Поэтому, некоторые студенты пытаются реализовать интерфейсы, такие как <br>Observer или Runnable, с помощью ключевого слова extends, вместо implements. <br>Для исправления ошибки, нужно просто исправить ключевое слово на верное.<br><br><u>Ошибочный пример</u>.<br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px"><font color="darkblue"><b>public</b></font> <font color="darkblue"><b>class</b></font> SharkSim <font color="darkblue"><b>extends</b></font> Runnable {
+    <font color="darkblue"><b>float</b></font> length;
+    ...
+}
+</pre></td></tr></tbody></table><br><u>Исправленный пример</u>:<br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px"><font color="darkblue"><b>public</b></font> <font color="darkblue"><b>class</b></font> SharkSim <font color="darkblue"><b>implements</b></font> Runnable {
+    <font color="darkblue"><b>float</b></font> length;
+    ...
+}
+</pre></td></tr></tbody></table><br>Связанная с этим ошибка: неправильный порядок блоков extends и implements. <br>Согласно спецификации Java, объявление о расширении класса должно идти <br>перед объявлениями о реализации интерфейсов. Также, для интерфейсов <br>ключевое слово implements нужно писать всего 1 раз, несколько интерфейсов <br>разделяются запятыми.<br><br><u>Еще ряд ошибочных примеров</u>:<br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px"><font color="#00AA00">// Неправильный порядок</font>
+<font color="darkblue"><b>public</b></font> <font color="darkblue"><b>class</b></font> SharkSim <font color="darkblue"><b>implements</b></font> Swimmer <font color="darkblue"><b>extends</b></font> Animal {
+    <font color="darkblue"><b>float</b></font> length;
+    ...
+}
+
+<font color="#00AA00">// ключевое слово implements встречается несколько раз</font>
+<font color="darkblue"><b>public</b></font> <font color="darkblue"><b>class</b></font> DiverSim <font color="darkblue"><b>implements</b></font> Swimmer <font color="darkblue"><b>implements</b></font> Runnable {
+    <font color="darkblue"><b>int</b></font> airLeft;
+    ...
+}
+</pre></td></tr></tbody></table><br><u>Исправленные примеры</u>:   <br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px"><font color="#00AA00">// Правильный порядок</font>
+<font color="darkblue"><b>public</b></font> <font color="darkblue"><b>class</b></font> SharkSim <font color="darkblue"><b>extends</b></font> Animal <font color="darkblue"><b>implements</b></font> Swimmer {
+    <font color="darkblue"><b>float</b></font> length;
+    ...
+}
+
+<font color="#00AA00">// Несколько интерфейсов разделяются запятыми</font>
+<font color="darkblue"><b>public</b></font> <font color="darkblue"><b>class</b></font> DiverSim <font color="darkblue"><b>implements</b></font> Swimmer, Runnable {
+    <font color="darkblue"><b>int</b></font> airLeft;
+    ...
+}
+</pre></td></tr></tbody></table><br><br><b>14. Забыл использовать значение, возвращаемое методом суперкласса</b><br><br>Java позволяет вызывать из подкласса аналогичный метод суперкласса с <br>помощью ключевого слова keyword. Иногда студентам приходится вызывать <br>методы суперкласса, но при этом часто они забывают использовать <br>возвращаемое значение. Особенно часто это случается у тех студентов, <br>которые ещ не осмыслили методы и их возвращаемые значения.<br><br>В примере ниже студент хочет вставить результат метода toString() <br>суперкласса в результат метода toString() подкласса. При этом он не <br>использует возвращаемое значение метода суперкласса.<br><br><u>Ошибочный пример</u>.<br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px"><font color="darkblue"><b>public</b></font> <font color="darkblue"><b>class</b></font> GraphicalRectangle <font color="darkblue"><b>extends</b></font> Rectangle {
+      Color fillColor;
+      <font color="darkblue"><b>boolean</b></font> beveled;
+      ...
+      <font color="darkblue"><b>public</b></font> String toString() {
+          <font color="darkblue"><b>super</b></font>();
+          <font color="darkblue"><b>return</b></font>(<font color="blue">"color="</font> + fillColor + <font color="blue">", beveled="</font> + beveled);
+      }
+}
+</pre></td></tr></tbody></table><br>Для исправления ошибки обычно достаточно присвоить возвращаемое <br>значение локальной переменной, и затем использовать эту переменную <br>при вычислении результата метода подкласса.<br><br><u>Исправленный пример</u>:<br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px"><font color="darkblue"><b>public</b></font> <font color="darkblue"><b>class</b></font> GraphicalRectangle <font color="darkblue"><b>extends</b></font> Rectangle {
+      Color fillColor;
+      <font color="darkblue"><b>boolean</b></font> beveled;
+      ...
+      <font color="darkblue"><b>public</b></font> String toString() {
+          String rectStr = <font color="darkblue"><b>super</b></font>();
+          <font color="darkblue"><b>return</b></font>(rectStr + <font color="blue">" - "</font> +
+         <font color="blue">"color="</font> + fillColor + <font color="blue">", beveled="</font> + beveled);
+      }
+}
+</pre></td></tr></tbody></table><br><br><b>15. Забыл добавить AWT компоненты</b><br><br>В AWT используется простая модель построения графического интерфейса: <br>каждый компонент интерфейса должен быть сначала создан с помощью своего <br>конструктора, а затем помещен в окно приложения с помощью метода add() <br>родительского компонента. Таким образом, интерфейс на AWT получает <br>иерархическую структуру.<br><br>Студенты иногда забывают об этих 2х шагах. Они создают компонент, но <br>забывают разместить его в окне приожения. Это не вызовет ошибок на этапе <br>компиляции, компонент просто не отобразится в окне приложения.<br><br><u>Ошибочный пример</u>.<br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px"><font color="darkblue"><b>public</b></font> <font color="darkblue"><b>class</b></font> TestFrame <font color="darkblue"><b>extends</b></font> Frame <font color="darkblue"><b>implements</b></font> ActionListener {
+    <font color="darkblue"><b>public</b></font> Button exit;
+
+    <font color="darkblue"><b>public</b></font> TestFrame() {
+        <font color="darkblue"><b>super</b></font>(<font color="blue">"Test Frame"</font>);
+        exit = <font color="darkblue"><b>new</b></font> Button(<font color="blue">"Quit"</font>);
+    }
+}
+</pre></td></tr></tbody></table><br>Чтобы исправить эту ошибку, необходимо просто добавить компоненты к <br>своим родителям. Пример ниже показывает, как это сделать. Необходимо <br>заметить, что часто студент, забывший добавить компонент в окно приложения, <br>также забывает назначить слушателей событий для этого компонента.<br><br><u>Исправленный пример</u>:<br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px"><font color="darkblue"><b>public</b></font> <font color="darkblue"><b>class</b></font> TestFrame <font color="darkblue"><b>extends</b></font> Frame <font color="darkblue"><b>implements</b></font> ActionListener {
+    <font color="darkblue"><b>public</b></font> Button exit;
+
+    <font color="darkblue"><b>public</b></font> TestFrame() {
+        <font color="darkblue"><b>super</b></font>(<font color="blue">"Test Frame"</font>);
+
+        exit = <font color="darkblue"><b>new</b></font> Button(<font color="blue">"Quit"</font>);
+
+        Panel controlPanel = <font color="darkblue"><b>new</b></font> Panel();
+        controlPanel.add(exit);
+
+        add(<font color="blue">"Center"</font>, controlPanel);
+
+        exit.addActionListener(<font color="darkblue"><b>this</b></font>);
+    }
+
+    <font color="darkblue"><b>public</b></font> <font color="darkblue"><b>void</b></font> actionPerformed(ActionEvent e) {
+        System.exit(<font color="darkblue"><b>0</b></font>);
+    }
+}
+</pre></td></tr></tbody></table><br><br><b>17. Забыл запустить поток</b><br><br>Многопоточность в Java реализуется с помощью класса java.lang.Thread. <br>Жизненный цикл потока состоит из 4х этапов: проинициализирован, запущен, <br>заблокирован и остановлен. ТОлько что созданный поток находится в <br>проинициализированном состоянии. Чтобы перевести его в запущенное <br>состояние, необходимо вызвать его метод start(). Иногда студенты создают <br>потоки, но забывают запустить их. Обычно ошибка возникает при недостаточных <br>знаниях студента о параллельном программировании и многопоточности. (прим. <br>перев.: не вижу связи) Чтобы исправить ошибку, необходимо просто запустить <br>поток.<br><br>В примере ниже, студент хочет создать анимацию картинки используя интерфейс<br> Runnable, но он забыл запустить поток.<br><br><u>Ошибочный пример</u>.<br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px"><font color="darkblue"><b>public</b></font> <font color="darkblue"><b>class</b></font> AnimCanvas <font color="darkblue"><b>extends</b></font> Canvas <font color="darkblue"><b>implements</b></font> Runnable {
+        <font color="darkblue"><b>protected</b></font> Thread myThread;
+        <font color="darkblue"><b>public</b></font> AnimCanvas() {
+                myThread = <font color="darkblue"><b>new</b></font> Thread(<font color="darkblue"><b>this</b></font>);
+        }
+
+        <font color="#00AA00">// метод run() не будет вызван,</font>
+        <font color="#00AA00">// потому что поток не запущен.</font>
+        <font color="darkblue"><b>public</b></font> <font color="darkblue"><b>void</b></font> run() {
+                <font color="darkblue"><b>for</b></font>(<font color="darkblue"><b>int</b></font> n = <font color="darkblue"><b>0</b></font>; n &lt; <font color="darkblue"><b>10000</b></font>; n++) {
+                   <font color="darkblue"><b>try</b></font> { 
+                     Thread.sleep(<font color="darkblue"><b>100</b></font>); 
+                   } <font color="darkblue"><b>catch</b></font> (InterruptedException e) { }
+                   
+                   animateStep(n);
+                }       
+        }
+        ...
+}
+</pre></td></tr></tbody></table><br><u>Исправленный пример</u>:<br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px"><font color="darkblue"><b>public</b></font> <font color="darkblue"><b>class</b></font> AnimCanvas <font color="darkblue"><b>extends</b></font> Canvas <font color="darkblue"><b>implements</b></font> Runnable {
+        <font color="darkblue"><b>static</b></font> <font color="darkblue"><b>final</b></font> <font color="darkblue"><b>int</b></font> LIMIT = <font color="darkblue"><b>10000</b></font>;
+        <font color="darkblue"><b>protected</b></font> Thread myThread;
+
+        <font color="darkblue"><b>public</b></font> AnimCanvas() {
+                myThread = <font color="darkblue"><b>new</b></font> Thread(<font color="darkblue"><b>this</b></font>);
+                myThread.start();
+        }
+
+        <font color="darkblue"><b>public</b></font> <font color="darkblue"><b>void</b></font> run() {
+                <font color="darkblue"><b>for</b></font>(<font color="darkblue"><b>int</b></font> n = <font color="darkblue"><b>0</b></font>; n &lt; LIMIT; n++) {
+                        <font color="darkblue"><b>try</b></font> { 
+                          Thread.sleep(<font color="darkblue"><b>100</b></font>); 
+                        } <font color="darkblue"><b>catch</b></font> (InterruptedException e) { }
+
+                        animateStep(n);
+                }
+        }
+        ...
+}
+</pre></td></tr></tbody></table><br>Жизненный цикл потока и связь потоков и классов, реализующих <br>интерфейс Runnable - это очень важная часть программирования на Java, <br>и не будет лишним заострить свое внимание на этом.<br><br><br><b>18. Использование запрещенного метода readLine() класса java.io.DataInputStream</b><br><br>В Java версии 1.0 для считывания строки текста необходимо было <br>использовать метод readLine() класса java.io.DataInputStream. В Java <br>версии 1.1 был добавлен целый набор классов для ввода-вывода, <br>обеспечивающий операции ввода-вывода для текста: классы Reader и <br>Writer. Таким образом с версии 1.1 для чтения строки текста надо <br>использовать метод readLine() класса java.io.BufferedReader. Студенты <br>могут не знат об этом изменении, особенно если они обучались по <br>старым книгам. (прим. перев. вообще-то уже не актуально. вряд ли кто-то <br>станет сейчас учиться по книгам 10летней давности.)<br><br>Старый метод readLine() оставлен в JDK, но объявлен как запрещенный, что <br>часто смущает студентов. Необходимо понять, что использование метода <br>readLine() класса java.io.DataInputStream не является неправильным, оно <br>просто устарело. Необходимо использовать класс BufferedReader.<br><br><u>Ошибочный пример</u>.<br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px"><font color="darkblue"><b>public</b></font> <font color="darkblue"><b>class</b></font> LineReader {
+    <font color="darkblue"><b>private</b></font> DataInputStream dis;
+
+    <font color="darkblue"><b>public</b></font> LineReader(InputStream is) {
+        dis = <font color="darkblue"><b>new</b></font> DataInputStream(is);
+    }
+
+    <font color="darkblue"><b>public</b></font> String getLine() { 
+        String ret = <font color="darkblue"><b>null</b></font>;
+
+        <font color="darkblue"><b>try</b></font> {
+          ret = dis.readLine();  <font color="#00AA00">// Неправильно! Запрещено.</font>
+        } <font color="darkblue"><b>catch</b></font> (IOException ie) { }
+
+        <font color="darkblue"><b>return</b></font> ret;
+    }
+}
+</pre></td></tr></tbody></table><br><u>Исправленный пример</u>:<br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px"><font color="darkblue"><b>public</b></font> <font color="darkblue"><b>class</b></font> LineReader {
+    <font color="darkblue"><b>private</b></font> BufferedReader br;
+
+    <font color="darkblue"><b>public</b></font> LineReader(InputStream is) {
+        br = <font color="darkblue"><b>new</b></font> BufferedReader(<font color="darkblue"><b>new</b></font> InputStreamReader(is));
+    }
+
+    <font color="darkblue"><b>public</b></font> String getLine() { 
+        String ret = <font color="darkblue"><b>null</b></font>;
+
+        <font color="darkblue"><b>try</b></font> {
+          ret = br.readLine(); 
+        } <font color="darkblue"><b>catch</b></font> (IOException ie) { }
+
+        <font color="darkblue"><b>return</b></font> ret;
+    }
+}
+</pre></td></tr></tbody></table><br>Есть и другие запрещенные методы в версиях, более поздних чем 1.0, но <br>этот встречается чаще всего.<br><br><br><b>19. Использование типа double как float</b><br><br>Как и в большинстве других языков, в Java поддерживаются операции <br>над числами с плавающей точкой (дробными числами). В Java есть 2 <br>типа-примитива для чисел с плавающей точкой: double для чисел с <br>64-битной точностью по стандарту IEEE, и float, для чисел с 32-битной <br>точностью по стандарту IEEE. Трудность заключается в использовании <br>десятичных чисел, таких как 1.75, 12.9e17 или -0.00003 - компилятор <br>присваивает им тип double.<br><br>Java не производит приведение типов в операциях, в которых может произойти <br>потеря точности. Такое приведение типов должен осуществлять программист. <br>Например, Java не позволит присвоить значение типа int переменной типа byte <br>без приведения типов, как показано в примере ниже.<br><br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px"><font color="darkblue"><b>byte</b></font> byteValue1 = <font color="darkblue"><b>17</b></font>; <font color="gray">/* неправильно! */</font>
+<font color="darkblue"><b>byte</b></font> byteValue2 = (<font color="darkblue"><b>byte</b></font>)<font color="darkblue"><b>19</b></font>; <font color="gray">/* правильно */</font> 
+</pre></td></tr></tbody></table><br>Так как дробные числа представлены типом double, и присваивание double <br>переменной типа float может привести к потере точности, компилятор <br>пожалуется на любую попытку использовать дробные числа как float. Так что <br>использование присваиваний, приведенных ниже, не даст классу <br>откомпилироваться.<br><br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px"><font color="darkblue"><b>float</b></font> realValue1 = -<font color="darkblue"><b>1</b></font>.<font color="darkblue"><b>7</b></font>;          <font color="gray">/* неправильно! */</font>
+<font color="darkblue"><b>float</b></font> realValue2 = (<font color="darkblue"><b>float</b></font>)(-<font color="darkblue"><b>1</b></font>.<font color="darkblue"><b>9</b></font>); <font color="gray">/* правильно */</font> 
+</pre></td></tr></tbody></table><br>Это присваивание сработало бы в C или C++, для Java все гораздо строже. <br>Есть 3 способа избавиться от этой ошибки.<br><br>Можно использовать тип double вместо типа float. Это наиболее простое <br>решение. На самом деле нет особого смысла использовать 32-битную <br>арифметику вместо 64-битной, разницу в скорости все равно скушает <br>JVM (к тому же в современных процессорах все дробные числа приводятся <br>к формату 80-битного регистра процессора перед любой операцией). <br>Единственный плюс использования float - это то, что они занимают <br>меньше памяти, что бывает полезно при работе с большим числом дробных <br>переменых.<br><br>Можно использовать модификатор для обозначения типа числа, чтобы <br>сообщить компилятору как хранить число. Модификатор для типа <br>float - 'f'. Таким образом, компилятор присвоит числу 1.75 тип double, <br>а 1.75f - float. Например:<br><br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px"><font color="darkblue"><b>float</b></font> realValue1 = <font color="darkblue"><b>1</b></font>.<font color="darkblue"><b>7</b></font>;    <font color="gray">/* неправильно! */</font>
+<font color="darkblue"><b>float</b></font> realValue2 = <font color="darkblue"><b>1</b></font>.9f;   <font color="gray">/* правильно */</font> 
+</pre></td></tr></tbody></table><br>Можно использовать явное приведение типов. Это наименее элегантный способ, <br>но он полезен при конвертации переменной типа double в тип float. Пример: <br><br><table style="border-top:1px solid #CCB67E; border-bottom:1px solid #FFFEFA; border-right:1px solid #FFFEFA; border-left:1px solid #CCB67E; margin-top:5px" width="100%" bgcolor="#FFFAED" border="0" cellpadding="10" cellspacing="0"><tbody><tr><td><pre style="font: Courier New; font-size: x-small;margin:1px"><font color="darkblue"><b>float</b></font> realValue1 = <font color="darkblue"><b>1</b></font>.7f; 
+<font color="darkblue"><b>double</b></font> realValue2 = <font color="darkblue"><b>1</b></font>.<font color="darkblue"><b>9</b></font>;
+realValue1 = (<font color="darkblue"><b>float</b></font>)realValue2;
+</pre></td></tr></tbody></table><br>Подробнее о числах с плавающей точкой можно почитать <a href="http://research.microsoft.com/%7Ehollasch/cgindex/coding/ieeefloat.html" target="_blank">здесь</a> и <a href="http://www.arc.unm.edu/%7Ebsmith/CS375/ieeeflpt/index.htm" target="_blank">здесь</a>.<br><br><br><font color="green">-- комментарий переводчика --</font><br>все.<br><br>в примере 10 на самом деле допущена ошибка 9. я ее сразу заметил, но<br>забыл написать примечание. а исправлять не стал чтобы не было<br>расхождений с первоисточником<p></p>
+							</li></div>
+							<!--end faqlist-->
+                            
+							<!-- комменты -->
+                            <div>							<!-- комменты -->
+							<div id="comments">
+								<p>Комментарии</p>
+								<hr>
+								<!--begin case_is_rcomments-->
+								<ul>
+									
+									<li>
+										<div class="header">
+											<a name="" class="date">25 ноября 2014, 21:00</a> 
+											<b class="author">smackmychi</b>
+											
+										</div>
+										<div class="post">
+											<p>В 1 пункте в примерах не хватает открывающей фигурной скобки.</p>
+										</div>
+									</li>
+									
+									<li>
+										<div class="header">
+											<a name="" class="date">10 ноября 2013, 13:08</a> 
+											<b class="author">flutesa</b>
+											
+										</div>
+										<div class="post">
+											<p>В 9 пункте в первом примере в 18 строке кода не хватает второй закрывающей скобочки. Верно так:<br>if (tester.divisible(v1)) {<br><br>В целом, этот пример я переписала бы так. Считаю, такое решение с точки зрения задачи лучше её отображает:<br>http://pastebin.com/RNhYmyVe</p>
+										</div>
+									</li>
+									
+									<li>
+										<div class="header">
+											<a name="" class="date">07 ноября 2013, 17:27</a> 
+											<b class="author">goodvin2022</b>
+											
+										</div>
+										<div class="post">
+											<p>очень помогла статья, перерыл кучу форумов, а тут описана как раз моя проблема, очень подробно, спасибо</p>
+										</div>
+									</li>
+									
+									<li>
+										<div class="header">
+											<a name="" class="date">28 октября 2012, 10:39</a> 
+											<b class="author">grasoff.net</b>
+											
+										</div>
+										<div class="post">
+											<p>Ухты, даже отзывы есть смешные и благодарные! Ура!</p>
+										</div>
+									</li>
+									
+									<li>
+										<div class="header">
+											<a name="" class="date">26 мая 2009, 10:58</a> 
+											<b class="author">Yokohama</b>
+											
+										</div>
+										<div class="post">
+											<p>Кое-что помогло. Спасибо. :)</p>
+										</div>
+									</li>
+									
+									<li>
+										<div class="header">
+											<a name="" class="date">06 ноября 2008, 11:30</a> 
+											<b class="author">Latyntsev</b>
+											
+										</div>
+										<div class="post">
+											<p>аааа.... не могу поменять логику программирования на JAVA после DELPHI!!!! ))) спасибо... мне помогло</p>
+										</div>
+									</li>
+									
+									<li>
+										<div class="header">
+											<a name="" class="date">22 декабря 2007, 00:19</a> 
+											<b class="author">Sand_sand</b>
+											
+										</div>
+										<div class="post">
+											<p>Очень полезно</p>
+										</div>
+									</li>
+									
+									<li>
+										<div class="header">
+											<a name="" class="date">02 ноября 2007, 15:47</a> 
+											<b class="author">Юра Wolf</b>
+											
+										</div>
+										<div class="post">
+											<p>очень полезно! мне в тему сейчас</p>
+										</div>
+									</li>
+									
+									<li>
+										<div class="header">
+											<a name="" class="date">22 июня 2007, 18:04</a> 
+											<b class="author">Юлий</b>
+											
+										</div>
+										<div class="post">
+											<p>На всем спотыкался :)</p>
+										</div>
+									</li>
+									
+									<li>
+										<div class="header">
+											<a name="" class="date">31 января 2007, 17:38</a> 
+											<b class="author">Stin</b>
+											
+										</div>
+										<div class="post">
+											<p>Надо было раздобыть это все пораньше. Практически на каждую граблю наступал. Сейчас было занятно вспомнить :)</p>
+										</div>
+									</li>
+									
+									<li>
+										<div class="header">
+											<a name="" class="date">31 января 2007, 17:37</a> 
+											<b class="author">Stin</b>
+											
+										</div>
+										<div class="post">
+											<p>Надо было раздобыть это все пораньше. Практически на каждую граблю наступал. Сейчас было занятно вспомнить :)</p>
+										</div>
+									</li>
+									
+									<li>
+										<div class="header">
+											<a name="" class="date">29 сентября 2006, 18:28</a> 
+											<b class="author">АЙЭМ</b>
+											
+										</div>
+										<div class="post">
+											<p>Для новичков просто супер, на годок бы раньше этот материальчик.</p>
+										</div>
+									</li>
+									
+									<li>
+										<div class="header">
+											<a name="" class="date">23 сентября 2006, 19:09</a> 
+											<b class="author">eUser</b>
+											
+										</div>
+										<div class="post">
+											<p>Полезная инфа! Но многое для меня знакомо;)</p>
+										</div>
+									</li>
+									
+									<li>
+										<div class="header">
+											<a name="" class="date">23 мая 2006, 11:46</a> 
+											<b class="author">raidan</b>
+											
+										</div>
+										<div class="post">
+											<p>Познавательно.</p>
+										</div>
+									</li>
+									
+									<li>
+										<div class="header">
+											<a name="" class="date">28 марта 2006, 21:40</a> 
+											<b class="author"></b>
+											
+										</div>
+										<div class="post">
+											<p>мощно!</p>
+										</div>
+									</li>
+									
+									<li>
+										<div class="header">
+											<a name="" class="date">21 февраля 2006, 22:23</a> 
+											<b class="author">Maksys</b>
+											
+										</div>
+										<div class="post">
+											<p>Хорошо информировано, много полезного для новичка.</p>
+										</div>
+									</li>
+									
+									<li>
+										<div class="header">
+											<a name="" class="date">13 февраля 2006, 09:17</a> 
+											<b class="author">Бомж</b>
+											
+										</div>
+										<div class="post">
+											<p>Дас ис фантастиш</p>
+										</div>
+									</li>
+									
+									<li>
+										<div class="header">
+											<a name="" class="date">02 ноября 2005, 10:55</a> 
+											<b class="author">VRN</b>
+											
+										</div>
+										<div class="post">
+											<p>Гут !</p>
+										</div>
+									</li>
+									
+								</ul>
+								<!--end case_is_rcomments-->
+							</div>
+							
+  <br>
+
+  <center>
+    <table style="text-align:left" class="messageBox" width="70%" border="0" cellpadding="5" cellspacing="0">
+      <tbody><tr>
+        <td class="messageHeader"></td>
+      </tr>
+
+      <tr>
+        <td class="msgBody"><br>
+        Необходимо войти на сайт, чтобы оставлять комментарии<br></td>
+      </tr>
+    </tbody></table><br>
+  </center>
+
+
+							<!-- конец комментам -->
+
+							<!-- добавление коммента -->
+							<div id="add-comment">
+							
+							</div>
+							<!-- конец добавления коммента --></div>
+                            <div class="article short">Раздел FAQ: <b>Java / Общие вопросы / Ошибки начинающих java-программистов</b></div>
+						</div>
+                        <br clear="all">
+					</div>
+					<div id="bottom-fade"><div class="wrap"></div></div>
+				</div>
+			</div>			<div id="footer" style="padding-bottom:20px">
+				<div style="float:left">2000-2015 © Alex Sibilev, SQL.ru<br>
+					<a style="font: 10px Verdana;color:#88C" href="http://www.sql.ru/feedback.aspx">Свяжитесь с нами</a></div>
+<div style="float:right">Рекомендуем <a href="http://www.datahouse.ru/price/kurskaya_colocation">colocation</a> в DataHouse.RU.</div>
+				<div class="counters">
+<!-- begin of Rambler's Top100 code 
+<img src="http://counter.rambler.ru/top100.cnt?236431" alt="" width="1" height="1" border="0" />
+<a href="http://top100.rambler.ru/home?id=236431"><img src="http://top100-images.rambler.ru/top100/banner-88x31-rambler-gray2.gif" alt="Rambler's Top100" width="88" height="31" border="0" /></a>
+ end of Top100 logo -->
+                
+<!--					<a href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0 Transitional" height="31" width="88" /></a>
+					<a href="http://jigsaw.w3.org/css-validator/"><img src="http://jigsaw.w3.org/css-validator/images/vcss" alt="Valid CSS!" height="31" width="88" /></a>
+                    -->
+				</div>
+			</div>
+		</div>
+		<script>initScripts()</script>
+<!-- Yandex.Metrika counter --><script type="text/javascript">(function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter9237463 = new Ya.Metrika({id:9237463, trackLinks:true, accurateTrackBounce:true}); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script><noscript><div><img src="//mc.yandex.ru/watch/9237463" style="position:absolute; left:-9999px;" alt="" /></div></noscript><!-- /Yandex.Metrika counter -->
+	
+</body></html>

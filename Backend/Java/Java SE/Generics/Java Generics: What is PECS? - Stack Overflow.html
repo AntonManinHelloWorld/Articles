@@ -1,0 +1,2114 @@
+<!DOCTYPE html>
+<html itemscope="" itemtype="http://schema.org/QAPage"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<title>Java Generics: What is PECS? - Stack Overflow</title>
+    <link rel="shortcut icon" href="http://cdn.sstatic.net/stackoverflow/img/favicon.ico?v=4f32ecc8f43d">
+    <link rel="apple-touch-icon image_src" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+    <link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="http://stackoverflow.com/opensearch.xml">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="stackoverflow.com">
+    <meta property="og:type" content="website">    
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon@2.png?v=73d79a89bded&amp;a">
+    <meta name="twitter:title" property="og:title" itemprop="title name" content="Java Generics: What is PECS?">
+    <meta name="twitter:description" property="og:description" itemprop="description" content="I came across PECS (short for Producer extends and Consumer super) while reading up on generics. 
+
+Can someone explain to me how to use PECS to resolve confusion between extends and super?
+">
+    <meta property="og:url" content="http://stackoverflow.com/questions/2723397/java-generics-what-is-pecs">
+    <link rel="canonical" href="http://stackoverflow.com/questions/2723397/java-generics-what-is-pecs">
+
+    
+    
+    <script src="Java%20Generics:%20What%20is%20PECS%3F%20-%20Stack%20Overflow_files/quant.js" async=""></script><script src="Java%20Generics:%20What%20is%20PECS%3F%20-%20Stack%20Overflow_files/beacon.js" async=""></script><script src="Java%20Generics:%20What%20is%20PECS%3F%20-%20Stack%20Overflow_files/analytics.js" async=""></script><script src="Java%20Generics:%20What%20is%20PECS%3F%20-%20Stack%20Overflow_files/ados.js" async="" type="text/javascript"></script><script src="Java%20Generics:%20What%20is%20PECS%3F%20-%20Stack%20Overflow_files/ados_002.js" async="" type="text/javascript"></script><script src="Java%20Generics:%20What%20is%20PECS%3F%20-%20Stack%20Overflow_files/jquery.js"></script>
+    <script src="Java%20Generics:%20What%20is%20PECS%3F%20-%20Stack%20Overflow_files/stub.js"></script>
+    <link rel="stylesheet" type="text/css" href="Java%20Generics:%20What%20is%20PECS%3F%20-%20Stack%20Overflow_files/all.css">
+
+            <link rel="alternate" type="application/atom+xml" title="Feed for question 'Java Generics: What is PECS?'" href="http://stackoverflow.com/feeds/question/2723397">
+            <meta name="twitter:app:country" content="US">
+            <meta name="twitter:app:name:iphone" content="Stack Exchange iOS">
+            <meta name="twitter:app:id:iphone" content="871299723">
+            <meta name="twitter:app:url:iphone" content="se-zaphod://stackoverflow.com/questions/2723397/java-generics-what-is-pecs">
+            <meta name="twitter:app:name:ipad" content="Stack Exchange iOS">
+            <meta name="twitter:app:id:ipad" content="871299723">
+            <meta name="twitter:app:url:ipad" content="se-zaphod://stackoverflow.com/questions/2723397/java-generics-what-is-pecs">
+            <meta name="twitter:app:name:googleplay" content="Stack Exchange Android">
+            <meta name="twitter:app:url:googleplay" content="http://stackoverflow.com/questions/2723397/java-generics-what-is-pecs">
+            <meta name="twitter:app:id:googleplay" content="com.stackexchange.marvin">
+        <script>
+        
+            StackExchange.ready(function () {
+                    
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.initSnippetRenderer();
+                    });
+                    
+
+                StackExchange.using("postValidation", function () {
+                    StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+                });
+
+                
+                StackExchange.question.init({showAnswerHelp:true,totalCommentCount:0,shownCommentCount:0,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:2723397});
+
+                styleCode();
+
+                    StackExchange.realtime.subscribeToQuestion('1', '2723397');
+                                                                    StackExchange.using("gps", function () { StackExchange.gps.trackOutboundClicks('#content', '.post-text'); });
+
+            });
+        </script>
+
+
+    <script>
+        StackExchange.init({"locale":"en","stackAuthUrl":"https://stackauth.com","serverTime":1449232158,"networkMetaHostname":"meta.stackexchange.com","routeName":"Questions/Show","styleCode":true,"enableUserHovercards":true,"snippets":{"enabled":true,"domain":"stacksnippets.net"},"site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdchgIAAAAAAJwGpIzRQSOFaO0pU6s44Xt8aTwc","recaptchaAudioLang":"en","enableNewTagCreationWarning":true,"insertSpaceAfterNameTabCompletion":false,"id":1,"nonAsciiTags":true,"enableSocialMediaInSharePopup":true},"timingsGuid":"d1013c17-ed63-4678-b80e-3f4a4b13a73a","timingsInfo":"ZqtwPCkBinGkOBwJGd/w85sFO9zpVRd9dUHWVhZrDi2R+58lq7KAd9arzNkQKW8R9cEgFdTkSNiqFAO89akXtP72OPu5Oh2HdIlBgihivDVcNv5D4PZbKsE8Ms7Upc+xkkM9R+HSBW3WrLNa4d3dSanepZQRjU7cN2sfs7/ZfU3/ChgMSr7Lebl8k57Q7ump3cR/oclLWHW0lnaN6VpnJrJY0S3LzWRJ0Y0nyJz6RIN5KmtxEHtzQtKTBRvv/mtS9E0QGGVDCtxKltpj8ZQFHUWvkiQAxco/iRgz60Ppm/M=","user":{"fkey":"403aacb6ad65e2352d636eae87907085","rep":0,"isAnonymous":true,"isAnonymousNetworkWide":true}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"201117db6a2b","js/moderator.en.js":"383fea8d7f95","js/full-anon.en.js":"2e94668dfdd2","js/full.en.js":"d51f0666beca","js/wmd.en.js":"e41094a787ac","js/third-party/jquery.autocomplete.min.js":"e5f01e97f7c3","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"ae05e7545ef0","js/help.en.js":"20ffd1ace312","js/tageditor.en.js":"9ea765a97e62","js/tageditornew.en.js":"6b3f4e20418a","js/inline-tag-editing.en.js":"c0c258972ba6","js/revisions.en.js":"6aca57a6c709","js/review.en.js":"4c2a1a000e09","js/tagsuggestions.en.js":"d1ff9b84abe5","js/post-validation.en.js":"61dd105afac7","js/explore-qlist.en.js":"e71f14781288","js/events.en.js":"8899ae7ef636","js/keyboard-shortcuts.en.js":"acb49a527a09","js/external-editor.en.js":"cf58cc6630ef","js/external-editor.en.js":"cf58cc6630ef","js/snippet-javascript.en.js":"50888a2c5e75","js/snippet-javascript-codemirror.en.js":"914ce5426a0f"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </script>
+    
+        <script>
+            StackExchange.ready(function () {
+                $('#nav-tour').click(function () {
+                    StackExchange.using("gps", function() {
+                        StackExchange.gps.track("aboutpage.click", { aboutclick_location: "headermain" }, true);
+                    });
+                });
+            });
+        </script>
+    
+    
+<script src="Java%20Generics:%20What%20is%20PECS%3F%20-%20Stack%20Overflow_files/full-anon.js" async=""></script><script src="Java%20Generics:%20What%20is%20PECS%3F%20-%20Stack%20Overflow_files/adFeedback.js" type="text/javascript"></script><link href="Java%20Generics:%20What%20is%20PECS%3F%20-%20Stack%20Overflow_files/adFeedback.css" rel="stylesheet"><script src="Java%20Generics:%20What%20is%20PECS%3F%20-%20Stack%20Overflow_files/snippet-javascript.js" async=""></script><script src="Java%20Generics:%20What%20is%20PECS%3F%20-%20Stack%20Overflow_files/post-validation.js" async=""></script><script src="Java%20Generics:%20What%20is%20PECS%3F%20-%20Stack%20Overflow_files/prettify-full.js" async=""></script><script src="Java%20Generics:%20What%20is%20PECS%3F%20-%20Stack%20Overflow_files/p.js" async=""></script><link href="Java%20Generics:%20What%20is%20PECS%3F%20-%20Stack%20Overflow_files/jobs.css" rel="stylesheet" type="text/css"></head>
+<body class="question-page new-topbar">
+    <noscript><div id="noscript-padding"></div></noscript>
+    <div id="notify-container"></div>
+    <div id="overlay-header"></div>
+    <div id="custom-header"></div>
+
+
+
+
+
+<div class="topbar">
+    <div class="topbar-wrapper">
+
+        <div class="js-topbar-dialog-corral">
+
+
+<div class="topbar-dialog siteSwitcher-dialog dno">
+    <div class="header">
+        <h3><a href="http://stackoverflow.com/">current community</a></h3>
+    </div>
+    <div class="modal-content current-site-container">
+        <ul class="current-site">
+                <li>
+                        <div class="related-links">
+                    <a href="http://chat.stackoverflow.com/" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:6 })">chat</a>
+            </div>
+
+
+
+
+    <a href="http://stackoverflow.com/" class="current-site-link site-link js-gps-track" data-id="1" data-gps-track="
+        site_switcher.click({ item_type:3 })">
+        <div class="site-icon favicon favicon-stackoverflow" title="Stack Overflow"></div>
+        Stack Overflow
+    </a>
+
+                </li>
+                <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    
+
+
+
+    <a href="http://meta.stackoverflow.com/" class="site-link js-gps-track" data-id="552" data-gps-track="
+            site.switch({ target_site:552, item_type:3 }),
+        site_switcher.click({ item_type:4 })">
+        <div class="site-icon favicon favicon-stackoverflowmeta" title="Meta Stack Overflow"></div>
+        Meta Stack Overflow
+    </a>
+
+                </li>
+                            <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    <a class="site-link js-gps-track" href="http://careers.stackoverflow.com/?utm_source=stackoverflow.com&amp;utm_medium=site-ui&amp;utm_campaign=multicollider" data-gps-track="site_switcher.click({ item_type:9 })">
+                        <div class="site-icon favicon favicon-careers" title="Stack Overflow Careers"></div>
+                        Stack Overflow Careers
+                    </a>
+                </li>
+        </ul>
+    </div>
+    
+    <div class="header" id="your-communities-header">
+        <h3>
+your communities        </h3>
+            
+    </div>
+    <div class="modal-content" id="your-communities-section">
+            
+            <div class="call-to-login">
+<a href="https://stackoverflow.com/users/signup?ssrc=site_switcher&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f2723397%2fjava-generics-what-is-pecs" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:10 })">Sign up</a> or <a href="https://stackoverflow.com/users/login?ssrc=site_switcher&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f2723397%2fjava-generics-what-is-pecs" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:11 })">log in</a> to customize your list.
+            </div>
+    </div>
+    
+    <div class="header">
+        <h3><a href="http://stackexchange.com/sites">more stack exchange communities</a></h3>
+        <a href="http://blog.stackoverflow.com/" class="fr">company blog</a>
+    </div>
+    <div class="modal-content">
+            <div class="child-content"></div>
+    </div>
+</div>
+        </div>
+
+        <div class="network-items">
+
+            <a href="http://stackexchange.com/" class="topbar-icon icon-site-switcher yes-hover js-site-switcher-button js-gps-track" data-gps-track="site_switcher.show" title="A list of all 150 Stack Exchange sites">
+                <span class="hidden-text">Stack Exchange</span>
+            </a>
+
+    <a href="#" class="topbar-icon icon-inbox yes-hover js-inbox-button" title="Recent inbox messages">
+        <span class="hidden-text">Inbox</span>
+        <span class="unread-count" style="display:none"></span>
+    </a>
+    <a href="#" class="topbar-icon icon-achievements yes-hover js-achievements-button " data-unread-class="" title="Recent achievements: reputation, badges, and privileges earned">
+        <span class="hidden-text">Reputation and Badges</span>
+        <span class="unread-count" style="display:none">
+            
+        </span>
+    </a>
+        </div>
+
+        <div class="topbar-links">
+
+                <div class="links-container">
+                <span class="topbar-menu-links">
+                                    <a href="https://stackoverflow.com/users/signup?ssrc=head&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f2723397%2fjava-generics-what-is-pecs" class="login-link">sign up</a>
+                                <a href="https://stackoverflow.com/users/login?ssrc=head&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f2723397%2fjava-generics-what-is-pecs" class="login-link">log in</a>
+
+                        <a href="http://stackoverflow.com/tour">tour</a>
+                            <a href="#" class="icon-help js-help-button" title="Help Center and other resources">
+        help
+        <span class="triangle"></span>
+    </a>
+    <div class="topbar-dialog help-dialog js-help-dialog dno">
+        <div class="modal-content">
+            <ul>
+                                    <li>
+                        <a href="http://stackoverflow.com/tour" class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })">
+                            Tour
+                            <span class="item-summary">
+                                Start here for a quick overview of the site
+                            </span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="http://stackoverflow.com/help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })">
+                        Help Center
+                        <span class="item-summary">
+                            Detailed answers to any questions you might have
+                        </span>
+                    </a>
+                </li>
+                    <li>
+                        <a href="http://meta.stackoverflow.com/" class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })">
+                            Meta
+                            <span class="item-summary">
+                                Discuss the workings and policies of this site
+                            </span>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+
+                            <a href="http://careers.stackoverflow.com/?utm_source=stackoverflow.com&amp;utm_medium=site-ui&amp;utm_campaign=anon-topbar">stack overflow careers</a>
+                    </span>
+                </div>
+
+            <div class="search-container">
+                <form id="search" action="/search" method="get" autocomplete="off">
+                    <input name="q" placeholder="search" tabindex="1" autocomplete="off" maxlength="240" type="text">
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+    <script>
+        StackExchange.ready(function() { StackExchange.topbar.init(); });
+    </script>
+
+    <div class="container">
+        <div id="header">
+            <br class="cbt">
+            <div id="hlogo">
+                <a href="http://stackoverflow.com/">
+                    Stack Overflow
+                </a>
+            </div>
+            <div id="hmenus">
+                <div class="nav mainnavs">
+                    <ul>
+                        <li class="youarehere"><a id="nav-questions" href="http://stackoverflow.com/questions">Questions</a></li>
+                        <li><a id="nav-tags" href="http://stackoverflow.com/tags">Tags</a></li>
+                        <li><a id="nav-users" href="http://stackoverflow.com/users">Users</a></li>
+                        <li><a id="nav-badges" href="http://stackoverflow.com/help/badges">Badges</a></li>
+                                                                    </ul>
+                </div>
+                <div class="nav askquestion">
+                    <ul>
+                        <li>
+                            <a id="nav-askquestion" href="http://stackoverflow.com/questions/ask">Ask Question</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+
+
+
+        <div id="content" class="snippet-hidden">
+            
+
+<div itemscope="" itemtype="http://schema.org/Question">
+    <link itemprop="image" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+			<!--googleoff: all-->
+
+<div id="herobox-mini">
+    <div id="hero-content">
+        <span id="controls">
+                <a href="http://stackoverflow.com/users/signup?ssrc=hero&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f2723397%2fjava-generics-what-is-pecs" id="tell-me-more" class="button">Sign up</a>
+            <span id="close"><a title="click to dismiss">×</a></span>
+        </span>
+        <div id="blurb">
+            Stack Overflow is a community of 4.7 million programmers, 
+just like you, helping each other. Join them; it only takes a minute:
+        </div>        
+    </div>
+    <script>
+        StackExchange.ready(function() {
+            var clickSource = $("body").attr("class") + '-mini';
+            var location = 0;
+            if ($("body").hasClass("questions-page")) {
+                clickSource = 'questionpagemini';
+                location = 2;
+            } else if ($("body").hasClass("question-page")) {
+                clickSource = 'questionpagemini';
+                location = 2;
+            } else if ($("body").hasClass("home-page")) {
+                clickSource = 'homepagemini';
+                location = 4;
+            }
+
+            $('#tell-me-more').click(function () {
+                StackExchange.using("gps", function () {
+                    StackExchange.gps.track("hero.action", { hero_action_type: 'cta', location: location }, true);
+                });
+            });
+            $('#herobox-mini #close').click(function () {
+                StackExchange.using("gps", function () {
+                    StackExchange.gps.track("hero.action", { hero_action_type: "close", location: location }, true);
+                });
+                $.cookie("hero", "none", { path: "/", expires: 365 });
+                var $hero = $("#herobox-mini");
+                $hero.slideUp('fast', function () { $hero.remove(); });
+                return false;
+            });
+        });
+    </script>
+</div>
+			<!--googleon: all-->
+			<div id="question-header">
+                <h1 itemprop="name"><a href="http://stackoverflow.com/questions/2723397/java-generics-what-is-pecs" class="question-hyperlink">Java Generics: What is PECS?</a></h1>
+		</div>
+			<div id="mainbar">
+
+			
+
+<div class="question" data-questionid="2723397" id="question">
+
+    <script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk1196541090",4).setZone(43); });
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk1196541090"><a href="http://engine.adzerk.net/r?e=eyJhdiI6NDE0LCJhdCI6NCwiYnQiOjAsImNtIjozMjI1MTQsImNoIjoxMTc4LCJjayI6e30sImNyIjoxMTk1OTExLCJkaSI6IjAzZjY4MjgzYzdjMjRmOTQ5MTBlMmI3OGMxNGRmOTM4IiwiZG0iOjEsImZjIjoxMjY5MjUxLCJmbCI6ODY0MjI2LCJpcCI6IjEzNC42MC4xNDguOTciLCJrdyI6ImphdmEsZ2VuZXJpY3Msc3VwZXIsYm91bmRlZC13aWxkY2FyZCxwZWNzIiwibnciOjIyLCJwYyI6MCwiZWMiOjAsInByIjoxNTY4LCJydCI6MSwicmYiOiJodHRwOi8vc3RhY2tvdmVyZmxvdy5jb20vcXVlc3Rpb25zLzI3NzY5NzUvaG93LWNhbi1pLWFkZC10by1saXN0LWV4dGVuZHMtbnVtYmVyLWRhdGEtc3RydWN0dXJlcyIsInN0Ijo4Mjc3LCJ1ayI6InVlMS0xNTMxYjA5MmI0NDM0Mzc0YTQzMDUxZTJlNzRkNzA3NCIsInpuIjo0MywidHMiOjE0NDkyMzIxNTk5NTAsImJmIjp0cnVlLCJwbiI6ImFkemVyazExOTY1NDEwOTAiLCJ1ciI6Imh0dHA6Ly9jYXJlZXJzLnN0YWNrb3ZlcmZsb3cuY29tL3doeS1zdGFjaz91dG1fc291cmNlPXN0YWNrb3ZlcmZsb3cuY29tJnV0bV9tZWRpdW09YWQmdXRtX2NhbXBhaWduPWNhbmRpZGF0ZXMtYWRkLWN2JnV0bV9jb250ZW50PWxiLWNhcmVlcnMtYml0YnVja2V0In0&amp;s=m8vynElmDRRkx1CtMFNcBmB_MvA" rel="nofollow" target="_blank" title=""><img class="bxjsotymotitfhiyzwui" src="Java%20Generics:%20What%20is%20PECS%3F%20-%20Stack%20Overflow_files/b027fb42cc2d4f2693aed08b41250d61.png" title="" alt="" height="90" width="728" border="0"></a><img class="bxjsotymotitfhiyzwui" src="Java%20Generics:%20What%20is%20PECS%3F%20-%20Stack%20Overflow_files/i_003.gif" style="position:absolute;" height="0px" width="0px" border="0"></div>    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="2723397" type="hidden">
+        <a class="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">275</span>
+        <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a>
+
+        <a class="star-off" href="#" title="This is a favorite question (click again to undo)">favorite</a>
+        <div class="favoritecount"><b>206</b></div>
+
+
+</div>
+
+            </td>
+            
+<td class="postcell">
+<div>
+    <div class="post-text" itemprop="text">
+
+<p>I came across PECS (short for <em>Producer <code>extends</code> and Consumer <code>super</code></em>) while reading up on generics. </p>
+
+<p>Can someone explain to me how to use PECS to resolve confusion between <code>extends</code> and <code>super</code>?</p>
+    </div>
+    <div class="post-taglist">
+        <a href="http://stackoverflow.com/questions/tagged/java" class="post-tag js-gps-track" title="show questions tagged 'java'" rel="tag">java</a> <a href="http://stackoverflow.com/questions/tagged/generics" class="post-tag js-gps-track" title="show questions tagged 'generics'" rel="tag">generics</a> <a href="http://stackoverflow.com/questions/tagged/super" class="post-tag js-gps-track" title="show questions tagged 'super'" rel="tag">super</a> <a href="http://stackoverflow.com/questions/tagged/bounded-wildcard" class="post-tag js-gps-track" title="show questions tagged 'bounded-wildcard'" rel="tag">bounded-wildcard</a> <a href="http://stackoverflow.com/questions/tagged/pecs" class="post-tag js-gps-track" title="show questions tagged 'pecs'" rel="tag">pecs</a> 
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/q/2723397" title="short permalink to this question" class="short-link" id="link-post-2723397">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/2723397/edit" class="suggest-edit-post" title="">improve this question</a></div>        
+    </td>
+    <td class="post-signature" align="right">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/2723397/revisions" title="show all edits to this post">edited <span title="2013-09-22 07:27:56Z" class="relativetime">Sep 22 '13 at 7:27</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/697449/paul-bellora"><div class="gravatar-wrapper-32"><img src="Java%20Generics:%20What%20is%20PECS%3F%20-%20Stack%20Overflow_files/0d825a4fb8f4417045815f4c921aa0cc.jpeg" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/697449/paul-bellora">Paul Bellora</a><br>
+        <span class="reputation-score" title="reputation score 33051" dir="ltr">33.1k</span><span title="7 gold badges"><span class="badge1"></span><span class="badgecount">7</span></span><span title="70 silver badges"><span class="badge2"></span><span class="badgecount">70</span></span><span title="119 bronze badges"><span class="badge3"></span><span class="badgecount">119</span></span>
+    </div>
+</div>    </td>
+    <td class="post-signature owner">
+        <div class="user-info ">
+    <div class="user-action-time">
+        asked <span title="2010-04-27 17:16:40Z" class="relativetime">Apr 27 '10 at 17:16</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/133830/peakit"><div class="gravatar-wrapper-32"><img src="Java%20Generics:%20What%20is%20PECS%3F%20-%20Stack%20Overflow_files/4a4131111253f53bdc9485044d76e53f.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/133830/peakit">peakit</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">7,742</span><span title="18 gold badges"><span class="badge1"></span><span class="badgecount">18</span></span><span title="44 silver badges"><span class="badge2"></span><span class="badgecount">44</span></span><span title="65 bronze badges"><span class="badge3"></span><span class="badgecount">65</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</div>
+</td>
+        </tr>
+                
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-2723397" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-2723397" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>        </tbody></table>
+</div>
+
+			<div id="answers">
+
+				<a name="tab-top"></a>
+				<div id="answers-header">
+					<div class="subheader answers-subheader">
+						<h2>
+								7 Answers
+                                <span style="display:none;" itemprop="answerCount">7</span>
+						</h2>
+						<div>
+							<div id="tabs">
+        <a href="http://stackoverflow.com/questions/2723397/java-generics-what-is-pecs?answertab=active#tab-top" data-nav-xhref="" title="Answers with the latest activity first" data-value="active">active</a>
+        <a href="http://stackoverflow.com/questions/2723397/java-generics-what-is-pecs?answertab=oldest#tab-top" data-nav-xhref="" title="Answers in the order they were provided" data-value="oldest">oldest</a>
+        <a class="youarehere" href="http://stackoverflow.com/questions/2723397/java-generics-what-is-pecs?answertab=votes#tab-top" data-nav-xhref="" title="Answers with the highest score first" data-value="votes">votes</a>
+</div>
+						</div>
+					</div>    
+				</div>    
+
+
+
+
+  
+<a name="2723538"></a>
+<div id="answer-2723538" class="answer accepted-answer" data-answerid="2723538" itemscope="" itemtype="http://schema.org/Answer" itemprop="acceptedAnswer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="2723538" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">345</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+        <span class="vote-accepted-on load-accepted-answer-date" title="loading when this answer was accepted...">accepted</span>
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p><strong>tl;dr:</strong> "PECS" is from the collection's point of view. If you are <em>only</em> pulling items from a generic collection, it is a producer and you should use <code>extends</code>; if you are <em>only</em> stuffing items in, it is a consumer and you should use <code>super</code>. If you do both with the same collection, you shouldn't use either <code>extends</code> or <code>super</code>.</p>
+
+<hr>
+
+<p>Suppose you have a method that takes as its parameter a collection of
+ things, but you want it to be more flexible than just accepting a <code>Collection&lt;Thing&gt;</code>.</p>
+
+<p><strong>Case 1: You want to go through the collection and do things with each item.</strong><br>
+Then the list is a <strong>producer</strong>, so you should use a <code>Collection&lt;? extends Thing&gt;</code>.</p>
+
+<p>The reasoning is that a <code>Collection&lt;? extends Thing&gt;</code> could hold any subtype of <code>Thing</code>, and thus each element will behave as a <code>Thing</code> when you perform your operation. (You actually cannot add anything to a <code>Collection&lt;? extends Thing&gt;</code>, because you cannot know at runtime which <em>specific</em> subtype of <code>Thing</code> the collection holds.)</p>
+
+<p><strong>Case 2: You want to add things to the collection.</strong><br>
+Then the list is a <strong>consumer</strong>, so you should use a <code>Collection&lt;? super Thing&gt;</code>.</p>
+
+<p>The reasoning here is that unlike <code>Collection&lt;? extends Thing&gt;</code>, <code>Collection&lt;? super Thing&gt;</code> can always hold a <code>Thing</code> no matter what the actual parameterized type is. Here you don't care what is already in the list as long as it will allow a <code>Thing</code> to be added; this is what <code>? super Thing</code> guarantees.</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/2723538" title="short permalink to this answer" class="short-link" id="link-post-2723538">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/2723538/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/2723538/revisions" title="show all edits to this post">edited <span title="2015-05-29 16:39:36Z" class="relativetime">May 29 at 16:39</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2010-04-27 17:37:26Z" class="relativetime">Apr 27 '10 at 17:37</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/13531/michael-myers"><div class="gravatar-wrapper-32"><img src="Java%20Generics:%20What%20is%20PECS%3F%20-%20Stack%20Overflow_files/49f3a2065659f5b4efa05ae29bd0856a.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/13531/michael-myers">Michael Myers</a><span class="mod-flair" title="moderator">♦</span><br>
+        <span class="reputation-score" title="reputation score 105741" dir="ltr">106k</span><span title="28 gold badges"><span class="badge1"></span><span class="badgecount">28</span></span><span title="219 silver badges"><span class="badge2"></span><span class="badgecount">219</span></span><span title="253 bronze badges"><span class="badge3"></span><span class="badgecount">253</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-2723538" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="3" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-23544205" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="warm">14</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I'm always trying to think about it this way: A <i>producer</i> is allowed to produce something more specific, hence <i>extends</i>, a <i>consumer</i> is allowed to accept something more general, hence <i>super</i>.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/402281/feuermurmel" title="1896 reputation" class="comment-user">Feuermurmel</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment23544205_2723538"><span title="2013-05-07 13:11:56Z" class="relativetime-clean">May 7 '13 at 13:11</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-32173405" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Another way to remember the producer/consumer distinction is to think of a method signature. If you have a method <code>doSomethingWithList(List list)</code>, you are <i>consuming</i> the list and so will need covariance / extends (or an invariant List). On the other hand if your method is <code>List doSomethingProvidingList</code>, then you are <i>producing</i> the List and will need contravariance / super (or an invariant List).</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/430128/raman" title="2763 reputation" class="comment-user">Raman</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment32173405_2723538"><span title="2014-01-24 19:20:58Z" class="relativetime-clean">Jan 24 '14 at 19:20</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 4 times"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-36688334" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@MichaelMyers: Why can't we 
+simply use a parameterized type for both these cases? Is there any 
+specific advantage of using wildcards here, or is it just a means of 
+improving readability similar to, say, using references to <code>const</code> as method parameters in C++ to signify that the method does not modify the arguments?</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/1751705/chatterjee" title="173 reputation" class="comment-user">Chatterjee</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment36688334_2723538"><span title="2014-05-24 06:27:26Z" class="relativetime-clean">May 24 '14 at 6:27</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-36793775" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@Raman, I think you just 
+confused it. In doSthWithList( you can have List&lt;? super Thing&gt; ),
+ since you are a consumer, you can use super (remember, CS). However, 
+it's List&lt;? extends Thing&gt; getList() since you are allowed to 
+return something more specific when producing (PE).</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/524504/masterxilo" title="186 reputation" class="comment-user">masterxilo</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment36793775_2723538"><span title="2014-05-27 19:08:07Z" class="relativetime-clean">May 27 '14 at 19:08</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-36795309" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@masterxilo You're right, I 
+seem to have had it reversed. Every time I look at this I think I 
+understand it. Then I come back to it months later and realize I don't 
+(and perhaps never did).</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/430128/raman" title="2763 reputation" class="comment-user">Raman</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment36795309_2723538"><span title="2014-05-27 19:57:23Z" class="relativetime-clean">May 27 '14 at 19:57</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-2723538" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link  dno" title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."></a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link " title="expand to show all comments on this post" href="#" onclick="">show <b>3</b> more comments</a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+<script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk1875131735",4).setZone(44); });
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk1875131735"><a href="http://engine.adzerk.net/r?e=eyJhdiI6MTA2MTg5LCJhdCI6NCwiYnQiOjAsImNtIjozMzA1ODAsImNoIjoxMTc4LCJjayI6e30sImNyIjoxMjMxODg2LCJkaSI6IjI2OWMyOGFiYWIzZjQwODA5YTE4N2JkZWY2MDc1NGFjIiwiZG0iOjEsImZjIjoxMzEzOTE3LCJmbCI6OTI0NjUyLCJpcCI6IjEzNC42MC4xNDguOTciLCJrdyI6ImphdmEsZ2VuZXJpY3Msc3VwZXIsYm91bmRlZC13aWxkY2FyZCxwZWNzIiwibWsiOiJqYXZhIiwibnciOjIyLCJwYyI6Ni41LCJlYyI6Ni41LCJwciI6NzY1LCJydCI6MiwicmYiOiJodHRwOi8vc3RhY2tvdmVyZmxvdy5jb20vcXVlc3Rpb25zLzI3NzY5NzUvaG93LWNhbi1pLWFkZC10by1saXN0LWV4dGVuZHMtbnVtYmVyLWRhdGEtc3RydWN0dXJlcyIsInN0Ijo4Mjc3LCJ1ayI6InVlMS0xNTMxYjA5MmI0NDM0Mzc0YTQzMDUxZTJlNzRkNzA3NCIsInpuIjo0NCwidHMiOjE0NDkyMzIxNTk5NTIsImJmIjp0cnVlLCJwbiI6ImFkemVyazE4NzUxMzE3MzUiLCJ1ciI6Imh0dHBzOi8vY2FyZWVycy5zdGFja292ZXJmbG93LmNvbS9qb2JzLzEwMjc3NC9zb2Z0d2FyZWVudHdpY2tsZXItbS13LWplZS1wZW50YXN5cy1hZyJ9&amp;s=ZwDVydr1MK_gdrIx8ZXoFx47Bdw" rel="nofollow" target="_blank" title=""><img class="bxjsotymotitfhiyzwui" src="Java%20Generics:%20What%20is%20PECS%3F%20-%20Stack%20Overflow_files/39cf78d383bb43ea8372f77270ded33e.jpg" title="" alt="" height="90" width="728" border="0"></a><img class="bxjsotymotitfhiyzwui" src="Java%20Generics:%20What%20is%20PECS%3F%20-%20Stack%20Overflow_files/i_002.gif" style="position:absolute;" height="0px" width="0px" border="0"></div>
+  
+<a name="19739576"></a>
+<div id="answer-19739576" class="answer" data-answerid="19739576" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="19739576" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">239</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>The principles behind this in Computer Science is named after </p>
+
+<ul>
+<li>Covariance - ? extends MyClass, </li>
+<li>Contravariance - ? super MyClass and </li>
+<li>Invariance/non-Variance - MyClass </li>
+</ul>
+
+<p>The picture below should explain the concept.</p>
+
+<p>Picture courtesy : <a href="http://stackoverflow.com/users/2707792/andrey-tyukin">Andrey Tyukin</a></p>
+
+<p><img src="Java%20Generics:%20What%20is%20PECS%3F%20-%20Stack%20Overflow_files/KjDLw.png" alt="Covariance vs Contravariance"></p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/19739576" title="short permalink to this answer" class="short-link" id="link-post-19739576">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/19739576/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/19739576/revisions" title="show all edits to this post">edited <span title="2014-06-15 17:59:39Z" class="relativetime">Jun 15 '14 at 17:59</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2013-11-02 06:34:38Z" class="relativetime">Nov 2 '13 at 6:34</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/1328888/anoopelias"><div class="gravatar-wrapper-32"><img src="Java%20Generics:%20What%20is%20PECS%3F%20-%20Stack%20Overflow_files/tOkv0.jpg" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/1328888/anoopelias">anoopelias</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">3,295</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="10 silver badges"><span class="badge2"></span><span class="badgecount">10</span></span><span title="23 bronze badges"><span class="badge3"></span><span class="badgecount">23</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-19739576" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="9" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-29452168" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">wow nice picture</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/70786/michal-bernhard" title="2585 reputation" class="comment-user">Michal Bernhard</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment29452168_19739576"><span title="2013-11-06 10:54:21Z" class="relativetime-clean">Nov 6 '13 at 10:54</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-30201771" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="warm">11</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I cannot believe this answer has so few votes...</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/12960/brian-agnew" title="170107 reputation" class="comment-user">Brian Agnew</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment30201771_19739576"><span title="2013-11-27 17:37:27Z" class="relativetime-clean">Nov 27 '13 at 17:37</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-37423889" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">4</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Thanks to the efforts of Nick Vrvilo, I was able to get permission from the original author of the image.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/1328888/anoopelias" title="3295 reputation" class="comment-user">anoopelias</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment37423889_19739576"><span title="2014-06-15 18:08:33Z" class="relativetime-clean">Jun 15 '14 at 18:08</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-37427418" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">3</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">As anoopelias said, I got in contact with @AndreyTyukin, and he has agreed to release the featured diagram under the <a href="http://creativecommons.org/licenses/by-sa/4.0/" rel="nofollow">Creative Commons Share-Alike License</a>.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/1427124/daowen" title="18164 reputation" class="comment-user">DaoWen</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment37427418_19739576"><span title="2014-06-15 21:38:37Z" class="relativetime-clean">Jun 15 '14 at 21:38</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-37428574" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="supernova">34</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Hey everyone. I'm Andrey 
+Tyukin, I just wanted to confirm that anoopelias &amp; DaoWen contacted 
+me and obtained my permission to use the sketch, it's licensed under 
+(CC)-BY-SA. Thx @ Anoop for giving it a second life^^  @Brian Agnew: (on
+ "few votes"): That's because it's a sketch for Scala, it uses Scala 
+syntax and assumes declaration-site variance, which is quite different 
+to Java's weird call-site variance... Maybe I should write a more 
+detailed answer that clearly shows how this sketch applies to Java...</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/2707792/andrey-tyukin" title="1115 reputation" class="comment-user">Andrey Tyukin</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment37428574_19739576"><span title="2014-06-15 23:11:38Z" class="relativetime-clean">Jun 15 '14 at 23:11</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-19739576" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link  dno" title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."></a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link " title="expand to show all comments on this post" href="#" onclick="">show <b>9</b> more comments</a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="21351277"></a>
+<div id="answer-21351277" class="answer" data-answerid="21351277" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="21351277" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">59</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>PECS (short for "<strong>Producer <code>extends</code> and Consumer <code>super</code></strong>") can be explained by : <strong>Get and Put Principle</strong></p>
+
+<h2>Get And Put Principle (From Java Generics and Collections)</h2>
+
+<p>It states,</p>
+
+<ol>
+<li>use an <strong>extends wildcard</strong> when you only <strong>get</strong> values out of a structure</li>
+<li>use a <strong>super wildcard</strong> when you only <strong>put</strong> values into a structure</li>
+<li>and <strong>don’t use a wildcard</strong> when you <strong>both get and put</strong>.</li>
+</ol>
+
+<h2>Let's understand it by example:</h2>
+
+<p><strong>1. For Extends Wildcard(get values i.e Producer <code>extends</code>)</strong></p>
+
+<p>Here is a method, that takes a collection of numbers, converts each to a <code>double</code>, and sums them up</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">double</span><span class="pln"> sum</span><span class="pun">(</span><span class="typ">Collection</span><span class="pun">&lt;?</span><span class="pln"> </span><span class="kwd">extends</span><span class="pln"> </span><span class="typ">Number</span><span class="pun">&gt;</span><span class="pln"> nums</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+   </span><span class="kwd">double</span><span class="pln"> s </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0.0</span><span class="pun">;</span><span class="pln">
+   </span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Number</span><span class="pln"> num </span><span class="pun">:</span><span class="pln"> nums</span><span class="pun">)</span><span class="pln"> 
+      s </span><span class="pun">+=</span><span class="pln"> num</span><span class="pun">.</span><span class="pln">doubleValue</span><span class="pun">();</span><span class="pln">
+   </span><span class="kwd">return</span><span class="pln"> s</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p><em>Let's call the method :</em></p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="typ">List</span><span class="pun">&lt;</span><span class="typ">Integer</span><span class="pun">&gt;</span><span class="pln">ints </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Arrays</span><span class="pun">.</span><span class="pln">asList</span><span class="pun">(</span><span class="lit">1</span><span class="pun">,</span><span class="lit">2</span><span class="pun">,</span><span class="lit">3</span><span class="pun">);</span><span class="pln">
+</span><span class="kwd">assert</span><span class="pln"> sum</span><span class="pun">(</span><span class="pln">ints</span><span class="pun">)</span><span class="pln"> </span><span class="pun">==</span><span class="pln"> </span><span class="lit">6.0</span><span class="pun">;</span><span class="pln">
+</span><span class="typ">List</span><span class="pun">&lt;</span><span class="typ">Double</span><span class="pun">&gt;</span><span class="pln">doubles </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Arrays</span><span class="pun">.</span><span class="pln">asList</span><span class="pun">(</span><span class="lit">2.78</span><span class="pun">,</span><span class="lit">3.14</span><span class="pun">);</span><span class="pln">
+</span><span class="kwd">assert</span><span class="pln"> sum</span><span class="pun">(</span><span class="pln">doubles</span><span class="pun">)</span><span class="pln"> </span><span class="pun">==</span><span class="pln"> </span><span class="lit">5.92</span><span class="pun">;</span><span class="pln">
+</span><span class="typ">List</span><span class="pun">&lt;</span><span class="typ">Number</span><span class="pun">&gt;</span><span class="pln">nums </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Arrays</span><span class="pun">.&lt;</span><span class="typ">Number</span><span class="pun">&gt;</span><span class="pln">asList</span><span class="pun">(</span><span class="lit">1</span><span class="pun">,</span><span class="lit">2</span><span class="pun">,</span><span class="lit">2.78</span><span class="pun">,</span><span class="lit">3.14</span><span class="pun">);</span><span class="pln">
+</span><span class="kwd">assert</span><span class="pln"> sum</span><span class="pun">(</span><span class="pln">nums</span><span class="pun">)</span><span class="pln"> </span><span class="pun">==</span><span class="pln"> </span><span class="lit">8.92</span><span class="pun">;</span></code></pre>
+
+<p>Since, <strong><code>sum()</code> method uses <code>extends</code></strong>, all of the following calls are legal.
+The first two calls would not be legal if extends was not used.</p>
+
+<p><strong><em>EXCEPTION</em></strong> : You <strong>cannot put  anything</strong>  into  a  type  declared  with  an <strong><code>extends</code></strong> wildcard—except  for  the  value <code>null</code>, which belongs to every reference type:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="typ">List</span><span class="pun">&lt;</span><span class="typ">Integer</span><span class="pun">&gt;</span><span class="pln"> ints </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">ArrayList</span><span class="pun">&lt;</span><span class="typ">Integer</span><span class="pun">&gt;();</span><span class="pln">
+ints</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="lit">1</span><span class="pun">);</span><span class="pln">
+ints</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="lit">2</span><span class="pun">);</span><span class="pln">
+</span><span class="typ">List</span><span class="pun">&lt;?</span><span class="pln"> </span><span class="kwd">extends</span><span class="pln"> </span><span class="typ">Number</span><span class="pun">&gt;</span><span class="pln"> nums </span><span class="pun">=</span><span class="pln"> ints</span><span class="pun">;</span><span class="pln">
+nums</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="kwd">null</span><span class="pun">);</span><span class="pln">  </span><span class="com">// ok</span><span class="pln">
+</span><span class="kwd">assert</span><span class="pln"> nums</span><span class="pun">.</span><span class="pln">toString</span><span class="pun">().</span><span class="pln">equals</span><span class="pun">(</span><span class="str">"[1, 2, null]"</span><span class="pun">);</span></code></pre>
+
+<p><strong>2. For Super Wildcard(put values i.e Consumer <code>super</code>)</strong></p>
+
+<p>Here is a method, that takes a collection of numbers and an <code>int n</code>, and puts the first <code>n</code> integers, starting from zero, into the collection:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> count</span><span class="pun">(</span><span class="typ">Collection</span><span class="pun">&lt;?</span><span class="pln"> </span><span class="kwd">super</span><span class="pln"> </span><span class="typ">Integer</span><span class="pun">&gt;</span><span class="pln"> ints</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> n</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> i </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"> i </span><span class="pun">&lt;</span><span class="pln"> n</span><span class="pun">;</span><span class="pln"> i</span><span class="pun">++)</span><span class="pln"> ints</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="pln">i</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p><em>Let's call the method :</em></p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="typ">List</span><span class="pun">&lt;</span><span class="typ">Integer</span><span class="pun">&gt;</span><span class="pln">ints </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">ArrayList</span><span class="pun">&lt;</span><span class="typ">Integer</span><span class="pun">&gt;();</span><span class="pln">
+count</span><span class="pun">(</span><span class="pln">ints</span><span class="pun">,</span><span class="pln"> </span><span class="lit">5</span><span class="pun">);</span><span class="pln">
+</span><span class="kwd">assert</span><span class="pln"> ints</span><span class="pun">.</span><span class="pln">toString</span><span class="pun">().</span><span class="pln">equals</span><span class="pun">(</span><span class="str">"[0, 1, 2, 3, 4]"</span><span class="pun">);</span><span class="pln">
+</span><span class="typ">List</span><span class="pun">&lt;</span><span class="typ">Number</span><span class="pun">&gt;</span><span class="pln">nums </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">ArrayList</span><span class="pun">&lt;</span><span class="typ">Number</span><span class="pun">&gt;();</span><span class="pln">
+count</span><span class="pun">(</span><span class="pln">nums</span><span class="pun">,</span><span class="pln"> </span><span class="lit">5</span><span class="pun">);</span><span class="pln"> nums</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="lit">5.0</span><span class="pun">);</span><span class="pln">
+</span><span class="kwd">assert</span><span class="pln"> nums</span><span class="pun">.</span><span class="pln">toString</span><span class="pun">().</span><span class="pln">equals</span><span class="pun">(</span><span class="str">"[0, 1, 2, 3, 4, 5.0]"</span><span class="pun">);</span><span class="pln">
+</span><span class="typ">List</span><span class="pun">&lt;</span><span class="typ">Object</span><span class="pun">&gt;</span><span class="pln">objs </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">ArrayList</span><span class="pun">&lt;</span><span class="typ">Object</span><span class="pun">&gt;();</span><span class="pln">
+count</span><span class="pun">(</span><span class="pln">objs</span><span class="pun">,</span><span class="pln"> </span><span class="lit">5</span><span class="pun">);</span><span class="pln"> objs</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="str">"five"</span><span class="pun">);</span><span class="pln">
+</span><span class="kwd">assert</span><span class="pln"> objs</span><span class="pun">.</span><span class="pln">toString</span><span class="pun">().</span><span class="pln">equals</span><span class="pun">(</span><span class="str">"[0, 1, 2, 3, 4, five]"</span><span class="pun">);</span></code></pre>
+
+<p>Since, <strong><code>count()</code> method uses <code>super</code></strong>, all of the following calls are legal:
+The last two calls would not be legal if super was not used.</p>
+
+<p><strong><em>EXCEPTION</em></strong> : you <strong>cannot get anything</strong> out from a type declared with a <strong><code>super</code></strong> wildcard—except for a value of type <code>Object</code>, which is a supertype of every reference type:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="typ">List</span><span class="pun">&lt;</span><span class="typ">Object</span><span class="pun">&gt;</span><span class="pln"> objs </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Arrays</span><span class="pun">.&lt;</span><span class="typ">Object</span><span class="pun">&gt;</span><span class="pln">asList</span><span class="pun">(</span><span class="lit">1</span><span class="pun">,</span><span class="str">"two"</span><span class="pun">);</span><span class="pln">
+</span><span class="typ">List</span><span class="pun">&lt;?</span><span class="pln"> </span><span class="kwd">super</span><span class="pln"> </span><span class="typ">Integer</span><span class="pun">&gt;</span><span class="pln"> ints </span><span class="pun">=</span><span class="pln"> objs</span><span class="pun">;</span><span class="pln">
+</span><span class="typ">String</span><span class="pln"> str </span><span class="pun">=</span><span class="pln"> </span><span class="str">""</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Object</span><span class="pln"> obj </span><span class="pun">:</span><span class="pln"> ints</span><span class="pun">)</span><span class="pln"> str </span><span class="pun">+=</span><span class="pln"> obj</span><span class="pun">.</span><span class="pln">toString</span><span class="pun">();</span><span class="pln">
+</span><span class="kwd">assert</span><span class="pln"> str</span><span class="pun">.</span><span class="pln">equals</span><span class="pun">(</span><span class="str">"1two"</span><span class="pun">);</span></code></pre>
+
+<p><strong>3. When both Get and Put, don't Use wildcard</strong></p>
+
+<p>Whenever you <strong>both put</strong> values into <strong>and get</strong> values out of the same structure, you <strong>should not use a wildcard</strong>.</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">double</span><span class="pln"> sumCount</span><span class="pun">(</span><span class="typ">Collection</span><span class="pun">&lt;</span><span class="typ">Number</span><span class="pun">&gt;</span><span class="pln"> nums</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> n</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+   count</span><span class="pun">(</span><span class="pln">nums</span><span class="pun">,</span><span class="pln"> n</span><span class="pun">);</span><span class="pln">
+   </span><span class="kwd">return</span><span class="pln"> sum</span><span class="pun">(</span><span class="pln">nums</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/21351277" title="short permalink to this answer" class="short-link" id="link-post-21351277">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/21351277/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/21351277/revisions" title="show all edits to this post">edited <span title="2015-05-08 23:28:24Z" class="relativetime">May 8 at 23:28</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/2891664/radiodef"><div class="gravatar-wrapper-32"><img src="Java%20Generics:%20What%20is%20PECS%3F%20-%20Stack%20Overflow_files/2424a79844157cc836a190438ce28f3c.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/2891664/radiodef">Radiodef</a><br>
+        <span class="reputation-score" title="reputation score 20926" dir="ltr">20.9k</span><span title="8 gold badges"><span class="badge1"></span><span class="badgecount">8</span></span><span title="31 silver badges"><span class="badge2"></span><span class="badgecount">31</span></span><span title="65 bronze badges"><span class="badge3"></span><span class="badgecount">65</span></span>
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2014-01-25 13:39:13Z" class="relativetime">Jan 25 '14 at 13:39</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/1878670/prateek"><div class="gravatar-wrapper-32"><img src="Java%20Generics:%20What%20is%20PECS%3F%20-%20Stack%20Overflow_files/7046d0eb6e1a81cdc9e6d5b73accee2e.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/1878670/prateek">Prateek</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">3,639</span><span title="5 gold badges"><span class="badge1"></span><span class="badgecount">5</span></span><span title="22 silver badges"><span class="badge2"></span><span class="badgecount">22</span></span><span title="51 bronze badges"><span class="badge3"></span><span class="badgecount">51</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-21351277" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-44036941" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">3</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">These examples are very useful, thanks!</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/535374/xi-lin" title="409 reputation" class="comment-user">xi.lin</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment44036941_21351277"><span title="2015-01-07 08:35:18Z" class="relativetime-clean">Jan 7 at 8:35</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-53256596" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Good use of formatting for mnemonic muscle.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/538921/eddie-b" title="2854 reputation" class="comment-user">Eddie B</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment53256596_21351277"><span title="2015-09-22 00:33:46Z" class="relativetime-clean">Sep 22 at 0:33</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-21351277" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="19231762"></a>
+<div id="answer-19231762" class="answer" data-answerid="19231762" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="19231762" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">16</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">Test</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> A </span><span class="pun">{}</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> B </span><span class="kwd">extends</span><span class="pln"> A </span><span class="pun">{}</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> C </span><span class="kwd">extends</span><span class="pln"> B </span><span class="pun">{}</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> testCoVariance</span><span class="pun">(</span><span class="typ">List</span><span class="pun">&lt;?</span><span class="pln"> </span><span class="kwd">extends</span><span class="pln"> B</span><span class="pun">&gt;</span><span class="pln"> myBlist</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        B b </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> B</span><span class="pun">();</span><span class="pln">
+        C c </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> C</span><span class="pun">();</span><span class="pln">
+        myBlist</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="pln">b</span><span class="pun">);</span><span class="pln"> </span><span class="com">// does not compile</span><span class="pln">
+        myBlist</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="pln">c</span><span class="pun">);</span><span class="pln"> </span><span class="com">// does not compile</span><span class="pln">
+        A a </span><span class="pun">=</span><span class="pln"> myBlist</span><span class="pun">.</span><span class="pln">get</span><span class="pun">(</span><span class="lit">0</span><span class="pun">);</span><span class="pln"> 
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> testContraVariance</span><span class="pun">(</span><span class="typ">List</span><span class="pun">&lt;?</span><span class="pln"> </span><span class="kwd">super</span><span class="pln"> B</span><span class="pun">&gt;</span><span class="pln"> myBlist</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        B b </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> B</span><span class="pun">();</span><span class="pln">
+        C c </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> C</span><span class="pun">();</span><span class="pln">
+        myBlist</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="pln">b</span><span class="pun">);</span><span class="pln">
+        myBlist</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="pln">c</span><span class="pun">);</span><span class="pln">
+        A a </span><span class="pun">=</span><span class="pln"> myBlist</span><span class="pun">.</span><span class="pln">get</span><span class="pun">(</span><span class="lit">0</span><span class="pun">);</span><span class="pln"> </span><span class="com">// does not compile</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/19231762" title="short permalink to this answer" class="short-link" id="link-post-19231762">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/19231762/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2013-10-07 18:15:13Z" class="relativetime">Oct 7 '13 at 18:15</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/2087640/gab"><div class="gravatar-wrapper-32"><img src="Java%20Generics:%20What%20is%20PECS%3F%20-%20Stack%20Overflow_files/1buts.jpg" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/2087640/gab">Gab</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">3,135</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="11 silver badges"><span class="badge2"></span><span class="badgecount">11</span></span><span title="31 bronze badges"><span class="badge3"></span><span class="badgecount">31</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-19231762" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-19231762" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="2723503"></a>
+<div id="answer-2723503" class="answer" data-answerid="2723503" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="2723503" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">11</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>See my answer to another question <a href="http://stackoverflow.com/questions/2248390/java-generics-collections-max-signature-and-comparator/2248503#2248503">here</a>. I think it answers your question pretty well. Note that generally you should only be using <code>? extends T</code> and <code>? super T</code> for the parameters of some method. Methods should just use <code>T</code> as the type parameter on a generic return type.</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/2723503" title="short permalink to this answer" class="short-link" id="link-post-2723503">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/2723503/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2010-04-27 17:32:52Z" class="relativetime">Apr 27 '10 at 17:32</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/13792/colind"><div class="gravatar-wrapper-32"><img src="Java%20Generics:%20What%20is%20PECS%3F%20-%20Stack%20Overflow_files/10db0f801d3ba12114f8d3fc4737eb1e.jpeg" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/13792/colind">ColinD</a><br>
+        <span class="reputation-score" title="reputation score 63915" dir="ltr">63.9k</span><span title="14 gold badges"><span class="badge1"></span><span class="badgecount">14</span></span><span title="131 silver badges"><span class="badge2"></span><span class="badgecount">131</span></span><span title="158 bronze badges"><span class="badge3"></span><span class="badgecount">158</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-2723503" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-2723503" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="26902970"></a>
+<div id="answer-26902970" class="answer" data-answerid="26902970" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="26902970" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">5</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>In nutshell easy to remember PECS </p>
+
+<ol>
+<li>Use the <code>&lt;? extends T&gt;</code> wildcard if you need to retrieve object of
+type <code>T</code> from a collection.</li>
+<li>Use the <code>&lt;? super T&gt;</code> wildcard if you need to put objects of type <code>T</code> in
+a collection.</li>
+<li>If you need to satisfy both things, well, don’t use any wildcard. As
+simple as it is.</li>
+</ol>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/26902970" title="short permalink to this answer" class="short-link" id="link-post-26902970">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/26902970/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2014-11-13 06:51:24Z" class="relativetime">Nov 13 '14 at 6:51</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/2249812/pradeep-kr-kaushal"><div class="gravatar-wrapper-32"><img src="Java%20Generics:%20What%20is%20PECS%3F%20-%20Stack%20Overflow_files/ZmFXd.jpg" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/2249812/pradeep-kr-kaushal">Pradeep Kr Kaushal</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">584</span><span title="6 silver badges"><span class="badge2"></span><span class="badgecount">6</span></span><span title="18 bronze badges"><span class="badge3"></span><span class="badgecount">18</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-26902970" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-26902970" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="31634364"></a>
+<div id="answer-31634364" class="answer" data-answerid="31634364" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="31634364" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">5</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<blockquote>
+  <p>PECS(Producer <code>extends</code> and Consumer <code>super</code>) principle=&gt; Get and Put principle</p>
+</blockquote>
+
+<p>In plain core java without generics:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">class</span><span class="pln"> </span><span class="typ">Super</span><span class="pun">{</span><span class="pln">
+      </span><span class="kwd">void</span><span class="pln"> testCoVariance</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> parameter</span><span class="pun">){}</span><span class="pln">
+      </span><span class="typ">Object</span><span class="pln"> testContraVariance</span><span class="pun">(){</span><span class="pln"> </span><span class="kwd">return</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">;}</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+</span><span class="kwd">class</span><span class="pln"> </span><span class="typ">Sub</span><span class="pln"> </span><span class="kwd">extends</span><span class="pln"> </span><span class="typ">Super</span><span class="pun">{</span><span class="pln">
+
+  </span><span class="lit">@Override</span><span class="pln">
+  </span><span class="kwd">void</span><span class="pln"> testCoVariance</span><span class="pun">(</span><span class="typ">Object</span><span class="pln"> parameter</span><span class="pun">){}</span><span class="pln"> </span><span class="com">//Note:java doesn't support eventhough String is subtype of Object</span><span class="pln">
+
+  </span><span class="lit">@Override</span><span class="pln">
+  </span><span class="typ">Object</span><span class="pln"> testContraVariance</span><span class="pun">(){</span><span class="pln"> </span><span class="kwd">return</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">;}</span><span class="com">//compiles successfully because return type is don't care </span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>This is possible for Generics using <strong><a href="http://www.angelikalanger.com/GenericsFAQ/FAQSections/TypeArguments.html#FAQ101" rel="nofollow">wildcards</a></strong>:   </p>
+
+<p>A wildcard describes a family of types.  There are 3 different flavours of wildcards:   </p>
+
+<ul>
+<li><code>?</code> or <code>? extends Object</code>  - the <strong>unbounded</strong> wildcard. It stands for the family of  all types.</li>
+<li><code>? extends Type</code>  - a wildcard with an <strong>upper bound</strong>. It stands for the family of all types that are subtypes of  <code>Type</code> , type  <code>Type</code> being included.</li>
+<li><code>? super Type</code>  - a wildcard with a <strong>lower bound</strong>. It stands for the family of all types that are supertypes of  <code>Type</code> , type  <code>Type</code> being included.</li>
+</ul>
+
+<p><a href="http://i.stack.imgur.com/AP12m.jpg" rel="nofollow"><img src="Java%20Generics:%20What%20is%20PECS%3F%20-%20Stack%20Overflow_files/AP12m.jpg" alt="enter image description here"></a>  </p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">util</span><span class="pun">.</span><span class="typ">List</span><span class="pun">;</span><span class="pln">
+
+</span><span class="kwd">class</span><span class="pln"> </span><span class="typ">Shape</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">void</span><span class="pln"> draw</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="kwd">class</span><span class="pln"> </span><span class="typ">Circle</span><span class="pln"> </span><span class="kwd">extends</span><span class="pln"> </span><span class="typ">Shape</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">void</span><span class="pln"> draw</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="kwd">class</span><span class="pln"> </span><span class="typ">Square</span><span class="pln"> </span><span class="kwd">extends</span><span class="pln"> </span><span class="typ">Shape</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">void</span><span class="pln"> draw</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="kwd">class</span><span class="pln"> </span><span class="typ">Rectangle</span><span class="pln"> </span><span class="kwd">extends</span><span class="pln"> </span><span class="typ">Shape</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">void</span><span class="pln"> draw</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+
+
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">TestContraVariance</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+ </span><span class="com">/*
+   * Example for an upper bound wildcard
+   * We can not safely add, because we may have  `List&lt;Circle&gt;`, `List&lt;Square&gt;`and List&lt;Rectangle&gt;.  
+   * 
+   * */</span><span class="pln">  
+
+     </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> testCoVariance</span><span class="pun">(</span><span class="typ">List</span><span class="pun">&lt;?</span><span class="pln"> </span><span class="kwd">extends</span><span class="pln"> </span><span class="typ">Shape</span><span class="pun">&gt;</span><span class="pln"> list</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+         list</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Shape</span><span class="pun">());</span><span class="pln"> </span><span class="com">// does not compile</span><span class="pln">
+         list</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Circle</span><span class="pun">());</span><span class="pln"> </span><span class="com">// does not compile</span><span class="pln">
+         list</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Square</span><span class="pun">());</span><span class="pln"> </span><span class="com">// does not compile</span><span class="pln">
+         list</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Rectangle</span><span class="pun">());</span><span class="pln"> </span><span class="com">// does not compile</span><span class="pln">
+         </span><span class="typ">Shape</span><span class="pln"> shape</span><span class="pun">=</span><span class="pln"> list</span><span class="pun">.</span><span class="pln">get</span><span class="pun">(</span><span class="lit">0</span><span class="pun">);</span><span class="com">//compiles</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln">
+      </span><span class="com">/* 
+ * Example for  a lower bound wildcard 
+ * We can not safely get, because we may have  `List&lt;Circle&gt;`, `List&lt;Square&gt;`and List&lt;Rectangle&gt;.
+ * */</span><span class="pln">
+     </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> testContraVariance</span><span class="pun">(</span><span class="typ">List</span><span class="pun">&lt;?</span><span class="pln"> </span><span class="kwd">super</span><span class="pln"> </span><span class="typ">Shape</span><span class="pun">&gt;</span><span class="pln"> list</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            list</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Shape</span><span class="pun">());</span><span class="com">//compiles</span><span class="pln">
+            list</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Circle</span><span class="pun">());</span><span class="com">//compiles</span><span class="pln">
+            list</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Square</span><span class="pun">());</span><span class="com">//compiles</span><span class="pln">
+            list</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Rectangle</span><span class="pun">());</span><span class="com">//compiles</span><span class="pln">
+            </span><span class="typ">Shape</span><span class="pln"> shape</span><span class="pun">=</span><span class="pln"> list</span><span class="pun">.</span><span class="pln">get</span><span class="pun">(</span><span class="lit">0</span><span class="pun">);</span><span class="pln"> </span><span class="com">// does not compile</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln">
+
+
+</span><span class="pun">}</span></code></pre>
+
+<p><a href="http://www.angelikalanger.com/GenericsFAQ/FAQSections/TypeArguments.html" rel="nofollow">Angelika Langer is best to learn generics</a></p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/31634364" title="short permalink to this answer" class="short-link" id="link-post-31634364">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/31634364/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/31634364/revisions" title="show all edits to this post">edited <span title="2015-11-26 12:43:48Z" class="relativetime">Nov 26 at 12:43</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2015-07-26 06:33:49Z" class="relativetime">Jul 26 at 6:33</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/1697099/peter-parker"><div class="gravatar-wrapper-32"><img src="Java%20Generics:%20What%20is%20PECS%3F%20-%20Stack%20Overflow_files/b9993e2a5782dc7976deef709f63977b.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/1697099/peter-parker">Peter Parker</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">2,067</span><span title="2 gold badges"><span class="badge1"></span><span class="badgecount">2</span></span><span title="20 silver badges"><span class="badge2"></span><span class="badgecount">20</span></span><span title="33 bronze badges"><span class="badge3"></span><span class="badgecount">33</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-31634364" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-31634364" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+				    <div class="question-status">
+        <h2>                    <b>protected</b> by <a href="http://stackoverflow.com/users/202009/andy-thomas">Andy Thomas</a> <span dir="ltr"><span title="2015-06-16 16:34:44Z" class="relativetime">Jun 16 at 16:34</span></span>
+</h2>
+        <p>
+Thank you for your interest in this question. 
+Because it has attracted low-quality or spam answers that had to be removed, posting an answer now requires 10 <a href="http://stackoverflow.com/help/whats-reputation">reputation</a> on this site.
+<br><br>
+Would you like to answer one of these <a href="http://stackoverflow.com/unanswered?fromProtectedNotice=true">unanswered questions</a> instead?
+</p>
+    </div>
+
+
+
+
+
+						<h2 class="bottom-notice" data-loc="1">
+Not the answer you're looking for?							Browse other questions tagged <a href="http://stackoverflow.com/questions/tagged/java" class="post-tag" title="show questions tagged 'java'" rel="tag">java</a> <a href="http://stackoverflow.com/questions/tagged/generics" class="post-tag" title="show questions tagged 'generics'" rel="tag">generics</a> <a href="http://stackoverflow.com/questions/tagged/super" class="post-tag" title="show questions tagged 'super'" rel="tag">super</a> <a href="http://stackoverflow.com/questions/tagged/bounded-wildcard" class="post-tag" title="show questions tagged 'bounded-wildcard'" rel="tag">bounded-wildcard</a> <a href="http://stackoverflow.com/questions/tagged/pecs" class="post-tag" title="show questions tagged 'pecs'" rel="tag">pecs</a>  or <a href="http://stackoverflow.com/questions/ask">ask your own question</a>.						</h2>
+			</div>
+		</div>
+				<div id="sidebar" class="show-votes">
+						    <div class="module question-stats">
+			        <table id="qinfo">
+			            <tbody><tr>
+			                <td>
+			                    <p class="label-key">asked</p>
+			                </td>
+			                <td style="padding-left: 10px">
+			                    <p class="label-key" title="2010-04-27 17:16:40Z"><b>5 years ago</b></p>
+			                </td>
+			            </tr>
+			            <tr>
+			                <td>
+			                    <p class="label-key">viewed</p>
+			                </td>
+
+			                <td style="padding-left: 10px">
+			                    <p class="label-key">
+			                        <b>28500 times</b>
+			                    </p>
+			                </td>
+			            </tr>
+			                <tr>
+			                    <td>
+			                        <p class="label-key">active</p>
+			                    </td>
+			                    <td style="padding-left: 10px">
+			                        <p class="label-key"><b><a href="http://stackoverflow.com/questions/2723397/java-generics-what-is-pecs?lastactivity" class="lastactivity-link" title="2015-11-26 12:43:48Z">7 days ago</a></b></p>
+			                    </td>
+			                </tr>
+			        </tbody></table>
+			    </div>
+						
+			<script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk710199421",[17,2221]).setZone(45); });
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk710199421"><div id="careersadsdoublehigh" style="display:none;"></div><img class="bxjsotymotitfhiyzwui" src="Java%20Generics:%20What%20is%20PECS%3F%20-%20Stack%20Overflow_files/i_004.gif" style="position:absolute;" height="0px" width="0px" border="0"></div>
+        <div class=" blue looking tagged" id="hireme"><a href="http://careers.stackoverflow.com/jobs" target="_blank" data-tz="1" data-ti="0" class="top"><span>Looking for a job?</span></a><div class="middle"><ul class="jobs"><li><a data-tz="3" data-ti="176997" href="http://careers.stackoverflow.com/jobs/90979/young-professional-java-developer-entwickler-senacor-technologies-ag" target="_blank" title="Young Professional - Java Developer/ Entwickler at Senacor Technologies AG. Click to learn more.">Young Professional - Java Developer/ Entwickler<br><div class="company">Senacor Technologies AG</div><div class="location" title="Nürnberg, Deutschland">Nürnberg, Deutschland</div><span class="post-tag highlight">java</span><span class="post-tag">spring</span></a></li><li><a data-tz="3" data-ti="183228" href="http://careers.stackoverflow.com/jobs/97257/anwendungsentwickler-f%C3%BCr-onlinel%C3%B6sungen-im-java-wolters-kluwer-software-und" target="_blank" title="Anwendungsentwickler für Onlinelösungen im JAVA Umfeld (m/w) at Wolters Kluwer Software und Service GmbH. Click to learn more.">Anwendungsentwickler für Onlinelösungen im JAVA Umfeld (m/w)<br><div class="company">Wolters Kluwer Software un…</div><div class="location" title="Ludwigsburg, Deutschland">Ludwigsburg, Deutschland</div><span class="post-tag highlight">java</span><span class="post-tag">c#</span></a></li><li><a data-tz="3" data-ti="177004" href="http://careers.stackoverflow.com/jobs/90986/praktikum-softwareentwicklung-java-senacor-technologies-ag" target="_blank" title="Praktikum Softwareentwicklung (Java) at Senacor Technologies AG. Click to learn more.">Praktikum Softwareentwicklung (Java)<br><div class="company">Senacor Technologies AG</div><div class="location" title="Nürnberg, Deutschland">Nürnberg, Deutschland</div><span class="post-tag highlight">java</span><span class="post-tag">spring</span></a></li><li><a data-tz="3" data-ti="186118" href="http://careers.stackoverflow.com/jobs/100171/erfahrener-systemadministrator-devops-adorsys-gmbh-co-kg" target="_blank" title="Erfahrener Systemadministrator / DevOps-Spezialist (m/w) at adorsys GmbH &amp; Co. KG. Click to learn more.">Erfahrener Systemadministrator / DevOps-Spezialist (m/w)<br><div class="company">adorsys GmbH &amp; Co. KG</div><div class="location" title="Nürnberg, Deutschland / relocation">Nürnberg, Deutschland / relocation</div><span class="post-tag">linux</span><span class="post-tag">jboss</span></a></li></ul></div><img class="impression" src="Java%20Generics:%20What%20is%20PECS%3F%20-%20Stack%20Overflow_files/i.gif" style="display:none;"></div>
+			  
+    
+            <div class="module sidebar-linked">
+	<h4 id="h-linked">Linked</h4>
+	<div class="linked" data-tracker="lq=1">
+<div class="spacer">
+	<a href="http://stackoverflow.com/q/21348443?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">1</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/21348443/how-listobject-is-subtype-of-list-super-number?lq=1" class="question-hyperlink">How List&lt;Object&gt; is subtype of List&lt;? super Number&gt;</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/21741432?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">1</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/21741432/bounded-wildcards-in-java-generics?lq=1" class="question-hyperlink">bounded wildcards in java generics</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/21101218?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/21101218/java-syntax-of-classat-super-classb?lq=1" class="question-hyperlink">Java: Syntax of ClassA&lt;T super ClassB&gt;</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/25615132?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">0</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/25615132/confused-about-generic-wildcards-super-doesnt-work-as-expected?lq=1" class="question-hyperlink">Confused about generic wildcards (super doesn't work as expected)</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/29159376?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">3</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/29159376/upper-bound-wildcard-extends-not-working-arraylist-extends-supertype-doesn?lq=1" class="question-hyperlink">Upper-bound wildcard (extends) not working; ArrayList&lt;? extends SuperType&gt; doesn't allow instances of subtype</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/21012648?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">3</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/21012648/java-generics-bounds-confusion?lq=1" class="question-hyperlink">JAVA Generics Bounds Confusion</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/28996901?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/28996901/java-generics-covariance-vs-contravariance?lq=1" class="question-hyperlink">Java Generics Covariance vs Contravariance</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/32573129?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">2</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/32573129/wildcard-and-generics?lq=1" class="question-hyperlink">Wildcard and generics</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/33263165?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">2</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/33263165/generic-captures?lq=1" class="question-hyperlink">Generic captures</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/32370116?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/32370116/lost-in-java-generics?lq=1" class="question-hyperlink">Lost in Java generics</a>
+</div>					<div class="spacer more">
+				<a href="http://stackoverflow.com/questions/linked/2723397?lq=1">see more linked questions…</a>
+			</div>
+	</div>
+</div>
+
+				<div class="module sidebar-related">
+					<h4 id="h-related">Related</h4>
+                    <div class="related js-gps-related-questions" data-tracker="rq=1">
+                        <div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/745756?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted large">211
+    </div>
+</a><a href="http://stackoverflow.com/questions/745756/java-generics-wildcarding-with-multiple-classes?rq=1" class="question-hyperlink">Java Generics Wildcarding With Multiple Classes</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/4535930?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">1
+    </div>
+</a><a href="http://stackoverflow.com/questions/4535930/regarding-pecs-java-generics?rq=1" class="question-hyperlink">regarding PECS java generics</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/9929370?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">4
+    </div>
+</a><a href="http://stackoverflow.com/questions/9929370/is-it-possible-to-write-a-single-method-that-accepts-a-generic-parameter-of-vary?rq=1" class="question-hyperlink">Is it possible to write a single method that accepts a generic parameter of varying abstraction?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/10743810?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">5
+    </div>
+</a><a href="http://stackoverflow.com/questions/10743810/java-generics-adding-wrong-type-in-collection?rq=1" class="question-hyperlink">Java Generics: adding wrong type in collection</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/12197685?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">3
+    </div>
+</a><a href="http://stackoverflow.com/questions/12197685/java-generics-pecs?rq=1" class="question-hyperlink">Java generics PECS</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/16938405?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">1
+    </div>
+</a><a href="http://stackoverflow.com/questions/16938405/java-generics-bounded-wildcards?rq=1" class="question-hyperlink">Java Generics (bounded wildcards)</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/17192772?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/17192772/java-generics-and-pecs-still-having-trouble-understanding-the-c-part-concrete?rq=1" class="question-hyperlink">Java, generics and PECS: still having trouble understanding the C part; concrete example?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/21741432?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">1
+    </div>
+</a><a href="http://stackoverflow.com/questions/21741432/bounded-wildcards-in-java-generics?rq=1" class="question-hyperlink">bounded wildcards in java generics</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/28865030?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/28865030/java-capture-conversion-searching-for-strict-jsl-or-compiler-description?rq=1" class="question-hyperlink">Java capture conversion. Searching for strict JSL or compiler description</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/29856889?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">18
+    </div>
+</a><a href="http://stackoverflow.com/questions/29856889/in-java-what-can-a-wild-card-do-that-regular-generics-cannot-do?rq=1" class="question-hyperlink">In Java, what can a wild card do that regular generics cannot do?</a>
+</div>
+
+                    </div>
+				</div>
+            
+<div id="hot-network-questions" class="module">
+    <h4>
+        <a href="http://stackexchange.com/questions?tab=hot" class="js-gps-track" data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">
+            Hot Network Questions
+        </a>
+    </h4>
+    <ul>
+            <li>
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="http://codegolf.stackexchange.com/questions/65549/write-out-the-thue-morse-sequence" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Write out the Thue-Morse sequence
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-stats" title="Cross Validated"></div><a href="http://stats.stackexchange.com/questions/184912/statistical-fallacy-when-not-controlling-for-variables" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:65 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Statistical fallacy when not controlling for variables?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-history" title="History Stack Exchange"></div><a href="http://history.stackexchange.com/questions/26653/why-did-the-line-infantry-not-use-shields" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:324 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why did the Line Infantry not use shields?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-rpg" title="Role-playing Games Stack Exchange"></div><a href="http://rpg.stackexchange.com/questions/71737/how-do-i-convince-players-to-play-a-dd-campaign-with-a-restrictive-premise" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:122 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How do I convince players to play a D&amp;D campaign with a restrictive premise?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="http://math.stackexchange.com/questions/1559257/double-angle-identity" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Double Angle identity???
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-money" title="Personal Finance &amp; Money Stack Exchange"></div><a href="http://money.stackexchange.com/questions/56624/how-much-of-my-spendable-income-should-i-set-aside-for-travel-and-tourism" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:93 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How much of my spendable income should I set aside for travel and tourism?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="http://english.stackexchange.com/questions/291592/whats-the-name-of-the-color-printed-section-in-a-book" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What's the name of the color printed section in a book?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-gaming" title="Arqade"></div><a href="http://gaming.stackexchange.com/questions/246335/at-what-point-is-mewtwos-disable-most-effective" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:41 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    At what point is Mewtwo's Disable most effective?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-chess" title="Chess Stack Exchange"></div><a href="http://chess.stackexchange.com/questions/12974/are-contemporary-chess-players-now-stronger-than-players-in-the-90s-or-80s" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:435 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Are contemporary chess players now stronger than players in the 90's or 80's?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="http://english.stackexchange.com/questions/291548/what-is-the-verb-for-saying-that-you-are-suddenly-frightened-or-afraid" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What is the verb for saying that you are suddenly frightened or afraid?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-gamedev" title="Game Development Stack Exchange"></div><a href="http://gamedev.stackexchange.com/questions/112247/should-i-tell-the-player-he-has-no-chance-to-complete-the-level" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:53 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Should I tell the player he has no chance to complete the level?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="http://codegolf.stackexchange.com/questions/65641/the-versatile-integer-printer" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    The versatile integer printer
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-rpg" title="Role-playing Games Stack Exchange"></div><a href="http://rpg.stackexchange.com/questions/71744/is-it-ever-okay-to-flat-out-ban-tier-1-classes" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:122 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is it ever okay to flat-out ban Tier 1 classes?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-cooking" title="Seasoned Advice"></div><a href="http://cooking.stackexchange.com/questions/64068/what-are-the-benefits-and-drawbacks-of-washing-dishes-in-hot-water" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:49 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What are the benefits and drawbacks of washing dishes in hot water?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-security" title="Information Security Stack Exchange"></div><a href="http://security.stackexchange.com/questions/106855/how-should-i-set-up-emergency-access-to-business-critical-secrets-in-case-i-am" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:162 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How should I set up emergency access to business-critical secrets in case I am "hit by a bus"?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-sharepoint" title="SharePoint Stack Exchange"></div><a href="http://sharepoint.stackexchange.com/questions/164031/i-want-to-create-a-personal-site-in-sub-site-level-same-as-we-create-my-site-ho" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:232 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    I want to create a personal site in Sub site level( Same as we create My site Host)
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-philosophy" title="Philosophy Stack Exchange"></div><a href="http://philosophy.stackexchange.com/questions/30217/are-methodological-assumptions-of-stackexchange-fundamentally-flawed" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:265 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Are Methodological Assumptions of StackExchange Fundamentally Flawed?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="http://academia.stackexchange.com/questions/59237/short-email-replies" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Short email replies
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="http://math.stackexchange.com/questions/1559380/seemingly-simple-integral" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Seemingly Simple Integral
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-gaming" title="Arqade"></div><a href="http://gaming.stackexchange.com/questions/246122/how-can-i-tell-if-my-wii-remote-is-counterfeit-with-pics" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:41 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How can I tell if my Wii Remote is counterfeit? (with pics)
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-security" title="Information Security Stack Exchange"></div><a href="http://security.stackexchange.com/questions/106896/why-is-steam-so-insistent-on-security" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:162 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why is Steam so insistent on security?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-serverfault" title="Server Fault"></div><a href="http://serverfault.com/questions/740630/does-adjusting-a-domain-names-ttl-actually-matter" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:2 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Does adjusting a domain name's TTL actually matter?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-stackoverflow" title="Stack Overflow"></div><a href="http://stackoverflow.com/questions/34019977/in-c-why-do-some-people-cast-the-pointer-before-freeing-it" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:1 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    In C, why do some people cast the pointer before freeing it?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-codereview" title="Code Review Stack Exchange"></div><a href="http://codereview.stackexchange.com/questions/112828/to-this-or-not-to-this" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:196 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    To "this" or not to "this"?
+                </a>
+
+            </li>
+    </ul>
+
+        
+</div>
+		</div>
+	
+<div id="feed-link">
+    <div id="feed-link-text">
+        <a href="http://stackoverflow.com/feeds/question/2723397" title="feed of this question and its answers">
+            <span class="feed-icon"></span>question feed
+        </a>
+    </div>
+</div>	<script>
+StackExchange.ready(function(){$.get('/posts/2723397/ivc/1bf6');});
+</script>
+<noscript>
+    <div><img src="/posts/2723397/ivc/1bf6" class="dno" alt="" width="0" height="0"></div>
+</noscript><div style="display:none" id="prettify-lang">lang-java</div></div>
+
+
+        </div>
+    </div>
+    <div id="footer" class="categories">
+        <div class="footerwrap">
+            <div id="footer-menu">
+                <div class="top-footer-links">
+                        <a href="http://stackoverflow.com/tour">tour</a>
+                    <a href="http://stackoverflow.com/help">help</a>
+                    <a href="http://blog.stackoverflow.com/?blb=1">blog</a>
+                        <a href="http://chat.stackoverflow.com/">chat</a>
+                    <a href="http://data.stackexchange.com/">data</a>
+                    <a href="http://stackexchange.com/legal">legal</a>
+                    <a href="http://stackexchange.com/legal/privacy-policy">privacy policy</a>
+                    <a href="http://stackexchange.com/work-here">work here</a>
+                    <a href="http://stackexchange.com/mediakit">advertising info</a>
+
+                    <a onclick='StackExchange.switchMobile("on")'>mobile</a>
+                    <b><a href="http://stackoverflow.com/contact">contact us</a></b>
+                        <b><a href="http://meta.stackoverflow.com/">feedback</a></b>
+                    
+                </div>
+                <div id="footer-sites">
+                    <table>
+    <tbody><tr>
+            <th colspan="3">
+                Technology
+            </th>
+            <th>
+                Life / Arts
+            </th>
+            <th>
+                Culture / Recreation
+            </th>
+            <th>
+                Science
+            </th>
+            <th>
+                Other
+            </th>
+    </tr>
+    <tr>
+            <td>
+                <ol>
+                        <li><a href="http://stackoverflow.com/" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                        <li><a href="http://serverfault.com/" title="system and network administrators">Server Fault</a></li>
+                        <li><a href="http://superuser.com/" title="computer enthusiasts and power users">Super User</a></li>
+                        <li><a href="http://webapps.stackexchange.com/" title="power users of web applications">Web Applications</a></li>
+                        <li><a href="http://askubuntu.com/" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                        <li><a href="http://webmasters.stackexchange.com/" title="pro webmasters">Webmasters</a></li>
+                        <li><a href="http://gamedev.stackexchange.com/" title="professional and independent game developers">Game Development</a></li>
+                        <li><a href="http://tex.stackexchange.com/" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://programmers.stackexchange.com/" title="professional programmers interested in conceptual questions about software development">Programmers</a></li>
+                        <li><a href="http://unix.stackexchange.com/" title="users of Linux, FreeBSD and other Un*x-like operating systems">Unix &amp; Linux</a></li>
+                        <li><a href="http://apple.stackexchange.com/" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+                        <li><a href="http://wordpress.stackexchange.com/" title="WordPress developers and administrators">WordPress Development</a></li>
+                        <li><a href="http://gis.stackexchange.com/" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+                        <li><a href="http://electronics.stackexchange.com/" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+                        <li><a href="http://android.stackexchange.com/" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+                        <li><a href="http://security.stackexchange.com/" title="information security professionals">Information Security</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://dba.stackexchange.com/" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+                        <li><a href="http://drupal.stackexchange.com/" title="Drupal developers and administrators">Drupal Answers</a></li>
+                        <li><a href="http://sharepoint.stackexchange.com/" title="SharePoint enthusiasts">SharePoint</a></li>
+                        <li><a href="http://ux.stackexchange.com/" title="user experience researchers and experts">User Experience</a></li>
+                        <li><a href="http://mathematica.stackexchange.com/" title="users of Mathematica">Mathematica</a></li>
+                        <li><a href="http://salesforce.stackexchange.com/" title="Salesforce administrators, implementation experts, developers and anybody in-between">Salesforce</a></li>
+                        <li><a href="http://expressionengine.stackexchange.com/" title="administrators, end users, developers and designers for ExpressionEngine® CMS">ExpressionEngine® Answers</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#technology" class="more">
+                                more (13)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://photo.stackexchange.com/" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                        <li><a href="http://scifi.stackexchange.com/" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                        <li><a href="http://graphicdesign.stackexchange.com/" title="Graphic Design professionals, students, and enthusiasts">Graphic Design</a></li>
+                        <li><a href="http://movies.stackexchange.com/" title="movie and tv enthusiasts">Movies &amp; TV</a></li>
+                        <li><a href="http://cooking.stackexchange.com/" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                        <li><a href="http://diy.stackexchange.com/" title="contractors and serious DIYers">Home Improvement</a></li>
+                        <li><a href="http://money.stackexchange.com/" title="people who want to be financially literate">Personal Finance &amp; Money</a></li>
+                        <li><a href="http://academia.stackexchange.com/" title="academics and those enrolled in higher education">Academia</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#lifearts" class="more">
+                                more (9)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://english.stackexchange.com/" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                        <li><a href="http://skeptics.stackexchange.com/" title="scientific skepticism">Skeptics</a></li>
+                        <li><a href="http://judaism.stackexchange.com/" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                        <li><a href="http://travel.stackexchange.com/" title="road warriors and seasoned travelers">Travel</a></li>
+                        <li><a href="http://christianity.stackexchange.com/" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                        <li><a href="http://gaming.stackexchange.com/" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+                        <li><a href="http://bicycles.stackexchange.com/" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+                        <li><a href="http://rpg.stackexchange.com/" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#culturerecreation" class="more">
+                                more (21)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://math.stackexchange.com/" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                        <li><a href="http://stats.stackexchange.com/" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                        <li><a href="http://cstheory.stackexchange.com/" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                        <li><a href="http://physics.stackexchange.com/" title="active researchers, academics and students of physics">Physics</a></li>
+                        <li><a href="http://mathoverflow.net/" title="professional mathematicians">MathOverflow</a></li>
+                        <li><a href="http://chemistry.stackexchange.com/" title="scientists, academics, teachers and students">Chemistry</a></li>
+                        <li><a href="http://biology.stackexchange.com/" title="biology researchers, academics, and students">Biology</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#science" class="more">
+                                more (5)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://stackapps.com/" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                        <li><a href="http://meta.stackexchange.com/" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Exchange</a></li>
+                        <li><a href="http://area51.stackexchange.com/" title="proposing new sites in the Stack Exchange network">Area 51</a></li>
+                        <li><a href="http://careers.stackoverflow.com/">Stack Overflow Careers</a></li>
+                    
+                </ol>
+            </td>
+    </tr>
+</tbody></table>
+                </div>
+            </div>
+
+            <div id="copyright">
+                site design / logo © 2015 Stack Exchange Inc; user contributions licensed under <a href="http://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc by-sa 3.0</a> 
+                with <a href="http://blog.stackoverflow.com/2009/06/attribution-required/" rel="license">attribution required</a>
+            </div>
+            <div id="svnrev">
+                rev 2015.12.3.3047
+            </div>
+            
+        </div>
+    </div>
+    <noscript>
+        <div id="noscript-warning">Stack Overflow works best with JavaScript enabled<img src="http://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"></div>
+    </noscript>
+<script>var p = "http", d = "static"; if (document.location.protocol == "https:") { p += "s"; d = "engine"; } var z = document.createElement("script"); z.type = "text/javascript"; z.async = true; z.src = p + "://" + d + ".adzerk.net/ados.js"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(z, s);</script>
+<script>
+    var ados = ados || {};
+    ados.run = ados.run || [];
+    ados.run.push(function () { ados_setKeywords('java,generics,super,bounded-wildcard,pecs');; ados_load(); });         
+</script>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-5620270-1');
+                        ga('set', 'dimension2', '|java|generics|super|bounded-wildcard|pecs|');         ga('send', 'pageview');
+        var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+        (function () {
+            var ssl='https:'==document.location.protocol,
+                s=document.getElementsByTagName('script')[0],
+                qc=document.createElement('script');
+            qc.async=true;
+            qc.src=(ssl?'https://secure':'http://edge')+'.quantserve.com/quant.js';
+            s.parentNode.insertBefore(qc, s);
+            var sc=document.createElement('script');
+            sc.async=true;
+            sc.src=(ssl?'https://sb':'http://b') + '.scorecardresearch.com/beacon.js';
+            s.parentNode.insertBefore(sc, s);
+        })();
+        _comscore.push({ c1: "2", c2: "17440561" });
+        _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+    </script>
+            
+    
+</body></html>

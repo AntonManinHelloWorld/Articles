@@ -1,0 +1,112 @@
+﻿An anonymous class declaration is automatically derived from a class instance
+creation expression by the Java compiler.
+<br>
+An anonymous class is never abstract<br>
+An anonymous class is always implicitly final.<br>
+An anonymous class is always an inner class; it is never static.<br>
+
+A nested class is any class whose declaration occurs within the body of another
+class or interface.
+
+An inner class is a nested class that is not explicitly or implicitly declared static. Inner classes include local, anonymous and non-static member classes.
+
+Inner classes may not declare static initializers or member interfaces, or a
+compile-time error occurs. Inner classes may not declare static members, unless they are constant variables, or a compile-time error occurs. Inner classes may inherit static members that are not constant variables even though they may not declare them. Nested classes that are not inner classes may declare static members freely, in accordance with the usual rules of the Java programming language. Member interfaces are implicitly static so they are never considered to be inner classes.
+
+class HasStatic {
+	static int j = 100;
+}
+
+class Outer {
+	class Inner extends HasStatic {
+		static final int x = 3; // OK: compile-time constant
+		static int y = 4; // Compile-time error: an inner class
+	}
+
+	static class NestedButNotInner{
+		static int z = 5; // OK: not an inner class
+	}
+
+	interface NeverInner {} // Interfaces are never inner
+}
+
+
+class Outer {
+	int i = 100;
+
+	static void classMethod() {
+		final int l = 200;
+
+		class LocalInStaticContext {
+			int k = i; // Compile-time error
+			int m = l; // OK
+		}
+	}
+
+	void foo() {
+		class Local { // A local class
+			int j = i;
+		}
+	}
+}
+The declaration of class LocalInStaticContext occurs in a static context due to being within the static method classMethod. Instance variables of class Outer are not available within the body of a static method. In particular, instance variables of Outer are not available inside the body of LocalInStaticContext. However, local variables from the surrounding method may be referred to without error (provided they are marked final ).
+Inner classes whose declarations do not occur in a static context may freely refer to the instance variables of their enclosing class. An instance variable is always defined with respect to an instance. In the case of instance variables of an enclosing class, the instance variable must be defined with respect to an enclosing instance of that class. For example, the class Local above has an enclosing instance of class Outer . As a further example:
+
+class WithDeepNesting {
+	boolean toBe;
+
+	WithDeepNesting(boolean b) { toBe = b; }
+
+	class Nested {
+		boolean theQuestion;
+
+		class DeeplyNested {
+			DeeplyNested(){
+				theQuestion = toBe || !toBe;
+			}
+		}
+	}
+}
+
+
+In the following program:
+	interface Fish { int getNumberOfScales(); }
+	interface Piano { int getNumberOfScales(); }
+
+	class Tuna implements Fish, Piano {
+		// You can tune a piano, but can you tuna fish?
+		public int getNumberOfScales() { return 91; }
+	}
+
+the method getNumberOfScales in class Tuna has a name, signature, and return type that matches the method declared in interface Fish and also matches the method declared in interface Piano ; it is considered to implement both.
+On the other hand, in a situation such as this:
+	interface Fish{ int getNumberOfScales(); }
+	interface StringBass { double getNumberOfScales(); }
+
+	class Bass implements Fish, StringBass {
+	// This declaration cannot be correct,
+	// no matter what type is used.
+		public ?? getNumberOfScales() { return 91; }
+	}
+it is impossible to declare a method named getNumberOfScales whose signature and
+return type are compatible with those of both the methods declared in interface Fish and in interface StringBass, because a class cannot have multiple methods with the same signature and different primitive return types. Therefore, it is impossible for a single class to implement both interface Fish and interface StringBass.
+
+A class may not at the same time be a subtype of two interface types which are
+different invocations of the same generic interface, or a subtype of an
+invocation of a generic interface and a raw type naming that same generic interface, or a compile-time error occurs. This requirement was introduced in order to support translation by type erasure.
+	Illegal Multiple Inheritance of an Interface
+		interface I<T> {}
+		class B implements I<Integer> {}
+		class C extends B implements I<String> {}
+
+
+
+Qualified Superclass Constructor Invocation
+	class Outer {
+		class Inner {}
+	}
+
+	class ChildOfInner extends Outer.Inner {
+		ChildOfInner() { (new Outer()).super(); }
+	}
+

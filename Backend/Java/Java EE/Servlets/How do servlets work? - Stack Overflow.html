@@ -1,0 +1,2021 @@
+<!DOCTYPE html>
+<html itemscope="" itemtype="http://schema.org/QAPage"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<title>java - How do servlets work? Instantiation, shared variables and multithreading - Stack Overflow</title>
+    <link rel="shortcut icon" href="http://cdn.sstatic.net/stackoverflow/img/favicon.ico?v=4f32ecc8f43d">
+    <link rel="apple-touch-icon image_src" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+    <link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="http://stackoverflow.com/opensearch.xml">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="stackoverflow.com">
+    <meta property="og:type" content="website">    
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon@2.png?v=73d79a89bded&amp;a">
+    <meta name="twitter:title" property="og:title" itemprop="title name" content="How do servlets work? Instantiation, shared variables and multithreading">
+    <meta name="twitter:description" property="og:description" itemprop="description" content="Suppose, I have a webserver which holds numerous Servlets. For information passing among those Servlets I am getting the Servlets context and setting session variables. 
+
+Now, if 2 or more users send ">
+    <meta property="og:url" content="http://stackoverflow.com/questions/3106452/how-do-servlets-work-instantiation-shared-variables-and-multithreading/3106909">
+    <link rel="canonical" href="http://stackoverflow.com/questions/3106452/how-do-servlets-work-instantiation-shared-variables-and-multithreading/3106909">
+
+    
+    
+    <script src="How%20do%20servlets%20work%3F%20-%20Stack%20Overflow_files/ados.js" async="" type="text/javascript"></script><script src="How%20do%20servlets%20work%3F%20-%20Stack%20Overflow_files/quant.js" async=""></script><script src="How%20do%20servlets%20work%3F%20-%20Stack%20Overflow_files/beacon.js" async=""></script><script src="How%20do%20servlets%20work%3F%20-%20Stack%20Overflow_files/analytics.js" async=""></script><script src="How%20do%20servlets%20work%3F%20-%20Stack%20Overflow_files/jquery.js"></script>
+    <script src="How%20do%20servlets%20work%3F%20-%20Stack%20Overflow_files/stub.js"></script>
+    <link rel="stylesheet" type="text/css" href="How%20do%20servlets%20work%3F%20-%20Stack%20Overflow_files/all.css">
+
+            <link rel="alternate" type="application/atom+xml" title="Feed for question 'How do servlets work? Instantiation, shared variables and multithreading'" href="http://stackoverflow.com/feeds/question/3106452">
+            <meta name="twitter:app:country" content="US">
+            <meta name="twitter:app:name:iphone" content="Stack Exchange iOS">
+            <meta name="twitter:app:id:iphone" content="871299723">
+            <meta name="twitter:app:url:iphone" content="se-zaphod://stackoverflow.com/questions/3106452/how-do-servlets-work-instantiation-shared-variables-and-multithreading/3106909">
+            <meta name="twitter:app:name:ipad" content="Stack Exchange iOS">
+            <meta name="twitter:app:id:ipad" content="871299723">
+            <meta name="twitter:app:url:ipad" content="se-zaphod://stackoverflow.com/questions/3106452/how-do-servlets-work-instantiation-shared-variables-and-multithreading/3106909">
+            <meta name="twitter:app:name:googleplay" content="Stack Exchange Android">
+            <meta name="twitter:app:url:googleplay" content="http://stackoverflow.com/questions/3106452/how-do-servlets-work-instantiation-shared-variables-and-multithreading/3106909">
+            <meta name="twitter:app:id:googleplay" content="com.stackexchange.marvin">
+        <script>
+        
+            StackExchange.ready(function () {
+                    
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.initSnippetRenderer();
+                    });
+                    
+
+                StackExchange.using("postValidation", function () {
+                    StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+                });
+
+                
+                StackExchange.question.init({showAnswerHelp:true,totalCommentCount:0,shownCommentCount:0,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:3106452});
+
+                styleCode();
+
+                    StackExchange.realtime.subscribeToQuestion('1', '3106452');
+                                                                    StackExchange.using("gps", function () { StackExchange.gps.trackOutboundClicks('#content', '.post-text'); });
+
+            });
+        </script>
+
+
+    <script>
+        StackExchange.init({"locale":"en","stackAuthUrl":"https://stackauth.com","serverTime":1450087607,"networkMetaHostname":"meta.stackexchange.com","routeName":"Questions/Show","styleCode":true,"enableUserHovercards":true,"snippets":{"enabled":true,"domain":"stacksnippets.net"},"site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdchgIAAAAAAJwGpIzRQSOFaO0pU6s44Xt8aTwc","recaptchaAudioLang":"en","enableNewTagCreationWarning":true,"insertSpaceAfterNameTabCompletion":false,"id":1,"enableSocialMediaInSharePopup":true},"user":{"fkey":"ee32c7e2136057303b9c940f12827d04","rep":0,"isAnonymous":true,"isAnonymousNetworkWide":true}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"ef2f8f2b79f0","js/moderator.en.js":"4271166186d7","js/full-anon.en.js":"21c05fe8b039","js/full.en.js":"8f85c33d2a82","js/wmd.en.js":"1e985f8cd8a7","js/third-party/jquery.autocomplete.min.js":"e5f01e97f7c3","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"ae05e7545ef0","js/help.en.js":"dbd4f489eff2","js/tageditor.en.js":"a8c51d8a43ee","js/tageditornew.en.js":"428a1fd99b6b","js/inline-tag-editing.en.js":"de80429b1816","js/revisions.en.js":"b233d0247832","js/review.en.js":"c4a909aeb62f","js/tagsuggestions.en.js":"d1ff9b84abe5","js/post-validation.en.js":"bbcc5b1d9c73","js/explore-qlist.en.js":"e71f14781288","js/events.en.js":"1eab413c04da","js/keyboard-shortcuts.en.js":"6dda0c94b936","js/external-editor.en.js":"cf58cc6630ef","js/external-editor.en.js":"cf58cc6630ef","js/snippet-javascript.en.js":"650f9a8035d8","js/snippet-javascript-codemirror.en.js":"b93c774bccb9"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </script>
+    
+        <script>
+            StackExchange.ready(function () {
+                $('#nav-tour').click(function () {
+                    StackExchange.using("gps", function() {
+                        StackExchange.gps.track("aboutpage.click", { aboutclick_location: "headermain" }, true);
+                    });
+                });
+            });
+        </script>
+    
+    
+<script src="How%20do%20servlets%20work%3F%20-%20Stack%20Overflow_files/p.js" async=""></script><link href="How%20do%20servlets%20work%3F%20-%20Stack%20Overflow_files/jobs.css" rel="stylesheet" type="text/css"><script src="How%20do%20servlets%20work%3F%20-%20Stack%20Overflow_files/ados_002.js" async=""></script><script src="How%20do%20servlets%20work%3F%20-%20Stack%20Overflow_files/full-anon.js" async=""></script><script src="How%20do%20servlets%20work%3F%20-%20Stack%20Overflow_files/adFeedback.js" type="text/javascript"></script><link href="How%20do%20servlets%20work%3F%20-%20Stack%20Overflow_files/adFeedback.css" rel="stylesheet"><script src="How%20do%20servlets%20work%3F%20-%20Stack%20Overflow_files/snippet-javascript.js" async=""></script><script src="How%20do%20servlets%20work%3F%20-%20Stack%20Overflow_files/post-validation.js" async=""></script><script src="How%20do%20servlets%20work%3F%20-%20Stack%20Overflow_files/prettify-full.js" async=""></script></head>
+<body class="question-page new-topbar">
+    <noscript><div id="noscript-padding"></div></noscript>
+    
+
+
+
+
+    <div id="notify-container"></div>
+    <div id="overlay-header"></div>
+    <div id="custom-header"></div>
+
+
+
+
+
+<div class="topbar">
+    <div class="topbar-wrapper">
+
+        <div class="js-topbar-dialog-corral">
+
+
+<div class="topbar-dialog siteSwitcher-dialog dno">
+    <div class="header">
+        <h3><a href="http://stackoverflow.com/">current community</a></h3>
+    </div>
+    <div class="modal-content current-site-container">
+        <ul class="current-site">
+                <li>
+                        <div class="related-links">
+                    <a href="http://chat.stackoverflow.com/" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:6 })">chat</a>
+            </div>
+
+
+
+
+    <a href="http://stackoverflow.com/" class="current-site-link site-link js-gps-track" data-id="1" data-gps-track="
+        site_switcher.click({ item_type:3 })">
+        <div class="site-icon favicon favicon-stackoverflow" title="Stack Overflow"></div>
+        Stack Overflow
+    </a>
+
+                </li>
+                <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    
+
+
+
+    <a href="http://meta.stackoverflow.com/" class="site-link js-gps-track" data-id="552" data-gps-track="
+            site.switch({ target_site:552, item_type:3 }),
+        site_switcher.click({ item_type:4 })">
+        <div class="site-icon favicon favicon-stackoverflowmeta" title="Meta Stack Overflow"></div>
+        Meta Stack Overflow
+    </a>
+
+                </li>
+                            <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    <a class="site-link js-gps-track" href="http://careers.stackoverflow.com/?utm_source=stackoverflow.com&amp;utm_medium=site-ui&amp;utm_campaign=multicollider" data-gps-track="site_switcher.click({ item_type:9 })">
+                        <div class="site-icon favicon favicon-careers" title="Stack Overflow Careers"></div>
+                        Stack Overflow Careers
+                    </a>
+                </li>
+        </ul>
+    </div>
+    
+    <div class="header" id="your-communities-header">
+        <h3>
+your communities        </h3>
+            
+    </div>
+    <div class="modal-content" id="your-communities-section">
+            
+            <div class="call-to-login">
+<a href="https://stackoverflow.com/users/signup?ssrc=site_switcher&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f3106452%2fhow-do-servlets-work-instantiation-shared-variables-and-multithreading%2f3106909" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:10 })">Sign up</a> or <a href="https://stackoverflow.com/users/login?ssrc=site_switcher&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f3106452%2fhow-do-servlets-work-instantiation-shared-variables-and-multithreading%2f3106909" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:11 })">log in</a> to customize your list.
+            </div>
+    </div>
+    
+    <div class="header">
+        <h3><a href="http://stackexchange.com/sites">more stack exchange communities</a></h3>
+        <a href="http://blog.stackoverflow.com/" class="fr">company blog</a>
+    </div>
+    <div class="modal-content">
+            <div class="child-content"></div>
+    </div>
+</div>
+        </div>
+
+        <div class="network-items">
+
+            <a href="http://stackexchange.com/" class="topbar-icon icon-site-switcher yes-hover js-site-switcher-button js-gps-track" data-gps-track="site_switcher.show" title="A list of all 150 Stack Exchange sites">
+                <span class="hidden-text">Stack Exchange</span>
+            </a>
+
+    <a href="#" class="topbar-icon icon-inbox yes-hover js-inbox-button" title="Recent inbox messages">
+        <span class="hidden-text">Inbox</span>
+        <span class="unread-count" style="display:none"></span>
+    </a>
+    <a href="#" class="topbar-icon icon-achievements yes-hover js-achievements-button " data-unread-class="" title="Recent achievements: reputation, badges, and privileges earned">
+        <span class="hidden-text">Reputation and Badges</span>
+        <span class="unread-count" style="display:none">
+            
+        </span>
+    </a>
+        </div>
+
+        <div class="topbar-links">
+
+                <div class="links-container">
+                <span class="topbar-menu-links">
+                                    <a href="https://stackoverflow.com/users/signup?ssrc=head&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f3106452%2fhow-do-servlets-work-instantiation-shared-variables-and-multithreading%2f3106909" class="login-link">sign up</a>
+                                <a href="https://stackoverflow.com/users/login?ssrc=head&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f3106452%2fhow-do-servlets-work-instantiation-shared-variables-and-multithreading%2f3106909" class="login-link">log in</a>
+
+                        <a href="http://stackoverflow.com/tour">tour</a>
+                            <a href="#" class="icon-help js-help-button" title="Help Center and other resources">
+        help
+        <span class="triangle"></span>
+    </a>
+    <div class="topbar-dialog help-dialog js-help-dialog dno">
+        <div class="modal-content">
+            <ul>
+                                    <li>
+                        <a href="http://stackoverflow.com/tour" class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })">
+                            Tour
+                            <span class="item-summary">
+                                Start here for a quick overview of the site
+                            </span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="http://stackoverflow.com/help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })">
+                        Help Center
+                        <span class="item-summary">
+                            Detailed answers to any questions you might have
+                        </span>
+                    </a>
+                </li>
+                    <li>
+                        <a href="http://meta.stackoverflow.com/" class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })">
+                            Meta
+                            <span class="item-summary">
+                                Discuss the workings and policies of this site
+                            </span>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+
+                            <a href="http://careers.stackoverflow.com/?utm_source=stackoverflow.com&amp;utm_medium=site-ui&amp;utm_campaign=anon-topbar">stack overflow careers</a>
+                    </span>
+                </div>
+
+            <div class="search-container">
+                <form id="search" action="/search" method="get" autocomplete="off">
+                    <input name="q" placeholder="search" tabindex="1" autocomplete="off" maxlength="240" type="text">
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+    <script>
+        StackExchange.ready(function() { StackExchange.topbar.init(); });
+    </script>
+
+    <div class="container">
+        <div id="header">
+            <br class="cbt">
+            <div id="hlogo">
+                <a href="http://stackoverflow.com/">
+                    Stack Overflow
+                </a>
+            </div>
+            <div id="hmenus">
+                <div class="nav mainnavs">
+                    <ul>
+                        <li class="youarehere"><a id="nav-questions" href="http://stackoverflow.com/questions">Questions</a></li>
+                        <li><a id="nav-tags" href="http://stackoverflow.com/tags">Tags</a></li>
+                        <li><a id="nav-users" href="http://stackoverflow.com/users">Users</a></li>
+                        <li><a id="nav-badges" href="http://stackoverflow.com/help/badges">Badges</a></li>
+                                                                    </ul>
+                </div>
+                <div class="nav askquestion">
+                    <ul>
+                        <li>
+                            <a id="nav-askquestion" href="http://stackoverflow.com/questions/ask">Ask Question</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+
+
+
+        <div id="content" class="snippet-hidden">
+            
+
+<div itemscope="" itemtype="http://schema.org/Question">
+    <link itemprop="image" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+			<div id="question-header">
+                <h1 itemprop="name"><a href="http://stackoverflow.com/questions/3106452/how-do-servlets-work-instantiation-shared-variables-and-multithreading" class="question-hyperlink">How do servlets work? Instantiation, shared variables and multithreading</a></h1>
+		</div>
+			<div id="mainbar">
+
+			
+
+<div class="question" data-questionid="3106452" id="question">
+
+    <div class="everyonelovesstackoverflow" id="careers1"><a href="http://engine.adzerk.net/r?e=eyJhdiI6NDE0LCJhdCI6NCwiYnQiOjAsImNtIjozMjI1MTQsImNoIjoxMTc4LCJjayI6e30sImNyIjoxMTk1Nzc4LCJkaSI6IjM2NmE1MzM2MmQzYzQ1ZDFiODI0MDdkNjY2YWJjNzVlIiwiZG0iOjEsImZjIjoxMjY5MTM3LCJmbCI6ODY0MjI1LCJpcCI6IjEzNC42MC4xMDUuMjEyIiwibnciOjIyLCJwYyI6MCwiZWMiOjAsInByIjoxNjA0LCJydCI6MSwicmYiOiJodHRwOi8vd3d3LmludGVydGVjaC5jb20vQmxvZy91bmRlcnN0YW5kaW5nLXNwcmluZy1tdmMtbW9kZWwtYW5kLXNlc3Npb24tYXR0cmlidXRlcy8iLCJzdCI6ODI3NywidWsiOiJ1ZTEtMTUzMWIwOTJiNDQzNDM3NGE0MzA1MWUyZTc0ZDcwNzQiLCJ6biI6NDMsInRzIjoxNDUwMDg3NjA4ODkwLCJiZiI6dHJ1ZSwicG4iOiJjYXJlZXJzMSIsInVyIjoiaHR0cDovL2NhcmVlcnMuc3RhY2tvdmVyZmxvdy5jb20vcHJvZHVjdHM_dXRtX3NvdXJjZT1zdGFja292ZXJmbG93LmNvbSZ1dG1fbWVkaXVtPWFkJnV0bV9jYW1wYWlnbj1lbXBsb3llcnMtYmVzdC13YXkmdXRtX2NvbnRlbnQ9bGItdXNlIn0&amp;s=cMFpT2X_d8PdH1nUH9dv_K7CKj0" rel="nofollow" target="_blank" title=""><img class="bnbmjxdybikarfmzxiqc" src="How%20do%20servlets%20work%3F%20-%20Stack%20Overflow_files/5fa811fa1a3e40f1a3435478bd1364a0.png" title="" alt="" height="90" width="728" border="0"></a><img class="bnbmjxdybikarfmzxiqc" src="How%20do%20servlets%20work%3F%20-%20Stack%20Overflow_files/i_002.gif" style="position:absolute;" height="0px" width="0px" border="0"></div>    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="3106452" type="hidden">
+        <a class="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">598</span>
+        <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a>
+
+        <a class="star-off" href="#" title="This is a favorite question (click again to undo)">favorite</a>
+        <div class="favoritecount"><b>676</b></div>
+
+
+</div>
+
+            </td>
+            
+<td class="postcell">
+<div>
+    <div class="post-text" itemprop="text">
+
+<p>Suppose, I have a webserver which holds numerous <code>Servlets</code>. For information passing among those <code>Servlets</code> I am getting the <code>Servlets</code> context and setting session variables. </p>
+
+<p>Now, if 2 or more users send request to this server then what happens
+ to the session variables? Will they all be common for all the users or 
+they will be different for each user. If they are different, then how 
+was the server able to differentiate between different users?</p>
+
+<p>One more similar question, if there are <code>*n*</code> users accessing a particular <code>Servlets</code>, then this <code>Servlets</code> gets instantiated only the first time the first user accessed it or does it get instantiated for all the users separately?</p>
+    </div>
+    <div class="post-taglist">
+        <a href="http://stackoverflow.com/questions/tagged/java" class="post-tag js-gps-track" title="show questions tagged 'java'" rel="tag">java</a> <a href="http://stackoverflow.com/questions/tagged/multithreading" class="post-tag js-gps-track" title="show questions tagged 'multithreading'" rel="tag">multithreading</a> <a href="http://stackoverflow.com/questions/tagged/session" class="post-tag js-gps-track" title="show questions tagged 'session'" rel="tag">session</a> <a href="http://stackoverflow.com/questions/tagged/servlets" class="post-tag js-gps-track" title="show questions tagged 'servlets'" rel="tag">servlets</a> <a href="http://stackoverflow.com/questions/tagged/session-variables" class="post-tag js-gps-track" title="show questions tagged 'session-variables'" rel="tag">session-variables</a> 
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/q/3106452" title="short permalink to this question" class="short-link" id="link-post-3106452">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/3106452/edit" class="suggest-edit-post" title="">improve this question</a></div>        
+    </td>
+    <td class="post-signature" align="right">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/3106452/revisions" title="show all edits to this post">edited <span title="2015-07-08 09:04:02Z" class="relativetime">Jul 8 at 9:04</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/157882/balusc"><div class="gravatar-wrapper-32"><img src="How%20do%20servlets%20work%3F%20-%20Stack%20Overflow_files/89927e2f4bde24991649b353a37678b9.jpeg" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/157882/balusc">BalusC</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 616271" dir="ltr">616k</span><span title="165 gold badges"><span class="badge1"></span><span class="badgecount">165</span></span><span title="2099 silver badges"><span class="badge2"></span><span class="badgecount">2099</span></span><span title="2388 bronze badges"><span class="badge3"></span><span class="badgecount">2388</span></span>
+        </div>
+    </div>
+</div>    </td>
+    <td class="post-signature owner">
+        <div class="user-info ">
+    <div class="user-action-time">
+        asked <span title="2010-06-24 00:16:15Z" class="relativetime">Jun 24 '10 at 0:16</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/374769/ku-jon"><div class="gravatar-wrapper-32"><img src="How%20do%20servlets%20work%3F%20-%20Stack%20Overflow_files/d2968172637f02ef3294791b3053fbd8.png" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/374769/ku-jon">Ku Jon</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">2,993</span><span title="3 gold badges"><span class="badge1"></span><span class="badgecount">3</span></span><span title="8 silver badges"><span class="badge2"></span><span class="badgecount">8</span></span><span title="4 bronze badges"><span class="badge3"></span><span class="badgecount">4</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</div>
+</td>
+        </tr>
+                
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-3106452" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-3106452" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>        </tbody></table>
+</div>
+
+			<div id="answers">
+
+				<a name="tab-top"></a>
+				<div id="answers-header">
+					<div class="subheader answers-subheader">
+						<h2>
+								6 Answers
+                                <span style="display:none;" itemprop="answerCount">6</span>
+						</h2>
+						<div>
+							<div id="tabs">
+        <a href="http://stackoverflow.com/questions/3106452/how-do-servlets-work-instantiation-shared-variables-and-multithreading?answertab=active#tab-top" data-nav-xhref="" title="Answers with the latest activity first" data-value="active">active</a>
+        <a href="http://stackoverflow.com/questions/3106452/how-do-servlets-work-instantiation-shared-variables-and-multithreading?answertab=oldest#tab-top" data-nav-xhref="" title="Answers in the order they were provided" data-value="oldest">oldest</a>
+        <a class="youarehere" href="http://stackoverflow.com/questions/3106452/how-do-servlets-work-instantiation-shared-variables-and-multithreading?answertab=votes#tab-top" data-nav-xhref="" title="Answers with the highest score first" data-value="votes">votes</a>
+</div>
+						</div>
+					</div>    
+				</div>    
+
+
+
+
+  
+<a name="3106909"></a>
+<div style="" id="answer-3106909" class="answer accepted-answer" data-answerid="3106909" itemscope="" itemtype="http://schema.org/Answer" itemprop="acceptedAnswer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="3106909" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post high-scored-post">1085</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+        <span class="vote-accepted-on load-accepted-answer-date" title="loading when this answer was accepted...">accepted</span>
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<h2>ServletContext</h2>
+
+<p>When the servletcontainer (like <a href="http://tomcat.apache.org/" rel="nofollow">Apache Tomcat</a>)
+ starts up, it will deploy and load all webapplications. When a 
+webapplication get loaded, the servletcontainer will create the <a href="http://docs.oracle.com/javaee/7/api/javax/servlet/ServletContext.html" rel="nofollow"><code>ServletContext</code></a> once and keep in server's memory. The webapp's <code>web.xml</code> will be parsed and every <code>&lt;servlet&gt;</code>, <code>&lt;filter&gt;</code> and <code>&lt;listener&gt;</code> found in <code>web.xml</code>, or annotated with respectively <code>@WebServlet</code>, <code>@WebFilter</code> and <code>@WebListener</code>, will be created once and kept in server's memory as well. For all filters, the <code>init()</code> method will also be invoked immediately. When the servletcontainer shuts down, it will unload all webapplications, invoke the <code>destroy()</code> of all initialized servlets and filters, and finally the <code>ServletContext</code> and all <code>Servlet</code>, <code>Filter</code> and <code>Listener</code> instances will be trashed.</p>
+
+<p>When the <code>Servlet</code> in question has a <code>&lt;servlet&gt;&lt;load-on-startup&gt;</code> or <code>@WebServlet(loadOnStartup)</code> value greater than <code>0</code>, then its <code>init()</code>
+ method will also immediately be invoked during startup. Those servlets 
+are initialized in the same order as "load-on-startup" value represents,
+ or if they are the same, then the order in the <code>web.xml</code> or <code>@WebServlet</code> classloading. Or, if the "load-on-startup" value is absent, then the <code>init()</code> method will only be invoked on very first HTTP request hitting the servlet in question. </p>
+
+<h2>HttpServletRequest and HttpServletResponse</h2>
+
+<p>The servletcontainer is attached to a webserver which listens on HTTP
+ requests on a certain port number, which is usually 8080 in development
+ and 80 in production. When a client (user with a webbrowser) sends a 
+HTTP request, the servletcontainer will create new <a href="http://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletRequest.html" rel="nofollow"><code>HttpServletRequest</code></a> and <a href="http://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletResponse.html" rel="nofollow"><code>HttpServletResponse</code></a> objects and pass it through the methods of the already-created <code>Filter</code> and <code>Servlet</code> instances whose <code>url-pattern</code> matches the request URL, all in the same thread. </p>
+
+<p>The request object provides access to all information of the HTTP 
+request, such as the request headers and the request body. The response 
+object provides facility to control and send the HTTP response the way 
+you want, such as setting headers and the body (usually with HTML 
+content from a JSP file). When the HTTP response is committed and 
+finished, then both the request and response objects will be trashed 
+(actually, most containers will cleanup the state and recycle the 
+instance for reuse).</p>
+
+<h2>HttpSession</h2>
+
+<p>When a client visits the webapp for the first time and/or the <a href="http://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSession.html" rel="nofollow"><code>HttpSession</code></a> is to be obtained for the first time by <code>request.getSession()</code>, then the servletcontainer will create it, generate a long and unique ID (which you can get by <code>session.getId()</code>) and store it in server's memory. The servletcontainer will also set a <a href="http://docs.oracle.com/javaee/7/api/javax/servlet/http/Cookie.html" rel="nofollow"><code>Cookie</code></a> in the <code>Set-Cookie</code> header of the HTTP response with <code>JSESSIONID</code> as cookie name and the unique session ID as cookie value. </p>
+
+<p>As per the <a href="http://www.faqs.org/rfcs/rfc2965.html" rel="nofollow">HTTP cookie specification</a>
+ (a contract a decent webbrowser and webserver has to adhere), the 
+client (the webbrowser) is required to send this cookie back in the 
+subsequent requests in the <code>Cookie</code> header as long as the 
+cookie is valid. Using browser builtin HTTP traffic monitor you can 
+check them (press F12 in Chrome / Firefox23+ / IE9+ and check <em>Net/Network</em> tab). The servletcontainer will determine the <code>Cookie</code> header of every incoming HTTP request for the presence of the cookie with the name <code>JSESSIONID</code> and use its value (the session ID) to get the associated <code>HttpSession</code> from server's memory.</p>
+
+<p>The <code>HttpSession</code> lives until it has not been used for more than the <code>&lt;session-timeout&gt;</code> time, a setting you can specify in <code>web.xml</code>,
+ which defaults to 30 minutes. So when the client doesn't visit the 
+webapp anymore for over 30 minutes, then the servletcontainer will trash
+ the session. Every subsequent request, even though with the cookie 
+specified, will not have access to the same session anymore. The 
+servletcontainer will create a new one. </p>
+
+<p>On the other hand, the session cookie on the client side has a 
+default lifetime which is as long as the browser instance is running. So
+ when the client closes the browser instance (all tabs/windows), then 
+the session will be trashed at the client side. In a new browser 
+instance the cookie associated with the session won't be sent anymore. A
+ new <code>request.getSession()</code> would return a brand new <code>HttpSession</code> and set a cookie with a brand new session ID.</p>
+
+<h2>In a nutshell</h2>
+
+<ul>
+<li>The <code>ServletContext</code> lives as long as the webapp lives. It's been shared among <em>all</em> requests in <em>all</em> sessions.</li>
+<li>The <code>HttpSession</code> lives as long as the client is 
+interacting with the webapp with the same browser instance and the 
+session hasn't timed out at the server side yet. It's been shared among <em>all</em> requests in the <em>same</em> session.</li>
+<li>The <code>HttpServletRequest</code> and <code>HttpServletResponse</code> lives as long as the client has sent it until the complete response (the webpage) is arrived. It is <em>not</em> being shared elsewhere.</li>
+<li>Any <code>Servlet</code>, <code>Filter</code> and <code>Listener</code> lives as long as the webapp lives. They are being shared among <em>all</em> requests in <em>all</em> sessions.</li>
+<li>Any <code>attribute</code> which you set in <code>ServletContext</code>, <code>HttpServletRequest</code> and <code>HttpSession</code> will live as long as the object in question lives.</li>
+</ul>
+
+<h2>Threadsafety</h2>
+
+<p>That said, your major concern is possibly <em>threadsafety</em>. You 
+should now have learnt that Servlets and filters are shared among all 
+requests. That's the nice thing of Java, it's multithreaded and 
+different threads (read: HTTP requests) can make use of the same 
+instance. It would otherwise have been too expensive to recreate, <code>init()</code> and <code>destroy()</code> it on every single request.</p>
+
+<p>But you should also realize that you should <strong>never</strong> assign any request or session scoped data as an <em>instance</em> variable of a servlet or filter. It will be shared among all other requests in other sessions. That's <em>threadunsafe</em>! The below example illustrates that:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">ExampleServlet</span><span class="pln"> </span><span class="kwd">extends</span><span class="pln"> </span><span class="typ">HttpServlet</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">Object</span><span class="pln"> thisIsNOTThreadSafe</span><span class="pun">;</span><span class="pln">
+
+    </span><span class="kwd">protected</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> doGet</span><span class="pun">(</span><span class="typ">HttpServletRequest</span><span class="pln"> request</span><span class="pun">,</span><span class="pln"> </span><span class="typ">HttpServletResponse</span><span class="pln"> response</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">throws</span><span class="pln"> </span><span class="typ">ServletException</span><span class="pun">,</span><span class="pln"> </span><span class="typ">IOException</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="typ">Object</span><span class="pln"> thisIsThreadSafe</span><span class="pun">;</span><span class="pln">
+
+        thisIsNOTThreadSafe </span><span class="pun">=</span><span class="pln"> request</span><span class="pun">.</span><span class="pln">getParameter</span><span class="pun">(</span><span class="str">"foo"</span><span class="pun">);</span><span class="pln"> </span><span class="com">// BAD!! Shared among all requests!</span><span class="pln">
+        thisIsThreadSafe </span><span class="pun">=</span><span class="pln"> request</span><span class="pun">.</span><span class="pln">getParameter</span><span class="pun">(</span><span class="str">"foo"</span><span class="pun">);</span><span class="pln"> </span><span class="com">// OK, this is thread safe.</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln"> 
+</span><span class="pun">}</span></code></pre>
+
+<h3>See also:</h3>
+
+<ul>
+<li><a href="http://stackoverflow.com/questions/2095397/what-is-the-difference-between-jsf-servlet-and-jsp">What is the difference between JSF, Servlet and JSP?</a></li>
+<li><a href="http://stackoverflow.com/questions/1700390/best-option-for-session-management-in-java">Best option for Session management in Java</a></li>
+<li><a href="http://stackoverflow.com/questions/2349633/doget-and-dopost-in-servlets">doGet and doPost in Servlets</a></li>
+<li><a href="http://stackoverflow.com/questions/8011138/servlet-seems-to-handle-multiple-concurrent-requests-synchronously/">Servlet seems to handle multiple concurrent requests synchronously</a></li>
+<li><a href="http://stackoverflow.com/questions/9555842/why-servlets-are-not-thread-safe/">Why Servlets are not thread Safe?</a></li>
+</ul>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/3106909" title="short permalink to this answer" class="short-link" id="link-post-3106909">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/3106909/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/3106909/revisions" title="show all edits to this post">edited <span title="2015-12-08 15:01:14Z" class="relativetime">Dec 8 at 15:01</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        
+        <div class="-flair">
+            
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2010-06-24 02:41:44Z" class="relativetime">Jun 24 '10 at 2:41</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/157882/balusc"><div class="gravatar-wrapper-32"><img src="How%20do%20servlets%20work%3F%20-%20Stack%20Overflow_files/89927e2f4bde24991649b353a37678b9.jpeg" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/157882/balusc">BalusC</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 616271" dir="ltr">616k</span><span title="165 gold badges"><span class="badge1"></span><span class="badgecount">165</span></span><span title="2099 silver badges"><span class="badge2"></span><span class="badgecount">2099</span></span><span title="2388 bronze badges"><span class="badge3"></span><span class="badgecount">2388</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-3106909" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="5" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-10264508" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="warm">12</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">So when I somehow can find out the JSessionId which gets send to a client, I can steal his session?</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/533426/toskan" title="2129 reputation" class="comment-user">Toskan</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment10264508_3106909"><span title="2011-11-30 13:37:58Z" class="relativetime-clean">Nov 30 '11 at 13:37</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-10264657" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="supernova">32</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@Toskan: that's correct. It's known as <a href="http://en.wikipedia.org/wiki/Session_fixation" rel="nofollow">session fixation hack</a>.
+ Please note that this is not specific to JSP/Servlet. All other server 
+side languages which maintains the session by a cookie are sensitive as 
+well, like PHP with <code>PHPSESSID</code> cookie, ASP.NET with <code>ASP.NET_SessionID</code> cookie, etcetera. That's also why URL rewriting with <code>;jsessionid=xxx</code>
+ as some JSP/Servlet MVC frameworks automatically do is frowned upon. 
+Just make sure that session ID is never exposed in URL or by other means
+ in webpages so that the unaware enduser won't be attacked.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/157882/balusc" title="616271 reputation" class="comment-user">BalusC</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment10264657_3106909"><span title="2011-11-30 13:45:39Z" class="relativetime-clean">Nov 30 '11 at 13:45</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-10264734" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="warm">7</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@Toskan: Also, make sure that
+ your webapp is not sensitive to XSS attacks. I.e. do not redisplay any 
+user-controlled input in unescaped form. XSS put doors open to ways to 
+collect session IDs of all endusers. See also <a href="http://stackoverflow.com/questions/2233015/what-is-the-general-concept-behind-xss/2233110#2233110">What is the general concept behind XSS?</a></span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/157882/balusc" title="616271 reputation" class="comment-user">BalusC</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment10264734_3106909"><span title="2011-11-30 13:48:52Z" class="relativetime-clean">Nov 30 '11 at 13:48</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 4 times"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-11525438" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@BalusC: Do all servlets 
+loaded at startups? I hear it was when the first request is received the
+ servlet is loaded. Please clarify.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/552423/itsraja" title="551 reputation" class="comment-user">itsraja</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment11525438_3106909"><span title="2012-02-06 16:39:45Z" class="relativetime-clean">Feb 6 '12 at 16:39</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-39798937" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@BalusC, Sorry for my stupidity. It means all user access the same instance of thisIsNOTThreadSafe right?</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/2161761/overshadow" title="132 reputation" class="comment-user">overshadow</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment39798937_3106909"><span title="2014-08-26 03:35:52Z" class="relativetime-clean">Aug 26 '14 at 3:35</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-3106909" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link  dno" title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."></a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link " title="expand to show all comments on this post" href="#" onclick="">show <b>5</b> more comments</a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+<div class="everyonelovesstackoverflow" id="careers3"><a href="http://engine.adzerk.net/r?e=eyJhdiI6NDE0LCJhdCI6NCwiYnQiOjAsImNtIjozMzk5ODgsImNoIjoxMTc4LCJjayI6e30sImNyIjoxMjI2MTIwLCJkaSI6ImQxNWEzZTE3MjRkZTQ4NDJiNzY3NTczZjRmYmZhNmNjIiwiZG0iOjEsImZjIjoxMzUzMzM1LCJmbCI6OTU0NDgyLCJpcCI6IjEzNC42MC4xMDUuMjEyIiwibnciOjIyLCJwYyI6MCwiZWMiOjAsInByIjo4MzEwNCwicnQiOjIsInJmIjoiaHR0cDovL3d3dy5pbnRlcnRlY2guY29tL0Jsb2cvdW5kZXJzdGFuZGluZy1zcHJpbmctbXZjLW1vZGVsLWFuZC1zZXNzaW9uLWF0dHJpYnV0ZXMvIiwic3QiOjgyNzcsInVrIjoidWUxLTE1MzFiMDkyYjQ0MzQzNzRhNDMwNTFlMmU3NGQ3MDc0Iiwiem4iOjQ0LCJ0cyI6MTQ1MDA4NzYwODg5MSwiYmYiOnRydWUsInBuIjoiY2FyZWVyczMiLCJ1ciI6Imh0dHA6Ly9jYXJlZXJzLnN0YWNrb3ZlcmZsb3cuY29tL3Byb2R1Y3RzP3V0bV9zb3VyY2U9c3RhY2tvdmVyZmxvdy5jb20mdXRtX21lZGl1bT1hZCZ1dG1fY2FtcGFpZ249ZW1wbG95ZXJzLXN1cGVyaGVyb2VzJnV0bV9jb250ZW50PW1sYi1zdXBlcmhlcm9lcyJ9&amp;s=GjXuUY-AM5odHgVXDmzZ2xPcA1o" rel="nofollow" target="_blank" title=""><img class="bnbmjxdybikarfmzxiqc" src="How%20do%20servlets%20work%3F%20-%20Stack%20Overflow_files/543b9426d0914a5083cc19318c1ffbc4.png" title="" alt="" height="90" width="728" border="0"></a><img class="bnbmjxdybikarfmzxiqc" src="How%20do%20servlets%20work%3F%20-%20Stack%20Overflow_files/i_003.gif" style="position:absolute;" height="0px" width="0px" border="0"></div>
+  
+<a name="17504918"></a>
+<div id="answer-17504918" class="answer" data-answerid="17504918" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="17504918" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">258</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<h2>Sessions</h2>
+
+<p><img src="How%20do%20servlets%20work%3F%20-%20Stack%20Overflow_files/ABDSX.png" alt="enter image description here">
+<img src="How%20do%20servlets%20work%3F%20-%20Stack%20Overflow_files/IWAF3.png" alt="enter image description here"></p>
+
+<p>In short: the web server issues a unique identifier to <em>each visitor</em> on his <em>first</em>
+ visit. The visitor must bring back that ID for him to be recognised 
+next time around. This identifier also allows the server to properly 
+segregate objects owned by one session against that of another.</p>
+
+<h2>Servlet Instantiation</h2>
+
+<p>If <strong>load-on-startup</strong> is <strong>false</strong>:</p>
+
+<p><img src="How%20do%20servlets%20work%3F%20-%20Stack%20Overflow_files/Jjvcb.png" alt="enter image description here">
+<img src="How%20do%20servlets%20work%3F%20-%20Stack%20Overflow_files/7Bw3x.png" alt="enter image description here"></p>
+
+<p>If <strong>load-on-startup</strong> is <strong>true</strong>:</p>
+
+<p><img src="How%20do%20servlets%20work%3F%20-%20Stack%20Overflow_files/t33bd.png" alt="enter image description here">
+<img src="How%20do%20servlets%20work%3F%20-%20Stack%20Overflow_files/e7BB7.png" alt="enter image description here"></p>
+
+<p>Once he's on the service mode and on the groove, the <em>same</em> servlet will work on the requests from all other clients. </p>
+
+<p><img src="How%20do%20servlets%20work%3F%20-%20Stack%20Overflow_files/gqoR4.png" alt="enter image description here"></p>
+
+<p>Why isn't it a good idea to have one instance per client? Think about
+ this: Will you hire one pizza guy for every order that came? Do that 
+and you'd be out of business in no time.</p>
+
+<p>It comes with a small risk though. Remember: this single guy holds 
+all the order information in his pocket: so if you're not cautious about
+ <a href="http://tutorials.jenkov.com/java-servlets/servlet-concurrency.html">thread safety on servlets</a>, he may end up giving the wrong order to a certain client.</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/17504918" title="short permalink to this answer" class="short-link" id="link-post-17504918">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/17504918/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/17504918/revisions" title="show all edits to this post">edited <span title="2013-09-25 15:47:00Z" class="relativetime">Sep 25 '13 at 15:47</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        
+        <div class="-flair">
+            
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2013-07-06 16:38:25Z" class="relativetime">Jul 6 '13 at 16:38</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/1551022/jops"><div class="gravatar-wrapper-32"><img src="How%20do%20servlets%20work%3F%20-%20Stack%20Overflow_files/vH1mV.jpg" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/1551022/jops">Jops</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 11526" dir="ltr">11.5k</span><span title="6 gold badges"><span class="badge1"></span><span class="badgecount">6</span></span><span title="33 silver badges"><span class="badge2"></span><span class="badgecount">33</span></span><span title="49 bronze badges"><span class="badge3"></span><span class="badgecount">49</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-17504918" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-17504918" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="3106467"></a>
+<div id="answer-3106467" class="answer" data-answerid="3106467" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="3106467" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">26</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Session in Java servlets is the same as session in other languages 
+such as PHP.  It is unique to the user.  The server can keep track of it
+ in different ways such as cookies, url rewriting etc.  This <a href="http://java.sun.com/products/servlet/2.2/javadoc/javax/servlet/http/HttpSession.html">Java doc</a>
+ article explains it in the context of Java servlets and indicates that 
+exactly how session is maintained is an implementation detail left to 
+the designers of the server.  The specification only stipulates that it 
+must be maintained as unique to a user across multiple connections to 
+the server.  Check out <a href="http://download.oracle.com/docs/cd/A97336_01/buslog.102/a83726/tecbkgn2.htm">this article from Oracle</a> for more information about both of your questions.</p>
+
+<p><strong>Edit</strong> There is an excellent tutorial <a href="http://www.apl.jhu.edu/%7Ehall/java/Servlet-Tutorial/Servlet-Tutorial-Session-Tracking.html">here</a> on how to work with session inside of servlets. And <a href="http://docs.oracle.com/javaee/5/tutorial/doc/bnafd.html">here</a>
+ is a chapter from Sun about Java Servlets, what they are and how to use
+ them.  Between those two articles, you should be able to answer all of 
+your questions.  </p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/3106467" title="short permalink to this answer" class="short-link" id="link-post-3106467">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/3106467/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/3106467/revisions" title="show all edits to this post">edited <span title="2013-10-17 05:59:35Z" class="relativetime">Oct 17 '13 at 5:59</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <span class="anonymous-gravatar"></span>
+    </div>
+    <div class="user-details">
+        user2729112
+        <div class="-flair">
+            
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2010-06-24 00:20:59Z" class="relativetime">Jun 24 '10 at 0:20</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/150771/chris-thompson"><div class="gravatar-wrapper-32"><img src="How%20do%20servlets%20work%3F%20-%20Stack%20Overflow_files/667e49c4a110469bdaa09e263b690344.jpeg" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/150771/chris-thompson">Chris Thompson</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 21718" dir="ltr">21.7k</span><span title="7 gold badges"><span class="badge1"></span><span class="badgecount">7</span></span><span title="52 silver badges"><span class="badge2"></span><span class="badgecount">52</span></span><span title="82 bronze badges"><span class="badge3"></span><span class="badgecount">82</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-3106467" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-3186955" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">This brings up another 
+question for me, Since there is only one servlet context for the whole 
+application and we get access to the session variables through this 
+servletcontext so how can the session variables be unique to every user?
+ Thanks..</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/374769/ku-jon" title="2993 reputation" class="comment-user owner">Ku Jon</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment3186955_3106467"><span title="2010-06-24 01:27:53Z" class="relativetime-clean">Jun 24 '10 at 1:27</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-3187031" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">how are you accessing the session from the servletContext? You're not referring to servletContext.setAttribute(), are you?</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/4249/matt-b" title="85906 reputation" class="comment-user">matt b</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment3187031_3106467"><span title="2010-06-24 01:44:47Z" class="relativetime-clean">Jun 24 '10 at 1:44</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-3187117" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">4</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">oh man... request.getSession()! RTFM!</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/1163802/vladimir-dyuzhev" title="12620 reputation" class="comment-user">Vladimir Dyuzhev</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment3187117_3106467"><span title="2010-06-24 02:16:18Z" class="relativetime-clean">Jun 24 '10 at 2:16</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-44566793" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@KuJon Each web app has one <code>ServletContext</code>
+ object. That object has zero, one, or more session objects -- a 
+collection of session objects. Each session is identified by some kind 
+of identifier string, as seen in cartoons on other answer. That 
+identifier is tracked on client by either cookie or URL-rewriting. Each 
+session object has its own variables.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/642706/basil-bourque" title="23794 reputation" class="comment-user">Basil Bourque</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment44566793_3106467"><span title="2015-01-22 17:53:01Z" class="relativetime-clean">Jan 22 at 17:53</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 2 times"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-3106467" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="9395156"></a>
+<div id="answer-9395156" class="answer" data-answerid="9395156" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="9395156" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">17</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>When the servletcontainer (like Apache Tomcat) starts up, it will 
+read from web.xml file (only one per application)if any thing goes wrong
+ shows up error at container side console or it will deploy and load all
+ webapplications by using web.xml (so named it as deployment 
+descriptor).</p>
+
+<p>During instantiation phase of servlet ,servletInstance is ready but 
+it cannot serve the client request because it is missing with two pieces
+ of information 
+1:context information
+2:initial configuration information
+Servletengine creates servletConfig interface object encapsulating the 
+above missing information into it
+servlet engine calls init() of servlet by suplying servletconfig object 
+references as argument.Once init() is completedly executed servlet is 
+ready to server the client request. </p>
+
+<h3>Q) In the life time of servlet how many times instantiation and initaialization happens ??</h3>
+
+<p>A)only once (for every client request a new thread is created)
+only one instance of the servlet serves any number of the client request
+ ie,after serving one client request server does not die.It waits for 
+other client requests 
+ie what CGI(for every client request a new process is created) 
+limitation is overcome with servlet(internally servlet engine creates 
+thread)</p>
+
+<h3>Q)How session concept works?</h3>
+
+<p>A)whenever getSession() is called on HttpServletRequest object </p>
+
+<p>Step 1:request object is evalauated for incoming session ID</p>
+
+<p>Step 2:if ID not avaiable a brand new HttpSession object is created 
+and its corresponding session ID is generated (ie of HashTable) session 
+ID is stored into httpservlet response object and the reference of 
+HttpSession object is returned to servlet (doGet/doPost). </p>
+
+<p>Step 3:if Id avaiable brand new session object is not created session
+ id is picked up from the request object search is made in the 
+collection of sessions by using session ID as the key Once the search is
+ sucessful session id is stored into HttpServletResponse and the 
+exsisting  session object references is returned to the doGet or 
+doPost() of UserDefineservlet.</p>
+
+<h3>Note:</h3>
+
+<p>1)when control leaves from servlet code to client dont forget that 
+session object is being hold by servletcontainer ie, servletengine</p>
+
+<p>2)multithreading is left to servlet devlopers people for implementing
+ ie., handle the multiple request of client nothing to bother about 
+multithread code </p>
+
+<h3>Inshort form:</h3>
+
+<p>A servlet is created when the application starts (it is deployed on 
+the servlet container) or when it is first accessed (depending on the 
+load-on-startup setting)
+when the servlet is instantiated, the init() method of the servlet is 
+called
+then the servlet (its one and only instance) handles all requests (its 
+service() method being called by multiple threads). That's why it is not
+ advisable to have any synchronization in it, and you should avoid 
+instance variables of the servlet
+when the application is undeployed (the servlet container stops), the 
+destroy() method is called.</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/9395156" title="short permalink to this answer" class="short-link" id="link-post-9395156">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/9395156/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/9395156/revisions" title="show all edits to this post">edited <span title="2012-02-22 15:25:59Z" class="relativetime">Feb 22 '12 at 15:25</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        
+        <div class="-flair">
+            
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2012-02-22 12:54:18Z" class="relativetime">Feb 22 '12 at 12:54</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/867206/ajay-takur"><div class="gravatar-wrapper-32"><img src="How%20do%20servlets%20work%3F%20-%20Stack%20Overflow_files/kve9O.jpg" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/867206/ajay-takur">Ajay Takur</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">933</span><span title="2 gold badges"><span class="badge1"></span><span class="badgecount">2</span></span><span title="10 silver badges"><span class="badge2"></span><span class="badgecount">10</span></span><span title="23 bronze badges"><span class="badge3"></span><span class="badgecount">23</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-9395156" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-9395156" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="3106495"></a>
+<div id="answer-3106495" class="answer" data-answerid="3106495" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="3106495" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">14</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p><strong>Sessions</strong> - what Chris Thompson said.</p>
+
+<p><strong>Instantiation</strong> - a servlet is instantiated when the 
+container receives the first request mapped to the servlet (unless the 
+servlet is configured to load on startup with the <code>&lt;load-on-startup&gt;</code> element in <code>web.xml</code>). The same instance is used to serve subsequent requests.</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/3106495" title="short permalink to this answer" class="short-link" id="link-post-3106495">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/3106495/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2010-06-24 00:27:46Z" class="relativetime">Jun 24 '10 at 0:27</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/59604/lauri-lehtinen"><div class="gravatar-wrapper-32"><img src="How%20do%20servlets%20work%3F%20-%20Stack%20Overflow_files/a5d0d78390a8712a0b8b6a8141a0184d.jpeg" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/59604/lauri-lehtinen">Lauri Lehtinen</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">6,578</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="16 silver badges"><span class="badge2"></span><span class="badgecount">16</span></span><span title="24 bronze badges"><span class="badge3"></span><span class="badgecount">24</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-3106495" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-44566361" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Correct. Additional thought: 
+ Each request gets a new (or recycled) thread to run on that single 
+Servlet instance. Each Servlet has one instance, and possibly many 
+threads (if many simultaneous requests).</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/642706/basil-bourque" title="23794 reputation" class="comment-user">Basil Bourque</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment44566361_3106495"><span title="2015-01-22 17:41:19Z" class="relativetime-clean">Jan 22 at 17:41</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-3106495" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="22196727"></a>
+<div id="answer-22196727" class="answer" data-answerid="22196727" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="22196727" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">6</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>The Servlet Specification JSR-315 clearly defines the web container 
+behavior in the service (and doGet, doPost, doPut etc.) methods (2.3.3.1
+ Multithreading Issues, Page 9):</p>
+
+<p>"A servlet container may send concurrent requests through the service
+ method of the servlet. To handle the requests, the Servlet Developer 
+must make adequate provisions for concurrent processing with multiple 
+threads in the service method.</p>
+
+<p>Although it is not recommended, an alternative for the Developer is 
+to implement the SingleThreadModel interface which requires the 
+container to guarantee that there is only one request thread at a time 
+in the service method. A servlet container may satisfy this requirement 
+by serializing requests on a servlet, or by maintaining a pool of 
+servlet instances. If the servlet is part of a Web application that has 
+been marked as distributable, the container may maintain a pool of 
+servlet instances in each JVM that the application is distributed 
+across.</p>
+
+<p>For servlets not implementing the SingleThreadModel interface, if the
+ service method (or methods such as doGet or doPost which are dispatched
+ to the service method of the HttpServlet abstract class) has been 
+defined with the synchronized keyword, the servlet container cannot use 
+the instance pool approach, but must serialize requests through it. It 
+is strongly recommended that Developers not synchronize the service 
+method (or methods dispatched to it) in these circumstances because of 
+detrimental effects on performance".</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/22196727" title="short permalink to this answer" class="short-link" id="link-post-22196727">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/22196727/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2014-03-05 11:41:57Z" class="relativetime">Mar 5 '14 at 11:41</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/1894198/tharindu-dg"><div class="gravatar-wrapper-32"><img src="How%20do%20servlets%20work%3F%20-%20Stack%20Overflow_files/3fN7W.jpg" alt="" height="32" width="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/1894198/tharindu-dg">tharindu_DG</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">1,073</span><span title="9 silver badges"><span class="badge2"></span><span class="badgecount">9</span></span><span title="22 bronze badges"><span class="badge3"></span><span class="badgecount">22</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-22196727" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-44566469" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">FYI, current Servlet spec (2015-01) is 3.1, defined by <a href="https://jcp.org/aboutJava/communityprocess/final/jsr340/" rel="nofollow">JSR 340</a>.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/642706/basil-bourque" title="23794 reputation" class="comment-user">Basil Bourque</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment44566469_22196727"><span title="2015-01-22 17:44:27Z" class="relativetime-clean">Jan 22 at 17:44</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-22196727" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+				    <div class="question-status">
+        <h2>                    <b>protected</b> by <a href="http://stackoverflow.com/users/142822/avd">AVD</a> <span dir="ltr"><span title="2012-06-06 10:02:33Z" class="relativetime">Jun 6 '12 at 10:02</span></span>
+</h2>
+        <p>
+Thank you for your interest in this question. 
+Because it has attracted low-quality or spam answers that had to be removed, posting an answer now requires 10 <a href="http://stackoverflow.com/help/whats-reputation">reputation</a> on this site.
+<br><br>
+Would you like to answer one of these <a href="http://stackoverflow.com/unanswered?fromProtectedNotice=true">unanswered questions</a> instead?
+</p>
+    </div>
+
+
+
+
+
+						<h2 class="bottom-notice" data-loc="1">
+Not the answer you're looking for?							Browse other questions tagged <a href="http://stackoverflow.com/questions/tagged/java" class="post-tag" title="show questions tagged 'java'" rel="tag">java</a> <a href="http://stackoverflow.com/questions/tagged/multithreading" class="post-tag" title="show questions tagged 'multithreading'" rel="tag">multithreading</a> <a href="http://stackoverflow.com/questions/tagged/session" class="post-tag" title="show questions tagged 'session'" rel="tag">session</a> <a href="http://stackoverflow.com/questions/tagged/servlets" class="post-tag" title="show questions tagged 'servlets'" rel="tag">servlets</a> <a href="http://stackoverflow.com/questions/tagged/session-variables" class="post-tag" title="show questions tagged 'session-variables'" rel="tag">session-variables</a>  or <a href="http://stackoverflow.com/questions/ask">ask your own question</a>.						</h2>
+			</div>
+		</div>
+				<div id="sidebar" class="show-votes">
+						    <div class="module question-stats">
+			        <table id="qinfo">
+			            <tbody><tr>
+			                <td>
+			                    <p class="label-key">asked</p>
+			                </td>
+			                <td style="padding-left: 10px">
+			                    <p class="label-key" title="2010-06-24 00:16:15Z"><b>5 years ago</b></p>
+			                </td>
+			            </tr>
+			            <tr>
+			                <td>
+			                    <p class="label-key">viewed</p>
+			                </td>
+
+			                <td style="padding-left: 10px">
+			                    <p class="label-key">
+			                        <b>146884 times</b>
+			                    </p>
+			                </td>
+			            </tr>
+			                <tr>
+			                    <td>
+			                        <p class="label-key">active</p>
+			                    </td>
+			                    <td style="padding-left: 10px">
+			                        <p class="label-key"><b><a href="http://stackoverflow.com/questions/3106452/how-do-servlets-work-instantiation-shared-variables-and-multithreading/3106909?lastactivity" class="lastactivity-link" title="2015-12-08 15:01:14Z">5 days ago</a></b></p>
+			                    </td>
+			                </tr>
+			        </tbody></table>
+			    </div>
+			<div class="module community-bulletin" data-tracker="cb=1">
+    <div class="related">
+                <div class="bulletin-title">
+                    Blog
+                </div>
+                <hr>
+    <div class="spacer">
+        <div class="bulletin-item-type">
+                <a href="http://blog.stackoverflow.com/2015/12/announcing-winter-bash-2015/?cb=1" class="question-hyperlink">
+<div class="favicon favicon-stackexchangemeta" title="Meta Stack Exchange"></div>                </a>
+            </div>
+                <div class="bulletin-item-content">
+                    <a href="http://blog.stackoverflow.com/2015/12/announcing-winter-bash-2015/?cb=1" class="question-hyperlink">Announcing Winter Bash 2015</a>
+                </div>
+                <br class="cbt">
+            </div>
+    </div>
+</div>			
+			<div class="everyonelovesstackoverflow" id="careers2">
+        </div>
+        <div class=" blue looking tagged" id="hireme"><a href="http://careers.stackoverflow.com/jobs" target="_blank" data-tz="1" data-ti="0" class="top"><span>Looking for a job?</span></a><div class="middle"><ul class="jobs"><li><a data-tz="3" data-ti="183290" href="http://careers.stackoverflow.com/jobs/97319/junior-it-consultant-m-w-internet-of-things-bosch-software-innovations" target="_blank" title="Junior IT-Consultant (m/w) - Internet of Things (IoT) at Bosch Software Innovations GmbH. Click to learn more.">Junior IT-Consultant (m/w) - Internet of Things (IoT)<br><div class="company">Bosch Software Innovations…</div><div class="location" title="Immenstaad, Deutschland / relocation">Immenstaad, Deutschland / relocation</div><span class="post-tag js-gps-track">html</span><span class="post-tag js-gps-track">json</span></a></li><li><a data-tz="3" data-ti="189183" href="http://careers.stackoverflow.com/jobs/103246/senior-backend-java-or-frontend-angularjs-avrios-international-ag" target="_blank" title="Senior Backend (Java) OR Frontend (AngularJS) Engineer at fast growing startup at Avrios International AG. Click to learn more.">Senior Backend (Java) OR Frontend (AngularJS) Engineer at fast growing startup<br><div class="company">Avrios International AG</div><div class="location" title="Zürich, Switzerland">Zürich, Switzerland</div><span class="post-tag highlight js-gps-track">java</span><span class="post-tag js-gps-track">javascript</span></a></li></ul></div><img class="impression" src="How%20do%20servlets%20work%3F%20-%20Stack%20Overflow_files/i.gif" style="display:none;"></div>
+			  
+    
+            <div class="module sidebar-linked">
+	<h4 id="h-linked">Linked</h4>
+	<div class="linked" data-tracker="lq=1">
+<div class="spacer">
+	<a href="http://stackoverflow.com/q/11485486?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">1</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/11485486/regarding-thread-safety-of-servlet?lq=1" class="question-hyperlink">Regarding thread safety of servlet</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/26293345?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/26293345/how-to-pass-session-value-to-java-class?lq=1" class="question-hyperlink">How to pass session value to java class</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/12722923?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">0</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/12722923/lifecycle-scope-of-webservlet?lq=1" class="question-hyperlink">Lifecycle/Scope of @WebServlet</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/17003025?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">2</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/17003025/session-id-creation-for-users-who-share-same-pc?lq=1" class="question-hyperlink">Session id creation for users who share same pc</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/30032934?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">1</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/30032934/how-is-httpsession-stored-in-the-servlet-framework?lq=1" class="question-hyperlink">How is HttpSession Stored in the Servlet Framework</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/31280115?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">0</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/31280115/java-servlet-shared-collection?lq=1" class="question-hyperlink">Java servlet shared collection</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/30691738?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">0</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/30691738/how-to-get-a-http-session-while-a-servlet-is-being-initialised?lq=1" class="question-hyperlink">How to get a Http Session while a servlet is being initialised?</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/33115454?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">1</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/33115454/how-to-find-listener-in-servlet?lq=1" class="question-hyperlink">How to find listener in Servlet?</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/30188657?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/30188657/are-servlet-service-methods-thread-safe?lq=1" class="question-hyperlink">Are servlet service methods thread safe?</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/34137023?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">1</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/34137023/servlet-container-managed-bean?lq=1" class="question-hyperlink">servlet container managed bean</a>
+</div>					<div class="spacer more">
+				<a href="http://stackoverflow.com/questions/linked/3106452?lq=1">see more linked questions…</a>
+			</div>
+	</div>
+</div>
+
+				<div class="module sidebar-related">
+					<h4 id="h-related">Related</h4>
+                    <div class="related js-gps-related-questions" data-tracker="rq=1">
+                        <div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/9155837?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">3
+    </div>
+</a><a href="http://stackoverflow.com/questions/9155837/how-the-creation-of-httpsession-works-when-request-is-coming-from-webserver-inst?rq=1" class="question-hyperlink">How the creation of HTTPSession works when request is coming from webserver instead of web browser?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/16212365?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/16212365/how-to-separate-sessions-for-new-browser-instance-of-ie8-using-servlet?rq=1" class="question-hyperlink">How to separate sessions for new browser instance of IE8 using servlet?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/17299940?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">3
+    </div>
+</a><a href="http://stackoverflow.com/questions/17299940/how-server-stores-session-variables-created-using-php?rq=1" class="question-hyperlink">How server stores session variables created using PHP?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/20708853?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/20708853/corresponding-jsp-session-variable-in-servlet?rq=1" class="question-hyperlink">corresponding jsp `session` variable in servlet?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/21511233?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/21511233/servlet-in-java-how-to-retrieve-attributes?rq=1" class="question-hyperlink">Servlet in Java. How to retrieve attributes?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/24222845?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">-2
+    </div>
+</a><a href="http://stackoverflow.com/questions/24222845/how-can-i-set-a-session-variable-in-a-servlet-and-get-it-in-a-jsp?rq=1" class="question-hyperlink">How can I set a session variable in a servlet and get it in a JSP?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/24329474?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">3
+    </div>
+</a><a href="http://stackoverflow.com/questions/24329474/accessing-session-variables-outside-servlet?rq=1" class="question-hyperlink">Accessing session variables outside servlet</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/24684405?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">1
+    </div>
+</a><a href="http://stackoverflow.com/questions/24684405/how-does-tomcat-serve-different-applications-with-in-the-same-servlet-container?rq=1" class="question-hyperlink">how does Tomcat serve different applications with in the same servlet container?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/28294912?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/28294912/how-to-make-field-variable-of-java-filter-not-shared-across-all-the-sessions?rq=1" class="question-hyperlink">How to make field variable of java filter not shared across all the sessions?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/33340350?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/33340350/how-does-servlet-container-instantiate-session-for-several-first-requests?rq=1" class="question-hyperlink">How does servlet container instantiate session for several “first” requests?</a>
+</div>
+
+                    </div>
+				</div>
+            
+<div id="hot-network-questions" class="module">
+    <h4>
+        <a href="http://stackexchange.com/questions?tab=hot" class="js-gps-track" data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">
+            Hot Network Questions
+        </a>
+    </h4>
+    <ul>
+            <li>
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="http://math.stackexchange.com/questions/1574736/what-is-the-value-of-this-improper-integral" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What is the value of this improper integral?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-serverfault" title="Server Fault"></div><a href="http://serverfault.com/questions/742776/file-exists-error-while-restarting-network-interface-debian" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:2 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    File exists error while restarting network interface (Debian)
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-crypto" title="Cryptography Stack Exchange"></div><a href="http://crypto.stackexchange.com/questions/31243/on-aes-is-a-true-random-string-enough-for-a-key" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:281 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    On AES, is a true random string enough for a key?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="http://academia.stackexchange.com/questions/59883/my-undergraduate-research-advisor-pressures-me-to-work-more-hours-than-i-want-to" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    My undergraduate research advisor pressures me to 
+work more hours than I want to, but I don't want to risk ruining the 
+relationship. How to proceed?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-outdoors" title="The Great Outdoors Stack Exchange"></div><a href="http://outdoors.stackexchange.com/questions/10293/when-where-do-foxes-attack-humans" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:395 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    When/Where do foxes attack humans?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-superuser" title="Super User"></div><a href="http://superuser.com/questions/1011924/when-i-plug-an-ethernet-cable-into-my-computer-is-my-computer-directly-connecte" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:3 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    When I plug an Ethernet cable into my computer, is 
+my computer directly connected to every server on the Internet?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-puzzling" title="Puzzling Stack Exchange"></div><a href="http://puzzling.stackexchange.com/questions/24535/tommys-train-tracks" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:559 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Tommy's Train Tracks
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-askubuntu" title="Ask Ubuntu"></div><a href="http://askubuntu.com/questions/709291/about-nvidia-graphics-driver" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:89 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    about nvidia graphics driver
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-philosophy" title="Philosophy Stack Exchange"></div><a href="http://philosophy.stackexchange.com/questions/30541/what-is-the-difference-between-philosophy-and-theology" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:265 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What is the difference between Philosophy and Theology?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-money" title="Personal Finance &amp; Money Stack Exchange"></div><a href="http://money.stackexchange.com/questions/57052/cosigned-on-a-loan-if-i-pay-loan-off-are-purchases-now-mine" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:93 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Cosigned on a loan. If I pay loan off, are purchases now mine?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="http://scifi.stackexchange.com/questions/110389/how-does-the-weasleys-car-run" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How does the Weasley's car run?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-movies" title="Movies &amp; TV Stack Exchange"></div><a href="http://movies.stackexchange.com/questions/44695/why-didnt-silent-movies-have-subtitles" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:367 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why didn't silent movies have subtitles?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="http://scifi.stackexchange.com/questions/110395/how-could-the-fireships-in-rots-know-that-grievous-flagship-was-crewed-by-frien" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How could the fireships in RotS know that Grievous' flagship was crewed by friendlies?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-electronics" title="Electrical Engineering Stack Exchange"></div><a href="http://electronics.stackexchange.com/questions/205929/will-this-battery-pack-for-an-led-strip-need-a-resister" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:135 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Will this battery pack for an LED strip need a resister?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-hardwarerecs" title="Hardware Recommendations Stack Exchange"></div><a href="http://hardwarerecs.stackexchange.com/questions/1539/long-distance-monitor-connection-options" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:635 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Long distance monitor connection options?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-parenting" title="Parenting Stack Exchange"></div><a href="http://parenting.stackexchange.com/questions/23349/is-it-ok-to-play-with-a-10-months-old-baby-in-nature" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:228 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is it ok to play with a 10 months old baby in nature?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="http://english.stackexchange.com/questions/293691/synonym-request-paint-into-a-corner" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Synonym request: "paint into a corner"
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-apple" title="Ask Different"></div><a href="http://apple.stackexchange.com/questions/219501/how-to-lock-the-keyboard-in-mac-os-x-but-not-the-screen" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:118 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to lock the keyboard in Mac OS X, but not the screen?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="http://academia.stackexchange.com/questions/59905/why-do-we-pay-to-present-at-conferences" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why do we pay to present at conferences?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="http://math.stackexchange.com/questions/1574758/prove-that-the-orthogonal-projection-operator-is-idempotent" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Prove that the orthogonal projection operator is idempotent
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="http://english.stackexchange.com/questions/293668/your-fashion-christmas" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Your fashion Christmas
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-german" title="German Language Stack Exchange"></div><a href="http://german.stackexchange.com/questions/27158/whats-the-german-term-for-to-control-for" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:253 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What's the German term for "to control for"?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-bicycles" title="Bicycles Stack Exchange"></div><a href="http://bicycles.stackexchange.com/questions/36019/what-to-do-when-a-snake-is-in-front-of-you" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:126 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What to do when a snake is in front of you?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-security" title="Information Security Stack Exchange"></div><a href="http://security.stackexchange.com/questions/107648/why-would-a-spammer-try-to-get-a-normal-image-of-mine" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:162 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why would a spammer try to get a (normal) image of mine?
+                </a>
+
+            </li>
+    </ul>
+
+        
+</div>
+		</div>
+	
+<div id="feed-link">
+    <div id="feed-link-text">
+        <a href="http://stackoverflow.com/feeds/question/3106452" title="feed of this question and its answers">
+            <span class="feed-icon"></span>question feed
+        </a>
+    </div>
+</div>	<script>
+StackExchange.ready(function(){$.get('/posts/3106452/ivc/8190');});
+</script>
+<noscript>
+    <div><img src="/posts/3106452/ivc/8190" class="dno" alt="" width="0" height="0"></div>
+</noscript><div style="display:none" id="prettify-lang">lang-java</div></div>
+
+
+        </div>
+    </div>
+    <div id="footer" class="categories">
+        <div class="footerwrap">
+            <div id="footer-menu">
+                <div class="top-footer-links">
+                        <a href="http://stackoverflow.com/tour">tour</a>
+                    <a href="http://stackoverflow.com/help">help</a>
+                    <a href="http://blog.stackoverflow.com/?blb=1">blog</a>
+                        <a href="http://chat.stackoverflow.com/">chat</a>
+                    <a href="http://data.stackexchange.com/">data</a>
+                    <a href="http://stackexchange.com/legal">legal</a>
+                    <a href="http://stackexchange.com/legal/privacy-policy">privacy policy</a>
+                    <a href="http://stackexchange.com/work-here">work here</a>
+                    <a href="http://stackexchange.com/mediakit">advertising info</a>
+
+                    <a onclick='StackExchange.switchMobile("on")'>mobile</a>
+                    <b><a href="http://stackoverflow.com/contact">contact us</a></b>
+                        <b><a href="http://meta.stackoverflow.com/">feedback</a></b>
+                    
+                </div>
+                <div id="footer-sites">
+                    <table>
+    <tbody><tr>
+            <th colspan="3">
+                Technology
+            </th>
+            <th>
+                Life / Arts
+            </th>
+            <th>
+                Culture / Recreation
+            </th>
+            <th>
+                Science
+            </th>
+            <th>
+                Other
+            </th>
+    </tr>
+    <tr>
+            <td>
+                <ol>
+                        <li><a href="http://stackoverflow.com/" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                        <li><a href="http://serverfault.com/" title="system and network administrators">Server Fault</a></li>
+                        <li><a href="http://superuser.com/" title="computer enthusiasts and power users">Super User</a></li>
+                        <li><a href="http://webapps.stackexchange.com/" title="power users of web applications">Web Applications</a></li>
+                        <li><a href="http://askubuntu.com/" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                        <li><a href="http://webmasters.stackexchange.com/" title="pro webmasters">Webmasters</a></li>
+                        <li><a href="http://gamedev.stackexchange.com/" title="professional and independent game developers">Game Development</a></li>
+                        <li><a href="http://tex.stackexchange.com/" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://programmers.stackexchange.com/" title="professional programmers interested in conceptual questions about software development">Programmers</a></li>
+                        <li><a href="http://unix.stackexchange.com/" title="users of Linux, FreeBSD and other Un*x-like operating systems">Unix &amp; Linux</a></li>
+                        <li><a href="http://apple.stackexchange.com/" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+                        <li><a href="http://wordpress.stackexchange.com/" title="WordPress developers and administrators">WordPress Development</a></li>
+                        <li><a href="http://gis.stackexchange.com/" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+                        <li><a href="http://electronics.stackexchange.com/" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+                        <li><a href="http://android.stackexchange.com/" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+                        <li><a href="http://security.stackexchange.com/" title="information security professionals">Information Security</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://dba.stackexchange.com/" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+                        <li><a href="http://drupal.stackexchange.com/" title="Drupal developers and administrators">Drupal Answers</a></li>
+                        <li><a href="http://sharepoint.stackexchange.com/" title="SharePoint enthusiasts">SharePoint</a></li>
+                        <li><a href="http://ux.stackexchange.com/" title="user experience researchers and experts">User Experience</a></li>
+                        <li><a href="http://mathematica.stackexchange.com/" title="users of Mathematica">Mathematica</a></li>
+                        <li><a href="http://salesforce.stackexchange.com/" title="Salesforce administrators, implementation experts, developers and anybody in-between">Salesforce</a></li>
+                        <li><a href="http://expressionengine.stackexchange.com/" title="administrators, end users, developers and designers for ExpressionEngine® CMS">ExpressionEngine® Answers</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#technology" class="more">
+                                more (13)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://photo.stackexchange.com/" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                        <li><a href="http://scifi.stackexchange.com/" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                        <li><a href="http://graphicdesign.stackexchange.com/" title="Graphic Design professionals, students, and enthusiasts">Graphic Design</a></li>
+                        <li><a href="http://movies.stackexchange.com/" title="movie and tv enthusiasts">Movies &amp; TV</a></li>
+                        <li><a href="http://cooking.stackexchange.com/" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                        <li><a href="http://diy.stackexchange.com/" title="contractors and serious DIYers">Home Improvement</a></li>
+                        <li><a href="http://money.stackexchange.com/" title="people who want to be financially literate">Personal Finance &amp; Money</a></li>
+                        <li><a href="http://academia.stackexchange.com/" title="academics and those enrolled in higher education">Academia</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#lifearts" class="more">
+                                more (9)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://english.stackexchange.com/" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                        <li><a href="http://skeptics.stackexchange.com/" title="scientific skepticism">Skeptics</a></li>
+                        <li><a href="http://judaism.stackexchange.com/" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                        <li><a href="http://travel.stackexchange.com/" title="road warriors and seasoned travelers">Travel</a></li>
+                        <li><a href="http://christianity.stackexchange.com/" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                        <li><a href="http://gaming.stackexchange.com/" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+                        <li><a href="http://bicycles.stackexchange.com/" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+                        <li><a href="http://rpg.stackexchange.com/" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#culturerecreation" class="more">
+                                more (21)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://math.stackexchange.com/" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                        <li><a href="http://stats.stackexchange.com/" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                        <li><a href="http://cstheory.stackexchange.com/" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                        <li><a href="http://physics.stackexchange.com/" title="active researchers, academics and students of physics">Physics</a></li>
+                        <li><a href="http://mathoverflow.net/" title="professional mathematicians">MathOverflow</a></li>
+                        <li><a href="http://chemistry.stackexchange.com/" title="scientists, academics, teachers and students">Chemistry</a></li>
+                        <li><a href="http://biology.stackexchange.com/" title="biology researchers, academics, and students">Biology</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#science" class="more">
+                                more (5)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://stackapps.com/" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                        <li><a href="http://meta.stackexchange.com/" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Exchange</a></li>
+                        <li><a href="http://area51.stackexchange.com/" title="proposing new sites in the Stack Exchange network">Area 51</a></li>
+                        <li><a href="http://careers.stackoverflow.com/">Stack Overflow Careers</a></li>
+                    
+                </ol>
+            </td>
+    </tr>
+</tbody></table>
+                </div>
+            </div>
+
+            <div id="copyright">
+                site design / logo © 2015 Stack Exchange Inc; user contributions licensed under <a href="http://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc by-sa 3.0</a> 
+                with <a href="http://blog.stackoverflow.com/2009/06/attribution-required/" rel="license">attribution required</a>
+            </div>
+            <div id="svnrev">
+                rev 2015.12.12.3073
+            </div>
+            
+        </div>
+    </div>
+    <noscript>
+        <div id="noscript-warning">Stack Overflow works best with JavaScript enabled<img src="http://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"></div>
+    </noscript>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-5620270-1');
+                        ga('set', 'dimension2', '|java|multithreading|session|servlets|session-variables|');         ga('send', 'pageview');
+        var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+        (function () {
+            var ssl='https:'==document.location.protocol,
+                s=document.getElementsByTagName('script')[0],
+                qc=document.createElement('script');
+            qc.async=true;
+            qc.src=(ssl?'https://secure':'http://edge')+'.quantserve.com/quant.js';
+            s.parentNode.insertBefore(qc, s);
+            var sc=document.createElement('script');
+            sc.async=true;
+            sc.src=(ssl?'https://sb':'http://b') + '.scorecardresearch.com/beacon.js';
+            s.parentNode.insertBefore(sc, s);
+        })();
+        _comscore.push({ c1: "2", c2: "17440561" });
+        _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+    </script>
+            
+    
+</body></html>
