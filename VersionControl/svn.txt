@@ -1,0 +1,4 @@
+svn checkout --username http://
+
+To use third-party tool for diff:
+svn diff --diff-cmd %NAME_OF_THE_TOOL% file
